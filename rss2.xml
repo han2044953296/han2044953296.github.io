@@ -9,8 +9,32 @@
     <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>只有努力不会辜负你</description>
-    <pubDate>Sat, 15 Oct 2022 09:04:36 GMT</pubDate>
+    <pubDate>Sat, 15 Oct 2022 10:31:25 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>java中异常的相关知识</title>
+      <link>http://example.com/2022/10/15/%E5%BC%82%E5%B8%B8/</link>
+      <guid>http://example.com/2022/10/15/%E5%BC%82%E5%B8%B8/</guid>
+      <pubDate>Sat, 15 Oct 2022 09:44:10 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;##异常&lt;br&gt;###因为一些原因导致开发的程序出现问题&lt;br&gt;Throwable是error和Exception的父类，是Java里所有异常的父类&lt;br&gt;##error&lt;br&gt;如果出现了error，则代表计算机出现了重大的错误，比如jvm无法解决的问题等。&lt;br&gt;##Ex</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>##异常<br>###因为一些原因导致开发的程序出现问题<br>Throwable是error和Exception的父类，是Java里所有异常的父类<br>##error<br>如果出现了error，则代表计算机出现了重大的错误，比如jvm无法解决的问题等。<br>##Exception<br>如果出现了Exception，则代表计算机代码出现了问题，编译或者运行的时候出现了问题。但是Exception还分为运行时异常和编译时异常<br>###运行时异常<br>运行时异常比如：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayIndexOutOfBoundsException//这就是个数组越界的异常</span><br></pre></td></tr></table></figure><p>这些都是运行的时候产生的异常，编译可以通过的，其中最常见的就是数组越界，下表越剧等<br>###编译时异常<br>编译时异常比如：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The final local variable m cannot be assigned. It must be blank and not using a compound assignment //这个就是个简单的final修饰的变量不可被改变的异常</span><br></pre></td></tr></table></figure><p>这些是在程序未被运行之前就报出的错误。会被编译器会进行优先的处理。<br>最常见的就是作用域的问题，比如static变量和非static的变量等。<br>##异常处理<br>###try catch<br>我们可以通过try catch的方法进行捕获异常，让异常出现的时候不至于停止程序的运行<br>代码如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">try &#123;//放会报错的语句，这个是个简单数组越界</span><br><span class="line">a[m] = 1;</span><br><span class="line">System.out.println(&quot;输入正确&quot;);</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">// TODO: handle exception</span><br><span class="line">// 在错误发生时怎么处理</span><br><span class="line">System.out.println(&quot;成功抛出异常&quot;);</span><br><span class="line">&#125; </span><br><span class="line">catch(xxxxx) &#123;</span><br><span class="line">&#125;// 这里的catch还可以继续往下写，但是要注意其中异常的类型必须是越在后面类型越大的，因为Exception还分多个子类异常，这样可以更精确的分辨是什么异常，不过直接写Exception也不算错</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>但是要注意，我们不可以捕获error异常，因为error异常已经超出了代码捕获的范围，我们一般都要进行硬件及软件的处理<br>###throws<br>我们可以通过throws把异常向上抛出，让他们的上层去处理，可是一般上层如果不能处理，还会继续向上抛出，这种方法我简称为逃避，我们，一般使用try catch语句较多，一般是抛到main方法里进行try catch处理，<br>如果异常一直不处理，那编译器最后会报错</p>]]></content:encoded>
+      
+      
+      <category domain="http://example.com/categories/javase/">-javase</category>
+      
+      
+      
+      <comments>http://example.com/2022/10/15/%E5%BC%82%E5%B8%B8/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Hello World</title>
@@ -25,7 +49,7 @@
       
       
       
-      <content:encoded><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content:encoded>
+      <content:encoded><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash</span><br><span class="line">$ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content:encoded>
       
       
       
