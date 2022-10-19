@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/%E6%A0%91%E5%8F%B6_sleaves%20(1).png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/%E6%A0%91%E5%8F%B6_sleaves.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="单例模式 一个类只有一个实例 通过private ， 构造方法 static方法 饿汉式   12345678910111213141516171819public class testmain1 &amp;#123;	public static void main(String[] args) &amp;#123;		&#x2F;&#x2F; TODO Auto-generated method stub		A a1 &#x3D; A.ge">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式和反射">
+<meta property="og:url" content="http://example.com/2022/10/19/10-19/index.html">
+<meta property="og:site_name" content="枫叶冢">
+<meta property="og:description" content="单例模式 一个类只有一个实例 通过private ， 构造方法 static方法 饿汉式   12345678910111213141516171819public class testmain1 &amp;#123;	public static void main(String[] args) &amp;#123;		&#x2F;&#x2F; TODO Auto-generated method stub		A a1 &#x3D; A.ge">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-19T00:30:00.000Z">
+<meta property="article:modified_time" content="2022-10-19T09:15:55.795Z">
+<meta property="article:author" content="liu zihang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/10/19/10-19/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>设计模式和反射 | 枫叶冢</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/rss2.xml" title="枫叶冢" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a target="_blank" rel="noopener" href="https://github.com/han2044953296" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#151513; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">枫叶冢</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/19/10-19/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          设计模式和反射
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-19 08:30:00 / 修改时间：17:15:55" itemprop="dateCreated datePublished" datetime="2022-10-19T08:30:00+08:00">2022-10-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><ul>
+<li>一个类只有一个实例</li>
+<li>通过private ， 构造方法</li>
+<li>static方法</li>
+<li>饿汉式</li>
+</ul>
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class testmain1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		A a1 = A.getInstance();</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class A &#123;</span><br><span class="line">	private A() &#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	private static A a1 = new A();</span><br><span class="line">	public static A getInstance() &#123;</span><br><span class="line">		return a1;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>懒汉式</li>
+</ul>
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line">public class testmain1 &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	A a1 = A.getInstance();</span><br><span class="line">	B a2 = B.getInstance();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B &#123;</span><br><span class="line">	private B() &#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line">private static B ai;</span><br><span class="line">public synchronized static B getInstance() &#123;</span><br><span class="line">	if(ai == null) &#123;</span><br><span class="line">		ai = new B();</span><br><span class="line">	&#125;</span><br><span class="line">	return ai;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>开发的时候懒汉式用的比较多，因为可控</li>
+<li>但是一般都在懒汉式哪里添加一个线程锁，为了线程安全，就是synchronized</li>
+</ul>
+<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><ul>
+<li>创建型设计模式</li>
+<li>通过方法创建对象</li>
+</ul>
+<h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><ul>
+<li>静态工厂方法模式，例如单例模式，单例模式是特殊的工厂模式</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Diver &#123;</span><br><span class="line">	public static Car driverCar(String s) &#123;</span><br><span class="line">		if(s.equalsIgnoreCase(&quot;宝马&quot;)) &#123;</span><br><span class="line">			return new Car(&quot;宝马&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		if(s.equalsIgnoreCase(&quot;奔驰&quot;)) &#123;</span><br><span class="line">			return new Car(&quot;奔驰&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		if(s.equalsIgnoreCase(&quot;奥迪&quot;)) &#123;</span><br><span class="line">			return new Car(&quot;奥迪&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><ul>
+<li>非静态方法，不同的工厂生成不同的产品</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package factory;</span><br><span class="line">public  class bzfactory &#123;</span><br><span class="line"></span><br><span class="line">public  Car product() &#123;</span><br><span class="line">	return new Car();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">class BenzCar extends bzfactory&#123;</span><br><span class="line">public Car product() &#123;</span><br><span class="line">	return new bz();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class bmwfactory extends bzfactory&#123;</span><br><span class="line">public Car product() &#123;</span><br><span class="line">	return new bmw();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Car&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class bz extends Car&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class bmw extends Car&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class audi extends Car&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这样可以不用动代码，可以直接加类，进而直接引</li>
+<li>而第一种要把别的人已经打包好的解包进而对其代码进行操作</li>
+<li>而这种不用，只要新加几个类就可以</li>
+</ul>
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><ul>
+<li>工厂的工厂模式</li>
+<li>给用户提供一个接口，可以创建多个产品族中的对象</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">	package com.icss.javasechapter.factory;</span><br><span class="line">//抽象工厂模式</span><br><span class="line">	interface Car&#123;</span><br><span class="line">		public void drive();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	interface SportsCar extends Car&#123;</span><br><span class="line">		public boolean isConvertible();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	interface BussinessCar extends Car&#123;</span><br><span class="line">		public boolean isAutoDoor();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	// 具体产品角色</span><br><span class="line">	class BenzSprotsCar implements SportsCar &#123;</span><br><span class="line">		public void drive() &#123;</span><br><span class="line">			System.out.println(&quot;Driving Benz S&quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public boolean isConvertible() &#123;</span><br><span class="line">			// TODO Auto-generated method stub</span><br><span class="line">			return true;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	class BenzBussinessCar implements BussinessCar &#123;</span><br><span class="line">		public void drive() &#123;</span><br><span class="line">			System.out.println(&quot;Driving Benz B&quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">		public boolean isAutoDoor() &#123;</span><br><span class="line">			// TODO Auto-generated method stub</span><br><span class="line">			return false;</span><br><span class="line">				&#125;	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	class BmwSprotsCar implements SportsCar &#123;</span><br><span class="line">		public void drive() &#123;</span><br><span class="line">			System.out.println(&quot;Driving Bmw S &quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public boolean isConvertible() &#123;</span><br><span class="line">			return true;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	class BmwBussinessCar implements BussinessCar &#123;</span><br><span class="line">		public void drive() &#123;</span><br><span class="line">			System.out.println(&quot;Driving Bmw B &quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public boolean isAutoDoor() &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		return false;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	interface CarFactory&#123;</span><br><span class="line">		public SportsCar getSportsCar();</span><br><span class="line">		public BussinessCar getBussinessCar();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	class BenzCarFactory implements CarFactory&#123;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public SportsCar getSportsCar() &#123;</span><br><span class="line">			// TODO Auto-generated method stub</span><br><span class="line">			return new BenzSprotsCar();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public BussinessCar getBussinessCar() &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		return new BenzBussinessCar();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	class BmwCarFactroy implements CarFactory&#123;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public SportsCar getSportsCar() &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">			return new BmwSprotsCar();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public BussinessCar getBussinessCar() &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">			return new BmwBussinessCar();</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 抽象产品角色，具体产品角色与简单工厂模式类似，只是变得复杂了些，这里略。</span><br><span class="line">	// 抽象工厂角色</span><br><span class="line">	class AbstractCarFactory&#123;</span><br><span class="line">	</span><br><span class="line">	public static CarFactory getCarFactory(String name)&#123;</span><br><span class="line">		if(&quot;Benz&quot;.equals(name))&#123;</span><br><span class="line">			return new BenzCarFactory();</span><br><span class="line">		&#125;else if(&quot;Bmw&quot;.equals(name))&#123;</span><br><span class="line">			return new BmwCarFactroy();</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			throw new RuntimeException();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	public class MagnateAbstractFactory &#123;</span><br><span class="line">		public static void main(String[] args) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				CarFactory factory = AbstractCarFactory.getCarFactory(&quot;Bmw&quot;);</span><br><span class="line">				BussinessCar car = factory.getBussinessCar();</span><br><span class="line">				car.drive();</span><br><span class="line">				System.out.println(car.isAutoDoor());</span><br><span class="line">			&#125; catch (Exception e) &#123;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><ul>
+<li>订阅与发布</li>
+<li>java通过Observable和Observer来实现<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">public class lesson13 &#123;</span><br><span class="line"></span><br><span class="line">	public int aaa =0;</span><br><span class="line">	public MyObsever[] array = new MyObsever[10];</span><br><span class="line">	int index = -1;</span><br><span class="line">	public void addObsever(MyObsever obs) &#123;</span><br><span class="line">			array[++index &gt; 9 ? index = 0 : index] =obs;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setAaa(int newvalue) &#123;</span><br><span class="line">		this.aaa = newvalue;</span><br><span class="line">		for(int i =0; i &lt; array.length ; i++) &#123;</span><br><span class="line">			if(array[i] == null)break;</span><br><span class="line">				array[i].update(this.aaa , newvalue);</span><br><span class="line">			&#125;</span><br><span class="line">		this.aaa = newvalue;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		MyObsever ob = new MyObsever();</span><br><span class="line">		lesson13 data = new lesson13();</span><br><span class="line">		data.addObsever(ob);</span><br><span class="line">		data.setAaa(10000);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class MyObsever &#123;</span><br><span class="line">	String name;</span><br><span class="line">	public void update(int aaa , int newvalue) &#123;</span><br><span class="line">		System.out.println(&quot;观察者&quot; + this.name + &quot;,&quot; + aaa + &quot;变成&quot; + newvalue);</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>简单来说就是群发消息，或者说是改变github上的代码的那种改变</li>
+</ul>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><ul>
+<li>代理模式给一个对象提供代理对象，比如代打，比如代刷xxx等<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">package 作业;</span><br><span class="line">public class TestMain4 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		Target t = new Target();</span><br><span class="line">		Proxy proxy = new Proxy();</span><br><span class="line">		proxy.target = t;</span><br><span class="line">		proxy.price();</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line">class Target &#123;</span><br><span class="line">	public void price() &#123;</span><br><span class="line">		System.out.println(&quot;---100--&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class Proxy &#123;</span><br><span class="line">	Target target;</span><br><span class="line">	public void price() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			System.out.println(&quot;100&quot;);</span><br><span class="line">			target.price();</span><br><span class="line">			System.out.println(&quot;50&quot;);</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			// TODO: handle exception</span><br><span class="line">			System.out.println(&quot;10&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>就相当于中间商赚差价，商家会把货发送到代理这里，代理再提高价格发送出去，上面的这个叫静态代理</li>
+</ul>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><ul>
+<li>动态代理要用接口来实现<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">package lesson13;</span><br><span class="line">import java.lang.reflect.InvocationHandler;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line">import java.lang.reflect.Proxy;</span><br><span class="line">import java.nio.channels.NonWritableChannelException;</span><br><span class="line">public class TestMain4 &#123;</span><br><span class="line">	public static void main(String[] args) // 主方法调用代理的 </span><br><span class="line">	&#123;</span><br><span class="line">		DynamicTargetInf inf = DynamicProxFactory.getInstance();	</span><br><span class="line">		inf.price();</span><br><span class="line">		int r = inf.add(1, 2);</span><br><span class="line">		System.out.println(r);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">interface DynamicTargetInf // 要代理的接口 </span><br><span class="line">&#123;</span><br><span class="line">	void price();</span><br><span class="line">	int add(int i, int j);</span><br><span class="line">&#125;</span><br><span class="line">class DynamicTarget implements DynamicTargetInf // 要代理的目标类，我们接下来要代理这里的方法</span><br><span class="line">&#123;</span><br><span class="line">	public void price() &#123;</span><br><span class="line">		System.out.println(&quot;--target-100--&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public int add(int i, int j) &#123;</span><br><span class="line">		System.out.println(&quot;--target-i + j--&quot;);</span><br><span class="line">		return i + j;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	// invocationHandle   invoke执行 handle句柄    welcome,xxx</span><br><span class="line">	class DynamicProxFactory implements InvocationHandler // 代理控制器，就是代理对象每次要运行方法都要经过他</span><br><span class="line">	&#123;</span><br><span class="line">	DynamicTargetInf target = new DynamicTarget();	// 一般这个地方是要传值进来的，不过这里为了方便，我们就直接赋值了</span><br><span class="line">	// 代理对象每次运行方法的时候会执行</span><br><span class="line">	@Override</span><br><span class="line">	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable // invoke方法是InvocationHandler接口的方法，这个方法是执行的意思</span><br><span class="line">	&#123;</span><br><span class="line">			Object result = null; // 定义一个返回值 ，Object类代表可以转化成任何类型</span><br><span class="line">		try &#123;  // try catch包裹，一是为了判断是不是出错，二是为了安全性</span><br><span class="line">		System.out.println(&quot;-之前-100---&quot;);</span><br><span class="line">		// 反射。当前方法执行。target对象的当前方法， args方法的参数</span><br><span class="line">		result = method.invoke(target, args);</span><br><span class="line">		//	target.price();</span><br><span class="line">		System.out.println(&quot;-之后-50---&quot;);	</span><br><span class="line">	&#125; catch (Exception e) &#123;</span><br><span class="line">		System.out.println(&quot;-异常-10---&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	return result;</span><br><span class="line">	&#125;</span><br><span class="line">	public static DynamicTargetInf getInstance() // 要代理的目标的接口的实例化方法 ， 通过这个方法会把要代理对象的接口和代理工厂连接到一起</span><br><span class="line">	&#123;</span><br><span class="line">	Object object = java.lang.reflect.Proxy.newProxyInstance(DynamicProxFactory.class.getClassLoader(), new Class[] &#123;DynamicTargetInf.class&#125;, new DynamicProxFactory()); // 这里的三个参数其实是，第一个是类加载器 ， 第二个是目标接口的类数组 ， 第三个是代理工厂的句柄，也就是句柄</span><br><span class="line">	return (DynamicTargetInf) object;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>对于静态的代理，每一个方法都要写一个代理，于是就很麻烦，可是对于动态的代理，他会自动的把那个方法里的方法都代理一边，只要在主函数里调用就行，</li>
+<li>其实基本上思想就是，把要代理的目标变成一个接口，然后通过实例化这个接口，再通过接口的特性，让代理去实现目标的方法</li>
+<li>私有的方法无法代理</li>
+</ul>
+<h1 id="反射，类的类型"><a href="#反射，类的类型" class="headerlink" title="反射，类的类型"></a>反射，类的类型</h1><p>类的类型，就是所有类都可以有的东西比如：属性，构造方法，方法。</p>
+<ul>
+<li>可以用这些类的类型去创建一个新类</li>
+<li>而我们如果想获取这个类的类型，就要用到反射，</li>
+<li>他可以获取这个类的类型，就是上面说的属性，构造方法，方法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line">import java.lang.reflect.Constructor;</span><br><span class="line">public class wjw1 &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// 获取反射的三种方式 第一种</span><br><span class="line">	Class clzz1 = student.class;</span><br><span class="line">	// 第二中 </span><br><span class="line">	student student = new student();</span><br><span class="line">	Class a = student.getClass();</span><br><span class="line">	// 第三种</span><br><span class="line">	try &#123;</span><br><span class="line">		Class ae = Class.forName(&quot;作业.student&quot;);</span><br><span class="line">	&#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	Constructor[] cons = clzz1.getConstructors(); // 查看构造器</span><br><span class="line">	for (int i = 0; i &lt; cons.length; i++) &#123;</span><br><span class="line">		System.out.println(cons[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	Field[] d = a.getFields(); // 查看变量，非私有的</span><br><span class="line">	for (int i = 0; i &lt; d.length; i++) &#123;</span><br><span class="line">		System.out.println(d[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	Field[] f = a.getDeclaredFields(); // 私有变量只能这样查看</span><br><span class="line">	for (int i = 0; i &lt; f.length; i++) &#123;</span><br><span class="line">		System.out.println(f[i]);</span><br><span class="line">	&#125;</span><br><span class="line">		Constructor Con; // 获取有特定参数的构造器</span><br><span class="line">	try &#123;</span><br><span class="line">		Con = clzz1.getConstructor(new Class[] &#123;String.class , int.class&#125;);//里面放那个类型的对应的.class</span><br><span class="line">		&#125; catch (NoSuchMethodException | SecurityException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">	try &#123; // 通过反射进行实例化，证明了，实例化不一定非要用new</span><br><span class="line">		Object object = Con.newInstance(new Object[] &#123;343,&quot;sdajkdha&quot;&#125;);</span><br><span class="line">		&#125; catch (InstantiationException | IllegalAccessException | IllegalArgumentException</span><br><span class="line">			| InvocationTargetException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上面，是我们要运行的方法里如何写</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;	</span><br><span class="line">public class student &#123;</span><br><span class="line">private String name;</span><br><span class="line">private String num;</span><br><span class="line">private String sex;</span><br><span class="line">public int age;</span><br><span class="line">public String getName() &#123;</span><br><span class="line">	return name;</span><br><span class="line">&#125;</span><br><span class="line">public void setName(String name) &#123;</span><br><span class="line">	this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">public String getNum() &#123;</span><br><span class="line">	return num;</span><br><span class="line">&#125;</span><br><span class="line">public void setNum(String num) &#123;</span><br><span class="line">	this.num = num;</span><br><span class="line">&#125;</span><br><span class="line">public String getSex() &#123;</span><br><span class="line">	return sex;</span><br><span class="line">&#125;</span><br><span class="line">public void setSex(String sex) &#123;</span><br><span class="line">	this.sex = sex;</span><br><span class="line">&#125;</span><br><span class="line">public int getAge() &#123;</span><br><span class="line">	return age;</span><br><span class="line">&#125;</span><br><span class="line">public void setAge(int age) &#123;</span><br><span class="line">	this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">public student() &#123;</span><br><span class="line">	super();</span><br><span class="line">	// TODO Auto-generated constructor stub</span><br><span class="line">&#125;</span><br><span class="line">public student( int x , String name) &#123;</span><br><span class="line">	this.age = x;</span><br><span class="line">	this.name = name;</span><br><span class="line">	// TODO Auto-generated constructor stub</span><br><span class="line">&#125;</span><br><span class="line">clzz1.getMethods() // 获取里面所有可以访问的方法</span><br><span class="line">clzz1.getMethod(name, parameterTypes) // 获取特定的可以访问的方法</span><br><span class="line">clzz1.getDeclaredMethod(name, parameterTypes); // 查找特定参数的自己定义的方法</span><br><span class="line">clzz1.getDeclaredMethods(); // 查询所有自己定义的方法</span><br><span class="line">Method m = clzz1.getDeclaredMethod(name, parameterTypes);</span><br><span class="line">Object r = m.invoke(obj, args); // 执行前面一个参数里的方法m方法 ， 后面的一个是这个方法的参数</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>下面只是个普通的方法</li>
+<li>这是两个class，要注意，因为都是public，所以必须单独建立两个class，才可以</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      
+   <div>
+     <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+   </div>
+     
+        <div class="reward-container">
+  <div>你们的鼓励是对我最大的支持</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="liu zihang 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>liu zihang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/10/19/10-19/" title="设计模式和反射">http://example.com/2022/10/19/10-19/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+     
+    
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/18/%E6%97%A5%E6%9C%9F%E5%92%8C%E5%9B%BD%E9%99%85%E5%8C%96/" rel="prev" title="java里的日期和Object的一些方法">
+      <i class="fa fa-chevron-left"></i> java里的日期和Object的一些方法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/19/%E5%88%B6%E4%BD%9C%E7%AD%BE%E5%88%B0/" rel="next" title="签到的制作（后端＋前端）">
+      签到的制作（后端＋前端） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81NzQzNy8zMzkwMQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">简单工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">工厂方法模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">抽象工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.4.</span> <span class="nav-text">观察者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.5.</span> <span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="nav-number">2.6.</span> <span class="nav-text">动态代理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%EF%BC%8C%E7%B1%BB%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">反射，类的类型</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liu zihang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">liu zihang</p>
+  <div class="site-description" itemprop="description">只有努力不会辜负你</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      链接网站
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://baidu.com/" title="https:&#x2F;&#x2F;baidu.com" rel="noopener" target="_blank">百度</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://fishc.com.cn/" title="https:&#x2F;&#x2F;fishc.com.cn" rel="noopener" target="_blank">鱼C论坛</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liu zihang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共8.1k字</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
