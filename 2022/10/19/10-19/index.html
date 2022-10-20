@@ -30,7 +30,7 @@
 <meta property="og:description" content="单例模式 一个类只有一个实例 通过private ， 构造方法 static方法 饿汉式   12345678910111213141516171819public class testmain1 &amp;#123;	public static void main(String[] args) &amp;#123;		&#x2F;&#x2F; TODO Auto-generated method stub		A a1 &#x3D; A.ge">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-19T00:30:00.000Z">
-<meta property="article:modified_time" content="2022-10-19T09:15:55.795Z">
+<meta property="article:modified_time" content="2022-10-20T02:14:54.101Z">
 <meta property="article:author" content="liu zihang">
 <meta name="twitter:card" content="summary">
 
@@ -224,10 +224,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-10-19 08:30:00 / 修改时间：17:15:55" itemprop="dateCreated datePublished" datetime="2022-10-19T08:30:00+08:00">2022-10-19</time>
+              <time title="创建时间：2022-10-19 08:30:00" itemprop="dateCreated datePublished" datetime="2022-10-19T08:30:00+08:00">2022-10-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-20 10:14:54" itemprop="dateModified" datetime="2022-10-20T10:14:54+08:00">2022-10-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -251,14 +257,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>10k</span>
+              <span>11k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>10 分钟</span>
             </span>
 
         </div>
@@ -340,12 +346,31 @@
 <ul>
 <li>上面，是我们要运行的方法里如何写</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;	</span><br><span class="line">public class student &#123;</span><br><span class="line">private String name;</span><br><span class="line">private String num;</span><br><span class="line">private String sex;</span><br><span class="line">public int age;</span><br><span class="line">public String getName() &#123;</span><br><span class="line">	return name;</span><br><span class="line">&#125;</span><br><span class="line">public void setName(String name) &#123;</span><br><span class="line">	this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">public String getNum() &#123;</span><br><span class="line">	return num;</span><br><span class="line">&#125;</span><br><span class="line">public void setNum(String num) &#123;</span><br><span class="line">	this.num = num;</span><br><span class="line">&#125;</span><br><span class="line">public String getSex() &#123;</span><br><span class="line">	return sex;</span><br><span class="line">&#125;</span><br><span class="line">public void setSex(String sex) &#123;</span><br><span class="line">	this.sex = sex;</span><br><span class="line">&#125;</span><br><span class="line">public int getAge() &#123;</span><br><span class="line">	return age;</span><br><span class="line">&#125;</span><br><span class="line">public void setAge(int age) &#123;</span><br><span class="line">	this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">public student() &#123;</span><br><span class="line">	super();</span><br><span class="line">	// TODO Auto-generated constructor stub</span><br><span class="line">&#125;</span><br><span class="line">public student( int x , String name) &#123;</span><br><span class="line">	this.age = x;</span><br><span class="line">	this.name = name;</span><br><span class="line">	// TODO Auto-generated constructor stub</span><br><span class="line">&#125;</span><br><span class="line">clzz1.getMethods() // 获取里面所有可以访问的方法</span><br><span class="line">clzz1.getMethod(name, parameterTypes) // 获取特定的可以访问的方法</span><br><span class="line">clzz1.getDeclaredMethod(name, parameterTypes); // 查找特定参数的自己定义的方法</span><br><span class="line">clzz1.getDeclaredMethods(); // 查询所有自己定义的方法</span><br><span class="line">Method m = clzz1.getDeclaredMethod(name, parameterTypes);</span><br><span class="line">Object r = m.invoke(obj, args); // 执行前面一个参数里的方法m方法 ， 后面的一个是这个方法的参数</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;	</span><br><span class="line">public class student &#123;</span><br><span class="line">private String name;</span><br><span class="line">private String num;</span><br><span class="line">private String sex;</span><br><span class="line">public int age;</span><br><span class="line">public String getName() &#123;</span><br><span class="line">	return name;</span><br><span class="line">&#125;</span><br><span class="line">public void setName(String name) &#123;</span><br><span class="line">	this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">public String getNum() &#123;</span><br><span class="line">	return num;</span><br><span class="line">&#125;</span><br><span class="line">public void setNum(String num) &#123;</span><br><span class="line">	this.num = num;</span><br><span class="line">&#125;</span><br><span class="line">public String getSex() &#123;</span><br><span class="line">	return sex;</span><br><span class="line">&#125;</span><br><span class="line">public void setSex(String sex) &#123;</span><br><span class="line">	this.sex = sex;</span><br><span class="line">&#125;</span><br><span class="line">public int getAge() &#123;</span><br><span class="line">	return age;</span><br><span class="line">&#125;</span><br><span class="line">public void setAge(int age) &#123;</span><br><span class="line">	this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">public student() &#123;</span><br><span class="line">	super();</span><br><span class="line">	// TODO Auto-generated constructor stub</span><br><span class="line">&#125;</span><br><span class="line">public student( int x , String name) &#123;</span><br><span class="line">	this.age = x;</span><br><span class="line">	this.name = name;</span><br><span class="line">	// TODO Auto-generated constructor stub</span><br><span class="line">&#125;</span><br><span class="line">clzz1.getMethods() // 获取里面所有可以访问的方法</span><br><span class="line">clzz1.getMethod(name, parameterTypes) // 获取特定的可以访问的方法</span><br><span class="line">clzz1.getDeclaredMethod(name, parameterTypes); // 查找特定参数的自己定义的方法</span><br><span class="line">clzz1.getDeclaredMethods(); // 查询所有自己定义的方法</span><br><span class="line">Method m = clzz1.getDeclaredMethod(name, parameterTypes);</span><br><span class="line">Object r = m.invoke(obj, args); // 执行前面一个参数里的方法m方法 ， 后面的一个是这个方法的参数</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Field f1 =	clzz1.getField(&quot;name&quot;); // 获取单独的与里面字符串匹配的变量 ， 如果是私有的要用declaer方法，比如</span><br><span class="line"> Field f2 = clzz1.getDeclaredField(&quot;name&quot;); // 可以获取私有的变量</span><br><span class="line"> f1.setAccessible(true); // 修改访问权限修饰符，true代表public false代表private</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>下面只是个普通的方法</li>
 <li>这是两个class，要注意，因为都是public，所以必须单独建立两个class，才可以</li>
 </ul>
+<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><ul>
+<li><p>用@interface</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">package 作业;</span><br><span class="line">@Target (value = &#123;ElementType.CONSTRUCTOR,ElementType.FIELD,ElementType.METHOD,ElementType.TYPE&#125;) // target是代表要修饰的目标种类，比如方法，构造器，属性等</span><br><span class="line">@Retention(value = RetentionPolicy.SOURCE) // 代表这个存活的位置，一般我们用不到，这个是存活于源码里，编译之后就无了</span><br><span class="line">@Retention(value = RetentionPolicy.CLASS) // 这个是存活与class中</span><br><span class="line">@Retention(value = RetentionPolicy.RUNTIME) // 这个是存活在运行时</span><br><span class="line">public @interface lesson14 &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上面的@Retention只能用一个，而且只能选择一个</p>
+</li>
+<li><p>而后再有一个类</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package 作业;</span><br><span class="line">@lesson14</span><br><span class="line">public class try1 &#123;</span><br><span class="line">	@lesson14</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>上面是一般用法。</li>
+<li>如果在接口上面增加@Target，就是代表让你可以修饰的东西</li>
+<li>@Retention 代表设置其存活的地方</li>
+</ul>
+<h2 id="value"><a href="#value" class="headerlink" title="value"></a>value</h2><p>可以在接口内写value，如果加上了value则在引用的时候要在括号内写上内容<br>如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public @interface lesson14 &#123;</span><br><span class="line">String value()</span><br><span class="line">default &quot;默认信息&quot;; // 代表默认值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@lesson14(&quot;klsdajhal&quot;)</span><br><span class="line">或者@lesson14(value = &quot;sadajd&quot;)</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -504,7 +529,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">简单工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">工厂方法模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">抽象工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.4.</span> <span class="nav-text">观察者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.5.</span> <span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="nav-number">2.6.</span> <span class="nav-text">动态代理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%EF%BC%8C%E7%B1%BB%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">反射，类的类型</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">简单工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">工厂方法模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">抽象工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.4.</span> <span class="nav-text">观察者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.5.</span> <span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="nav-number">2.6.</span> <span class="nav-text">动态代理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%EF%BC%8C%E7%B1%BB%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">反射，类的类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3"><span class="nav-number">4.</span> <span class="nav-text">注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#value"><span class="nav-number">4.1.</span> <span class="nav-text">value</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -520,7 +545,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -578,7 +603,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共8.1k字</span>
+  <span class="post-count">博客全站共9.2k字</span>
 </div>
 
 
