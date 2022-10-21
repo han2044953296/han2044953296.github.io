@@ -1,6 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2022/10/15/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash</span><br><span class="line">$ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>字符流</title>
+    <url>/2022/10/21/10-21/</url>
+    <content><![CDATA[<h1 id="Write"><a href="#Write" class="headerlink" title="Write"></a>Write</h1><ul>
+<li>Write是抽象方法</li>
+<li>其里面定义了传输大小（在源码中）</li>
+<li>在write里<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">private static final int WRITE_BUFFER_SIZE = 1024;</span><br></pre></td></tr></table></figure></li>
+<li>所谓的字符流只是把字节流包装起来，证据在源码里<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">	import java.io.FileWriter;</span><br><span class="line">	import java.io.IOException;</span><br><span class="line">	import java.io.Writer;</span><br><span class="line"></span><br><span class="line">	public class char流 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	try &#123;</span><br><span class="line">		Writer w = new FileWriter(&quot;D:/a.txt&quot;);</span><br><span class="line">		w.write(&quot;hello world&quot;);</span><br><span class="line">		w.append(&quot;hello Bgido&quot;);</span><br><span class="line">		w.write(&quot;hello java&quot;.toCharArray());</span><br><span class="line">		w.flush();</span><br><span class="line">		w.close();</span><br><span class="line">	&#125; catch (IOException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></li>
+<li>注意这里的write是直接在文件里重写数据，而append是增加数据，因为write底层调用的是write方法</li>
+</ul>
+<h1 id="Read"><a href="#Read" class="headerlink" title="Read"></a>Read</h1><ul>
+<li>出现的原因，是因为字节流可能存不住，所以才出现，会造成乱码</li>
+</ul>
+<h2 id="字符分类以及编码格式"><a href="#字符分类以及编码格式" class="headerlink" title="字符分类以及编码格式"></a>字符分类以及编码格式</h2><ul>
+<li><p>一般在英文状态下一个字母或字符占用一个字节，一个汉字用两个字节表示。</p>
+</li>
+<li><p>ASCII 码中，一个英文字母(不分大小写)为一个字节，一个中文汉字为两个字节。</p>
+</li>
+<li><p>UTF-8 编码中，一个英文字为一个字节，一个中文为三个字节。</p>
+</li>
+<li><p>Unicode 编码中，一个英文为一个字节，一个中文为两个字节。</p>
+</li>
+<li><p>符号：英文标点为一个字节，中文标点为两个字节。例如：英文句号 . 占1个字节的大小，中文句号 。占2个字节的大小。</p>
+</li>
+<li><p>UTF-16 编码中，一个英文字母字符或一个汉字字符存储都需要 2 个字节(Unicode 扩展区的一些汉字存储需要 4 个字节)。</p>
+</li>
+<li><p>UTF-32 编码中，世界上任何字符的存储都需要 4 个字节。</p>
+</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileReader;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">public class inputchar1 &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	try &#123;</span><br><span class="line">		Reader reader = new FileReader(&quot;D:/a.txt&quot;);</span><br><span class="line">		reader.close();</span><br><span class="line">		// 这个也可以读取文件</span><br><span class="line">		Reader reader1 = new InputStreamReader(new FileInputStream(&quot;D:/a.txt&quot;) , &quot;UTF-8&quot;); // 古老的方式，不过可以直接改代码的编码格式</span><br><span class="line">		char[] buffer = new char[10];</span><br><span class="line">		int len = 0;</span><br><span class="line">		while((len = reader1.read(buffer)) != -1) &#123;</span><br><span class="line">			System.out.print(new String(buffer , 0 ,len));</span><br><span class="line">		&#125;</span><br><span class="line">		reader1.close();</span><br><span class="line">		while((len = reader.read(buffer)) != -1) &#123;</span><br><span class="line">			System.out.print(new String(buffer, 0, len));</span><br><span class="line">		&#125;</span><br><span class="line">		reader.close();</span><br><span class="line">	&#125; catch (Exception e) &#123;</span><br><span class="line">		// TODO: handle exception</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="具体的流"><a href="#具体的流" class="headerlink" title="具体的流"></a>具体的流</h1><h2 id="buffered系类"><a href="#buffered系类" class="headerlink" title="buffered系类"></a>buffered系类</h2><ul>
+<li>代表缓冲区系类</li>
+<li><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line">import java.io.BufferedInputStream;</span><br><span class="line">import java.io.BufferedReader;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileReader;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">public class sdahasdk &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	try &#123;</span><br><span class="line">		BufferedInputStream us = new BufferedInputStream(new FileInputStream(&quot;D:/a.txt&quot;)); // 要自己定义缓冲区</span><br><span class="line">		us.skip(1);</span><br><span class="line">		byte[] buffer = new byte[10];</span><br><span class="line">		int len = 0;</span><br><span class="line">		while((len = us.read(buffer)) != -1) &#123;</span><br><span class="line">			System.out.println( new String(buffer , 0 ,len ));</span><br><span class="line">		&#125;</span><br><span class="line">		us.close();</span><br><span class="line">		</span><br><span class="line">		BufferedReader r = new BufferedReader(new FileReader(&quot;D:/a.txt&quot;)); // 里面有设置默认的缓冲区在源码里可以点进去查看</span><br><span class="line">		while(r.ready()) // ready是可读性，可读就true，不可读就fasle</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(	r.readLine());</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; catch (IOException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>只有顶层类的方法是没有线程锁的</li>
+<li>同样也有writer的方法<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">BufferedWriter wwe = new BufferedWriter( new FileWriter(&quot;D:/a.txt&quot;));</span><br></pre></td></tr></table></figure></li>
+<li>然后通过wwe.xxx访问方法</li>
+</ul>
+<h1 id="InputStreamReader-x2F-Writer"><a href="#InputStreamReader-x2F-Writer" class="headerlink" title="InputStreamReader&#x2F;Writer"></a>InputStreamReader&#x2F;Writer</h1><ul>
+<li>比较古老</li>
+<li>因为可以设置编码格式</li>
+<li>在构造方法里</li>
+<li>和上面的FileInputStream一样</li>
+</ul>
+<h1 id="ObjectInputStream"><a href="#ObjectInputStream" class="headerlink" title="ObjectInputStream"></a>ObjectInputStream</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line">import java.io.Serializable;</span><br><span class="line">public class stu implements Serializable&#123;</span><br><span class="line">public stu() &#123;</span><br><span class="line">	super();</span><br><span class="line">	// TODO Auto-generated constructor stub</span><br><span class="line">&#125;</span><br><span class="line">public stu(int x , String name) &#123;</span><br><span class="line">	this.age = x;</span><br><span class="line">	this.name = name;</span><br><span class="line">	// TODO Auto-generated constructor stub</span><br><span class="line">&#125;</span><br><span class="line">private String name;</span><br><span class="line">private transient int age;</span><br><span class="line">public String getName() &#123;</span><br><span class="line">	return name;</span><br><span class="line">&#125;</span><br><span class="line">public void setName(String name) &#123;</span><br><span class="line">	this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">public int getAge() &#123;</span><br><span class="line">	return age;</span><br><span class="line">&#125;</span><br><span class="line">public void setAge(int age) &#123;</span><br><span class="line">	this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line">public String toString() &#123;</span><br><span class="line">	return &quot;stu [name=&quot; + name + &quot;, age=&quot; + age + &quot;]&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这个是个学生类，代表我们要实例化的类，要加个可序列化的标记性接口</li>
+<li>transient是不参与序列化的</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.ObjectOutputStream;</span><br><span class="line"></span><br><span class="line">public class lesson15 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		try &#123;</span><br><span class="line">			ObjectOutputStream oo = new ObjectOutputStream(new FileOutputStream(&quot;D:/student.dat&quot;));</span><br><span class="line">			stu s = new stu(15 , &quot;tom&quot;);</span><br><span class="line">			oo.writeObject(s);</span><br><span class="line">			oo.flush();</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.ObjectInputStream;</span><br><span class="line">import java.io.ObjectOutputStream;</span><br><span class="line">public class lesson15 &#123;	</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	try &#123;</span><br><span class="line">		</span><br><span class="line">		ObjectInputStream d = new ObjectInputStream(new FileInputStream(&quot;D:/student.dat&quot;));</span><br><span class="line">		Object o = d.readObject();</span><br><span class="line">		System.out.println(o);</span><br><span class="line">		d.close();</span><br><span class="line">		</span><br><span class="line">	&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; catch (IOException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Scanner"><a href="#Scanner" class="headerlink" title="Scanner"></a>Scanner</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line">public class scanner &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	try &#123;</span><br><span class="line">		Scanner scanner = new Scanner( new FileInputStream(&quot;D:/a.txt&quot;) , &quot;UTF-8&quot;);</span><br><span class="line">		while(scanner.hasNext()) &#123;</span><br><span class="line">			System.out.println(scanner.nextLine());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Channnel流"><a href="#Channnel流" class="headerlink" title="Channnel流"></a>Channnel流</h1><ul>
+<li>其是新io包里的</li>
+<li>是nio里的，用的是堆外内存</li>
+<li>就是jvm内存，所以效率会比在堆里的数组缓冲区效率更高</li>
+<li>追主要的是对接，管道分为输入管道和输出管道</li>
+<li>当他们对接上就可以实现复制等操作了</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.nio.channels.FileChannel;</span><br><span class="line">public class Channel &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	File file = new File(&quot;D:/a.txt&quot;);</span><br><span class="line">	FileInputStream ii;</span><br><span class="line">	try &#123;</span><br><span class="line">		ii = new FileInputStream(file);</span><br><span class="line">		FileChannel cha = ii.getChannel();</span><br><span class="line">		FileChannel out = new FileOutputStream(&quot;D:/a1.txt&quot;).getChannel();		</span><br><span class="line">		cha.transferTo(0, file.length(), out); // 这个输入管道的对接口 三个参数 ，第一个是开始复制的起始下标，第二个是文件长度 ，第三个是输出管道</span><br><span class="line">		out.transferFrom(cha, 0, file.length()); // 这个是输出管道的接口 三个参数 ，第一个是输入管道，第二个是起始下标 ，第三个是文件长度</span><br><span class="line">	&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; catch (IOException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>两种管道对接的方式造成的结果是一样的，都是复制文件，但是如果这两个代码要制作的文件存在，则进行覆盖</li>
+</ul>
+<h1 id="StringBuffer和StringBuilder"><a href="#StringBuffer和StringBuilder" class="headerlink" title="StringBuffer和StringBuilder"></a>StringBuffer和StringBuilder</h1><ul>
+<li>解决字符串的加法的问题，</li>
+<li>字符串的+是方法的重载，每次都会返回一个对象</li>
+<li>而下面两个则是用堆运存运算省区了一个变量</li>
+<li>而builder无线程锁，所以比buffer要快<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 项目实训;</span><br><span class="line">public class sr &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	String s = &quot;shdghgsg&quot;;</span><br><span class="line">	long start = System.currentTimeMillis();</span><br><span class="line">	 // 拼接太费事</span><br><span class="line">	String h = s + &quot;shak&quot;;</span><br><span class="line">	long end = System.currentTimeMillis();</span><br><span class="line">	StringBuffer sb =new StringBuffer();</span><br><span class="line">	System.out.println(end - start);</span><br><span class="line">	sb.append(&quot;world&quot;);</span><br><span class="line">	long start1 = System.currentTimeMillis();</span><br><span class="line">	 // 拼接太费事</span><br><span class="line">	sb.append(&quot;world&quot;);</span><br><span class="line">	long end1 = System.currentTimeMillis();</span><br><span class="line">	System.out.println(end1 - start1);</span><br><span class="line">	 // 更快的</span><br><span class="line">	StringBuilder sd = new StringBuilder();</span><br><span class="line">	long start2 = System.currentTimeMillis();</span><br><span class="line">	 // 拼接太费事</span><br><span class="line">	sd.append(&quot;world&quot;);</span><br><span class="line">	long end2 = System.currentTimeMillis();</span><br><span class="line">	System.out.println(end2 - start2);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="比较快的排序方式"><a href="#比较快的排序方式" class="headerlink" title="比较快的排序方式"></a>比较快的排序方式</h2><ul>
+<li>Arrays.sort(要排序的数组)默认是正序</li>
+<li>也可以变成倒序，但是要是泛型数组就可以</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">int[] a = &#123;3,4,5,1,3,5,5&#125;;</span><br><span class="line">Arrays.sort(a);</span><br><span class="line">for (int i : a) &#123;</span><br><span class="line">	System.out.println(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><ul>
+<li>进程是程序对应的资源</li>
+<li>线程是cpu运行的最小单位</li>
+<li>线程是随机切换，一个程序中</li>
+</ul>
+<h2 id="启动线程"><a href="#启动线程" class="headerlink" title="启动线程"></a>启动线程</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">public class xiancheng &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	System.out.println(Thread.currentThread());</span><br><span class="line"></span><br><span class="line">	Task1 task1 = new Task1();</span><br><span class="line">	Thread t1 = new Thread(task1);</span><br><span class="line">	t1.setName(&quot;第一个线程&quot;); // 线程的名字</span><br><span class="line">	t1.start(); // 线程开始</span><br><span class="line">	new Thread(task1).start(); // 这种方式也可以进行线程启动</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class Task1 implements Runnable // 任务</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void run() &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	for (int i = 0; i &lt;101; i++) &#123;</span><br><span class="line">		</span><br><span class="line">		System.out.println(Thread.currentThread() + &quot;@&quot; +i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>在做一件事的时候还是单线程比较快，多线程可以一起干很多事情，所以就相当于一个人和多个人的差距</li>
+<li>意思就是单线程不一定比多线程慢，因为多线程存在上下文切换</li>
+<li>首先分配cpu资源的单位是进程。一个进程所获得到的cpu资源是一定的。程序在执行的过程中消耗的是cpu，比如一个单核cpu，多个线程同时执行工作时，需要不断切换执行(上下文切换)，单个线程时间耗费更多了，而单线程只是一个线程跑。</li>
+<li>多线程的总体执行时间和单线程是一样的，但是多线程中单个线程的执行时间是单线程的多倍。<br>多线程提高的是并发数量，比如现在有一个4核cpu的服务器，同一时间可执行4个线程，这样处理线程任务的速度比较快。但是多出来的线程，5个，6个，7个，多出的线程还是要等待。</li>
+</ul>
+<h3 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h3><p>多线程编程中一般线程的个数都大于 CPU 核心的个数，而一个 CPU 核心在任意时刻只能被一个线程使用，为了让这些线程都能得到有效执行，CPU 采取的策略是为每个线程分配时间片并轮转的形式。当一个线程的时间片用完的时候就会重新处于就绪状态让给其他线程使用，这个过程就属于一次上下文切换。</p>
+<p>概括来说就是：当前任务在执行完 CPU 时间片切换到另一个任务之前会先保存自己的状态，以便下次再切换会这个任务时，可以再加载这个任务的状态。任务从保存到再加载的过程就是一次上下文切换。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>所以说其实多线程不一定能够比单线程快是因为上下文切换，以及线程等待的问题</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>io流</title>
+    <url>/2022/10/20/10-20/</url>
+    <content><![CDATA[<h1 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h1><ul>
+<li>字节流的结尾一般都是InputStream ， OutputStream</li>
+<li>是个抽象类</li>
+<li>可以自动关闭</li>
+<li>顶层类，上面就是Object</li>
+<li>这个东西是要有参照物的</li>
+</ul>
+<h2 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 作业;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.OutputStream;</span><br><span class="line">public class sd3333sdfse &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		OutputStream os1;</span><br><span class="line">		try &#123;</span><br><span class="line">			os1 = new FileOutputStream( new File(&quot;D:\\a.txt&quot;), false); // 这个false代表是覆盖源文件，如果是true就是把字符串加入</span><br><span class="line">			String s = &quot;hello word&quot;;</span><br><span class="line">			os1.write(s.getBytes());</span><br><span class="line">			os1.flush();  // 落盘到磁盘上</span><br><span class="line">			os1.close(); // 关闭文件输出流</span><br><span class="line">		&#125; catch (FileNotFoundException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">public class read &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	try &#123;</span><br><span class="line">		InputStream is = new FileInputStream(&quot;D:/a.txt&quot;);</span><br><span class="line">//			while(is.available() != 0) &#123;</span><br><span class="line">//				System.out.println((char)is.read()); // 默认一次只读一个字符</span><br><span class="line">//			&#125;</span><br><span class="line">		</span><br><span class="line">		byte[] buffer = new byte[10]; // 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span><br><span class="line">		int len = 0; // 设置个长度</span><br><span class="line">		while((len = is.read(buffer)) != -1) // 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.print(new String(buffer , 0 , len)); </span><br><span class="line">		&#125;</span><br><span class="line">		is.close();</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+<li>定义：File d &#x3D; new File(“XXxxx”，”name”); &#x2F;&#x2F; 这里XXxxx是文件目录 , 第二个是文件名字</li>
+<li>文件或者目录</li>
+</ul>
+<h2 id="exist（）"><a href="#exist（）" class="headerlink" title="exist（）"></a>exist（）</h2><ul>
+<li>文件是有大小的，目录是无大小</li>
+<li>判断文件&#x2F;目录是不是存在</li>
+</ul>
+<h2 id="isFile"><a href="#isFile" class="headerlink" title="isFile"></a>isFile</h2><ul>
+<li>代表判断是不是文件</li>
+</ul>
+<h2 id="isDirectory"><a href="#isDirectory" class="headerlink" title="isDirectory"></a>isDirectory</h2><ul>
+<li>代表是不是文件夹</li>
+</ul>
+<h2 id="length"><a href="#length" class="headerlink" title="length"></a>length</h2><ul>
+<li>代表查看其字节的长度，大小，但是文件有大小，目录无大小</li>
+</ul>
+<h2 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h2><ul>
+<li>代表删除文件，注意这里删除的文件不是送进回收站里的，如果要删除目录，要先把里面的文件清空</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">public class file &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	File m = new File(&quot;D:\\&quot; , &quot;a.txt&quot;);</span><br><span class="line">	File k = new File(&quot;D//&quot;);</span><br><span class="line">	System.out.println(m.exists());</span><br><span class="line">	System.out.println(k.exists());</span><br><span class="line">	System.out.println(k.isFile());</span><br><span class="line">	System.out.println(m.isDirectory());</span><br><span class="line">	System.out.println(k.length());</span><br><span class="line">	System.out.println(k.delete());</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="删除文件夹"><a href="#删除文件夹" class="headerlink" title="删除文件夹"></a>删除文件夹</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">	File[] ds =	k.listFiles(); </span><br><span class="line">	for (int i = 0; i &lt; ds.length ; i++ ) &#123;</span><br><span class="line">		File[] h = ds[i].listFiles();</span><br><span class="line">		if(h == null) &#123;</span><br><span class="line">			System.out.println(&quot;这个是个文件&quot;);</span><br><span class="line">			ds[i].delete();</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			k.delete();</span><br><span class="line">			SHANCHU(ds[i]);</span><br><span class="line">				&#125;</span><br><span class="line">		k.delete();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="makedir"><a href="#makedir" class="headerlink" title="makedir"></a>makedir</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">public class adsgqjd &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	File file = new File(&quot;D:/a/abc.txt&quot;);</span><br><span class="line">	System.out.println(file.exists());</span><br><span class="line">	System.out.println(file.mkdir());</span><br><span class="line">	File file2 =new File(&quot;D:/a/c/v/bv/nb&quot;);</span><br><span class="line">	System.out.println(file2.mkdirs());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>我们通过mkdirs可以直接深度创建</li>
+<li>但是如果没有父目录，一般的文件就无法创建</li>
+</ul>
+<h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">private static File getCopy(File f1) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	String sufString = f1.getName().substring(f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String qi = f1.getName().substring(0, f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String use = qi + &quot;-副本&quot; + sufString;</span><br><span class="line">	File newf = new File(f1.getParent() , use);</span><br><span class="line">	if(newf.exists()) &#123;</span><br><span class="line">	return	getCopy(newf);</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">	return newf;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>签到的制作（后端＋前端）</title>
+    <url>/2022/10/19/%E5%88%B6%E4%BD%9C%E7%AD%BE%E5%88%B0/</url>
+    <content><![CDATA[<h1 id="前提准备"><a href="#前提准备" class="headerlink" title="前提准备"></a>前提准备</h1><ul>
+<li>Centos7.8</li>
+<li>在虚拟机安装好redis，并且可以成功ping通</li>
+<li>使用jdk 11</li>
+<li>使用idea 2019.3</li>
+<li>准备好post man</li>
+<li>准备好可以观察redis的软件，比如redisDespoketManger等</li>
+</ul>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><ul>
+<li>先打开虚拟机，并开启redis</li>
+<li>然后打开idea，创建springboot项目，在插件列表选择</li>
+</ul>
+]]></content>
+      <categories>
+        <category>签到的制作</category>
+      </categories>
+  </entry>
+  <entry>
     <title>设计模式和反射</title>
     <url>/2022/10/19/10-19/</url>
     <content><![CDATA[<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><ul>
@@ -95,131 +272,6 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public @interface lesson14 &#123;</span><br><span class="line">String value()</span><br><span class="line">default &quot;默认信息&quot;; // 代表默认值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@lesson14(&quot;klsdajhal&quot;)</span><br><span class="line">或者@lesson14(value = &quot;sadajd&quot;)</span><br></pre></td></tr></table></figure>
 
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>io流</title>
-    <url>/2022/10/20/10-20/</url>
-    <content><![CDATA[<h1 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h1><ul>
-<li>字节流的结尾一般都是InputStream ， OutputStream</li>
-<li>是个抽象类</li>
-<li>可以自动关闭</li>
-<li>顶层类，上面就是Object</li>
-<li>这个东西是要有参照物的</li>
-</ul>
-<h2 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 作业;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.OutputStream;</span><br><span class="line">public class sd3333sdfse &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		OutputStream os1;</span><br><span class="line">		try &#123;</span><br><span class="line">			os1 = new FileOutputStream( new File(&quot;D:\\a.txt&quot;), false); // 这个false代表是覆盖源文件，如果是true就是把字符串加入</span><br><span class="line">			String s = &quot;hello word&quot;;</span><br><span class="line">			os1.write(s.getBytes());</span><br><span class="line">			os1.flush();  // 落盘到磁盘上</span><br><span class="line">			os1.close(); // 关闭文件输出流</span><br><span class="line">		&#125; catch (FileNotFoundException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">public class read &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	try &#123;</span><br><span class="line">		InputStream is = new FileInputStream(&quot;D:/a.txt&quot;);</span><br><span class="line">//			while(is.available() != 0) &#123;</span><br><span class="line">//				System.out.println((char)is.read()); // 默认一次只读一个字符</span><br><span class="line">//			&#125;</span><br><span class="line">		</span><br><span class="line">		byte[] buffer = new byte[10]; // 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span><br><span class="line">		int len = 0; // 设置个长度</span><br><span class="line">		while((len = is.read(buffer)) != -1) // 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.print(new String(buffer , 0 , len)); </span><br><span class="line">		&#125;</span><br><span class="line">		is.close();</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li>定义：File d &#x3D; new File(“XXxxx”，”name”); &#x2F;&#x2F; 这里XXxxx是文件目录 , 第二个是文件名字</li>
-<li>文件或者目录</li>
-</ul>
-<h2 id="exist（）"><a href="#exist（）" class="headerlink" title="exist（）"></a>exist（）</h2><ul>
-<li>文件是有大小的，目录是无大小</li>
-<li>判断文件&#x2F;目录是不是存在</li>
-</ul>
-<h2 id="isFile"><a href="#isFile" class="headerlink" title="isFile"></a>isFile</h2><ul>
-<li>代表判断是不是文件</li>
-</ul>
-<h2 id="isDirectory"><a href="#isDirectory" class="headerlink" title="isDirectory"></a>isDirectory</h2><ul>
-<li>代表是不是文件夹</li>
-</ul>
-<h2 id="length"><a href="#length" class="headerlink" title="length"></a>length</h2><ul>
-<li>代表查看其字节的长度，大小，但是文件有大小，目录无大小</li>
-</ul>
-<h2 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h2><ul>
-<li>代表删除文件，注意这里删除的文件不是送进回收站里的，如果要删除目录，要先把里面的文件清空</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">public class file &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	File m = new File(&quot;D:\\&quot; , &quot;a.txt&quot;);</span><br><span class="line">	File k = new File(&quot;D//&quot;);</span><br><span class="line">	System.out.println(m.exists());</span><br><span class="line">	System.out.println(k.exists());</span><br><span class="line">	System.out.println(k.isFile());</span><br><span class="line">	System.out.println(m.isDirectory());</span><br><span class="line">	System.out.println(k.length());</span><br><span class="line">	System.out.println(k.delete());</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="删除文件夹"><a href="#删除文件夹" class="headerlink" title="删除文件夹"></a>删除文件夹</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">	File[] ds =	k.listFiles(); </span><br><span class="line">	for (int i = 0; i &lt; ds.length ; i++ ) &#123;</span><br><span class="line">		File[] h = ds[i].listFiles();</span><br><span class="line">		if(h == null) &#123;</span><br><span class="line">			System.out.println(&quot;这个是个文件&quot;);</span><br><span class="line">			ds[i].delete();</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			k.delete();</span><br><span class="line">			SHANCHU(ds[i]);</span><br><span class="line">				&#125;</span><br><span class="line">		k.delete();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="makedir"><a href="#makedir" class="headerlink" title="makedir"></a>makedir</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">public class adsgqjd &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	File file = new File(&quot;D:/a/abc.txt&quot;);</span><br><span class="line">	System.out.println(file.exists());</span><br><span class="line">	System.out.println(file.mkdir());</span><br><span class="line">	File file2 =new File(&quot;D:/a/c/v/bv/nb&quot;);</span><br><span class="line">	System.out.println(file2.mkdirs());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>我们通过mkdirs可以直接深度创建</li>
-<li>但是如果没有父目录，一般的文件就无法创建</li>
-</ul>
-<h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">private static File getCopy(File f1) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	String sufString = f1.getName().substring(f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String qi = f1.getName().substring(0, f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String use = qi + &quot;-副本&quot; + sufString;</span><br><span class="line">	File newf = new File(f1.getParent() , use);</span><br><span class="line">	if(newf.exists()) &#123;</span><br><span class="line">	return	getCopy(newf);</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">	return newf;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/10/15/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash</span><br><span class="line">$ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>签到的制作（后端＋前端）</title>
-    <url>/2022/10/19/%E5%88%B6%E4%BD%9C%E7%AD%BE%E5%88%B0/</url>
-    <content><![CDATA[<h1 id="前提准备"><a href="#前提准备" class="headerlink" title="前提准备"></a>前提准备</h1><ul>
-<li>Centos7.8</li>
-<li>在虚拟机安装好redis，并且可以成功ping通</li>
-<li>使用jdk 11</li>
-<li>使用idea 2019.3</li>
-<li>准备好post man</li>
-<li>准备好可以观察redis的软件，比如redisDespoketManger等</li>
-</ul>
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><ul>
-<li>先打开虚拟机，并开启redis</li>
-<li>然后打开idea，创建springboot项目，在插件列表选择</li>
-</ul>
-]]></content>
-      <categories>
-        <category>签到的制作</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>java中异常的相关知识</title>
-    <url>/2022/10/15/%E5%BC%82%E5%B8%B8/</url>
-    <content><![CDATA[<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="因为一些原因导致开发的程序出现问题"><a href="#因为一些原因导致开发的程序出现问题" class="headerlink" title="因为一些原因导致开发的程序出现问题"></a>因为一些原因导致开发的程序出现问题</h3><p>Throwable是error和Exception的父类，是Java里所有异常的父类<br>##error<br>如果出现了error，则代表计算机出现了重大的错误，比如jvm无法解决的问题等。</p>
-<h2 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h2><p>如果出现了Exception，则代表计算机代码出现了问题，编译或者运行的时候出现了问题。但是Exception还分为运行时异常和编译时异常</p>
-<h3 id="运行时异常"><a href="#运行时异常" class="headerlink" title="运行时异常"></a>运行时异常</h3><p>运行时异常比如：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ArrayIndexOutOfBoundsException//这就是个数组越界的异常</span><br></pre></td></tr></table></figure>
-
-<p>这些都是运行的时候产生的异常，编译可以通过的，其中最常见的就是数组越界，下表越剧等</p>
-<h3 id="编译时异常"><a href="#编译时异常" class="headerlink" title="编译时异常"></a>编译时异常</h3><p>编译时异常比如：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">The final local variable m cannot be assigned. It must be blank and not using a compound assignment //这个就是个简单的final修饰的变量不可被改变的异常</span><br></pre></td></tr></table></figure>
-
-<p>这些是在程序未被运行之前就报出的错误。会被编译器会进行优先的处理。<br>最常见的就是作用域的问题，比如static变量和非static的变量等。</p>
-<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><h3 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h3><p>我们可以通过try catch的方法进行捕获异常，让异常出现的时候不至于停止程序的运行<br>代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">try &#123;//放会报错的语句，这个是个简单数组越界</span><br><span class="line">	a[m] = 1;</span><br><span class="line">	System.out.println(&quot;输入正确&quot;);	</span><br><span class="line">	&#125; catch (Exception e) &#123;</span><br><span class="line">	// TODO: handle exception</span><br><span class="line">	// 在错误发生时怎么处理</span><br><span class="line">	System.out.println(&quot;成功抛出异常&quot;);</span><br><span class="line">	&#125; </span><br><span class="line">	catch(xxxxx) &#123;</span><br><span class="line">	&#125;// 这里的catch还可以继续往下写，但是要注意其中异常的类型必须是越在后面类型越大的，因为Exception还分多个子类异常，这样可以更精确的分辨是什么异常，不过直接写Exception也不算错</span><br><span class="line">	finally &#123;</span><br><span class="line">		// finally里放一定会执行的代码，不过不写finally也不算错</span><br><span class="line">		&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>但是要注意，我们不可以捕获error异常，因为error异常已经超出了代码捕获的范围，我们一般都要进行硬件及软件的处理</p>
-<h3 id="throws"><a href="#throws" class="headerlink" title="throws"></a>throws</h3><p>我们可以通过throws把异常向上抛出，让他们的上层去处理，可是一般上层如果不能处理，还会继续向上抛出，这种方法我简称为逃避，我们，一般使用try catch语句较多，一般是抛到main方法里进行try catch处理，<br>如果异常一直不处理，那编译器最后会报错</p>
-]]></content>
-      <categories>
-        <category>javase</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>数字及big类</title>
-    <url>/2022/10/17/%E6%95%B0%E5%AD%97%E7%B1%BB%E4%BB%A5%E5%8F%8Abig%E7%B1%BB/</url>
-    <content><![CDATA[<h1 id="关于数学包里常用的几个类"><a href="#关于数学包里常用的几个类" class="headerlink" title="关于数学包里常用的几个类"></a>关于数学包里常用的几个类</h1><h2 id="abs"><a href="#abs" class="headerlink" title="abs"></a>abs</h2><p>abs是取绝对值</p>
-<h2 id="cell"><a href="#cell" class="headerlink" title="cell"></a>cell</h2><p>向上（正方向）取整</p>
-<h2 id="floor"><a href="#floor" class="headerlink" title="floor"></a>floor</h2><p>向下（负方向）取整</p>
-<h2 id="round"><a href="#round" class="headerlink" title="round"></a>round</h2><p> 四舍五入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> // 简单的例子 ，5舍6入</span><br><span class="line">可以通过floor进行</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="BigInteger"><a href="#BigInteger" class="headerlink" title="BigInteger"></a>BigInteger</h1><p>BigInteger类型的数字范围较Integer，Long类型的数字范围要大得多，它支持任意精度的整数，也就是说在运算中 BigInteger 类型可以准确地表示任何大小的整数值而不会丢失任何信息。</p>
-<h2 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">//1.加</span><br><span class="line">BigInteger bigNum1 = a.add(b);			//17</span><br><span class="line">//2.减</span><br><span class="line">BigInteger bigNum2 = a.subtract(b);		//9</span><br><span class="line">//3.乘</span><br><span class="line">BigInteger bigNum3 = a.multiply(b);		//52</span><br><span class="line">//4.除</span><br><span class="line">BigInteger bigNum4 = a.divide(b);		//3</span><br><span class="line">//5.取模(需 b &gt; 0，否则出现异常：ArithmeticException(&quot;BigInteger: modulus not positive&quot;))</span><br><span class="line">BigInteger bigNum5 = a.mod(b);			//1</span><br><span class="line">//6.求余</span><br><span class="line">BigInteger bigNum6 = a.remainder(b);	//1</span><br><span class="line">//7.平方(需 n &gt;= 0，否则出现异常：ArithmeticException(&quot;Negative exponent&quot;))</span><br><span class="line">BigInteger bigNum7 = a.pow(n);			//2197</span><br><span class="line">//8.取绝对值</span><br><span class="line">BigInteger bigNum8 = a.abs();			//13</span><br><span class="line">//9.取相反数</span><br><span class="line">BigInteger bigNum9 = a.negate();		//-13</span><br></pre></td></tr></table></figure>
-
-<h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//读入方法：nextBigInteger()</span><br><span class="line">@Test</span><br><span class="line">public void test5() &#123;</span><br><span class="line">	Scanner scan = new Scanner(System.in);				// 读入</span><br><span class="line">	int n = scan.nextInt(); 							// 读入一个int;</span><br><span class="line">	BigInteger m = scan.nextBigInteger();				// 读入一个BigInteger;</span><br><span class="line">	while(scan.hasNext())&#123;	</span><br><span class="line">		System.out.print(&quot;scan.hasNext()=&quot; + scan.hasNext());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中除了这个还有big浮点型，用法和上面一样</p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -358,6 +410,25 @@
 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> lesson12;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestMain7</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;这是静态代码块&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;这是非静态代码块&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="type">TestMain7</span> <span class="variable">a1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TestMain7</span>();</span><br><span class="line">		<span class="type">TestMain7</span> <span class="variable">a2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TestMain7</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数字及big类</title>
+    <url>/2022/10/17/%E6%95%B0%E5%AD%97%E7%B1%BB%E4%BB%A5%E5%8F%8Abig%E7%B1%BB/</url>
+    <content><![CDATA[<h1 id="关于数学包里常用的几个类"><a href="#关于数学包里常用的几个类" class="headerlink" title="关于数学包里常用的几个类"></a>关于数学包里常用的几个类</h1><h2 id="abs"><a href="#abs" class="headerlink" title="abs"></a>abs</h2><p>abs是取绝对值</p>
+<h2 id="cell"><a href="#cell" class="headerlink" title="cell"></a>cell</h2><p>向上（正方向）取整</p>
+<h2 id="floor"><a href="#floor" class="headerlink" title="floor"></a>floor</h2><p>向下（负方向）取整</p>
+<h2 id="round"><a href="#round" class="headerlink" title="round"></a>round</h2><p> 四舍五入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> // 简单的例子 ，5舍6入</span><br><span class="line">可以通过floor进行</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="BigInteger"><a href="#BigInteger" class="headerlink" title="BigInteger"></a>BigInteger</h1><p>BigInteger类型的数字范围较Integer，Long类型的数字范围要大得多，它支持任意精度的整数，也就是说在运算中 BigInteger 类型可以准确地表示任何大小的整数值而不会丢失任何信息。</p>
+<h2 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">//1.加</span><br><span class="line">BigInteger bigNum1 = a.add(b);			//17</span><br><span class="line">//2.减</span><br><span class="line">BigInteger bigNum2 = a.subtract(b);		//9</span><br><span class="line">//3.乘</span><br><span class="line">BigInteger bigNum3 = a.multiply(b);		//52</span><br><span class="line">//4.除</span><br><span class="line">BigInteger bigNum4 = a.divide(b);		//3</span><br><span class="line">//5.取模(需 b &gt; 0，否则出现异常：ArithmeticException(&quot;BigInteger: modulus not positive&quot;))</span><br><span class="line">BigInteger bigNum5 = a.mod(b);			//1</span><br><span class="line">//6.求余</span><br><span class="line">BigInteger bigNum6 = a.remainder(b);	//1</span><br><span class="line">//7.平方(需 n &gt;= 0，否则出现异常：ArithmeticException(&quot;Negative exponent&quot;))</span><br><span class="line">BigInteger bigNum7 = a.pow(n);			//2197</span><br><span class="line">//8.取绝对值</span><br><span class="line">BigInteger bigNum8 = a.abs();			//13</span><br><span class="line">//9.取相反数</span><br><span class="line">BigInteger bigNum9 = a.negate();		//-13</span><br></pre></td></tr></table></figure>
+
+<h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//读入方法：nextBigInteger()</span><br><span class="line">@Test</span><br><span class="line">public void test5() &#123;</span><br><span class="line">	Scanner scan = new Scanner(System.in);				// 读入</span><br><span class="line">	int n = scan.nextInt(); 							// 读入一个int;</span><br><span class="line">	BigInteger m = scan.nextBigInteger();				// 读入一个BigInteger;</span><br><span class="line">	while(scan.hasNext())&#123;	</span><br><span class="line">		System.out.print(&quot;scan.hasNext()=&quot; + scan.hasNext());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中除了这个还有big浮点型，用法和上面一样</p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -503,9 +574,48 @@
 <li>如果此时线程池中的线程数量小于CorePoolSize，即使线程池中都处于空闲状态，也同样要创建新的线程来处理被添加的任务</li>
 <li>如果此时线程池中的线程数量等于CorePoolSize, 但是缓存队列workQueue未满，且线程池中的数量小于maximumPoolsize</li>
 </ul>
+<h1 id="线程池为什么是先添加队列而不是先创建最大线程"><a href="#线程池为什么是先添加队列而不是先创建最大线程" class="headerlink" title="线程池为什么是先添加队列而不是先创建最大线程"></a>线程池为什么是先添加队列而不是先创建最大线程</h1><p>当线程池中的核心线程在忙时如果继续往线程池中添加任务，那么任务还会放入队列，队列满了之后，才会开始新的线程，这就相当于，一个公司本来有10个程序员，本来这10个程序员能正常处理各种需求，但是随着公司的发展，需求在慢慢增加，但是一开始这些需求只会增加在待开发列表中，然后这10个程序员加班加点的从待开发列表中获取需求并进行处理，但是某一天待开发列表满了，所以员工处理不过来了，所以就开始招募新员工了。</p>
+<h1 id="ReentrantLock中的公平锁和非公平锁的底层实现"><a href="#ReentrantLock中的公平锁和非公平锁的底层实现" class="headerlink" title="ReentrantLock中的公平锁和非公平锁的底层实现"></a>ReentrantLock中的公平锁和非公平锁的底层实现</h1><p>首先不管是公平锁还是非公平锁他们的底层都是通过AQS来实现排队的，他们的区别在于：线程使用lock（）方法加锁的时候，如果是公平锁，会先检查AQS队列中是不是存在线程在排队，如果存在，则当前线程也会进行排队，如果是非公平锁，则不会去检查是不是有线程在排队，而是直接竞争锁，不管是公平锁还是非公平锁，一旦没竞争到锁，就会进行排队，当锁释放的时候都是唤醒最前面的线程，所以非公平锁只是体现在了线程加锁的阶段，而没有体现在线程被唤醒的阶段。</p>
+<h1 id="ReentrantLock中tryLock-和lock（）方法的区别"><a href="#ReentrantLock中tryLock-和lock（）方法的区别" class="headerlink" title="ReentrantLock中tryLock()和lock（）方法的区别"></a>ReentrantLock中tryLock()和lock（）方法的区别</h1><ul>
+<li>tryLock()表示尝试加锁，可能加到，也可能加不到，该方法不会阻止线程，如果加到锁就返回true，没有加到则返回false</li>
+<li>lock（）则表示线程阻塞加锁，线程会阻塞直到加上锁，而且也没有返回值</li>
+</ul>
+<h1 id="CountDownLatch和Semaphore的区别和底层原理"><a href="#CountDownLatch和Semaphore的区别和底层原理" class="headerlink" title="CountDownLatch和Semaphore的区别和底层原理"></a>CountDownLatch和Semaphore的区别和底层原理</h1><ul>
+<li>CountDownLatch表示计数器，可以给CountDownLatch设置一个数字，一个线程调用CountDownLatch的await（）将会被阻塞，其他线程可以调用CountDownlatch的countDown（）方法来对CountDownLacth中的数字减一，当一个数字被减为0之后则会将AQS中排队的线程依次唤醒</li>
+<li>Semaphore表示信号量，可以设置许可的个数，表示同时允许最多多少个线程使用该信号量，通过acquire来获取许可，如果没有许可可用则用线程阻塞，并通过ASQ来排队，可以通过release的方法释放许可当某一个线程释放死锁之后会从ASQ的第一个线程开始依次唤醒，直到没有空闲许可</li>
+</ul>
+<h1 id="Sychronized"><a href="#Sychronized" class="headerlink" title="Sychronized"></a>Sychronized</h1><ul>
+<li>偏向锁： 在锁对象的对象头中记录下当前获取到该锁的线程id，该线程下次如果又来获取该锁就可以直接获取到了</li>
+<li>轻量级锁：由偏向锁升级而来，当一个线程获取到锁之后，此时这把锁是偏向锁，此时如果由第二个线程来竞争这个锁，偏向锁就会升级为轻量级锁，之所以叫轻量级锁是为了和重量级锁分开，轻量级锁底层是通过自旋来实现的，并不会阻塞线程。</li>
+<li>如果自旋次数过多扔无法获取锁，则会升级为重量级锁，重量级锁会导致线程阻塞</li>
+<li>自旋锁：自旋锁就是在线程获取锁的过程中，不回去阻塞线程，也就无所谓唤醒线程，阻塞和唤醒这两个步骤都是要操作系统中去实现的，比较耗费时间，自旋锁是线程通过CAS获取预期的一个标记，如果没有获取到，则继续循环获取去过获取到，则表式获取到了锁，这个过程线程一直在运行，相对而言没有使用太多的操作系统资源，比较轻量</li>
+</ul>
 ]]></content>
       <categories>
         <category>Java中的易错点</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>java中异常的相关知识</title>
+    <url>/2022/10/15/%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="因为一些原因导致开发的程序出现问题"><a href="#因为一些原因导致开发的程序出现问题" class="headerlink" title="因为一些原因导致开发的程序出现问题"></a>因为一些原因导致开发的程序出现问题</h3><p>Throwable是error和Exception的父类，是Java里所有异常的父类<br>##error<br>如果出现了error，则代表计算机出现了重大的错误，比如jvm无法解决的问题等。</p>
+<h2 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h2><p>如果出现了Exception，则代表计算机代码出现了问题，编译或者运行的时候出现了问题。但是Exception还分为运行时异常和编译时异常</p>
+<h3 id="运行时异常"><a href="#运行时异常" class="headerlink" title="运行时异常"></a>运行时异常</h3><p>运行时异常比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ArrayIndexOutOfBoundsException//这就是个数组越界的异常</span><br></pre></td></tr></table></figure>
+
+<p>这些都是运行的时候产生的异常，编译可以通过的，其中最常见的就是数组越界，下表越剧等</p>
+<h3 id="编译时异常"><a href="#编译时异常" class="headerlink" title="编译时异常"></a>编译时异常</h3><p>编译时异常比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">The final local variable m cannot be assigned. It must be blank and not using a compound assignment //这个就是个简单的final修饰的变量不可被改变的异常</span><br></pre></td></tr></table></figure>
+
+<p>这些是在程序未被运行之前就报出的错误。会被编译器会进行优先的处理。<br>最常见的就是作用域的问题，比如static变量和非static的变量等。</p>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><h3 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h3><p>我们可以通过try catch的方法进行捕获异常，让异常出现的时候不至于停止程序的运行<br>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">try &#123;//放会报错的语句，这个是个简单数组越界</span><br><span class="line">	a[m] = 1;</span><br><span class="line">	System.out.println(&quot;输入正确&quot;);	</span><br><span class="line">	&#125; catch (Exception e) &#123;</span><br><span class="line">	// TODO: handle exception</span><br><span class="line">	// 在错误发生时怎么处理</span><br><span class="line">	System.out.println(&quot;成功抛出异常&quot;);</span><br><span class="line">	&#125; </span><br><span class="line">	catch(xxxxx) &#123;</span><br><span class="line">	&#125;// 这里的catch还可以继续往下写，但是要注意其中异常的类型必须是越在后面类型越大的，因为Exception还分多个子类异常，这样可以更精确的分辨是什么异常，不过直接写Exception也不算错</span><br><span class="line">	finally &#123;</span><br><span class="line">		// finally里放一定会执行的代码，不过不写finally也不算错</span><br><span class="line">		&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>但是要注意，我们不可以捕获error异常，因为error异常已经超出了代码捕获的范围，我们一般都要进行硬件及软件的处理</p>
+<h3 id="throws"><a href="#throws" class="headerlink" title="throws"></a>throws</h3><p>我们可以通过throws把异常向上抛出，让他们的上层去处理，可是一般上层如果不能处理，还会继续向上抛出，这种方法我简称为逃避，我们，一般使用try catch语句较多，一般是抛到main方法里进行try catch处理，<br>如果异常一直不处理，那编译器最后会报错</p>
+]]></content>
+      <categories>
+        <category>javase</category>
       </categories>
   </entry>
 </search>
