@@ -293,6 +293,296 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/24/10-24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/24/10-24/" class="post-title-link" itemprop="url">线程</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-24 15:19:28 / 修改时间：20:57:50" itemprop="dateCreated datePublished" datetime="2022-10-24T15:19:28+08:00">2022-10-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="线程的概念以及原理"><a href="#线程的概念以及原理" class="headerlink" title="线程的概念以及原理"></a>线程的概念以及原理</h1><h2 id="操作系统中线程和进程的概念"><a href="#操作系统中线程和进程的概念" class="headerlink" title="操作系统中线程和进程的概念"></a>操作系统中线程和进程的概念</h2><ul>
+<li>进程是指一个内存中运行的应用程序，每个进程都有自己的独立空间，一个进程中可以启动多个线程，比如在windows里一个运行的exe就是一个进程</li>
+<li>线程是指进程中的一个执行流程，一个进程中可以用运行多个线程。线程总是属于某个进程的，进程中多个线程共享进程的内存</li>
+</ul>
+<h2 id="java中的线程"><a href="#java中的线程" class="headerlink" title="java中的线程"></a>java中的线程</h2><ul>
+<li>在java中，线程是指两件不同的事</li>
+<li>java.lang.Thread类的一个实例</li>
+<li>线程的执行</li>
+<li>使用java.lang.Thread类或者java.lang.Runnable接口编写代码来定义实例化，和启动新线程。</li>
+<li>一个Thread类实例只是一个对象，像java和其他对象一样，有变量和方法，生死于堆上</li>
+<li>在java里每个线程都拥有一个调用栈，即使不在程序中创建任何的新线程，线程也会在后台运行着</li>
+<li>一个java应用总是从main方法开始，main方法运行在一个线程里，他被称为主线程</li>
+<li>一旦创建一个线程，就会产生一个新的栈调用。</li>
+<li>线程总体分为两类，用户线程和守护线程</li>
+<li>当所有用户距线程执行完毕，jvm自己关闭，守护线程一般是由操作系统或者或者用户自己创建</li>
+</ul>
+<h1 id="创建与启动"><a href="#创建与启动" class="headerlink" title="创建与启动"></a>创建与启动</h1><ul>
+<li><p>扩展java.lang.Thread</p>
+</li>
+<li><p>这个类中有个run方法，应该注意其用法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void run()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果该线程是使用独立的Runnable运行对象构造的，则调用该Runnable对象的run方法，要不然，该方法不执行任何操作并返回</p>
+</li>
+<li><p>Thread的子类应该重写这个方法，因为其底层也是继承的Runnable接口</p>
+</li>
+<li><p>run操作里是他会执行的事情</p>
+</li>
+</ul>
+<h2 id="实例化线程"><a href="#实例化线程" class="headerlink" title="实例化线程"></a>实例化线程</h2><ul>
+<li>如果是用Thread，则直接new就行</li>
+<li>如果是实现了，java.lang.Runnable接口的类，则用Thread的构造方法:</li>
+<li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Thread(Runnable target)</span><br><span class="line">Thread(Runnable target , String name)</span><br><span class="line">Thread(ThreadGroup group, Runnable target)</span><br><span class="line">Thread(ThreadGroup group, Runnable target, String name)</span><br><span class="line">Thread(ThreadGroup group, Runnable target, String name, long stackSize)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="启动线程"><a href="#启动线程" class="headerlink" title="启动线程"></a>启动线程</h2><ul>
+<li>在线程的Thread对象上调用Start（）方法而不是用run或者别的</li>
+<li>在调用start之前线程处于新状态中，新状态指有一个Thread对象，但是还没有一个真正的线程</li>
+<li>调用了之后发生了一系列复杂的事情</li>
+<li>尝试启动新的线程（具有新的调用栈）</li>
+<li>该线程从新状态转移到可运行状态</li>
+<li>当线程获得执行机会，就会调用run</li>
+</ul>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">* 实现Runnable接口的类</span><br><span class="line">*</span><br><span class="line">* @author leizhimin 2008-9-13 18:12:10</span><br><span class="line">*/</span><br><span class="line">publicclass DoSomethingimplements Runnable &#123;</span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    public DoSomething(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    publicvoid run() &#123;</span><br><span class="line">        for (int i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">            for (long k = 0; k &lt; 100000000; k++) ;</span><br><span class="line">            System.out.println(name + &quot;: &quot; + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">* 测试Runnable类实现的多线程程序</span><br><span class="line">*</span><br><span class="line">* @author leizhimin 2008-9-13 18:15:02</span><br><span class="line">*/</span><br><span class="line">publicclass TestRunnable &#123;</span><br><span class="line">    publicstaticvoid main(String[] args) &#123;</span><br><span class="line">        DoSomething ds1 = new DoSomething(&quot;阿三&quot;);</span><br><span class="line">        DoSomething ds2 = new DoSomething(&quot;李四&quot;);</span><br><span class="line"></span><br><span class="line">        Thread t1 = new Thread(ds1);</span><br><span class="line">        Thread t2 = new Thread(ds2);</span><br><span class="line"></span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="扩展Thread类实现多线程的例子"><a href="#扩展Thread类实现多线程的例子" class="headerlink" title="扩展Thread类实现多线程的例子"></a>扩展Thread类实现多线程的例子</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">* 测试扩展Thread类实现的多线程程序</span><br><span class="line">*</span><br><span class="line">* @author leizhimin 2008-9-13 18:22:13</span><br><span class="line">*/</span><br><span class="line">publicclass TestThreadextends Thread&#123;</span><br><span class="line">    public TestThread(String name) &#123;</span><br><span class="line">        super(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    publicvoid run() &#123;</span><br><span class="line">        for(int i = 0;i&lt;5;i++)&#123;</span><br><span class="line">            for(long k= 0; k &lt;100000000;k++);</span><br><span class="line">            System.out.println(this.getName()+&quot; :&quot;+i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    publicstaticvoid main(String[] args) &#123;</span><br><span class="line">        Thread t1 = new TestThread(&quot;阿三&quot;);</span><br><span class="line">        Thread t2 = new TestThread(&quot;李四&quot;);</span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><ul>
+<li>线程的名字，一个运行中的线程总是有名字的，名字有两个来源，第一是自己，第二是虚拟机</li>
+<li>而且主线程的名字总是mian，非主线程的名字不确定</li>
+<li>线程都可以设置名字，主线程的也不例外</li>
+<li>线程的调用不一定是顺序的他们是随机的</li>
+<li>线程一旦启动，他就不可能重新启动</li>
+<li>线程的调度是jvm的一部分，在cpu的机器上，实际上一次只能运行一个线程，一次只有一个线程栈执行，jvm线程调度程序决定实际运行的哪个处于可运行的状态</li>
+<li>尽管我们无法控制线程调度的程序，但是可以通过别的方式来影响线程调度的方式</li>
+</ul>
+<h1 id="线程的转换"><a href="#线程的转换" class="headerlink" title="线程的转换"></a>线程的转换</h1><ul>
+<li>线程的状态转换是线程控制的基础。线程状态总的可分为五大状态：分别是生、死、可运行、运行、等待&#x2F;阻塞。</li>
+<li>可运行状态：当线程有资格运行，但调度程序还没有把它选定为运行线程时线程所处的状态。当start()方法调用时，线程首先进入可运行状态。在线程运行之后或者从阻塞、等待或睡眠状态回来后，也返回到可运行状态。</li>
+<li>运行状态：线程调度程序从可运行池中选择一个线程作为当前线程时线程所处的状态。这也是线程进入运行状态的唯一一种方式</li>
+<li>等待&#x2F;阻塞&#x2F;睡眠状态：这是线程有资格运行时它所处的状态。实际上这个三状态组合为一种，其共同点是：线程仍旧是活的，但是当前没有条件运行。换句话说，它是可运行的，但是如果某件事件出现，他可能返回到可运行状态。</li>
+<li>死亡态：当线程的run()方法完成时就认为它死去。这个线程对象也许是活的，但是，它已经不是一个单独执行的线程。线程一旦死亡，就不能复生。如果在一个死去的线程上调用start()方法，会抛出java.lang.IllegalThreadStateException异常。</li>
+</ul>
+<h2 id="阻止线程的执行"><a href="#阻止线程的执行" class="headerlink" title="阻止线程的执行"></a>阻止线程的执行</h2><ul>
+<li>对于线程的阻止，考虑一下三个方面，不考虑IO阻塞的情况：</li>
+<li>睡眠</li>
+<li>等待</li>
+<li>睡眠：Thread.sleep(long millis)和Thread.sleep(long millis, int nanos)静态方法强制当前正在执行的线程休眠（暂停执行），以“减慢线程”。当线程睡眠时，它入睡在某个地方，在苏醒之前不会返回到可运行状态。当睡眠时间到期，则返回到可运行状态。</li>
+<li>线程睡眠的原因：线程执行太快，或者需要强制进入下一轮，因为Java规范不保证合理的轮换。</li>
+<li>睡眠的实现：调用静态方法。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">          Thread.sleep(123);</span><br><span class="line">      &#125; catch (InterruptedException e) &#123;</span><br><span class="line">          e.printStackTrace(); </span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></li>
+<li>睡眠的位置：为了让其他线程有机会执行，可以将Thread.sleep()的调用放线程run()之内。这样才能保证该线程执行过程中会睡眠。</li>
+<li>线程睡眠是帮助所有线程获得运行机会的最好方法。</li>
+<li>线程睡眠到期自动苏醒，并返回到可运行状态，不是运行状态。sleep()中指定的时间是线程不会运行的最短时间。因此，sleep()方法不能保证该线程睡眠到期后就开始执行。</li>
+<li>sleep()是静态方法，只能控制当前正在运行的线程。</li>
+</ul>
+<h2 id="线程的优先级和线程让步yield"><a href="#线程的优先级和线程让步yield" class="headerlink" title="线程的优先级和线程让步yield()"></a>线程的优先级和线程让步yield()</h2><ul>
+<li>线程的让步是通过Thread.yield()来实现的。yield()方法的作用是：暂停当前正在执行的线程对象，并执行其他线程。</li>
+<li>线程总是存在优先级，优先级范围在1~10之间。JVM线程调度程序是基于优先级的抢先调度机制。在大多数情况下，当前运行的线程优先级将大于或等于线程池中任何线程的优先级。但这仅仅是大多数情况。</li>
+<li>注意：当设计多线程应用程序的时候，一定不要依赖于线程的优先级。因为线程调度优先级操作是没有保障的，只能把线程优先级作用作为一种提高程序效率的方法，但是要保证程序不依赖这种操作。</li>
+<li>当线程池中线程都具有相同的优先级，调度程序的JVM实现自由选择它喜欢的线程。这时候调度程序的操作有两种可能：一是选择一个线程运行，直到它阻塞或者运行完成为止。二是时间分片，为池内的每个线程提供均等的运行机会。<br>-设置线程的优先级：线程默认的优先级是创建它的执行线程的优先级。可以通过setPriority(int newPriority)更改线程的优先级。例如：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Thread t = new MyThread();</span><br><span class="line">       t.setPriority(8);</span><br><span class="line">       t.start();</span><br></pre></td></tr></table></figure></li>
+<li>线程优先级为1<del>10之间的正整数，JVM从不会改变一个线程的优先级。然而，1</del>10之间的值是没有保证的。一些JVM可能不能识别10个不同的值，而将这些优先级进行每两个或多个合并，变成少于10个的优先级，则两个或多个优先级的线程可能被映射为一个优先级。</li>
+<li>线程默认优先级是5，Thread类中有三个常量，定义线程优先级范围：</li>
+<li>static int MAX_PRIORITY线程可以具有的最高优先级。</li>
+<li>static int MIN_PRIORITY线程可以具有的最低优先级。</li>
+<li>static int NORM_PRIORITY分配给线程的默认优先级。</li>
+</ul>
+<h2 id="Thread-yield-方法"><a href="#Thread-yield-方法" class="headerlink" title="Thread.yield()方法"></a>Thread.yield()方法</h2><ul>
+<li>Thread.yield()方法作用是：暂停当前正在执行的线程对象，并执行其他线程。</li>
+<li>yield()应该做的是让当前运行线程回到可运行状态，以允许具有相同优先级的其他线程获得运行机会。因此，使用yield()的目的是让相同优先级的线程之间能适当的轮转执行。但是，实际中无法保证yield()达到让步目的，因为让步的线程还有可能被线程调度程序再次选中。</li>
+<li>结论：yield()从未导致线程转到等待&#x2F;睡眠&#x2F;阻塞状态。在大多数情况下，yield()将导致线程从运行状态转到可运行状态，但有可能没有效果。</li>
+</ul>
+<h2 id="join"><a href="#join" class="headerlink" title="join"></a>join</h2><ul>
+<li><p>Thread的非静态方法join()让一个线程B“加入”到另外一个线程A的尾部。在A执行完毕之前，B不能工作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Thread t = new MyThread();</span><br><span class="line">      t.start();</span><br><span class="line">      t.join();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>另外，join()方法还有带超时限制的重载版本。例如t.join(5000);则让线程等待5000毫秒，如果超过这个时间，则停止等待，变为可运行状态。</p>
+</li>
+<li><p>线程的加入join()对线程栈导致的结果是线程栈发生了变化，当然这些变化都是瞬时的。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/21/%E4%BD%9C%E4%B8%9A10-21/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/21/%E4%BD%9C%E4%B8%9A10-21/" class="post-title-link" itemprop="url">作业10-21</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-21 08:42:15" itemprop="dateCreated datePublished" datetime="2022-10-21T08:42:15+08:00">2022-10-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-23 00:56:07" itemprop="dateModified" datetime="2022-10-23T00:56:07+08:00">2022-10-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BD%9C%E4%B8%9A/" itemprop="url" rel="index"><span itemprop="name">作业</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"><a href="#3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称" class="headerlink" title="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"></a>3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">import 作业.file;</span><br><span class="line"></span><br><span class="line">public class file过滤 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File M = new File(&quot;D:\\&quot; , &quot;try&quot;);</span><br><span class="line">		chakan(M);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void chakan(File M) &#123;</span><br><span class="line">		File[] k = M.listFiles();</span><br><span class="line">		System.out.println(k);</span><br><span class="line">		for (int i = 0; i &lt; k.length; i++) &#123;</span><br><span class="line">			File[] t = k[i].listFiles();</span><br><span class="line">			if(t == null) &#123;</span><br><span class="line">				String g =  k[i].getName();</span><br><span class="line">				String d = g.substring(k[i].getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">				if(d.equals(&quot;.java&quot;)) &#123;</span><br><span class="line">					System.out.println(g.substring(0, k[i].getName().lastIndexOf(&quot;.&quot;)));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				chakan(k[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>重点字符串的相等要用equals，递归</li>
+</ul>
+<h1 id="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"><a href="#判断指定路径下的所有子文件或是目录，如果是子文件则全部删除" class="headerlink" title="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"></a>判断指定路径下的所有子文件或是目录，如果是子文件则全部删除</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">File[] ds =	k.listFiles(); </span><br><span class="line">for (int i = 0; i &lt; ds.length ; i++ ) &#123;</span><br><span class="line">	File[] h = ds[i].listFiles();</span><br><span class="line">	if(h == null) &#123;</span><br><span class="line">		System.out.println(&quot;这个是个文件&quot;);</span><br><span class="line">		ds[i].delete();</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		k.delete();</span><br><span class="line">		SHANCHU(ds[i]);</span><br><span class="line">			&#125;</span><br><span class="line">	k.delete();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重点：递归</li>
+</ul>
+<h1 id="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）"><a href="#5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）" class="headerlink" title="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）"></a>5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">File G = new File(&quot;D:\\\\102班级\\\\javaSE作业&quot;);</span><br><span class="line"></span><br><span class="line">G.mkdirs();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="从磁盘读取一个文件到内存中，再打印到控制台"><a href="#从磁盘读取一个文件到内存中，再打印到控制台" class="headerlink" title="从磁盘读取一个文件到内存中，再打印到控制台"></a>从磁盘读取一个文件到内存中，再打印到控制台</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line"></span><br><span class="line">public class lkdjfslasfj &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		try &#123;</span><br><span class="line">			InputStream is = new FileInputStream(&quot;D:/a.txt&quot;);</span><br><span class="line">//				while(is.available() != 0) &#123;</span><br><span class="line">//					System.out.println((char)is.read()); // 默认一次只读一个字符</span><br><span class="line">//				&#125;</span><br><span class="line">			</span><br><span class="line">			byte[] buffer = new byte[10]; // 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span><br><span class="line">			int len = 0; // 设置个长度</span><br><span class="line">			while((len = is.read(buffer)) != -1) // 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span><br><span class="line">			&#123;</span><br><span class="line">				System.out.print(new String(buffer , 0 , len)); </span><br><span class="line">			&#125;</span><br><span class="line">			is.close();</span><br><span class="line">			&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125; catch (IOException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="模拟用户登录："><a href="#模拟用户登录：" class="headerlink" title="模拟用户登录："></a>模拟用户登录：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class login &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File basic = new File(&quot;D://&quot; , &quot;a.txt&quot;);</span><br><span class="line">		try(InputStream in = new FileInputStream(basic);</span><br><span class="line">			Reader re = new InputStreamReader(in , &quot;UTF-8&quot;);	</span><br><span class="line">			) &#123;</span><br><span class="line">			Map db = new HashMap();</span><br><span class="line">			Scanner scanner = new Scanner(re);</span><br><span class="line">			while(scanner.hasNext()) &#123;</span><br><span class="line">			String usertotal = scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(&quot; &quot;);</span><br><span class="line">//			System.out.println(username[0]);</span><br><span class="line">//			System.out.println(username[1]);</span><br><span class="line">			db.put(username[0],username[1]);</span><br><span class="line">//			System.out.println(db);</span><br><span class="line">			&#125;</span><br><span class="line">			Scanner name = new Scanner(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			System.out.println(&quot;请输入账号：&quot;);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			if(usename == null) &#123;</span><br><span class="line">				System.out.println(&quot;姓名不能为空&quot;);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">				System.out.println(&quot;请输入密码&quot;);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				if(password == null) &#123;</span><br><span class="line">					System.out.println(&quot;密码不能为空&quot;);</span><br><span class="line">					</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(&quot;登陆成功&quot;);</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(&quot;输入错误请重新输入&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class login &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File basic = new File(&quot;D://&quot; , &quot;a.txt&quot;);</span><br><span class="line">		try(InputStream in = new FileInputStream(basic);</span><br><span class="line">			Reader re = new InputStreamReader(in , &quot;UTF-8&quot;);	</span><br><span class="line">			) &#123;</span><br><span class="line">			Map db = new HashMap();</span><br><span class="line">			Scanner scanner = new Scanner(re);</span><br><span class="line">			while(scanner.hasNext()) &#123;</span><br><span class="line">			String usertotal = scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(&quot; &quot;);</span><br><span class="line">//			System.out.println(username[0]);</span><br><span class="line">//			System.out.println(username[1]);</span><br><span class="line">			db.put(username[0],username[1]);</span><br><span class="line">//			System.out.println(db);</span><br><span class="line">			&#125;</span><br><span class="line">			Scanner name = new Scanner(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			System.out.println(&quot;请输入账号：&quot;);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			if(usename == null) &#123;</span><br><span class="line">				System.out.println(&quot;姓名不能为空&quot;);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">				System.out.println(&quot;请输入密码&quot;);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				if(password == null) &#123;</span><br><span class="line">					System.out.println(&quot;密码不能为空&quot;);</span><br><span class="line">					</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(&quot;登陆成功&quot;);</span><br><span class="line">				System.out.println(&quot;输入1进行修改密码&quot;);</span><br><span class="line">				int m = Integer.parseInt(name.nextLine());</span><br><span class="line">				if(m == 1) &#123;</span><br><span class="line">					if(db.containsKey(usename)) &#123;</span><br><span class="line">						System.out.println(&quot;请输入更改之后的密码&quot;);</span><br><span class="line">						String newpassword = name.nextLine();</span><br><span class="line">						db.put(usename, newpassword);</span><br><span class="line">					&#125; </span><br><span class="line">				&#125;</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(&quot;输入错误请重新输入&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/21/10-21/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -445,112 +735,6 @@
 <h3 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h3><p>多线程编程中一般线程的个数都大于 CPU 核心的个数，而一个 CPU 核心在任意时刻只能被一个线程使用，为了让这些线程都能得到有效执行，CPU 采取的策略是为每个线程分配时间片并轮转的形式。当一个线程的时间片用完的时候就会重新处于就绪状态让给其他线程使用，这个过程就属于一次上下文切换。</p>
 <p>概括来说就是：当前任务在执行完 CPU 时间片切换到另一个任务之前会先保存自己的状态，以便下次再切换会这个任务时，可以再加载这个任务的状态。任务从保存到再加载的过程就是一次上下文切换。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>所以说其实多线程不一定能够比单线程快是因为上下文切换，以及线程等待的问题</p>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/21/%E4%BD%9C%E4%B8%9A10-21/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/21/%E4%BD%9C%E4%B8%9A10-21/" class="post-title-link" itemprop="url">作业10-21</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-21 08:42:15" itemprop="dateCreated datePublished" datetime="2022-10-21T08:42:15+08:00">2022-10-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-23 00:56:07" itemprop="dateModified" datetime="2022-10-23T00:56:07+08:00">2022-10-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BD%9C%E4%B8%9A/" itemprop="url" rel="index"><span itemprop="name">作业</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"><a href="#3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称" class="headerlink" title="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"></a>3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">import 作业.file;</span><br><span class="line"></span><br><span class="line">public class file过滤 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File M = new File(&quot;D:\\&quot; , &quot;try&quot;);</span><br><span class="line">		chakan(M);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void chakan(File M) &#123;</span><br><span class="line">		File[] k = M.listFiles();</span><br><span class="line">		System.out.println(k);</span><br><span class="line">		for (int i = 0; i &lt; k.length; i++) &#123;</span><br><span class="line">			File[] t = k[i].listFiles();</span><br><span class="line">			if(t == null) &#123;</span><br><span class="line">				String g =  k[i].getName();</span><br><span class="line">				String d = g.substring(k[i].getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">				if(d.equals(&quot;.java&quot;)) &#123;</span><br><span class="line">					System.out.println(g.substring(0, k[i].getName().lastIndexOf(&quot;.&quot;)));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				chakan(k[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>重点字符串的相等要用equals，递归</li>
-</ul>
-<h1 id="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"><a href="#判断指定路径下的所有子文件或是目录，如果是子文件则全部删除" class="headerlink" title="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"></a>判断指定路径下的所有子文件或是目录，如果是子文件则全部删除</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">File[] ds =	k.listFiles(); </span><br><span class="line">for (int i = 0; i &lt; ds.length ; i++ ) &#123;</span><br><span class="line">	File[] h = ds[i].listFiles();</span><br><span class="line">	if(h == null) &#123;</span><br><span class="line">		System.out.println(&quot;这个是个文件&quot;);</span><br><span class="line">		ds[i].delete();</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		k.delete();</span><br><span class="line">		SHANCHU(ds[i]);</span><br><span class="line">			&#125;</span><br><span class="line">	k.delete();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>重点：递归</li>
-</ul>
-<h1 id="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）"><a href="#5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）" class="headerlink" title="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）"></a>5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">File G = new File(&quot;D:\\\\102班级\\\\javaSE作业&quot;);</span><br><span class="line"></span><br><span class="line">G.mkdirs();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="从磁盘读取一个文件到内存中，再打印到控制台"><a href="#从磁盘读取一个文件到内存中，再打印到控制台" class="headerlink" title="从磁盘读取一个文件到内存中，再打印到控制台"></a>从磁盘读取一个文件到内存中，再打印到控制台</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line"></span><br><span class="line">public class lkdjfslasfj &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		try &#123;</span><br><span class="line">			InputStream is = new FileInputStream(&quot;D:/a.txt&quot;);</span><br><span class="line">//				while(is.available() != 0) &#123;</span><br><span class="line">//					System.out.println((char)is.read()); // 默认一次只读一个字符</span><br><span class="line">//				&#125;</span><br><span class="line">			</span><br><span class="line">			byte[] buffer = new byte[10]; // 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span><br><span class="line">			int len = 0; // 设置个长度</span><br><span class="line">			while((len = is.read(buffer)) != -1) // 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span><br><span class="line">			&#123;</span><br><span class="line">				System.out.print(new String(buffer , 0 , len)); </span><br><span class="line">			&#125;</span><br><span class="line">			is.close();</span><br><span class="line">			&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125; catch (IOException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="模拟用户登录："><a href="#模拟用户登录：" class="headerlink" title="模拟用户登录："></a>模拟用户登录：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class login &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File basic = new File(&quot;D://&quot; , &quot;a.txt&quot;);</span><br><span class="line">		try(InputStream in = new FileInputStream(basic);</span><br><span class="line">			Reader re = new InputStreamReader(in , &quot;UTF-8&quot;);	</span><br><span class="line">			) &#123;</span><br><span class="line">			Map db = new HashMap();</span><br><span class="line">			Scanner scanner = new Scanner(re);</span><br><span class="line">			while(scanner.hasNext()) &#123;</span><br><span class="line">			String usertotal = scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(&quot; &quot;);</span><br><span class="line">//			System.out.println(username[0]);</span><br><span class="line">//			System.out.println(username[1]);</span><br><span class="line">			db.put(username[0],username[1]);</span><br><span class="line">//			System.out.println(db);</span><br><span class="line">			&#125;</span><br><span class="line">			Scanner name = new Scanner(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			System.out.println(&quot;请输入账号：&quot;);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			if(usename == null) &#123;</span><br><span class="line">				System.out.println(&quot;姓名不能为空&quot;);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">				System.out.println(&quot;请输入密码&quot;);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				if(password == null) &#123;</span><br><span class="line">					System.out.println(&quot;密码不能为空&quot;);</span><br><span class="line">					</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(&quot;登陆成功&quot;);</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(&quot;输入错误请重新输入&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class login &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File basic = new File(&quot;D://&quot; , &quot;a.txt&quot;);</span><br><span class="line">		try(InputStream in = new FileInputStream(basic);</span><br><span class="line">			Reader re = new InputStreamReader(in , &quot;UTF-8&quot;);	</span><br><span class="line">			) &#123;</span><br><span class="line">			Map db = new HashMap();</span><br><span class="line">			Scanner scanner = new Scanner(re);</span><br><span class="line">			while(scanner.hasNext()) &#123;</span><br><span class="line">			String usertotal = scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(&quot; &quot;);</span><br><span class="line">//			System.out.println(username[0]);</span><br><span class="line">//			System.out.println(username[1]);</span><br><span class="line">			db.put(username[0],username[1]);</span><br><span class="line">//			System.out.println(db);</span><br><span class="line">			&#125;</span><br><span class="line">			Scanner name = new Scanner(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			System.out.println(&quot;请输入账号：&quot;);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			if(usename == null) &#123;</span><br><span class="line">				System.out.println(&quot;姓名不能为空&quot;);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">				System.out.println(&quot;请输入密码&quot;);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				if(password == null) &#123;</span><br><span class="line">					System.out.println(&quot;密码不能为空&quot;);</span><br><span class="line">					</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(&quot;登陆成功&quot;);</span><br><span class="line">				System.out.println(&quot;输入1进行修改密码&quot;);</span><br><span class="line">				int m = Integer.parseInt(name.nextLine());</span><br><span class="line">				if(m == 1) &#123;</span><br><span class="line">					if(db.containsKey(usename)) &#123;</span><br><span class="line">						System.out.println(&quot;请输入更改之后的密码&quot;);</span><br><span class="line">						String newpassword = name.nextLine();</span><br><span class="line">						db.put(usename, newpassword);</span><br><span class="line">					&#125; </span><br><span class="line">				&#125;</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(&quot;输入错误请重新输入&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1295,114 +1479,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/15/%E5%BC%82%E5%B8%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/15/%E5%BC%82%E5%B8%B8/" class="post-title-link" itemprop="url">java中异常的相关知识</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-15 17:44:10" itemprop="dateCreated datePublished" datetime="2022-10-15T17:44:10+08:00">2022-10-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-17 06:56:53" itemprop="dateModified" datetime="2022-10-17T06:56:53+08:00">2022-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javase/" itemprop="url" rel="index"><span itemprop="name">javase</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="因为一些原因导致开发的程序出现问题"><a href="#因为一些原因导致开发的程序出现问题" class="headerlink" title="因为一些原因导致开发的程序出现问题"></a>因为一些原因导致开发的程序出现问题</h3><p>Throwable是error和Exception的父类，是Java里所有异常的父类<br>##error<br>如果出现了error，则代表计算机出现了重大的错误，比如jvm无法解决的问题等。</p>
-<h2 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h2><p>如果出现了Exception，则代表计算机代码出现了问题，编译或者运行的时候出现了问题。但是Exception还分为运行时异常和编译时异常</p>
-<h3 id="运行时异常"><a href="#运行时异常" class="headerlink" title="运行时异常"></a>运行时异常</h3><p>运行时异常比如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayIndexOutOfBoundsException//这就是个数组越界的异常</span><br></pre></td></tr></table></figure>
-
-<p>这些都是运行的时候产生的异常，编译可以通过的，其中最常见的就是数组越界，下表越剧等</p>
-<h3 id="编译时异常"><a href="#编译时异常" class="headerlink" title="编译时异常"></a>编译时异常</h3><p>编译时异常比如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The final local variable m cannot be assigned. It must be blank and not using a compound assignment //这个就是个简单的final修饰的变量不可被改变的异常</span><br></pre></td></tr></table></figure>
-
-<p>这些是在程序未被运行之前就报出的错误。会被编译器会进行优先的处理。<br>最常见的就是作用域的问题，比如static变量和非static的变量等。</p>
-<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><h3 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h3><p>我们可以通过try catch的方法进行捕获异常，让异常出现的时候不至于停止程序的运行<br>代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">try &#123;//放会报错的语句，这个是个简单数组越界</span><br><span class="line">	a[m] = 1;</span><br><span class="line">	System.out.println(&quot;输入正确&quot;);	</span><br><span class="line">	&#125; catch (Exception e) &#123;</span><br><span class="line">	// TODO: handle exception</span><br><span class="line">	// 在错误发生时怎么处理</span><br><span class="line">	System.out.println(&quot;成功抛出异常&quot;);</span><br><span class="line">	&#125; </span><br><span class="line">	catch(xxxxx) &#123;</span><br><span class="line">	&#125;// 这里的catch还可以继续往下写，但是要注意其中异常的类型必须是越在后面类型越大的，因为Exception还分多个子类异常，这样可以更精确的分辨是什么异常，不过直接写Exception也不算错</span><br><span class="line">	finally &#123;</span><br><span class="line">		// finally里放一定会执行的代码，不过不写finally也不算错</span><br><span class="line">		&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>但是要注意，我们不可以捕获error异常，因为error异常已经超出了代码捕获的范围，我们一般都要进行硬件及软件的处理</p>
-<h3 id="throws"><a href="#throws" class="headerlink" title="throws"></a>throws</h3><p>我们可以通过throws把异常向上抛出，让他们的上层去处理，可是一般上层如果不能处理，还会继续向上抛出，这种方法我简称为逃避，我们，一般使用try catch语句较多，一般是抛到main方法里进行try catch处理，<br>如果异常一直不处理，那编译器最后会报错</p>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/15/java%E4%B8%AD%E7%9A%84%E6%98%93%E9%94%99%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1435,7 +1511,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-20 21:24:30" itemprop="dateModified" datetime="2022-10-20T21:24:30+08:00">2022-10-20</time>
+                <time title="修改时间：2022-10-24 22:30:30" itemprop="dateModified" datetime="2022-10-24T22:30:30+08:00">2022-10-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1453,14 +1529,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.6k</span>
+              <span>6.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
+              <span>6 分钟</span>
             </span>
 
         </div>
@@ -1628,6 +1704,38 @@
 <li>如果自旋次数过多扔无法获取锁，则会升级为重量级锁，重量级锁会导致线程阻塞</li>
 <li>自旋锁：自旋锁就是在线程获取锁的过程中，不回去阻塞线程，也就无所谓唤醒线程，阻塞和唤醒这两个步骤都是要操作系统中去实现的，比较耗费时间，自旋锁是线程通过CAS获取预期的一个标记，如果没有获取到，则继续循环获取去过获取到，则表式获取到了锁，这个过程线程一直在运行，相对而言没有使用太多的操作系统资源，比较轻量</li>
 </ul>
+<h1 id="Sychronized和ReentrantLock的区别"><a href="#Sychronized和ReentrantLock的区别" class="headerlink" title="Sychronized和ReentrantLock的区别"></a>Sychronized和ReentrantLock的区别</h1><ul>
+<li>前一个是关键字，后一个是一个类</li>
+<li>前一个会自动加锁和释放锁，后面一个需要手动加锁和个释放锁</li>
+<li>前一个底层是jvm层面 ， 后面一个底层是api层面</li>
+<li>前一个是非公平锁 ， 后面一个是可以选非公平或者公平</li>
+<li>前一个锁的是对象所信息保存在对象头中，后面一个是通过代码中int型的state标识符状态</li>
+<li>前一个底层有个锁升级的过程</li>
+</ul>
+<h1 id="谈谈你对AQS的理解，AQS如何实现可重入锁"><a href="#谈谈你对AQS的理解，AQS如何实现可重入锁" class="headerlink" title="谈谈你对AQS的理解，AQS如何实现可重入锁"></a>谈谈你对AQS的理解，AQS如何实现可重入锁</h1><ul>
+<li>AQS是一个java线程同步的框架，是jdk中很多锁的工具核心框架</li>
+<li>在AQS中，维护了信号量state和一个线程的双向链表队列，其中这个线程队列，就是用来给线程排队的而state就像是个红绿灯，用来控制排队</li>
+<li>在不同的场景下，有不同的意义</li>
+<li>在可重入锁这个场景下state用来保证加锁的次数，0表示标识无锁，每次加锁，states就加1，释放就减少1</li>
+</ul>
+<h1 id="谈谈你对IOC的理解"><a href="#谈谈你对IOC的理解" class="headerlink" title="谈谈你对IOC的理解"></a>谈谈你对IOC的理解</h1><ul>
+<li>通常我们任务spring有两大特性IoC和AOP</li>
+<li>IoC进行了对象的反转，就是对象控制权的转移</li>
+</ul>
+<h1 id="单例和Bean"><a href="#单例和Bean" class="headerlink" title="单例和Bean"></a>单例和Bean</h1><ul>
+<li>单例表示这个类只能实例化一次</li>
+<li>而bean并不表示jvm里只存在一个类的Bean</li>
+</ul>
+<h1 id="Spring的事务传播机制"><a href="#Spring的事务传播机制" class="headerlink" title="Spring的事务传播机制"></a>Spring的事务传播机制</h1><ul>
+<li>多个事务方法互相调用的时候，事务是如何在这些方法之间传播的</li>
+<li>REQUIRED（默认的传播机制）：如果没有事务，就自己创建一个新的事务，如果存在事务，就加入</li>
+<li>SUPPIORTS：当前存在事务，则加入，如果不存在就按照不存在的来</li>
+<li>MANDATORY：当前存在事务则加入，不存在则抛出异常</li>
+<li>REQUIRES_NEW：创建一个新事务，如果存在这个事务，就挂起他</li>
+<li>NOT_SUPPORTED:用非事务的方式执行，如果当前存在事务，则挂起事务</li>
+<li>NEVER：不使用事务如果事务存在，则会抛出异常</li>
+<li>NESTED：如果当前事务存在，则在嵌套事务中执行要不然就和REQUIRED一样</li>
+</ul>
 
       
     </div>
@@ -1647,6 +1755,9 @@
 
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1713,7 +1824,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1771,7 +1882,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共13.9k字</span>
+  <span class="post-count">博客全站共17.1k字</span>
 </div>
 
 
