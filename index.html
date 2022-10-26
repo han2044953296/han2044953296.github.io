@@ -293,6 +293,155 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/26/10-26/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/26/10-26/" class="post-title-link" itemprop="url">SetTree</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-26 09:51:27 / 修改时间：16:40:55" itemprop="dateCreated datePublished" datetime="2022-10-26T09:51:27+08:00">2022-10-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h1><ul>
+<li><p>其是基于compareable的，</p>
+</li>
+<li><p>进行add的时候放的如果是引用类型，则要实现compareable接口，因为他就是用这个接口来实现的</p>
+</li>
+<li><p>对于基本类型，则不用</p>
+</li>
+<li><p>如果这样就会报错</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 重新开始;</span><br><span class="line"></span><br><span class="line">import java.util.Set;</span><br><span class="line">import java.util.TreeSet;</span><br><span class="line"></span><br><span class="line">public class copyfilethread &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		Set&lt;String&gt; set = new TreeSet&lt;String&gt;();</span><br><span class="line">		set.add(&quot;2020-10-19&quot;);</span><br><span class="line">		set.add(&quot;1010-10-20&quot;);</span><br><span class="line">		System.out.println(set);</span><br><span class="line">		Set&lt;stu&gt; SET = new TreeSet&lt;stu&gt;();</span><br><span class="line">		SET.add(new stu(&quot;小明&quot; , 1));</span><br><span class="line">		SET.add(new stu(&quot;snisnh&quot; , 2));</span><br><span class="line">		SET.add(new stu(&quot;狗蛋&quot;  , 1));</span><br><span class="line">		SET.forEach(System.out::println);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>stu类</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">class stu &#123;</span><br><span class="line">	private int num;</span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	public stu( String name , int num) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.num = num;</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public stu() &#123;</span><br><span class="line">		super();</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	public int getNum() &#123;</span><br><span class="line">		return num;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setNum(int num) &#123;</span><br><span class="line">		this.num = num;</span><br><span class="line">	&#125;</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public String toString() &#123;</span><br><span class="line">		return &quot;stu [num=&quot; + num + &quot;, name=&quot; + name + &quot;]&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public int hashCode() &#123;</span><br><span class="line">		final int prime = 31;</span><br><span class="line">		int result = 1;</span><br><span class="line">		result = prime * result + ((name == null) ? 0 : name.hashCode());</span><br><span class="line">		result = prime * result + num;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public boolean equals(Object obj) &#123;</span><br><span class="line">		if (this == obj)</span><br><span class="line">			return true;</span><br><span class="line">		if (obj == null)</span><br><span class="line">			return false;</span><br><span class="line">		if (getClass() != obj.getClass())</span><br><span class="line">			return false;</span><br><span class="line">		stu other = (stu) obj;</span><br><span class="line">		if (name == null) &#123;</span><br><span class="line">			if (other.name != null)</span><br><span class="line">				return false;</span><br><span class="line">		&#125; else if (!name.equals(other.name))</span><br><span class="line">			return false;</span><br><span class="line">		if (num != other.num)</span><br><span class="line">			return false;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 大于0是正数，小于0是负数 ，等于0是相等 ，</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这样会报错，是类型转换的错误。</li>
+<li>因为它实现的是compareable接口，对比引用类型的时候用的是这个接口里的方法</li>
+<li>所以在stu类实现这个接口就可以不报错了</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class stu implements Comparable&lt;stu&gt;&#123;</span><br><span class="line">	private int num;</span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	public stu( String name , int num) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.num = num;</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public stu() &#123;</span><br><span class="line">		super();</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	public int getNum() &#123;</span><br><span class="line">		return num;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setNum(int num) &#123;</span><br><span class="line">		this.num = num;</span><br><span class="line">	&#125;</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public String toString() &#123;</span><br><span class="line">		return &quot;stu [num=&quot; + num + &quot;, name=&quot; + name + &quot;]&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public int hashCode() &#123;</span><br><span class="line">		final int prime = 31;</span><br><span class="line">		int result = 1;</span><br><span class="line">		result = prime * result + ((name == null) ? 0 : name.hashCode());</span><br><span class="line">		result = prime * result + num;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public boolean equals(Object obj) &#123;</span><br><span class="line">		if (this == obj)</span><br><span class="line">			return true;</span><br><span class="line">		if (obj == null)</span><br><span class="line">			return false;</span><br><span class="line">		if (getClass() != obj.getClass())</span><br><span class="line">			return false;</span><br><span class="line">		stu other = (stu) obj;</span><br><span class="line">		if (name == null) &#123;</span><br><span class="line">			if (other.name != null)</span><br><span class="line">				return false;</span><br><span class="line">		&#125; else if (!name.equals(other.name))</span><br><span class="line">			return false;</span><br><span class="line">		if (num != other.num)</span><br><span class="line">			return false;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 大于0是正数，小于0是负数 ，等于0是相等 ，</span><br><span class="line">	@Override</span><br><span class="line">	public int compareTo(stu o) &#123;</span><br><span class="line">	return 0;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>但是这样他只能往set里添加一个值</li>
+<li>因为这个compare默认的时候就是这样</li>
+<li>如果要再进行精度筛选则要，在被覆盖的compareto方法中自己定义，可以改成<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public int compareTo(stu o) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		if(this.num == o.num) &#123;</span><br><span class="line">			return this.name.length() - o.name.length();</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			return this.num - o.num;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>这样就会让如果学号相同，就会按照姓名的长度排序，小的在上面</li>
+<li>总之就是可以在这个compareto这里设置规则</li>
+<li>可控性强</li>
+<li>这里只有数组的是length是属性，其他都是方法</li>
+<li>集合的叫size</li>
+<li>这个是用于实体类，数据类实现接口用 ， 表达的是自然的顺序，又叫自然排序</li>
+</ul>
+<h1 id="比较器"><a href="#比较器" class="headerlink" title="比较器"></a>比较器</h1><ul>
+<li>比较器是对于list来说的</li>
+<li>comparetor ：比较器，比上一个更自由 ，可以控制排序的方式，升序或者降序<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">List&lt;stu&gt; list = new ArrayList&lt;stu&gt;();</span><br><span class="line">System.out.println(&quot;----------------------&quot;);</span><br><span class="line">list.add(new stu(&quot;下&quot; , 1 , 89.1));</span><br><span class="line">list.add(new stu(&quot;下&quot; , 2 , 88.1));</span><br><span class="line">list.add(new stu(&quot;下&quot; , 21 , 87.1));</span><br><span class="line">list.add(new stu(&quot;下&quot; , 22 , 86.1));</span><br><span class="line">list.add(new stu(&quot;下&quot; , 21 , 85.1));</span><br><span class="line">list.add(new stu(&quot;下&quot; , 221 , 84.1));</span><br><span class="line">list.add(new stu(&quot;下&quot; , 21 , 83.1));</span><br><span class="line">list.add(new stu(&quot;下&quot; , 21 , 82.1));</span><br><span class="line"></span><br><span class="line">Collections.sort(list , (a,b) -&gt; -((int)(b.getScore() - a.getScore() * 100 ))); // 这个里面的代表 ， 我们的比较规则， 前面代表要排序的集合，list不去重 ， a,b代表两个元素list中的，后面的就是比较的规则了，一般是升序排序，但是我们可以通过添加-的方法，让他进行降序，他底层也是tree</span><br><span class="line">list.forEach(System.out::println);</span><br></pre></td></tr></table></figure></li>
+<li>通过lambal表达式进行比较排序</li>
+<li>但是其实这个sort方法也是Arrays.sort，它是将所有元素转入一个数组，对数组进行排序，然后，将排好序 的序列复制回列表 ，</li>
+<li>sort()是根据需要排序的数组的长度进行区分的:</li>
+<li>首先先判断需要排序的数据量是否大于60。</li>
+<li>小于60：使用插入排序，插入排序是稳定的</li>
+<li>大于60的数据量会根据数据类型选择排序方式：</li>
+<li>基本类型：使用快速排序。「因为基本类型不需要考虑稳定性」</li>
+<li>Object类型：使用归并排序「因为归并排序具有稳定性」</li>
+<li>注意：不管是快速排序还是归并排序。在二分的时候小于60的数据量依旧会使用插入排序</li>
+<li>Collections.reverseOrder()也可以进行降序排序 , 只不过是要基本类型</li>
+</ul>
+<h1 id="映射Map"><a href="#映射Map" class="headerlink" title="映射Map"></a>映射Map</h1><ul>
+<li>是一种接口</li>
+<li>是一种&lt;k , V&gt; 结构 ，就是一个key对应一个value，其key不会重复，而value可以重复</li>
+<li>一个&lt;Ｋ，V&gt;叫一个ｅｎｔｒｙ</li>
+<li>万能&lt;Ｋ，V&gt;他可以代表一个对象</li>
+</ul>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ul>
+<li>ｃｌｅａｒ清除所有映射</li>
+<li>ｂｏｏｌｅａｎ　ｃｏｎｔａｉｎｓＫｅｙ（Ｏｂｊｅｃｔ　ｋｅｙ）：判断一个ｋｅｙ是不是存在</li>
+<li>ｅｎｔｒｙＳｅｔ（）获取ｅｎｔｒｙ集合，就是条目集合<br>，返回类型是一个Ｓｅｔ</li>
+<li>ｇｅｔ（ｋｅｙ）根据ｋｅｙ获取ｖａｌｕｅ</li>
+<li>ｋｅｙＳｅｔ（）返回ｋｅｙ的集合</li>
+<li>ｐｕｔ（K，ｖ），往，ｍａｐ加入一条数据，但是存在相同的ｋｅｙ就覆盖</li>
+<li>ｒｅｍｏｖｅ（ｋ）删除ｋｅｙ</li>
+<li>ｓｉｚｅ（）条目个数</li>
+<li>Ｃｏｌｌｅｃｔｉｏｎ＜Ｖ＞　ｖａｌｕｅｓ（）获取值组成的集合<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package 重新开始;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">public class Main2 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Map&lt;String , String&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">		map.put(&quot;akjsdhs&quot;, &quot;sdjal&quot;);</span><br><span class="line">		map.put(&quot;dshd&quot; , &quot;sdjjdjd&quot;);</span><br><span class="line">		System.out.println(map.get(&quot;dshd&quot;));</span><br><span class="line">		System.out.println(map.containsKey(&quot;dshd&quot;));</span><br><span class="line">		System.out.println(map.remove(&quot;dshd&quot;));</span><br><span class="line">		System.out.println(map.size());</span><br><span class="line">		System.out.println(map.entrySet());</span><br><span class="line">		System.out.println(map.containsKey(&quot;dshd&quot;));</span><br><span class="line">		map.clear();</span><br><span class="line">		System.out.println(map.size());</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/25/10-25/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -478,7 +627,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-25 11:27:22" itemprop="dateModified" datetime="2022-10-25T11:27:22+08:00">2022-10-25</time>
+                <time title="修改时间：2022-10-26 16:40:19" itemprop="dateModified" datetime="2022-10-26T16:40:19+08:00">2022-10-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -496,14 +645,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.8k</span>
+              <span>10k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
+              <span>9 分钟</span>
             </span>
 
         </div>
@@ -640,6 +789,8 @@
 <ul>
 <li>注意，wait的时候是直接放开锁的</li>
 </ul>
+<h1 id="创建线程的第三种和第四种方式"><a href="#创建线程的第三种和第四种方式" class="headerlink" title="创建线程的第三种和第四种方式"></a>创建线程的第三种和第四种方式</h1><h2 id="实现Callable接口"><a href="#实现Callable接口" class="headerlink" title="实现Callable接口"></a>实现Callable接口</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import java.util.concurrent.Callable;</span><br><span class="line">import java.util.concurrent.ExecutionException;</span><br><span class="line">import java.util.concurrent.FutureTask;</span><br><span class="line">//实现Callable接口</span><br><span class="line">public class CallableTest &#123;</span><br><span class="line"> </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        //执行Callable 方式，需要FutureTask 实现实现，用于接收运算结果</span><br><span class="line">        FutureTask&lt;Integer&gt; futureTask = new FutureTask&lt;Integer&gt;(new MyCallable());</span><br><span class="line">        new Thread(futureTask).start();</span><br><span class="line">        //接收线程运算后的结果</span><br><span class="line">        try &#123;</span><br><span class="line">            Integer sum = futureTask.get();</span><br><span class="line">            System.out.println(sum);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (ExecutionException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class MyCallable implements Callable&lt;Integer&gt; &#123;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public Integer call() throws Exception &#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">            sum += i;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">//结果：</span><br><span class="line">/*</span><br><span class="line">4950</span><br><span class="line">Process finished with exit code 0</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<h2 id="线程池创建线程"><a href="#线程池创建线程" class="headerlink" title="线程池创建线程"></a>线程池创建线程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">import java.util.concurrent.ExecutorService;</span><br><span class="line">import java.util.concurrent.Executors;</span><br><span class="line">//线程池实现</span><br><span class="line">public class ThreadPoolExecutorTest &#123;</span><br><span class="line"> </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        //创建线程池</span><br><span class="line">        ExecutorService executorService = Executors.newFixedThreadPool(10);</span><br><span class="line">        ThreadPool threadPool = new ThreadPool();</span><br><span class="line">        for(int i =0;i&lt;5;i++)&#123;</span><br><span class="line">            //为线程池分配任务</span><br><span class="line">            executorService.submit(threadPool);</span><br><span class="line">        &#125;</span><br><span class="line">        //关闭线程池</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class ThreadPool implements Runnable &#123;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        for(int i = 0 ;i&lt;10;i++)&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + &quot;:&quot; + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">// 打印结果（不唯一）：</span><br><span class="line">/*</span><br><span class="line">pool-1-thread-1:0</span><br><span class="line">pool-1-thread-2:0</span><br><span class="line">pool-1-thread-2:1</span><br><span class="line">pool-1-thread-3:0</span><br><span class="line">pool-1-thread-3:1</span><br><span class="line">pool-1-thread-3:2</span><br><span class="line">pool-1-thread-2:2</span><br><span class="line">pool-1-thread-2:3</span><br><span class="line">pool-1-thread-2:4</span><br><span class="line">pool-1-thread-2:5</span><br><span class="line">pool-1-thread-1:1</span><br><span class="line">pool-1-thread-5:0</span><br><span class="line">pool-1-thread-5:1</span><br><span class="line">pool-1-thread-5:2</span><br><span class="line">pool-1-thread-5:3</span><br><span class="line">pool-1-thread-2:6</span><br><span class="line">pool-1-thread-2:7</span><br><span class="line">pool-1-thread-2:8</span><br><span class="line">pool-1-thread-3:3</span><br><span class="line">pool-1-thread-2:9</span><br><span class="line">pool-1-thread-5:4</span><br><span class="line">pool-1-thread-4:0</span><br><span class="line">pool-1-thread-4:1</span><br><span class="line">pool-1-thread-1:2</span><br><span class="line">pool-1-thread-1:3</span><br><span class="line">pool-1-thread-1:4</span><br><span class="line">pool-1-thread-1:5</span><br><span class="line">pool-1-thread-1:6</span><br><span class="line">pool-1-thread-1:7</span><br><span class="line">pool-1-thread-1:8</span><br><span class="line">pool-1-thread-1:9</span><br><span class="line">pool-1-thread-4:2</span><br><span class="line">pool-1-thread-4:3</span><br><span class="line">pool-1-thread-4:4</span><br><span class="line">pool-1-thread-4:5</span><br><span class="line">pool-1-thread-5:5</span><br><span class="line">pool-1-thread-3:4</span><br><span class="line">pool-1-thread-3:5</span><br><span class="line">pool-1-thread-3:6</span><br><span class="line">pool-1-thread-3:7</span><br><span class="line">pool-1-thread-3:8</span><br><span class="line">pool-1-thread-3:9</span><br><span class="line">pool-1-thread-5:6</span><br><span class="line">pool-1-thread-4:6</span><br><span class="line">pool-1-thread-5:7</span><br><span class="line">pool-1-thread-4:7</span><br><span class="line">pool-1-thread-5:8</span><br><span class="line">pool-1-thread-4:8</span><br><span class="line">pool-1-thread-4:9</span><br><span class="line">pool-1-thread-5:9</span><br><span class="line">Process finished with exit code 0</span><br><span class="line">*/</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1588,104 +1739,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/17/%E6%95%B0%E5%AD%97%E7%B1%BB%E4%BB%A5%E5%8F%8Abig%E7%B1%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/17/%E6%95%B0%E5%AD%97%E7%B1%BB%E4%BB%A5%E5%8F%8Abig%E7%B1%BB/" class="post-title-link" itemprop="url">数字及big类</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-17 17:44:10 / 修改时间：23:54:46" itemprop="dateCreated datePublished" datetime="2022-10-17T17:44:10+08:00">2022-10-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="关于数学包里常用的几个类"><a href="#关于数学包里常用的几个类" class="headerlink" title="关于数学包里常用的几个类"></a>关于数学包里常用的几个类</h1><h2 id="abs"><a href="#abs" class="headerlink" title="abs"></a>abs</h2><p>abs是取绝对值</p>
-<h2 id="cell"><a href="#cell" class="headerlink" title="cell"></a>cell</h2><p>向上（正方向）取整</p>
-<h2 id="floor"><a href="#floor" class="headerlink" title="floor"></a>floor</h2><p>向下（负方向）取整</p>
-<h2 id="round"><a href="#round" class="headerlink" title="round"></a>round</h2><p> 四舍五入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> // 简单的例子 ，5舍6入</span><br><span class="line">可以通过floor进行</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="BigInteger"><a href="#BigInteger" class="headerlink" title="BigInteger"></a>BigInteger</h1><p>BigInteger类型的数字范围较Integer，Long类型的数字范围要大得多，它支持任意精度的整数，也就是说在运算中 BigInteger 类型可以准确地表示任何大小的整数值而不会丢失任何信息。</p>
-<h2 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//1.加</span><br><span class="line">BigInteger bigNum1 = a.add(b);			//17</span><br><span class="line">//2.减</span><br><span class="line">BigInteger bigNum2 = a.subtract(b);		//9</span><br><span class="line">//3.乘</span><br><span class="line">BigInteger bigNum3 = a.multiply(b);		//52</span><br><span class="line">//4.除</span><br><span class="line">BigInteger bigNum4 = a.divide(b);		//3</span><br><span class="line">//5.取模(需 b &gt; 0，否则出现异常：ArithmeticException(&quot;BigInteger: modulus not positive&quot;))</span><br><span class="line">BigInteger bigNum5 = a.mod(b);			//1</span><br><span class="line">//6.求余</span><br><span class="line">BigInteger bigNum6 = a.remainder(b);	//1</span><br><span class="line">//7.平方(需 n &gt;= 0，否则出现异常：ArithmeticException(&quot;Negative exponent&quot;))</span><br><span class="line">BigInteger bigNum7 = a.pow(n);			//2197</span><br><span class="line">//8.取绝对值</span><br><span class="line">BigInteger bigNum8 = a.abs();			//13</span><br><span class="line">//9.取相反数</span><br><span class="line">BigInteger bigNum9 = a.negate();		//-13</span><br></pre></td></tr></table></figure>
-
-<h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//读入方法：nextBigInteger()</span><br><span class="line">@Test</span><br><span class="line">public void test5() &#123;</span><br><span class="line">	Scanner scan = new Scanner(System.in);				// 读入</span><br><span class="line">	int n = scan.nextInt(); 							// 读入一个int;</span><br><span class="line">	BigInteger m = scan.nextBigInteger();				// 读入一个BigInteger;</span><br><span class="line">	while(scan.hasNext())&#123;	</span><br><span class="line">		System.out.print(&quot;scan.hasNext()=&quot; + scan.hasNext());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中除了这个还有big浮点型，用法和上面一样</p>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1757,7 +1810,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1815,7 +1868,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共21.5k字</span>
+  <span class="post-count">博客全站共23.5k字</span>
 </div>
 
 
