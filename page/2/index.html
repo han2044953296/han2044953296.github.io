@@ -198,6 +198,112 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/21/%E4%BD%9C%E4%B8%9A10-21/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/21/%E4%BD%9C%E4%B8%9A10-21/" class="post-title-link" itemprop="url">作业10-21</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-21 08:42:15" itemprop="dateCreated datePublished" datetime="2022-10-21T08:42:15+08:00">2022-10-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-23 00:56:07" itemprop="dateModified" datetime="2022-10-23T00:56:07+08:00">2022-10-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BD%9C%E4%B8%9A/" itemprop="url" rel="index"><span itemprop="name">作业</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"><a href="#3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称" class="headerlink" title="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"></a>3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">import 作业.file;</span><br><span class="line"></span><br><span class="line">public class file过滤 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File M = new File(&quot;D:\\&quot; , &quot;try&quot;);</span><br><span class="line">		chakan(M);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void chakan(File M) &#123;</span><br><span class="line">		File[] k = M.listFiles();</span><br><span class="line">		System.out.println(k);</span><br><span class="line">		for (int i = 0; i &lt; k.length; i++) &#123;</span><br><span class="line">			File[] t = k[i].listFiles();</span><br><span class="line">			if(t == null) &#123;</span><br><span class="line">				String g =  k[i].getName();</span><br><span class="line">				String d = g.substring(k[i].getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">				if(d.equals(&quot;.java&quot;)) &#123;</span><br><span class="line">					System.out.println(g.substring(0, k[i].getName().lastIndexOf(&quot;.&quot;)));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				chakan(k[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>重点字符串的相等要用equals，递归</li>
+</ul>
+<h1 id="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"><a href="#判断指定路径下的所有子文件或是目录，如果是子文件则全部删除" class="headerlink" title="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"></a>判断指定路径下的所有子文件或是目录，如果是子文件则全部删除</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">File[] ds =	k.listFiles(); </span><br><span class="line">for (int i = 0; i &lt; ds.length ; i++ ) &#123;</span><br><span class="line">	File[] h = ds[i].listFiles();</span><br><span class="line">	if(h == null) &#123;</span><br><span class="line">		System.out.println(&quot;这个是个文件&quot;);</span><br><span class="line">		ds[i].delete();</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		k.delete();</span><br><span class="line">		SHANCHU(ds[i]);</span><br><span class="line">			&#125;</span><br><span class="line">	k.delete();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重点：递归</li>
+</ul>
+<h1 id="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）"><a href="#5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）" class="headerlink" title="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）"></a>5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">File G = new File(&quot;D:\\\\102班级\\\\javaSE作业&quot;);</span><br><span class="line"></span><br><span class="line">G.mkdirs();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="从磁盘读取一个文件到内存中，再打印到控制台"><a href="#从磁盘读取一个文件到内存中，再打印到控制台" class="headerlink" title="从磁盘读取一个文件到内存中，再打印到控制台"></a>从磁盘读取一个文件到内存中，再打印到控制台</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line"></span><br><span class="line">public class lkdjfslasfj &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		try &#123;</span><br><span class="line">			InputStream is = new FileInputStream(&quot;D:/a.txt&quot;);</span><br><span class="line">//				while(is.available() != 0) &#123;</span><br><span class="line">//					System.out.println((char)is.read()); // 默认一次只读一个字符</span><br><span class="line">//				&#125;</span><br><span class="line">			</span><br><span class="line">			byte[] buffer = new byte[10]; // 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span><br><span class="line">			int len = 0; // 设置个长度</span><br><span class="line">			while((len = is.read(buffer)) != -1) // 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span><br><span class="line">			&#123;</span><br><span class="line">				System.out.print(new String(buffer , 0 , len)); </span><br><span class="line">			&#125;</span><br><span class="line">			is.close();</span><br><span class="line">			&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125; catch (IOException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="模拟用户登录："><a href="#模拟用户登录：" class="headerlink" title="模拟用户登录："></a>模拟用户登录：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class login &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File basic = new File(&quot;D://&quot; , &quot;a.txt&quot;);</span><br><span class="line">		try(InputStream in = new FileInputStream(basic);</span><br><span class="line">			Reader re = new InputStreamReader(in , &quot;UTF-8&quot;);	</span><br><span class="line">			) &#123;</span><br><span class="line">			Map db = new HashMap();</span><br><span class="line">			Scanner scanner = new Scanner(re);</span><br><span class="line">			while(scanner.hasNext()) &#123;</span><br><span class="line">			String usertotal = scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(&quot; &quot;);</span><br><span class="line">//			System.out.println(username[0]);</span><br><span class="line">//			System.out.println(username[1]);</span><br><span class="line">			db.put(username[0],username[1]);</span><br><span class="line">//			System.out.println(db);</span><br><span class="line">			&#125;</span><br><span class="line">			Scanner name = new Scanner(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			System.out.println(&quot;请输入账号：&quot;);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			if(usename == null) &#123;</span><br><span class="line">				System.out.println(&quot;姓名不能为空&quot;);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">				System.out.println(&quot;请输入密码&quot;);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				if(password == null) &#123;</span><br><span class="line">					System.out.println(&quot;密码不能为空&quot;);</span><br><span class="line">					</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(&quot;登陆成功&quot;);</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(&quot;输入错误请重新输入&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class login &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File basic = new File(&quot;D://&quot; , &quot;a.txt&quot;);</span><br><span class="line">		try(InputStream in = new FileInputStream(basic);</span><br><span class="line">			Reader re = new InputStreamReader(in , &quot;UTF-8&quot;);	</span><br><span class="line">			) &#123;</span><br><span class="line">			Map db = new HashMap();</span><br><span class="line">			Scanner scanner = new Scanner(re);</span><br><span class="line">			while(scanner.hasNext()) &#123;</span><br><span class="line">			String usertotal = scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(&quot; &quot;);</span><br><span class="line">//			System.out.println(username[0]);</span><br><span class="line">//			System.out.println(username[1]);</span><br><span class="line">			db.put(username[0],username[1]);</span><br><span class="line">//			System.out.println(db);</span><br><span class="line">			&#125;</span><br><span class="line">			Scanner name = new Scanner(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			System.out.println(&quot;请输入账号：&quot;);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			if(usename == null) &#123;</span><br><span class="line">				System.out.println(&quot;姓名不能为空&quot;);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">				System.out.println(&quot;请输入密码&quot;);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				if(password == null) &#123;</span><br><span class="line">					System.out.println(&quot;密码不能为空&quot;);</span><br><span class="line">					</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(&quot;登陆成功&quot;);</span><br><span class="line">				System.out.println(&quot;输入1进行修改密码&quot;);</span><br><span class="line">				int m = Integer.parseInt(name.nextLine());</span><br><span class="line">				if(m == 1) &#123;</span><br><span class="line">					if(db.containsKey(usename)) &#123;</span><br><span class="line">						System.out.println(&quot;请输入更改之后的密码&quot;);</span><br><span class="line">						String newpassword = name.nextLine();</span><br><span class="line">						db.put(usename, newpassword);</span><br><span class="line">					&#125; </span><br><span class="line">				&#125;</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(&quot;输入错误请重新输入&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/20/10-20/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -354,7 +460,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-29 10:22:35" itemprop="dateModified" datetime="2022-10-29T10:22:35+08:00">2022-10-29</time>
+                <time title="修改时间：2022-10-29 10:58:50" itemprop="dateModified" datetime="2022-10-29T10:58:50+08:00">2022-10-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -418,7 +524,7 @@
 <li>首先在SignDemoApplication的包内创建几个包，分别代表客户端，服务端以及自动启动还有配置文件包，</li>
 <li>首先确定的是浏览器页面，原因很简单，网页有强大的动态效果，以及平台的适配能力，而且很美观，比较与传统的GUI要好不少</li>
 <li>我的文件层级目录如下</li>
-<li><img src="https://imgse.com/i/x4XBBd"></li>
+<li><img src="/%5B!%5Bx4XBBd.jpg%5D(https:/s1.ax1x.com/2022/10/29/x4XBBd.jpg)%5D(https:/imgse.com/i/x4XBBd)"></li>
 </ul>
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><ul>
 <li>创建config包，然后在包里创建RedisTemplateConfiguration.class</li>
@@ -671,7 +777,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/18/%E6%97%A5%E6%9C%9F%E5%92%8C%E5%9B%BD%E9%99%85%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/18/10-18/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -685,7 +791,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/10/18/%E6%97%A5%E6%9C%9F%E5%92%8C%E5%9B%BD%E9%99%85%E5%8C%96/" class="post-title-link" itemprop="url">java里的日期和Object的一些方法</a>
+            <a href="/2022/10/18/10-18/" class="post-title-link" itemprop="url">java里的日期和Object的一些方法</a>
         </h2>
 
         <div class="post-meta">
@@ -888,7 +994,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/17/%E6%95%B0%E5%AD%97%E7%B1%BB%E4%BB%A5%E5%8F%8Abig%E7%B1%BB/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/17/10-17%20/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -902,7 +1008,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/10/17/%E6%95%B0%E5%AD%97%E7%B1%BB%E4%BB%A5%E5%8F%8Abig%E7%B1%BB/" class="post-title-link" itemprop="url">数字及big类</a>
+            <a href="/2022/10/17/10-17%20/" class="post-title-link" itemprop="url">数字及big类</a>
         </h2>
 
         <div class="post-meta">
@@ -986,6 +1092,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/15/10-15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/15/10-15/" class="post-title-link" itemprop="url">java中异常的相关知识</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-15 17:44:10" itemprop="dateCreated datePublished" datetime="2022-10-15T17:44:10+08:00">2022-10-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-17 06:56:53" itemprop="dateModified" datetime="2022-10-17T06:56:53+08:00">2022-10-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javase/" itemprop="url" rel="index"><span itemprop="name">javase</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="因为一些原因导致开发的程序出现问题"><a href="#因为一些原因导致开发的程序出现问题" class="headerlink" title="因为一些原因导致开发的程序出现问题"></a>因为一些原因导致开发的程序出现问题</h3><p>Throwable是error和Exception的父类，是Java里所有异常的父类<br>##error<br>如果出现了error，则代表计算机出现了重大的错误，比如jvm无法解决的问题等。</p>
+<h2 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h2><p>如果出现了Exception，则代表计算机代码出现了问题，编译或者运行的时候出现了问题。但是Exception还分为运行时异常和编译时异常</p>
+<h3 id="运行时异常"><a href="#运行时异常" class="headerlink" title="运行时异常"></a>运行时异常</h3><p>运行时异常比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayIndexOutOfBoundsException//这就是个数组越界的异常</span><br></pre></td></tr></table></figure>
+
+<p>这些都是运行的时候产生的异常，编译可以通过的，其中最常见的就是数组越界，下表越剧等</p>
+<h3 id="编译时异常"><a href="#编译时异常" class="headerlink" title="编译时异常"></a>编译时异常</h3><p>编译时异常比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The final local variable m cannot be assigned. It must be blank and not using a compound assignment //这个就是个简单的final修饰的变量不可被改变的异常</span><br></pre></td></tr></table></figure>
+
+<p>这些是在程序未被运行之前就报出的错误。会被编译器会进行优先的处理。<br>最常见的就是作用域的问题，比如static变量和非static的变量等。</p>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><h3 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h3><p>我们可以通过try catch的方法进行捕获异常，让异常出现的时候不至于停止程序的运行<br>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">try &#123;//放会报错的语句，这个是个简单数组越界</span><br><span class="line">	a[m] = 1;</span><br><span class="line">	System.out.println(&quot;输入正确&quot;);	</span><br><span class="line">	&#125; catch (Exception e) &#123;</span><br><span class="line">	// TODO: handle exception</span><br><span class="line">	// 在错误发生时怎么处理</span><br><span class="line">	System.out.println(&quot;成功抛出异常&quot;);</span><br><span class="line">	&#125; </span><br><span class="line">	catch(xxxxx) &#123;</span><br><span class="line">	&#125;// 这里的catch还可以继续往下写，但是要注意其中异常的类型必须是越在后面类型越大的，因为Exception还分多个子类异常，这样可以更精确的分辨是什么异常，不过直接写Exception也不算错</span><br><span class="line">	finally &#123;</span><br><span class="line">		// finally里放一定会执行的代码，不过不写finally也不算错</span><br><span class="line">		&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>但是要注意，我们不可以捕获error异常，因为error异常已经超出了代码捕获的范围，我们一般都要进行硬件及软件的处理</p>
+<h3 id="throws"><a href="#throws" class="headerlink" title="throws"></a>throws</h3><p>我们可以通过throws把异常向上抛出，让他们的上层去处理，可是一般上层如果不能处理，还会继续向上抛出，这种方法我简称为逃避，我们，一般使用try catch语句较多，一般是抛到main方法里进行try catch处理，<br>如果异常一直不处理，那编译器最后会报错</p>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/15/java%E4%B8%AD%E7%9A%84%E6%98%93%E9%94%99%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1018,7 +1232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-28 12:54:38" itemprop="dateModified" datetime="2022-10-28T12:54:38+08:00">2022-10-28</time>
+                <time title="修改时间：2022-10-31 13:26:38" itemprop="dateModified" datetime="2022-10-31T13:26:38+08:00">2022-10-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1036,14 +1250,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>9k</span>
+              <span>13k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
+              <span>12 分钟</span>
             </span>
 
         </div>
@@ -1324,114 +1538,86 @@
 </ul>
 </li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/15/%E5%BC%82%E5%B8%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/15/%E5%BC%82%E5%B8%B8/" class="post-title-link" itemprop="url">java中异常的相关知识</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-15 17:44:10" itemprop="dateCreated datePublished" datetime="2022-10-15T17:44:10+08:00">2022-10-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-17 06:56:53" itemprop="dateModified" datetime="2022-10-17T06:56:53+08:00">2022-10-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javase/" itemprop="url" rel="index"><span itemprop="name">javase</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="因为一些原因导致开发的程序出现问题"><a href="#因为一些原因导致开发的程序出现问题" class="headerlink" title="因为一些原因导致开发的程序出现问题"></a>因为一些原因导致开发的程序出现问题</h3><p>Throwable是error和Exception的父类，是Java里所有异常的父类<br>##error<br>如果出现了error，则代表计算机出现了重大的错误，比如jvm无法解决的问题等。</p>
-<h2 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h2><p>如果出现了Exception，则代表计算机代码出现了问题，编译或者运行的时候出现了问题。但是Exception还分为运行时异常和编译时异常</p>
-<h3 id="运行时异常"><a href="#运行时异常" class="headerlink" title="运行时异常"></a>运行时异常</h3><p>运行时异常比如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayIndexOutOfBoundsException//这就是个数组越界的异常</span><br></pre></td></tr></table></figure>
-
-<p>这些都是运行的时候产生的异常，编译可以通过的，其中最常见的就是数组越界，下表越剧等</p>
-<h3 id="编译时异常"><a href="#编译时异常" class="headerlink" title="编译时异常"></a>编译时异常</h3><p>编译时异常比如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The final local variable m cannot be assigned. It must be blank and not using a compound assignment //这个就是个简单的final修饰的变量不可被改变的异常</span><br></pre></td></tr></table></figure>
-
-<p>这些是在程序未被运行之前就报出的错误。会被编译器会进行优先的处理。<br>最常见的就是作用域的问题，比如static变量和非static的变量等。</p>
-<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><h3 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h3><p>我们可以通过try catch的方法进行捕获异常，让异常出现的时候不至于停止程序的运行<br>代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">try &#123;//放会报错的语句，这个是个简单数组越界</span><br><span class="line">	a[m] = 1;</span><br><span class="line">	System.out.println(&quot;输入正确&quot;);	</span><br><span class="line">	&#125; catch (Exception e) &#123;</span><br><span class="line">	// TODO: handle exception</span><br><span class="line">	// 在错误发生时怎么处理</span><br><span class="line">	System.out.println(&quot;成功抛出异常&quot;);</span><br><span class="line">	&#125; </span><br><span class="line">	catch(xxxxx) &#123;</span><br><span class="line">	&#125;// 这里的catch还可以继续往下写，但是要注意其中异常的类型必须是越在后面类型越大的，因为Exception还分多个子类异常，这样可以更精确的分辨是什么异常，不过直接写Exception也不算错</span><br><span class="line">	finally &#123;</span><br><span class="line">		// finally里放一定会执行的代码，不过不写finally也不算错</span><br><span class="line">		&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>但是要注意，我们不可以捕获error异常，因为error异常已经超出了代码捕获的范围，我们一般都要进行硬件及软件的处理</p>
-<h3 id="throws"><a href="#throws" class="headerlink" title="throws"></a>throws</h3><p>我们可以通过throws把异常向上抛出，让他们的上层去处理，可是一般上层如果不能处理，还会继续向上抛出，这种方法我简称为逃避，我们，一般使用try catch语句较多，一般是抛到main方法里进行try catch处理，<br>如果异常一直不处理，那编译器最后会报错</p>
+<h1 id="进程间的通信方式"><a href="#进程间的通信方式" class="headerlink" title="进程间的通信方式"></a>进程间的通信方式</h1><ul>
+<li>进程间通信主要包括：管道、命名管道、信号、消息队列、共享内存、内存映射、信号量、Socket： </li>
+<li><ol>
+<li>管道 管道也叫无名（匿名）管道,它是是 UNIX 系统 IPC（进程间通信）的最古老形式,所有的 UNIX 系统都支持这种通信机制。管道本质其实是内核中维护的一块内存缓冲区,Linux 系统中通过 pipe() 函数创建管道,会生成两个文件描述符,分别对应管道的读端和写端。无名管道只能用于具有亲缘关系的进程间的通信。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>命名管道 匿名管道,由于没有名字,只能用于亲缘关系的进程间通信。为了克服这个缺点,提出了有名管道（FIFO）,也叫命名管道、FIFO文件。有名管道（FIFO）不同于匿名管道之处在于它提供了一个路径名与之关联,以 FIFO 的文件形式存在于文件系统中,并且其打开方式与打开一个普通文件是一样的,这样即使与 FIFO 的创建进程不存在亲缘关系的进程,只要可以访问该路径,就能够彼此通过 FIFO 相互通信,因此,通过 FIFO 不相关的进程也能交换数据。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>信号 信号是 Linux 进程间通信的最古老的方式之一,是事件发生时对进程的通知机制,有时也称之为软件中断,它是在软件层次上对中断机制的一种模拟,是一种异步通信的方式。信号可以导致一个正在运行的进程被另一个正在运行的异步进程中断,转而处理某一个突发事件。</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>消息队列 消息队列就是一个消息的链表,可以把消息看作一个记录,具有特定的格式以及特定的优先级,对消息队列有写权限的进程可以向消息队列中按照一定的规则添加新消息,对消息队列有读权限的进程则可以从消息队列中读走消息,消息队列是随内核持续的。</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>共享内存 共享内存允许两个或者多个进程共享物理内存的同一块区域（通常被称为段）。由于一个共享内存段会称为一个进程用户空间的一部分,因此这种 IPC 机制无需内核介入。所有需要做的就是让一个进程将数据复制进共享内存中,并且这部分数据会对其他所有共享同一个段的进程可用。与管道等要求发送进程将数据从用户空间的缓冲区复制进内核内存和接收进程将数据从内核内存复制进用户空间的缓冲区的做法相比,这种 IPC 技术的速度更快。</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>内存映射 内存映射（Memory-mapped I&#x2F;O）是将磁盘文件的数据映射到内存,用户通过修改内存就能修改磁盘文件。</li>
+</ol>
+</li>
+<li><ol start="7">
+<li>信号量 信号量主要用来解决进程和线程间并发执行时的同步问题,进程同步是并发进程为了完成共同任务采用某个条件来协调它们的活动。对信号量的操作分为 P 操作和 V 操作,P 操作是将信号量的值减 1,V 操作是将信号量的值加 1。当信号量的值小于等于 0 之后,再进行 P 操作时,当前进程或线程会被阻塞,直到另一个进程或线程执行了 V 操作将信号量的值增加到大于 0 之时。</li>
+</ol>
+</li>
+<li><ol start="8">
+<li>Socket 套接字（Socket）,就是对网络中不同主机上的应用进程之间进行双向通信的端点的抽象。一个套接字就是网络上进程通信的一端,提供了应用层进程利用网络协议交换数据的机制。Socket 一般用于网络中不同主机上的进程之间的通信。</li>
+</ol>
+</li>
+</ul>
+<h1 id="MVC模式"><a href="#MVC模式" class="headerlink" title="MVC模式"></a>MVC模式</h1><ul>
+<li>MVC是一种设计模式,在这种模式下软件被分为三层,即Model（模型）、View（视图）、Controller（控制器）。</li>
+<li>Model代表的是数据,View代表的是用户界面,Controller代表的是数据的处理逻辑,它是Model和View这两层的桥梁。</li>
+<li>将软件分层的好处是,可以将对象之间的耦合度降低,便于代码的维护。 </li>
+<li>Model：指从现实世界中抽象出来的对象模型,是应用逻辑的反应；它封装了数据和对数据的操作,是实际进行数据处理的地方（模型层与数据库才有交互）。</li>
+<li>在MVC的三个部件中,模型拥有最多的处理任务。被模型返回的数据是中立的,模型与数据格式无关,这样一个模型能为多个视图提供数据,由于应用于模型的代码只需写一次就可以被多个视图重用,所以减少了代码的重复性。 </li>
+<li>View：负责进行模型的展示,一般就是我们见到的用户界面。 </li>
+<li>Controller：控制器负责视图和模型之间的交互,控制对用户输入的响应、响应方式和流程；它主要负责两方面的动作,一是把用户的请求分发到相应的模型,二是吧模型的改变及时地反映到视图上。 </li>
+<li>加分回答 为了解耦以及提升代码的可维护性,服务端开发一般会对代码进行分层,服务端代码一般会分为三层：表现层、业务层、数据访问层。在浏览器访问服务器时,请求会先到达表现层 最典型的MVC就是jsp+servlet+javabean模式。 </li>
+<li>以JavaBean作为模型,既可以作为数据模型来封装业务数据,又可以作为业务逻辑模型来包含应用的业务操作。 JSP作为视图层,负责提供页面为用户展示数据,提供相应的表单（Form）来用于用户的请求,并在适当的时候（点击按钮）向控制器发出请求来请求模型进行更新。 </li>
+<li>Serlvet作为控制器,用来接收用户提交的请求,然后获取请求中的数据,将之转换为业务模型需要的数据模型,然后调用业务模型相应的业务方法进行更新,同时根据业务执行结果来选择要返回的视图。 当然,这种方式现在已经不那么流行了,</li>
+<li>Spring MVC框架已经成为了MVC模式的最主流实现。 </li>
+<li>Spring MVC框架是基于Java的实现了MVC框架模式的请求驱动类型的轻量级框架。前端控制器是DispatcherServlet接口实现类,映射处理器是HandlerMapping接口实现类,视图解析器是ViewResolver接口实现类,页面控制器是Controller接口实现类</li>
+</ul>
+<h1 id="redis的数据类型"><a href="#redis的数据类型" class="headerlink" title="redis的数据类型"></a>redis的数据类型</h1><ul>
+<li>Redis主要提供了5种数据结构：字符串(string)、哈希(hash)、列表(list)、集合(set)、有序集合(zset)。Redis还提供了Bitmap、HyperLogLog、Geo类型,但这些类型都是基于上述核心数据类型实现的。</li>
+<li>5.0版本中,Redis新增加了Streams数据类型,它是一个功能强大的、支持多播的、可持久化的消息队列。 </li>
+<li>string可以存储字符串、数字和二进制数据,除了值可以是String以外,所有的键也可以是string,string最大可以存储大小为2M的数据。 </li>
+<li>list保证数据线性有序且元素可重复,它支持lpush、blpush、rpop、brpop等操作,可以当作简单的消息队列使用,一个list最多可以存储2^32-1个元素 hash的值本身也是一个键值对结构,最多能存储2^32-1个元素 </li>
+<li>set是无序不可重复的,它支持多个set求交集、并集、差集,适合实现共同关注之类的需求,一个set最多可以存储2^32-1个元素 zset是有序不可重复的,它通过给每个元素设置一个分数来作为排序的依据,一个zset最多可以存储2^32-1个元素。 </li>
+<li>加分回答 每种类型支持多个编码,每一种编码采取一个特殊的结构来实现 各类数据结构内部的编码及结构： </li>
+<li>string：编码分为int、raw、embstr；</li>
+<li>int底层实现为long,当数据为整数型并且可以用long类型表示时可以用long存储；</li>
+<li>embstr底层实现为占一块内存的SDS结构,当数据为长度不超过32字节的字符串时,选择以此结构连续存储元数据和值；</li>
+<li>raw底层实现为占两块内存的SDS,用于存储长度超过32字节的字符串数据,此时会在两块内存中分别存储元数据和值。 </li>
+<li>list：编码分为ziplist、linkedlist和quicklist（3.2以前版本没有quicklist）。</li>
+<li>ziplist底层实现为压缩列表,当元素数量小于2且所有元素长度都小于64字节时,使用这种结构来存储；</li>
+<li>linkedlist底层实现为双端链表,当数据不符合ziplist条件时,使用这种结构存储；</li>
+<li>3.2版本之后list一般采用quicklist的快速列表结构来代替前两种。 </li>
+<li>hash：编码分为ziplist、hashtable两种,</li>
+<li>其中ziplist底层实现为压缩列表,当键值对数量小于2,并且所有的键值长度都小于64字节时使用这种结构进行存储；</li>
+<li>hashtable底层实现为字典,当不符合压缩列表存储条件时,使用字典进行存储。 </li>
+<li>set：编码分为inset和hashtable,intset底层实现为整数集合,当所有元素都是整数值且数量不超过2个时使用该结构存储,否则使用字典结构存储。 </li>
+<li>zset：编码分为ziplist和skiplist,当元素数量小于128,并且每个元素长度都小于64字节时,使用ziplist压缩列表结构存储,否则使用skiplist的字典+跳表的结构存储。</li>
+</ul>
+<h1 id="乐观锁和悲观锁"><a href="#乐观锁和悲观锁" class="headerlink" title="乐观锁和悲观锁"></a>乐观锁和悲观锁</h1><ul>
+<li>乐观锁：乐观锁总是假设最好的情况,每次去拿数据的时候都认为别人不会修改,所以不会上锁,但是在更新的时候会判断一下在此期间别人有没有去更新这个数据,可以使用版本号机制和CAS算法实现。乐观锁适用于多读的应用类型,这样可以提高吞吐量**,像数据库提供的类似于write_condition机制,其实都是提供的乐观锁。 </li>
+<li>悲观锁：悲观锁总是假设最坏的情况,每次去拿数据的时候都认为别人会修改,所以每次在拿数据的时候都会上锁,这样别人想拿这个数据就会阻塞直到它拿到锁（共享资源每次只给一个线程使用,其它线程阻塞,用完后再把资源转让给其它线程）。传统的关系型数据库里边就用到了很多这种锁机制,比如行锁,表锁等,读锁,写锁等,都是在做操作之前先上锁。 加分回答 两种锁的使用场景 乐观锁： GIT,SVN,CVS等代码版本控制管理器,就是一个乐观锁使用很好的场景,</li>
+<li>例如：A、B程序员,同时从SVN服务器上下载了code.html文件,当A完成提交后,此时B再提交,那么会报版本冲突,此时需要B进行版本处理合并后,再提交到服务器。这其实就是乐观锁的实现全过程。如果此时使用的是悲观锁,那么意味者所有程序员都必须一个一个等待操作提交完,才能访问文件,这是难以接受的。 悲观锁： 悲观锁的好处在于可以减少并发,但是当并发量非常大的时候,由于锁消耗资源、锁定时间过长等原因,很容易导致系统性能下降,资源消耗严重。因此一般我们可以在并发量不是很大,并且出现并发情况导致的异常用户和系统都很难以接受的情况下,会选择悲观锁进行。</li>
+</ul>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><ul>
+<li>创建型包括：单例模式、工厂方法模式、抽象工厂模式、建造者模式和原型模式； </li>
+<li>结构型包括：代理模式、装饰模式、适配器模式、组合模式、桥梁模式、外观模式和享元模式； </li>
+<li>行为型包括：模板方法模式、命令模式、责任链模式、策略模式、迭代器模式、中介者模式、观察者模式、备忘录模式、访问者模式、状态模式和解释器模式。 面试中不要求23种设计模式全部了解,但至少应掌握单例模式和工厂模式。 加分回答 可以说出知道的框架所用到的设计模式或底层设计模式,例如Spring中的单例模式、工厂模式,AQS的模板模式等等。</li>
+</ul>
 
       
     </div>
@@ -1520,7 +1706,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1578,7 +1764,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共32.3k字</span>
+  <span class="post-count">博客全站共37.4k字</span>
 </div>
 
 
