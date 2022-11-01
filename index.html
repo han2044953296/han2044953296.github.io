@@ -293,6 +293,293 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/01/11-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/01/11-1/" class="post-title-link" itemprop="url">Linux命令（运维）</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-01 09:10:45 / 修改时间：16:16:20" itemprop="dateCreated datePublished" datetime="2022-11-01T09:10:45+08:00">2022-11-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="用户常用命令"><a href="#用户常用命令" class="headerlink" title="用户常用命令"></a>用户常用命令</h1><ul>
+<li>ll &#x2F;usr&#x2F;sbin&#x2F;user* 查看用户命令</li>
+<li>ll &#x2F;usr&#x2F;sbin&#x2F;group* 查看组命令</li>
+<li>查看用户信息 &#x2F;etc&#x2F;passwd</li>
+<li>查看组信息 &#x2F;etc&#x2F;group</li>
+<li>查看用户 id xxx名称</li>
+<li>userdel xxx ： 代表删除xx用户</li>
+<li>useradd xxx ： 代表添加xx用户</li>
+<li>usermod xxx ： 代表对一个用户进行操作</li>
+</ul>
+<h2 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h2><ul>
+<li>su xxx</li>
+<li>su -xxx </li>
+<li>切换用户 ，如果用下面的那种，会获得该用户的环境变量并且执行</li>
+<li>用上面的那种目录不会跑到所切换的用户的home</li>
+<li>而下面的会跑到切换用户的home</li>
+<li>用exit退回</li>
+<li>如果删除了一个已经存在的user ， 再次添加相同名称的用户的时候，会有警告，说明此用户的目录已经存在</li>
+<li>在skel文件夹下有隐藏文件</li>
+<li>如果把这个里的东西删掉，就会出现环境变量丢失的情况</li>
+<li>我们可以从别的地方的给他cp过来</li>
+<li>就会恢复了</li>
+</ul>
+<h1 id="组常见命令"><a href="#组常见命令" class="headerlink" title="组常见命令"></a>组常见命令</h1><ul>
+<li>groupadd xxx</li>
+<li>把一个用户添加到一个组上</li>
+<li>usermod -a -G xxx组 xxx用户</li>
+<li>usermod -g ： 更改用户主组 ，但是这样会让追加组丢失</li>
+</ul>
+<h1 id="设置用户密码"><a href="#设置用户密码" class="headerlink" title="设置用户密码"></a>设置用户密码</h1><ul>
+<li>passwd</li>
+<li>默认修改当前用户的密码</li>
+</ul>
+<h2 id="修改其他用户的密码"><a href="#修改其他用户的密码" class="headerlink" title="修改其他用户的密码"></a>修改其他用户的密码</h2><ul>
+<li>只有root有权限修改其他的密码</li>
+<li>passwd xxx名字</li>
+</ul>
+<h3 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h3><ul>
+<li>是一个普通用户临时具有最大权限</li>
+<li>修改 etc&#x2F;sudoers</li>
+<li>xxx用户 ALL&#x3D;(root) NOPASSWD:ALL</li>
+<li>然后就可以用 sudo xxx 命令这就代表这条指令具有了最高的权限</li>
+<li>su 和 sudo 联用</li>
+<li>sudo su xx人员</li>
+<li>代表通过root权限切换</li>
+</ul>
+<h3 id="etc-x2F-paswd"><a href="#etc-x2F-paswd" class="headerlink" title="etc&#x2F;paswd"></a>etc&#x2F;paswd</h3><ul>
+<li>这个文件是密码文件</li>
+<li>在这个文件里 有解释器 如果后面变成nologin代表不让登录</li>
+<li>如果最后变成false 则你无论如何都登陆不成功 </li>
+<li>CDH平台 可能会用到</li>
+<li>把上面两中改成 bin&#x2F;bash 就可以成功了</li>
+</ul>
+<h1 id="权限相关命令"><a href="#权限相关命令" class="headerlink" title="权限相关命令"></a>权限相关命令</h1><ul>
+<li>第一个字母 </li>
+<li>d :文件夹</li>
+<li><ul>
+<li>： 文件</li>
+</ul>
+</li>
+<li>l ： 链接</li>
+<li>后面9个字母 ，每三个一组</li>
+<li>r表示read  代表数字 4</li>
+<li>w表示write 代表数字 2</li>
+<li>x表示执行权限 代表数字 1</li>
+<li>-表示无权限 代表数字 0</li>
+<li>例子 ：-rw-r–r–. 1 root root 2047 10月 31 09:48 initial-setup-ks.cfg</li>
+<li>第一组 ： rw- 4+2+0&#x3D;6 代表文件或者文件夹的所属用户拥有的权限</li>
+<li>第二组 ： r– 4+0+0&#x3D;4 代表文件或者文件夹的组的成员的权限</li>
+<li>第三组 ： r– 4+0+0&#x3D;4 代表文件或者文件夹的其他组的权限</li>
+<li>字母顺序只能按照rwxr这个顺序</li>
+</ul>
+<h2 id="权限修改命令"><a href="#权限修改命令" class="headerlink" title="权限修改命令"></a>权限修改命令</h2><ul>
+<li>chmod 修改文件或者文件夹权限</li>
+<li>chown 修改文件或者文件夹的组 ， 或者用户</li>
+<li>例子 ： chmod xxx（数字）xxx名字</li>
+<li>如果要该文件夹 则要 chmod -R xxx数字 xxx名字</li>
+<li>例子 ： chown xxx用户：xxx用户 文件名</li>
+<li>同样也可以用-R ，来修改文件夹</li>
+</ul>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>如果要访问问文件夹里的文件，要先看上面的文件夹的权限是啥样的</li>
+</ul>
+<h2 id="大小"><a href="#大小" class="headerlink" title="大小"></a>大小</h2><ul>
+<li>ll -h ，du -sh</li>
+<li>而对于文件夹 du -sh也可以及逆行查看 ，ll -h 就不行</li>
+<li>du -sh ： 最小是4k ， 但是他无法查看权限</li>
+</ul>
+<h2 id="搜索文件"><a href="#搜索文件" class="headerlink" title="搜索文件"></a>搜索文件</h2><ul>
+<li>find</li>
+<li>locate（没有网，不建议用）</li>
+<li>例子 ： find 【path】 【表达式】 </li>
+<li>表达式 ： -name “xxx” : 按照名字查找</li>
+<li>比如 ： find &#x2F; -name “1.log”</li>
+</ul>
+<h2 id="vi-x2F-vim"><a href="#vi-x2F-vim" class="headerlink" title="vi&#x2F;vim"></a>vi&#x2F;vim</h2><ul>
+<li>编辑文件</li>
+<li>尾行模式 ： wq 退出保存</li>
+<li>如果编辑文件的时候突然不小心把编辑的时候中断了，就是ctrl + c 或者 ctrl + z</li>
+<li>解决方法 ： 删除Swap文件是隐藏文件 ，.开头的</li>
+<li>行号 ： 首先进入尾行模式</li>
+<li>set nu 就会有行号</li>
+<li>set nonu就可以取消行号</li>
+</ul>
+<h2 id="常用快捷方式"><a href="#常用快捷方式" class="headerlink" title="常用快捷方式"></a>常用快捷方式</h2><ul>
+<li>dd ： 删除当前行</li>
+<li>dG ： 删除当前行 以及以下所有行</li>
+<li>ndd ： 删除这个行 以及下面n行</li>
+<li>u ：　撤回</li>
+<li>ｇｇ　：　跳转到第一行的第一个字母</li>
+<li>Ｇ　：　跳转到最后一行的第一个字母</li>
+<li>ｓｈｉｆｔ　＋ $  ： 就是跳转到行尾</li>
+<li>ｓｈｉｆｔ　＋ ^  : 跳转到行头</li>
+<li>i ： 是当前行编辑</li>
+<li>o ： 是跳转到下一行编辑</li>
+</ul>
+<h3 id="清空文件内容"><a href="#清空文件内容" class="headerlink" title="清空文件内容"></a>清空文件内容</h3><ul>
+<li>gg -&gt; dG</li>
+<li>linux 有一个空的文件</li>
+<li>然后 cat &#x2F;dev&#x2F;null  &gt; xxx文件名字</li>
+</ul>
+<h2 id="系统相关命令"><a href="#系统相关命令" class="headerlink" title="系统相关命令"></a>系统相关命令</h2><ul>
+<li>内存 ： free</li>
+<li>磁盘 ： df</li>
+<li>可能会添加磁盘</li>
+<li>可通过这个来判断</li>
+<li>后来挂载的一般是vdb的</li>
+<li>负载 ： top</li>
+<li>load average ： xxx xxx xxx</li>
+<li>第一个是5分钟之内的负载</li>
+<li>第二个是10分钟</li>
+<li>第三个是15分钟</li>
+<li>如果任意一个超过十 ，说明当前公司的服务器 比较卡</li>
+<li>pid是进程号</li>
+<li>user是那个用户</li>
+<li>重启的目的 ： </li>
+<li>检查是不是硬件有无问题</li>
+</ul>
+<h2 id="yum-x2F-rpm"><a href="#yum-x2F-rpm" class="headerlink" title="yum&#x2F;rpm"></a>yum&#x2F;rpm</h2><ul>
+<li>安装linux软件的方式 联网</li>
+<li>yum search xxx</li>
+<li>下载下来的一个安装包以rpm存储</li>
+<li>yum install xxx</li>
+</ul>
+<h2 id="通讯命令"><a href="#通讯命令" class="headerlink" title="通讯命令"></a>通讯命令</h2><ul>
+<li>ping + ip</li>
+<li>telnet ip 端口 :检查对面的端口是不是开放</li>
+<li>端口 ： 1-65535</li>
+<li>两个机器要在一个网段</li>
+<li>ping通就代表是网络ok</li>
+</ul>
+<h2 id="补充命令"><a href="#补充命令" class="headerlink" title="补充命令"></a>补充命令</h2><ul>
+<li>which + 命令</li>
+<li>whereis + 命令</li>
+<li>查看linux或者某个软件的shell脚本是不是存在</li>
+</ul>
+<h2 id="修改机器名字"><a href="#修改机器名字" class="headerlink" title="修改机器名字"></a>修改机器名字</h2><ul>
+<li>hostnamectl ： xxxx</li>
+</ul>
+<h2 id="解压缩命令"><a href="#解压缩命令" class="headerlink" title="解压缩命令"></a>解压缩命令</h2><ul>
+<li>linux 对zip和gz可以解压</li>
+<li>zip xxx.zip （-r） xxx文件（这里压缩可以多个）如果是文件夹则要加上-r</li>
+<li>代表压缩到xxx.zip里</li>
+<li>解压</li>
+<li>unzip xxx.zip （-d xxx文件夹）</li>
+<li>tar ：</li>
+<li>例子 ： tar -cf xxx.tar xxx文件（可以多个）</li>
+<li>解压：</li>
+<li>例子 ： tar -xf xxx.tar -C xxx文件夹</li>
+<li>可以不加-C就是默认解压当前文件目录</li>
+<li>压缩：</li>
+<li>用z命令</li>
+<li>tar -zcf xxx.tar xxx文件（可以多个）</li>
+<li>解压：</li>
+<li>tar -zxf xxx.tar -C xxx文件夹</li>
+<li>我们可以再加上v让他们显示详细得处理文件的过程</li>
+<li>zxvf：同上</li>
+<li>zxcf：同上</li>
+</ul>
+<h2 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h2><ul>
+<li>当用yum安装成功之后 ，可以直接用系统命令启动</li>
+<li>比如 ： service name start|status|restart|stop  : centos6</li>
+<li>syystemctl start|status|restart|stop name : centos7</li>
+<li>查看进程</li>
+<li>ps -ef</li>
+<li>可以进行筛选</li>
+<li>ps -ef|grep xxx名字</li>
+<li>杀死进程 </li>
+<li>kill -9 + 进程号</li>
+<li>查端口：</li>
+<li>netstat -nlp | grep xxxname</li>
+<li>通过</li>
+<li>:::80</li>
+<li>ip:80</li>
+<li>0.0.0.0:80</li>
+<li>我们可以通过外部机器访问这个端口进入服务界面</li>
+<li>kill -9 $(pgrep -f xxx名字)</li>
+<li>下面的会强制把他们全杀掉 ， 包括子进程</li>
+<li></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/31/10-31/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -317,10 +604,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-10-31 11:03:51 / 修改时间：17:04:02" itemprop="dateCreated datePublished" datetime="2022-10-31T11:03:51+08:00">2022-10-31</time>
+              <time title="创建时间：2022-10-31 11:03:51" itemprop="dateCreated datePublished" datetime="2022-10-31T11:03:51+08:00">2022-10-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-01 13:44:45" itemprop="dateModified" datetime="2022-11-01T13:44:45+08:00">2022-11-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -337,7 +630,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -479,6 +772,7 @@
 <li>与上面的了连用为</li>
 <li>cat xxx文件 | grep -A xx行 error &gt; xxx文件</li>
 <li>nano方式</li>
+<li>管道符| ：代表让上一个语句的输出代表 代表下一个语句的输入</li>
 </ul>
 <h2 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h2><ul>
 <li>上传 ： win 到 linux</li>
@@ -537,6 +831,7 @@
 <li>重新打开一个会话</li>
 <li>然后这个别名就会好用了</li>
 <li>但是这个不能跨用户访问，比如root的不能在普通用户这么用，相反也是</li>
+<li></li>
 </ul>
 
       
@@ -1539,179 +1834,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/21/10-21/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/21/10-21/" class="post-title-link" itemprop="url">字符流</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-21 08:42:15 / 修改时间：15:40:21" itemprop="dateCreated datePublished" datetime="2022-10-21T08:42:15+08:00">2022-10-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>8.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Write"><a href="#Write" class="headerlink" title="Write"></a>Write</h1><ul>
-<li>Write是抽象方法</li>
-<li>其里面定义了传输大小（在源码中）</li>
-<li>在write里<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private static final int WRITE_BUFFER_SIZE = 1024;</span><br></pre></td></tr></table></figure></li>
-<li>所谓的字符流只是把字节流包装起来，证据在源码里<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">	import java.io.FileWriter;</span><br><span class="line">	import java.io.IOException;</span><br><span class="line">	import java.io.Writer;</span><br><span class="line"></span><br><span class="line">	public class char流 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	try &#123;</span><br><span class="line">		Writer w = new FileWriter(&quot;D:/a.txt&quot;);</span><br><span class="line">		w.write(&quot;hello world&quot;);</span><br><span class="line">		w.append(&quot;hello Bgido&quot;);</span><br><span class="line">		w.write(&quot;hello java&quot;.toCharArray());</span><br><span class="line">		w.flush();</span><br><span class="line">		w.close();</span><br><span class="line">	&#125; catch (IOException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></li>
-<li>注意这里的write是直接在文件里重写数据，而append是增加数据，因为write底层调用的是write方法</li>
-</ul>
-<h1 id="Read"><a href="#Read" class="headerlink" title="Read"></a>Read</h1><ul>
-<li>出现的原因，是因为字节流可能存不住，所以才出现，会造成乱码</li>
-</ul>
-<h2 id="字符分类以及编码格式"><a href="#字符分类以及编码格式" class="headerlink" title="字符分类以及编码格式"></a>字符分类以及编码格式</h2><ul>
-<li><p>一般在英文状态下一个字母或字符占用一个字节，一个汉字用两个字节表示。</p>
-</li>
-<li><p>ASCII 码中，一个英文字母(不分大小写)为一个字节，一个中文汉字为两个字节。</p>
-</li>
-<li><p>UTF-8 编码中，一个英文字为一个字节，一个中文为三个字节。</p>
-</li>
-<li><p>Unicode 编码中，一个英文为一个字节，一个中文为两个字节。</p>
-</li>
-<li><p>符号：英文标点为一个字节，中文标点为两个字节。例如：英文句号 . 占1个字节的大小，中文句号 。占2个字节的大小。</p>
-</li>
-<li><p>UTF-16 编码中，一个英文字母字符或一个汉字字符存储都需要 2 个字节(Unicode 扩展区的一些汉字存储需要 4 个字节)。</p>
-</li>
-<li><p>UTF-32 编码中，世界上任何字符的存储都需要 4 个字节。</p>
-</li>
-</ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileReader;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">public class inputchar1 &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	try &#123;</span><br><span class="line">		Reader reader = new FileReader(&quot;D:/a.txt&quot;);</span><br><span class="line">		reader.close();</span><br><span class="line">		// 这个也可以读取文件</span><br><span class="line">		Reader reader1 = new InputStreamReader(new FileInputStream(&quot;D:/a.txt&quot;) , &quot;UTF-8&quot;); // 古老的方式，不过可以直接改代码的编码格式</span><br><span class="line">		char[] buffer = new char[10];</span><br><span class="line">		int len = 0;</span><br><span class="line">		while((len = reader1.read(buffer)) != -1) &#123;</span><br><span class="line">			System.out.print(new String(buffer , 0 ,len));</span><br><span class="line">		&#125;</span><br><span class="line">		reader1.close();</span><br><span class="line">		while((len = reader.read(buffer)) != -1) &#123;</span><br><span class="line">			System.out.print(new String(buffer, 0, len));</span><br><span class="line">		&#125;</span><br><span class="line">		reader.close();</span><br><span class="line">	&#125; catch (Exception e) &#123;</span><br><span class="line">		// TODO: handle exception</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="具体的流"><a href="#具体的流" class="headerlink" title="具体的流"></a>具体的流</h1><h2 id="buffered系类"><a href="#buffered系类" class="headerlink" title="buffered系类"></a>buffered系类</h2><ul>
-<li>代表缓冲区系类</li>
-<li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line">import java.io.BufferedInputStream;</span><br><span class="line">import java.io.BufferedReader;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileReader;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">public class sdahasdk &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	try &#123;</span><br><span class="line">		BufferedInputStream us = new BufferedInputStream(new FileInputStream(&quot;D:/a.txt&quot;)); // 要自己定义缓冲区</span><br><span class="line">		us.skip(1);</span><br><span class="line">		byte[] buffer = new byte[10];</span><br><span class="line">		int len = 0;</span><br><span class="line">		while((len = us.read(buffer)) != -1) &#123;</span><br><span class="line">			System.out.println( new String(buffer , 0 ,len ));</span><br><span class="line">		&#125;</span><br><span class="line">		us.close();</span><br><span class="line">		</span><br><span class="line">		BufferedReader r = new BufferedReader(new FileReader(&quot;D:/a.txt&quot;)); // 里面有设置默认的缓冲区在源码里可以点进去查看</span><br><span class="line">		while(r.ready()) // ready是可读性，可读就true，不可读就fasle</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(	r.readLine());</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; catch (IOException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>只有顶层类的方法是没有线程锁的</li>
-<li>同样也有writer的方法<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BufferedWriter wwe = new BufferedWriter( new FileWriter(&quot;D:/a.txt&quot;));</span><br></pre></td></tr></table></figure></li>
-<li>然后通过wwe.xxx访问方法</li>
-</ul>
-<h1 id="InputStreamReader-x2F-Writer"><a href="#InputStreamReader-x2F-Writer" class="headerlink" title="InputStreamReader&#x2F;Writer"></a>InputStreamReader&#x2F;Writer</h1><ul>
-<li>比较古老</li>
-<li>因为可以设置编码格式</li>
-<li>在构造方法里</li>
-<li>和上面的FileInputStream一样</li>
-</ul>
-<h1 id="ObjectInputStream"><a href="#ObjectInputStream" class="headerlink" title="ObjectInputStream"></a>ObjectInputStream</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line">import java.io.Serializable;</span><br><span class="line">public class stu implements Serializable&#123;</span><br><span class="line">public stu() &#123;</span><br><span class="line">	super();</span><br><span class="line">	// TODO Auto-generated constructor stub</span><br><span class="line">&#125;</span><br><span class="line">public stu(int x , String name) &#123;</span><br><span class="line">	this.age = x;</span><br><span class="line">	this.name = name;</span><br><span class="line">	// TODO Auto-generated constructor stub</span><br><span class="line">&#125;</span><br><span class="line">private String name;</span><br><span class="line">private transient int age;</span><br><span class="line">public String getName() &#123;</span><br><span class="line">	return name;</span><br><span class="line">&#125;</span><br><span class="line">public void setName(String name) &#123;</span><br><span class="line">	this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">public int getAge() &#123;</span><br><span class="line">	return age;</span><br><span class="line">&#125;</span><br><span class="line">public void setAge(int age) &#123;</span><br><span class="line">	this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line">public String toString() &#123;</span><br><span class="line">	return &quot;stu [name=&quot; + name + &quot;, age=&quot; + age + &quot;]&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>这个是个学生类，代表我们要实例化的类，要加个可序列化的标记性接口</li>
-<li>transient是不参与序列化的</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.ObjectOutputStream;</span><br><span class="line"></span><br><span class="line">public class lesson15 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		try &#123;</span><br><span class="line">			ObjectOutputStream oo = new ObjectOutputStream(new FileOutputStream(&quot;D:/student.dat&quot;));</span><br><span class="line">			stu s = new stu(15 , &quot;tom&quot;);</span><br><span class="line">			oo.writeObject(s);</span><br><span class="line">			oo.flush();</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.ObjectInputStream;</span><br><span class="line">import java.io.ObjectOutputStream;</span><br><span class="line">public class lesson15 &#123;	</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	try &#123;</span><br><span class="line">		</span><br><span class="line">		ObjectInputStream d = new ObjectInputStream(new FileInputStream(&quot;D:/student.dat&quot;));</span><br><span class="line">		Object o = d.readObject();</span><br><span class="line">		System.out.println(o);</span><br><span class="line">		d.close();</span><br><span class="line">		</span><br><span class="line">	&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; catch (IOException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Scanner"><a href="#Scanner" class="headerlink" title="Scanner"></a>Scanner</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line">public class scanner &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	try &#123;</span><br><span class="line">		Scanner scanner = new Scanner( new FileInputStream(&quot;D:/a.txt&quot;) , &quot;UTF-8&quot;);</span><br><span class="line">		while(scanner.hasNext()) &#123;</span><br><span class="line">			System.out.println(scanner.nextLine());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Channnel流"><a href="#Channnel流" class="headerlink" title="Channnel流"></a>Channnel流</h1><ul>
-<li>其是新io包里的</li>
-<li>是nio里的，用的是堆外内存</li>
-<li>就是jvm内存，所以效率会比在堆里的数组缓冲区效率更高</li>
-<li>追主要的是对接，管道分为输入管道和输出管道</li>
-<li>当他们对接上就可以实现复制等操作了</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.nio.channels.FileChannel;</span><br><span class="line">public class Channel &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	File file = new File(&quot;D:/a.txt&quot;);</span><br><span class="line">	FileInputStream ii;</span><br><span class="line">	try &#123;</span><br><span class="line">		ii = new FileInputStream(file);</span><br><span class="line">		FileChannel cha = ii.getChannel();</span><br><span class="line">		FileChannel out = new FileOutputStream(&quot;D:/a1.txt&quot;).getChannel();		</span><br><span class="line">		cha.transferTo(0, file.length(), out); // 这个输入管道的对接口 三个参数 ，第一个是开始复制的起始下标，第二个是文件长度 ，第三个是输出管道</span><br><span class="line">		out.transferFrom(cha, 0, file.length()); // 这个是输出管道的接口 三个参数 ，第一个是输入管道，第二个是起始下标 ，第三个是文件长度</span><br><span class="line">	&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; catch (IOException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>两种管道对接的方式造成的结果是一样的，都是复制文件，但是如果这两个代码要制作的文件存在，则进行覆盖</li>
-</ul>
-<h1 id="StringBuffer和StringBuilder"><a href="#StringBuffer和StringBuilder" class="headerlink" title="StringBuffer和StringBuilder"></a>StringBuffer和StringBuilder</h1><ul>
-<li>解决字符串的加法的问题，</li>
-<li>字符串的+是方法的重载，每次都会返回一个对象</li>
-<li>而下面两个则是用堆运存运算省区了一个变量</li>
-<li>而builder无线程锁，所以比buffer要快<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package 项目实训;</span><br><span class="line">public class sr &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	String s = &quot;shdghgsg&quot;;</span><br><span class="line">	long start = System.currentTimeMillis();</span><br><span class="line">	 // 拼接太费事</span><br><span class="line">	String h = s + &quot;shak&quot;;</span><br><span class="line">	long end = System.currentTimeMillis();</span><br><span class="line">	StringBuffer sb =new StringBuffer();</span><br><span class="line">	System.out.println(end - start);</span><br><span class="line">	sb.append(&quot;world&quot;);</span><br><span class="line">	long start1 = System.currentTimeMillis();</span><br><span class="line">	 // 拼接太费事</span><br><span class="line">	sb.append(&quot;world&quot;);</span><br><span class="line">	long end1 = System.currentTimeMillis();</span><br><span class="line">	System.out.println(end1 - start1);</span><br><span class="line">	 // 更快的</span><br><span class="line">	StringBuilder sd = new StringBuilder();</span><br><span class="line">	long start2 = System.currentTimeMillis();</span><br><span class="line">	 // 拼接太费事</span><br><span class="line">	sd.append(&quot;world&quot;);</span><br><span class="line">	long end2 = System.currentTimeMillis();</span><br><span class="line">	System.out.println(end2 - start2);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="比较快的排序方式"><a href="#比较快的排序方式" class="headerlink" title="比较快的排序方式"></a>比较快的排序方式</h2><ul>
-<li>Arrays.sort(要排序的数组)默认是正序</li>
-<li>也可以变成倒序，但是要是泛型数组就可以</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int[] a = &#123;3,4,5,1,3,5,5&#125;;</span><br><span class="line">Arrays.sort(a);</span><br><span class="line">for (int i : a) &#123;</span><br><span class="line">	System.out.println(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><ul>
-<li>进程是程序对应的资源</li>
-<li>线程是cpu运行的最小单位</li>
-<li>线程是随机切换，一个程序中</li>
-</ul>
-<h2 id="启动线程"><a href="#启动线程" class="headerlink" title="启动线程"></a>启动线程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">public class xiancheng &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	System.out.println(Thread.currentThread());</span><br><span class="line"></span><br><span class="line">	Task1 task1 = new Task1();</span><br><span class="line">	Thread t1 = new Thread(task1);</span><br><span class="line">	t1.setName(&quot;第一个线程&quot;); // 线程的名字</span><br><span class="line">	t1.start(); // 线程开始</span><br><span class="line">	new Thread(task1).start(); // 这种方式也可以进行线程启动</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class Task1 implements Runnable // 任务</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void run() &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	for (int i = 0; i &lt;101; i++) &#123;</span><br><span class="line">		</span><br><span class="line">		System.out.println(Thread.currentThread() + &quot;@&quot; +i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>在做一件事的时候还是单线程比较快，多线程可以一起干很多事情，所以就相当于一个人和多个人的差距</li>
-<li>意思就是单线程不一定比多线程慢，因为多线程存在上下文切换</li>
-<li>首先分配cpu资源的单位是进程。一个进程所获得到的cpu资源是一定的。程序在执行的过程中消耗的是cpu，比如一个单核cpu，多个线程同时执行工作时，需要不断切换执行(上下文切换)，单个线程时间耗费更多了，而单线程只是一个线程跑。</li>
-<li>多线程的总体执行时间和单线程是一样的，但是多线程中单个线程的执行时间是单线程的多倍。<br>多线程提高的是并发数量，比如现在有一个4核cpu的服务器，同一时间可执行4个线程，这样处理线程任务的速度比较快。但是多出来的线程，5个，6个，7个，多出的线程还是要等待。</li>
-</ul>
-<h3 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h3><p>多线程编程中一般线程的个数都大于 CPU 核心的个数，而一个 CPU 核心在任意时刻只能被一个线程使用，为了让这些线程都能得到有效执行，CPU 采取的策略是为每个线程分配时间片并轮转的形式。当一个线程的时间片用完的时候就会重新处于就绪状态让给其他线程使用，这个过程就属于一次上下文切换。</p>
-<p>概括来说就是：当前任务在执行完 CPU 时间片切换到另一个任务之前会先保存自己的状态，以便下次再切换会这个任务时，可以再加载这个任务的状态。任务从保存到再加载的过程就是一次上下文切换。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>所以说其实多线程不一定能够比单线程快是因为上下文切换，以及线程等待的问题</p>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1783,7 +1905,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1841,7 +1963,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共37.4k字</span>
+  <span class="post-count">博客全站共39k字</span>
 </div>
 
 
