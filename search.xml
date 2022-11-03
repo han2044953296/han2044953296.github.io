@@ -181,51 +181,6 @@
       </categories>
   </entry>
   <entry>
-    <title>io流</title>
-    <url>/2022/10/20/10-20/</url>
-    <content><![CDATA[<h1 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h1><ul>
-<li>字节流的结尾一般都是InputStream ， OutputStream</li>
-<li>是个抽象类</li>
-<li>可以自动关闭</li>
-<li>顶层类，上面就是Object</li>
-<li>这个东西是要有参照物的</li>
-</ul>
-<h2 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 作业;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.OutputStream;</span><br><span class="line">public class sd3333sdfse &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		OutputStream os1;</span><br><span class="line">		try &#123;</span><br><span class="line">			os1 = new FileOutputStream( new File(&quot;D:\\a.txt&quot;), false); // 这个false代表是覆盖源文件，如果是true就是把字符串加入</span><br><span class="line">			String s = &quot;hello word&quot;;</span><br><span class="line">			os1.write(s.getBytes());</span><br><span class="line">			os1.flush();  // 落盘到磁盘上</span><br><span class="line">			os1.close(); // 关闭文件输出流</span><br><span class="line">		&#125; catch (FileNotFoundException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">public class read &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	try &#123;</span><br><span class="line">		InputStream is = new FileInputStream(&quot;D:/a.txt&quot;);</span><br><span class="line">//			while(is.available() != 0) &#123;</span><br><span class="line">//				System.out.println((char)is.read()); // 默认一次只读一个字符</span><br><span class="line">//			&#125;</span><br><span class="line">		</span><br><span class="line">		byte[] buffer = new byte[10]; // 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span><br><span class="line">		int len = 0; // 设置个长度</span><br><span class="line">		while((len = is.read(buffer)) != -1) // 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.print(new String(buffer , 0 , len)); </span><br><span class="line">		&#125;</span><br><span class="line">		is.close();</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li>定义：File d &#x3D; new File(“XXxxx”，”name”); &#x2F;&#x2F; 这里XXxxx是文件目录 , 第二个是文件名字</li>
-<li>文件或者目录</li>
-</ul>
-<h2 id="exist（）"><a href="#exist（）" class="headerlink" title="exist（）"></a>exist（）</h2><ul>
-<li>文件是有大小的，目录是无大小</li>
-<li>判断文件&#x2F;目录是不是存在</li>
-</ul>
-<h2 id="isFile"><a href="#isFile" class="headerlink" title="isFile"></a>isFile</h2><ul>
-<li>代表判断是不是文件</li>
-</ul>
-<h2 id="isDirectory"><a href="#isDirectory" class="headerlink" title="isDirectory"></a>isDirectory</h2><ul>
-<li>代表是不是文件夹</li>
-</ul>
-<h2 id="length"><a href="#length" class="headerlink" title="length"></a>length</h2><ul>
-<li>代表查看其字节的长度，大小，但是文件有大小，目录无大小</li>
-</ul>
-<h2 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h2><ul>
-<li>代表删除文件，注意这里删除的文件不是送进回收站里的，如果要删除目录，要先把里面的文件清空</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">public class file &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	File m = new File(&quot;D:\\&quot; , &quot;a.txt&quot;);</span><br><span class="line">	File k = new File(&quot;D//&quot;);</span><br><span class="line">	System.out.println(m.exists());</span><br><span class="line">	System.out.println(k.exists());</span><br><span class="line">	System.out.println(k.isFile());</span><br><span class="line">	System.out.println(m.isDirectory());</span><br><span class="line">	System.out.println(k.length());</span><br><span class="line">	System.out.println(k.delete());</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="删除文件夹"><a href="#删除文件夹" class="headerlink" title="删除文件夹"></a>删除文件夹</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">	File[] ds =	k.listFiles(); </span><br><span class="line">	for (int i = 0; i &lt; ds.length ; i++ ) &#123;</span><br><span class="line">		File[] h = ds[i].listFiles();</span><br><span class="line">		if(h == null) &#123;</span><br><span class="line">			System.out.println(&quot;这个是个文件&quot;);</span><br><span class="line">			ds[i].delete();</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			k.delete();</span><br><span class="line">			SHANCHU(ds[i]);</span><br><span class="line">				&#125;</span><br><span class="line">		k.delete();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="makedir"><a href="#makedir" class="headerlink" title="makedir"></a>makedir</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">public class adsgqjd &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	File file = new File(&quot;D:/a/abc.txt&quot;);</span><br><span class="line">	System.out.println(file.exists());</span><br><span class="line">	System.out.println(file.mkdir());</span><br><span class="line">	File file2 =new File(&quot;D:/a/c/v/bv/nb&quot;);</span><br><span class="line">	System.out.println(file2.mkdirs());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>我们通过mkdirs可以直接深度创建</li>
-<li>但是如果没有父目录，一般的文件就无法创建</li>
-</ul>
-<h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">private static File getCopy(File f1) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	String sufString = f1.getName().substring(f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String qi = f1.getName().substring(0, f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String use = qi + &quot;-副本&quot; + sufString;</span><br><span class="line">	File newf = new File(f1.getParent() , use);</span><br><span class="line">	if(newf.exists()) &#123;</span><br><span class="line">	return	getCopy(newf);</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">	return newf;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-  </entry>
-  <entry>
     <title>设计模式和反射</title>
     <url>/2022/10/19/10-19/</url>
     <content><![CDATA[<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><ul>
@@ -320,6 +275,51 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public @interface lesson14 &#123;</span><br><span class="line">String value()</span><br><span class="line">default &quot;默认信息&quot;; // 代表默认值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@lesson14(&quot;klsdajhal&quot;)</span><br><span class="line">或者@lesson14(value = &quot;sadajd&quot;)</span><br></pre></td></tr></table></figure>
 
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>io流</title>
+    <url>/2022/10/20/10-20/</url>
+    <content><![CDATA[<h1 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h1><ul>
+<li>字节流的结尾一般都是InputStream ， OutputStream</li>
+<li>是个抽象类</li>
+<li>可以自动关闭</li>
+<li>顶层类，上面就是Object</li>
+<li>这个东西是要有参照物的</li>
+</ul>
+<h2 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 作业;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.OutputStream;</span><br><span class="line">public class sd3333sdfse &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		OutputStream os1;</span><br><span class="line">		try &#123;</span><br><span class="line">			os1 = new FileOutputStream( new File(&quot;D:\\a.txt&quot;), false); // 这个false代表是覆盖源文件，如果是true就是把字符串加入</span><br><span class="line">			String s = &quot;hello word&quot;;</span><br><span class="line">			os1.write(s.getBytes());</span><br><span class="line">			os1.flush();  // 落盘到磁盘上</span><br><span class="line">			os1.close(); // 关闭文件输出流</span><br><span class="line">		&#125; catch (FileNotFoundException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">public class read &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	try &#123;</span><br><span class="line">		InputStream is = new FileInputStream(&quot;D:/a.txt&quot;);</span><br><span class="line">//			while(is.available() != 0) &#123;</span><br><span class="line">//				System.out.println((char)is.read()); // 默认一次只读一个字符</span><br><span class="line">//			&#125;</span><br><span class="line">		</span><br><span class="line">		byte[] buffer = new byte[10]; // 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span><br><span class="line">		int len = 0; // 设置个长度</span><br><span class="line">		while((len = is.read(buffer)) != -1) // 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.print(new String(buffer , 0 , len)); </span><br><span class="line">		&#125;</span><br><span class="line">		is.close();</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+<li>定义：File d &#x3D; new File(“XXxxx”，”name”); &#x2F;&#x2F; 这里XXxxx是文件目录 , 第二个是文件名字</li>
+<li>文件或者目录</li>
+</ul>
+<h2 id="exist（）"><a href="#exist（）" class="headerlink" title="exist（）"></a>exist（）</h2><ul>
+<li>文件是有大小的，目录是无大小</li>
+<li>判断文件&#x2F;目录是不是存在</li>
+</ul>
+<h2 id="isFile"><a href="#isFile" class="headerlink" title="isFile"></a>isFile</h2><ul>
+<li>代表判断是不是文件</li>
+</ul>
+<h2 id="isDirectory"><a href="#isDirectory" class="headerlink" title="isDirectory"></a>isDirectory</h2><ul>
+<li>代表是不是文件夹</li>
+</ul>
+<h2 id="length"><a href="#length" class="headerlink" title="length"></a>length</h2><ul>
+<li>代表查看其字节的长度，大小，但是文件有大小，目录无大小</li>
+</ul>
+<h2 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h2><ul>
+<li>代表删除文件，注意这里删除的文件不是送进回收站里的，如果要删除目录，要先把里面的文件清空</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">public class file &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	File m = new File(&quot;D:\\&quot; , &quot;a.txt&quot;);</span><br><span class="line">	File k = new File(&quot;D//&quot;);</span><br><span class="line">	System.out.println(m.exists());</span><br><span class="line">	System.out.println(k.exists());</span><br><span class="line">	System.out.println(k.isFile());</span><br><span class="line">	System.out.println(m.isDirectory());</span><br><span class="line">	System.out.println(k.length());</span><br><span class="line">	System.out.println(k.delete());</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="删除文件夹"><a href="#删除文件夹" class="headerlink" title="删除文件夹"></a>删除文件夹</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">	File[] ds =	k.listFiles(); </span><br><span class="line">	for (int i = 0; i &lt; ds.length ; i++ ) &#123;</span><br><span class="line">		File[] h = ds[i].listFiles();</span><br><span class="line">		if(h == null) &#123;</span><br><span class="line">			System.out.println(&quot;这个是个文件&quot;);</span><br><span class="line">			ds[i].delete();</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			k.delete();</span><br><span class="line">			SHANCHU(ds[i]);</span><br><span class="line">				&#125;</span><br><span class="line">		k.delete();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="makedir"><a href="#makedir" class="headerlink" title="makedir"></a>makedir</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">public class adsgqjd &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	File file = new File(&quot;D:/a/abc.txt&quot;);</span><br><span class="line">	System.out.println(file.exists());</span><br><span class="line">	System.out.println(file.mkdir());</span><br><span class="line">	File file2 =new File(&quot;D:/a/c/v/bv/nb&quot;);</span><br><span class="line">	System.out.println(file2.mkdirs());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>我们通过mkdirs可以直接深度创建</li>
+<li>但是如果没有父目录，一般的文件就无法创建</li>
+</ul>
+<h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">private static File getCopy(File f1) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	String sufString = f1.getName().substring(f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String qi = f1.getName().substring(0, f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String use = qi + &quot;-副本&quot; + sufString;</span><br><span class="line">	File newf = new File(f1.getParent() , use);</span><br><span class="line">	if(newf.exists()) &#123;</span><br><span class="line">	return	getCopy(newf);</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">	return newf;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -1181,6 +1181,34 @@
       </categories>
   </entry>
   <entry>
+    <title>mysql</title>
+    <url>/2022/11/03/11-3/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li>关系型数据库</li>
+<li>非关系型数据库 ： nosql</li>
+<li>存储方式 ， 类似excel</li>
+<li>学习 ： 基于官网</li>
+<li>版本 ：</li>
+<li>5.7 ：主流</li>
+<li>5.6 ：也有</li>
+<li>8.x ：不是主流 ： java团队</li>
+</ul>
+<h1 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h1><ul>
+<li>5.7</li>
+<li>安装包种类</li>
+<li>rpm ： 不可以完成二次开发，只能用mysql官网的</li>
+<li>tar ： 相当于自己魔改的有很多官方没有的功能</li>
+<li>rpm ； 要注意el7的 是centos7的</li>
+<li>用lazz</li>
+<li>上传 ：rz</li>
+<li>下载 ：sz</li>
+</ul>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
     <title>shell的应用</title>
     <url>/2022/11/02/11-2%E7%9A%84%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h1><ul>
@@ -1225,34 +1253,6 @@
 <li>但是这个里面不能由；</li>
 <li>如果要查看单个和java里一样，把【】中的换成从0开始的数字</li>
 <li>$</li>
-</ul>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>mysql</title>
-    <url>/2022/11/03/11-3/</url>
-    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
-<li>关系型数据库</li>
-<li>非关系型数据库 ： nosql</li>
-<li>存储方式 ， 类似excel</li>
-<li>学习 ： 基于官网</li>
-<li>版本 ：</li>
-<li>5.7 ：主流</li>
-<li>5.6 ：也有</li>
-<li>8.x ：不是主流 ： java团队</li>
-</ul>
-<h1 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h1><ul>
-<li>5.7</li>
-<li>安装包种类</li>
-<li>rpm ： 不可以完成二次开发，只能用mysql官网的</li>
-<li>tar ： 相当于自己魔改的有很多官方没有的功能</li>
-<li>rpm ； 要注意el7的 是centos7的</li>
-<li>用lazz</li>
-<li>上传 ：rz</li>
-<li>下载 ：sz</li>
 </ul>
 ]]></content>
       <categories>
