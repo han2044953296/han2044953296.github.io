@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>数字及big类</title>
+    <url>/2022/10/17/10-17%20/</url>
+    <content><![CDATA[<h1 id="关于数学包里常用的几个类"><a href="#关于数学包里常用的几个类" class="headerlink" title="关于数学包里常用的几个类"></a>关于数学包里常用的几个类</h1><h2 id="abs"><a href="#abs" class="headerlink" title="abs"></a>abs</h2><p>abs是取绝对值</p>
+<h2 id="cell"><a href="#cell" class="headerlink" title="cell"></a>cell</h2><p>向上（正方向）取整</p>
+<h2 id="floor"><a href="#floor" class="headerlink" title="floor"></a>floor</h2><p>向下（负方向）取整</p>
+<h2 id="round"><a href="#round" class="headerlink" title="round"></a>round</h2><p> 四舍五入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> // 简单的例子 ，5舍6入</span><br><span class="line">可以通过floor进行</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="BigInteger"><a href="#BigInteger" class="headerlink" title="BigInteger"></a>BigInteger</h1><p>BigInteger类型的数字范围较Integer，Long类型的数字范围要大得多，它支持任意精度的整数，也就是说在运算中 BigInteger 类型可以准确地表示任何大小的整数值而不会丢失任何信息。</p>
+<h2 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">//1.加</span><br><span class="line">BigInteger bigNum1 = a.add(b);			//17</span><br><span class="line">//2.减</span><br><span class="line">BigInteger bigNum2 = a.subtract(b);		//9</span><br><span class="line">//3.乘</span><br><span class="line">BigInteger bigNum3 = a.multiply(b);		//52</span><br><span class="line">//4.除</span><br><span class="line">BigInteger bigNum4 = a.divide(b);		//3</span><br><span class="line">//5.取模(需 b &gt; 0，否则出现异常：ArithmeticException(&quot;BigInteger: modulus not positive&quot;))</span><br><span class="line">BigInteger bigNum5 = a.mod(b);			//1</span><br><span class="line">//6.求余</span><br><span class="line">BigInteger bigNum6 = a.remainder(b);	//1</span><br><span class="line">//7.平方(需 n &gt;= 0，否则出现异常：ArithmeticException(&quot;Negative exponent&quot;))</span><br><span class="line">BigInteger bigNum7 = a.pow(n);			//2197</span><br><span class="line">//8.取绝对值</span><br><span class="line">BigInteger bigNum8 = a.abs();			//13</span><br><span class="line">//9.取相反数</span><br><span class="line">BigInteger bigNum9 = a.negate();		//-13</span><br></pre></td></tr></table></figure>
+
+<h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//读入方法：nextBigInteger()</span><br><span class="line">@Test</span><br><span class="line">public void test5() &#123;</span><br><span class="line">	Scanner scan = new Scanner(System.in);				// 读入</span><br><span class="line">	int n = scan.nextInt(); 							// 读入一个int;</span><br><span class="line">	BigInteger m = scan.nextBigInteger();				// 读入一个BigInteger;</span><br><span class="line">	while(scan.hasNext())&#123;	</span><br><span class="line">		System.out.print(&quot;scan.hasNext()=&quot; + scan.hasNext());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中除了这个还有big浮点型，用法和上面一样</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
     <title>java中异常的相关知识</title>
     <url>/2022/10/15/10-15/</url>
     <content><![CDATA[<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="因为一些原因导致开发的程序出现问题"><a href="#因为一些原因导致开发的程序出现问题" class="headerlink" title="因为一些原因导致开发的程序出现问题"></a>因为一些原因导致开发的程序出现问题</h3><p>Throwable是error和Exception的父类，是Java里所有异常的父类<br>##error<br>如果出现了error，则代表计算机出现了重大的错误，比如jvm无法解决的问题等。</p>
@@ -21,25 +40,6 @@
 ]]></content>
       <categories>
         <category>javase</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>数字及big类</title>
-    <url>/2022/10/17/10-17%20/</url>
-    <content><![CDATA[<h1 id="关于数学包里常用的几个类"><a href="#关于数学包里常用的几个类" class="headerlink" title="关于数学包里常用的几个类"></a>关于数学包里常用的几个类</h1><h2 id="abs"><a href="#abs" class="headerlink" title="abs"></a>abs</h2><p>abs是取绝对值</p>
-<h2 id="cell"><a href="#cell" class="headerlink" title="cell"></a>cell</h2><p>向上（正方向）取整</p>
-<h2 id="floor"><a href="#floor" class="headerlink" title="floor"></a>floor</h2><p>向下（负方向）取整</p>
-<h2 id="round"><a href="#round" class="headerlink" title="round"></a>round</h2><p> 四舍五入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> // 简单的例子 ，5舍6入</span><br><span class="line">可以通过floor进行</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="BigInteger"><a href="#BigInteger" class="headerlink" title="BigInteger"></a>BigInteger</h1><p>BigInteger类型的数字范围较Integer，Long类型的数字范围要大得多，它支持任意精度的整数，也就是说在运算中 BigInteger 类型可以准确地表示任何大小的整数值而不会丢失任何信息。</p>
-<h2 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">//1.加</span><br><span class="line">BigInteger bigNum1 = a.add(b);			//17</span><br><span class="line">//2.减</span><br><span class="line">BigInteger bigNum2 = a.subtract(b);		//9</span><br><span class="line">//3.乘</span><br><span class="line">BigInteger bigNum3 = a.multiply(b);		//52</span><br><span class="line">//4.除</span><br><span class="line">BigInteger bigNum4 = a.divide(b);		//3</span><br><span class="line">//5.取模(需 b &gt; 0，否则出现异常：ArithmeticException(&quot;BigInteger: modulus not positive&quot;))</span><br><span class="line">BigInteger bigNum5 = a.mod(b);			//1</span><br><span class="line">//6.求余</span><br><span class="line">BigInteger bigNum6 = a.remainder(b);	//1</span><br><span class="line">//7.平方(需 n &gt;= 0，否则出现异常：ArithmeticException(&quot;Negative exponent&quot;))</span><br><span class="line">BigInteger bigNum7 = a.pow(n);			//2197</span><br><span class="line">//8.取绝对值</span><br><span class="line">BigInteger bigNum8 = a.abs();			//13</span><br><span class="line">//9.取相反数</span><br><span class="line">BigInteger bigNum9 = a.negate();		//-13</span><br></pre></td></tr></table></figure>
-
-<h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//读入方法：nextBigInteger()</span><br><span class="line">@Test</span><br><span class="line">public void test5() &#123;</span><br><span class="line">	Scanner scan = new Scanner(System.in);				// 读入</span><br><span class="line">	int n = scan.nextInt(); 							// 读入一个int;</span><br><span class="line">	BigInteger m = scan.nextBigInteger();				// 读入一个BigInteger;</span><br><span class="line">	while(scan.hasNext())&#123;	</span><br><span class="line">		System.out.print(&quot;scan.hasNext()=&quot; + scan.hasNext());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中除了这个还有big浮点型，用法和上面一样</p>
-]]></content>
-      <categories>
-        <category>日志</category>
       </categories>
   </entry>
   <entry>
@@ -1190,6 +1190,7 @@
 <li>编写脚本</li>
 <li>添加权限</li>
 <li>chmod添加权限</li>
+<li></li>
 </ul>
 <h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><ul>
 <li>sh .&#x2F;xxx.sh（脚本名字）</li>
@@ -1231,24 +1232,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/10/15/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash</span><br><span class="line">$ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>mysql</title>
     <url>/2022/11/03/11-3/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
@@ -1273,6 +1256,24 @@
       <categories>
         <category>日志</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/10/15/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash</span><br><span class="line">$ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>java面试题</title>
