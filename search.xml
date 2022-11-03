@@ -43,6 +43,144 @@
       </categories>
   </entry>
   <entry>
+    <title>java里的日期和Object的一些方法</title>
+    <url>/2022/10/18/10-18/</url>
+    <content><![CDATA[<h1 id="Java-util-Date"><a href="#Java-util-Date" class="headerlink" title="Java.util.Date"></a>Java.util.Date</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Date d = new Date();</span><br><span class="line">System.out.Println(d);</span><br></pre></td></tr></table></figure>
+<p>一般这样直接打印出，是中国国际化标准化时间<br>但是一般除了getTime别的都过时了，保不准会在什么时候就舍弃</p>
+<h2 id="getmonth"><a href="#getmonth" class="headerlink" title="getmonth"></a>getmonth</h2><p>他是用农历算的，范围是0-11</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getMonth();</span><br></pre></td></tr></table></figure>
+<h2 id="getYear"><a href="#getYear" class="headerlink" title="getYear"></a>getYear</h2><p>获取从1900年到现在的年数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getYear();</span><br></pre></td></tr></table></figure>
+<h2 id="getDate"><a href="#getDate" class="headerlink" title="getDate"></a>getDate</h2><p>获取到现在的日期</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getDate();</span><br></pre></td></tr></table></figure>
+<h2 id="getHours"><a href="#getHours" class="headerlink" title="getHours"></a>getHours</h2><p>获取现在的小时</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getHours();</span><br></pre></td></tr></table></figure>
+<h2 id="getMinutes"><a href="#getMinutes" class="headerlink" title="getMinutes"></a>getMinutes</h2><p>获取现在的分钟数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getMinutes();</span><br></pre></td></tr></table></figure>
+<h2 id="getSeconds"><a href="#getSeconds" class="headerlink" title="getSeconds"></a>getSeconds</h2><p>获取当前的秒数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getSeconds();</span><br></pre></td></tr></table></figure>
+<h2 id="getDays"><a href="#getDays" class="headerlink" title="getDays"></a>getDays</h2><p>获取当前日期范围是0-6，周一到周六</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getDay();</span><br></pre></td></tr></table></figure>
+<h2 id="getTime"><a href="#getTime" class="headerlink" title="getTime"></a>getTime</h2><p>获取从1970年到现在时间</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getTime();</span><br></pre></td></tr></table></figure>
+<h2 id="compareTo"><a href="#compareTo" class="headerlink" title="compareTo"></a>compareTo</h2><p>自动排序：正数是大于 ， 0是相等 ， -1 是小于</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.compareTo(d);</span><br></pre></td></tr></table></figure>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Deprecated</span><br><span class="line"> 代表过时的，会让方法上面画上横线</span><br></pre></td></tr></table></figure>
+<h1 id="java-sql-Date"><a href="#java-sql-Date" class="headerlink" title="java.sql.Date"></a>java.sql.Date</h1><h2 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java.sql.Date d = new java.sql.Date(date.getTime);</span><br><span class="line">// 获取时间,包含天月的</span><br></pre></td></tr></table></figure>
+<h2 id="Time"><a href="#Time" class="headerlink" title="Time"></a>Time</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java.sql.Time d  = new java.sql.Time(date.getTime);</span><br><span class="line">// 获取时间</span><br></pre></td></tr></table></figure>
+
+<h2 id="Timestamp"><a href="#Timestamp" class="headerlink" title="Timestamp"></a>Timestamp</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java.sql.Timestamp d = new java.sql.Timestamp(date.getTime);</span><br><span class="line">// 获取精确到毫秒数的时间</span><br></pre></td></tr></table></figure>
+
+<h1 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SimpleDateFormat s = new SimpleDateFormat(&quot;yyyy-MM-dd:mm:ss.SSS&quot;);</span><br></pre></td></tr></table></figure>
+<h2 id="format日期变字符串"><a href="#format日期变字符串" class="headerlink" title="format日期变字符串"></a>format日期变字符串</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">String string s.format(date);</span><br></pre></td></tr></table></figure>
+
+<h2 id="字符串变日期"><a href="#字符串变日期" class="headerlink" title="字符串变日期"></a>字符串变日期</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">s.parse(&quot;2000-11-12 13:14:15.000&quot;);</span><br><span class="line">// 但是这个可能会有错误，所以，我们需要用try catch包住他</span><br></pre></td></tr></table></figure>
+<h1 id="Ccalender"><a href="#Ccalender" class="headerlink" title="Ccalender"></a>Ccalender</h1><p>用静态方法实例化，new 不了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Calendar c = Calendar.getLnstance();</span><br></pre></td></tr></table></figure>
+<h2 id="set设置"><a href="#set设置" class="headerlink" title="set设置"></a>set设置</h2><p>set和get基本相同</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c1.set(Calendar.MONTH ， xxx)；</span><br><span class="line">c1.set(Calendar.HOURS , xxx);等</span><br><span class="line">// 这里xxx代表一个int型的数字，会自动进位，如果xxx超过11则会自动进位，对其他的小时，秒数也同样是适用</span><br></pre></td></tr></table></figure>
+
+<h2 id="get获取"><a href="#get获取" class="headerlink" title="get获取"></a>get获取</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c.get(Calendar.MONTH);</span><br><span class="line">c.get(Calendar.DATE);</span><br><span class="line">等,要通过一系列常量来控制他</span><br></pre></td></tr></table></figure>
+<h2 id="add计算"><a href="#add计算" class="headerlink" title="add计算"></a>add计算</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c.add(Calendar.MONTH , 1);</span><br><span class="line">// 单纯是加到其中前一个变量上，可以进位。还有其他的方法，比如huors等</span><br></pre></td></tr></table></figure>
+<h2 id="getTime-1"><a href="#getTime-1" class="headerlink" title="getTime"></a>getTime</h2><p>转换成Date型，然后就可以用SimpleDateFormat了</p>
+<h1 id="Localdate"><a href="#Localdate" class="headerlink" title="Localdate"></a>Localdate</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LocalDate l = LocalDate.now(); // 获取当前日期</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>最大支持999999999-12-31</p>
+</li>
+<li><p>最小支持-999999999-01-01</p>
+</li>
+</ul>
+<h2 id="adjiustInto"><a href="#adjiustInto" class="headerlink" title="adjiustInto"></a>adjiustInto</h2><p>调整指定的时间对象与此对象时间相同</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.adjustInto(l)</span><br></pre></td></tr></table></figure>
+<h2 id="equals"><a href="#equals" class="headerlink" title="equals"></a>equals</h2><p>检查这个日期是不是等于另外一个日期</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.equals(d)</span><br></pre></td></tr></table></figure>
+<h2 id="format"><a href="#format" class="headerlink" title="format"></a>format</h2><p>使用指定格式格式化日期</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.format(null);</span><br></pre></td></tr></table></figure>
+
+<h2 id="get"><a href="#get" class="headerlink" title="get"></a>get</h2><h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><h2 id="getDayofMonth"><a href="#getDayofMonth" class="headerlink" title="getDayofMonth"></a>getDayofMonth</h2><p>获取月份字段</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.getDayofMonth();</span><br></pre></td></tr></table></figure>
+
+<h2 id="getDayofWeek"><a href="#getDayofWeek" class="headerlink" title="getDayofWeek"></a>getDayofWeek</h2><p>同上只是获取星期几，这个是个枚举</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.getDayOfWeek();</span><br></pre></td></tr></table></figure>
+<h2 id="getDayofYear"><a href="#getDayofYear" class="headerlink" title="getDayofYear"></a>getDayofYear</h2><p>同上只是获取日期字段</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.getDayofYear();</span><br></pre></td></tr></table></figure>
+<h2 id="getChronology"><a href="#getChronology" class="headerlink" title="getChronology"></a>getChronology</h2><p>获取ios的日历系统的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.getChronology();</span><br></pre></td></tr></table></figure>
+<h2 id="hashcode"><a href="#hashcode" class="headerlink" title="hashcode"></a>hashcode</h2><p>返回这个日期的哈希码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.hashcode();</span><br></pre></td></tr></table></figure>
+<h2 id="isAfter"><a href="#isAfter" class="headerlink" title="isAfter"></a>isAfter</h2><p>检查日期是不是在这个日期之后</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.isAfter(l);</span><br></pre></td></tr></table></figure>
+<h2 id="isBefore"><a href="#isBefore" class="headerlink" title="isBefore"></a>isBefore</h2><p>同上</p>
+<h2 id="isEqual"><a href="#isEqual" class="headerlink" title="isEqual"></a>isEqual</h2><p>检查这个日期是不是等于指定日期</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.isEqual(l);</span><br></pre></td></tr></table></figure>
+<h2 id="isLeapYear"><a href="#isLeapYear" class="headerlink" title="isLeapYear"></a>isLeapYear</h2><p>根据ios日历，检查是不是闰年</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.isLeapYear();</span><br></pre></td></tr></table></figure>
+
+<h2 id="now"><a href="#now" class="headerlink" title="now"></a>now</h2><p>获取当前的时间<br>初始化方法</p>
+<h2 id="parse"><a href="#parse" class="headerlink" title="parse"></a>parse</h2><p>同上面的parse</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.parse(null);</span><br></pre></td></tr></table></figure>
+<h2 id="plus"><a href="#plus" class="headerlink" title="plus"></a>plus</h2><p>返回此日期的副本，并添加指定的金额。 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.plus(null);</span><br></pre></td></tr></table></figure>
+<h2 id="plusDays"><a href="#plusDays" class="headerlink" title="plusDays"></a>plusDays</h2><p>返回指定天数的副本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.plusDays(0);</span><br></pre></td></tr></table></figure>
+<h2 id="plusMonths"><a href="#plusMonths" class="headerlink" title="plusMonths"></a>plusMonths</h2><p>返回这个LocalDate的副本，其指定的时间段以月为单位</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.plusMonths(0);</span><br></pre></td></tr></table></figure>
+<h2 id="plusweeks"><a href="#plusweeks" class="headerlink" title="plusweeks"></a>plusweeks</h2><p>返回这个LocalDate的副本并以指定周期添加周数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.plusWeeks(0);</span><br></pre></td></tr></table></figure>
+<h2 id="plusYears"><a href="#plusYears" class="headerlink" title="plusYears"></a>plusYears</h2><p>返回这个LocalDate的副本其中指定的时间段以添加的年数访问</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.plusYears(0);</span><br></pre></td></tr></table></figure>
+<h2 id="query"><a href="#query" class="headerlink" title="query"></a>query</h2><p>返回指定的查询查询日期</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.query(null);</span><br></pre></td></tr></table></figure>
+<h2 id="with"><a href="#with" class="headerlink" title="with"></a>with</h2><p>返回此日期的调整的副本</p>
+<ul>
+<li>其和上面一样有对单独地方调整的函数，比如日期月份等<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.with(l);</span><br><span class="line">		l.withDayOfMonth(0);</span><br><span class="line">		l.withDayOfYear(0);</span><br><span class="line">		l.withMonth(0);</span><br><span class="line">		l.withYear(0);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString"></a>toString</h2><p>将日期转换为字符串</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.toString();</span><br></pre></td></tr></table></figure>
+<h1 id="方法的综合应用"><a href="#方法的综合应用" class="headerlink" title="方法的综合应用"></a>方法的综合应用</h1><h2 id="计算每个月的天数通过Calendar运行"><a href="#计算每个月的天数通过Calendar运行" class="headerlink" title="计算每个月的天数通过Calendar运行"></a>计算每个月的天数通过Calendar运行</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C1.add(Calendar.MONTH, 1);</span><br><span class="line">C1.add(Calendar.DAY_OF_MONTH, -(当前天数));</span><br><span class="line">System.out.println(C1.getTime());</span><br></pre></td></tr></table></figure>
+<h2 id="LocalDateTime的实际应用"><a href="#LocalDateTime的实际应用" class="headerlink" title="LocalDateTime的实际应用"></a>LocalDateTime的实际应用</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> lesson12;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.time.LocalDate;</span><br><span class="line"><span class="keyword">import</span> java.time.LocalDateTime;</span><br><span class="line"><span class="keyword">import</span> java.time.LocalTime;</span><br><span class="line"><span class="keyword">import</span> java.time.format.DateTimeFormatter;</span><br><span class="line"><span class="keyword">import</span> java.time.temporal.TemporalField;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestMain4</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"><span class="comment">//		LocalTime</span></span><br><span class="line"><span class="comment">//		LocalDate</span></span><br><span class="line">		<span class="type">LocalDateTime</span> <span class="variable">ldtDateTime</span> <span class="operator">=</span> LocalDateTime.now();</span><br><span class="line">		System.out.println(ldtDateTime);</span><br><span class="line">		System.out.println(ldtDateTime.getDayOfWeek().getValue()); <span class="comment">// 2</span></span><br><span class="line">		System.out.println(ldtDateTime.getMonth()); <span class="comment">// 10不会走 国外的历法</span></span><br><span class="line">		System.out.println(ldtDateTime.getMonthValue()); </span><br><span class="line">		</span><br><span class="line">		<span class="type">LocalDateTime</span> <span class="variable">ldtDateTime2</span> <span class="operator">=</span> LocalDateTime.of(<span class="number">2022</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>);</span><br><span class="line">		System.out.println(ldtDateTime2);</span><br><span class="line">		</span><br><span class="line">		<span class="type">DateTimeFormatter</span> <span class="variable">dFormatter</span> <span class="operator">=</span> DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line">		<span class="type">String</span> <span class="variable">string</span> <span class="operator">=</span> dFormatter.format(ldtDateTime);</span><br><span class="line">		System.out.println(string);</span><br><span class="line">		</span><br><span class="line">		<span class="type">LocalDateTime</span> <span class="variable">ldtDateTime3</span> <span class="operator">=</span> LocalDateTime.parse(<span class="string">&quot;2022-10-18 15:21:30&quot;</span>, dFormatter);</span><br><span class="line">		System.out.println(ldtDateTime3);</span><br><span class="line">		</span><br><span class="line">		<span class="type">LocalDateTime</span> <span class="variable">ldtDateTime4</span> <span class="operator">=</span> LocalDateTime.from(dFormatter.parse(<span class="string">&quot;2022-10-18 15:21:30&quot;</span>));</span><br><span class="line">		System.out.println(ldtDateTime4);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h1><h2 id="getClass"><a href="#getClass" class="headerlink" title="getClass"></a>getClass</h2><p>获取反射</p>
+<h2 id="hashCode"><a href="#hashCode" class="headerlink" title="hashCode"></a>hashCode</h2><p>获取hash值，约等于地址</p>
+<h2 id="equals-1"><a href="#equals-1" class="headerlink" title="equals"></a>equals</h2><ul>
+<li>比较对象的值</li>
+<li>&#x3D;&#x3D;对比的是地址</li>
+</ul>
+<h2 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h2><p>暂时不让用，意义是克隆属性,但是对于引用类型直接克隆是克隆地址，就会造成改一个进而全部都改变，但是有办法，可以进行深克隆进而解决</p>
+<ul>
+<li>浅克隆：就是只用一次克隆</li>
+<li>深克隆：通过多次克隆进而使每个被克隆出来的个体都有不同地址的相同引用类型</li>
+</ul>
+<h3 id="使用克隆的方法"><a href="#使用克隆的方法" class="headerlink" title="使用克隆的方法"></a>使用克隆的方法</h3><ul>
+<li><p>Cloneable:  标记型接口，先实现标记性接口 。 JDK就2个标记接口Serializable和Cloneable</p>
+<ul>
+<li><ol>
+<li>覆盖Object的clone方法;</li>
+<li>实现标记Cloneable;</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="finalize"><a href="#finalize" class="headerlink" title="finalize"></a>finalize</h2><p>finalize代表GC回调，就是让垃圾回收不要回收他，但是一般不让用，因为会容易造成卡死，或者因为有关联关系的对象而无法进行进行回收</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java</span><br><span class="line">  package lesson12;</span><br><span class="line">  </span><br><span class="line">  public class TestMain6 &#123;</span><br><span class="line">  </span><br><span class="line">  	public static void main(String[] args) &#123;</span><br><span class="line">  		Student student = new Student(&quot;jerry&quot;, 2);</span><br><span class="line">  		abc();</span><br><span class="line">  		student = null;</span><br><span class="line">  		System.out.println(111);</span><br><span class="line">  		</span><br><span class="line">  		// 通知jvm在适当时候进行GC</span><br><span class="line">  		System.gc();</span><br><span class="line">  		System.out.println(222);</span><br><span class="line">  		for (;;) &#123;</span><br><span class="line">  			</span><br><span class="line">  		&#125;</span><br><span class="line">  		</span><br><span class="line">  	&#125;</span><br><span class="line">  </span><br><span class="line">  	private static void abc() &#123;</span><br><span class="line">  		// TODO Auto-generated method stub</span><br><span class="line">  		Student student = new Student(&quot;tom&quot;, 1);</span><br><span class="line">  	&#125;</span><br><span class="line">  	</span><br><span class="line">  &#125;</span><br><span class="line">  Student &#123;</span><br><span class="line">  	@Override</span><br><span class="line">  	protected void finalize() throws Throwable &#123;</span><br><span class="line">  		System.out.println(this + &quot;被回收了&quot;);</span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="static-代码块和非static代码块"><a href="#static-代码块和非static代码块" class="headerlink" title="static 代码块和非static代码块"></a>static 代码块和非static代码块</h1><ul>
+<li><p>static 静态代码块。  运行时记载类，只调用一次。</p>
+<ul>
+<li>一次性的操作。例如： 加载资源，加载驱动。</li>
+</ul>
+</li>
+<li><p>非静态代码块，       每次实例化都会调用</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> lesson12;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestMain7</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;这是静态代码块&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;这是非静态代码块&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="type">TestMain7</span> <span class="variable">a1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TestMain7</span>();</span><br><span class="line">		<span class="type">TestMain7</span> <span class="variable">a2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TestMain7</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
     <title>设计模式和反射</title>
     <url>/2022/10/19/10-19/</url>
     <content><![CDATA[<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><ul>
@@ -182,144 +320,6 @@
 <li>但是如果没有父目录，一般的文件就无法创建</li>
 </ul>
 <h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">private static File getCopy(File f1) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	String sufString = f1.getName().substring(f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String qi = f1.getName().substring(0, f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String use = qi + &quot;-副本&quot; + sufString;</span><br><span class="line">	File newf = new File(f1.getParent() , use);</span><br><span class="line">	if(newf.exists()) &#123;</span><br><span class="line">	return	getCopy(newf);</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">	return newf;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>java里的日期和Object的一些方法</title>
-    <url>/2022/10/18/10-18/</url>
-    <content><![CDATA[<h1 id="Java-util-Date"><a href="#Java-util-Date" class="headerlink" title="Java.util.Date"></a>Java.util.Date</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Date d = new Date();</span><br><span class="line">System.out.Println(d);</span><br></pre></td></tr></table></figure>
-<p>一般这样直接打印出，是中国国际化标准化时间<br>但是一般除了getTime别的都过时了，保不准会在什么时候就舍弃</p>
-<h2 id="getmonth"><a href="#getmonth" class="headerlink" title="getmonth"></a>getmonth</h2><p>他是用农历算的，范围是0-11</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getMonth();</span><br></pre></td></tr></table></figure>
-<h2 id="getYear"><a href="#getYear" class="headerlink" title="getYear"></a>getYear</h2><p>获取从1900年到现在的年数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getYear();</span><br></pre></td></tr></table></figure>
-<h2 id="getDate"><a href="#getDate" class="headerlink" title="getDate"></a>getDate</h2><p>获取到现在的日期</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getDate();</span><br></pre></td></tr></table></figure>
-<h2 id="getHours"><a href="#getHours" class="headerlink" title="getHours"></a>getHours</h2><p>获取现在的小时</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getHours();</span><br></pre></td></tr></table></figure>
-<h2 id="getMinutes"><a href="#getMinutes" class="headerlink" title="getMinutes"></a>getMinutes</h2><p>获取现在的分钟数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getMinutes();</span><br></pre></td></tr></table></figure>
-<h2 id="getSeconds"><a href="#getSeconds" class="headerlink" title="getSeconds"></a>getSeconds</h2><p>获取当前的秒数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getSeconds();</span><br></pre></td></tr></table></figure>
-<h2 id="getDays"><a href="#getDays" class="headerlink" title="getDays"></a>getDays</h2><p>获取当前日期范围是0-6，周一到周六</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getDay();</span><br></pre></td></tr></table></figure>
-<h2 id="getTime"><a href="#getTime" class="headerlink" title="getTime"></a>getTime</h2><p>获取从1970年到现在时间</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.getTime();</span><br></pre></td></tr></table></figure>
-<h2 id="compareTo"><a href="#compareTo" class="headerlink" title="compareTo"></a>compareTo</h2><p>自动排序：正数是大于 ， 0是相等 ， -1 是小于</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d.compareTo(d);</span><br></pre></td></tr></table></figure>
-<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Deprecated</span><br><span class="line"> 代表过时的，会让方法上面画上横线</span><br></pre></td></tr></table></figure>
-<h1 id="java-sql-Date"><a href="#java-sql-Date" class="headerlink" title="java.sql.Date"></a>java.sql.Date</h1><h2 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java.sql.Date d = new java.sql.Date(date.getTime);</span><br><span class="line">// 获取时间,包含天月的</span><br></pre></td></tr></table></figure>
-<h2 id="Time"><a href="#Time" class="headerlink" title="Time"></a>Time</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java.sql.Time d  = new java.sql.Time(date.getTime);</span><br><span class="line">// 获取时间</span><br></pre></td></tr></table></figure>
-
-<h2 id="Timestamp"><a href="#Timestamp" class="headerlink" title="Timestamp"></a>Timestamp</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java.sql.Timestamp d = new java.sql.Timestamp(date.getTime);</span><br><span class="line">// 获取精确到毫秒数的时间</span><br></pre></td></tr></table></figure>
-
-<h1 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SimpleDateFormat s = new SimpleDateFormat(&quot;yyyy-MM-dd:mm:ss.SSS&quot;);</span><br></pre></td></tr></table></figure>
-<h2 id="format日期变字符串"><a href="#format日期变字符串" class="headerlink" title="format日期变字符串"></a>format日期变字符串</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">String string s.format(date);</span><br></pre></td></tr></table></figure>
-
-<h2 id="字符串变日期"><a href="#字符串变日期" class="headerlink" title="字符串变日期"></a>字符串变日期</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">s.parse(&quot;2000-11-12 13:14:15.000&quot;);</span><br><span class="line">// 但是这个可能会有错误，所以，我们需要用try catch包住他</span><br></pre></td></tr></table></figure>
-<h1 id="Ccalender"><a href="#Ccalender" class="headerlink" title="Ccalender"></a>Ccalender</h1><p>用静态方法实例化，new 不了</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Calendar c = Calendar.getLnstance();</span><br></pre></td></tr></table></figure>
-<h2 id="set设置"><a href="#set设置" class="headerlink" title="set设置"></a>set设置</h2><p>set和get基本相同</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c1.set(Calendar.MONTH ， xxx)；</span><br><span class="line">c1.set(Calendar.HOURS , xxx);等</span><br><span class="line">// 这里xxx代表一个int型的数字，会自动进位，如果xxx超过11则会自动进位，对其他的小时，秒数也同样是适用</span><br></pre></td></tr></table></figure>
-
-<h2 id="get获取"><a href="#get获取" class="headerlink" title="get获取"></a>get获取</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c.get(Calendar.MONTH);</span><br><span class="line">c.get(Calendar.DATE);</span><br><span class="line">等,要通过一系列常量来控制他</span><br></pre></td></tr></table></figure>
-<h2 id="add计算"><a href="#add计算" class="headerlink" title="add计算"></a>add计算</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c.add(Calendar.MONTH , 1);</span><br><span class="line">// 单纯是加到其中前一个变量上，可以进位。还有其他的方法，比如huors等</span><br></pre></td></tr></table></figure>
-<h2 id="getTime-1"><a href="#getTime-1" class="headerlink" title="getTime"></a>getTime</h2><p>转换成Date型，然后就可以用SimpleDateFormat了</p>
-<h1 id="Localdate"><a href="#Localdate" class="headerlink" title="Localdate"></a>Localdate</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LocalDate l = LocalDate.now(); // 获取当前日期</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>最大支持999999999-12-31</p>
-</li>
-<li><p>最小支持-999999999-01-01</p>
-</li>
-</ul>
-<h2 id="adjiustInto"><a href="#adjiustInto" class="headerlink" title="adjiustInto"></a>adjiustInto</h2><p>调整指定的时间对象与此对象时间相同</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.adjustInto(l)</span><br></pre></td></tr></table></figure>
-<h2 id="equals"><a href="#equals" class="headerlink" title="equals"></a>equals</h2><p>检查这个日期是不是等于另外一个日期</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.equals(d)</span><br></pre></td></tr></table></figure>
-<h2 id="format"><a href="#format" class="headerlink" title="format"></a>format</h2><p>使用指定格式格式化日期</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.format(null);</span><br></pre></td></tr></table></figure>
-
-<h2 id="get"><a href="#get" class="headerlink" title="get"></a>get</h2><h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><h2 id="getDayofMonth"><a href="#getDayofMonth" class="headerlink" title="getDayofMonth"></a>getDayofMonth</h2><p>获取月份字段</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.getDayofMonth();</span><br></pre></td></tr></table></figure>
-
-<h2 id="getDayofWeek"><a href="#getDayofWeek" class="headerlink" title="getDayofWeek"></a>getDayofWeek</h2><p>同上只是获取星期几，这个是个枚举</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.getDayOfWeek();</span><br></pre></td></tr></table></figure>
-<h2 id="getDayofYear"><a href="#getDayofYear" class="headerlink" title="getDayofYear"></a>getDayofYear</h2><p>同上只是获取日期字段</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.getDayofYear();</span><br></pre></td></tr></table></figure>
-<h2 id="getChronology"><a href="#getChronology" class="headerlink" title="getChronology"></a>getChronology</h2><p>获取ios的日历系统的</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.getChronology();</span><br></pre></td></tr></table></figure>
-<h2 id="hashcode"><a href="#hashcode" class="headerlink" title="hashcode"></a>hashcode</h2><p>返回这个日期的哈希码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.hashcode();</span><br></pre></td></tr></table></figure>
-<h2 id="isAfter"><a href="#isAfter" class="headerlink" title="isAfter"></a>isAfter</h2><p>检查日期是不是在这个日期之后</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.isAfter(l);</span><br></pre></td></tr></table></figure>
-<h2 id="isBefore"><a href="#isBefore" class="headerlink" title="isBefore"></a>isBefore</h2><p>同上</p>
-<h2 id="isEqual"><a href="#isEqual" class="headerlink" title="isEqual"></a>isEqual</h2><p>检查这个日期是不是等于指定日期</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.isEqual(l);</span><br></pre></td></tr></table></figure>
-<h2 id="isLeapYear"><a href="#isLeapYear" class="headerlink" title="isLeapYear"></a>isLeapYear</h2><p>根据ios日历，检查是不是闰年</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.isLeapYear();</span><br></pre></td></tr></table></figure>
-
-<h2 id="now"><a href="#now" class="headerlink" title="now"></a>now</h2><p>获取当前的时间<br>初始化方法</p>
-<h2 id="parse"><a href="#parse" class="headerlink" title="parse"></a>parse</h2><p>同上面的parse</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.parse(null);</span><br></pre></td></tr></table></figure>
-<h2 id="plus"><a href="#plus" class="headerlink" title="plus"></a>plus</h2><p>返回此日期的副本，并添加指定的金额。 </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.plus(null);</span><br></pre></td></tr></table></figure>
-<h2 id="plusDays"><a href="#plusDays" class="headerlink" title="plusDays"></a>plusDays</h2><p>返回指定天数的副本</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.plusDays(0);</span><br></pre></td></tr></table></figure>
-<h2 id="plusMonths"><a href="#plusMonths" class="headerlink" title="plusMonths"></a>plusMonths</h2><p>返回这个LocalDate的副本，其指定的时间段以月为单位</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.plusMonths(0);</span><br></pre></td></tr></table></figure>
-<h2 id="plusweeks"><a href="#plusweeks" class="headerlink" title="plusweeks"></a>plusweeks</h2><p>返回这个LocalDate的副本并以指定周期添加周数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.plusWeeks(0);</span><br></pre></td></tr></table></figure>
-<h2 id="plusYears"><a href="#plusYears" class="headerlink" title="plusYears"></a>plusYears</h2><p>返回这个LocalDate的副本其中指定的时间段以添加的年数访问</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.plusYears(0);</span><br></pre></td></tr></table></figure>
-<h2 id="query"><a href="#query" class="headerlink" title="query"></a>query</h2><p>返回指定的查询查询日期</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.query(null);</span><br></pre></td></tr></table></figure>
-<h2 id="with"><a href="#with" class="headerlink" title="with"></a>with</h2><p>返回此日期的调整的副本</p>
-<ul>
-<li>其和上面一样有对单独地方调整的函数，比如日期月份等<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.with(l);</span><br><span class="line">		l.withDayOfMonth(0);</span><br><span class="line">		l.withDayOfYear(0);</span><br><span class="line">		l.withMonth(0);</span><br><span class="line">		l.withYear(0);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString"></a>toString</h2><p>将日期转换为字符串</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l.toString();</span><br></pre></td></tr></table></figure>
-<h1 id="方法的综合应用"><a href="#方法的综合应用" class="headerlink" title="方法的综合应用"></a>方法的综合应用</h1><h2 id="计算每个月的天数通过Calendar运行"><a href="#计算每个月的天数通过Calendar运行" class="headerlink" title="计算每个月的天数通过Calendar运行"></a>计算每个月的天数通过Calendar运行</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C1.add(Calendar.MONTH, 1);</span><br><span class="line">C1.add(Calendar.DAY_OF_MONTH, -(当前天数));</span><br><span class="line">System.out.println(C1.getTime());</span><br></pre></td></tr></table></figure>
-<h2 id="LocalDateTime的实际应用"><a href="#LocalDateTime的实际应用" class="headerlink" title="LocalDateTime的实际应用"></a>LocalDateTime的实际应用</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> lesson12;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.time.LocalDate;</span><br><span class="line"><span class="keyword">import</span> java.time.LocalDateTime;</span><br><span class="line"><span class="keyword">import</span> java.time.LocalTime;</span><br><span class="line"><span class="keyword">import</span> java.time.format.DateTimeFormatter;</span><br><span class="line"><span class="keyword">import</span> java.time.temporal.TemporalField;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestMain4</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"><span class="comment">//		LocalTime</span></span><br><span class="line"><span class="comment">//		LocalDate</span></span><br><span class="line">		<span class="type">LocalDateTime</span> <span class="variable">ldtDateTime</span> <span class="operator">=</span> LocalDateTime.now();</span><br><span class="line">		System.out.println(ldtDateTime);</span><br><span class="line">		System.out.println(ldtDateTime.getDayOfWeek().getValue()); <span class="comment">// 2</span></span><br><span class="line">		System.out.println(ldtDateTime.getMonth()); <span class="comment">// 10不会走 国外的历法</span></span><br><span class="line">		System.out.println(ldtDateTime.getMonthValue()); </span><br><span class="line">		</span><br><span class="line">		<span class="type">LocalDateTime</span> <span class="variable">ldtDateTime2</span> <span class="operator">=</span> LocalDateTime.of(<span class="number">2022</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>);</span><br><span class="line">		System.out.println(ldtDateTime2);</span><br><span class="line">		</span><br><span class="line">		<span class="type">DateTimeFormatter</span> <span class="variable">dFormatter</span> <span class="operator">=</span> DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line">		<span class="type">String</span> <span class="variable">string</span> <span class="operator">=</span> dFormatter.format(ldtDateTime);</span><br><span class="line">		System.out.println(string);</span><br><span class="line">		</span><br><span class="line">		<span class="type">LocalDateTime</span> <span class="variable">ldtDateTime3</span> <span class="operator">=</span> LocalDateTime.parse(<span class="string">&quot;2022-10-18 15:21:30&quot;</span>, dFormatter);</span><br><span class="line">		System.out.println(ldtDateTime3);</span><br><span class="line">		</span><br><span class="line">		<span class="type">LocalDateTime</span> <span class="variable">ldtDateTime4</span> <span class="operator">=</span> LocalDateTime.from(dFormatter.parse(<span class="string">&quot;2022-10-18 15:21:30&quot;</span>));</span><br><span class="line">		System.out.println(ldtDateTime4);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h1><h2 id="getClass"><a href="#getClass" class="headerlink" title="getClass"></a>getClass</h2><p>获取反射</p>
-<h2 id="hashCode"><a href="#hashCode" class="headerlink" title="hashCode"></a>hashCode</h2><p>获取hash值，约等于地址</p>
-<h2 id="equals-1"><a href="#equals-1" class="headerlink" title="equals"></a>equals</h2><ul>
-<li>比较对象的值</li>
-<li>&#x3D;&#x3D;对比的是地址</li>
-</ul>
-<h2 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h2><p>暂时不让用，意义是克隆属性,但是对于引用类型直接克隆是克隆地址，就会造成改一个进而全部都改变，但是有办法，可以进行深克隆进而解决</p>
-<ul>
-<li>浅克隆：就是只用一次克隆</li>
-<li>深克隆：通过多次克隆进而使每个被克隆出来的个体都有不同地址的相同引用类型</li>
-</ul>
-<h3 id="使用克隆的方法"><a href="#使用克隆的方法" class="headerlink" title="使用克隆的方法"></a>使用克隆的方法</h3><ul>
-<li><p>Cloneable:  标记型接口，先实现标记性接口 。 JDK就2个标记接口Serializable和Cloneable</p>
-<ul>
-<li><ol>
-<li>覆盖Object的clone方法;</li>
-<li>实现标记Cloneable;</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="finalize"><a href="#finalize" class="headerlink" title="finalize"></a>finalize</h2><p>finalize代表GC回调，就是让垃圾回收不要回收他，但是一般不让用，因为会容易造成卡死，或者因为有关联关系的对象而无法进行进行回收</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java</span><br><span class="line">  package lesson12;</span><br><span class="line">  </span><br><span class="line">  public class TestMain6 &#123;</span><br><span class="line">  </span><br><span class="line">  	public static void main(String[] args) &#123;</span><br><span class="line">  		Student student = new Student(&quot;jerry&quot;, 2);</span><br><span class="line">  		abc();</span><br><span class="line">  		student = null;</span><br><span class="line">  		System.out.println(111);</span><br><span class="line">  		</span><br><span class="line">  		// 通知jvm在适当时候进行GC</span><br><span class="line">  		System.gc();</span><br><span class="line">  		System.out.println(222);</span><br><span class="line">  		for (;;) &#123;</span><br><span class="line">  			</span><br><span class="line">  		&#125;</span><br><span class="line">  		</span><br><span class="line">  	&#125;</span><br><span class="line">  </span><br><span class="line">  	private static void abc() &#123;</span><br><span class="line">  		// TODO Auto-generated method stub</span><br><span class="line">  		Student student = new Student(&quot;tom&quot;, 1);</span><br><span class="line">  	&#125;</span><br><span class="line">  	</span><br><span class="line">  &#125;</span><br><span class="line">  Student &#123;</span><br><span class="line">  	@Override</span><br><span class="line">  	protected void finalize() throws Throwable &#123;</span><br><span class="line">  		System.out.println(this + &quot;被回收了&quot;);</span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="static-代码块和非static代码块"><a href="#static-代码块和非static代码块" class="headerlink" title="static 代码块和非static代码块"></a>static 代码块和非static代码块</h1><ul>
-<li><p>static 静态代码块。  运行时记载类，只调用一次。</p>
-<ul>
-<li>一次性的操作。例如： 加载资源，加载驱动。</li>
-</ul>
-</li>
-<li><p>非静态代码块，       每次实例化都会调用</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> lesson12;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestMain7</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;这是静态代码块&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;这是非静态代码块&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="type">TestMain7</span> <span class="variable">a1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TestMain7</span>();</span><br><span class="line">		<span class="type">TestMain7</span> <span class="variable">a2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TestMain7</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -1223,30 +1223,184 @@
 <li>获取数组里的元素 ： ${arr[*]} :这个是获取所有的 。 </li>
 <li>但是这个里面不能由；</li>
 <li>如果要查看单个和java里一样，把【】中的换成从0开始的数字</li>
-<li>代表查看数组里的元素个数 ： $&#96;</li>
+<li>代表查看数组里的元素个数 ： <code>$&#123;井号arr[*]&#125;</code></li>
+<li>两种括号的形式</li>
+<li>由子shell执行 ，不会影响到这个shell <code>（）</code></li>
+<li>由当前shell执行 ，会影响到这个shell <code>&#123;&#125;</code></li>
+<li>权限判断：</li>
+<li><code>-r</code> ：读权限</li>
+<li><code>-w</code> ：写权限</li>
+<li><code>-x</code> ：执行权限</li>
+<li><code>-e</code> ：文件是不是存在</li>
+<li><code>-d</code> ：是不是目录</li>
+<li><code>-f</code> ：是不是文件</li>
+<li><code>-c</code> ：是不是字符设备</li>
+<li><code>-b</code> ：是不是块设备</li>
+<li><code>-s</code> ：文件是不是非空</li>
+<li><code>-l</code> ：符号连接</li>
+</ul>
+<h2 id="对变量以及字符串的操作"><a href="#对变量以及字符串的操作" class="headerlink" title="对变量以及字符串的操作"></a>对变量以及字符串的操作</h2><ul>
+<li><code>$&#123;num:-val&#125;</code> : 若num存在则是num , 要不然就是val</li>
+<li><code>$&#123;num!=val&#125;</code> : 如果num存在，则是num 要不然就是val 且将num赋值为val</li>
+</ul>
+<h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><ul>
+<li><code>if else</code></li>
+<li><code>if condition(条件判断);then</code></li>
+<li><code>command</code></li>
+<li><code>else</code></li>
+<li><code>command</code></li>
+<li><code>fi</code> </li>
+<li><code>condition</code> ： [] 比如：[ 1 &#x3D;&#x3D; 2 ] 变量以及判断符号前后有空格</li>
+<li>值判断 ：</li>
+<li>常规的都可以用</li>
+<li><code>=</code> 等于</li>
+<li><code>==</code>等于</li>
+<li><code>-ne</code> 数值不等</li>
+<li><code>-eq</code> 数值相等</li>
+<li><code>-gt</code> 大于</li>
+<li><code>-ge</code> 大于等于</li>
+<li><code>-le</code> 小于等于</li>
+<li><code>-lt</code> 小于</li>
+<li><code>if con; then</code></li>
+<li><code>command</code></li>
+<li><code>elif con; then</code></li>
+<li><code>com</code></li>
+<li><code>....</code></li>
+<li>后面<code>elif</code>可以无限加</li>
+<li>同时也有<code>break</code>和<code>countinue</code></li>
+</ul>
+<h2 id="与或非"><a href="#与或非" class="headerlink" title="与或非"></a>与或非</h2><ul>
+<li>与 <code>||</code></li>
+<li>或 <code>&amp;&amp;</code></li>
+</ul>
+<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><ul>
+<li><code>for var in con1 con2 con3</code></li>
+<li><code>do</code></li>
+<li><code>程序段</code></li>
+<li><code>done</code></li>
+<li><code>for((i=0;i&lt;10;i++))</code></li>
+<li><code>do</code></li>
+<li><code>程序段</code></li>
+<li><code>done</code></li>
+</ul>
+<h2 id="while"><a href="#while" class="headerlink" title="while"></a>while</h2><ul>
+<li><code>while【con】</code></li>
+<li><code>do</code></li>
+<li><code>程序段</code></li>
+<li><code>done</code></li>
+</ul>
+<h2 id="until"><a href="#until" class="headerlink" title="until"></a>until</h2><ul>
+<li><code>until【con】</code></li>
+<li><code>do</code></li>
+<li><code>程序段</code></li>
+<li><code>done</code></li>
+<li>这个和<code>while</code>相反 ，条件为错，一直执行</li>
+<li>上述的程序段中可以用let i++等</li>
+<li>这个<code>con</code>可以应用（（））或者中括号都行</li>
+</ul>
+<h2 id="case"><a href="#case" class="headerlink" title="case"></a>case</h2><ul>
+<li><code>case $变量名 in</code></li>
+<li><code>&quot;值 1&quot;）</code></li>
+<li><code>如果变量的值等于1 ，则执行程序1</code></li>
+<li><code>；；</code></li>
+<li><code>&quot;值 2&quot;）</code></li>
+<li><code>如果变量的值等于2 ，则执行程序2</code></li>
+<li><code>；；</code></li>
+<li><code>。。。还可以衔接很多的</code></li>
+<li><code>*)</code></li>
+</ul>
+<h2 id="对字符串的操作"><a href="#对字符串的操作" class="headerlink" title="对字符串的操作"></a>对字符串的操作</h2><ul>
+<li>字符串的长度 ： <code>$&#123;井号xxx&#125;</code></li>
+<li>从下标n处开始进行提取 ： <code>$&#123;xxx:n&#125;</code></li>
+<li>从下表为n处提取m个 ： <code>$&#123;xxx:n:m&#125;</code></li>
+<li>用new替换xxx中出现的第一个mm ： <code>$&#123;xxx/mm/new&#125;</code></li>
+<li>用new替换xxx中出现的所有mm ： <code>$&#123;xxx//mm/new&#125;</code></li>
+<li>IFS变量进行字符串分割</li>
+<li></li>
+</ul>
+<h1 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h1><ul>
+<li>函数名（）{}</li>
+<li>fnction 函数名（）{}</li>
+<li>函数的返回值可以应用return来进行结束</li>
+</ul>
+<h1 id="shell分析工具"><a href="#shell分析工具" class="headerlink" title="shell分析工具"></a>shell分析工具</h1><ul>
+<li>cut ：剪</li>
+<li>cut[选项参数] filename</li>
+<li><code>-f</code> 列号，第几列</li>
+<li><code>-f 2 </code>：代表第二列</li>
+<li><code>-f 2-</code> ：代表第二列之后的所有</li>
+<li><code>-d</code> 分隔符，按照指定的分隔符分割列，默认是\t</li>
+<li><code>-c</code> 按照字符切割 后面夹n表示第几列 如-c1</li>
+<li><code>awk</code> : 文本分析工具 或者叫 gawk</li>
+<li><code>awk[选项参数] &#39;/pattern1&#123;action1&#125; /pattern2/&#123;action2&#125;...&#39; (filename)</code></li>
+<li>选项参数</li>
+<li><code>-F</code> ：指定输入文件分隔符</li>
+<li><code>-v</code> ：赋值一个用户自己定义的变量</li>
+<li>打印第一和第二列 ： <code>awk &#39;&#123;print $1，$2&#125;&#39; （filename）</code></li>
+<li>awk一般和cat联用 ： <code>cat xxx | awk &#39;&#123;print $1，$2&#125;&#39;</code></li>
+<li>也可以这样 ： <code>cat xxx | awk &#39;&#123;print $1&quot;,&quot;$2&#125;&#39;</code> : 这样代表会让其中两列用，分割的形式表示出来</li>
+<li>还可以加上 ：<code>cat xxx | awk &#39;BEGINH&#123;print xxx&#125;&#123;print $1&quot;,&quot;$2&#125;END&#123;print mmm&#125;&#39;</code> ：就会在开始及结束的时候分别加上xxx和mmm</li>
+<li><code>-f</code> 则是执行脚本</li>
+<li>还可以 <code>cat xxx | awk -v i=1 -F &quot;:&quot; &#39;&#123;print $3 +i&#125;&#39;</code> :代表xxx文件的由：分割的第3列都加一在输出</li>
+<li>内置变量</li>
+<li><code>FILENAME</code> ：文件名</li>
+<li><code>NR</code> ： 已读的记录数（行号）</li>
+<li><code>NF</code> ： 浏览记录的域的个数（切割后的列的个数）</li>
+<li>获取第一行 <code>cat xxx | awk &#39;NR==1&#123;print&#125;&#39;</code></li>
+<li>里面的条件&#x3D;&#x3D;可以换成  &gt; &lt; &gt;&#x3D; &lt;&#x3D;</li>
+<li></li>
+<li><code>sed</code> : 文本替换(回去自己查)</li>
+<li>把文本中 d 替换成 m ,每行第一次遇见a才会替换</li>
+<li><code>sed -i &#39;s/d/m/&#39;</code> xxx文件名</li>
+<li>全文替换</li>
+<li><code>sed -i &#39;s/d/m/g&#39;</code> xxx文件名</li>
+<li>把值路径替换成&#x2F;root</li>
+<li><code>sed -i &#39;s//fata/spark//root</code> xxx文件’</li>
+<li>不过会爆错</li>
+<li>不过加上\就对了</li>
+<li><code>sed -i &#39;s\/fata\/spark\/root&#39;</code> xxx文件’</li>
+<li><code>sed -i &#39;s#/root#/data/spark#g&#39;</code> xxx文件</li>
+</ul>
+<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><ul>
+<li>模糊式的匹配搜索</li>
+<li>pattern</li>
+<li>最简单的正则 ： 直接给一个关键字 就是grep的时候</li>
+<li>特殊字符</li>
+<li>^作为一行的开头 ：比如^a 代表以a开头</li>
+<li>$作为一行的结束 ：比如n$ 代表以n结尾</li>
+<li>正则可以多种一起应用</li>
+<li>比如 ^$代表空行</li>
+<li>grep -n显示行号</li>
+<li>通配符 ： . 代表匹配一个任意的字符</li>
+<li>比如 ： r..t :代表r和t中间有两个字符的</li>
+<li>特殊字符 ： * ：代表一个字符出现任意次数</li>
+<li>比如 o* 代表o出现任意次数</li>
+<li>.*则表示任意一个字符出现任意次数 ，甚至可以匹配空字符串</li>
+<li>于是可以和上面的联用 ： ^a.*b$</li>
+<li>代表以a开头 b结尾 中间任意字符的</li>
+<li>字符区间：</li>
+<li>[]表示匹配其中范围内的字符</li>
+<li>比如[0-9]* ：任意长度的数字</li>
+<li>[0,7] : 0或7</li>
+<li>还可以这样写 ： [a-c , b-f]</li>
+<li>[ab]* ：代表任意以ab组成的 比如 ：aab<br> abb 等</li>
+<li>转义字符 \</li>
+<li>当我们要搜索$等关键字的时候</li>
+<li>要’反斜杠$’ :表示转义 ，才可以用做搜索</li>
+</ul>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><ul>
+<li>匹配手机号</li>
+<li><code>^1[345678][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$</code></li>
+<li><code>^1[345678][0-9]&#123;9&#125;$</code></li>
+<li>但是下面的花括号是扩展</li>
+<li>要用<code>grep -E ^1[345678][0-9]&#123;9&#125;$ </code>才可以</li>
+<li>但是上面的最开始的是都可以支持的</li>
+<li></li>
 </ul>
 ]]></content>
       <categories>
         <category>日志</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/11/03/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash</span><br><span class="line">$ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>mysql</title>
@@ -1364,25 +1518,22 @@
       </categories>
   </entry>
   <entry>
-    <title>作业10-21</title>
-    <url>/2022/10/21/%E4%BD%9C%E4%B8%9A10-21/</url>
-    <content><![CDATA[<h1 id="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"><a href="#3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称" class="headerlink" title="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"></a>3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">import 作业.file;</span><br><span class="line"></span><br><span class="line">public class file过滤 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File M = new File(&quot;D:\\&quot; , &quot;try&quot;);</span><br><span class="line">		chakan(M);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void chakan(File M) &#123;</span><br><span class="line">		File[] k = M.listFiles();</span><br><span class="line">		System.out.println(k);</span><br><span class="line">		for (int i = 0; i &lt; k.length; i++) &#123;</span><br><span class="line">			File[] t = k[i].listFiles();</span><br><span class="line">			if(t == null) &#123;</span><br><span class="line">				String g =  k[i].getName();</span><br><span class="line">				String d = g.substring(k[i].getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">				if(d.equals(&quot;.java&quot;)) &#123;</span><br><span class="line">					System.out.println(g.substring(0, k[i].getName().lastIndexOf(&quot;.&quot;)));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				chakan(k[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>重点字符串的相等要用equals，递归</li>
-</ul>
-<h1 id="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"><a href="#判断指定路径下的所有子文件或是目录，如果是子文件则全部删除" class="headerlink" title="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"></a>判断指定路径下的所有子文件或是目录，如果是子文件则全部删除</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">File[] ds =	k.listFiles(); </span><br><span class="line">for (int i = 0; i &lt; ds.length ; i++ ) &#123;</span><br><span class="line">	File[] h = ds[i].listFiles();</span><br><span class="line">	if(h == null) &#123;</span><br><span class="line">		System.out.println(&quot;这个是个文件&quot;);</span><br><span class="line">		ds[i].delete();</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		k.delete();</span><br><span class="line">		SHANCHU(ds[i]);</span><br><span class="line">			&#125;</span><br><span class="line">	k.delete();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>重点：递归</li>
-</ul>
-<h1 id="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）"><a href="#5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）" class="headerlink" title="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）"></a>5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">File G = new File(&quot;D:\\\\102班级\\\\javaSE作业&quot;);</span><br><span class="line"></span><br><span class="line">G.mkdirs();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="从磁盘读取一个文件到内存中，再打印到控制台"><a href="#从磁盘读取一个文件到内存中，再打印到控制台" class="headerlink" title="从磁盘读取一个文件到内存中，再打印到控制台"></a>从磁盘读取一个文件到内存中，再打印到控制台</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line"></span><br><span class="line">public class lkdjfslasfj &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		try &#123;</span><br><span class="line">			InputStream is = new FileInputStream(&quot;D:/a.txt&quot;);</span><br><span class="line">//				while(is.available() != 0) &#123;</span><br><span class="line">//					System.out.println((char)is.read()); // 默认一次只读一个字符</span><br><span class="line">//				&#125;</span><br><span class="line">			</span><br><span class="line">			byte[] buffer = new byte[10]; // 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span><br><span class="line">			int len = 0; // 设置个长度</span><br><span class="line">			while((len = is.read(buffer)) != -1) // 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span><br><span class="line">			&#123;</span><br><span class="line">				System.out.print(new String(buffer , 0 , len)); </span><br><span class="line">			&#125;</span><br><span class="line">			is.close();</span><br><span class="line">			&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125; catch (IOException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <title>Hello World</title>
+    <url>/2022/11/03/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash</span><br><span class="line">$ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
 
-<h1 id="模拟用户登录："><a href="#模拟用户登录：" class="headerlink" title="模拟用户登录："></a>模拟用户登录：</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class login &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File basic = new File(&quot;D://&quot; , &quot;a.txt&quot;);</span><br><span class="line">		try(InputStream in = new FileInputStream(basic);</span><br><span class="line">			Reader re = new InputStreamReader(in , &quot;UTF-8&quot;);	</span><br><span class="line">			) &#123;</span><br><span class="line">			Map db = new HashMap();</span><br><span class="line">			Scanner scanner = new Scanner(re);</span><br><span class="line">			while(scanner.hasNext()) &#123;</span><br><span class="line">			String usertotal = scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(&quot; &quot;);</span><br><span class="line">//			System.out.println(username[0]);</span><br><span class="line">//			System.out.println(username[1]);</span><br><span class="line">			db.put(username[0],username[1]);</span><br><span class="line">//			System.out.println(db);</span><br><span class="line">			&#125;</span><br><span class="line">			Scanner name = new Scanner(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			System.out.println(&quot;请输入账号：&quot;);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			if(usename == null) &#123;</span><br><span class="line">				System.out.println(&quot;姓名不能为空&quot;);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">				System.out.println(&quot;请输入密码&quot;);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				if(password == null) &#123;</span><br><span class="line">					System.out.println(&quot;密码不能为空&quot;);</span><br><span class="line">					</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(&quot;登陆成功&quot;);</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(&quot;输入错误请重新输入&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class login &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File basic = new File(&quot;D://&quot; , &quot;a.txt&quot;);</span><br><span class="line">		try(InputStream in = new FileInputStream(basic);</span><br><span class="line">			Reader re = new InputStreamReader(in , &quot;UTF-8&quot;);	</span><br><span class="line">			) &#123;</span><br><span class="line">			Map db = new HashMap();</span><br><span class="line">			Scanner scanner = new Scanner(re);</span><br><span class="line">			while(scanner.hasNext()) &#123;</span><br><span class="line">			String usertotal = scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(&quot; &quot;);</span><br><span class="line">//			System.out.println(username[0]);</span><br><span class="line">//			System.out.println(username[1]);</span><br><span class="line">			db.put(username[0],username[1]);</span><br><span class="line">//			System.out.println(db);</span><br><span class="line">			&#125;</span><br><span class="line">			Scanner name = new Scanner(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			System.out.println(&quot;请输入账号：&quot;);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			if(usename == null) &#123;</span><br><span class="line">				System.out.println(&quot;姓名不能为空&quot;);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">				System.out.println(&quot;请输入密码&quot;);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				if(password == null) &#123;</span><br><span class="line">					System.out.println(&quot;密码不能为空&quot;);</span><br><span class="line">					</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(&quot;登陆成功&quot;);</span><br><span class="line">				System.out.println(&quot;输入1进行修改密码&quot;);</span><br><span class="line">				int m = Integer.parseInt(name.nextLine());</span><br><span class="line">				if(m == 1) &#123;</span><br><span class="line">					if(db.containsKey(usename)) &#123;</span><br><span class="line">						System.out.println(&quot;请输入更改之后的密码&quot;);</span><br><span class="line">						String newpassword = name.nextLine();</span><br><span class="line">						db.put(usename, newpassword);</span><br><span class="line">					&#125; </span><br><span class="line">				&#125;</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(&quot;输入错误请重新输入&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-      <categories>
-        <category>作业</category>
-      </categories>
   </entry>
   <entry>
     <title>java面试题</title>
@@ -1739,6 +1890,46 @@
       </categories>
   </entry>
   <entry>
+    <title>作业10-21</title>
+    <url>/2022/10/21/%E4%BD%9C%E4%B8%9A10-21/</url>
+    <content><![CDATA[<h1 id="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"><a href="#3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称" class="headerlink" title="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"></a>3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">import 作业.file;</span><br><span class="line"></span><br><span class="line">public class file过滤 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File M = new File(&quot;D:\\&quot; , &quot;try&quot;);</span><br><span class="line">		chakan(M);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void chakan(File M) &#123;</span><br><span class="line">		File[] k = M.listFiles();</span><br><span class="line">		System.out.println(k);</span><br><span class="line">		for (int i = 0; i &lt; k.length; i++) &#123;</span><br><span class="line">			File[] t = k[i].listFiles();</span><br><span class="line">			if(t == null) &#123;</span><br><span class="line">				String g =  k[i].getName();</span><br><span class="line">				String d = g.substring(k[i].getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">				if(d.equals(&quot;.java&quot;)) &#123;</span><br><span class="line">					System.out.println(g.substring(0, k[i].getName().lastIndexOf(&quot;.&quot;)));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				chakan(k[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>重点字符串的相等要用equals，递归</li>
+</ul>
+<h1 id="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"><a href="#判断指定路径下的所有子文件或是目录，如果是子文件则全部删除" class="headerlink" title="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"></a>判断指定路径下的所有子文件或是目录，如果是子文件则全部删除</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">File[] ds =	k.listFiles(); </span><br><span class="line">for (int i = 0; i &lt; ds.length ; i++ ) &#123;</span><br><span class="line">	File[] h = ds[i].listFiles();</span><br><span class="line">	if(h == null) &#123;</span><br><span class="line">		System.out.println(&quot;这个是个文件&quot;);</span><br><span class="line">		ds[i].delete();</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		k.delete();</span><br><span class="line">		SHANCHU(ds[i]);</span><br><span class="line">			&#125;</span><br><span class="line">	k.delete();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重点：递归</li>
+</ul>
+<h1 id="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）"><a href="#5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）" class="headerlink" title="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）"></a>5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">File G = new File(&quot;D:\\\\102班级\\\\javaSE作业&quot;);</span><br><span class="line"></span><br><span class="line">G.mkdirs();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="从磁盘读取一个文件到内存中，再打印到控制台"><a href="#从磁盘读取一个文件到内存中，再打印到控制台" class="headerlink" title="从磁盘读取一个文件到内存中，再打印到控制台"></a>从磁盘读取一个文件到内存中，再打印到控制台</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line"></span><br><span class="line">public class lkdjfslasfj &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		try &#123;</span><br><span class="line">			InputStream is = new FileInputStream(&quot;D:/a.txt&quot;);</span><br><span class="line">//				while(is.available() != 0) &#123;</span><br><span class="line">//					System.out.println((char)is.read()); // 默认一次只读一个字符</span><br><span class="line">//				&#125;</span><br><span class="line">			</span><br><span class="line">			byte[] buffer = new byte[10]; // 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span><br><span class="line">			int len = 0; // 设置个长度</span><br><span class="line">			while((len = is.read(buffer)) != -1) // 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span><br><span class="line">			&#123;</span><br><span class="line">				System.out.print(new String(buffer , 0 , len)); </span><br><span class="line">			&#125;</span><br><span class="line">			is.close();</span><br><span class="line">			&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125; catch (IOException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="模拟用户登录："><a href="#模拟用户登录：" class="headerlink" title="模拟用户登录："></a>模拟用户登录：</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class login &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File basic = new File(&quot;D://&quot; , &quot;a.txt&quot;);</span><br><span class="line">		try(InputStream in = new FileInputStream(basic);</span><br><span class="line">			Reader re = new InputStreamReader(in , &quot;UTF-8&quot;);	</span><br><span class="line">			) &#123;</span><br><span class="line">			Map db = new HashMap();</span><br><span class="line">			Scanner scanner = new Scanner(re);</span><br><span class="line">			while(scanner.hasNext()) &#123;</span><br><span class="line">			String usertotal = scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(&quot; &quot;);</span><br><span class="line">//			System.out.println(username[0]);</span><br><span class="line">//			System.out.println(username[1]);</span><br><span class="line">			db.put(username[0],username[1]);</span><br><span class="line">//			System.out.println(db);</span><br><span class="line">			&#125;</span><br><span class="line">			Scanner name = new Scanner(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			System.out.println(&quot;请输入账号：&quot;);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			if(usename == null) &#123;</span><br><span class="line">				System.out.println(&quot;姓名不能为空&quot;);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">				System.out.println(&quot;请输入密码&quot;);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				if(password == null) &#123;</span><br><span class="line">					System.out.println(&quot;密码不能为空&quot;);</span><br><span class="line">					</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(&quot;登陆成功&quot;);</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(&quot;输入错误请重新输入&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class login &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File basic = new File(&quot;D://&quot; , &quot;a.txt&quot;);</span><br><span class="line">		try(InputStream in = new FileInputStream(basic);</span><br><span class="line">			Reader re = new InputStreamReader(in , &quot;UTF-8&quot;);	</span><br><span class="line">			) &#123;</span><br><span class="line">			Map db = new HashMap();</span><br><span class="line">			Scanner scanner = new Scanner(re);</span><br><span class="line">			while(scanner.hasNext()) &#123;</span><br><span class="line">			String usertotal = scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(&quot; &quot;);</span><br><span class="line">//			System.out.println(username[0]);</span><br><span class="line">//			System.out.println(username[1]);</span><br><span class="line">			db.put(username[0],username[1]);</span><br><span class="line">//			System.out.println(db);</span><br><span class="line">			&#125;</span><br><span class="line">			Scanner name = new Scanner(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			System.out.println(&quot;请输入账号：&quot;);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			if(usename == null) &#123;</span><br><span class="line">				System.out.println(&quot;姓名不能为空&quot;);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">				System.out.println(&quot;请输入密码&quot;);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				if(password == null) &#123;</span><br><span class="line">					System.out.println(&quot;密码不能为空&quot;);</span><br><span class="line">					</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(&quot;登陆成功&quot;);</span><br><span class="line">				System.out.println(&quot;输入1进行修改密码&quot;);</span><br><span class="line">				int m = Integer.parseInt(name.nextLine());</span><br><span class="line">				if(m == 1) &#123;</span><br><span class="line">					if(db.containsKey(usename)) &#123;</span><br><span class="line">						System.out.println(&quot;请输入更改之后的密码&quot;);</span><br><span class="line">						String newpassword = name.nextLine();</span><br><span class="line">						db.put(usename, newpassword);</span><br><span class="line">					&#125; </span><br><span class="line">				&#125;</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(&quot;输入错误请重新输入&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>作业</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>杂项</title>
+    <url>/2022/10/27/%E6%9D%82%E9%A1%B9/</url>
+    <content><![CDATA[<h1 id="查看自己电脑可支持的最大内存"><a href="#查看自己电脑可支持的最大内存" class="headerlink" title="查看自己电脑可支持的最大内存"></a>查看自己电脑可支持的最大内存</h1><ul>
+<li>打开cmd</li>
+<li>输入wmic memphysical get maxcapacity</li>
+<li>就会获得字节数</li>
+<li>除以两个1024，就会是xxxG</li>
+</ul>
+<h1 id="查看电脑有几个卡槽"><a href="#查看电脑有几个卡槽" class="headerlink" title="查看电脑有几个卡槽"></a>查看电脑有几个卡槽</h1><ul>
+<li>打开任务管理器</li>
+<li>选择性能</li>
+<li>上面就有已经使用了几个卡槽</li>
+</ul>
+]]></content>
+      <categories>
+        <category>杂项</category>
+      </categories>
+  </entry>
+  <entry>
     <title>签到的制作（后端＋前端）</title>
     <url>/2022/10/19/%E5%88%B6%E4%BD%9C%E7%AD%BE%E5%88%B0/</url>
     <content><![CDATA[<h1 id="前提准备"><a href="#前提准备" class="headerlink" title="前提准备"></a>前提准备</h1><ul>
@@ -1850,25 +2041,6 @@
 <h1 id="二叉搜索树和双向链表"><a href="#二叉搜索树和双向链表" class="headerlink" title="二叉搜索树和双向链表"></a>二叉搜索树和双向链表</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public class Solution &#123;</span><br><span class="line"></span><br><span class="line">    TreeNode pre= null;</span><br><span class="line">    TreeNode root=null;</span><br><span class="line">    public TreeNode Convert(TreeNode pRootOfTree) &#123;</span><br><span class="line">        if(pRootOfTree ==null) return null;</span><br><span class="line">        Convert(pRootOfTree.left);</span><br><span class="line">        if(root == null)&#123;</span><br><span class="line">            root=pRootOfTree;</span><br><span class="line">        &#125;</span><br><span class="line">        if(pre!=null)&#123;</span><br><span class="line">            pRootOfTree.left=pre;</span><br><span class="line">            pre.right=pRootOfTree;</span><br><span class="line">        &#125;</span><br><span class="line">        pre=pRootOfTree;</span><br><span class="line">        Convert(pRootOfTree.right);</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>牛客刷题</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>杂项</title>
-    <url>/2022/10/27/%E6%9D%82%E9%A1%B9/</url>
-    <content><![CDATA[<h1 id="查看自己电脑可支持的最大内存"><a href="#查看自己电脑可支持的最大内存" class="headerlink" title="查看自己电脑可支持的最大内存"></a>查看自己电脑可支持的最大内存</h1><ul>
-<li>打开cmd</li>
-<li>输入wmic memphysical get maxcapacity</li>
-<li>就会获得字节数</li>
-<li>除以两个1024，就会是xxxG</li>
-</ul>
-<h1 id="查看电脑有几个卡槽"><a href="#查看电脑有几个卡槽" class="headerlink" title="查看电脑有几个卡槽"></a>查看电脑有几个卡槽</h1><ul>
-<li>打开任务管理器</li>
-<li>选择性能</li>
-<li>上面就有已经使用了几个卡槽</li>
-</ul>
-]]></content>
-      <categories>
-        <category>杂项</category>
       </categories>
   </entry>
 </search>
