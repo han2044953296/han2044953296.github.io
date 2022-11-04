@@ -318,7 +318,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-11-03 09:11:14 / 修改时间：19:01:40" itemprop="dateCreated datePublished" datetime="2022-11-03T09:11:14+08:00">2022-11-03</time>
+              <time title="创建时间：2022-11-03 09:11:14 / 修改时间：20:09:10" itemprop="dateCreated datePublished" datetime="2022-11-03T09:11:14+08:00">2022-11-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -446,10 +446,14 @@
 </li>
 </ul>
 <h3 id="show"><a href="#show" class="headerlink" title="show"></a>show</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">show &#123;databases | schemas&#125;</span><br><span class="line">[LIKE &#x27;pattern&#x27; | WHERE expr]</span><br><span class="line"></span><br><span class="line">show [FULL] tables : 不一定是要切换到这个数据库下才可以</span><br><span class="line">[&#123;FROM | IN&#125; db_name]</span><br><span class="line">[&#123;LIKE &#x27;pattern&#x27; | WHERE expr&#125;]</span><br></pre></td></tr></table></figure>
+
 <h3 id="use"><a href="#use" class="headerlink" title="use"></a>use</h3><ul>
 <li>use xxx数据库</li>
 </ul>
 <h2 id="dml"><a href="#dml" class="headerlink" title="dml"></a>dml</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">insert select update delete</span><br><span class="line">insert[LOW_PRIORITY | DELAYED | HIGH_PRORITY] [IGNORE]</span><br><span class="line">[INTO]</span><br><span class="line">[(col_name[,col_name]...)]</span><br><span class="line">&#123;VALUES | VALUE&#125; (value_list) [, (value_list)] ...</span><br><span class="line">[ON DUPLICATE KEY UPDATE assignment_list]</span><br><span class="line">比如 ：INSERT into user_table (id,name,age)VALUES (1,&#x27;zhangsan&#x27;,10);</span><br><span class="line">* 表示所有字段</span><br><span class="line">select *</span><br><span class="line">from user_table;</span><br><span class="line">select name,age from user_table;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="order"><a href="#order" class="headerlink" title="order"></a>order</h3><ul>
+<li>我们通过order by xxx 让输出的顺序是按照某一个列进行排序的</li>
+</ul>
 <h2 id="dcl"><a href="#dcl" class="headerlink" title="dcl"></a>dcl</h2><p>- </p>
 <h2 id="常用字符类型"><a href="#常用字符类型" class="headerlink" title="常用字符类型"></a>常用字符类型</h2><ul>
 <li>数值类型 ： int整形 long长整型 float单精度小数 double双精度 decimal小数，可以自己指定精度的</li>
@@ -2122,7 +2126,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共41.8k字</span>
+  <span class="post-count">博客全站共41.9k字</span>
 </div>
 
 
