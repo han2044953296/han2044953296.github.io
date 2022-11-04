@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="简介 关系型数据库 非关系型数据库 ： nosql 存储方式 ， 类似excel 学习 ： 基于官网 版本 ： 5.7 ：主流 5.6 ：也有 8.x ：不是主流 ： java团队  下载安装包 5.7 安装包种类 rpm ： 不可以完成二次开发，只能用mysql官网的 tar ： 相当于自己魔改的有很多官方没有的功能 rpm ； 要注意el7的 是centos7的 用lazz 上传 ：rz 下载">
+  <meta name="description" content="简介 关系型数据库 非关系型数据库 ： nosql 存储方式 ， 类似excel 学习 ： 基于官网 版本 ： 5.7 ：主流 5.6 ：也有 8.x ：不是主流 ： java团队 极限是在几tb级别 秒级别 毫秒级别 添加索引还可以更快  下载安装包 5.7 安装包种类 rpm ： 不可以完成二次开发，只能用mysql官网的 tar ： 相当于自己魔改的有很多官方没有的功能 rpm ； 要注意e">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql">
 <meta property="og:url" content="http://example.com/2022/11/03/11-3/index.html">
 <meta property="og:site_name" content="枫叶冢">
-<meta property="og:description" content="简介 关系型数据库 非关系型数据库 ： nosql 存储方式 ， 类似excel 学习 ： 基于官网 版本 ： 5.7 ：主流 5.6 ：也有 8.x ：不是主流 ： java团队  下载安装包 5.7 安装包种类 rpm ： 不可以完成二次开发，只能用mysql官网的 tar ： 相当于自己魔改的有很多官方没有的功能 rpm ； 要注意el7的 是centos7的 用lazz 上传 ：rz 下载">
+<meta property="og:description" content="简介 关系型数据库 非关系型数据库 ： nosql 存储方式 ， 类似excel 学习 ： 基于官网 版本 ： 5.7 ：主流 5.6 ：也有 8.x ：不是主流 ： java团队 极限是在几tb级别 秒级别 毫秒级别 添加索引还可以更快  下载安装包 5.7 安装包种类 rpm ： 不可以完成二次开发，只能用mysql官网的 tar ： 相当于自己魔改的有很多官方没有的功能 rpm ； 要注意e">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-03T01:11:14.000Z">
-<meta property="article:modified_time" content="2022-11-04T05:25:54.617Z">
+<meta property="article:modified_time" content="2022-11-04T15:32:53.311Z">
 <meta property="article:author" content="liu zihang">
 <meta name="twitter:card" content="summary">
 
@@ -232,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-04 13:25:54" itemprop="dateModified" datetime="2022-11-04T13:25:54+08:00">2022-11-04</time>
+                <time title="修改时间：2022-11-04 23:32:53" itemprop="dateModified" datetime="2022-11-04T23:32:53+08:00">2022-11-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -257,14 +257,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.5k</span>
+              <span>5.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -288,6 +288,7 @@
 <li>5.7 ：主流</li>
 <li>5.6 ：也有</li>
 <li>8.x ：不是主流 ： java团队</li>
+<li>极限是在几tb级别 秒级别 毫秒级别 添加索引还可以更快</li>
 </ul>
 <h1 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h1><ul>
 <li>5.7</li>
@@ -364,6 +365,7 @@
 <li>字符集 ： 5.7 默认的字符集是拉丁的</li>
 <li>我们可以在创建表的时候更改字符集</li>
 <li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">CREATE TABLE `name` (</span><br><span class="line">  `id` int(3) DEFAULT NULL,</span><br><span class="line">  `age` int(3) DEFAULT NULL,</span><br><span class="line">  `name` varchar(3) DEFAULT NULL</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=UTF-8 // 字符集</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>它支持嵌套<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">select name ,age_max ,age_avg </span><br><span class="line">from(</span><br><span class="line">select </span><br><span class="line">name,</span><br><span class="line">max(age) as age_max,</span><br><span class="line">min(age) as age_min,</span><br><span class="line">count(age) as age_count,</span><br><span class="line">avg(age) as age_avg</span><br><span class="line">from xxx</span><br><span class="line">group by name) as res </span><br><span class="line">where age_avg &gt;18;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h2><h3 id="where"><a href="#where" class="headerlink" title="where"></a>where</h3><ul>
 <li>过滤条件</li>
@@ -381,7 +383,7 @@
 <li></li>
 </ul>
 <h3 id="like"><a href="#like" class="headerlink" title="like"></a>like</h3><ul>
-<li>like ： 模糊匹配</li>
+<li>like rlike regexp ： 模糊匹配</li>
 <li><code> select * from where name like &quot;z%&quot;</code> : 代表查找第一个是z的</li>
 <li>占位符 ： _ : 占位一个</li>
 <li><code> select * from where name like &quot;_s%&quot;</code> :第二个是s的</li>
@@ -390,6 +392,13 @@
 <li>合并成一个纵向的表</li>
 <li><code>union</code> ： 去重</li>
 <li><code>union all</code> ： 不去重</li>
+</ul>
+<h3 id="查询限制"><a href="#查询限制" class="headerlink" title="查询限制"></a>查询限制</h3><ul>
+<li>limit</li>
+<li><code>select * from xxx limit 2</code></li>
+<li>代表只显示两条</li>
+<li>但是底层已经查完了</li>
+<li>只是只显示两条</li>
 </ul>
 <h2 id="数据清洗"><a href="#数据清洗" class="headerlink" title="数据清洗"></a>数据清洗</h2><ul>
 <li>清除有无用的数据</li>
@@ -415,6 +424,33 @@
 <li>空格不宜过多，最好全部贴着最前面</li>
 <li>注意括号不能是中文版的</li>
 </ul>
+<h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><ul>
+<li>把多行数据聚合成一行 ： </li>
+<li>sum </li>
+<li>max</li>
+<li>min</li>
+<li>avg</li>
+<li>count<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select</span><br><span class="line">sum(age) as age,</span><br><span class="line">max(age) as age,</span><br><span class="line">min(age) as age,</span><br><span class="line">count(age) as age,</span><br><span class="line">avg(age) as age </span><br><span class="line">from xxx </span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="分组函数"><a href="#分组函数" class="headerlink" title="分组函数"></a>分组函数</h3><ul>
+<li>group by colum</li>
+<li><code>select * from xxx group by age;</code></li>
+<li><code>select * from xxx where id &gt; 1 having group by age;</code></li>
+<li>如果group by 两个 则他的维度就变了</li>
+<li>就会变得更细</li>
+<li>而且针对于分组之后的结果进行过滤 ，要用having</li>
+<li><code>select * from xxx group by age having id &gt; 1;</code></li>
+<li>group by 之后你不可以用where</li>
+</ul>
+<h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><ul>
+<li>多表联查</li>
+<li>join</li>
+<li>内连接 ： 他们的公共的部分 <code> select * from a （inner） join b on a.id=b.id</code></li>
+<li>外连接 ： </li>
+<li>左连接 ：以左表为主 ，右表来匹配 匹配的上 就是可以 匹配不上就是null<code> select * from a left join b on a.id=b.id</code></li>
+<li>右连接 ：以右表为主 ， 同上 ： <code>select * from a right join b on a.id=b.id</code></li>
+<li>全连接 ： 左右表数据都是全的 ： <code>select * from a Full join b on a.id=b.id</code> 无重复的 （mysql里不支持全连接）</li>
+</ul>
 <h3 id="show"><a href="#show" class="headerlink" title="show"></a>show</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">show &#123;databases | schemas&#125;</span><br><span class="line">[LIKE &#x27;pattern&#x27; | WHERE expr]</span><br><span class="line"></span><br><span class="line">show [FULL] tables : 不一定是要切换到这个数据库下才可以</span><br><span class="line">[&#123;FROM | IN&#125; db_name]</span><br><span class="line">[&#123;LIKE &#x27;pattern&#x27; | WHERE expr&#125;]</span><br></pre></td></tr></table></figure>
 
 <h3 id="use"><a href="#use" class="headerlink" title="use"></a>use</h3><ul>
@@ -434,7 +470,7 @@
 <li>[order by ..]</li>
 <li>[limit row_count]</li>
 <li><code>update user_info set age=30; // 这个是对整个表进行更改</code></li>
-<li><code>update user_info set age=30 wwhere id=1; // 这个是对id=1的一列进行更改</code></li>
+<li><code>update user_info set age=30 where id=1; // 这个是对id=1的一列进行更改</code></li>
 </ul>
 <h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><ul>
 <li>删除数据</li>
@@ -491,6 +527,10 @@
 <li>控制索引的数量 : 一般小于5个</li>
 <li>选择合理的字段</li>
 <li>提升gropu by 的效率</li>
+<li>大数据一般用 hive 和 hbase</li>
+<li>不要求 速度</li>
+<li>但是可以presto等工具桥接</li>
+<li></li>
 </ul>
 
     </div>
@@ -650,7 +690,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-number">2.</span> <span class="nav-text">下载安装包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql%E7%9A%84%E5%8D%B8%E8%BD%BD"><span class="nav-number">2.1.</span> <span class="nav-text">mysql的卸载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql%E7%9A%84%E5%AE%89%E8%A3%85linux%E7%89%88%E6%9C%AC"><span class="nav-number">2.2.</span> <span class="nav-text">mysql的安装linux版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">mysql的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C"><span class="nav-number">3.1.</span> <span class="nav-text">其他操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#where"><span class="nav-number">3.1.1.</span> <span class="nav-text">where</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#like"><span class="nav-number">3.1.2.</span> <span class="nav-text">like</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E5%B9%B6%E8%A1%A8"><span class="nav-number">3.1.3.</span> <span class="nav-text">合并表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97"><span class="nav-number">3.2.</span> <span class="nav-text">数据清洗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ddl"><span class="nav-number">3.3.</span> <span class="nav-text">ddl</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#show"><span class="nav-number">3.3.1.</span> <span class="nav-text">show</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#use"><span class="nav-number">3.3.2.</span> <span class="nav-text">use</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#drop"><span class="nav-number">3.3.3.</span> <span class="nav-text">drop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dml"><span class="nav-number">3.4.</span> <span class="nav-text">dml</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#desc"><span class="nav-number">3.4.1.</span> <span class="nav-text">desc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#update"><span class="nav-number">3.4.2.</span> <span class="nav-text">update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delete"><span class="nav-number">3.4.3.</span> <span class="nav-text">delete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#order"><span class="nav-number">3.4.4.</span> <span class="nav-text">order</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dcl"><span class="nav-number">3.5.</span> <span class="nav-text">dcl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.6.</span> <span class="nav-text">常用字符类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql%E7%9A%84%E4%BC%98%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">mysql的优化</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-number">2.</span> <span class="nav-text">下载安装包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql%E7%9A%84%E5%8D%B8%E8%BD%BD"><span class="nav-number">2.1.</span> <span class="nav-text">mysql的卸载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql%E7%9A%84%E5%AE%89%E8%A3%85linux%E7%89%88%E6%9C%AC"><span class="nav-number">2.2.</span> <span class="nav-text">mysql的安装linux版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">mysql的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C"><span class="nav-number">3.1.</span> <span class="nav-text">其他操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#where"><span class="nav-number">3.1.1.</span> <span class="nav-text">where</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#like"><span class="nav-number">3.1.2.</span> <span class="nav-text">like</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E5%B9%B6%E8%A1%A8"><span class="nav-number">3.1.3.</span> <span class="nav-text">合并表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E9%99%90%E5%88%B6"><span class="nav-number">3.1.4.</span> <span class="nav-text">查询限制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97"><span class="nav-number">3.2.</span> <span class="nav-text">数据清洗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ddl"><span class="nav-number">3.3.</span> <span class="nav-text">ddl</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="nav-number">3.3.1.</span> <span class="nav-text">聚合函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E5%87%BD%E6%95%B0"><span class="nav-number">3.3.2.</span> <span class="nav-text">分组函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join"><span class="nav-number">3.3.3.</span> <span class="nav-text">join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#show"><span class="nav-number">3.3.4.</span> <span class="nav-text">show</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#use"><span class="nav-number">3.3.5.</span> <span class="nav-text">use</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#drop"><span class="nav-number">3.3.6.</span> <span class="nav-text">drop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dml"><span class="nav-number">3.4.</span> <span class="nav-text">dml</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#desc"><span class="nav-number">3.4.1.</span> <span class="nav-text">desc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#update"><span class="nav-number">3.4.2.</span> <span class="nav-text">update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delete"><span class="nav-number">3.4.3.</span> <span class="nav-text">delete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#order"><span class="nav-number">3.4.4.</span> <span class="nav-text">order</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dcl"><span class="nav-number">3.5.</span> <span class="nav-text">dcl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.6.</span> <span class="nav-text">常用字符类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql%E7%9A%84%E4%BC%98%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">mysql的优化</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -666,7 +706,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -724,7 +764,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共42.7k字</span>
+  <span class="post-count">博客全站共45k字</span>
 </div>
 
 

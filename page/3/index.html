@@ -198,6 +198,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/15/10-15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/15/10-15/" class="post-title-link" itemprop="url">java中异常的相关知识</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-15 17:44:10" itemprop="dateCreated datePublished" datetime="2022-10-15T17:44:10+08:00">2022-10-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javase/" itemprop="url" rel="index"><span itemprop="name">javase</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="因为一些原因导致开发的程序出现问题"><a href="#因为一些原因导致开发的程序出现问题" class="headerlink" title="因为一些原因导致开发的程序出现问题"></a>因为一些原因导致开发的程序出现问题</h3><p>Throwable是error和Exception的父类，是Java里所有异常的父类<br>##error<br>如果出现了error，则代表计算机出现了重大的错误，比如jvm无法解决的问题等。</p>
+<h2 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h2><p>如果出现了Exception，则代表计算机代码出现了问题，编译或者运行的时候出现了问题。但是Exception还分为运行时异常和编译时异常</p>
+<h3 id="运行时异常"><a href="#运行时异常" class="headerlink" title="运行时异常"></a>运行时异常</h3><p>运行时异常比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayIndexOutOfBoundsException//这就是个数组越界的异常</span><br></pre></td></tr></table></figure>
+
+<p>这些都是运行的时候产生的异常，编译可以通过的，其中最常见的就是数组越界，下表越剧等</p>
+<h3 id="编译时异常"><a href="#编译时异常" class="headerlink" title="编译时异常"></a>编译时异常</h3><p>编译时异常比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The final local variable m cannot be assigned. It must be blank and not using a compound assignment //这个就是个简单的final修饰的变量不可被改变的异常</span><br></pre></td></tr></table></figure>
+
+<p>这些是在程序未被运行之前就报出的错误。会被编译器会进行优先的处理。<br>最常见的就是作用域的问题，比如static变量和非static的变量等。</p>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><h3 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h3><p>我们可以通过try catch的方法进行捕获异常，让异常出现的时候不至于停止程序的运行<br>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">try &#123;//放会报错的语句，这个是个简单数组越界</span><br><span class="line">	a[m] = 1;</span><br><span class="line">	System.out.println(&quot;输入正确&quot;);	</span><br><span class="line">	&#125; catch (Exception e) &#123;</span><br><span class="line">	// TODO: handle exception</span><br><span class="line">	// 在错误发生时怎么处理</span><br><span class="line">	System.out.println(&quot;成功抛出异常&quot;);</span><br><span class="line">	&#125; </span><br><span class="line">	catch(xxxxx) &#123;</span><br><span class="line">	&#125;// 这里的catch还可以继续往下写，但是要注意其中异常的类型必须是越在后面类型越大的，因为Exception还分多个子类异常，这样可以更精确的分辨是什么异常，不过直接写Exception也不算错</span><br><span class="line">	finally &#123;</span><br><span class="line">		// finally里放一定会执行的代码，不过不写finally也不算错</span><br><span class="line">		&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>但是要注意，我们不可以捕获error异常，因为error异常已经超出了代码捕获的范围，我们一般都要进行硬件及软件的处理</p>
+<h3 id="throws"><a href="#throws" class="headerlink" title="throws"></a>throws</h3><p>我们可以通过throws把异常向上抛出，让他们的上层去处理，可是一般上层如果不能处理，还会继续向上抛出，这种方法我简称为逃避，我们，一般使用try catch语句较多，一般是抛到main方法里进行try catch处理，<br>如果异常一直不处理，那编译器最后会报错</p>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/15/java%E4%B8%AD%E7%9A%84%E6%98%93%E9%94%99%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -704,7 +812,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -762,7 +870,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共42.7k字</span>
+  <span class="post-count">博客全站共45k字</span>
 </div>
 
 
