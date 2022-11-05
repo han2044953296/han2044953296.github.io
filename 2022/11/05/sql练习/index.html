@@ -30,7 +30,7 @@
 <meta property="og:description" content="问题123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990create database bigdata;use">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-04T17:05:34.000Z">
-<meta property="article:modified_time" content="2022-11-05T05:26:47.601Z">
+<meta property="article:modified_time" content="2022-11-05T05:31:34.792Z">
 <meta property="article:author" content="liu zihang">
 <meta name="twitter:card" content="summary">
 
@@ -226,7 +226,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-11-05 01:05:34 / 修改时间：13:26:47" itemprop="dateCreated datePublished" datetime="2022-11-05T01:05:34+08:00">2022-11-05</time>
+              <time title="创建时间：2022-11-05 01:05:34 / 修改时间：13:31:34" itemprop="dateCreated datePublished" datetime="2022-11-05T01:05:34+08:00">2022-11-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -503,123 +503,84 @@
 <ul>
 <li>接下来是小于3000的</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">		select </span><br><span class="line">		comm,</span><br><span class="line">		empno,</span><br><span class="line">		ename,</span><br><span class="line">		sal,</span><br><span class="line">		mgr,</span><br><span class="line">		deptno1,</span><br><span class="line">		dname,</span><br><span class="line">		earn,</span><br><span class="line">		((empno + 4) - empno) as level</span><br><span class="line">		from(select </span><br><span class="line">		comm,</span><br><span class="line">		empno,</span><br><span class="line">		ename,</span><br><span class="line">		sal,</span><br><span class="line">		mgr,</span><br><span class="line">		deptno1,</span><br><span class="line">		dname,</span><br><span class="line">		(sal + commchange) as earn</span><br><span class="line">		from(</span><br><span class="line">		select</span><br><span class="line">		comm,</span><br><span class="line">		empno,</span><br><span class="line">		ename,</span><br><span class="line">		sal,</span><br><span class="line">		mgr,</span><br><span class="line">		deptno1,</span><br><span class="line">		dname,</span><br><span class="line">		ifnull(comm , 0) as commchange</span><br><span class="line">		from(select </span><br><span class="line">		comm,</span><br><span class="line">		empno,</span><br><span class="line">		ename,</span><br><span class="line">		deptno as deptno1,</span><br><span class="line">		sal,</span><br><span class="line">		mgr</span><br><span class="line">		from emp where sal &gt; (select </span><br><span class="line">		avg(sal)</span><br><span class="line">		from emp)) as Oavg_table left join dept on Oavg_table.deptno1=dept.deptno) as setlist) as sal_tables where earn &gt;2000 and earn &lt;=3000;</span><br><span class="line"></span><br><span class="line">````</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- 注意我这里是偷懒了，没有判断2000和更低的，原因在上面 ，如果想判断和上面两个一样</span><br><span class="line">- 接下来 我们用unio  把他们链接到一起</span><br><span class="line"></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">select </span><br><span class="line">comm,</span><br><span class="line">empno,</span><br><span class="line">ename,</span><br><span class="line">sal,</span><br><span class="line">mgr,</span><br><span class="line">deptno1,</span><br><span class="line">dname,</span><br><span class="line">earn,</span><br><span class="line">((empno + 4) - empno) as level</span><br><span class="line">from(select </span><br><span class="line">comm,</span><br><span class="line">empno,</span><br><span class="line">ename,</span><br><span class="line">sal,</span><br><span class="line">mgr,</span><br><span class="line">deptno1,</span><br><span class="line">dname,</span><br><span class="line">(sal + commchange) as earn</span><br><span class="line">from(</span><br><span class="line">select</span><br><span class="line">comm,</span><br><span class="line">empno,</span><br><span class="line">ename,</span><br><span class="line">sal,</span><br><span class="line">mgr,</span><br><span class="line">deptno1,</span><br><span class="line">dname,</span><br><span class="line">ifnull(comm , 0) as commchange</span><br><span class="line">from(select </span><br><span class="line">comm,</span><br><span class="line">empno,</span><br><span class="line">ename,</span><br><span class="line">deptno as deptno1,</span><br><span class="line">sal,</span><br><span class="line">mgr</span><br><span class="line">from emp where sal &gt; (select </span><br><span class="line">avg(sal)</span><br><span class="line">from emp)) as Oavg_table left join dept on Oavg_table.deptno1=dept.deptno) as setlist) as sal_tables where earn &gt;2000 and earn &lt;=3000;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<pre><code>    select 
-    comm,
-    empno,
-    ename,
-    sal,
-    mgr,
-    deptno1,
-    dname,
-    earn,
-    ((empno + 5) - empno) as level
-    from(select 
-    comm,
-    empno,
-    ename,
-    sal,
-    mgr,
-    deptno1,
-    dname,
-    (sal + commchange) as earn
-    from(
-    select
-    comm,
-    empno,
-    ename,
-    sal,
-    mgr,
-    deptno1,
-    dname,
-    ifnull(comm , 0) as commchange
-    from(select 
-    comm,
-    empno,
-    ename,
-    deptno as deptno1,
-    sal,
-    mgr
-    from emp where sal &gt; (select 
-    avg(sal)
-    from emp)) as Oavg_table left join dept on Oavg_table.deptno1=dept.deptno) as setlist) as sal_tables where earn &gt;3000
-    union
-    select 
-    comm,
-    empno,
-    ename,
-    sal,
-    mgr,
-    deptno1,
-    dname,
-    earn,
-    ((empno + 4) - empno) as level
-    from(select 
-    comm,
-    empno,
-    ename,
-    sal,
-    mgr,
-    deptno1,
-    dname,
-    (sal + commchange) as earn
-    from(
-    select
-    comm,
-    empno,
-    ename,
-    sal,
-    mgr,
-    deptno1,
-    dname,
-    ifnull(comm , 0) as commchange
-    from(select 
-    comm,
-    empno,
-    ename,
-    deptno as deptno1,
-    sal,
-    mgr
-    from emp where sal &gt; (select 
-    avg(sal)
-    from emp)) as Oavg_table left join dept on Oavg_table.deptno1=dept.deptno) as setlist) as sal_tables where earn &gt;2000 and earn &lt;=3000;
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">- 就可以了 ，上面的我做法是我没动脑子，直接一点点搞出来的</span><br><span class="line">### 2 ###</span><br><span class="line">- 暂时没想出来 有时间再说，有一点思路</span><br><span class="line">## 第九题 ##</span><br><span class="line">- 列出薪金  高于  在各自部门工作的员工的平均薪金的员工姓名和薪金、部门名称</span><br><span class="line">- 条件 ： 各个部门，`薪金`高于`各个部门`的`平均薪金`</span><br><span class="line">### 1 ###</span><br><span class="line">- 我们可以先获取薪金，以及部门编号 ，并且按照他们进行划分</span><br><span class="line">- 因为题目中主要要求的就是部门以及薪金</span><br><span class="line">- `select  sal ,deptno from emp group by sal , deptno;`</span><br><span class="line">- 接下来我们求各个部门的平均薪金</span><br><span class="line">- `select avg(sal) as sal_avg, deptno from (select  sal ,deptno from emp group by sal , deptno) as king group by deptno;`</span><br><span class="line">- 其实上述两部可以通过一步完成</span><br><span class="line">- `select avg(sal) ,deptno from emp group by deptno;`</span><br><span class="line">- 就是不动脑子和动脑子的区别</span><br><span class="line">- 不过一般没思路的时候把数据源写上，可能会有奇效</span><br><span class="line">- 接下来找出高于平均薪金的信息</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<pre><code>    select
-    *
-    from (select avg(sal) as sal_avg, deptno from (select  sal ,deptno from emp group by sal , deptno) as king group by deptno) as avg_basic left join emp
-    on emp.deptno=avg_basic.deptno  and emp.sal &gt; avg_basic.sal_avg;
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 这个是用左连接来实现的</span><br><span class="line">- 其实还可以要用where来实现 , 不过比较复杂 ，就不在这里写了</span><br><span class="line">- 接下来我们就合并部门输出就可以了</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意我这里是偷懒了，没有判断2000和更低的，原因在上面 ，如果想判断和上面两个一样</li>
+<li>接下来 我们用unio  把他们链接到一起</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">select </span><br><span class="line">comm,</span><br><span class="line">empno,</span><br><span class="line">ename,</span><br><span class="line">sal,</span><br><span class="line">mgr,</span><br><span class="line">deptno1,</span><br><span class="line">dname,</span><br><span class="line">earn,</span><br><span class="line">((empno + 5) - empno) as level</span><br><span class="line">from(select </span><br><span class="line">comm,</span><br><span class="line">empno,</span><br><span class="line">ename,</span><br><span class="line">sal,</span><br><span class="line">mgr,</span><br><span class="line">deptno1,</span><br><span class="line">dname,</span><br><span class="line">(sal + commchange) as earn</span><br><span class="line">from(</span><br><span class="line">select</span><br><span class="line">comm,</span><br><span class="line">empno,</span><br><span class="line">ename,</span><br><span class="line">sal,</span><br><span class="line">mgr,</span><br><span class="line">deptno1,</span><br><span class="line">dname,</span><br><span class="line">ifnull(comm , 0) as commchange</span><br><span class="line">from(select </span><br><span class="line">comm,</span><br><span class="line">empno,</span><br><span class="line">ename,</span><br><span class="line">deptno as deptno1,</span><br><span class="line">sal,</span><br><span class="line">mgr</span><br><span class="line">from emp where sal &gt; (select </span><br><span class="line">avg(sal)</span><br><span class="line">from emp)) as Oavg_table left join dept on Oavg_table.deptno1=dept.deptno) as setlist) as sal_tables where earn &gt;3000</span><br><span class="line">union</span><br><span class="line">select </span><br><span class="line">comm,</span><br><span class="line">empno,</span><br><span class="line">ename,</span><br><span class="line">sal,</span><br><span class="line">mgr,</span><br><span class="line">deptno1,</span><br><span class="line">dname,</span><br><span class="line">earn,</span><br><span class="line">((empno + 4) - empno) as level</span><br><span class="line">from(select </span><br><span class="line">comm,</span><br><span class="line">empno,</span><br><span class="line">ename,</span><br><span class="line">sal,</span><br><span class="line">mgr,</span><br><span class="line">deptno1,</span><br><span class="line">dname,</span><br><span class="line">(sal + commchange) as earn</span><br><span class="line">from(</span><br><span class="line">select</span><br><span class="line">comm,</span><br><span class="line">empno,</span><br><span class="line">ename,</span><br><span class="line">sal,</span><br><span class="line">mgr,</span><br><span class="line">deptno1,</span><br><span class="line">dname,</span><br><span class="line">ifnull(comm , 0) as commchange</span><br><span class="line">from(select </span><br><span class="line">comm,</span><br><span class="line">empno,</span><br><span class="line">ename,</span><br><span class="line">deptno as deptno1,</span><br><span class="line">sal,</span><br><span class="line">mgr</span><br><span class="line">from emp where sal &gt; (select </span><br><span class="line">avg(sal)</span><br><span class="line">from emp)) as Oavg_table left join dept on Oavg_table.deptno1=dept.deptno) as setlist) as sal_tables where earn &gt;2000 and earn &lt;=3000;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<pre><code>    select  * 
-    from  
-    (select
-    *
-    from (select avg(sal) as sal_avg, deptno as deptno1 from (select  sal ,deptno from emp group by sal , deptno) as king group by deptno) as avg_basic left join emp
-    on emp.deptno=avg_basic.deptno1  and emp.sal &gt; avg_basic.sal_avg) as basicinfo left  join dept on basicinfo.deptno1=dept.deptno;
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">- 这个可以用in替代</span><br><span class="line">- 代码如下</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<pre><code>    select  * 
-    from  
-    (select
-    *
-    from (select avg(sal) as sal_avg, deptno as deptno1 from (select  sal ,deptno from emp group by sal , deptno) as king group by deptno) as avg_basic left join emp
-    on emp.deptno=avg_basic.deptno1  and emp.sal &gt; avg_basic.sal_avg) as basicinfo where basicinfo.deptno1 in (select deptno from dept);
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">- 完结撒花！</span><br><span class="line"># 总结 #</span><br><span class="line">- 我们做题不可以改变源头数据 ， 就是数据库里的数据</span><br><span class="line">- 没有思路的时候可以写题中要的数据 ， 题是做出来的，不是看出来的</span><br><span class="line">- 写了第一行 ，自然就会有后面的代码，只是看你愿不愿意开始</span><br><span class="line">- 有思路自然是按照自己的思路去做</span><br><span class="line">- 在有些时候 left join 可以替换成  in  但是这样的替换是在 没有大于小于判定的时候</span><br><span class="line">- 如果有大于小于判定 ，则要替换要用where</span><br><span class="line">- 进行in的时候如果出现一行对多行的情况 ，</span><br><span class="line">- 不妨把多行化成一行 ，用union</span><br><span class="line">- 或者把多余的行删除</span><br><span class="line">- 对于分组 ， 我们如果没有思路可以把题中要的东西先分组，然后后面再进行分组</span><br><span class="line">- 比如 ： `select avg(sal) as sal_avg, deptno from (select  sal ,deptno from emp group by sal , deptno) as king group by deptno;`</span><br><span class="line">- 和 `select avg(sal) ,deptno from emp group by deptno;`</span><br><span class="line">- 是一样的，但是对于没有思路的时候来说，还是上面一个更好一点，下面是块，可是有时候会忘，</span><br><span class="line">- 对于几乎所有的sql题目</span><br><span class="line">- 几乎没有题通过 以下做不出来的 </span><br><span class="line">- 就是简单方法和笨方法的区别  ， 笨方法虽然笨 ，可是实用性强 ，简单虽然简单 ，可是难想</span><br><span class="line">- 而且笨方法的速度其实主要取决于你的打字速度</span><br><span class="line">- 先筛选数据 `group by` , `where` , `avg ,sum ,max ,min..` ...</span><br><span class="line">- 再筛选数据 `group by` , `where` , `avg ,sum ,max ,min..` ...</span><br><span class="line">- 通过链接的方式链接 `union` , `union all` ,` join`..</span><br><span class="line">- 判断条件 `in` , `where` ....</span><br><span class="line">- 注意 ： 组函数不可以进行嵌套使用 `where max(sal) =1` 这样就是不可以的 ，相应的 在in 里也不可以</span><br><span class="line"> ， 在组函数里也不可以  ，如果非要这样操作 ，那么你要 嵌套表 , 加上别名才可以 </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>就可以了 ，上面的我做法是我没动脑子，直接一点点搞出来的</li>
+</ul>
+<h3 id="2-5"><a href="#2-5" class="headerlink" title="2"></a>2</h3><ul>
+<li>暂时没想出来 有时间再说，有一点思路</li>
+</ul>
+<h2 id="第九题"><a href="#第九题" class="headerlink" title="第九题"></a>第九题</h2><ul>
+<li>列出薪金  高于  在各自部门工作的员工的平均薪金的员工姓名和薪金、部门名称</li>
+<li>条件 ： 各个部门，<code>薪金</code>高于<code>各个部门</code>的<code>平均薪金</code></li>
+</ul>
+<h3 id="1-8"><a href="#1-8" class="headerlink" title="1"></a>1</h3><ul>
+<li>我们可以先获取薪金，以及部门编号 ，并且按照他们进行划分</li>
+<li>因为题目中主要要求的就是部门以及薪金</li>
+<li><code>select  sal ,deptno from emp group by sal , deptno;</code></li>
+<li>接下来我们求各个部门的平均薪金</li>
+<li><code>select avg(sal) as sal_avg, deptno from (select  sal ,deptno from emp group by sal , deptno) as king group by deptno;</code></li>
+<li>其实上述两部可以通过一步完成</li>
+<li><code>select avg(sal) ,deptno from emp group by deptno;</code></li>
+<li>就是不动脑子和动脑子的区别</li>
+<li>不过一般没思路的时候把数据源写上，可能会有奇效</li>
+<li>接下来找出高于平均薪金的信息</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">select</span><br><span class="line">*</span><br><span class="line">from (select avg(sal) as sal_avg, deptno from (select  sal ,deptno from emp group by sal , deptno) as king group by deptno) as avg_basic left join emp</span><br><span class="line">on emp.deptno=avg_basic.deptno  and emp.sal &gt; avg_basic.sal_avg;</span><br></pre></td></tr></table></figure>
 
-<pre><code>    select
-    *
-    from(select
-    max(sal) as max_sal
-    from emp
-    ) where max_sal =1;
-</code></pre>
-<p>&#96;&#96;&#96;</p>
+<ul>
+<li>这个是用左连接来实现的</li>
+<li>其实还可以要用where来实现 , 不过比较复杂 ，就不在这里写了</li>
+<li>接下来我们就合并部门输出就可以了</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">select  * </span><br><span class="line">from  </span><br><span class="line">(select</span><br><span class="line">*</span><br><span class="line">from (select avg(sal) as sal_avg, deptno as deptno1 from (select  sal ,deptno from emp group by sal , deptno) as king group by deptno) as avg_basic left join emp</span><br><span class="line">on emp.deptno=avg_basic.deptno1  and emp.sal &gt; avg_basic.sal_avg) as basicinfo left  join dept on basicinfo.deptno1=dept.deptno;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>这个可以用in替代</li>
+<li>代码如下</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">select  * </span><br><span class="line">from  </span><br><span class="line">(select</span><br><span class="line">*</span><br><span class="line">from (select avg(sal) as sal_avg, deptno as deptno1 from (select  sal ,deptno from emp group by sal , deptno) as king group by deptno) as avg_basic left join emp</span><br><span class="line">on emp.deptno=avg_basic.deptno1  and emp.sal &gt; avg_basic.sal_avg) as basicinfo where basicinfo.deptno1 in (select deptno from dept);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>完结撒花！</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>我们做题不可以改变源头数据 ， 就是数据库里的数据</li>
+<li>没有思路的时候可以写题中要的数据 ， 题是做出来的，不是看出来的</li>
+<li>写了第一行 ，自然就会有后面的代码，只是看你愿不愿意开始</li>
+<li>有思路自然是按照自己的思路去做</li>
+<li>在有些时候 left join 可以替换成  in  但是这样的替换是在 没有大于小于判定的时候</li>
+<li>如果有大于小于判定 ，则要替换要用where</li>
+<li>进行in的时候如果出现一行对多行的情况 ，</li>
+<li>不妨把多行化成一行 ，用union</li>
+<li>或者把多余的行删除</li>
+<li>对于分组 ， 我们如果没有思路可以把题中要的东西先分组，然后后面再进行分组</li>
+<li>比如 ： <code>select avg(sal) as sal_avg, deptno from (select  sal ,deptno from emp group by sal , deptno) as king group by deptno;</code></li>
+<li>和 <code>select avg(sal) ,deptno from emp group by deptno;</code></li>
+<li>是一样的，但是对于没有思路的时候来说，还是上面一个更好一点，下面是块，可是有时候会忘，</li>
+<li>对于几乎所有的sql题目</li>
+<li>几乎没有题通过 以下做不出来的 </li>
+<li>就是简单方法和笨方法的区别  ， 笨方法虽然笨 ，可是实用性强 ，简单虽然简单 ，可是难想</li>
+<li>而且笨方法的速度其实主要取决于你的打字速度</li>
+<li>先筛选数据 <code>group by</code> , <code>where</code> , <code>avg ,sum ,max ,min..</code> …</li>
+<li>再筛选数据 <code>group by</code> , <code>where</code> , <code>avg ,sum ,max ,min..</code> …</li>
+<li>通过链接的方式链接 <code>union</code> , <code>union all</code> ,<code> join</code>..</li>
+<li>判断条件 <code>in</code> , <code>where</code> ….</li>
+<li>注意 ： 组函数不可以进行嵌套使用 <code>where max(sal) =1</code> 这样就是不可以的 ，相应的 在in 里也不可以<br> ， 在组函数里也不可以  ，如果非要这样操作 ，那么你要 嵌套表 , 加上别名才可以</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">select</span><br><span class="line">*</span><br><span class="line">from(select</span><br><span class="line">max(sal) as max_sal</span><br><span class="line">from emp</span><br><span class="line">) where max_sal =1;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>上述那样才可以</li>
 <li>where 和 having是有区别的 作用域的区别，以及位置的区别 ，但是语法是基本上完全一样的 in ， like 之类的 </li>
@@ -791,7 +752,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">结题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text">第一题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%A2%98"><span class="nav-number">2.2.</span> <span class="nav-text">第二题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1"><span class="nav-number">2.2.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2"><span class="nav-number">2.2.2.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3"><span class="nav-number">2.2.3.</span> <span class="nav-text">3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4"><span class="nav-number">2.2.4.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5"><span class="nav-number">2.2.5.</span> <span class="nav-text">5</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">第三题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1"><span class="nav-number">2.3.2.</span> <span class="nav-text">2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%A2%98"><span class="nav-number">2.4.</span> <span class="nav-text">第四题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2"><span class="nav-number">2.4.1.</span> <span class="nav-text">1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E9%A2%98"><span class="nav-number">2.5.</span> <span class="nav-text">第五题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3"><span class="nav-number">2.5.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2"><span class="nav-number">2.5.2.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1"><span class="nav-number">2.5.3.</span> <span class="nav-text">3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E9%A2%98"><span class="nav-number">2.6.</span> <span class="nav-text">第六题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4"><span class="nav-number">2.6.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3"><span class="nav-number">2.6.2.</span> <span class="nav-text">2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E9%A2%98"><span class="nav-number">2.7.</span> <span class="nav-text">第七题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5"><span class="nav-number">2.7.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4"><span class="nav-number">2.7.2.</span> <span class="nav-text">2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E9%A2%98%E7%9A%84%E9%99%84%E5%8A%A0%E9%A2%98"><span class="nav-number">2.8.</span> <span class="nav-text">第七题的附加题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6"><span class="nav-number">2.8.1.</span> <span class="nav-text">1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E9%A2%98"><span class="nav-number">2.9.</span> <span class="nav-text">第八题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7"><span class="nav-number">2.9.1.</span> <span class="nav-text">1</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">结题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text">第一题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%A2%98"><span class="nav-number">2.2.</span> <span class="nav-text">第二题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1"><span class="nav-number">2.2.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2"><span class="nav-number">2.2.2.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3"><span class="nav-number">2.2.3.</span> <span class="nav-text">3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4"><span class="nav-number">2.2.4.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5"><span class="nav-number">2.2.5.</span> <span class="nav-text">5</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">第三题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1"><span class="nav-number">2.3.2.</span> <span class="nav-text">2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%A2%98"><span class="nav-number">2.4.</span> <span class="nav-text">第四题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2"><span class="nav-number">2.4.1.</span> <span class="nav-text">1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E9%A2%98"><span class="nav-number">2.5.</span> <span class="nav-text">第五题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3"><span class="nav-number">2.5.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2"><span class="nav-number">2.5.2.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1"><span class="nav-number">2.5.3.</span> <span class="nav-text">3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E9%A2%98"><span class="nav-number">2.6.</span> <span class="nav-text">第六题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4"><span class="nav-number">2.6.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3"><span class="nav-number">2.6.2.</span> <span class="nav-text">2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E9%A2%98"><span class="nav-number">2.7.</span> <span class="nav-text">第七题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5"><span class="nav-number">2.7.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4"><span class="nav-number">2.7.2.</span> <span class="nav-text">2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E9%A2%98%E7%9A%84%E9%99%84%E5%8A%A0%E9%A2%98"><span class="nav-number">2.8.</span> <span class="nav-text">第七题的附加题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6"><span class="nav-number">2.8.1.</span> <span class="nav-text">1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E9%A2%98"><span class="nav-number">2.9.</span> <span class="nav-text">第八题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7"><span class="nav-number">2.9.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5"><span class="nav-number">2.9.2.</span> <span class="nav-text">2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B9%9D%E9%A2%98"><span class="nav-number">2.10.</span> <span class="nav-text">第九题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8"><span class="nav-number">2.10.1.</span> <span class="nav-text">1</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
