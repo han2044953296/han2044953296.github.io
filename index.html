@@ -316,10 +316,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-05 01:05:34 / 修改时间：13:31:34" itemprop="dateCreated datePublished" datetime="2022-11-05T01:05:34+08:00">2022-11-05</time>
+              <time title="创建时间：2022-11-05 01:05:34" itemprop="dateCreated datePublished" datetime="2022-11-05T01:05:34+08:00">2022-11-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-06 09:45:04" itemprop="dateModified" datetime="2022-11-06T09:45:04+08:00">2022-11-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -336,14 +342,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>14k</span>
+              <span>19k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>13 分钟</span>
+              <span>17 分钟</span>
             </span>
 
         </div>
@@ -601,9 +607,7 @@
 <ul>
 <li>就可以了 ，上面的我做法是我没动脑子，直接一点点搞出来的</li>
 </ul>
-<h3 id="2-5"><a href="#2-5" class="headerlink" title="2"></a>2</h3><ul>
-<li>暂时没想出来 有时间再说，有一点思路</li>
-</ul>
+<h3 id="2-5"><a href="#2-5" class="headerlink" title="2"></a>2</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">select empno,ename,dname,sal,mgr,ifnull((sal + comm) , sal) as earn , (sal + 5  - sal) as  level from (select * from emp where sal &gt; (select avg(sal) from  emp))  as king left join dept on king.deptno=dept.deptno having earn &gt;  3000</span><br><span class="line">union</span><br><span class="line">select empno,ename,dname,sal,mgr,ifnull((sal + comm) , sal) as earn , (sal + 4  - sal) as  level from (select * from emp where sal &gt; (select avg(sal) from  emp))  as king left join dept on king.deptno=dept.deptno having earn &lt; 3000;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="第九题"><a href="#第九题" class="headerlink" title="第九题"></a>第九题</h2><ul>
 <li>列出薪金  高于  在各自部门工作的员工的平均薪金的员工姓名和薪金、部门名称</li>
 <li>条件 ： 各个部门，<code>薪金</code>高于<code>各个部门</code>的<code>平均薪金</code></li>
@@ -680,7 +684,28 @@
 <li><code>select sal as sal1 from emp having sal1 &gt;1500;</code></li>
 <li><code>select sal as sal1 from emp having sal in (800);</code></li>
 <li>这样就可以了</li>
-<li></li>
+</ul>
+<h1 id="牛客"><a href="#牛客" class="headerlink" title="牛客"></a>牛客</h1><h2 id="现在运营想要了解复旦大学的每个用户在8月份练习的总题目数和回答正确的题目数情况，请取出相应明细数据，对于在8月份没有练习过的用户，答题数结果返回0"><a href="#现在运营想要了解复旦大学的每个用户在8月份练习的总题目数和回答正确的题目数情况，请取出相应明细数据，对于在8月份没有练习过的用户，答题数结果返回0" class="headerlink" title="现在运营想要了解复旦大学的每个用户在8月份练习的总题目数和回答正确的题目数情况，请取出相应明细数据，对于在8月份没有练习过的用户，答题数结果返回0"></a>现在运营想要了解复旦大学的每个用户在8月份练习的总题目数和回答正确的题目数情况，请取出相应明细数据，对于在8月份没有练习过的用户，答题数结果返回0</h2><ul>
+<li>数据源</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">drop table if exists `user_profile`;</span><br><span class="line">drop table if  exists `question_practice_detail`;</span><br><span class="line">drop table if  exists `question_detail`;</span><br><span class="line">CREATE TABLE `user_profile` (</span><br><span class="line">  `id` int(11) NOT NULL,</span><br><span class="line">  `device_id` int(11) NOT NULL,</span><br><span class="line">  `gender` varchar(14) NOT NULL,</span><br><span class="line">  `age` int(11) DEFAULT NULL,</span><br><span class="line">  `university` varchar(32) NOT NULL,</span><br><span class="line">  `gpa` float DEFAULT NULL,</span><br><span class="line">  `active_days_within_30` int(11) DEFAULT NULL,</span><br><span class="line">  `question_cnt` int(11) DEFAULT NULL,</span><br><span class="line">  `answer_cnt` int(11) DEFAULT NULL</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br><span class="line">CREATE TABLE `question_practice_detail` (</span><br><span class="line">`id` int NOT NULL,</span><br><span class="line">`device_id` int NOT NULL,</span><br><span class="line">`question_id`int NOT NULL,</span><br><span class="line">`result` varchar(32) NOT NULL,</span><br><span class="line">`date` date NOT NULL</span><br><span class="line">);</span><br><span class="line">CREATE TABLE `question_detail` (</span><br><span class="line">`id` int NOT NULL,</span><br><span class="line">`question_id`int NOT NULL,</span><br><span class="line">`difficult_level` varchar(32) NOT NULL</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">INSERT INTO user_profile VALUES(1,2138,&#x27;male&#x27;,21,&#x27;北京大学&#x27;,3.4,7,2,12);</span><br><span class="line">INSERT INTO user_profile VALUES(2,3214,&#x27;male&#x27;,null,&#x27;复旦大学&#x27;,4.0,15,5,25);</span><br><span class="line">INSERT INTO user_profile VALUES(3,6543,&#x27;female&#x27;,20,&#x27;北京大学&#x27;,3.2,12,3,30);</span><br><span class="line">INSERT INTO user_profile VALUES(4,2315,&#x27;female&#x27;,23,&#x27;浙江大学&#x27;,3.6,5,1,2);</span><br><span class="line">INSERT INTO user_profile VALUES(5,5432,&#x27;male&#x27;,25,&#x27;山东大学&#x27;,3.8,20,15,70);</span><br><span class="line">INSERT INTO user_profile VALUES(6,2131,&#x27;male&#x27;,28,&#x27;山东大学&#x27;,3.3,15,7,13);</span><br><span class="line">INSERT INTO user_profile VALUES(7,4321,&#x27;male&#x27;,28,&#x27;复旦大学&#x27;,3.6,9,6,52);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(1,2138,111,&#x27;wrong&#x27;,&#x27;2021-05-03&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(2,3214,112,&#x27;wrong&#x27;,&#x27;2021-05-09&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(3,3214,113,&#x27;wrong&#x27;,&#x27;2021-06-15&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(4,6543,111,&#x27;right&#x27;,&#x27;2021-08-13&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(5,2315,115,&#x27;right&#x27;,&#x27;2021-08-13&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(6,2315,116,&#x27;right&#x27;,&#x27;2021-08-14&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(7,2315,117,&#x27;wrong&#x27;,&#x27;2021-08-15&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(8,3214,112,&#x27;wrong&#x27;,&#x27;2021-05-09&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(9,3214,113,&#x27;wrong&#x27;,&#x27;2021-08-15&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(10,6543,111,&#x27;right&#x27;,&#x27;2021-08-13&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(11,2315,115,&#x27;right&#x27;,&#x27;2021-08-13&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(12,2315,116,&#x27;right&#x27;,&#x27;2021-08-14&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(13,2315,117,&#x27;wrong&#x27;,&#x27;2021-08-15&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(14,3214,112,&#x27;wrong&#x27;,&#x27;2021-08-16&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(15,3214,113,&#x27;wrong&#x27;,&#x27;2021-08-18&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(16,6543,111,&#x27;right&#x27;,&#x27;2021-08-13&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(1,111,&#x27;hard&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(2,112,&#x27;medium&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(3,113,&#x27;easy&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(4,115,&#x27;easy&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(5,116,&#x27;medium&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(6,117,&#x27;easy&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="答题"><a href="#答题" class="headerlink" title="答题"></a>答题</h2><ul>
+<li>因为要用大于8月的 ， 所以 直接 用month就好</li>
+<li>用if判断是不是正确</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">select </span><br><span class="line">profile.device_id,</span><br><span class="line">university,</span><br><span class="line">count(question_id) as total,</span><br><span class="line">sum(if(result = &#x27;right&#x27; , 1 ,0)) as right_question_cnt</span><br><span class="line">from user_profile as profile left join question_practice_detail as detail on profile.device_id=detail.device_id  and month(detail.date)=8 where university = &#x27;复旦大学&#x27; group by profile.device_id;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第二种方法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">select </span><br><span class="line">device_id,</span><br><span class="line">university,</span><br><span class="line">sum(right_question_cnt + wrong_question_cnt) as question_cnt,</span><br><span class="line">sum(right_question_cnt) as right_question_cnt</span><br><span class="line">from(select </span><br><span class="line">device_id,</span><br><span class="line">university,</span><br><span class="line">ifnull((right_question_cnt) , 0) as right_question_cnt,</span><br><span class="line">ifnull((wrong_question_cnt) , 0) as wrong_question_cnt,</span><br><span class="line">ifnull((date) , 0) as date</span><br><span class="line">from user_profile left join (</span><br><span class="line">select device_id as ID,count(*) as right_question_cnt ,date , (device_id - device_id) as wrong_question_cnt from question_practice_detail where result  = &quot;right&quot; group by device_id ,date</span><br><span class="line">union</span><br><span class="line">select device_id,(device_id - device_id) as right_question_cnt,date ,count(*) as wrong_question_cnt  from question_practice_detail where result  = &quot;wrong&quot; group by device_id ,date) as king on king.ID = user_profile.device_id where university = &quot;复旦大学&quot;) as king    </span><br><span class="line">where date &gt; &#x27;2021-08-00&#x27; or date = 0  group by device_id , university ;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>链接后面的on后面 ，能加上and 进行条件筛选</li>
+<li>month（date） 可以直接获取这个日期的月份</li>
+<li>if（xxx , sss , www） : if表达式 ： 如果前一个为真 ，则执行sss ，如果不是真 则 www</li>
+<li>要看清题意</li>
 </ul>
 
       
@@ -2530,7 +2555,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共47.9k字</span>
+  <span class="post-count">博客全站共48.8k字</span>
 </div>
 
 
