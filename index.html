@@ -292,6 +292,306 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/08/11-8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/08/11-8/" class="post-title-link" itemprop="url">git</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-08 10:13:43" itemprop="dateCreated datePublished" datetime="2022-11-08T10:13:43+08:00">2022-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-07 22:58:55" itemprop="dateModified" datetime="2022-11-07T22:58:55+08:00">2022-11-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li>Git是一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。</li>
+<li>Git是一个开源的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。</li>
+</ul>
+<h1 id="Git工作流程"><a href="#Git工作流程" class="headerlink" title="Git工作流程"></a>Git工作流程</h1><ul>
+<li>从远程仓库中克隆 Git 资源作为本地仓库</li>
+<li>从本地仓库中checkout代码然后进行代码修改</li>
+<li>在提交本地仓库前先将代码提交到暂存区</li>
+<li>提交修改，提交到本地仓库；本地仓库中保存修改的各个历史版本</li>
+<li>在需要和团队成员共享代码时，可以将修改代码push到远程仓库</li>
+<li>git 的核心概念 ： 工作区、暂存区、版本库、远程仓库</li>
+<li>Workspace： 工作区，就是你平时存放项目代码的地方</li>
+<li>Index &#x2F; Stage： 暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息</li>
+<li>Repository： 仓库区（或版本库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本</li>
+<li>Remote： 远程仓库，托管代码的服务器，可以简单的认为是你项目组中的一台电脑用于远程数据交换</li>
+</ul>
+<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><ul>
+<li>每次的提交Git都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在Git里这个分支叫主分支，即master分支。HEAD指针严格来说不是指向提交，而是指向master，master才是指向提交的。</li>
+</ul>
+<h1 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h1><ul>
+<li>远程仓库分为公有远程仓库和私有远程仓库。</li>
+</ul>
+<h1 id="公有远程仓库"><a href="#公有远程仓库" class="headerlink" title="公有远程仓库"></a>公有远程仓库</h1><ul>
+<li>本质和本地仓库无异，只是这个仓库①不在本地②大家可能都知道③需要将代码共享到远程仓库④可以被其他人克隆同步代码等。</li>
+<li>一般情况下在企业中会有一个搭建在公司的远程仓库，可以让本公司内部的开发人员同步开发。而业界最富盛名的远程仓库则为github；它上面存放了非常多的开源组织、个人、企业等的开放源码库，任何都可以从上面获取源码。</li>
+</ul>
+<h1 id="私有远程仓库"><a href="#私有远程仓库" class="headerlink" title="私有远程仓库"></a>私有远程仓库</h1><ul>
+<li>远程仓库实际上和本地仓库一样，纯粹为了7x24小时开机并交换大家的修改。GitHub就是一个免费托管开源代码的远程仓库。但是对于某些视源代码如生命的商业公司来说，既不想公开源代码，又舍不得给GitHub交保护费，那就只能自己搭建一台Git服务器作为私有仓库使用。</li>
+<li>在本地创建了一个Git仓库，又想让其他人来协作开发，此时就可以把本地仓库同步到远程仓库，同时还增加了本地仓库的一个备份。</li>
+<li>常用的远程仓库就是github：<a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a></li>
+<li>Github支持两种同步方式“https”和“ssh”。如果使用https很简单基本不需要配置就可以使用，但是每次提交代码和下载代码时都需要输入用户名和密码。而且如果是公司配置的私有git服务器一般不提供https方式访问。</li>
+</ul>
+<h1 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h1><ul>
+<li>在工程中，并不是所有文件都需要保存到版本库中的，例如“target”目录及目录下的文件就可以忽略。Git忽略文件详解可参考Git忽略文件.gitignore详解</li>
+</ul>
+<h1 id="常用Git命令"><a href="#常用Git命令" class="headerlink" title="常用Git命令"></a>常用Git命令</h1><ul>
+<li>经常使用 Git ，但是很多命令还是记不住。但要熟练掌握，恐怕要记住40~60个命令，所以整理了一份常用Git命令清单。可以参考常用Git命令</li>
+</ul>
+<h2 id="常用的git"><a href="#常用的git" class="headerlink" title="常用的git"></a>常用的git</h2><h3 id="配置用户名和邮箱"><a href="#配置用户名和邮箱" class="headerlink" title="配置用户名和邮箱"></a>配置用户名和邮箱</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">$ git --version   # 查看git的版本信息</span><br><span class="line">$ git config --global user.name   # 获取当前登录的用户</span><br><span class="line">$ git config --global user.email  # 获取当前登录用户的邮箱</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="登录git"><a href="#登录git" class="headerlink" title="登录git"></a>登录git</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 如果刚没有获取到用户配置，则只能拉取代码，不能修改  要是使用git，你要告诉git是谁在使用</span><br><span class="line">$ git config --global user.name &#x27;userName&#x27;    # 设置git账户，userName为你的git账号，</span><br><span class="line">$ git config --global user.email &#x27;email&#x27;</span><br><span class="line"># 获取Git配置信息，执行以下命令：</span><br><span class="line">$ git config –list</span><br></pre></td></tr></table></figure>
+<h3 id="配置https和ssh推送时保存用户名和密码"><a href="#配置https和ssh推送时保存用户名和密码" class="headerlink" title="配置https和ssh推送时保存用户名和密码"></a>配置https和ssh推送时保存用户名和密码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"># https提交保存用户名和密码</span><br><span class="line">$ git config --global credential.helper store</span><br><span class="line"># 生成公钥私钥，将公钥配置到GitHub，ssh提交就可以免输入用户名密码</span><br><span class="line"># 三次回车即可生成 ssh key</span><br><span class="line">$ ssh-keygen -t rsa</span><br><span class="line"># 查看已生成的公钥</span><br><span class="line">$ cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<h3 id="推送到远程仓库正确流程"><a href="#推送到远程仓库正确流程" class="headerlink" title="推送到远程仓库正确流程"></a>推送到远程仓库正确流程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git init # 初始化仓库</span><br><span class="line">git add .(文件name) # 添加文件到暂存区</span><br><span class="line">git commit -m &quot;first commit&quot; # 添加文件到本地仓库并提交描述信息</span><br><span class="line">git remote add origin 远程仓库地址 # 链接远程仓库，创建主分支</span><br><span class="line">git pull origin master --allow-unrelated-histories # 把本地仓库的变化连接到远程仓库主分支</span><br><span class="line">git push -u origin master # 把本地仓库的文件推送到远程仓库</span><br></pre></td></tr></table></figure>
+<h3 id="新建本地仓库"><a href="#新建本地仓库" class="headerlink" title="新建本地仓库"></a>新建本地仓库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 创建一个文件夹</span><br><span class="line">$ mkdir GitRepositories    # 创建文件夹GitRepositories</span><br><span class="line">$ cd GitRepositories       # 切换到GitRepositories目录下</span><br><span class="line"># 在当前目录新建一个Git代码库</span><br><span class="line">$ git init</span><br><span class="line"># 新建一个目录，将其初始化为Git代码库</span><br><span class="line">$ git init [project-name]</span><br><span class="line"># 下载一个项目和它的整个代码历史</span><br><span class="line">$ git clone [url]</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="配置-全局和项目"><a href="#配置-全局和项目" class="headerlink" title="配置(全局和项目)"></a>配置(全局和项目)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。</span><br><span class="line"># 显示当前的Git配置</span><br><span class="line">$ git config --list</span><br><span class="line"># 编辑Git配置文件</span><br><span class="line">$ git config -e [--global]</span><br><span class="line"># 设置提交代码时的用户信息</span><br><span class="line">$ git config [--global] user.name &quot;[name]&quot;</span><br><span class="line">$ git config [--global] user.email &quot;[email address]&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="增加-x2F-删除文件"><a href="#增加-x2F-删除文件" class="headerlink" title="增加&#x2F;删除文件"></a>增加&#x2F;删除文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"># 添加指定文件到暂存区</span><br><span class="line">$ git add [file1][file2] ...</span><br><span class="line"># 添加指定目录到暂存区，包括子目录</span><br><span class="line">$ git add [dir]</span><br><span class="line"># 添加当前目录的所有文件到暂存区</span><br><span class="line">$ git add .</span><br><span class="line"># 添加每个变化前，都会要求确认</span><br><span class="line"># 对于同一个文件的多处变化，可以实现分次提交</span><br><span class="line">$ git add -p</span><br><span class="line"># 删除工作区文件，并且将这次删除放入暂存区</span><br><span class="line">$ git rm [file1] [file2] ...</span><br><span class="line"># 停止追踪指定文件，但该文件会保留在工作区</span><br><span class="line">$ git rm --cached [file]</span><br><span class="line"># 改名文件，并且将这个改名放入暂存区</span><br><span class="line">$ git mv [file-original] [file-renamed]</span><br></pre></td></tr></table></figure>
+<h3 id="代码提交"><a href="#代码提交" class="headerlink" title="代码提交"></a>代码提交</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 提交暂存区到仓库区</span><br><span class="line">$ git commit -m [message]</span><br><span class="line"># 提交暂存区的指定文件到仓库区</span><br><span class="line">$ git commit [file1] [file2] ... -m [message]</span><br><span class="line"># 提交工作区自上次commit之后的变化，直接到仓库区</span><br><span class="line">$ git commit -a</span><br><span class="line"># 提交时显示所有diff信息</span><br><span class="line">$ git commit -v</span><br><span class="line"># 使用一次新的commit，替代上一次提交</span><br><span class="line"># 如果代码没有任何新变化，则用来改写上一次commit的提交信息</span><br><span class="line">$ git commit --amend -m [message]</span><br><span class="line"># 重做上一次commit，并包括指定文件的新变化</span><br><span class="line">$ git commit --amend [file1] [file2] ...</span><br></pre></td></tr></table></figure>
+<h3 id="分支-1"><a href="#分支-1" class="headerlink" title="分支"></a>分支</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"># 列出所有本地分支</span><br><span class="line">$ git branch</span><br><span class="line"># 列出所有远程分支</span><br><span class="line">$ git branch -r</span><br><span class="line"># 列出所有本地分支和远程分支</span><br><span class="line">$ git branch -a</span><br><span class="line"># 新建一个分支，但依然停留在当前分支</span><br><span class="line">$ git branch [branch-name]</span><br><span class="line"># 新建一个分支，并切换到该分支</span><br><span class="line">$ git checkout -b [branch]</span><br><span class="line"># 新建一个分支，指向指定commit</span><br><span class="line">$ git branch [branch] [commit]</span><br><span class="line"># 新建一个分支，与指定的远程分支建立追踪关系</span><br><span class="line">$ git branch --track [branch] [remote-branch]</span><br><span class="line"># 切换到指定分支，并更新工作区</span><br><span class="line">$ git checkout [branch-name]</span><br><span class="line"># 切换到上一个分支</span><br><span class="line">$ git checkout -</span><br><span class="line"># 建立追踪关系，在现有分支与指定的远程分支之间</span><br><span class="line">$ git branch --set-upstream [branch] [remote-branch]</span><br><span class="line"># 合并指定分支到当前分支</span><br><span class="line">$ git merge [branch]</span><br><span class="line"># 选择一个commit，合并进当前分支</span><br><span class="line">$ git cherry-pick [commit]</span><br><span class="line"># 删除分支</span><br><span class="line">$ git branch -d [branch-name]</span><br><span class="line"># 删除远程分支</span><br><span class="line">$ git push origin --delete [branch-name]</span><br><span class="line">$ git branch -dr [remote/branch]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 列出所有tag</span><br><span class="line">$ git tag</span><br><span class="line"># 新建一个tag在当前commit</span><br><span class="line">$ git tag [tag]</span><br><span class="line"># 新建一个tag在指定commit</span><br><span class="line">$ git tag [tag] [commit]</span><br><span class="line"># 删除本地tag</span><br><span class="line">$ git tag -d [tag]</span><br><span class="line"># 删除远程tag</span><br><span class="line">$ git push origin :refs/tags/[tagName]</span><br><span class="line"># 查看tag信息</span><br><span class="line">$ git show [tag]</span><br><span class="line"># 提交指定tag</span><br><span class="line">$ git push [remote] [tag]</span><br><span class="line"># 提交所有tag</span><br><span class="line">$ git push [remote] --tags</span><br><span class="line"># 新建一个分支，指向某个tag</span><br><span class="line">$ git checkout -b [branch] [tag]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"># 查看目录</span><br><span class="line">$ ls -al	或者$ ll</span><br><span class="line"># 查看仓库状态，显示有变更的文件</span><br><span class="line">$ git status</span><br><span class="line"># 显示当前分支的版本历史</span><br><span class="line">$ git log</span><br><span class="line"># 显示commit历史，以及每次commit发生变更的文件</span><br><span class="line">$ git log --stat</span><br><span class="line"># 搜索提交历史，根据关键词</span><br><span class="line">$ git log -S [keyword]</span><br><span class="line"># 显示某个commit之后的所有变动，每个commit占据一行</span><br><span class="line">$ git log [tag] HEAD --pretty=format:%s</span><br><span class="line"># 显示某个commit之后的所有变动，其&quot;提交说明&quot;必须符合搜索条件</span><br><span class="line">$ git log [tag] HEAD --grep feature</span><br><span class="line"># 显示某个文件的版本历史，包括文件改名</span><br><span class="line">$ git log --follow [file]</span><br><span class="line">$ git whatchanged [file]</span><br><span class="line"># 显示指定文件相关的每一次diff</span><br><span class="line">$ git log -p [file]</span><br><span class="line"># 显示过去5次提交</span><br><span class="line">$ git log -5 --pretty --oneline</span><br><span class="line"># 显示所有提交过的用户，按提交次数排序</span><br><span class="line">$ git shortlog -sn</span><br><span class="line"># 显示指定文件是什么人在什么时间修改过</span><br><span class="line">$ git blame [file]</span><br><span class="line"># 显示暂存区和工作区的差异</span><br><span class="line">$ git diff</span><br><span class="line"># 显示暂存区和上一个commit的差异</span><br><span class="line">$ git diff --cached [file]</span><br><span class="line"># 显示工作区与当前分支最新commit之间的差异</span><br><span class="line">$ git diff HEAD</span><br><span class="line"># 显示两次提交之间的差异</span><br><span class="line">$ git diff [first-branch]...[second-branch]</span><br><span class="line"># 显示今天你写了多少行代码</span><br><span class="line">$ git diff --shortstat &quot;@&#123;0 day ago&#125;&quot;</span><br><span class="line"># 显示某次提交的元数据和内容变化</span><br><span class="line">$ git show [commit]</span><br><span class="line"># 显示某次提交发生变化的文件</span><br><span class="line">$ git show --name-only [commit]</span><br><span class="line"># 显示某次提交时，某个文件的内容</span><br><span class="line">$ git show [commit]:[filename]</span><br><span class="line"># 显示当前分支的最近几次提交</span><br><span class="line">$ git reflog</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="远程同步"><a href="#远程同步" class="headerlink" title="远程同步"></a>远程同步</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 下载远程仓库的所有变动</span><br><span class="line">$ git fetch [remote]</span><br><span class="line"># 显示所有远程仓库</span><br><span class="line">$ git remote -v</span><br><span class="line"># 显示某个远程仓库的信息</span><br><span class="line">$ git remote show [remote]</span><br><span class="line"># 增加一个新的远程仓库，并命名</span><br><span class="line">$ git remote add [shortname] [url]</span><br><span class="line"># 取回远程仓库的变化，并与本地分支合并</span><br><span class="line">$ git pull [remote] [branch]</span><br><span class="line"># 上传本地指定分支到远程仓库</span><br><span class="line">$ git push [remote] [branch]</span><br><span class="line"># 强行推送当前分支到远程仓库，即使有冲突</span><br><span class="line">$ git push [remote] --force</span><br><span class="line"># 推送所有分支到远程仓库</span><br><span class="line">$ git push [remote] --all</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 恢复暂存区的指定文件到工作区</span><br><span class="line">$ git checkout [file]</span><br><span class="line"># 恢复某个commit的指定文件到暂存区和工作区</span><br><span class="line">$ git checkout [commit] [file]</span><br><span class="line"># 恢复暂存区的所有文件到工作区</span><br><span class="line">$ git checkout .</span><br><span class="line"># 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变</span><br><span class="line">$ git reset [file]</span><br><span class="line"># 重置暂存区与工作区，与上一次commit保持一致</span><br><span class="line">$ git reset --hard</span><br><span class="line"># 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变</span><br><span class="line">$ git reset [commit]</span><br><span class="line"># 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致</span><br><span class="line">$ git reset --hard [commit]</span><br><span class="line"># 重置当前HEAD为指定commit，但保持暂存区和工作区不变</span><br><span class="line">$ git reset --keep [commit]</span><br><span class="line"># 新建一个commit，用来撤销指定commit</span><br><span class="line"># 后者的所有变化都将被前者抵消，并且应用到当前分支</span><br><span class="line">$ git revert [commit]</span><br><span class="line"># 暂时将未提交的变化移除，稍后再移入</span><br><span class="line">$ git stash</span><br><span class="line">$ git stash pop</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 从当前目录的所有文件中查找文本内容：</span><br><span class="line">$ git grep &quot;Hello&quot;</span><br><span class="line"># 在某一版本中搜索文本：</span><br><span class="line">$ git grep &quot;Hello&quot; v2.5</span><br><span class="line"># 生成一个可供发布的压缩包</span><br><span class="line">$ git archive</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/07/11-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/07/11-7/" class="post-title-link" itemprop="url">jdbc</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-07 21:58:43 / 修改时间：22:11:54" itemprop="dateCreated datePublished" datetime="2022-11-07T21:58:43+08:00">2022-11-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>Maven项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。</li>
+<li>注意是工具</li>
+</ul>
+<h2 id="Maven的配置以及idea使用"><a href="#Maven的配置以及idea使用" class="headerlink" title="Maven的配置以及idea使用"></a>Maven的配置以及idea使用</h2><h3 id="下载及解压"><a href="#下载及解压" class="headerlink" title="下载及解压"></a>下载及解压</h3><ul>
+<li>首先在Maven的官网下载Maven</li>
+<li><a target="_blank" rel="noopener" href="http://maven.apache.org/download.cgi" title="Maven官网">Maven官网</a></li>
+<li>我们windows一般下载 ： Binary zip archive的</li>
+<li>我这里下载的是 apache-maven-3.8.6-bin.zip</li>
+<li>下载完之后 ， 解压到一个文件目录下 </li>
+<li>我是新建了个文件目录 命名为 maven</li>
+<li>如何解压到文件目录下</li>
+</ul>
+<h3 id="配置相关文件"><a href="#配置相关文件" class="headerlink" title="配置相关文件"></a>配置相关文件</h3><ul>
+<li>解压成功之后 ，我们会获得几个文件夹</li>
+<li>bin</li>
+<li>boot</li>
+<li>conf</li>
+<li>lib</li>
+<li>这个里conf是maven的配置文件</li>
+<li>我们在这个目录下新建maven_repossitory文件夹</li>
+<li>这个文件夹可以作为，我们的本地仓库</li>
+<li>接下来，我们要修改 conf 文件夹下</li>
+<li>settings.xml文件</li>
+<li>我们先找到</li>
+<li><code>&lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;</code></li>
+<li>这条语句的位置</li>
+<li>把它更改成</li>
+<li><code>&lt;localRepository&gt;你的maven_repossitory路径&lt;/localRepository&gt;</code></li>
+<li>这样我们就自己创建了个</li>
+<li>因为一般maven的默认仓库是</li>
+<li><code>C:\Users\Administrator\.m2\repository</code></li>
+<li>接下来 ， 我们进行设置国内镜像源</li>
+<li>找到 mirrors 标签</li>
+<li>在mirrors里</li>
+<li>加上：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;mirror&gt;</span><br><span class="line">	&lt;id&gt;alimaven&lt;/id&gt;</span><br><span class="line">	&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line">	&lt;name&gt;aliyun maven&lt;/name&gt;</span><br><span class="line">	&lt;url&gt;http://maven.aliyun.com/nexus/content/repositories/central/&lt;/url&gt;</span><br><span class="line">&lt;/mirror&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>这个是阿里云的镜像 ， 如果不好使 可以以换成腾讯云 和网易的</li>
+<li>添加方法和上面一样</li>
+<li>接下来我们可以为maven配置全局的jdk，这样我们在创建maven项目时就会自动使用该jdk版本，我配置的是jdk1.8</li>
+<li>找到标签 <profiles></profiles></li>
+<li>然后在标签里加入<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!-- java版本 --&gt; </span><br><span class="line">&lt;profile&gt;</span><br><span class="line">  &lt;id&gt;jdk-1.8&lt;/id&gt;</span><br><span class="line">  &lt;activation&gt;</span><br><span class="line">	&lt;activeByDefault&gt;true&lt;/activeByDefault&gt;</span><br><span class="line">	&lt;jdk&gt;1.8&lt;/jdk&gt;</span><br><span class="line">  &lt;/activation&gt;</span><br><span class="line"></span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">	&lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">	&lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">	&lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">&lt;/profile&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="更改idea的maven"><a href="#更改idea的maven" class="headerlink" title="更改idea的maven"></a>更改idea的maven</h3><ul>
+<li>file 文件里的 setting</li>
+<li>在上面搜索 maven</li>
+<li>点进去之后</li>
+<li>把Maven home directory</li>
+<li>配置成自己的解压的文件夹</li>
+<li>然后设置user setting file</li>
+<li>把他设置成解压的文件的setting.xml</li>
+<li>然后把 local repository</li>
+<li>设置成之前自己配置的本地仓库</li>
+<li>关于idea的配置就完成了</li>
+</ul>
+<h2 id="简单的链接mysql"><a href="#简单的链接mysql" class="headerlink" title="简单的链接mysql"></a>简单的链接mysql</h2><ul>
+<li>首先创建maven项目</li>
+<li>然后在pom.xml中加上</li>
+<li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;5.1.28&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>在<dependencies>标签中加上</li>
+<li>然后import change</li>
+<li>然后在主程序的java项目包里</li>
+<li>写上：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line">import java.sql.Connection;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Hello world!</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class App </span><br><span class="line">&#123;</span><br><span class="line">    public static void main( String[] args )</span><br><span class="line">    &#123;</span><br><span class="line">        String url = &quot;jdbc:mysql://192.168.41.131:3306/try&quot;;</span><br><span class="line">        String user = &quot;root&quot;;</span><br><span class="line">        String passwd = &quot;liuzihan010616&quot;;</span><br><span class="line"></span><br><span class="line">        Connection conect = dbutils.getConnection(url , user , passwd);</span><br><span class="line"></span><br><span class="line">        System.out.println(conect);</span><br><span class="line">        dbutils.closeConnection(conect);</span><br><span class="line"></span><br><span class="line">        System.out.println( &quot;Hello World!&quot; );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>-然后创建一个dbutils</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.DriverManager;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author sxwang</span><br><span class="line"> * 11 07 15:02</span><br><span class="line"> */</span><br><span class="line">public class dbutils &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 获取mysql 连接</span><br><span class="line">     * @param url</span><br><span class="line">     * @param user</span><br><span class="line">     * @param passwd</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Connection getConnection(String url, String user, String passwd)&#123;</span><br><span class="line"></span><br><span class="line">        Connection connection=null;</span><br><span class="line">        try &#123;</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">            try &#123;</span><br><span class="line">                connection = DriverManager.getConnection(url, user, passwd);</span><br><span class="line">            &#125; catch (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return connection;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 关闭连接</span><br><span class="line">     * @param conn</span><br><span class="line">     */</span><br><span class="line">    public static void closeConnection(Connection conn)&#123;</span><br><span class="line"></span><br><span class="line">        if(conn !=null)&#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                conn.close();</span><br><span class="line">            &#125; catch (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/05/sql%E7%BB%83%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1082,162 +1382,6 @@
 <li>不要求 速度</li>
 <li>但是可以presto等工具桥接</li>
 <li></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/03/11-7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/03/11-7/" class="post-title-link" itemprop="url">jdbc</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-03 09:11:14" itemprop="dateCreated datePublished" datetime="2022-11-03T09:11:14+08:00">2022-11-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-07 21:43:33" itemprop="dateModified" datetime="2022-11-07T21:43:33+08:00">2022-11-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
-<li>Maven项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。</li>
-<li>注意是工具</li>
-</ul>
-<h2 id="Maven的配置以及idea使用"><a href="#Maven的配置以及idea使用" class="headerlink" title="Maven的配置以及idea使用"></a>Maven的配置以及idea使用</h2><h3 id="下载及解压"><a href="#下载及解压" class="headerlink" title="下载及解压"></a>下载及解压</h3><ul>
-<li>首先在Maven的官网下载Maven</li>
-<li><a target="_blank" rel="noopener" href="http://maven.apache.org/download.cgi" title="Maven官网">Maven官网</a></li>
-<li>我们windows一般下载 ： Binary zip archive的</li>
-<li>我这里下载的是 apache-maven-3.8.6-bin.zip</li>
-<li>下载完之后 ， 解压到一个文件目录下 </li>
-<li>我是新建了个文件目录 命名为 maven</li>
-<li>如何解压到文件目录下</li>
-</ul>
-<h3 id="配置相关文件"><a href="#配置相关文件" class="headerlink" title="配置相关文件"></a>配置相关文件</h3><ul>
-<li>解压成功之后 ，我们会获得几个文件夹</li>
-<li>bin</li>
-<li>boot</li>
-<li>conf</li>
-<li>lib</li>
-<li>这个里conf是maven的配置文件</li>
-<li>我们在这个目录下新建maven_repossitory文件夹</li>
-<li>这个文件夹可以作为，我们的本地仓库</li>
-<li>接下来，我们要修改 conf 文件夹下</li>
-<li>settings.xml文件</li>
-<li>我们先找到</li>
-<li><code>&lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;</code></li>
-<li>这条语句的位置</li>
-<li>把它更改成</li>
-<li><code>&lt;localRepository&gt;你的maven_repossitory路径&lt;/localRepository&gt;</code></li>
-<li>这样我们就自己创建了个</li>
-<li>因为一般maven的默认仓库是</li>
-<li><code>C:\Users\Administrator\.m2\repository</code></li>
-<li>接下来 ， 我们进行设置国内镜像源</li>
-<li>找到 mirrors 标签</li>
-<li>在mirrors里</li>
-<li>加上：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;mirror&gt;</span><br><span class="line">	&lt;id&gt;alimaven&lt;/id&gt;</span><br><span class="line">	&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line">	&lt;name&gt;aliyun maven&lt;/name&gt;</span><br><span class="line">	&lt;url&gt;http://maven.aliyun.com/nexus/content/repositories/central/&lt;/url&gt;</span><br><span class="line">&lt;/mirror&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>这个是阿里云的镜像 ， 如果不好使 可以以换成腾讯云 和网易的</li>
-<li>添加方法和上面一样</li>
-<li>接下来我们可以为maven配置全局的jdk，这样我们在创建maven项目时就会自动使用该jdk版本，我配置的是jdk1.8</li>
-<li>找到标签 <profiles></profiles></li>
-<li>然后在标签里加入<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!-- java版本 --&gt; </span><br><span class="line">&lt;profile&gt;</span><br><span class="line">  &lt;id&gt;jdk-1.8&lt;/id&gt;</span><br><span class="line">  &lt;activation&gt;</span><br><span class="line">	&lt;activeByDefault&gt;true&lt;/activeByDefault&gt;</span><br><span class="line">	&lt;jdk&gt;1.8&lt;/jdk&gt;</span><br><span class="line">  &lt;/activation&gt;</span><br><span class="line"></span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">	&lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">	&lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">	&lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">&lt;/profile&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="更改idea的maven"><a href="#更改idea的maven" class="headerlink" title="更改idea的maven"></a>更改idea的maven</h3><ul>
-<li>file 文件里的 setting</li>
-<li>在上面搜索 maven</li>
-<li>点进去之后</li>
-<li>把Maven home directory</li>
-<li>配置成自己的解压的文件夹</li>
-<li>然后设置user setting file</li>
-<li>把他设置成解压的文件的setting.xml</li>
-<li>然后把 local repository</li>
-<li>设置成之前自己配置的本地仓库</li>
-<li>关于idea的配置就完成了</li>
-</ul>
-<h2 id="简单的链接mysql"><a href="#简单的链接mysql" class="headerlink" title="简单的链接mysql"></a>简单的链接mysql</h2><ul>
-<li>首先创建maven项目</li>
-<li>然后在pom.xml中加上</li>
-<li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;5.1.28&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>在<dependencies>标签中加上</li>
-<li>然后import change</li>
-<li>然后在主程序的java项目包里</li>
-<li>写上：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line">import java.sql.Connection;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Hello world!</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class App </span><br><span class="line">&#123;</span><br><span class="line">    public static void main( String[] args )</span><br><span class="line">    &#123;</span><br><span class="line">        String url = &quot;jdbc:mysql://192.168.41.131:3306/try&quot;;</span><br><span class="line">        String user = &quot;root&quot;;</span><br><span class="line">        String passwd = &quot;liuzihan010616&quot;;</span><br><span class="line"></span><br><span class="line">        Connection conect = dbutils.getConnection(url , user , passwd);</span><br><span class="line"></span><br><span class="line">        System.out.println(conect);</span><br><span class="line">        dbutils.closeConnection(conect);</span><br><span class="line"></span><br><span class="line">        System.out.println( &quot;Hello World!&quot; );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -2345,126 +2489,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/27/%E7%89%9B%E5%AE%A21/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/27/%E7%89%9B%E5%AE%A21/" class="post-title-link" itemprop="url">第一天</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-27 10:11:21" itemprop="dateCreated datePublished" datetime="2022-10-27T10:11:21+08:00">2022-10-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E5%88%B7%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">牛客刷题</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>8.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="实现二叉树的前序遍历"><a href="#实现二叉树的前序遍历" class="headerlink" title="实现二叉树的前序遍历"></a>实现二叉树的前序遍历</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * public class TreeNode &#123; // 树形结构</span><br><span class="line"> *   int val = 0;</span><br><span class="line"> *   TreeNode left = null;</span><br><span class="line"> *   TreeNode right = null;</span><br><span class="line"> *   public TreeNode(int val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *   &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class Solution &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可</span><br><span class="line">     *</span><br><span class="line">     * </span><br><span class="line">     * @param root TreeNode类 </span><br><span class="line">     * @return int整型一维数组</span><br><span class="line">     */</span><br><span class="line"></span><br><span class="line">    public List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">    public int[] preorderTraversal (TreeNode root) &#123;</span><br><span class="line">        // write code here</span><br><span class="line"></span><br><span class="line">        list =  pre(root); // 先设置一个函数，让他把二叉树的节点存入list中方便输出 ， 简单来说就是把二叉树转化为list形式的</span><br><span class="line">        int[] res = new int[list.size()]; // 设定一个输出数组 ，我们要遍历的其实是这个数组</span><br><span class="line"></span><br><span class="line">        for(int i = 0; i &lt; list.size(); i++)&#123;</span><br><span class="line">           res[i] = list.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;Integer&gt;  pre(TreeNode node)&#123;</span><br><span class="line"></span><br><span class="line">        if(node == null)&#123;</span><br><span class="line">                return list;</span><br><span class="line">        &#125;</span><br><span class="line">        list.add(node.val);</span><br><span class="line">        pre(node.left);</span><br><span class="line">        pre(node.right);</span><br><span class="line">        return list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>其时间复杂度和空间复杂度都是O（N）</li>
-<li>用堆栈实现<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *   int val = 0;</span><br><span class="line"> *   TreeNode left = null;</span><br><span class="line"> *   TreeNode right = null;</span><br><span class="line"> *   public TreeNode(int val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *   &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class Solution &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可</span><br><span class="line">     *</span><br><span class="line">     * </span><br><span class="line">     * @param root TreeNode类 </span><br><span class="line">     * @return int整型一维数组</span><br><span class="line">     */</span><br><span class="line">    private List&lt;Integer&gt; list=new ArrayList&lt;&gt;();</span><br><span class="line">    public int[] preorderTraversal (TreeNode root) &#123;</span><br><span class="line">        // write code here</span><br><span class="line">        if(root==null) return new int[0];</span><br><span class="line">        Stack&lt;TreeNode&gt; stack=new Stack&lt;&gt;();</span><br><span class="line">        stack.push(root);</span><br><span class="line">        while(!stack.isEmpty())&#123;</span><br><span class="line">            TreeNode node=stack.pop();</span><br><span class="line">            list.add(node.val);</span><br><span class="line">            </span><br><span class="line">            if(node.right!=null) stack.push(node.right);</span><br><span class="line">            if(node.left!=null) stack.push(node.left);</span><br><span class="line">        &#125;</span><br><span class="line">        int[] res= new int[list.size()];</span><br><span class="line">        for(int i=0;i&lt;list.size();i++)&#123;</span><br><span class="line">            res[i]=list.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>堆栈更简单可是更难理解，可以直接背</li>
-</ul>
-<h1 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *   int val = 0;</span><br><span class="line"> *   TreeNode left = null;</span><br><span class="line"> *   TreeNode right = null;</span><br><span class="line"> *   public TreeNode(int val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *   &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class Solution &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可</span><br><span class="line">     *</span><br><span class="line">     * </span><br><span class="line">     * @param root TreeNode类 </span><br><span class="line">     * @return int整型一维数组</span><br><span class="line">     */</span><br><span class="line"></span><br><span class="line">    List&lt;Integer&gt; list =new ArrayList&lt;&gt;();</span><br><span class="line">    public int[] inorderTraversal (TreeNode root) &#123;</span><br><span class="line">        // write code here</span><br><span class="line">        pre(root);</span><br><span class="line">        int[] res = new int[list.size()];</span><br><span class="line">        for(int i = 0; i &lt; list.size(); i++)&#123;</span><br><span class="line">            res[i] = list.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    List&lt;Integer&gt; pre(TreeNode node)&#123;</span><br><span class="line">        if(node == null)&#123;</span><br><span class="line">            return list;</span><br><span class="line">        &#125;</span><br><span class="line">        pre(node.left);</span><br><span class="line">        list.add(node.val);</span><br><span class="line">        pre(node.right);</span><br><span class="line">        return list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>用堆栈实现</li>
-<li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *   int val = 0;</span><br><span class="line"> *   TreeNode left = null;</span><br><span class="line"> *   TreeNode right = null;</span><br><span class="line"> *   public TreeNode(int val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *   &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class Solution &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可</span><br><span class="line">     *</span><br><span class="line">     * </span><br><span class="line">     * @param root TreeNode类 </span><br><span class="line">     * @return int整型一维数组</span><br><span class="line">     */</span><br><span class="line">    private List&lt;Integer&gt; list=new ArrayList&lt;&gt;();</span><br><span class="line">    public int[] preorderTraversal (TreeNode root) &#123;</span><br><span class="line">        // write code here</span><br><span class="line">        if(root==null) return new int[0];</span><br><span class="line">        Stack&lt;TreeNode&gt; stack=new Stack&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">        stack.push(root);</span><br><span class="line">        while(!stack.isEmpty())&#123;</span><br><span class="line">            TreeNode node=stack.pop();</span><br><span class="line">			if(node.right!=null) stack.push(node.right);</span><br><span class="line">            list.add(node.val);</span><br><span class="line">            if(node.left!=null) stack.push(node.left);</span><br><span class="line">        &#125;</span><br><span class="line">        int[] res= new int[list.size()];</span><br><span class="line">        for(int i=0;i&lt;list.size();i++)&#123;</span><br><span class="line">            res[i]=list.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="二叉树的后序遍历"><a href="#二叉树的后序遍历" class="headerlink" title="二叉树的后序遍历"></a>二叉树的后序遍历</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import java.util.*;</span><br><span class="line">		</span><br><span class="line">		/*</span><br><span class="line">		 * public class TreeNode &#123;</span><br><span class="line">		 *   int val = 0;</span><br><span class="line">		 *   TreeNode left = null;</span><br><span class="line">		 *   TreeNode right = null;</span><br><span class="line">		 *   public TreeNode(int val) &#123;</span><br><span class="line">		 *     this.val = val;</span><br><span class="line">		 *   &#125;</span><br><span class="line">		 * &#125;</span><br><span class="line">		 */</span><br><span class="line">		</span><br><span class="line">		public class Solution &#123;</span><br><span class="line">		    /**</span><br><span class="line">		     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可</span><br><span class="line">		     *</span><br><span class="line">		     * </span><br><span class="line">		     * @param root TreeNode类 </span><br><span class="line">		     * @return int整型一维数组</span><br><span class="line">		     */</span><br><span class="line">		</span><br><span class="line">		    List&lt;Integer&gt; list =new ArrayList&lt;&gt;();</span><br><span class="line">		    public int[] inorderTraversal (TreeNode root) &#123;</span><br><span class="line">		        // write code here</span><br><span class="line">		        pre(root);</span><br><span class="line">		        int[] res = new int[list.size()];</span><br><span class="line">		        for(int i = 0; i &lt; list.size(); i++)&#123;</span><br><span class="line">		            res[i] = list.get(i);</span><br><span class="line">		        &#125;</span><br><span class="line">		        return res;</span><br><span class="line">		    &#125;</span><br><span class="line">		</span><br><span class="line">		    List&lt;Integer&gt; pre(TreeNode node)&#123;</span><br><span class="line">		        if(node == null)&#123;</span><br><span class="line">		            return list;</span><br><span class="line">		        &#125;</span><br><span class="line">		        pre(node.right);</span><br><span class="line">		        list.add(node.val);</span><br><span class="line">		        pre(node.left);</span><br><span class="line">		        return list;</span><br><span class="line">		    &#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>用堆栈实现<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *   int val = 0;</span><br><span class="line"> *   TreeNode left = null;</span><br><span class="line"> *   TreeNode right = null;</span><br><span class="line"> *   public TreeNode(int val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *   &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class Solution &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可</span><br><span class="line">     *</span><br><span class="line">     * </span><br><span class="line">     * @param root TreeNode类 </span><br><span class="line">     * @return int整型一维数组</span><br><span class="line">     */</span><br><span class="line">    private List&lt;Integer&gt; list=new ArrayList&lt;&gt;();</span><br><span class="line">    public int[] preorderTraversal (TreeNode root) &#123;</span><br><span class="line">        // write code here</span><br><span class="line">        if(root==null) return new int[0];</span><br><span class="line">        Stack&lt;TreeNode&gt; stack=new Stack&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">        stack.push(root);</span><br><span class="line">        while(!stack.isEmpty())&#123;</span><br><span class="line">            TreeNode node=stack.pop();</span><br><span class="line">				if(node.left!=null) stack.push(node.left);</span><br><span class="line">            list.add(node.val);</span><br><span class="line">			if(node.right!=null) stack.push(node.right);</span><br><span class="line">           </span><br><span class="line">        &#125;</span><br><span class="line">        int[] res= new int[list.size()];</span><br><span class="line">        for(int i=0;i&lt;list.size();i++)&#123;</span><br><span class="line">            res[i]=list.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="二叉树的层序遍历"><a href="#二叉树的层序遍历" class="headerlink" title="二叉树的层序遍历"></a>二叉树的层序遍历</h1><ul>
-<li>bfs</li>
-<li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public ArrayList&lt;ArrayList&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;</span><br><span class="line">    //边界条件判断</span><br><span class="line">    if (root == null)</span><br><span class="line">        return new ArrayList&lt;&gt;();</span><br><span class="line">    //队列</span><br><span class="line">    Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();</span><br><span class="line">    ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">    //根节点入队</span><br><span class="line">    queue.add(root);</span><br><span class="line">    //如果队列不为空就继续循环</span><br><span class="line">    while (!queue.isEmpty()) &#123;</span><br><span class="line">        //BFS打印，levelNum表示的是每层的结点数</span><br><span class="line">        int levelNum = queue.size();</span><br><span class="line">        //subList存储的是每层的结点值</span><br><span class="line">        ArrayList&lt;Integer&gt; subList = new ArrayList&lt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt; levelNum; i++) &#123;</span><br><span class="line">            //出队</span><br><span class="line">            TreeNode node = queue.poll();</span><br><span class="line">            subList.add(node.val);</span><br><span class="line">            //左右子节点如果不为空就加入到队列中</span><br><span class="line">            if (node.left != null)</span><br><span class="line">                queue.add(node.left);</span><br><span class="line">            if (node.right != null)</span><br><span class="line">                queue.add(node.right);</span><br><span class="line">        &#125;</span><br><span class="line">        //把每层的结点值存储在res中，</span><br><span class="line">        res.add(subList);</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>dfs</li>
-<li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public ArrayList&lt;ArrayList&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;</span><br><span class="line">    ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">    levelHelper(res, root, 0);</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void levelHelper(ArrayList&lt;ArrayList&lt;Integer&gt;&gt; list, TreeNode root, int level) &#123;</span><br><span class="line">    //边界条件判断</span><br><span class="line">    if (root == null)</span><br><span class="line">        return;</span><br><span class="line">    //level表示的是层数，如果level &gt;= list.size()，说明到下一层了，所以</span><br><span class="line">    //要先把下一层的list初始化，防止下面add的时候出现空指针异常</span><br><span class="line">    if (level &gt;= list.size()) &#123;</span><br><span class="line">        list.add(new ArrayList&lt;&gt;());</span><br><span class="line">    &#125;</span><br><span class="line">    //level表示的是第几层，这里访问到第几层，我们就把数据加入到第几层</span><br><span class="line">    list.get(level).add(root.val);</span><br><span class="line">    //当前节点访问完之后，再使用递归的方式分别访问当前节点的左右子节点</span><br><span class="line">    levelHelper(list, root.left, level + 1);</span><br><span class="line">    levelHelper(list, root.right, level + 1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="按照之字型打印二叉树"><a href="#按照之字型打印二叉树" class="headerlink" title="按照之字型打印二叉树"></a>按照之字型打印二叉树</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">import java.util.LinkedList;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public ArrayList&lt;ArrayList&lt;Integer&gt; &gt; Print(TreeNode pRoot) &#123;</span><br><span class="line">        LinkedList&lt;TreeNode&gt; q = new LinkedList&lt;&gt;();</span><br><span class="line">        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        boolean rev = true;</span><br><span class="line">        q.add(pRoot);</span><br><span class="line">        while(!q.isEmpty())&#123;</span><br><span class="line">            int size = q.size();</span><br><span class="line">            ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">            for(int i=0; i&lt;size; i++)&#123;</span><br><span class="line">                TreeNode node = q.poll();</span><br><span class="line">                if(node == null)&#123;continue;&#125;</span><br><span class="line">                if(rev)&#123;</span><br><span class="line">                    list.add(node.val);</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    list.add(0, node.val);</span><br><span class="line">                &#125;</span><br><span class="line">                q.offer(node.left);</span><br><span class="line">                q.offer(node.right);</span><br><span class="line">            &#125;</span><br><span class="line">            if(list.size()!=0)&#123;res.add(list);&#125;</span><br><span class="line">            rev=!rev;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="二叉树的最大深度"><a href="#二叉树的最大深度" class="headerlink" title="二叉树的最大深度"></a>二叉树的最大深度</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import java.util.*;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int maxDepth (TreeNode root) &#123;</span><br><span class="line">        //空节点没有深度</span><br><span class="line">        if(root == null) </span><br><span class="line">            return 0;</span><br><span class="line">        //队列维护层次后续节点</span><br><span class="line">        Queue&lt;TreeNode&gt; q = new LinkedList&lt;TreeNode&gt;(); </span><br><span class="line">        //根入队</span><br><span class="line">        q.offer(root); </span><br><span class="line">        //记录深度</span><br><span class="line">        int res = 0; </span><br><span class="line">        //层次遍历</span><br><span class="line">        while(!q.isEmpty())&#123; </span><br><span class="line">            //记录当前层有多少节点</span><br><span class="line">            int n = q.size(); </span><br><span class="line">            //遍历完这一层，再进入下一层</span><br><span class="line">            for(int i = 0; i &lt; n; i++)&#123; </span><br><span class="line">                TreeNode node = q.poll();</span><br><span class="line">                //添加下一层的左右节点</span><br><span class="line">                if(node.left != null) </span><br><span class="line">                    q.offer(node.left);</span><br><span class="line">                if(node.right != null)</span><br><span class="line">                    q.offer(node.right);</span><br><span class="line">            &#125;</span><br><span class="line">            //深度加1</span><br><span class="line">            res++; </span><br><span class="line">        &#125;</span><br><span class="line">        return res; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>用堆栈因该也可以，尝试想想</li>
-</ul>
-<h1 id="二叉树中和为某一个值的路径"><a href="#二叉树中和为某一个值的路径" class="headerlink" title="二叉树中和为某一个值的路径"></a>二叉树中和为某一个值的路径</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *   int val = 0;</span><br><span class="line"> *   TreeNode left = null;</span><br><span class="line"> *   TreeNode right = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class Solution &#123;</span><br><span class="line">    /**</span><br><span class="line">     * </span><br><span class="line">     * @param root TreeNode类 </span><br><span class="line">     * @param sum int整型 </span><br><span class="line">     * @return bool布尔型</span><br><span class="line">     */</span><br><span class="line">    public boolean hasPathSum (TreeNode root, int sum) &#123;</span><br><span class="line">        return helper(root,sum,0);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public boolean helper(TreeNode node,int sum,int preSum)&#123;</span><br><span class="line">        if(node == null)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        if(node.left == null &amp;&amp; node.right == null)&#123;</span><br><span class="line">            return node.val + preSum == sum;</span><br><span class="line">        &#125;</span><br><span class="line">        preSum += node.val;</span><br><span class="line">        return helper(node.left,sum,preSum) || helper(node.right,sum ,preSum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="二叉搜索树和双向链表"><a href="#二叉搜索树和双向链表" class="headerlink" title="二叉搜索树和双向链表"></a>二叉搜索树和双向链表</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">public class Solution &#123;</span><br><span class="line"></span><br><span class="line">    TreeNode pre= null;</span><br><span class="line">    TreeNode root=null;</span><br><span class="line">    public TreeNode Convert(TreeNode pRootOfTree) &#123;</span><br><span class="line">        if(pRootOfTree ==null) return null;</span><br><span class="line">        Convert(pRootOfTree.left);</span><br><span class="line">        if(root == null)&#123;</span><br><span class="line">            root=pRootOfTree;</span><br><span class="line">        &#125;</span><br><span class="line">        if(pre!=null)&#123;</span><br><span class="line">            pRootOfTree.left=pre;</span><br><span class="line">            pre.right=pRootOfTree;</span><br><span class="line">        &#125;</span><br><span class="line">        pre=pRootOfTree;</span><br><span class="line">        Convert(pRootOfTree.right);</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2536,7 +2560,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2594,7 +2618,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共51.2k字</span>
+  <span class="post-count">博客全站共54.4k字</span>
 </div>
 
 
