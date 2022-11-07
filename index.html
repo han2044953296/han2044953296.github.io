@@ -324,7 +324,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-06 13:09:22" itemprop="dateModified" datetime="2022-11-06T13:09:22+08:00">2022-11-06</time>
+                <time title="修改时间：2022-11-07 12:05:42" itemprop="dateModified" datetime="2022-11-07T12:05:42+08:00">2022-11-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -342,14 +342,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>27k</span>
+              <span>28k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>24 分钟</span>
+              <span>25 分钟</span>
             </span>
 
         </div>
@@ -561,7 +561,7 @@
 </ul>
 <h3 id="1-7"><a href="#1-7" class="headerlink" title="1"></a>1</h3><ul>
 <li>老样子 ： 我们要先获取基本的数据源</li>
-<li><code>select empno,avg(sal) as sal_avg from emp</code></li>
+<li><code>select avg(sal) as sal_avg from emp</code></li>
 <li>上述是获取平均薪金 ，是要作为我们的判断条件的</li>
 <li>然后求出薪金大于平均薪金的 进行初步筛选</li>
 </ul>
@@ -607,29 +607,46 @@
 <ul>
 <li>就可以了 ，上面的我做法是我没动脑子，直接一点点搞出来的</li>
 </ul>
-<h3 id="2-5"><a href="#2-5" class="headerlink" title="2"></a>2</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">select empno,ename,dname,sal,mgr,ifnull((sal + comm) , sal) as earn , (sal + 5  - sal) as  level from (select * from emp where sal &gt; (select avg(sal) from  emp))  as king left join dept on king.deptno=dept.deptno having earn &gt;  3000</span><br><span class="line">union</span><br><span class="line">select empno,ename,dname,sal,mgr,ifnull((sal + comm) , sal) as earn , (sal + 4  - sal) as  level from (select * from emp where sal &gt; (select avg(sal) from  emp))  as king left join dept on king.deptno=dept.deptno having earn &lt; 3000;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="2-5"><a href="#2-5" class="headerlink" title="2"></a>2</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">select empno,ename,dname,sal,mgr,ifnull((sal + comm) , sal) as earn , (sal + 5  - sal) as  level from (select * from emp where sal &gt; (select avg(sal) from  emp))  as king left join dept on king.deptno=dept.deptno having earn &gt;  3000</span><br><span class="line">union </span><br><span class="line">select empno,ename,dname,sal,mgr,ifnull((sal + comm) , sal) as earn , (sal + 4  - sal) as  level from (select * from emp where sal &gt; (select avg(sal) from  emp))  as king left join dept on king.deptno=dept.deptno having earn &lt;= 3000;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="3-2"><a href="#3-2" class="headerlink" title="3"></a>3</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">select </span><br><span class="line">king.ename,</span><br><span class="line">king.empno,</span><br><span class="line">e1.ename as leader,</span><br><span class="line">king.earn,</span><br><span class="line">case when earn Between 700 and 1200 then 1</span><br><span class="line">     when earn Between 1200 and 1400 then 2</span><br><span class="line">     when earn Between 1400 and 2000 then 3</span><br><span class="line">     when earn Between 2000 and 3000 then 4</span><br><span class="line">     when earn Between 3000 and 9990 then 5</span><br><span class="line">     end</span><br><span class="line">as sallevel</span><br><span class="line">from (</span><br><span class="line">  select ename , empno , deptno , ifnull((sal + comm),sal) as earn ,mgr </span><br><span class="line">  from emp</span><br><span class="line">  where sal &gt; (</span><br><span class="line">    select avg(sal)</span><br><span class="line">    from emp</span><br><span class="line">  )</span><br><span class="line">) as king </span><br><span class="line">left join dept on king.deptno=dept.deptno </span><br><span class="line">left join emp e1 on king.mgr = e1.empno;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-1"><a href="#4-1" class="headerlink" title="4"></a>4</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">// 最好不用 ，因为笛卡尔积 会造成数据膨胀</span><br><span class="line">   select </span><br><span class="line">   king.ename,</span><br><span class="line">   king.empno,</span><br><span class="line">   e1.ename as leader,</span><br><span class="line">   king.earn,</span><br><span class="line">   s.grade</span><br><span class="line">   as sallevel</span><br><span class="line">   from (</span><br><span class="line">     select ename , empno , deptno , ifnull((sal + comm),sal) as earn ,mgr </span><br><span class="line">     from emp</span><br><span class="line">     where sal &gt; (</span><br><span class="line">       select avg(sal)</span><br><span class="line">       from emp</span><br><span class="line">     )</span><br><span class="line">   ) as king </span><br><span class="line">   left join dept on king.deptno=dept.deptno </span><br><span class="line">   left join (</span><br><span class="line">     select empno,</span><br><span class="line">     ename</span><br><span class="line">     from emp</span><br><span class="line">   ) e1 on king.mgr = e1.empno</span><br><span class="line">   cross join salgrade as s where earn Between losal and hisal ;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-1"><a href="#5-1" class="headerlink" title="5"></a>5</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">select </span><br><span class="line">king.ename,</span><br><span class="line">king.empno,</span><br><span class="line">e1.ename as leader,</span><br><span class="line">king.earn,</span><br><span class="line">s.grade</span><br><span class="line">as sallevel</span><br><span class="line">from (</span><br><span class="line">  select ename , empno , deptno , ifnull((sal + comm),sal) as earn ,mgr </span><br><span class="line">  from emp</span><br><span class="line">  where sal &gt; (</span><br><span class="line">    select avg(sal)</span><br><span class="line">    from emp</span><br><span class="line">  )</span><br><span class="line">) as king </span><br><span class="line">left join dept on king.deptno=dept.deptno </span><br><span class="line">left join (</span><br><span class="line">  select empno,</span><br><span class="line">  ename</span><br><span class="line">  from emp</span><br><span class="line">) e1 on king.mgr = e1.empno</span><br><span class="line">left join salgrade as s on earn &gt;= losal and earn &lt;= hisal;</span><br></pre></td></tr></table></figure>
+
+
 <h2 id="第九题"><a href="#第九题" class="headerlink" title="第九题"></a>第九题</h2><ul>
 <li>列出薪金  高于  在各自部门工作的员工的平均薪金的员工姓名和薪金、部门名称</li>
 <li>条件 ： 各个部门，<code>薪金</code>高于<code>各个部门</code>的<code>平均薪金</code></li>
 </ul>
 <h3 id="1-8"><a href="#1-8" class="headerlink" title="1"></a>1</h3><ul>
-<li>我们可以先获取薪金，以及部门编号 ，并且按照他们进行划分</li>
-<li>因为题目中主要要求的就是部门以及薪金</li>
-<li><code>select  sal ,deptno from emp group by sal , deptno;</code></li>
-<li>接下来我们求各个部门的平均薪金</li>
-<li><code>select avg(sal) as sal_avg, deptno from (select  sal ,deptno from emp group by sal , deptno) as king group by deptno;</code></li>
-<li>其实上述两部可以通过一步完成</li>
-<li><code>select avg(sal) ,deptno from emp group by deptno;</code></li>
-<li>就是不动脑子和动脑子的区别</li>
-<li>不过一般没思路的时候把数据源写上，可能会有奇效</li>
-<li>接下来找出高于平均薪金的信息</li>
-</ul>
+<li><p>我们可以先获取薪金，以及部门编号 ，并且按照他们进行划分</p>
+</li>
+<li><p>因为题目中主要要求的就是部门以及薪金</p>
+</li>
+<li><p><code>select  sal ,deptno from emp group by sal , deptno;</code></p>
+</li>
+<li><p>接下来我们求各个部门的平均薪金</p>
+</li>
+<li><p><code>select avg(sal) as sal_avg, deptno from (select  sal ,deptno from emp group by sal , deptno) as king group by deptno;</code></p>
+</li>
+<li><p>其实上述两部可以通过一步完成</p>
+</li>
+<li><p><code>select avg(sal) ,deptno from emp group by deptno;</code></p>
+</li>
+<li><p>就是不动脑子和动脑子的区别</p>
+</li>
+<li><p>不过一般没思路的时候把数据源写上，可能会有奇效</p>
+</li>
+<li><p>接下来找出高于平均薪金的信息</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">select</span><br><span class="line">*</span><br><span class="line">from (select avg(sal) as sal_avg, deptno from (select  sal ,deptno from emp group by sal , deptno) as king group by deptno) as avg_basic left join emp</span><br><span class="line">on emp.deptno=avg_basic.deptno  and emp.sal &gt; avg_basic.sal_avg;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>这个是用左连接来实现的</li>
-<li>其实还可以要用where来实现 , 不过比较复杂 ，就不在这里写了</li>
-<li>接下来我们就合并部门输出就可以了</li>
+</li>
+<li><p>这个是用左连接来实现的</p>
+</li>
+<li><p>其实还可以要用where来实现 , 不过比较复杂 ，就不在这里写了</p>
+</li>
+<li><p>接下来我们就合并部门输出就可以了</p>
+</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">select  * </span><br><span class="line">from  </span><br><span class="line">(select</span><br><span class="line">*</span><br><span class="line">from (select avg(sal) as sal_avg, deptno as deptno1 from (select  sal ,deptno from emp group by sal , deptno) as king group by deptno) as avg_basic left join emp</span><br><span class="line">on emp.deptno=avg_basic.deptno1  and emp.sal &gt; avg_basic.sal_avg) as basicinfo left  join dept on basicinfo.deptno1=dept.deptno;</span><br></pre></td></tr></table></figure>
 
@@ -1065,6 +1082,162 @@
 <li>不要求 速度</li>
 <li>但是可以presto等工具桥接</li>
 <li></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/03/11-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/03/11-7/" class="post-title-link" itemprop="url">jdbc</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-03 09:11:14" itemprop="dateCreated datePublished" datetime="2022-11-03T09:11:14+08:00">2022-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-07 21:43:33" itemprop="dateModified" datetime="2022-11-07T21:43:33+08:00">2022-11-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>Maven项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。</li>
+<li>注意是工具</li>
+</ul>
+<h2 id="Maven的配置以及idea使用"><a href="#Maven的配置以及idea使用" class="headerlink" title="Maven的配置以及idea使用"></a>Maven的配置以及idea使用</h2><h3 id="下载及解压"><a href="#下载及解压" class="headerlink" title="下载及解压"></a>下载及解压</h3><ul>
+<li>首先在Maven的官网下载Maven</li>
+<li><a target="_blank" rel="noopener" href="http://maven.apache.org/download.cgi" title="Maven官网">Maven官网</a></li>
+<li>我们windows一般下载 ： Binary zip archive的</li>
+<li>我这里下载的是 apache-maven-3.8.6-bin.zip</li>
+<li>下载完之后 ， 解压到一个文件目录下 </li>
+<li>我是新建了个文件目录 命名为 maven</li>
+<li>如何解压到文件目录下</li>
+</ul>
+<h3 id="配置相关文件"><a href="#配置相关文件" class="headerlink" title="配置相关文件"></a>配置相关文件</h3><ul>
+<li>解压成功之后 ，我们会获得几个文件夹</li>
+<li>bin</li>
+<li>boot</li>
+<li>conf</li>
+<li>lib</li>
+<li>这个里conf是maven的配置文件</li>
+<li>我们在这个目录下新建maven_repossitory文件夹</li>
+<li>这个文件夹可以作为，我们的本地仓库</li>
+<li>接下来，我们要修改 conf 文件夹下</li>
+<li>settings.xml文件</li>
+<li>我们先找到</li>
+<li><code>&lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;</code></li>
+<li>这条语句的位置</li>
+<li>把它更改成</li>
+<li><code>&lt;localRepository&gt;你的maven_repossitory路径&lt;/localRepository&gt;</code></li>
+<li>这样我们就自己创建了个</li>
+<li>因为一般maven的默认仓库是</li>
+<li><code>C:\Users\Administrator\.m2\repository</code></li>
+<li>接下来 ， 我们进行设置国内镜像源</li>
+<li>找到 mirrors 标签</li>
+<li>在mirrors里</li>
+<li>加上：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;mirror&gt;</span><br><span class="line">	&lt;id&gt;alimaven&lt;/id&gt;</span><br><span class="line">	&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line">	&lt;name&gt;aliyun maven&lt;/name&gt;</span><br><span class="line">	&lt;url&gt;http://maven.aliyun.com/nexus/content/repositories/central/&lt;/url&gt;</span><br><span class="line">&lt;/mirror&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>这个是阿里云的镜像 ， 如果不好使 可以以换成腾讯云 和网易的</li>
+<li>添加方法和上面一样</li>
+<li>接下来我们可以为maven配置全局的jdk，这样我们在创建maven项目时就会自动使用该jdk版本，我配置的是jdk1.8</li>
+<li>找到标签 <profiles></profiles></li>
+<li>然后在标签里加入<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!-- java版本 --&gt; </span><br><span class="line">&lt;profile&gt;</span><br><span class="line">  &lt;id&gt;jdk-1.8&lt;/id&gt;</span><br><span class="line">  &lt;activation&gt;</span><br><span class="line">	&lt;activeByDefault&gt;true&lt;/activeByDefault&gt;</span><br><span class="line">	&lt;jdk&gt;1.8&lt;/jdk&gt;</span><br><span class="line">  &lt;/activation&gt;</span><br><span class="line"></span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">	&lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">	&lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">	&lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">&lt;/profile&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="更改idea的maven"><a href="#更改idea的maven" class="headerlink" title="更改idea的maven"></a>更改idea的maven</h3><ul>
+<li>file 文件里的 setting</li>
+<li>在上面搜索 maven</li>
+<li>点进去之后</li>
+<li>把Maven home directory</li>
+<li>配置成自己的解压的文件夹</li>
+<li>然后设置user setting file</li>
+<li>把他设置成解压的文件的setting.xml</li>
+<li>然后把 local repository</li>
+<li>设置成之前自己配置的本地仓库</li>
+<li>关于idea的配置就完成了</li>
+</ul>
+<h2 id="简单的链接mysql"><a href="#简单的链接mysql" class="headerlink" title="简单的链接mysql"></a>简单的链接mysql</h2><ul>
+<li>首先创建maven项目</li>
+<li>然后在pom.xml中加上</li>
+<li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;5.1.28&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>在<dependencies>标签中加上</li>
+<li>然后import change</li>
+<li>然后在主程序的java项目包里</li>
+<li>写上：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line">import java.sql.Connection;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Hello world!</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class App </span><br><span class="line">&#123;</span><br><span class="line">    public static void main( String[] args )</span><br><span class="line">    &#123;</span><br><span class="line">        String url = &quot;jdbc:mysql://192.168.41.131:3306/try&quot;;</span><br><span class="line">        String user = &quot;root&quot;;</span><br><span class="line">        String passwd = &quot;liuzihan010616&quot;;</span><br><span class="line"></span><br><span class="line">        Connection conect = dbutils.getConnection(url , user , passwd);</span><br><span class="line"></span><br><span class="line">        System.out.println(conect);</span><br><span class="line">        dbutils.closeConnection(conect);</span><br><span class="line"></span><br><span class="line">        System.out.println( &quot;Hello World!&quot; );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -2292,153 +2465,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/27/10-27/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/27/10-27/" class="post-title-link" itemprop="url">Map</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-27 09:00:17" itemprop="dateCreated datePublished" datetime="2022-10-27T09:00:17+08:00">2022-10-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><ul>
-<li><p>Map和集合是无关系的</p>
-</li>
-<li><p>Map是个接口</p>
-</li>
-<li><p>旗下有hashMap和TreeMap</p>
-</li>
-<li><p>简单代码</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Map&lt;String , String&gt; map1 = new HashMap&lt;&gt;();</span><br><span class="line">	map1.put(&quot;1&quot;, &quot;事假&quot;);</span><br><span class="line">	map1.put(&quot;2&quot;, &quot;病假&quot;);</span><br><span class="line">	map1.put(&quot;3&quot;, &quot;产假&quot;);</span><br><span class="line">	map1.put(&quot;2&quot;, &quot;施加&quot;);</span><br><span class="line">	Set&lt;String&gt; ks = map1.keySet();</span><br><span class="line">	Iterator&lt;String&gt; it = ks.iterator();</span><br><span class="line">	while(it.hasNext()) &#123;</span><br><span class="line">		String item = it.next();</span><br><span class="line">		System.out.println(&quot;key&quot; + item + &quot;@value:&quot; + map1.get(item));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>entrySet</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Set&lt;Map.Entry&lt;String, String&gt;&gt; km = map1.entrySet();</span><br><span class="line">Iterator&lt;Map.Entry&lt;String, String&gt;&gt; il = km.iterator();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">while(il.hasNext()) &#123;</span><br><span class="line">Entry&lt;String , String&gt; entry = il.next();</span><br><span class="line">System.out.println(entry.getKey() + entry.getValue());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for (Entry&lt;String, String&gt; entry : km) &#123;</span><br><span class="line">	System.out.println(entry.getKey() + entry.getValue());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">km.forEach(new Consumer() &#123;</span><br><span class="line">@Override</span><br><span class="line">public void accept(Object t) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	System.out.println(t);</span><br><span class="line">&#125;&#125;); // Consumer里面有个抽象方法 ，accept，我们要做的事情放进这个accept里，就代表对其每个元素进行accept里的操作 ，就是lambda的表达式</span><br><span class="line">		</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>上述是两种遍历方式，迭代器可边遍历便删除，是我们最古老的，可是也是唯一有这个功能的 ，iterator</li>
-<li>其他的都要遍历完了才能再删除</li>
-<li>而且entrySet比keySet是要更快点的（单纯遍历）</li>
-<li>迭代器的算法是要比后来的算法速度快的，遍历的时候</li>
-</ul>
-<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><ul>
-<li>lambda表达式是很便捷的一种方法</li>
-<li>要求：定义规则，定义几个变量</li>
-<li>首先，我们要定义一个接口</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">interface Yunsuan&#123;</span><br><span class="line">	public int yunsuan(int i , int j);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>然后在这个接口上增加@FunctionalInterface ，注意这个标志是让这个接口只有一个抽象方法，多个抽象方法会报错</li>
-<li>这一步是定义我们的，几个元素</li>
-<li>接下来我们定义一个函数 ，让这个接口当作参数 ，并且给这个接口传入两个参数</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static int getresult(int a , int b, Yunsuan yunsuan) &#123;</span><br><span class="line">	return	yunsuan.yunsuan(a, b);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>这样 ，我们就算是把这个规则实体化了，接下来我们只要调用这个规则的实例化，就可以对这两个数进行任意操作了</li>
-<li>比如<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">System.out.println(getresult(3,2, (i,j)-&gt;i+j)); // 前面两个是实参 ，后面的是规则就这样写就行 ，格式固定，但是语法不固定</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>上面的foreach里嵌套的就算lambda的表达式</li>
-</ul>
-<h1 id="Map特殊事项"><a href="#Map特殊事项" class="headerlink" title="Map特殊事项"></a>Map特殊事项</h1><ul>
-<li><p>如果在map里把key放入引用类型，则对比key的操作会变成对比hashcode和equals，可控性更强</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">package 重新开始;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">public class TEstmain1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		Map&lt;stu , Object&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">		map.put(new stu(&quot;小明&quot;  , 1), 1);</span><br><span class="line">		map.put(null , null);</span><br><span class="line">		map.put(new stu(&quot;狗蛋&quot; , 1) , 2);</span><br><span class="line">		System.out.println(map.size());</span><br><span class="line">		map.forEach((k , v) -&gt; &#123;System.out.println(k + &quot;@&quot; +v);&#125;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>stu类，通过自动生成hashcode和equals，（我这里只生成了num的）</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class stu implements Comparable&lt;stu&gt;&#123;</span><br><span class="line">	private int num;</span><br><span class="line">	private String name;</span><br><span class="line">	private double score;</span><br><span class="line">	public stu( String name , int num) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.num = num;</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	public stu( String name , int num , double m) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.num = num;</span><br><span class="line">		this.score = m;</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public stu() &#123;</span><br><span class="line">		super();</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	public int getNum() &#123;</span><br><span class="line">		return num;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setNum(int num) &#123;</span><br><span class="line">		this.num = num;</span><br><span class="line">	&#125;</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public String toString() &#123;</span><br><span class="line">		return &quot;stu [num=&quot; + num + &quot;, name=&quot; + name + &quot;, score=&quot; + score + &quot;]&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public int hashCode() &#123;</span><br><span class="line">		final int prime = 31;</span><br><span class="line">		int result = 1;</span><br><span class="line">		result = prime * result + num;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public boolean equals(Object obj) &#123;</span><br><span class="line">		if (this == obj)</span><br><span class="line">			return true;</span><br><span class="line">		if (obj == null)</span><br><span class="line">			return false;</span><br><span class="line">		if (getClass() != obj.getClass())</span><br><span class="line">			return false;</span><br><span class="line">		stu other = (stu) obj;</span><br><span class="line">		if (num != other.num)</span><br><span class="line">			return false;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 大于0是正数，小于0是负数 ，等于0是相等 ，</span><br><span class="line">	@Override</span><br><span class="line">	public int compareTo(stu o) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		if(this.num == o.num) &#123;</span><br><span class="line">			return this.name.length() - o.name.length();</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			return o.num - this.num;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public double getScore() &#123;</span><br><span class="line">		return score;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setScore(double score) &#123;</span><br><span class="line">		this.score = score;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="lambda加for循环-加上TreeMap"><a href="#lambda加for循环-加上TreeMap" class="headerlink" title="lambda加for循环 加上TreeMap"></a>lambda加for循环 加上TreeMap</h1><ul>
-<li><p>通过treeMap实现</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">package 重新开始;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.TreeMap;</span><br><span class="line"></span><br><span class="line">public class TEstmain1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		TreeMap&lt;stu , Object&gt; map11 = new TreeMap();</span><br><span class="line">		map11.put(new stu(&quot;小明&quot;,  1), 1);</span><br><span class="line">		map11.put(new stu(&quot;狗蛋&quot; ,  2) ,2);</span><br><span class="line">		map11.put(new stu(&quot;linux&quot; , 3), 3);</span><br><span class="line">		map11.put(new stu(&quot;狗蛋&quot; ,  2) ,99);</span><br><span class="line">		map11.forEach(TEstmain1::abc);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void abc(stu s , Object value) &#123;</span><br><span class="line">		System.out.println(s + &quot;@&quot; +value);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上述的是针对foreach有两个参数的情况，可以定义一个函数，让他去传递参数，和lambda一样</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2510,7 +2536,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2568,7 +2594,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共50.2k字</span>
+  <span class="post-count">博客全站共51.2k字</span>
 </div>
 
 

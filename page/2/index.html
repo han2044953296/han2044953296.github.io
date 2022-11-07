@@ -198,6 +198,153 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/27/10-27/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/27/10-27/" class="post-title-link" itemprop="url">Map</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-27 09:00:17" itemprop="dateCreated datePublished" datetime="2022-10-27T09:00:17+08:00">2022-10-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><ul>
+<li><p>Map和集合是无关系的</p>
+</li>
+<li><p>Map是个接口</p>
+</li>
+<li><p>旗下有hashMap和TreeMap</p>
+</li>
+<li><p>简单代码</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Map&lt;String , String&gt; map1 = new HashMap&lt;&gt;();</span><br><span class="line">	map1.put(&quot;1&quot;, &quot;事假&quot;);</span><br><span class="line">	map1.put(&quot;2&quot;, &quot;病假&quot;);</span><br><span class="line">	map1.put(&quot;3&quot;, &quot;产假&quot;);</span><br><span class="line">	map1.put(&quot;2&quot;, &quot;施加&quot;);</span><br><span class="line">	Set&lt;String&gt; ks = map1.keySet();</span><br><span class="line">	Iterator&lt;String&gt; it = ks.iterator();</span><br><span class="line">	while(it.hasNext()) &#123;</span><br><span class="line">		String item = it.next();</span><br><span class="line">		System.out.println(&quot;key&quot; + item + &quot;@value:&quot; + map1.get(item));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>entrySet</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Set&lt;Map.Entry&lt;String, String&gt;&gt; km = map1.entrySet();</span><br><span class="line">Iterator&lt;Map.Entry&lt;String, String&gt;&gt; il = km.iterator();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">while(il.hasNext()) &#123;</span><br><span class="line">Entry&lt;String , String&gt; entry = il.next();</span><br><span class="line">System.out.println(entry.getKey() + entry.getValue());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for (Entry&lt;String, String&gt; entry : km) &#123;</span><br><span class="line">	System.out.println(entry.getKey() + entry.getValue());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">km.forEach(new Consumer() &#123;</span><br><span class="line">@Override</span><br><span class="line">public void accept(Object t) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	System.out.println(t);</span><br><span class="line">&#125;&#125;); // Consumer里面有个抽象方法 ，accept，我们要做的事情放进这个accept里，就代表对其每个元素进行accept里的操作 ，就是lambda的表达式</span><br><span class="line">		</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>上述是两种遍历方式，迭代器可边遍历便删除，是我们最古老的，可是也是唯一有这个功能的 ，iterator</li>
+<li>其他的都要遍历完了才能再删除</li>
+<li>而且entrySet比keySet是要更快点的（单纯遍历）</li>
+<li>迭代器的算法是要比后来的算法速度快的，遍历的时候</li>
+</ul>
+<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><ul>
+<li>lambda表达式是很便捷的一种方法</li>
+<li>要求：定义规则，定义几个变量</li>
+<li>首先，我们要定义一个接口</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">interface Yunsuan&#123;</span><br><span class="line">	public int yunsuan(int i , int j);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后在这个接口上增加@FunctionalInterface ，注意这个标志是让这个接口只有一个抽象方法，多个抽象方法会报错</li>
+<li>这一步是定义我们的，几个元素</li>
+<li>接下来我们定义一个函数 ，让这个接口当作参数 ，并且给这个接口传入两个参数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static int getresult(int a , int b, Yunsuan yunsuan) &#123;</span><br><span class="line">	return	yunsuan.yunsuan(a, b);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>这样 ，我们就算是把这个规则实体化了，接下来我们只要调用这个规则的实例化，就可以对这两个数进行任意操作了</li>
+<li>比如<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">System.out.println(getresult(3,2, (i,j)-&gt;i+j)); // 前面两个是实参 ，后面的是规则就这样写就行 ，格式固定，但是语法不固定</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>上面的foreach里嵌套的就算lambda的表达式</li>
+</ul>
+<h1 id="Map特殊事项"><a href="#Map特殊事项" class="headerlink" title="Map特殊事项"></a>Map特殊事项</h1><ul>
+<li><p>如果在map里把key放入引用类型，则对比key的操作会变成对比hashcode和equals，可控性更强</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">package 重新开始;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">public class TEstmain1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		Map&lt;stu , Object&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">		map.put(new stu(&quot;小明&quot;  , 1), 1);</span><br><span class="line">		map.put(null , null);</span><br><span class="line">		map.put(new stu(&quot;狗蛋&quot; , 1) , 2);</span><br><span class="line">		System.out.println(map.size());</span><br><span class="line">		map.forEach((k , v) -&gt; &#123;System.out.println(k + &quot;@&quot; +v);&#125;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>stu类，通过自动生成hashcode和equals，（我这里只生成了num的）</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class stu implements Comparable&lt;stu&gt;&#123;</span><br><span class="line">	private int num;</span><br><span class="line">	private String name;</span><br><span class="line">	private double score;</span><br><span class="line">	public stu( String name , int num) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.num = num;</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	public stu( String name , int num , double m) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.num = num;</span><br><span class="line">		this.score = m;</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public stu() &#123;</span><br><span class="line">		super();</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	public int getNum() &#123;</span><br><span class="line">		return num;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setNum(int num) &#123;</span><br><span class="line">		this.num = num;</span><br><span class="line">	&#125;</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public String toString() &#123;</span><br><span class="line">		return &quot;stu [num=&quot; + num + &quot;, name=&quot; + name + &quot;, score=&quot; + score + &quot;]&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public int hashCode() &#123;</span><br><span class="line">		final int prime = 31;</span><br><span class="line">		int result = 1;</span><br><span class="line">		result = prime * result + num;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public boolean equals(Object obj) &#123;</span><br><span class="line">		if (this == obj)</span><br><span class="line">			return true;</span><br><span class="line">		if (obj == null)</span><br><span class="line">			return false;</span><br><span class="line">		if (getClass() != obj.getClass())</span><br><span class="line">			return false;</span><br><span class="line">		stu other = (stu) obj;</span><br><span class="line">		if (num != other.num)</span><br><span class="line">			return false;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 大于0是正数，小于0是负数 ，等于0是相等 ，</span><br><span class="line">	@Override</span><br><span class="line">	public int compareTo(stu o) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		if(this.num == o.num) &#123;</span><br><span class="line">			return this.name.length() - o.name.length();</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			return o.num - this.num;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public double getScore() &#123;</span><br><span class="line">		return score;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setScore(double score) &#123;</span><br><span class="line">		this.score = score;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="lambda加for循环-加上TreeMap"><a href="#lambda加for循环-加上TreeMap" class="headerlink" title="lambda加for循环 加上TreeMap"></a>lambda加for循环 加上TreeMap</h1><ul>
+<li><p>通过treeMap实现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">package 重新开始;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.TreeMap;</span><br><span class="line"></span><br><span class="line">public class TEstmain1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		TreeMap&lt;stu , Object&gt; map11 = new TreeMap();</span><br><span class="line">		map11.put(new stu(&quot;小明&quot;,  1), 1);</span><br><span class="line">		map11.put(new stu(&quot;狗蛋&quot; ,  2) ,2);</span><br><span class="line">		map11.put(new stu(&quot;linux&quot; , 3), 3);</span><br><span class="line">		map11.put(new stu(&quot;狗蛋&quot; ,  2) ,99);</span><br><span class="line">		map11.forEach(TEstmain1::abc);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void abc(stu s , Object value) &#123;</span><br><span class="line">		System.out.println(s + &quot;@&quot; +value);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上述的是针对foreach有两个参数的情况，可以定义一个函数，让他去传递参数，和lambda一样</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/26/10-26/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1712,110 +1859,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/17/10-17/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/17/10-17/" class="post-title-link" itemprop="url">数字及big类</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-17 17:44:10" itemprop="dateCreated datePublished" datetime="2022-10-17T17:44:10+08:00">2022-10-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="关于数学包里常用的几个类"><a href="#关于数学包里常用的几个类" class="headerlink" title="关于数学包里常用的几个类"></a>关于数学包里常用的几个类</h1><h2 id="abs"><a href="#abs" class="headerlink" title="abs"></a>abs</h2><p>abs是取绝对值</p>
-<h2 id="cell"><a href="#cell" class="headerlink" title="cell"></a>cell</h2><p>向上（正方向）取整</p>
-<h2 id="floor"><a href="#floor" class="headerlink" title="floor"></a>floor</h2><p>向下（负方向）取整</p>
-<h2 id="round"><a href="#round" class="headerlink" title="round"></a>round</h2><p> 四舍五入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> // 简单的例子 ，5舍6入</span><br><span class="line">可以通过floor进行</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="BigInteger"><a href="#BigInteger" class="headerlink" title="BigInteger"></a>BigInteger</h1><p>BigInteger类型的数字范围较Integer，Long类型的数字范围要大得多，它支持任意精度的整数，也就是说在运算中 BigInteger 类型可以准确地表示任何大小的整数值而不会丢失任何信息。</p>
-<h2 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//1.加</span><br><span class="line">BigInteger bigNum1 = a.add(b);			//17</span><br><span class="line">//2.减</span><br><span class="line">BigInteger bigNum2 = a.subtract(b);		//9</span><br><span class="line">//3.乘</span><br><span class="line">BigInteger bigNum3 = a.multiply(b);		//52</span><br><span class="line">//4.除</span><br><span class="line">BigInteger bigNum4 = a.divide(b);		//3</span><br><span class="line">//5.取模(需 b &gt; 0，否则出现异常：ArithmeticException(&quot;BigInteger: modulus not positive&quot;))</span><br><span class="line">BigInteger bigNum5 = a.mod(b);			//1</span><br><span class="line">//6.求余</span><br><span class="line">BigInteger bigNum6 = a.remainder(b);	//1</span><br><span class="line">//7.平方(需 n &gt;= 0，否则出现异常：ArithmeticException(&quot;Negative exponent&quot;))</span><br><span class="line">BigInteger bigNum7 = a.pow(n);			//2197</span><br><span class="line">//8.取绝对值</span><br><span class="line">BigInteger bigNum8 = a.abs();			//13</span><br><span class="line">//9.取相反数</span><br><span class="line">BigInteger bigNum9 = a.negate();		//-13</span><br></pre></td></tr></table></figure>
-
-<h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//读入方法：nextBigInteger()</span><br><span class="line">@Test</span><br><span class="line">public void test5() &#123;</span><br><span class="line">	Scanner scan = new Scanner(System.in);				// 读入</span><br><span class="line">	int n = scan.nextInt(); 							// 读入一个int;</span><br><span class="line">	BigInteger m = scan.nextBigInteger();				// 读入一个BigInteger;</span><br><span class="line">	while(scan.hasNext())&#123;	</span><br><span class="line">		System.out.print(&quot;scan.hasNext()=&quot; + scan.hasNext());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中除了这个还有big浮点型，用法和上面一样</p>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1887,7 +1930,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1945,7 +1988,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共50.2k字</span>
+  <span class="post-count">博客全站共51.2k字</span>
 </div>
 
 
