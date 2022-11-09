@@ -603,7 +603,7 @@
 </ul>
 <h2 id="解答-1"><a href="#解答-1" class="headerlink" title="解答"></a>解答</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">select avg(if(datediff(date2, date1)=1, 1, 0)) as avg_ret</span><br><span class="line">from (</span><br><span class="line">    select</span><br><span class="line">        distinct device_id,</span><br><span class="line">        date as date1,</span><br><span class="line">        lead(date) over (partition by device_id order by date) as date2</span><br><span class="line">    from (</span><br><span class="line">        select distinct device_id, date</span><br><span class="line">        from question_practice_detail</span><br><span class="line">    ) as uniq_id_date</span><br><span class="line">) as id_last_next_date</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>日志</category>
+        <category>作业</category>
       </categories>
   </entry>
   <entry>
@@ -2420,7 +2420,7 @@
 <h3 id="throws"><a href="#throws" class="headerlink" title="throws"></a>throws</h3><p>我们可以通过throws把异常向上抛出，让他们的上层去处理，可是一般上层如果不能处理，还会继续向上抛出，这种方法我简称为逃避，我们，一般使用try catch语句较多，一般是抛到main方法里进行try catch处理，<br>如果异常一直不处理，那编译器最后会报错</p>
 ]]></content>
       <categories>
-        <category>javase</category>
+        <category>日志</category>
       </categories>
   </entry>
   <entry>
