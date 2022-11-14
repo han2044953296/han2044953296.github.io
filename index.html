@@ -292,7 +292,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/11/10-11/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/11/11-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -306,7 +306,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/11/11/10-11/" class="post-title-link" itemprop="url">hadoop</a>
+            <a href="/2022/11/11/11-10/" class="post-title-link" itemprop="url">hadoop</a>
         </h2>
 
         <div class="post-meta">
@@ -316,10 +316,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-11 10:07:37 / 修改时间：19:46:55" itemprop="dateCreated datePublished" datetime="2022-11-11T10:07:37+08:00">2022-11-11</time>
+              <time title="创建时间：2022-11-11 10:07:37" itemprop="dateCreated datePublished" datetime="2022-11-11T10:07:37+08:00">2022-11-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-14 20:27:19" itemprop="dateModified" datetime="2022-11-14T20:27:19+08:00">2022-11-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -336,14 +342,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
+              <span>9.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>9 分钟</span>
             </span>
 
         </div>
@@ -486,6 +492,88 @@
 <li>然后在hosts文件最后的加上我们在linux里的主机和ip映射</li>
 <li>就可以通过 <code>http://你的虚拟机名称:9870/</code>访问我们的hadoop了</li>
 </ul>
+<h3 id="部署yarn"><a href="#部署yarn" class="headerlink" title="部署yarn"></a>部署yarn</h3><ul>
+<li>对于部署单点的yarn</li>
+<li>我们可以通过配置yarn的配置文件</li>
+<li><code>mapred-site.xml</code> 和<code>yarn-site.xml</code></li>
+</ul>
+<h4 id="mapred-site-xml"><a href="#mapred-site-xml" class="headerlink" title="mapred-site.xml"></a>mapred-site.xml</h4><ul>
+<li>对于这个文件我们这样更改</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;yarn&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;mapreduce.application.classpath&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="yarn-site-xml"><a href="#yarn-site-xml" class="headerlink" title="yarn-site.xml"></a>yarn-site.xml</h4><ul>
+<li>对于这个文件我们进行</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">#设置web访问的端口</span><br><span class="line"> &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.resourcemanager.webapp.address&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;你的主机名称:9999&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">#设置运行在那个虚拟机上</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;你的主机名&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#下面两个要基本配置</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.env-whitelist&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_HOME,PATH,LANG,TZ,HADOOP_MAPRED_HOME&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置完成之后我们要进行<code>start-yarn.sh</code></li>
+<li>然后开启这个服务 ： 我们可以通过访问浏览器的 <code>xxx你的ip:9999</code> ,访问这个服务</li>
+<li>这样我们的单点就算配置完成了</li>
+</ul>
+<h2 id="关于分布式的配置"><a href="#关于分布式的配置" class="headerlink" title="关于分布式的配置"></a>关于分布式的配置</h2><ul>
+<li>分布式的配置就是把单点的配置分到多台机器上</li>
+<li>比如 ： 把hdfs的namenode 和 datanode 和secondnamenode分到三台机器上</li>
+<li>把yarn的部署也分到三台机器上</li>
+</ul>
+<h3 id="开始分布式"><a href="#开始分布式" class="headerlink" title="开始分布式"></a>开始分布式</h3><ul>
+<li>首先我们要明确一点 ： namenode是老大 ，只能有一个</li>
+<li>datanode是小弟 ：  可以有多个</li>
+<li>secondnamenode ：是秘书只能有一个</li>
+<li>对于yarn ： resourcemanager只能有一个</li>
+<li>而 ：nodemanagers ：可有多个</li>
+</ul>
+<h4 id="开始之前的配置"><a href="#开始之前的配置" class="headerlink" title="开始之前的配置"></a>开始之前的配置</h4><ul>
+<li>关于hdfs和上面部署的一样</li>
+<li>只不过在配置免密登录的时候不同</li>
+<li>因为我们现在要做三台机器互相免密</li>
+<li>所以我们要用</li>
+<li><code>ssh-keygen -t rsa</code> 然后三次回车生成公钥和私钥</li>
+<li>然后三台机器都要用一遍</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ssh-copy-id 第一台机器名</span><br><span class="line">ssh-copy-id 第二台机器名</span><br><span class="line">ssh-copy-id 第三胎机器名</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后分别对三台机器用</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ssh hadoop@第一台机器名</span><br><span class="line">ssh hadoop@第二台机器名</span><br><span class="line">ssh hadoop@第三台机器名</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>最后分别ssh一下然后如果能成功就代表成功了</li>
+</ul>
+<h4 id="hdfs"><a href="#hdfs" class="headerlink" title="hdfs"></a>hdfs</h4><ul>
+<li><code>core-site.xml</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">#设置存储位置</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;/home/hadoop/data/hadoopdate&lt;/value&gt;</span><br><span class="line"> &lt;/property&gt;</span><br><span class="line">#设置namenode在哪一台机器上运行</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;fs.defaultFS&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;hdfs://主机器的名称:9000&lt;/value&gt;</span><br><span class="line"> &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>-<code>workers</code> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">第一台机器的名称</span><br><span class="line">第二台机器的名称</span><br><span class="line">第三台机器的名称</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>hdfs-site.xml</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line"> #下面的values代表是几台机器，我这个是三台机器</span><br><span class="line"> &lt;property&gt;</span><br><span class="line">        &lt;name&gt;dfs.replication&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;3&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  #设置secondarynamenode的端口和在哪一台机器上</span><br><span class="line"> &lt;property&gt;</span><br><span class="line">        &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;bigdata4:9868&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">#同上一个</span><br><span class="line"> &lt;property&gt;</span><br><span class="line">        &lt;name&gt;dfs.namenode.secondary.https-address&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;bigdata4:9869&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后三台机器都要配置相同的环境变量</li>
+</ul>
+<h4 id="yarn"><a href="#yarn" class="headerlink" title="yarn"></a>yarn</h4><ul>
+<li><code>mapred-site.xml</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;yarn&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;mapreduce.application.classpath&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>yarn-site.xml</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">#设置resourcemanager其所占用的端口</span><br><span class="line"> &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.resourcemanager.webapp.address&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;bigdata5:9999&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">#设置resourcemanager其所在的机器</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;bigdata5&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">#下面两个是正常yarn的配置文件</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.env-whitelist&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_HOME,PATH,LANG,TZ,HADOOP_MAPRED_HOME&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>同样三台机器也要配置相同的文件</li>
+<li>然后我们要在我们的namenode机器上</li>
+<li>开始初始化： <code>hdfs namenode -format</code></li>
+<li>然后我们在namenode上开始运行<code>start-dfs.sh</code></li>
+<li>然后我们在resourcemanager上开始运行<code>start-yarn.sh</code></li>
+<li>然后我们可以用jps查看每个机器的进程</li>
+<li>查看是不是符合我们的想法</li>
+</ul>
 <h3 id="关于datanode缺失"><a href="#关于datanode缺失" class="headerlink" title="关于datanode缺失"></a>关于datanode缺失</h3><ul>
 <li>因为默认hadoop有一个id文件是在<code>/tmp/hadoop-hadoop/dfs</code>下的</li>
 <li>我们默认启动的时候可能有多个原因 ，造成生成的id不一致</li>
@@ -494,6 +582,67 @@
 <li>解决方法： </li>
 <li>如果dfs文件夹中没有重要的数据，那么删除dfs文件夹，再重新运行下列指令（格式化指令）</li>
 <li>如果dfs文件中有重要的数据，那么在dfs&#x2F;name目录下找到一个current&#x2F;VERSION文件，记录clusterID并复制。然后dfs&#x2F;data目录下找到一个current&#x2F;VERSION文件，将其中clustreID的值替换成刚刚复制的clusterID的值即可</li>
+</ul>
+<h2 id="hdfs的命令"><a href="#hdfs的命令" class="headerlink" title="hdfs的命令"></a>hdfs的命令</h2><ul>
+<li>创建文件夹 <code>hdfs dfs -mkdir xxx</code> : 创建xxx文件夹，可以多层创建文件夹</li>
+<li>创建文件<code>hdfs dfs -touchz path</code></li>
+<li>复制文件<code>hdfs dfs -cp 源目录 目标路径</code> ：这个是把整个文件夹结构都cp过去：属于hdfs的内部操作不是上传下载</li>
+<li>移动文件<code>hdfs dfs -mv 源目录 目标目录</code></li>
+<li>赋予权限<code>hdfs dfs -chmod 权限参数 </code></li>
+<li>上传文件<code>hdfs dfs -put 源文件夹路径 目标文件夹路径</code></li>
+<li>上传文件<code>hdfs dfs -copyFromLocal 源文件夹 目标文件夹</code></li>
+<li>上传文件且删除本地文件<code>hdfs dfs -moveFromLocal 源文件 目标文件</code></li>
+<li>下载文件<code>hdfs dfs -get 源文件夹路径 目标文件夹路径</code></li>
+<li>查看文件内容 <code>hdfs dfs -cat path</code>从头看这个文件</li>
+<li>查看文件内容 <code>hdfs dfs -tail path</code>查看这个文件的最后1k</li>
+<li>删除文件<code>hdfs dfs -rm 文件路径</code></li>
+<li>删除文件夹<code>hdfs dfs -rm -R 文件夹</code></li>
+</ul>
+<h2 id="mapreduce"><a href="#mapreduce" class="headerlink" title="mapreduce"></a>mapreduce</h2><ul>
+<li>简介 ： 其设计理念是计算向数据靠拢，采用分而治之的策略，将庞大的数据分为很多个很多个小切片，并且为每个小切片单独的启动一个map任务</li>
+<li>适合mapredurce处理的数据集要满足一个前提：待处理的数据集可以分解成许多更小的数据集，且每一个更小的数据集都可以并行的处理</li>
+<li>其采用的是主从架构（master&#x2F;Slave），就是一个主服务器多个从服务器（salve），master上运行jobTracker，slaver运行TaskTracker</li>
+</ul>
+<h3 id="mapreduce体系架构"><a href="#mapreduce体系架构" class="headerlink" title="mapreduce体系架构"></a>mapreduce体系架构</h3><ul>
+<li>其主要是由四个部分组成 ： 分别是Client , JobTracker,TaskTracker以及Task</li>
+<li>Client ： 用户编写的Mapredurce程序通过Client提交到jobTracker</li>
+<li>jobTracker(运行在主服务器上) : 负责监控和资源调度</li>
+<li>监控所有的TaskTracker与job的健康情况，一旦发现失败，就把相应的任务转移到其他的节点</li>
+<li>其会跟踪任务的执行调度，资源使用量，并将这些信息告诉任务调度器（TaskScheduler），而调度器会在资源调度器出现空闲时，选择合适的任务去使用这些资源</li>
+<li>jobTracker（运行在服务器） </li>
+<li>TaskTracker会周期性的通过心跳将本节点上资源的使用情况和任务运行进度汇报给jobTracker，同时接受jobTracker发送过来的命令并执行相应的操作（如 ： 启动新任务 ，杀死任务等）</li>
+<li>TaskTracker使用“slot”等量划分本节点上的资源量（CPU ，内存）。一个Task获取到一个slot后才有机会运行，而hadoop调度器的作用就是将各个TaskTracker上的空闲slot分配给Task使用。slot分为Map slot和Reduce slot两种，分别提供Map Task和Redurce Task使用</li>
+<li>Task</li>
+<li>Map Task和Redurce Task 均由TaskTracker</li>
+</ul>
+<h3 id="mapreduce的工作流程"><a href="#mapreduce的工作流程" class="headerlink" title="mapreduce的工作流程"></a>mapreduce的工作流程</h3><ul>
+<li>一个大的mapredurce任务，首先会被分为为若干个Map任务在多台机器上执行运行（map任务通常运行在存储节点上），每一个map任务会输出一个&lt;key , value&gt;形式的中间结果，一个map任务只有全部执行完成之后才会进行reduce任务，map的输出结果&lt;key, value&gt;（存储在本地磁盘） ， 具有相同的key会被发送到同一个reduce任务</li>
+<li>注意 ：不同的map之间不会有通信</li>
+<li>不同的reduce之间也不会</li>
+<li>用户不能显式的从一台机器向另外一台机器发送消息，所有的信息交换都是通过Mapredurce框架自身去实现</li>
+<li>map的输入文件，redurce任务的输出结果都是保存在hdfs分布式文件系统中，map的输出结果保存在本地磁盘文件中</li>
+<li>当一个map任务处理全部结束之后，reduce任务才能开始去取相应的数据</li>
+<li>只有map任务需要考虑数据局限性，实现计算向数据靠拢，reduce无需考虑数据局限性</li>
+</ul>
+<h4 id="各阶段执行内容"><a href="#各阶段执行内容" class="headerlink" title="各阶段执行内容"></a>各阶段执行内容</h4><ul>
+<li>分为 ：5个阶段 预处理，map，shuffle，reduce，输出</li>
+<li>预处理 ： 由inputFormat 进行格式验证以及逻辑上的分区inputSplit ， inputSplit经过redodrdreader</li>
+<li>根据inputSplit的信息来处理inputSplit中的具体记录，转换为键值对 ，输入给map</li>
+<li>map ： 接受来自RR键值对，进行分区，排序，合并，归并，得到&lt;key , value-list&gt;形式的中间结果，输入给reduce，此处包括map端的shuffle和reduce端的shuffle</li>
+<li>reduce ： 接受shuffle输出的&lt;key , value&gt;,执行用户子自定义，输出给outputFromat</li>
+<li>输出 ： outputFromat，模块会验证输出目录是不是已经存在以及输出结果是不是符合配置文件中的配置类型，如果满足，就输出reduce的结果到分布式文件系统</li>
+</ul>
+<h4 id="map的shuffle"><a href="#map的shuffle" class="headerlink" title="map的shuffle"></a>map的shuffle</h4><ul>
+<li>过程有四部</li>
+<li>输入数据并执行map任务</li>
+<li>map任务结果输出，写入缓存</li>
+<li>溢写 ： 如果输出结果超过了一定的比例，每一次溢写会在磁盘上生成一个磁盘文件，写入之前进行会分区，，排序，如果指定了commbiner还可以进行合并，这样经过溢写的磁盘文件就包含了多个分区，且分区内部都是经过排序的</li>
+<li>merge ： 随着map任务的进行，当有多个溢写文件时（就是大于等于2的适合），就会发现merge，生成一个更大的磁盘文件，这个大的溢写文件也是经过排序和分区的，默认情况下每10个溢写会变成一个大文件，通常在merge过程中，如果文件数量大于3则进行combine操作，从而减少磁盘的数据量，如果只有一两个溢写，合并操作得不偿失</li>
+</ul>
+<h4 id="reduce的shuttle"><a href="#reduce的shuttle" class="headerlink" title="reduce的shuttle"></a>reduce的shuttle</h4><ul>
+<li>领取数据 ： 经过map的suffle后，map的输出结果保存在磁盘，此时，需要将磁盘数据取回到reduce机器，此时如果线程被占满，同样会和map端一样开启溢写操作，reduce通过RPC询问JobTracker是不是还拥有未完成的map任务，如果有，将数据提取到reduce机器上，此时实际上是多个reduce机器，同时多线程从map机器领回数据</li>
+<li>merge ： 一个map的shuffle结果因为拥有多个分区，所以会有不同的reduce机器取回自己的数据，而每一个reduce也从不同的map机器取回数据，如果每个reduce机器内存达到阈值，就进行溢写操作，溢写的时候一般有很多键值对可以进行merge，如果定义了combiner还可以进行合并，进行溢写操作的过程中还可以进行combine。并非是一个reduce程序从map机器上取回数据就生成一个溢写文件，而是缓存不够用，则发生溢写，如果缓存够用，则是直接在内存里进行操作</li>
+<li>把数据输出给map任务（对一个reduce而言）：执行用户自定义的逻辑，最终输出</li>
 </ul>
 
       
@@ -548,7 +697,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-11 10:01:55" itemprop="dateModified" datetime="2022-11-11T10:01:55+08:00">2022-11-11</time>
+                <time title="修改时间：2022-11-13 19:14:21" itemprop="dateModified" datetime="2022-11-13T19:14:21+08:00">2022-11-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2846,7 +2995,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共56.8k字</span>
+  <span class="post-count">博客全站共59.7k字</span>
 </div>
 
 
