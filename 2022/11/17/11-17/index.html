@@ -30,7 +30,7 @@
 <meta property="og:description" content="hdfs的写流程 面试|必备 通过客户端，写文件 首先客户端会调用 FileSystem 的creat 去和namenode进行通信 ， 是通过rpc通信 然后namenode会去检查这个路径的文件是不是存在并且检查你的权限 假如都ok ， 则执行你的操作 但是这个时候还没有写数据 是不关联任何block的 而namenode根据上传文件的大小，和块的大小，以及副本数 计算要上传多少块以及后续要在">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-17T11:47:10.000Z">
-<meta property="article:modified_time" content="2022-11-17T11:47:54.293Z">
+<meta property="article:modified_time" content="2022-11-18T04:53:12.340Z">
 <meta property="article:author" content="liu zihang">
 <meta name="twitter:card" content="summary">
 
@@ -224,10 +224,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-17 19:47:10 / 修改时间：19:47:54" itemprop="dateCreated datePublished" datetime="2022-11-17T19:47:10+08:00">2022-11-17</time>
+              <time title="创建时间：2022-11-17 19:47:10" itemprop="dateCreated datePublished" datetime="2022-11-17T19:47:10+08:00">2022-11-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-18 12:53:12" itemprop="dateModified" datetime="2022-11-18T12:53:12+08:00">2022-11-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -542,14 +548,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -600,7 +606,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共62.4k字</span>
+  <span class="post-count">博客全站共64.1k字</span>
 </div>
 
 
