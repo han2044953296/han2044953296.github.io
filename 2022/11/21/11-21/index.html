@@ -24,13 +24,13 @@
 
   <meta name="description" content="续讲Hadoop模板模式关于mapreduce的操作模式就是模板模式，加上自定义的变量 模板模式关于模板模式，就是三步走 开始阶段 ： map阶段 处理阶段 ： reduce阶段 结束阶段 ： 关闭流并输出 自定义的变量BooleanWriteable : 布尔类型 ByteWriteable : Byte类型 DoubleWriteable : double类型 FloatWriteable ：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shell">
+<meta property="og:title" content="mapreduce">
 <meta property="og:url" content="http://example.com/2022/11/21/11-21/index.html">
 <meta property="og:site_name" content="枫叶冢">
 <meta property="og:description" content="续讲Hadoop模板模式关于mapreduce的操作模式就是模板模式，加上自定义的变量 模板模式关于模板模式，就是三步走 开始阶段 ： map阶段 处理阶段 ： reduce阶段 结束阶段 ： 关闭流并输出 自定义的变量BooleanWriteable : 布尔类型 ByteWriteable : Byte类型 DoubleWriteable : double类型 FloatWriteable ：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-21T00:47:09.399Z">
-<meta property="article:modified_time" content="2022-11-21T02:32:07.326Z">
+<meta property="article:modified_time" content="2022-11-21T03:16:19.951Z">
 <meta property="article:author" content="liu zihang">
 <meta name="twitter:card" content="summary">
 
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>shell | 枫叶冢</title>
+  <title>mapreduce | 枫叶冢</title>
   
 
 
@@ -214,7 +214,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          shell
+          mapreduce
         </h1>
 
         <div class="post-meta">
@@ -226,7 +226,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-11-21 08:47:09 / 修改时间：10:32:07" itemprop="dateCreated datePublished" datetime="2022-11-21T08:47:09+08:00">2022-11-21</time>
+              <time title="创建时间：2022-11-21 08:47:09 / 修改时间：11:16:19" itemprop="dateCreated datePublished" datetime="2022-11-21T08:47:09+08:00">2022-11-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -251,7 +251,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>892</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -308,7 +308,7 @@
 <h2 id="一个文件加载的时候会被切分成几个切片"><a href="#一个文件加载的时候会被切分成几个切片" class="headerlink" title="一个文件加载的时候会被切分成几个切片"></a>一个文件加载的时候会被切分成几个切片</h2><p>前提 ： 文件可以被切分</p>
 <p>当一个文件 在hdfs上的时候是按我们的大小进行切分的 以128m为基础单位</p>
 <p>而我们的map的切片是按照blocksize进行切分的简单来说就是以blocksize的大小进行切分</p>
-<p>总结  ： </p>
+<p>总结  ：</p>
 <ul>
 <li>文件大小小于128m<ul>
 <li>那么切分成1片</li>
@@ -332,6 +332,23 @@
 </ul>
 </li>
 </ul>
+<h2 id="redurce-task-个数是由上面决定"><a href="#redurce-task-个数是由上面决定" class="headerlink" title="redurce task 个数是由上面决定?"></a>redurce task 个数是由上面决定?</h2><p>默认是 1</p>
+<p>如果要更改要手动更改</p>
+<p>setNumReduceTasks(数量)</p>
+<p>如果 reduce阶段数量变多</p>
+<p>则会把相同的文件拉到一起，就是按照一个规则进行的分区</p>
+<p>默认是走的hashcode ： 这个按照规则来分的就是分区</p>
+<p>一般来说 ： 分区的结果是 suffler 的输出结果是 reduce的输入</p>
+<h3 id="简单需求"><a href="#简单需求" class="headerlink" title="简单需求"></a>简单需求</h3><p>基于phone的存储数据 ，进行分文件存储</p>
+<p>比如</p>
+<p>13开头的存储在一个上</p>
+<p>15开头的在一个文件上</p>
+<p>这就要自定义分区</p>
+<p>通过继承Partitioner类实现方法然后导入方法</p>
+<p>实现</p>
+<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><p>如果你的reduce task 大于分区数 ： 会有空白文件</p>
+<p>如果 reduce task 小于分区数 且大于1 ： 则会报错</p>
+<p>如果 reduce task 且分区数 等于 1 ： 则会把东西整合到一个文件</p>
 <h2 id="关于mapreduce在linux上运行的学习，官方提供了源码库"><a href="#关于mapreduce在linux上运行的学习，官方提供了源码库" class="headerlink" title="关于mapreduce在linux上运行的学习，官方提供了源码库"></a>关于mapreduce在linux上运行的学习，官方提供了源码库</h2><p>地址在github上：</p>
 
     </div>
@@ -374,7 +391,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://example.com/2022/11/21/11-21/" title="shell">http://example.com/2022/11/21/11-21/</a>
+    <a href="http://example.com/2022/11/21/11-21/" title="mapreduce">http://example.com/2022/11/21/11-21/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -488,7 +505,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%AD%E8%AE%B2Hadoop"><span class="nav-number">1.</span> <span class="nav-text">续讲Hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">模板模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F-1"><span class="nav-number">1.1.1.</span> <span class="nav-text">模板模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">自定义的变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mapreduce%E7%9A%84%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.3.</span> <span class="nav-text">mapreduce的核心方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%8A%A0%E8%BD%BD%E7%9A%84%E6%97%B6%E5%80%99%E4%BC%9A%E8%A2%AB%E5%88%87%E5%88%86%E6%88%90%E5%87%A0%E4%B8%AA%E5%88%87%E7%89%87"><span class="nav-number">1.2.</span> <span class="nav-text">一个文件加载的时候会被切分成几个切片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Emapreduce%E5%9C%A8linux%E4%B8%8A%E8%BF%90%E8%A1%8C%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%8C%E5%AE%98%E6%96%B9%E6%8F%90%E4%BE%9B%E4%BA%86%E6%BA%90%E7%A0%81%E5%BA%93"><span class="nav-number">1.3.</span> <span class="nav-text">关于mapreduce在linux上运行的学习，官方提供了源码库</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%AD%E8%AE%B2Hadoop"><span class="nav-number">1.</span> <span class="nav-text">续讲Hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">模板模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F-1"><span class="nav-number">1.1.1.</span> <span class="nav-text">模板模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">自定义的变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mapreduce%E7%9A%84%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.3.</span> <span class="nav-text">mapreduce的核心方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%8A%A0%E8%BD%BD%E7%9A%84%E6%97%B6%E5%80%99%E4%BC%9A%E8%A2%AB%E5%88%87%E5%88%86%E6%88%90%E5%87%A0%E4%B8%AA%E5%88%87%E7%89%87"><span class="nav-number">1.2.</span> <span class="nav-text">一个文件加载的时候会被切分成几个切片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redurce-task-%E4%B8%AA%E6%95%B0%E6%98%AF%E7%94%B1%E4%B8%8A%E9%9D%A2%E5%86%B3%E5%AE%9A"><span class="nav-number">1.3.</span> <span class="nav-text">redurce task 个数是由上面决定?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E9%9C%80%E6%B1%82"><span class="nav-number">1.3.1.</span> <span class="nav-text">简单需求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9D%91"><span class="nav-number">1.4.</span> <span class="nav-text">坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Emapreduce%E5%9C%A8linux%E4%B8%8A%E8%BF%90%E8%A1%8C%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%8C%E5%AE%98%E6%96%B9%E6%8F%90%E4%BE%9B%E4%BA%86%E6%BA%90%E7%A0%81%E5%BA%93"><span class="nav-number">1.5.</span> <span class="nav-text">关于mapreduce在linux上运行的学习，官方提供了源码库</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -562,7 +579,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共64.6k字</span>
+  <span class="post-count">博客全站共64.8k字</span>
 </div>
 
 

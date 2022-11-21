@@ -306,7 +306,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/11/21/11-21/" class="post-title-link" itemprop="url">shell</a>
+            <a href="/2022/11/21/11-21/" class="post-title-link" itemprop="url">mapreduce</a>
         </h2>
 
         <div class="post-meta">
@@ -318,7 +318,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-11-21 08:47:09 / 修改时间：10:32:07" itemprop="dateCreated datePublished" datetime="2022-11-21T08:47:09+08:00">2022-11-21</time>
+              <time title="创建时间：2022-11-21 08:47:09 / 修改时间：11:16:19" itemprop="dateCreated datePublished" datetime="2022-11-21T08:47:09+08:00">2022-11-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -336,7 +336,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>892</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -393,7 +393,7 @@
 <h2 id="一个文件加载的时候会被切分成几个切片"><a href="#一个文件加载的时候会被切分成几个切片" class="headerlink" title="一个文件加载的时候会被切分成几个切片"></a>一个文件加载的时候会被切分成几个切片</h2><p>前提 ： 文件可以被切分</p>
 <p>当一个文件 在hdfs上的时候是按我们的大小进行切分的 以128m为基础单位</p>
 <p>而我们的map的切片是按照blocksize进行切分的简单来说就是以blocksize的大小进行切分</p>
-<p>总结  ： </p>
+<p>总结  ：</p>
 <ul>
 <li>文件大小小于128m<ul>
 <li>那么切分成1片</li>
@@ -417,6 +417,23 @@
 </ul>
 </li>
 </ul>
+<h2 id="redurce-task-个数是由上面决定"><a href="#redurce-task-个数是由上面决定" class="headerlink" title="redurce task 个数是由上面决定?"></a>redurce task 个数是由上面决定?</h2><p>默认是 1</p>
+<p>如果要更改要手动更改</p>
+<p>setNumReduceTasks(数量)</p>
+<p>如果 reduce阶段数量变多</p>
+<p>则会把相同的文件拉到一起，就是按照一个规则进行的分区</p>
+<p>默认是走的hashcode ： 这个按照规则来分的就是分区</p>
+<p>一般来说 ： 分区的结果是 suffler 的输出结果是 reduce的输入</p>
+<h3 id="简单需求"><a href="#简单需求" class="headerlink" title="简单需求"></a>简单需求</h3><p>基于phone的存储数据 ，进行分文件存储</p>
+<p>比如</p>
+<p>13开头的存储在一个上</p>
+<p>15开头的在一个文件上</p>
+<p>这就要自定义分区</p>
+<p>通过继承Partitioner类实现方法然后导入方法</p>
+<p>实现</p>
+<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><p>如果你的reduce task 大于分区数 ： 会有空白文件</p>
+<p>如果 reduce task 小于分区数 且大于1 ： 则会报错</p>
+<p>如果 reduce task 且分区数 等于 1 ： 则会把东西整合到一个文件</p>
 <h2 id="关于mapreduce在linux上运行的学习，官方提供了源码库"><a href="#关于mapreduce在linux上运行的学习，官方提供了源码库" class="headerlink" title="关于mapreduce在linux上运行的学习，官方提供了源码库"></a>关于mapreduce在linux上运行的学习，官方提供了源码库</h2><p>地址在github上：</p>
 
       
@@ -2078,7 +2095,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共64.6k字</span>
+  <span class="post-count">博客全站共64.8k字</span>
 </div>
 
 
