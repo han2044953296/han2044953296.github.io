@@ -19,6 +19,74 @@
 ]]></content>
   </entry>
   <entry>
+    <title>shell</title>
+    <url>/2022/11/21/11-21/</url>
+    <content><![CDATA[<h1 id="续讲Hadoop"><a href="#续讲Hadoop" class="headerlink" title="续讲Hadoop"></a>续讲Hadoop</h1><h2 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h2><p>关于mapreduce的操作模式就是模板模式，加上自定义的变量</p>
+<h3 id="模板模式-1"><a href="#模板模式-1" class="headerlink" title="模板模式"></a>模板模式</h3><p>关于模板模式，就是三步走</p>
+<p>开始阶段 ： map阶段</p>
+<p>处理阶段 ： reduce阶段</p>
+<p>结束阶段 ： 关闭流并输出</p>
+<h3 id="自定义的变量"><a href="#自定义的变量" class="headerlink" title="自定义的变量"></a>自定义的变量</h3><p>BooleanWriteable : 布尔类型</p>
+<p>ByteWriteable : Byte类型</p>
+<p>DoubleWriteable : double类型</p>
+<p>FloatWriteable ：float类型</p>
+<p>intWriteable ： int类型</p>
+<p>…（等等）</p>
+<h3 id="mapreduce的核心方法"><a href="#mapreduce的核心方法" class="headerlink" title="mapreduce的核心方法"></a>mapreduce的核心方法</h3><ul>
+<li>input : InputFormat &#x3D;&gt; 如何加载数据</li>
+<li>查看源码发现有DBInputFormat 和 FileInputFormat，代表我们可以从db（数据库中），或者文件中加载数据（上述两个是抽象类，我们实例化的时候其实是实例化其子类）</li>
+<li>简单来说就是读取数据的方法</li>
+<li>默认实例化的时候是实例化 TextInputFormat</li>
+<li>关于TextInputFormat ： 其有两个参数<ul>
+<li>key 和 value<ul>
+<li>key 是 读取文件的位置</li>
+<li>value 是 一行一行的内容<ul>
+<li>在value中有个属性 判断文件可不可以被切分 ： isSpiltable<ul>
+<li>map task 数据 是由 input 的切片数量决定的 ， 当不可被切片的时候对应的数量就是1，对应一个map task</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>creatRecordReader</p>
+<h2 id="一个文件加载的时候会被切分成几个切片"><a href="#一个文件加载的时候会被切分成几个切片" class="headerlink" title="一个文件加载的时候会被切分成几个切片"></a>一个文件加载的时候会被切分成几个切片</h2><p>前提 ： 文件可以被切分</p>
+<p>当一个文件 在hdfs上的时候是按我们的大小进行切分的 以128m为基础单位</p>
+<p>而我们的map的切片是按照blocksize进行切分的简单来说就是以blocksize的大小进行切分</p>
+<p>总结  ： </p>
+<ul>
+<li>文件大小小于128m<ul>
+<li>那么切分成1片</li>
+</ul>
+</li>
+<li>如果文件大于128m<ul>
+<li>filesize&#x2F;splitesize &#x3D; num 切片数</li>
+<li>filesize剩余的部分 ： 和splitesize的10%比较<ul>
+<li>如果大，则开启一个切片文件</li>
+<li>如果小，则是和上面最后一个合并到一起</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>不能被切分的文件： 某些被压缩文件</p>
+<ul>
+<li>关于这个切片大小的标准 ：<ul>
+<li>在hdfs上是128m</li>
+<li>但是在idea上是32m（在源码里能看）</li>
+</ul>
+</li>
+</ul>
+<h2 id="关于mapreduce在linux上运行的学习，官方提供了源码库"><a href="#关于mapreduce在linux上运行的学习，官方提供了源码库" class="headerlink" title="关于mapreduce在linux上运行的学习，官方提供了源码库"></a>关于mapreduce在linux上运行的学习，官方提供了源码库</h2><p>地址在github上：</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
     <title>把jar包打包成exe</title>
     <url>/2022/11/19/jar%E5%88%B0exe/</url>
     <content><![CDATA[<h1 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h1><ul>

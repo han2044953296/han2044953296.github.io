@@ -198,6 +198,165 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/25/10-25/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/25/10-25/" class="post-title-link" itemprop="url">集合</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-25 13:45:07" itemprop="dateCreated datePublished" datetime="2022-10-25T13:45:07+08:00">2022-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="泛型（任意引用类型）"><a href="#泛型（任意引用类型）" class="headerlink" title="泛型（任意引用类型）"></a>泛型（任意引用类型）</h1><ul>
+<li>作用:就是可以让其内的变量无类型，直到用的时候才指定类型，解决了强制转换问题</li>
+<li>代码如下：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">	package 作业;</span><br><span class="line"></span><br><span class="line">	public class gdg &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		sfdhkja&lt;String&gt; a = new sfdhkja(); // 尖括号里面的就是泛型的类型</span><br><span class="line">		a.setName(&quot;小明&quot;);</span><br><span class="line">		System.out.println(a.getName());</span><br><span class="line">		System.out.println(a);</span><br><span class="line">		sfdhkja&lt;Integer&gt; b = new sfdhkja();</span><br><span class="line">		b.setName(11111);</span><br><span class="line">		System.out.println(b.getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class sfdhkja&lt;E&gt; &#123;</span><br><span class="line">	E name;</span><br><span class="line"></span><br><span class="line">	public sfdhkja() &#123;</span><br><span class="line">		super();</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public E getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setName(E name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><h3 id="boolean-add-E"><a href="#boolean-add-E" class="headerlink" title="boolean add(E)"></a>boolean add(E)</h3><p>把任意对象类型加进list中</p>
+<h3 id="iterator"><a href="#iterator" class="headerlink" title="iterator"></a>iterator</h3><p>返回集合的迭代器，用于遍历集合</p>
+<h3 id="default修饰的"><a href="#default修饰的" class="headerlink" title="default修饰的"></a>default修饰的</h3><p>代表接口中有方法体</p>
+<h3 id="int-size"><a href="#int-size" class="headerlink" title="int size"></a>int size</h3><h3 id="并行流和串型流"><a href="#并行流和串型流" class="headerlink" title="并行流和串型流"></a>并行流和串型流</h3><h3 id="Object-toArray"><a href="#Object-toArray" class="headerlink" title="Object toArray()"></a>Object toArray()</h3><p>可以指定泛型的</p>
+<h3 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h3><p>代码如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">package 重新开始;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.Collection;</span><br><span class="line">import java.util.Iterator;</span><br><span class="line"></span><br><span class="line">public class jeiko &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		Collection&lt;String&gt; c1 =new ArrayList&lt;&gt;();</span><br><span class="line">		c1.add(&quot;中国&quot;);</span><br><span class="line">		c1.add(&quot;韩国哦&quot;);</span><br><span class="line">		c1.add(&quot;hsakdj&quot;);</span><br><span class="line">		System.out.println(c1.size());</span><br><span class="line">		Iterator&lt;String&gt; ra = c1.iterator();</span><br><span class="line">		while(ra.hasNext()) &#123;</span><br><span class="line">			String item = ra.next();</span><br><span class="line">			System.out.println(item);</span><br><span class="line">			ra.remove(); // 删除元素</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;-------------------------------&quot;);</span><br><span class="line">		for (String string : c1) &#123;</span><br><span class="line">			System.out.println(string);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;------------------------------------&quot;);</span><br><span class="line">		c1.forEach(System.out::println);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>只有第一种才可以进行便循环边删除</li>
+<li>其他都不可以</li>
+<li>但是第三种最帅，代码量也最少</li>
+</ul>
+<h1 id="讲解"><a href="#讲解" class="headerlink" title="讲解"></a>讲解</h1><ul>
+<li>Colllection继承了Iterable接口</li>
+<li>list线性，有序集合</li>
+<li>set无序集合</li>
+<li>旗下是</li>
+<li>ArrayLinst</li>
+<li>LinkedList</li>
+<li>Vector</li>
+<li>下面是set的</li>
+<li>HashSet</li>
+<li>TreeSet</li>
+</ul>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><ul>
+<li>线性集合 ，有下标</li>
+<li>add(index , E)</li>
+<li>set(index ,E)</li>
+<li>get(index)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 重新开始;</span><br><span class="line"></span><br><span class="line">import java.util.List;</span><br><span class="line">import java.util.Vector;</span><br><span class="line"></span><br><span class="line">public class Main1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		List&lt;String&gt; list = new Vector&lt;String&gt;();</span><br><span class="line">		list.add(&quot;1&quot;);  // 先往list里添加元素</span><br><span class="line">		list.add(&quot;12&quot;); // 同上</span><br><span class="line">		System.out.println(list);  // 直接打印是全部打印出来</span><br><span class="line">		list.add(0,&quot;121&quot;); // 在下表为0的地方添加121</span><br><span class="line">		list.set(2, &quot;dhkjsdhj&quot;); // 把下表为2的地方设置为dhkjsdhj</span><br><span class="line">		System.out.println(list.size()); // 获取list的size就是大小</span><br><span class="line">		</span><br><span class="line">		list.forEach(System.out::println); // 超级帅气的循环语句，本身是lambal表达式</span><br><span class="line">		for(int i =0; i &lt; list.size() ; i++) &#123;</span><br><span class="line">			String item = list.get(i);</span><br><span class="line">			System.out.println(item);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><ul>
+<li>底层封装的数组</li>
+<li>扩容的时候每次扩容一半</li>
+<li>海量添加的时候是很慢的，就是修改长度很慢</li>
+<li>查询快，因为有下标</li>
+</ul>
+<h3 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h3><ul>
+<li>可控增量，且线程安全</li>
+<li>底层是数组，且有线程锁，</li>
+<li>10，20，40 ，每次扩容一倍，但是是可以控制增量的</li>
+<li>比ArrayList慢</li>
+</ul>
+<h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><ul>
+<li>底层封装的是节点，双向链表，每一个节点都有前一个节点和后一个节点的引用</li>
+<li>单向链：修改快</li>
+<li>双向链：就是双向的，前后都有元素</li>
+<li>特点：修改快，但是查询慢</li>
+<li>可以用作与自己定义栈<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class MyStack&lt;E&gt; &#123;</span><br><span class="line">	LinkedList&lt;E&gt; data;</span><br><span class="line">	public E pop()  &#123;</span><br><span class="line">	return	data.pollLast();</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><ul>
+<li>无序集合</li>
+<li>会自动去重，就是有重复的就会	不添加新的元素<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">Set&lt;Integer&gt; set = new HashSet&lt;Integer&gt;();</span><br><span class="line">set.add(11);</span><br><span class="line">set.add(1111);</span><br><span class="line">set.add(898);</span><br><span class="line">set.add(11);</span><br><span class="line">set.forEach(System.out::println);</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3><ul>
+<li>因为这里的去重机制是根据hashcode和equals来的，默认的时候，可以像正常的列表一样，但是我们可以进行覆盖hashcode和equals</li>
+<li>不覆盖<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 重新开始;</span><br><span class="line"></span><br><span class="line">import java.util.HashSet;</span><br><span class="line">import java.util.Set;</span><br><span class="line"></span><br><span class="line">public class Sst &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		Set&lt;Integer&gt; set = new HashSet&lt;Integer&gt;();</span><br><span class="line">		set.add(11);</span><br><span class="line">		set.add(1111);</span><br><span class="line">		set.add(898);</span><br><span class="line">		set.add(11);</span><br><span class="line">		set.forEach(System.out::println);</span><br><span class="line">		</span><br><span class="line">		Set&lt;stu&gt; s1 =new HashSet&lt;stu&gt;();</span><br><span class="line">		s1.add(new stu());</span><br><span class="line">		s1.add(new stu());</span><br><span class="line">		s1.add(new stu());</span><br><span class="line">		System.out.println(s1.size());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class stu&#123;</span><br><span class="line">	private int num;</span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	public stu() &#123;</span><br><span class="line">		super();</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	public int getNum() &#123;</span><br><span class="line">		return num;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setNum(int num) &#123;</span><br><span class="line">		this.num = num;</span><br><span class="line">	&#125;</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public String toString() &#123;</span><br><span class="line">		return &quot;stu [num=&quot; + num + &quot;, name=&quot; + name + &quot;]&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>覆盖之后</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 重新开始;</span><br><span class="line"></span><br><span class="line">import java.util.HashSet;</span><br><span class="line">import java.util.Set;</span><br><span class="line"></span><br><span class="line">public class Sst &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		Set&lt;Integer&gt; set = new HashSet&lt;Integer&gt;();</span><br><span class="line">		set.add(11);</span><br><span class="line">		set.add(1111);</span><br><span class="line">		set.add(898);</span><br><span class="line">		set.add(11);</span><br><span class="line">		set.forEach(System.out::println);</span><br><span class="line">		</span><br><span class="line">		Set&lt;stu&gt; s1 =new HashSet&lt;stu&gt;();</span><br><span class="line">		s1.add(new stu());</span><br><span class="line">		s1.add(new stu());</span><br><span class="line">		s1.add(new stu());</span><br><span class="line">		System.out.println(s1.size());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class stu&#123;</span><br><span class="line">	private int num;</span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	public stu() &#123;</span><br><span class="line">		super();</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	public int getNum() &#123;</span><br><span class="line">		return num;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setNum(int num) &#123;</span><br><span class="line">		this.num = num;</span><br><span class="line">	&#125;</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public String toString() &#123;</span><br><span class="line">		return &quot;stu [num=&quot; + num + &quot;, name=&quot; + name + &quot;]&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public int hashCode() &#123;</span><br><span class="line">		final int prime = 31;</span><br><span class="line">		int result = 1;</span><br><span class="line">		result = prime * result + ((name == null) ? 0 : name.hashCode());</span><br><span class="line">		result = prime * result + num;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public boolean equals(Object obj) &#123;</span><br><span class="line">		if (this == obj)</span><br><span class="line">			return true;</span><br><span class="line">		if (obj == null)</span><br><span class="line">			return false;</span><br><span class="line">		if (getClass() != obj.getClass())</span><br><span class="line">			return false;</span><br><span class="line">		stu other = (stu) obj;</span><br><span class="line">		if (name == null) &#123;</span><br><span class="line">			if (other.name != null)</span><br><span class="line">				return false;</span><br><span class="line">		&#125; else if (!name.equals(other.name))</span><br><span class="line">			return false;</span><br><span class="line">		if (num != other.num)</span><br><span class="line">			return false;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>也可以在生成覆盖的时候少选几个变量这样这些变量就会变成唯一的筛选变量 ，相当于放宽变量范围</li>
+<li>原理是封装了hashmap，利用key和value</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/24/10-24/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1610,449 +1769,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/15/java%E4%B8%AD%E7%9A%84%E6%98%93%E9%94%99%E7%82%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/15/java%E4%B8%AD%E7%9A%84%E6%98%93%E9%94%99%E7%82%B9/" class="post-title-link" itemprop="url">java面试题</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-15 17:44:10" itemprop="dateCreated datePublished" datetime="2022-10-15T17:44:10+08:00">2022-10-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E4%B8%AD%E7%9A%84%E6%98%93%E9%94%99%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">Java中的易错点</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>13k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>12 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="重载和重写"><a href="#重载和重写" class="headerlink" title="重载和重写"></a>重载和重写</h1><h2 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h2><p>重载发生在同一个类里，方法名必须相同，参数类型不同，个数不同，顺序不同，方法的返回值和访问修饰符可以不同，发生在编译时</p>
-<h2 id="重写"><a href="#重写" class="headerlink" title="重写"></a>重写</h2><p>发生在父类和子类中，方法名，参数列表相同，返回值范围小于等于父类，<br>抛出异常小于等于父类，访问修饰符大于等于父类，若父类的方法是private则不能重写</p>
-<h1 id="List和Set的区别"><a href="#List和Set的区别" class="headerlink" title="List和Set的区别"></a>List和Set的区别</h1><h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>list是有序的，按照插入对象的顺序进行访问的，可重复，，可以有多个null元素，可以用iterator取出所有元素，在逐一遍历还可以用get（index）获取指定元素</p>
-<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>set是无序的，不可重复，，最多有一个null对象取元素的时候只能用iterator接口取出所有元素，再逐一遍历</p>
-<h1 id="谈谈Concurrent-Hash-Map的扩容机制"><a href="#谈谈Concurrent-Hash-Map的扩容机制" class="headerlink" title="谈谈Concurrent Hash Map的扩容机制"></a>谈谈Concurrent Hash Map的扩容机制</h1><h2 id="1-7jdk"><a href="#1-7jdk" class="headerlink" title="1.7jdk"></a>1.7jdk</h2><ul>
-<li><p>1.ConcurrentHashMap是基于Segment来实现的</p>
-</li>
-<li><p>2.每个Segment相当于是一个小型的HashMap</p>
-</li>
-<li><p>3.每个Segment内部都会进行扩容，和HashMap的扩容逻辑相同</p>
-</li>
-<li><p>4.先生成一个新的数组，然后转移元素到新数组中</p>
-</li>
-<li><p>5.扩容的判断也是每个Segment单独进行判断的</p>
-</li>
-</ul>
-<h2 id="1-8jdk"><a href="#1-8jdk" class="headerlink" title="1.8jdk"></a>1.8jdk</h2><ul>
-<li><p>1.到了1.8 就不基于Segment了</p>
-</li>
-<li><p>2.当某个线程进行put的时，如果发现有扩容的，就会优先跟着一起进行扩容，</p>
-</li>
-<li><p>3.如果发现没有进行扩容的，就会把key-value添加到ConcurrentHashMap中然后判断超过阈值了吗超过了则进行扩容</p>
-</li>
-<li><p>4.ConcurrentHashMap是支持多线程同时扩容的</p>
-</li>
-<li><p>5.扩容之前也先生成一个新数组</p>
-</li>
-<li><p>6.转移元素之前先将元素分组，将每组分给不同的线程来进行元素的转移，每个线程负责一组或者多组的元素转移工作</p>
-</li>
-</ul>
-<h1 id="jdk1-7到1-8HashMap发生了什么变化"><a href="#jdk1-7到1-8HashMap发生了什么变化" class="headerlink" title="jdk1.7到1.8HashMap发生了什么变化"></a>jdk1.7到1.8HashMap发生了什么变化</h1><h2 id="1-7"><a href="#1-7" class="headerlink" title="1.7"></a>1.7</h2><p>其底层是数组加链表<br>使用的是头插法<br>哈希算法比较复杂</p>
-<h2 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h2><p>其底层是数组+链表和红黑树加入红黑树的目的是加快查找效率<br>其用的是尾插法，要先遍历数组的每个元素，判断数组中的元素个数<br>哈希算法进行了优化，节省cpu资源</p>
-<h1 id="接口可以多继承接口"><a href="#接口可以多继承接口" class="headerlink" title="接口可以多继承接口"></a>接口可以多继承接口</h1><h1 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h1><p>浅拷贝是指只会拷贝基础类型的值<br>浅拷贝是指拷贝的地址指向同一目标</p>
-<h1 id="CopyOnwriteArrayList底层"><a href="#CopyOnwriteArrayList底层" class="headerlink" title="CopyOnwriteArrayList底层"></a>CopyOnwriteArrayList底层</h1><ul>
-<li><p>1.首先其内部也是通过数组实现的，在向其中加元素的时候时，会复制一个新数组 ， 并在新数组上进行进行写操作 ， 读操作在原数组上进行</p>
-</li>
-<li><p>2.并且写操作会加锁，防止出现写入数据丢失的问题</p>
-</li>
-<li><p>3.写操作结束之后会把原数组指向新数组</p>
-</li>
-<li><p>4.CopyOnWriteArrayList允许在写数据的同时进行读数据，大大提高了效率因此适合读多写少的场景，但其比较占内存，因此读到的数据并不是最新的，因此适用与实时性不强的地方</p>
-</li>
-</ul>
-<h1 id="什么是字节码-字节码的好处"><a href="#什么是字节码-字节码的好处" class="headerlink" title="什么是字节码 字节码的好处"></a>什么是字节码 字节码的好处</h1><p>编译器Javac会将java源文件编译为.class可以做到一次编译到此处运行，例如，windows上编译好的.class可以在linux上运行。</p>
-<h2 id="采用字节码的好处"><a href="#采用字节码的好处" class="headerlink" title="采用字节码的好处"></a>采用字节码的好处</h2><p>一方面实现了跨平台，另外一方面提高了代码的执行效率，让编译器可以在编译时进行优化</p>
-<h1 id="在java的异常处理机制中，什么时候要抛出异常，什么时候捕获异常"><a href="#在java的异常处理机制中，什么时候要抛出异常，什么时候捕获异常" class="headerlink" title="在java的异常处理机制中，什么时候要抛出异常，什么时候捕获异常"></a>在java的异常处理机制中，什么时候要抛出异常，什么时候捕获异常</h1><p>异常相当于一种提示 ， 若我们抛出异常，就相当于告诉上层方法，我抛出了一个异常，我处理不了这个异常给你来处理，如果上层也处理不了，就继续往上抛，或者捕获</p>
-<h1 id="java中异常体系是怎么样的"><a href="#java中异常体系是怎么样的" class="headerlink" title="java中异常体系是怎么样的"></a>java中异常体系是怎么样的</h1><p>java中所有异常都来自于顶级父类 Throwable<br>Throwable下有两个子类Exceptio 和 erro<br>error属于重大错误：包括但不限于 虚拟机，磁盘，操作系统层面的问题<br>Exception属于普通编译器报错，其还分为运行时异常和编译时异常</p>
-<h1 id="包装类型传参数的时候按照基本类型算，只传值，不传地址"><a href="#包装类型传参数的时候按照基本类型算，只传值，不传地址" class="headerlink" title="包装类型传参数的时候按照基本类型算，只传值，不传地址"></a>包装类型传参数的时候按照基本类型算，只传值，不传地址</h1><h1 id="java中的类加载机制"><a href="#java中的类加载机制" class="headerlink" title="java中的类加载机制"></a>java中的类加载机制</h1><p>jdk中自带了三个类加载器：</p>
-<h2 id="BootStrap-ClassLoader"><a href="#BootStrap-ClassLoader" class="headerlink" title="BootStrap ClassLoader"></a>BootStrap ClassLoader</h2><p>BootStrap是Ext的父类加载器默认负责加载%JAVA_HOME%lib下面的lib和class</p>
-<h2 id="Ext-ClassLoader"><a href="#Ext-ClassLoader" class="headerlink" title="Ext ClassLoader"></a>Ext ClassLoader</h2><p>Ext ClassLoader是AppClassLoader的父类，默认加载%JAVA_HOME%&#x2F;lib&#x2F;ext文件夹下的jar包和class</p>
-<h2 id="AppClassLoader"><a href="#AppClassLoader" class="headerlink" title="AppClassLoader"></a>AppClassLoader</h2><p>AppClassLoader是自定义器的加载器的父类，负责加载classpath下的</p>
-<h1 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h1><p>简单来说就是当问题从最下面的类加载器进入的时候会先让最上面的类加载器加载，然后逐级往下，最后才是自己定义的类加载器</p>
-<h1 id="排查JVM问题"><a href="#排查JVM问题" class="headerlink" title="排查JVM问题"></a>排查JVM问题</h1><h2 id="对于还可以正常运行的系统"><a href="#对于还可以正常运行的系统" class="headerlink" title="对于还可以正常运行的系统"></a>对于还可以正常运行的系统</h2><ul>
-<li><p>可以使用jmap来查看各个区域的情况</p>
-</li>
-<li><p>可以通过jstack来查看线程的运行情况，比如xxx线程阻塞；是不是死锁等</p>
-</li>
-<li><p>可以通过jstat命令查看垃圾回收的情况 ， 特别是fullgc若fullgc比较多就要考虑调优了</p>
-</li>
-<li><p>通过各个命令的结果，或者jvisualvm等工具进行分析</p>
-</li>
-<li><p>猜测fullgc多的原因：如果无内存溢出，那么表示fullgc是回收了很多对象，所以这些对象最好能在younggc过程中直接回收，避免进入老年代，对于这些情况就要考虑存活区间是不是比较小，导致年轻代放不下，直接到了老年代，尝试加大年轻代的区间若改完fullgc变小，则猜想正确</p>
-</li>
-</ul>
-<h2 id="对于已发生了OOM的系统"><a href="#对于已发生了OOM的系统" class="headerlink" title="对于已发生了OOM的系统"></a>对于已发生了OOM的系统</h2><ul>
-<li>一般生产中都会设置系统发生了OOM时，生成当时的dump文件（-xx:+HeapDumpOnOutOfMemoryError -xx:HHEapDump Path &#x3D; &#x2F;user&#x2F;local&#x2F;base)</li>
-<li>我们可以用jsvisualvm等工具进行分析dump</li>
-<li>根据dump找到异常实例和线程（占用cpu高），定位到具体代码。</li>
-<li>之后再做细致的分析</li>
-</ul>
-<h1 id="一个对象从加载到jvm到被Gc清楚都经历了什么"><a href="#一个对象从加载到jvm到被Gc清楚都经历了什么" class="headerlink" title="一个对象从加载到jvm到被Gc清楚都经历了什么"></a>一个对象从加载到jvm到被Gc清楚都经历了什么</h1><ul>
-<li>先把字节码文件内容加载到方法区</li>
-<li>然后再根据类信息在堆区域创建对象</li>
-<li>对象首先会分配在堆中年轻代的Eden区经过一次Minorc之后会进入Survivor区，在后续的每次MinorGC中若一直存活，则会在Suvivor区来回拷贝，每拷贝一次每移动一次年龄加1</li>
-<li>当年龄过15，若对象仍存活，会进入老年态</li>
-<li>若经过fullgc，被标记为垃圾对象，那么会被gc线程清楚</li>
-</ul>
-<h1 id="jvm有哪些垃圾回收算法"><a href="#jvm有哪些垃圾回收算法" class="headerlink" title="jvm有哪些垃圾回收算法"></a>jvm有哪些垃圾回收算法</h1><h2 id="标记清除法"><a href="#标记清除法" class="headerlink" title="标记清除法"></a>标记清除法</h2><ul>
-<li>标记阶段：把垃圾内存标记出来</li>
-<li>清除阶段：直接把垃圾内存回收</li>
-<li>问题：会产生大量的内存碎片</li>
-</ul>
-<h2 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h2><ul>
-<li>为了解决标记清除的内存碎片的问题</li>
-<li>将内存分为两份，每次只使用其中一半，垃圾回收时将当前这一块的存活对象完全拷贝到另外一半，而后当前这一半可直接清除，这种无内存碎片，但是浪费空间，且放弃和存活对象的个数相关</li>
-</ul>
-<h2 id="标记压缩算法"><a href="#标记压缩算法" class="headerlink" title="标记压缩算法"></a>标记压缩算法</h2><ul>
-<li>为了解决复制算法的缺陷，就提出了标记压缩算法，这种算法在标记阶段跟标记清除算法是一样的，但是在完成之后不是直接清理，而是将存活的对象往一端移动，而后面将边界以外的所有内存清除</li>
-</ul>
-<h1 id="什么是STW"><a href="#什么是STW" class="headerlink" title="什么是STW"></a>什么是STW</h1><p>Stw-stop-the-world,是在垃圾回收算法执行过程中要将JVM内存冻结的一种状态，在STW状态下，java的所有线程都是停止执行的——GC除外，native方法可执行；但是不能与jvm交互GC各种算法的优化的重点便是减少STW,是jvm调优的重点</p>
-<h1 id="jvm参数"><a href="#jvm参数" class="headerlink" title="jvm参数"></a>jvm参数</h1><ul>
-<li>标注指令：开头这个是所有Hotspot都支持的参数，可以用java-help</li>
-<li>非标注指令:-x开头；与特定的hotspot对立的用java-x打印</li>
-<li>不稳定参数：-xx开头，与上面一样</li>
-</ul>
-<h1 id="对守护线程的理解"><a href="#对守护线程的理解" class="headerlink" title="对守护线程的理解"></a>对守护线程的理解</h1><p>线程分为 守护线程和用户线程</p>
-<h2 id="守护线程"><a href="#守护线程" class="headerlink" title="守护线程"></a>守护线程</h2><p>是jvm的后台线程，比如垃圾回收器，守护线程会在其他线程都停止之后自动关闭，我们可以通过设置thread.setDemon（true）来把一个线程设置成守护线程</p>
-<h2 id="普通线程"><a href="#普通线程" class="headerlink" title="普通线程"></a>普通线程</h2><p>普通用户的线程</p>
-<h1 id="ThreadLocal的底层原理"><a href="#ThreadLocal的底层原理" class="headerlink" title="ThreadLocal的底层原理"></a>ThreadLocal的底层原理</h1><p>其是java中所提供的线程本地存储机制，可利用该机制将数据存储到一个线程内部，该线程可在任意时刻，任意的方法，获取其存储的数据</p>
-<ul>
-<li>其底层是通过ThreadLocalMap来实现的，Map的key为ThreadLocal对象，Map的value为需要缓存的值</li>
-<li>如果在线程池中使用ThreadLocal会造成内存泄露，因为当ThreadLoccal对象用完之后应该把设置的key value 也就是Entry的对象进行回收，但是线程池的线程不会进行回收，而线程对象是通过强引用指向ThreadLocalMap而ThreadLocalMap也是通过强引用的方法指向Entry的对象，线程也就不会被回收，从而出现内存泄露。</li>
-</ul>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ul>
-<li>在使用了ThreadLocal对象之后，手动调Thread Local的remove方法，手动清除Entry，其经典应用是用在连接管理上</li>
-</ul>
-<h1 id="并发-并行-穿行的区别"><a href="#并发-并行-穿行的区别" class="headerlink" title="并发,并行,穿行的区别"></a>并发,并行,穿行的区别</h1><ul>
-<li>串行：一个任务执行完才可以执行下一个</li>
-<li>并发：两个任务看起来是一起执行的，在底层，两个任务被拆成了很多份，从而后一个执行，但是在更高处看，两个任务是一起执行的</li>
-<li>并行：两个可以一起执行</li>
-</ul>
-<h1 id="java死锁如何避免"><a href="#java死锁如何避免" class="headerlink" title="java死锁如何避免"></a>java死锁如何避免</h1><ul>
-<li>一个资源每次只被一个线程调用</li>
-<li>一个线程在阻塞资源的时候不释放已经占有的资源</li>
-<li>一个线程已经获得的资源在使用之前不可被强行剥夺</li>
-<li>若干个线程形成头尾相接的循环等待状</li>
-</ul>
-<h1 id="说一下HashMap的put方法"><a href="#说一下HashMap的put方法" class="headerlink" title="说一下HashMap的put方法"></a>说一下HashMap的put方法</h1><h2 id="大体流程"><a href="#大体流程" class="headerlink" title="大体流程"></a>大体流程</h2><ul>
-<li><p>1.根据key通过哈希算法与与运算得出数组的下标</p>
-</li>
-<li><p>2.如果数组下标的元素为空 ， 则将key和value封装为entry对象（1.7中是Entry ， 1.8里是node对象）并放入该位置</p>
-</li>
-</ul>
-<h2 id="如果数组下标不为空，分情况讨论"><a href="#如果数组下标不为空，分情况讨论" class="headerlink" title="如果数组下标不为空，分情况讨论"></a>如果数组下标不为空，分情况讨论</h2><h3 id="1-7jdk-1"><a href="#1-7jdk-1" class="headerlink" title="1.7jdk"></a>1.7jdk</h3><ul>
-<li>要先判断是不是要扩容，如果不扩容就生成Entry对象，并且用头插法添加到当前位置的链表中</li>
-</ul>
-<h3 id="1-8jdk-1"><a href="#1-8jdk-1" class="headerlink" title="1.8jdk"></a>1.8jdk</h3><ul>
-<li>会先判断当前位置上node的类型，看是红黑树node还是链表node</li>
-<li>如果是红黑树node，则会将key和value封装为一个红黑树节点并添加到红黑树中去，这个过程中会判断是不是有当前key，如果存在则更新value</li>
-<li>如果此位置是node对象是链表节点，则将key和value封装为一个链表node并通过尾插法插到链表最后去，因为是尾插法所以要遍历整个链表，在遍历链表的过程中会判断是不是存在当前的key如果存在就更新key，当遍历完链表后，将新node插入到链表中，插入链表1后会看到当前链表的节点个数，如果大于等于8就会把这个链表转化为红黑树</li>
-<li>将key和value封装为node插入到链表或红黑树中再判断是不是需要扩容如果需要就扩容，不需要就结束put方法</li>
-</ul>
-<h1 id="线程池的底层工作原理"><a href="#线程池的底层工作原理" class="headerlink" title="线程池的底层工作原理"></a>线程池的底层工作原理</h1><ul>
-<li>线程池内部是通过队列＋线程实现的，当我们用线程池执行任务的时候</li>
-<li>如果此时线程池中的线程数量小于CorePoolSize，即使线程池中都处于空闲状态，也同样要创建新的线程来处理被添加的任务</li>
-<li>如果此时线程池中的线程数量等于CorePoolSize, 但是缓存队列workQueue未满，且线程池中的数量小于maximumPoolsize</li>
-</ul>
-<h1 id="线程池为什么是先添加队列而不是先创建最大线程"><a href="#线程池为什么是先添加队列而不是先创建最大线程" class="headerlink" title="线程池为什么是先添加队列而不是先创建最大线程"></a>线程池为什么是先添加队列而不是先创建最大线程</h1><p>当线程池中的核心线程在忙时如果继续往线程池中添加任务，那么任务还会放入队列，队列满了之后，才会开始新的线程，这就相当于，一个公司本来有10个程序员，本来这10个程序员能正常处理各种需求，但是随着公司的发展，需求在慢慢增加，但是一开始这些需求只会增加在待开发列表中，然后这10个程序员加班加点的从待开发列表中获取需求并进行处理，但是某一天待开发列表满了，所以员工处理不过来了，所以就开始招募新员工了。</p>
-<h1 id="ReentrantLock中的公平锁和非公平锁的底层实现"><a href="#ReentrantLock中的公平锁和非公平锁的底层实现" class="headerlink" title="ReentrantLock中的公平锁和非公平锁的底层实现"></a>ReentrantLock中的公平锁和非公平锁的底层实现</h1><p>首先不管是公平锁还是非公平锁他们的底层都是通过AQS来实现排队的，他们的区别在于：线程使用lock（）方法加锁的时候，如果是公平锁，会先检查AQS队列中是不是存在线程在排队，如果存在，则当前线程也会进行排队，如果是非公平锁，则不会去检查是不是有线程在排队，而是直接竞争锁，不管是公平锁还是非公平锁，一旦没竞争到锁，就会进行排队，当锁释放的时候都是唤醒最前面的线程，所以非公平锁只是体现在了线程加锁的阶段，而没有体现在线程被唤醒的阶段。</p>
-<h1 id="ReentrantLock中tryLock-和lock（）方法的区别"><a href="#ReentrantLock中tryLock-和lock（）方法的区别" class="headerlink" title="ReentrantLock中tryLock()和lock（）方法的区别"></a>ReentrantLock中tryLock()和lock（）方法的区别</h1><ul>
-<li>tryLock()表示尝试加锁，可能加到，也可能加不到，该方法不会阻止线程，如果加到锁就返回true，没有加到则返回false</li>
-<li>lock（）则表示线程阻塞加锁，线程会阻塞直到加上锁，而且也没有返回值</li>
-</ul>
-<h1 id="CountDownLatch和Semaphore的区别和底层原理"><a href="#CountDownLatch和Semaphore的区别和底层原理" class="headerlink" title="CountDownLatch和Semaphore的区别和底层原理"></a>CountDownLatch和Semaphore的区别和底层原理</h1><ul>
-<li>CountDownLatch表示计数器，可以给CountDownLatch设置一个数字，一个线程调用CountDownLatch的await（）将会被阻塞，其他线程可以调用CountDownlatch的countDown（）方法来对CountDownLacth中的数字减一，当一个数字被减为0之后则会将AQS中排队的线程依次唤醒</li>
-<li>Semaphore表示信号量，可以设置许可的个数，表示同时允许最多多少个线程使用该信号量，通过acquire来获取许可，如果没有许可可用则用线程阻塞，并通过ASQ来排队，可以通过release的方法释放许可当某一个线程释放死锁之后会从ASQ的第一个线程开始依次唤醒，直到没有空闲许可</li>
-</ul>
-<h1 id="Sychronized"><a href="#Sychronized" class="headerlink" title="Sychronized"></a>Sychronized</h1><ul>
-<li>偏向锁： 在锁对象的对象头中记录下当前获取到该锁的线程id，该线程下次如果又来获取该锁就可以直接获取到了</li>
-<li>轻量级锁：由偏向锁升级而来，当一个线程获取到锁之后，此时这把锁是偏向锁，此时如果由第二个线程来竞争这个锁，偏向锁就会升级为轻量级锁，之所以叫轻量级锁是为了和重量级锁分开，轻量级锁底层是通过自旋来实现的，并不会阻塞线程。</li>
-<li>如果自旋次数过多扔无法获取锁，则会升级为重量级锁，重量级锁会导致线程阻塞</li>
-<li>自旋锁：自旋锁就是在线程获取锁的过程中，不回去阻塞线程，也就无所谓唤醒线程，阻塞和唤醒这两个步骤都是要操作系统中去实现的，比较耗费时间，自旋锁是线程通过CAS获取预期的一个标记，如果没有获取到，则继续循环获取去过获取到，则表式获取到了锁，这个过程线程一直在运行，相对而言没有使用太多的操作系统资源，比较轻量</li>
-</ul>
-<h1 id="Sychronized和ReentrantLock的区别"><a href="#Sychronized和ReentrantLock的区别" class="headerlink" title="Sychronized和ReentrantLock的区别"></a>Sychronized和ReentrantLock的区别</h1><ul>
-<li>前一个是关键字，后一个是一个类</li>
-<li>前一个会自动加锁和释放锁，后面一个需要手动加锁和个释放锁</li>
-<li>前一个底层是jvm层面 ， 后面一个底层是api层面</li>
-<li>前一个是非公平锁 ， 后面一个是可以选非公平或者公平</li>
-<li>前一个锁的是对象所信息保存在对象头中，后面一个是通过代码中int型的state标识符状态</li>
-<li>前一个底层有个锁升级的过程</li>
-</ul>
-<h1 id="谈谈你对AQS的理解，AQS如何实现可重入锁"><a href="#谈谈你对AQS的理解，AQS如何实现可重入锁" class="headerlink" title="谈谈你对AQS的理解，AQS如何实现可重入锁"></a>谈谈你对AQS的理解，AQS如何实现可重入锁</h1><ul>
-<li>AQS是一个java线程同步的框架，是jdk中很多锁的工具核心框架</li>
-<li>在AQS中，维护了信号量state和一个线程的双向链表队列，其中这个线程队列，就是用来给线程排队的而state就像是个红绿灯，用来控制排队</li>
-<li>在不同的场景下，有不同的意义</li>
-<li>在可重入锁这个场景下state用来保证加锁的次数，0表示标识无锁，每次加锁，states就加1，释放就减少1</li>
-</ul>
-<h1 id="谈谈你对IOC的理解"><a href="#谈谈你对IOC的理解" class="headerlink" title="谈谈你对IOC的理解"></a>谈谈你对IOC的理解</h1><ul>
-<li>通常我们任务spring有两大特性IoC和AOP</li>
-<li>IoC进行了对象的反转，就是对象控制权的转移</li>
-</ul>
-<h1 id="单例和Bean"><a href="#单例和Bean" class="headerlink" title="单例和Bean"></a>单例和Bean</h1><ul>
-<li>单例表示这个类只能实例化一次</li>
-<li>而bean并不表示jvm里只存在一个类的Bean</li>
-</ul>
-<h1 id="Spring的事务传播机制"><a href="#Spring的事务传播机制" class="headerlink" title="Spring的事务传播机制"></a>Spring的事务传播机制</h1><ul>
-<li>多个事务方法互相调用的时候，事务是如何在这些方法之间传播的</li>
-<li>REQUIRED（默认的传播机制）：如果没有事务，就自己创建一个新的事务，如果存在事务，就加入</li>
-<li>SUPPIORTS：当前存在事务，则加入，如果不存在就按照不存在的来</li>
-<li>MANDATORY：当前存在事务则加入，不存在则抛出异常</li>
-<li>REQUIRES_NEW：创建一个新事务，如果存在这个事务，就挂起他</li>
-<li>NOT_SUPPORTED:用非事务的方式执行，如果当前存在事务，则挂起事务</li>
-<li>NEVER：不使用事务如果事务存在，则会抛出异常</li>
-<li>NESTED：如果当前事务存在，则在嵌套事务中执行要不然就和REQUIRED一样</li>
-</ul>
-<h1 id="线程和协程的区别"><a href="#线程和协程的区别" class="headerlink" title="线程和协程的区别"></a>线程和协程的区别</h1><ul>
-<li>线程与协程的区别： </li>
-<li>1：包含关系：一个进程可以有多个协程，一个线程也可以有多个协程 </li>
-<li>2：同步：线程进程是同步，协程是异步 </li>
-<li>3：协程能保留上一次重入的状态，当程序重新调用时，可以直接进入上一次的调用的位置 </li>
-<li>4：资源占用：线程是抢占式，协程是非抢占式，也就是会所在同一时间只能有一个协程运行，相当于单线程 </li>
-<li>5：与线程调用关系：协程并不能代替线程，线程是分割的CPU资源，协程是执行的代码，协程并不会直接调用线程，它会调用线程的执行器</li>
-</ul>
-<h1 id="myysql的索引以及他们的好处和坏处"><a href="#myysql的索引以及他们的好处和坏处" class="headerlink" title="myysql的索引以及他们的好处和坏处"></a>myysql的索引以及他们的好处和坏处</h1><ul>
-<li>优点： 1.大大加快数据的检索速度 </li>
-<li>2.通过使用索引，可以在查询的过程中使用优化隐藏器，提高系统的性能 </li>
-<li>缺点： 1.时间方面：创建索引和维护索引要耗费时间，索引需要动态的维护 </li>
-<li>2.空间方面：需要占物理空间</li>
-</ul>
-<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><ul>
-<li>现代操作系统中，进程是分配资源的最小单位，运行一个程序，就创建一个进程，一个进程里可以包括多个线程，线程是系统调度的基本单位， 每个线程里都拥有各自的程序计数器，堆栈，局部变量表等属性，并且共享进程里面的资源，处理器在这些线程之间高速切换，使使用者误以为这些线程是同时执行的。 </li>
-<li>对于最简单的输出hello world程序，就包括四个线程， main，清除reference的线程，和finalize方法有关的线程，处理jvm信号的线程， </li>
-<li>之所以使用多线程是因为多线程有个好处 </li>
-<li>1.现代计算机是多核处理器，而一个线程同一时刻只能运行在一个处理器上，对于单线程程序，同一时刻只能使用一个处理器，显然这是一种资源浪费， 而对于多线程程序，可以把计算逻辑分配给不同的处理器，极大的提高的程序的执行效率 </li>
-<li>2.可以把复杂的业务逻辑种的对数据一致性要求不强的操作，比如生成订单快照分配给其他的线程去处理（也可以使用消息队列），极大的提高了程序的响应时间 </li>
-<li>3.java提供了一个良好的多线程模型，能是开发者专注于业务的开发</li>
-</ul>
-<h1 id="怎么保证线程安全"><a href="#怎么保证线程安全" class="headerlink" title="怎么保证线程安全"></a>怎么保证线程安全</h1><ul>
-<li>Java保证线程安全的方式有很多,其中较为常用的有三种,按照资源占用情况由轻到重排列,这三种保证线程安全的方式分别是原子类、volatile、锁。 </li>
-<li>JDK从1.5开始提供了java.util.concurrent.atomic包,这个包中的原子操作类提供了一种用法简单、性能高效、线程安全地更新一个变量的方式。</li>
-<li>在atomic包里一共提供了17个类,按功能可以归纳为4种类型的原子更新方式,分别是原子更新基本类型、原子更新引用类型、原子更新属性、原子更新数组。</li>
-<li>无论原子更新哪种类型,都要遵循“比较和替换”规则,即比较要更新的值是否等于期望值,如果是则更新,如果不是则失败。 </li>
-<li>volatile是轻量级的synchronized,它在多处理器开发中保证了共享变量的“可见性”,从而可以保证单个变量读写时的线程安全。</li>
-<li>可见性问题是由处理器核心的缓存导致的,每个核心均有各自的缓存,而这些缓存均要与内存进行同步。</li>
-<li>volatile具有如下的内存语义：当写一个volatile变量时,该线程本地内存中的共享变量的值会被立刻刷新到主内存；当读一个volatile变量时,该线程本地内存会被置为无效,迫使线程直接从主内存中读取共享变量。</li>
-<li>原子类和volatile只能保证单个共享变量的线程安全,锁则可以保证临界区内的多个共享变量的线程安全,Java中加锁的方式有两种,分别是synchronized关键字和Lock接口。</li>
-<li>synchronized是比较早期的API,在设计之初没有考虑到超时机制、非阻塞形式,以及多个条件变量。</li>
-<li>若想通过升级的方式让它支持这些相对复杂的功能,则需要大改它的语法结构,不利于兼容旧代码。</li>
-<li>因此,JDK的开发团队在1.5新增了Lock接口,并通过Lock支持了上述的功能,即：支持响应中断、支持超时机制、支持以非阻塞的方式获取锁、支持多个条件变量（阻塞队列）。 </li>
-<li>加分回答 实现线程安全的方式有很多,除了上述三种方式之外,还有如下几种方式： </li>
-<li><ol>
-<li>无状态设计 线程安全问题是由多线程并发修改共享变量引起的,如果在并发环境中没有设计共享变量,则自然就不会出现线程安全问题了。这种代码实现可以称作“无状态实现”,所谓状态就是指共享变量。</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>不可变设计 如果在并发环境中不得不设计共享变量,则应该优先考虑共享变量是否为只读的,如果是只读场景就可以将共享变量设计为不可变的,这样自然也不会出现线程安全问题了。具体来说,就是在变量前加final修饰符,使其不可被修改,如果变量是引用类型,则将其设计为不可变类型（参考String类）。</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>并发工具 java.util.concurrent包提供了几个有用的并发工具类,一样可以保证线程安全：</li>
-</ol>
-</li>
-<li>Semaphore：就是信号量,可以控制同时访问特定资源的线程数量。 </li>
-<li>CountDownLatch：允许一个或多个线程等待其他线程完成操作。 </li>
-<li>CyclicBarrier：让一组线程到达一个屏障时被阻塞,直到最后一个线程到达屏障时,屏障才会打开,所有被屏障拦截的线程才会继续运行。 </li>
-<li><ol start="4">
-<li>本地存储 我们也可以考虑使用ThreadLocal存储变量,ThreadLocal可以很方便地为每一个线程单独存一份数据,也就是将需要并发访问的资源复制成多份。这样一来,就可以避免多线程访问共享变量了,它们访问的是自己独占的资源,它从根本上隔离了多个线程之间的数据共享。</li>
-</ol>
-</li>
-</ul>
-<h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><ul>
-<li><ol>
-<li>死锁 两个或两个以上的进程在执行过程中,因争夺共享资源而造成的一种互相等待的现象,若无外力作用,它们都将无法推进下去。此时称系统处于死锁状态或系统产生了死锁。这些永远在互相等待的进程称为死锁进程。</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>产生死锁的必要条件 虽然进程在运行过程中,可能发生死锁,但死锁的发生也必须具备一定的条件,死锁的发生必须具备以下四个必要条件：</li>
-</ol>
-</li>
-<li><ul>
-<li>互斥条件：指进程对所分配到的资源进行排它性使用,即在一段时间内某资源只由一个进程占用。如果此时还有其它进程请求资源,则请求者只能等待,直至占有资源的进程用毕释放；</li>
-</ul>
-</li>
-<li><ul>
-<li>请求和保持条件：指进程已经保持至少一个资源,但又提出了新的资源请求,而该资源已被其它进程占有,此时请求进程阻塞,但又对自己已获得的其它资源保持不放；</li>
-</ul>
-</li>
-<li><ul>
-<li>不剥夺条件：指进程已获得的资源,在未使用完之前,不能被剥夺,只能在使用完时由自己释放；</li>
-</ul>
-</li>
-<li><ul>
-<li>环路等待条件：指在发生死锁时,必然存在一个进程——资源的环形链,即进程集合 {P0,P1,P2,···,Pn} 中的 P0 正在等待一个 P1 占用的资源；P1 正在等待 P2 占用的资源,……,Pn 正在等待已被 P0 占用的资源。</li>
-</ul>
-</li>
-</ul>
-<h1 id="进程间的通信方式"><a href="#进程间的通信方式" class="headerlink" title="进程间的通信方式"></a>进程间的通信方式</h1><ul>
-<li>进程间通信主要包括：管道、命名管道、信号、消息队列、共享内存、内存映射、信号量、Socket： </li>
-<li><ol>
-<li>管道 管道也叫无名（匿名）管道,它是是 UNIX 系统 IPC（进程间通信）的最古老形式,所有的 UNIX 系统都支持这种通信机制。管道本质其实是内核中维护的一块内存缓冲区,Linux 系统中通过 pipe() 函数创建管道,会生成两个文件描述符,分别对应管道的读端和写端。无名管道只能用于具有亲缘关系的进程间的通信。</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>命名管道 匿名管道,由于没有名字,只能用于亲缘关系的进程间通信。为了克服这个缺点,提出了有名管道（FIFO）,也叫命名管道、FIFO文件。有名管道（FIFO）不同于匿名管道之处在于它提供了一个路径名与之关联,以 FIFO 的文件形式存在于文件系统中,并且其打开方式与打开一个普通文件是一样的,这样即使与 FIFO 的创建进程不存在亲缘关系的进程,只要可以访问该路径,就能够彼此通过 FIFO 相互通信,因此,通过 FIFO 不相关的进程也能交换数据。</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>信号 信号是 Linux 进程间通信的最古老的方式之一,是事件发生时对进程的通知机制,有时也称之为软件中断,它是在软件层次上对中断机制的一种模拟,是一种异步通信的方式。信号可以导致一个正在运行的进程被另一个正在运行的异步进程中断,转而处理某一个突发事件。</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>消息队列 消息队列就是一个消息的链表,可以把消息看作一个记录,具有特定的格式以及特定的优先级,对消息队列有写权限的进程可以向消息队列中按照一定的规则添加新消息,对消息队列有读权限的进程则可以从消息队列中读走消息,消息队列是随内核持续的。</li>
-</ol>
-</li>
-<li><ol start="5">
-<li>共享内存 共享内存允许两个或者多个进程共享物理内存的同一块区域（通常被称为段）。由于一个共享内存段会称为一个进程用户空间的一部分,因此这种 IPC 机制无需内核介入。所有需要做的就是让一个进程将数据复制进共享内存中,并且这部分数据会对其他所有共享同一个段的进程可用。与管道等要求发送进程将数据从用户空间的缓冲区复制进内核内存和接收进程将数据从内核内存复制进用户空间的缓冲区的做法相比,这种 IPC 技术的速度更快。</li>
-</ol>
-</li>
-<li><ol start="6">
-<li>内存映射 内存映射（Memory-mapped I&#x2F;O）是将磁盘文件的数据映射到内存,用户通过修改内存就能修改磁盘文件。</li>
-</ol>
-</li>
-<li><ol start="7">
-<li>信号量 信号量主要用来解决进程和线程间并发执行时的同步问题,进程同步是并发进程为了完成共同任务采用某个条件来协调它们的活动。对信号量的操作分为 P 操作和 V 操作,P 操作是将信号量的值减 1,V 操作是将信号量的值加 1。当信号量的值小于等于 0 之后,再进行 P 操作时,当前进程或线程会被阻塞,直到另一个进程或线程执行了 V 操作将信号量的值增加到大于 0 之时。</li>
-</ol>
-</li>
-<li><ol start="8">
-<li>Socket 套接字（Socket）,就是对网络中不同主机上的应用进程之间进行双向通信的端点的抽象。一个套接字就是网络上进程通信的一端,提供了应用层进程利用网络协议交换数据的机制。Socket 一般用于网络中不同主机上的进程之间的通信。</li>
-</ol>
-</li>
-</ul>
-<h1 id="MVC模式"><a href="#MVC模式" class="headerlink" title="MVC模式"></a>MVC模式</h1><ul>
-<li>MVC是一种设计模式,在这种模式下软件被分为三层,即Model（模型）、View（视图）、Controller（控制器）。</li>
-<li>Model代表的是数据,View代表的是用户界面,Controller代表的是数据的处理逻辑,它是Model和View这两层的桥梁。</li>
-<li>将软件分层的好处是,可以将对象之间的耦合度降低,便于代码的维护。 </li>
-<li>Model：指从现实世界中抽象出来的对象模型,是应用逻辑的反应；它封装了数据和对数据的操作,是实际进行数据处理的地方（模型层与数据库才有交互）。</li>
-<li>在MVC的三个部件中,模型拥有最多的处理任务。被模型返回的数据是中立的,模型与数据格式无关,这样一个模型能为多个视图提供数据,由于应用于模型的代码只需写一次就可以被多个视图重用,所以减少了代码的重复性。 </li>
-<li>View：负责进行模型的展示,一般就是我们见到的用户界面。 </li>
-<li>Controller：控制器负责视图和模型之间的交互,控制对用户输入的响应、响应方式和流程；它主要负责两方面的动作,一是把用户的请求分发到相应的模型,二是吧模型的改变及时地反映到视图上。 </li>
-<li>加分回答 为了解耦以及提升代码的可维护性,服务端开发一般会对代码进行分层,服务端代码一般会分为三层：表现层、业务层、数据访问层。在浏览器访问服务器时,请求会先到达表现层 最典型的MVC就是jsp+servlet+javabean模式。 </li>
-<li>以JavaBean作为模型,既可以作为数据模型来封装业务数据,又可以作为业务逻辑模型来包含应用的业务操作。 JSP作为视图层,负责提供页面为用户展示数据,提供相应的表单（Form）来用于用户的请求,并在适当的时候（点击按钮）向控制器发出请求来请求模型进行更新。 </li>
-<li>Serlvet作为控制器,用来接收用户提交的请求,然后获取请求中的数据,将之转换为业务模型需要的数据模型,然后调用业务模型相应的业务方法进行更新,同时根据业务执行结果来选择要返回的视图。 当然,这种方式现在已经不那么流行了,</li>
-<li>Spring MVC框架已经成为了MVC模式的最主流实现。 </li>
-<li>Spring MVC框架是基于Java的实现了MVC框架模式的请求驱动类型的轻量级框架。前端控制器是DispatcherServlet接口实现类,映射处理器是HandlerMapping接口实现类,视图解析器是ViewResolver接口实现类,页面控制器是Controller接口实现类</li>
-</ul>
-<h1 id="redis的数据类型"><a href="#redis的数据类型" class="headerlink" title="redis的数据类型"></a>redis的数据类型</h1><ul>
-<li>Redis主要提供了5种数据结构：字符串(string)、哈希(hash)、列表(list)、集合(set)、有序集合(zset)。Redis还提供了Bitmap、HyperLogLog、Geo类型,但这些类型都是基于上述核心数据类型实现的。</li>
-<li>5.0版本中,Redis新增加了Streams数据类型,它是一个功能强大的、支持多播的、可持久化的消息队列。 </li>
-<li>string可以存储字符串、数字和二进制数据,除了值可以是String以外,所有的键也可以是string,string最大可以存储大小为2M的数据。 </li>
-<li>list保证数据线性有序且元素可重复,它支持lpush、blpush、rpop、brpop等操作,可以当作简单的消息队列使用,一个list最多可以存储2^32-1个元素 hash的值本身也是一个键值对结构,最多能存储2^32-1个元素 </li>
-<li>set是无序不可重复的,它支持多个set求交集、并集、差集,适合实现共同关注之类的需求,一个set最多可以存储2^32-1个元素 zset是有序不可重复的,它通过给每个元素设置一个分数来作为排序的依据,一个zset最多可以存储2^32-1个元素。 </li>
-<li>加分回答 每种类型支持多个编码,每一种编码采取一个特殊的结构来实现 各类数据结构内部的编码及结构： </li>
-<li>string：编码分为int、raw、embstr；</li>
-<li>int底层实现为long,当数据为整数型并且可以用long类型表示时可以用long存储；</li>
-<li>embstr底层实现为占一块内存的SDS结构,当数据为长度不超过32字节的字符串时,选择以此结构连续存储元数据和值；</li>
-<li>raw底层实现为占两块内存的SDS,用于存储长度超过32字节的字符串数据,此时会在两块内存中分别存储元数据和值。 </li>
-<li>list：编码分为ziplist、linkedlist和quicklist（3.2以前版本没有quicklist）。</li>
-<li>ziplist底层实现为压缩列表,当元素数量小于2且所有元素长度都小于64字节时,使用这种结构来存储；</li>
-<li>linkedlist底层实现为双端链表,当数据不符合ziplist条件时,使用这种结构存储；</li>
-<li>3.2版本之后list一般采用quicklist的快速列表结构来代替前两种。 </li>
-<li>hash：编码分为ziplist、hashtable两种,</li>
-<li>其中ziplist底层实现为压缩列表,当键值对数量小于2,并且所有的键值长度都小于64字节时使用这种结构进行存储；</li>
-<li>hashtable底层实现为字典,当不符合压缩列表存储条件时,使用字典进行存储。 </li>
-<li>set：编码分为inset和hashtable,intset底层实现为整数集合,当所有元素都是整数值且数量不超过2个时使用该结构存储,否则使用字典结构存储。 </li>
-<li>zset：编码分为ziplist和skiplist,当元素数量小于128,并且每个元素长度都小于64字节时,使用ziplist压缩列表结构存储,否则使用skiplist的字典+跳表的结构存储。</li>
-</ul>
-<h1 id="乐观锁和悲观锁"><a href="#乐观锁和悲观锁" class="headerlink" title="乐观锁和悲观锁"></a>乐观锁和悲观锁</h1><ul>
-<li>乐观锁：乐观锁总是假设最好的情况,每次去拿数据的时候都认为别人不会修改,所以不会上锁,但是在更新的时候会判断一下在此期间别人有没有去更新这个数据,可以使用版本号机制和CAS算法实现。乐观锁适用于多读的应用类型,这样可以提高吞吐量**,像数据库提供的类似于write_condition机制,其实都是提供的乐观锁。 </li>
-<li>悲观锁：悲观锁总是假设最坏的情况,每次去拿数据的时候都认为别人会修改,所以每次在拿数据的时候都会上锁,这样别人想拿这个数据就会阻塞直到它拿到锁（共享资源每次只给一个线程使用,其它线程阻塞,用完后再把资源转让给其它线程）。传统的关系型数据库里边就用到了很多这种锁机制,比如行锁,表锁等,读锁,写锁等,都是在做操作之前先上锁。 加分回答 两种锁的使用场景 乐观锁： GIT,SVN,CVS等代码版本控制管理器,就是一个乐观锁使用很好的场景,</li>
-<li>例如：A、B程序员,同时从SVN服务器上下载了code.html文件,当A完成提交后,此时B再提交,那么会报版本冲突,此时需要B进行版本处理合并后,再提交到服务器。这其实就是乐观锁的实现全过程。如果此时使用的是悲观锁,那么意味者所有程序员都必须一个一个等待操作提交完,才能访问文件,这是难以接受的。 悲观锁： 悲观锁的好处在于可以减少并发,但是当并发量非常大的时候,由于锁消耗资源、锁定时间过长等原因,很容易导致系统性能下降,资源消耗严重。因此一般我们可以在并发量不是很大,并且出现并发情况导致的异常用户和系统都很难以接受的情况下,会选择悲观锁进行。</li>
-</ul>
-<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><ul>
-<li>创建型包括：单例模式、工厂方法模式、抽象工厂模式、建造者模式和原型模式； </li>
-<li>结构型包括：代理模式、装饰模式、适配器模式、组合模式、桥梁模式、外观模式和享元模式； </li>
-<li>行为型包括：模板方法模式、命令模式、责任链模式、策略模式、迭代器模式、中介者模式、观察者模式、备忘录模式、访问者模式、状态模式和解释器模式。 面试中不要求23种设计模式全部了解,但至少应掌握单例模式和工厂模式。 加分回答 可以说出知道的框架所用到的设计模式或底层设计模式,例如Spring中的单例模式、工厂模式,AQS的模板模式等等。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2120,7 +1840,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2178,7 +1898,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共64.1k字</span>
+  <span class="post-count">博客全站共64.6k字</span>
 </div>
 
 
