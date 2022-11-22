@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="修改windows下的hosts文件不生效 这个坑一直卡了我三四天 配置完hadoop集群，进行web访问的时候出现了这个问题 因为windows的主机映射不好使，所以我无法在网页端查看数据  解决办法 我这里解决这个的办法是通过 把中间空格放大的方法 就是一个小空格加一个tab键 然后进入edge:&#x2F;&#x2F;net-internals或者chrome:&#x2F;&#x2F;net-internals 这取决于你的浏览器">
+  <meta name="description" content="修改windows下的hosts文件不生效 这个坑一直卡了我三四天 配置完hadoop集群，进行web访问的时候出现了这个问题 因为windows的主机映射不好使，所以我无法在网页端查看数据  解决办法 我这里解决这个的办法是通过 把中间空格放大的方法 就是一个小空格加一个tab键 然后进入 edge:&#x2F;&#x2F;net-internals或者 chrome:&#x2F;&#x2F;net-internals 这取决于你的浏">
 <meta property="og:type" content="article">
 <meta property="og:title" content="踩过的坑">
 <meta property="og:url" content="http://example.com/2022/11/17/%E5%9D%91/index.html">
 <meta property="og:site_name" content="枫叶冢">
-<meta property="og:description" content="修改windows下的hosts文件不生效 这个坑一直卡了我三四天 配置完hadoop集群，进行web访问的时候出现了这个问题 因为windows的主机映射不好使，所以我无法在网页端查看数据  解决办法 我这里解决这个的办法是通过 把中间空格放大的方法 就是一个小空格加一个tab键 然后进入edge:&#x2F;&#x2F;net-internals或者chrome:&#x2F;&#x2F;net-internals 这取决于你的浏览器">
+<meta property="og:description" content="修改windows下的hosts文件不生效 这个坑一直卡了我三四天 配置完hadoop集群，进行web访问的时候出现了这个问题 因为windows的主机映射不好使，所以我无法在网页端查看数据  解决办法 我这里解决这个的办法是通过 把中间空格放大的方法 就是一个小空格加一个tab键 然后进入 edge:&#x2F;&#x2F;net-internals或者 chrome:&#x2F;&#x2F;net-internals 这取决于你的浏">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-17T11:47:34.000Z">
-<meta property="article:modified_time" content="2022-11-17T11:47:49.870Z">
+<meta property="article:modified_time" content="2022-11-22T11:27:59.691Z">
 <meta property="article:author" content="liu zihang">
 <meta name="twitter:card" content="summary">
 
@@ -224,10 +224,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-17 19:47:34 / 修改时间：19:47:49" itemprop="dateCreated datePublished" datetime="2022-11-17T19:47:34+08:00">2022-11-17</time>
+              <time title="创建时间：2022-11-17 19:47:34" itemprop="dateCreated datePublished" datetime="2022-11-17T19:47:34+08:00">2022-11-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-22 19:27:59" itemprop="dateModified" datetime="2022-11-22T19:27:59+08:00">2022-11-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -251,14 +257,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>628</span>
+              <span>2.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -282,13 +288,13 @@
 <li>我这里解决这个的办法是通过</li>
 <li>把中间空格放大的方法</li>
 <li>就是一个小空格加一个tab键</li>
-<li>然后进入<code>edge://net-internals</code>或者<code>chrome://net-internals</code></li>
+<li>然后进入 <code>edge://net-internals</code>或者 <code>chrome://net-internals</code></li>
 <li>这取决于你的浏览器</li>
-<li>然后<code>win + x</code> 查看windows powershell（管理员）打开之后执行<code> ipconfig /flushdns</code></li>
+<li>然后 <code>win + x</code> 查看windows powershell（管理员）打开之后执行 <code> ipconfig /flushdns</code></li>
 <li>刷新之后就可以通过映射访问了</li>
 </ul>
 <h1 id="有关于idea关于Hadoop的api的copyToLocalfile不生效"><a href="#有关于idea关于Hadoop的api的copyToLocalfile不生效" class="headerlink" title="有关于idea关于Hadoop的api的copyToLocalfile不生效"></a>有关于idea关于Hadoop的api的copyToLocalfile不生效</h1><ul>
-<li>报错信息<code>java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.dir are unset.</code></li>
+<li>报错信息 <code>java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.dir are unset.</code></li>
 <li>这个是代表你windows里没有配置hadoop环境</li>
 <li>我们可以不用他提供的api</li>
 <li>通过</li>
@@ -298,6 +304,43 @@
 <ul>
 <li>就可以实现下载</li>
 </ul>
+<h1 id="关于linux里的mysql会自动识别大小写表名的事情"><a href="#关于linux里的mysql会自动识别大小写表名的事情" class="headerlink" title="关于linux里的mysql会自动识别大小写表名的事情"></a>关于linux里的mysql会自动识别大小写表名的事情</h1><p>linux里的mysql会自动对表名进行大小写区分，这可能导致一些boot项目启动的时候找不到表名</p>
+<p>如何更改如下</p>
+<p>首先查看自己的表名大小写权限是不是打开了</p>
+<p>先在mysql里执行</p>
+<p><code>show variables like &quot;%case%&quot;;</code></p>
+<p>查看一下我们的权限打没打开</p>
+<p>一般默认的时候会有个off的选项</p>
+<p>这个是默认的情况</p>
+<p>接下来我们对其进行修改</p>
+<p>我们首先退出mysql</p>
+<p>然后关闭mysql服务输入 ： <code>mysqladmin -uroot -p shutdown //以安全模式关闭数据库</code></p>
+<p>接下来输入密码就关闭了</p>
+<p>然后编辑mysql的配置文件</p>
+<p>输入 ： <code>vim /etc/my.cnf</code></p>
+<p>在mysqld下添加一行</p>
+<p><code>lower_case_table_names=1</code></p>
+<p>然后退出保存即可</p>
+<p>最后要重新启动mysql输入 ： <code>systemctl resatrt mysqld</code></p>
+<p>就可以了</p>
+<h1 id="mysql误删了配置文件-performance-schema的恢复"><a href="#mysql误删了配置文件-performance-schema的恢复" class="headerlink" title="mysql误删了配置文件 performance_schema的恢复"></a>mysql误删了配置文件 performance_schema的恢复</h1><p>首先我们退出mysql</p>
+<p>然后输入 <code>mysql_upgrade -u root -p </code></p>
+<p>输入我们的密码之后</p>
+<p>然后重新登录我们的mysql就会出现了</p>
+<h1 id="npm怎么清除缓存"><a href="#npm怎么清除缓存" class="headerlink" title="npm怎么清除缓存"></a>npm怎么清除缓存</h1><p>首先关于npm进行清除缓存</p>
+<p>先明确自己的npm的版本</p>
+<p>如果npm version &lt; 7.0.0</p>
+<p><code>$ npm cache clean -f</code></p>
+<p>npm version ≧ 7.0.0 会报以下错误</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ npm cache cleannpm ERR! As of npm@5, the npm cache self-heals from corruption issues</span><br><span class="line">npm ERR! by treating integrity mismatches as cache misses.  As a result,</span><br><span class="line">npm ERR! data extracted from the cache is guaranteed to be valid.  If you</span><br><span class="line">npm ERR! want to make sure everything is consistent, use npm cache verify</span><br><span class="line">npm ERR! instead.  Deleting the cache can only make npm go slower, and is</span><br><span class="line">npm ERR! not likely to correct any problems you may be encountering!</span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! On the other hand, <span class="keyword">if</span> you<span class="string">&#x27;re debugging an issue with the installer,</span></span><br><span class="line"><span class="string">npm ERR! or race conditions that depend on the timing of writing to an empty</span></span><br><span class="line"><span class="string">npm ERR! cache, you can use npm install --cache /tmp/empty-cache to use a</span></span><br><span class="line"><span class="string">npm ERR! temporary cache instead of nuking the actual one.</span></span><br><span class="line"><span class="string">npm ERR!</span></span><br><span class="line"><span class="string">npm ERR! If you&#x27;</span>re sure you want to delete the entire cache, rerun this <span class="built_in">command</span></span><br><span class="line">npm ERR! with --force.npm ERR! A complete <span class="built_in">log</span> of this run can be found <span class="keyword">in</span>:</span><br><span class="line">npm ERR!     /Users/xxxxxx/.npm/_logs/2021-02-04T06_35_38_043Z-debug.log</span><br></pre></td></tr></table></figure>
+
+<p>如果想强制清除缓存就要用–force</p>
+<h1 id="关于npm设置镜像源"><a href="#关于npm设置镜像源" class="headerlink" title="关于npm设置镜像源"></a>关于npm设置镜像源</h1><p><code>npm config set registry http://registry.npm.taobao.org</code></p>
+<p>然后就把淘宝镜像源加进入了</p>
+<h1 id="Git之本地分支和远程分支建立追踪关系的几种方式"><a href="#Git之本地分支和远程分支建立追踪关系的几种方式" class="headerlink" title="Git之本地分支和远程分支建立追踪关系的几种方式"></a>Git之本地分支和远程分支建立追踪关系的几种方式</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch --set-upstream-to=origin/remote_branch your_branch</span><br><span class="line">origin/remote_branch是你本地分支对应的远程分支；your_branch是你当前的本地分支。</span><br></pre></td></tr></table></figure>
+
+<p>或者之间checkout -b 根据远程建立本地分支</p>
+<h1 id="git-删除远程分支"><a href="#git-删除远程分支" class="headerlink" title="git 删除远程分支"></a>git 删除远程分支</h1><p><code> git push origin --delete [branch_name]</code></p>
 
     </div>
 
@@ -456,7 +499,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9windows%E4%B8%8B%E7%9A%84hosts%E6%96%87%E4%BB%B6%E4%B8%8D%E7%94%9F%E6%95%88"><span class="nav-number">1.</span> <span class="nav-text">修改windows下的hosts文件不生效</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%89%E5%85%B3%E4%BA%8Eidea%E5%85%B3%E4%BA%8EHadoop%E7%9A%84api%E7%9A%84copyToLocalfile%E4%B8%8D%E7%94%9F%E6%95%88"><span class="nav-number">2.</span> <span class="nav-text">有关于idea关于Hadoop的api的copyToLocalfile不生效</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9windows%E4%B8%8B%E7%9A%84hosts%E6%96%87%E4%BB%B6%E4%B8%8D%E7%94%9F%E6%95%88"><span class="nav-number">1.</span> <span class="nav-text">修改windows下的hosts文件不生效</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%89%E5%85%B3%E4%BA%8Eidea%E5%85%B3%E4%BA%8EHadoop%E7%9A%84api%E7%9A%84copyToLocalfile%E4%B8%8D%E7%94%9F%E6%95%88"><span class="nav-number">2.</span> <span class="nav-text">有关于idea关于Hadoop的api的copyToLocalfile不生效</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Elinux%E9%87%8C%E7%9A%84mysql%E4%BC%9A%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB%E5%A4%A7%E5%B0%8F%E5%86%99%E8%A1%A8%E5%90%8D%E7%9A%84%E4%BA%8B%E6%83%85"><span class="nav-number">3.</span> <span class="nav-text">关于linux里的mysql会自动识别大小写表名的事情</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql%E8%AF%AF%E5%88%A0%E4%BA%86%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-performance-schema%E7%9A%84%E6%81%A2%E5%A4%8D"><span class="nav-number">4.</span> <span class="nav-text">mysql误删了配置文件 performance_schema的恢复</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#npm%E6%80%8E%E4%B9%88%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"><span class="nav-number">5.</span> <span class="nav-text">npm怎么清除缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Enpm%E8%AE%BE%E7%BD%AE%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-number">6.</span> <span class="nav-text">关于npm设置镜像源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git%E4%B9%8B%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%BB%BA%E7%AB%8B%E8%BF%BD%E8%B8%AA%E5%85%B3%E7%B3%BB%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">7.</span> <span class="nav-text">Git之本地分支和远程分支建立追踪关系的几种方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="nav-number">8.</span> <span class="nav-text">git 删除远程分支</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -530,7 +573,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共64.8k字</span>
+  <span class="post-count">博客全站共66.2k字</span>
 </div>
 
 

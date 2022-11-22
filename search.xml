@@ -93,7 +93,54 @@
 <p>15开头的在一个文件上</p>
 <p>这就要自定义分区</p>
 <p>通过继承Partitioner类实现方法然后导入方法</p>
-<p>实现</p>
+<p>实现getPartition方法进行分区 ： 以下是一个简单的分区函数</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.IntWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Partitioner;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">myPartionit</span> <span class="keyword">extends</span> <span class="title class_">Partitioner</span>&lt;Text , IntWritable&gt; &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getPartition</span><span class="params">(Text text, IntWritable intWritable, <span class="type">int</span> i)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (text.toString().equals(<span class="string">&quot;ANALYST&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (text.toString().equals(<span class="string">&quot;CLERK&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (text.toString().equals(<span class="string">&quot;MANAGER&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (text.toString().equals(<span class="string">&quot;PRESIDENT&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (text.toString().equals(<span class="string">&quot;SALESMAN&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">4</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后我们要在我们的主程序中调用这个类 ， test类：就是我们的主类，如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.IntWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Job;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.StringTokenizer;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> sxwang</span></span><br><span class="line"><span class="comment"> * 11 18 14:00</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * driver</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (args.length &lt; <span class="number">2</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;出现问题最少两个参数&quot;</span>);</span><br><span class="line">System.exit(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line">        String input=args[<span class="number">0</span>];</span><br><span class="line">String output=args[<span class="number">1</span>];</span><br><span class="line"><span class="type">Configuration</span> <span class="variable">conf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Configuration</span>();</span><br><span class="line"><span class="comment">//0.todo... 删除目标路径</span></span><br><span class="line">FileUtils.deletePath(conf,output);</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.设置 作业名称</span></span><br><span class="line"><span class="type">Job</span> <span class="variable">job</span> <span class="operator">=</span> Job.getInstance(conf, <span class="string">&quot;WCAPP&quot;</span>);</span><br><span class="line"><span class="comment">//2.设置map reduce 执行代码的主类</span></span><br><span class="line">job.setJarByClass(test.class);</span><br><span class="line">job.setMapperClass(MyMapper.class);</span><br><span class="line">job.setReducerClass(MyReducer.class);</span><br><span class="line"><span class="comment">//3.指定 oupput kv类型</span></span><br><span class="line">job.setOutputKeyClass(Text.class);</span><br><span class="line">job.setOutputValueClass(IntWritable.class);</span><br><span class="line">job.setNumReduceTasks(<span class="number">6</span>);</span><br><span class="line">job.setPartitionerClass(myPartionit.class);</span><br><span class="line"><span class="comment">//4. 设置数据源路径 数据输出路径</span></span><br><span class="line">FileInputFormat.addInputPath(job, <span class="keyword">new</span> <span class="title class_">Path</span>(input));</span><br><span class="line">FileOutputFormat.setOutputPath(job, <span class="keyword">new</span> <span class="title class_">Path</span>(output));</span><br><span class="line"><span class="comment">//5. 提交mr yarn</span></span><br><span class="line">System.exit(job.waitForCompletion(<span class="literal">true</span>) ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * mapper</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">MyMapper</span></span><br><span class="line">            <span class="keyword">extends</span> <span class="title class_">Mapper</span>&lt;Object, Text, Text, IntWritable&gt; &#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">map</span><span class="params">(Object key, Text value, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 1.按照分隔符 进行拆分 每个单词 ，每个单词赋值为1</span></span><br><span class="line"><span class="comment">             * (word ,1)</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line"></span><br><span class="line">String[] words = value.toString().split(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (String word : words) &#123;</span><br><span class="line">                String[] split = word.split(<span class="string">&quot;,&quot;</span>);</span><br><span class="line">context.write(<span class="keyword">new</span> <span class="title class_">Text</span>(split[<span class="number">2</span>]) ,<span class="keyword">new</span> <span class="title class_">IntWritable</span>(<span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * reducer</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">MyReducer</span></span><br><span class="line">            <span class="keyword">extends</span> <span class="title class_">Reducer</span>&lt;Text,IntWritable,Text,IntWritable&gt; &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         *  (word ,1)</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         *  (word,&lt;1,1,1,1&gt;)</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         *  1.聚合value</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         *  2.写出去</span></span><br><span class="line"><span class="comment">*  (word ,3)</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">reduce</span><span class="params">(Text key, Iterable&lt;IntWritable&gt; values, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException &#123;</span><br><span class="line">            <span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (IntWritable value : values) &#123;</span><br><span class="line">                sum +=Integer.parseInt(value.toString());</span><br><span class="line">&#125;</span><br><span class="line">            context.write(key,<span class="keyword">new</span> <span class="title class_">IntWritable</span>(sum));</span><br><span class="line">&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="sql-vs-mr-mapreduce"><a href="#sql-vs-mr-mapreduce" class="headerlink" title="sql vs mr(mapreduce)"></a>sql vs mr(mapreduce)</h2><ul>
+<li>sql  :<ul>
+<li>group by</li>
+<li>distinct</li>
+<li>join</li>
+<li>order by</li>
+<li>union<ul>
+<li><p>group by 用mr实现</p>
+</li>
+<li><p>就是再map阶段进行处理reduce阶段进行合并</p>
+</li>
+<li><p>distinct</p>
+</li>
+<li></li>
+<li><p>去重 ： sql ：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span>(ename) <span class="keyword">from</span> emp;</span><br><span class="line">#或者可以通过分组进行去重</span><br><span class="line"><span class="keyword">select</span> name <span class="keyword">from</span> <span class="keyword">group</span> <span class="keyword">by</span> name;</span><br></pre></td></tr></table></figure></li>
+<li><p>通过上述我们可知group by 也可以进行去重 ，所以后面我们能用group by 就要用group by</p>
+</li>
+<li><p>因为distinct只有一个task进行处理</p>
+</li>
+<li><p>而group by 则是多个task 进行处理 ， 所以效率会比较高</p>
+</li>
+<li><p>接下来是在mr里实现</p>
+</li>
+<li><p>order by</p>
+</li>
+<li><p>mr :</p>
+</li>
+<li><p>全局排序 ： reduce task 是 1</p>
+</li>
+<li><p>分区排序 ： reduce task 是 多个</p>
+</li>
+<li><p>mr : 实现</p>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><p>如果你的reduce task 大于分区数 ： 会有空白文件</p>
 <p>如果 reduce task 小于分区数 且大于1 ： 则会报错</p>
 <p>如果 reduce task 且分区数 等于 1 ： 则会把东西整合到一个文件</p>
@@ -258,13 +305,13 @@
 <li>我这里解决这个的办法是通过</li>
 <li>把中间空格放大的方法</li>
 <li>就是一个小空格加一个tab键</li>
-<li>然后进入<code>edge://net-internals</code>或者<code>chrome://net-internals</code></li>
+<li>然后进入 <code>edge://net-internals</code>或者 <code>chrome://net-internals</code></li>
 <li>这取决于你的浏览器</li>
-<li>然后<code>win + x</code> 查看windows powershell（管理员）打开之后执行<code> ipconfig /flushdns</code></li>
+<li>然后 <code>win + x</code> 查看windows powershell（管理员）打开之后执行 <code> ipconfig /flushdns</code></li>
 <li>刷新之后就可以通过映射访问了</li>
 </ul>
 <h1 id="有关于idea关于Hadoop的api的copyToLocalfile不生效"><a href="#有关于idea关于Hadoop的api的copyToLocalfile不生效" class="headerlink" title="有关于idea关于Hadoop的api的copyToLocalfile不生效"></a>有关于idea关于Hadoop的api的copyToLocalfile不生效</h1><ul>
-<li>报错信息<code>java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.dir are unset.</code></li>
+<li>报错信息 <code>java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.dir are unset.</code></li>
 <li>这个是代表你windows里没有配置hadoop环境</li>
 <li>我们可以不用他提供的api</li>
 <li>通过</li>
@@ -274,6 +321,43 @@
 <ul>
 <li>就可以实现下载</li>
 </ul>
+<h1 id="关于linux里的mysql会自动识别大小写表名的事情"><a href="#关于linux里的mysql会自动识别大小写表名的事情" class="headerlink" title="关于linux里的mysql会自动识别大小写表名的事情"></a>关于linux里的mysql会自动识别大小写表名的事情</h1><p>linux里的mysql会自动对表名进行大小写区分，这可能导致一些boot项目启动的时候找不到表名</p>
+<p>如何更改如下</p>
+<p>首先查看自己的表名大小写权限是不是打开了</p>
+<p>先在mysql里执行</p>
+<p><code>show variables like &quot;%case%&quot;;</code></p>
+<p>查看一下我们的权限打没打开</p>
+<p>一般默认的时候会有个off的选项</p>
+<p>这个是默认的情况</p>
+<p>接下来我们对其进行修改</p>
+<p>我们首先退出mysql</p>
+<p>然后关闭mysql服务输入 ： <code>mysqladmin -uroot -p shutdown //以安全模式关闭数据库</code></p>
+<p>接下来输入密码就关闭了</p>
+<p>然后编辑mysql的配置文件</p>
+<p>输入 ： <code>vim /etc/my.cnf</code></p>
+<p>在mysqld下添加一行</p>
+<p><code>lower_case_table_names=1</code></p>
+<p>然后退出保存即可</p>
+<p>最后要重新启动mysql输入 ： <code>systemctl resatrt mysqld</code></p>
+<p>就可以了</p>
+<h1 id="mysql误删了配置文件-performance-schema的恢复"><a href="#mysql误删了配置文件-performance-schema的恢复" class="headerlink" title="mysql误删了配置文件 performance_schema的恢复"></a>mysql误删了配置文件 performance_schema的恢复</h1><p>首先我们退出mysql</p>
+<p>然后输入 <code>mysql_upgrade -u root -p </code></p>
+<p>输入我们的密码之后</p>
+<p>然后重新登录我们的mysql就会出现了</p>
+<h1 id="npm怎么清除缓存"><a href="#npm怎么清除缓存" class="headerlink" title="npm怎么清除缓存"></a>npm怎么清除缓存</h1><p>首先关于npm进行清除缓存</p>
+<p>先明确自己的npm的版本</p>
+<p>如果npm version &lt; 7.0.0</p>
+<p><code>$ npm cache clean -f</code></p>
+<p>npm version ≧ 7.0.0 会报以下错误</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm cache cleannpm ERR! As of npm@5, the npm cache self-heals from corruption issues</span><br><span class="line">npm ERR! by treating integrity mismatches as cache misses.  As a result,</span><br><span class="line">npm ERR! data extracted from the cache is guaranteed to be valid.  If you</span><br><span class="line">npm ERR! want to make sure everything is consistent, use npm cache verify</span><br><span class="line">npm ERR! instead.  Deleting the cache can only make npm go slower, and is</span><br><span class="line">npm ERR! not likely to correct any problems you may be encountering!</span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! On the other hand, <span class="keyword">if</span> you<span class="string">&#x27;re debugging an issue with the installer,</span></span><br><span class="line"><span class="string">npm ERR! or race conditions that depend on the timing of writing to an empty</span></span><br><span class="line"><span class="string">npm ERR! cache, you can use npm install --cache /tmp/empty-cache to use a</span></span><br><span class="line"><span class="string">npm ERR! temporary cache instead of nuking the actual one.</span></span><br><span class="line"><span class="string">npm ERR!</span></span><br><span class="line"><span class="string">npm ERR! If you&#x27;</span>re sure you want to delete the entire cache, rerun this <span class="built_in">command</span></span><br><span class="line">npm ERR! with --force.npm ERR! A complete <span class="built_in">log</span> of this run can be found <span class="keyword">in</span>:</span><br><span class="line">npm ERR!     /Users/xxxxxx/.npm/_logs/2021-02-04T06_35_38_043Z-debug.log</span><br></pre></td></tr></table></figure>
+
+<p>如果想强制清除缓存就要用–force</p>
+<h1 id="关于npm设置镜像源"><a href="#关于npm设置镜像源" class="headerlink" title="关于npm设置镜像源"></a>关于npm设置镜像源</h1><p><code>npm config set registry http://registry.npm.taobao.org</code></p>
+<p>然后就把淘宝镜像源加进入了</p>
+<h1 id="Git之本地分支和远程分支建立追踪关系的几种方式"><a href="#Git之本地分支和远程分支建立追踪关系的几种方式" class="headerlink" title="Git之本地分支和远程分支建立追踪关系的几种方式"></a>Git之本地分支和远程分支建立追踪关系的几种方式</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch --set-upstream-to=origin/remote_branch your_branch</span><br><span class="line">origin/remote_branch是你本地分支对应的远程分支；your_branch是你当前的本地分支。</span><br></pre></td></tr></table></figure>
+
+<p>或者之间checkout -b 根据远程建立本地分支</p>
+<h1 id="git-删除远程分支"><a href="#git-删除远程分支" class="headerlink" title="git 删除远程分支"></a>git 删除远程分支</h1><p><code> git push origin --delete [branch_name]</code></p>
 ]]></content>
       <categories>
         <category>日志</category>
