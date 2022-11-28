@@ -292,6 +292,300 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/28/11-28/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/28/11-28/" class="post-title-link" itemprop="url">mapreduce</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-28 08:34:31 / 修改时间：20:04:39" itemprop="dateCreated datePublished" datetime="2022-11-28T08:34:31+08:00">2022-11-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="yarn"><a href="#yarn" class="headerlink" title="yarn"></a>yarn</h1><h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>主从架构 ： resourcemanager(资源的分配) : nodemanager(资源的供给与隔离)</p>
+<h3 id="资源调度"><a href="#资源调度" class="headerlink" title="资源调度"></a>资源调度</h3><p>通过rm把nm的资源分配给我们的 task上</p>
+<h3 id="资源隔离"><a href="#资源隔离" class="headerlink" title="资源隔离"></a>资源隔离</h3><p>nm按照要求给task提供资源，保证提供的资源具有独占性</p>
+<h3 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h3><p>nm指挥分配的资源</p>
+<p>一个task对应一个container ： cpu&#x2F;mem（cpu和内存）</p>
+<p>每个container之间是相互隔离的</p>
+<h2 id="yarn的架构设计"><a href="#yarn的架构设计" class="headerlink" title="yarn的架构设计"></a>yarn的架构设计</h2><p>作业提交的流程：<br>client &#x3D;&gt; 给rm 的apps 发送请求 去运行 jar （app master）</p>
+<p>apps 分配一个container 去运行 app master</p>
+<p>app master 会向apps manager 去注册我的作业</p>
+<p>app master 向resource scheduler 申请资源去运行 我的代码</p>
+<p>nodemanager 会开启资源 container 去运行map task 以及reduce task</p>
+<p>tsak 会向 app master 汇报代码与运行情况 </p>
+<p>当代码运行完成 app master 会给apps 发送请求 ，通知我的作业完成了</p>
+<p>apps manager 收到请求之后会通知你的客户端 ，告诉已经运行完成</p>
+<p>输入阶段 ： map tsak 的个数 &#x3D;》container 的申请个数 redurce task 同理</p>
+<h2 id="面试会问"><a href="#面试会问" class="headerlink" title="面试会问"></a>面试会问</h2><p>yarn的架构设计 &#x3D;&#x3D;mr作业提交流程</p>
+<h2 id="调度器"><a href="#调度器" class="headerlink" title="调度器"></a>调度器</h2><p>FIFO ：</p>
+<ul>
+<li>先进先出</li>
+<li>单队列</li>
+</ul>
+<p>Capacity ：容量调度器</p>
+<ul>
+<li>多队列</li>
+<li>先进先出（针对一个队列）</li>
+<li>每个队列之间互不影响</li>
+<li>每个队列之间是事先定好的</li>
+</ul>
+<p>Fair：公平调度器</p>
+<ul>
+<li>多队列</li>
+<li>每个队列之间的每个job是有影响的 不是先进先出</li>
+<li>哪一个job的优先级高就执行哪一个</li>
+<li>如果相同优先级，则是顺序</li>
+</ul>
+<p>主流的中小企业：Capacity</p>
+<p>大公司会用：fair</p>
+<h3 id="默认调度器"><a href="#默认调度器" class="headerlink" title="默认调度器"></a>默认调度器</h3><p>容量调度器</p>
+<p>通过调度器进行其作业调度</p>
+<h2 id="yarn的web界面的简介"><a href="#yarn的web界面的简介" class="headerlink" title="yarn的web界面的简介"></a>yarn的web界面的简介</h2><p>左侧侧边栏 ： 有几个选项卡 ： 分别是 </p>
+<h2 id="yarn资源的调优"><a href="#yarn资源的调优" class="headerlink" title="yarn资源的调优"></a>yarn资源的调优</h2><p>container? </p>
+<p>一定比例的cpu和mem</p>
+<p>刀片服务器的配置 ： 128G 16 core :假设一个机器的配置</p>
+<p>刀片服务器 装完系统 消耗内存 1G </p>
+<p>系统预留 ： 预留 20%左右 包含装完成系统 消耗的1G</p>
+<p>原因 ：给未来部署组件预留空间，防止全部使用 ： 会导致系统夯住 就是卡住 ，oom机制【linux系统】：系统会自己杀死进程当内存不足的时候</p>
+<p>预留空间 ： 128 * 0.2 &#x3D; 26G</p>
+<p>其余空间用于大数据 102G</p>
+<p>hadoop ： </p>
+<ul>
+<li>datanode  进程内存 ： 默认 1G &#x3D;》 生产上 2G</li>
+<li>nodemanager 进程内存 ： ，默认 1G &#x3D;》 生产上 4G</li>
+</ul>
+<p>接下来还有96G全部给我们的yarn资源 ： 96G</p>
+<p>container的资源分配 ： </p>
+<p>内存</p>
+<p>cpu</p>
+<p>相比：cpu更重要一些</p>
+<p>container的内存划分 ：默认是86G</p>
+<p>其最小是 1G（默认）</p>
+<p>最大是 8G（默认） 但是可以设置</p>
+<p>注意 container的内存会自动增加 默认以1G递增</p>
+<p>container cpu ： 是虚拟核 &#x3D;》 考虑初衷是不同节点的cpu性能不同</p>
+<p>比如 ： 一个cpu是另外一个cpu的2倍</p>
+<p>第一机器 ： pcore ：vcore &#x3D; 1：2 相当于1个物理核当成两个虚拟核用</p>
+<p>给container的核数 ： 默认是8core</p>
+<p>总数 ： </p>
+<p>最小:1c  (默认)</p>
+<p>最大:4c（默认）</p>
+<p>实际开发角度 ：</p>
+<p>mem</p>
+<p>cpu ： cloudera的公司推荐一个container的core最好不要超过5</p>
+<p>配置core  ：在yarn-site.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.resource.memory-mb&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;4096&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.minimum-allocation-mb&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;1024&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.maximum-allocation-mb&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;2048&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">cpu： </span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.resource.pcores-vcores-multiplier&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;2&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.resource.cpu-vcores&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;4&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.minimum-allocation-vcores&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;1&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.maximum-allocation-vcores&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;2&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="mapreduce"><a href="#mapreduce" class="headerlink" title="mapreduce"></a>mapreduce</h2><p>map task :mem  : 默认是1024m ，一个map task 申请的资源是1024m ， 但是如果实际使用的资源的内存量超过这个值，你的task会强制被杀死 ，reduce task 也一样</p>
+<p>map task :vcore ： 默认是1</p>
+<p>reduce task :mem : 默认是1024m</p>
+<p>reduce task :vcore : 默认是1</p>
+<p>mr作业是进程级别 &#x3D;》 jvm</p>
+<p>map task</p>
+<p>reduce task </p>
+<p>jvm参数调优 ： </p>
+<p>存储 hdfs</p>
+<p>存储文件</p>
+<p>压缩</p>
+<ul>
+<li>为什么使用压缩？</li>
+<li>节省空间</li>
+<li>节省时间<ul>
+<li>网络io核磁盘io会减少</li>
+<li>指的是mapreduce数据计算过程中</li>
+<li>经过网络传输的数据会变少，</li>
+<li>同样到磁盘上的时候，数据量少也会减少磁盘的io</li>
+</ul>
+</li>
+<li>使用场景<ul>
+<li>采用压缩 ， 对机器的cpu要求比较高</li>
+<li>存储数据的空间不够了，才会用压缩</li>
+</ul>
+</li>
+<li>两面性</li>
+<li>采用压缩的确会让空间和时间减少</li>
+<li>cpu消耗 cpu利用率高 &#x3D;》会导致处理的时间变长一点</li>
+<li>如何使用压缩？</li>
+</ul>
+<p>常见的压缩格式</p>
+<ul>
+<li>gzip</li>
+<li>bzip2</li>
+<li>Lzo</li>
+<li>Snappy</li>
+<li>LZ4</li>
+</ul>
+<p>常见的压缩注意点：</p>
+<p>压缩比 Bzip2 30%  GZIP    snappy、lzo 50%</p>
+<p>解压速度 ： snappy、lzo GZIP   Bzip2</p>
+<p>压缩文件可不可以一被切分 </p>
+<p>假设一个 5G文件 不能被切分 split 意味着 只能使用一个map task去处理</p>
+<p>map task  5G</p>
+<p>假设一个 5G文件 能被切片  splits 10map task 去并行处理</p>
+<p>5*1024 &#x2F;10 &#x3D; 一个map task 处理的数据</p>
+<p>能否被切分 决定了 你的 一个map task处理的数据量有多少</p>
+<p>压缩后的文件是否支持分割？<br>            gzip  不可分割<br>            bzip2  可分割<br>            lzo   带索引的可以分割 (默认是不支持分割的)<br>            snappy 不可分割的</p>
+<p>mapreduce 每个阶段该如何采用这些算法？</p>
+<p>input &#x3D;》 maps &#x3D;》 reduce &#x3D;》 output</p>
+<p>input：<br>    1.Bzip2 ：支持分割 多个map task 进行出</p>
+<p>map out：</p>
+<ul>
+<li>snappy 、lzo</li>
+<li>shuffle 过程 要选择一个解压 速度快的压缩格式</li>
+</ul>
+<p>reduce out ：</p>
+<ul>
+<li>1.高的压缩比 + 支持分片  &#x3D;》 节省空间</li>
+<li>2.bzip2  、lzo带索引的</li>
+</ul>
+<p>reduce out 数据 作为下一个<br>map 的输入咋办？<br>建议使用bzip2【如果采用压缩的话】</p>
+<p>进行压缩配置的两种方式 ： </p>
+<p>job &#x3D;》 code 针对少数job生产生效</p>
+<p>集群所有的job 在配置文件里配置</p>
+<p>对mapreduce 进行配置 </p>
+<ul>
+<li><p>配置压缩的codec</p>
+</li>
+<li><p>map reduce 输出配置</p>
+<ul>
+<li>先打开压缩的开关</li>
+<li>配置codec即可</li>
+</ul>
+</li>
+<li><p>hadoop是不是支持哪些压缩 ，通过命令 ：或者配置文件</p>
+</li>
+<li><p>core-site.xm</p>
+<ul>
+<li>配置支持的压缩有什么</li>
+<li>原生的hadoop默认不支持lzo的算法，因为lzo要把整个hadooop重新编译一遍才可以重新实行</li>
+<li>&#96;&#96;&#96;<property>
+        <name>io.compression.codecs</name>
+        <value>org.apache.hadoop.io.compress.BZip2Codec,
+        org.apache.hadoop.io.compress.SnappyCodec,
+        org.apache.hadoop.io.compress.GzipCodec,
+        org.apache.hadoop.io.compress.DefaultCodec
+        </value>
+</property>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mapred-site.xml:</span><br><span class="line"></span><br><span class="line">* 1.先打开压缩的开关</span><br><span class="line">* 2.map reduce 输出 压缩算法</span><br><span class="line"></span><br><span class="line">reduce： 开关</span><br><span class="line"></span><br><span class="line">* mapreduce.output.fileoutputformat.compress</span><br><span class="line">* ```</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">          &lt;name&gt;mapreduce.output.fileoutputformat.compress&lt;/name&gt;</span><br><span class="line">          &lt;value&gt;true&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>&#96;&#96;&#96;</p>
+<property>
+        <name>mapreduce.output.fileoutputformat.compress.codec</name>
+        <value>org.apache.hadoop.io.compress.BZip2Codec</value>
+</property>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">各个datanode数据节点的平衡</span><br><span class="line"></span><br><span class="line">* DN1 存储空间 90%</span><br><span class="line">* DN2 存储空间 60%</span><br><span class="line">* DN3 存储空间 80%</span><br><span class="line"></span><br><span class="line">如何做呢？</span><br><span class="line"></span><br><span class="line">* sbin/start-balancer.sh</span><br><span class="line"></span><br><span class="line">parameters = Balancer.BalancerParameters</span><br><span class="line"></span><br><span class="line">[BalancingPolicy.Node, threshold = 10.0, max idle iteration = 5</span><br><span class="line"></span><br><span class="line">数据平衡的默认阈值：threshold = 10.0</span><br><span class="line"></span><br><span class="line">每个节点的磁盘使用率 - 平均的磁盘使用率 &lt;10%</span><br><span class="line"></span><br><span class="line">DN1 存储空间 90%  -76% = 14% 说明这个节点数据多 往别的节点迁移数据 出</span><br><span class="line">DN2 存储空间 60%  -76% = -12% 说明这个节点数据少 别的节点迁移数据 进</span><br><span class="line">DN3 存储空间 80%  -76% = 4% 	说明这个节点数据多 往别的节点迁移数据</span><br><span class="line"></span><br><span class="line">avg=90 + 80 +60 /3 = 76%</span><br><span class="line"></span><br><span class="line">生产上 从现在开始 start-balancer.sh -threshold 10  每天要定时做的</span><br><span class="line"></span><br><span class="line">放到业务低谷期去做 数据平衡操作</span><br><span class="line"></span><br><span class="line">注意： 不要在业务高峰期做</span><br><span class="line"></span><br><span class="line">1.数据平衡 数据传输  带宽有关</span><br><span class="line"></span><br><span class="line">调优参数 ：平衡的网络带宽  w</span><br><span class="line"></span><br><span class="line">dfs.datanode.balance.bandwidthPerSec 100m 【2.x 默认是10m】</span><br><span class="line"></span><br><span class="line">每个节点数据几十T  需要数据平衡的数据 几十T  可以申请维护窗口时间 ：</span><br><span class="line"></span><br><span class="line">dfs.datanode.balance.bandwidthPerSec 临时调大 200M</span><br><span class="line"></span><br><span class="line">单个DN节点 多块磁盘的数据平衡</span><br><span class="line"></span><br><span class="line">投产前规划：</span><br><span class="line">		DN 机器   10块 2T 【不做raid】  =》 20T   副本的</span><br><span class="line"></span><br><span class="line">1.dn 配置多个磁盘</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<property>
+      <name>dfs.datanode.data.dir</name>
+      <value>/data01,/data02,/data03</value>
+</property></li>
+</ul>
+<pre><code>
+2.为什么要使用多块物理磁盘？
+
+1.存储
+2.因为多个磁盘的io也是叠加的
+每块磁盘 磁盘io 每秒 100m
+三块磁盘 1s 能 300m文件内容
+一块磁盘 1s 100m
+
+3.可以让服务一直运行，加入一个磁盘挂了，服务不会减少
+
+做多个磁盘数据均衡
+    dfs.disk.balancer.enabled  true 【3.x有这个功能 cdh 2.x 也有】 apache 2.x 没有这个功能
+
+得通过命令去解决磁盘数据均衡？
+
+hdfs diskbalancer
+
+1.步骤
+
+    hdfs diskbalancer -plan  bigdata32  =&gt; 生成一个  bigdata32.plan.json 文件
+        hdfs diskbalancer -execute bigdata32.plan.json =》 执行disk 数据均衡计划文件
+        hdfs diskbalancer -query bigdata32
+
+生产上 当你发现 磁盘写入不均衡 可以做一下 【一般 一个月 半个月 做一次即可】
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/24/11-24/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1776,230 +2070,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/08/11-8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/08/11-8/" class="post-title-link" itemprop="url">git</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-08 10:13:43" itemprop="dateCreated datePublished" datetime="2022-11-08T10:13:43+08:00">2022-11-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-13 19:14:21" itemprop="dateModified" datetime="2022-11-13T19:14:21+08:00">2022-11-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>7.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
-<li>Git是一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。</li>
-<li>Git是一个开源的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。</li>
-<li>记录文件变化的 ，之后可以指定版本恢复</li>
-</ul>
-<h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><ul>
-<li>本地 ： 常用 ：简单 ， 缺点 ： 容易出错 ， 集成效率低下</li>
-<li>集中 ： svn ： 缺点 ： 中央服务器出现故障就全完了</li>
-<li>分布（目前的主流）： 解决单点故障的问题 ： git</li>
-<li>git 可以分支 ，，且支持文件备份 ， 多个工作流</li>
-<li></li>
-</ul>
-<h1 id="Git工作流程"><a href="#Git工作流程" class="headerlink" title="Git工作流程"></a>Git工作流程</h1><ul>
-<li>从远程仓库中克隆 Git 资源作为本地仓库</li>
-<li>从本地仓库中checkout代码然后进行代码修改</li>
-<li>在提交本地仓库前先将代码提交到暂存区</li>
-<li>提交修改，提交到本地仓库；本地仓库中保存修改的各个历史版本</li>
-<li>在需要和团队成员共享代码时，可以将修改代码push到远程仓库</li>
-<li>git 的核心概念 ： 工作区、暂存区、版本库、远程仓库</li>
-<li>Workspace： 工作区，就是你平时存放项目代码的地方</li>
-<li>Index &#x2F; Stage： 暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息</li>
-<li>Repository： 仓库区（或版本库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本</li>
-<li>Remote： 远程仓库，托管代码的服务器，可以简单的认为是你项目组中的一台电脑用于远程数据交换</li>
-</ul>
-<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><ul>
-<li>每次的提交Git都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在Git里这个分支叫主分支，即master分支。HEAD指针严格来说不是指向提交，而是指向master，master才是指向提交的。</li>
-</ul>
-<h1 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h1><ul>
-<li>远程仓库分为公有远程仓库和私有远程仓库。</li>
-</ul>
-<h1 id="公有远程仓库"><a href="#公有远程仓库" class="headerlink" title="公有远程仓库"></a>公有远程仓库</h1><ul>
-<li>本质和本地仓库无异，只是这个仓库①不在本地②大家可能都知道③需要将代码共享到远程仓库④可以被其他人克隆同步代码等。</li>
-<li>一般情况下在企业中会有一个搭建在公司的远程仓库，可以让本公司内部的开发人员同步开发。而业界最富盛名的远程仓库则为github；它上面存放了非常多的开源组织、个人、企业等的开放源码库，任何都可以从上面获取源码。</li>
-</ul>
-<h1 id="私有远程仓库"><a href="#私有远程仓库" class="headerlink" title="私有远程仓库"></a>私有远程仓库</h1><ul>
-<li>远程仓库实际上和本地仓库一样，纯粹为了7x24小时开机并交换大家的修改。GitHub就是一个免费托管开源代码的远程仓库。但是对于某些视源代码如生命的商业公司来说，既不想公开源代码，又舍不得给GitHub交保护费，那就只能自己搭建一台Git服务器作为私有仓库使用。</li>
-<li>在本地创建了一个Git仓库，又想让其他人来协作开发，此时就可以把本地仓库同步到远程仓库，同时还增加了本地仓库的一个备份。</li>
-<li>常用的远程仓库就是github：<a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a></li>
-<li>Github支持两种同步方式“https”和“ssh”。如果使用https很简单基本不需要配置就可以使用，但是每次提交代码和下载代码时都需要输入用户名和密码。而且如果是公司配置的私有git服务器一般不提供https方式访问。</li>
-</ul>
-<h1 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h1><ul>
-<li>在工程中，并不是所有文件都需要保存到版本库中的，例如“target”目录及目录下的文件就可以忽略。Git忽略文件详解可参考Git忽略文件.gitignore详解</li>
-</ul>
-<h1 id="常用Git命令"><a href="#常用Git命令" class="headerlink" title="常用Git命令"></a>常用Git命令</h1><ul>
-<li>经常使用 Git ，但是很多命令还是记不住。但要熟练掌握，恐怕要记住40~60个命令，所以整理了一份常用Git命令清单。可以参考常用Git命令</li>
-</ul>
-<h2 id="常用的git"><a href="#常用的git" class="headerlink" title="常用的git"></a>常用的git</h2><h3 id="配置用户名和邮箱"><a href="#配置用户名和邮箱" class="headerlink" title="配置用户名和邮箱"></a>配置用户名和邮箱</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">$ git --version   # 查看git的版本信息</span><br><span class="line">$ git config --global user.name   # 获取当前登录的用户</span><br><span class="line">$ git config --global user.email  # 获取当前登录用户的邮箱</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="登录git"><a href="#登录git" class="headerlink" title="登录git"></a>登录git</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 如果刚没有获取到用户配置，则只能拉取代码，不能修改  要是使用git，你要告诉git是谁在使用</span><br><span class="line">$ git config --global user.name &#x27;userName&#x27;    # 设置git账户，userName为你的git账号，</span><br><span class="line">$ git config --global user.email &#x27;email&#x27;</span><br><span class="line"># 获取Git配置信息，执行以下命令：</span><br><span class="line">$ git config –list</span><br></pre></td></tr></table></figure>
-<h3 id="配置https和ssh推送时保存用户名和密码"><a href="#配置https和ssh推送时保存用户名和密码" class="headerlink" title="配置https和ssh推送时保存用户名和密码"></a>配置https和ssh推送时保存用户名和密码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"># https提交保存用户名和密码</span><br><span class="line">$ git config --global credential.helper store</span><br><span class="line"># 生成公钥私钥，将公钥配置到GitHub，ssh提交就可以免输入用户名密码</span><br><span class="line"># 三次回车即可生成 ssh key</span><br><span class="line">$ ssh-keygen -t rsa</span><br><span class="line"># 查看已生成的公钥</span><br><span class="line">$ cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-<h3 id="推送到远程仓库正确流程"><a href="#推送到远程仓库正确流程" class="headerlink" title="推送到远程仓库正确流程"></a>推送到远程仓库正确流程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git init # 初始化仓库</span><br><span class="line">git add .(文件name) # 添加文件到暂存区</span><br><span class="line">git commit -m &quot;first commit&quot; # 添加文件到本地仓库并提交描述信息</span><br><span class="line">git remote add origin 远程仓库地址 # 链接远程仓库，创建主分支</span><br><span class="line">git pull origin master --allow-unrelated-histories # 把本地仓库的变化连接到远程仓库主分支</span><br><span class="line">git push -u origin master # 把本地仓库的文件推送到远程仓库</span><br></pre></td></tr></table></figure>
-<h3 id="新建本地仓库"><a href="#新建本地仓库" class="headerlink" title="新建本地仓库"></a>新建本地仓库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 创建一个文件夹</span><br><span class="line">$ mkdir GitRepositories    # 创建文件夹GitRepositories</span><br><span class="line">$ cd GitRepositories       # 切换到GitRepositories目录下</span><br><span class="line"># 在当前目录新建一个Git代码库</span><br><span class="line">$ git init</span><br><span class="line"># 新建一个目录，将其初始化为Git代码库</span><br><span class="line">$ git init [project-name]</span><br><span class="line"># 下载一个项目和它的整个代码历史</span><br><span class="line">$ git clone [url]</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="配置-全局和项目"><a href="#配置-全局和项目" class="headerlink" title="配置(全局和项目)"></a>配置(全局和项目)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。</span><br><span class="line"># 显示当前的Git配置</span><br><span class="line">$ git config --list</span><br><span class="line"># 编辑Git配置文件</span><br><span class="line">$ git config -e [--global]</span><br><span class="line"># 设置提交代码时的用户信息</span><br><span class="line">$ git config [--global] user.name &quot;[name]&quot;</span><br><span class="line">$ git config [--global] user.email &quot;[email address]&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="增加-x2F-删除文件"><a href="#增加-x2F-删除文件" class="headerlink" title="增加&#x2F;删除文件"></a>增加&#x2F;删除文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"># 添加指定文件到暂存区</span><br><span class="line">$ git add [file1][file2] ...</span><br><span class="line"># 添加指定目录到暂存区，包括子目录</span><br><span class="line">$ git add [dir]</span><br><span class="line"># 添加当前目录的所有文件到暂存区</span><br><span class="line">$ git add .</span><br><span class="line"># 添加每个变化前，都会要求确认</span><br><span class="line"># 对于同一个文件的多处变化，可以实现分次提交</span><br><span class="line">$ git add -p</span><br><span class="line"># 删除工作区文件，并且将这次删除放入暂存区</span><br><span class="line">$ git rm [file1] [file2] ...</span><br><span class="line"># 停止追踪指定文件，但该文件会保留在工作区</span><br><span class="line">$ git rm --cached [file]</span><br><span class="line"># 改名文件，并且将这个改名放入暂存区</span><br><span class="line">$ git mv [file-original] [file-renamed]</span><br></pre></td></tr></table></figure>
-<h3 id="代码提交"><a href="#代码提交" class="headerlink" title="代码提交"></a>代码提交</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 提交暂存区到仓库区</span><br><span class="line">$ git commit -m [message]</span><br><span class="line"># 提交暂存区的指定文件到仓库区</span><br><span class="line">$ git commit [file1] [file2] ... -m [message]</span><br><span class="line"># 提交工作区自上次commit之后的变化，直接到仓库区</span><br><span class="line">$ git commit -a</span><br><span class="line"># 提交时显示所有diff信息</span><br><span class="line">$ git commit -v</span><br><span class="line"># 使用一次新的commit，替代上一次提交</span><br><span class="line"># 如果代码没有任何新变化，则用来改写上一次commit的提交信息</span><br><span class="line">$ git commit --amend -m [message]</span><br><span class="line"># 重做上一次commit，并包括指定文件的新变化</span><br><span class="line">$ git commit --amend [file1] [file2] ...</span><br></pre></td></tr></table></figure>
-<h3 id="分支-1"><a href="#分支-1" class="headerlink" title="分支"></a>分支</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"># 列出所有本地分支</span><br><span class="line">$ git branch</span><br><span class="line"># 列出所有远程分支</span><br><span class="line">$ git branch -r</span><br><span class="line"># 列出所有本地分支和远程分支</span><br><span class="line">$ git branch -a</span><br><span class="line"># 新建一个分支，但依然停留在当前分支</span><br><span class="line">$ git branch [branch-name]</span><br><span class="line"># 新建一个分支，并切换到该分支</span><br><span class="line">$ git checkout -b [branch]</span><br><span class="line"># 新建一个分支，指向指定commit</span><br><span class="line">$ git branch [branch] [commit]</span><br><span class="line"># 新建一个分支，与指定的远程分支建立追踪关系</span><br><span class="line">$ git branch --track [branch] [remote-branch]</span><br><span class="line"># 切换到指定分支，并更新工作区</span><br><span class="line">$ git checkout [branch-name]</span><br><span class="line"># 切换到上一个分支</span><br><span class="line">$ git checkout -</span><br><span class="line"># 建立追踪关系，在现有分支与指定的远程分支之间</span><br><span class="line">$ git branch --set-upstream [branch] [remote-branch]</span><br><span class="line"># 合并指定分支到当前分支</span><br><span class="line">$ git merge [branch]</span><br><span class="line"># 选择一个commit，合并进当前分支</span><br><span class="line">$ git cherry-pick [commit]</span><br><span class="line"># 删除分支</span><br><span class="line">$ git branch -d [branch-name]</span><br><span class="line"># 删除远程分支</span><br><span class="line">$ git push origin --delete [branch-name]</span><br><span class="line">$ git branch -dr [remote/branch]</span><br><span class="line">#强制删除分支</span><br><span class="line">$ git branch -D [branch-name]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 列出所有tag</span><br><span class="line">$ git tag</span><br><span class="line"># 新建一个tag在当前commit</span><br><span class="line">$ git tag [tag]</span><br><span class="line"># 新建一个tag在指定commit</span><br><span class="line">$ git tag [tag] [commit]</span><br><span class="line"># 删除本地tag</span><br><span class="line">$ git tag -d [tag]</span><br><span class="line"># 删除远程tag</span><br><span class="line">$ git push origin :refs/tags/[tagName]</span><br><span class="line"># 查看tag信息</span><br><span class="line">$ git show [tag]</span><br><span class="line"># 提交指定tag</span><br><span class="line">$ git push [remote] [tag]</span><br><span class="line"># 提交所有tag</span><br><span class="line">$ git push [remote] --tags</span><br><span class="line"># 新建一个分支，指向某个tag</span><br><span class="line">$ git checkout -b [branch] [tag]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"># 查看目录</span><br><span class="line">$ ls -al	或者$ ll</span><br><span class="line"># 查看仓库状态，显示有变更的文件</span><br><span class="line">$ git status</span><br><span class="line"># 显示当前分支的版本历史</span><br><span class="line">$ git log</span><br><span class="line"># 显示commit历史，以及每次commit发生变更的文件</span><br><span class="line">$ git log --stat</span><br><span class="line"># 搜索提交历史，根据关键词</span><br><span class="line">$ git log -S [keyword]</span><br><span class="line"># 显示某个commit之后的所有变动，每个commit占据一行</span><br><span class="line">$ git log [tag] HEAD --pretty=format:%s</span><br><span class="line"># 显示某个commit之后的所有变动，其&quot;提交说明&quot;必须符合搜索条件</span><br><span class="line">$ git log [tag] HEAD --grep feature</span><br><span class="line"># 显示某个文件的版本历史，包括文件改名</span><br><span class="line">$ git log --follow [file]</span><br><span class="line">$ git whatchanged [file]</span><br><span class="line"># 显示指定文件相关的每一次diff</span><br><span class="line">$ git log -p [file]</span><br><span class="line"># 显示过去5次提交</span><br><span class="line">$ git log -5 --pretty --oneline</span><br><span class="line"># 显示所有提交过的用户，按提交次数排序</span><br><span class="line">$ git shortlog -sn</span><br><span class="line"># 显示指定文件是什么人在什么时间修改过</span><br><span class="line">$ git blame [file]</span><br><span class="line"># 显示暂存区和工作区的差异</span><br><span class="line">$ git diff</span><br><span class="line"># 显示暂存区和上一个commit的差异</span><br><span class="line">$ git diff --cached [file]</span><br><span class="line"># 显示工作区与当前分支最新commit之间的差异</span><br><span class="line">$ git diff HEAD</span><br><span class="line"># 显示两次提交之间的差异</span><br><span class="line">$ git diff [first-branch]...[second-branch]</span><br><span class="line"># 显示今天你写了多少行代码</span><br><span class="line">$ git diff --shortstat &quot;@&#123;0 day ago&#125;&quot;</span><br><span class="line"># 显示某次提交的元数据和内容变化</span><br><span class="line">$ git show [commit]</span><br><span class="line"># 显示某次提交发生变化的文件</span><br><span class="line">$ git show --name-only [commit]</span><br><span class="line"># 显示某次提交时，某个文件的内容</span><br><span class="line">$ git show [commit]:[filename]</span><br><span class="line"># 显示当前分支的最近几次提交</span><br><span class="line">$ git reflog</span><br><span class="line"># 以图形化界面展示 分支的commit 历史</span><br><span class="line">$ git log --oneline --gragh</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="远程同步"><a href="#远程同步" class="headerlink" title="远程同步"></a>远程同步</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 下载远程仓库的所有变动</span><br><span class="line">$ git fetch [remote]</span><br><span class="line"># 显示所有远程仓库</span><br><span class="line">$ git remote -v</span><br><span class="line"># 显示某个远程仓库的信息</span><br><span class="line">$ git remote show [remote]</span><br><span class="line"># 增加一个新的远程仓库，并命名</span><br><span class="line">$ git remote add [shortname] [url]</span><br><span class="line"># 取回远程仓库的变化，并与本地分支合并</span><br><span class="line">$ git pull [remote] [branch]</span><br><span class="line">$ git fetch 也同上</span><br><span class="line">$ git pull 相当 fetch ＋ merge</span><br><span class="line"># 上传本地指定分支到远程仓库</span><br><span class="line">$ git push [remote] [branch]</span><br><span class="line"># 强行推送当前分支到远程仓库，即使有冲突</span><br><span class="line">$ git push [remote] --force</span><br><span class="line"># 推送所有分支到远程仓库</span><br><span class="line">$ git push [remote] --all</span><br><span class="line">$ push推的是分支不是代码</span><br><span class="line"># 可以选择那个远程仓库那个分支</span><br><span class="line">$ git push [&lt;repository&gt; [&lt;分支的名字&gt;]]</span><br><span class="line">$ git fetch</span><br><span class="line">$ git fetch --all</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"># 恢复暂存区的指定文件到工作区</span><br><span class="line">$ git checkout [file]</span><br><span class="line"># 从工作区撤回文件</span><br><span class="line">$ git restore --staged xxxx xxx xxx... </span><br><span class="line">#从暂存区到工作区撤回</span><br><span class="line">$ git restore xxx xxx xxx..</span><br><span class="line"># 恢复某个commit的指定文件到暂存区和工作区</span><br><span class="line">$ git checkout [commit] [file]</span><br><span class="line"># 恢复暂存区的所有文件到工作区</span><br><span class="line">$ git checkout .</span><br><span class="line"># 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变</span><br><span class="line">$ git reset [file]</span><br><span class="line"># 重置暂存区与工作区，与上一次commit保持一致</span><br><span class="line">$ git reset --hard</span><br><span class="line"># 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变</span><br><span class="line">$ git reset [commit]</span><br><span class="line"># 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致</span><br><span class="line">$ git reset --hard [commit]</span><br><span class="line"># 重置当前HEAD为指定commit，但保持暂存区和工作区不变</span><br><span class="line">$ git reset --keep [commit]</span><br><span class="line"># 新建一个commit，用来撤销指定commit</span><br><span class="line"># 后者的所有变化都将被前者抵消，并且应用到当前分支</span><br><span class="line">$ git revert [commit]</span><br><span class="line"># 暂时将未提交的变化移除，稍后再移入</span><br><span class="line">$ git stash</span><br><span class="line">$ git stash pop</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 从当前目录的所有文件中查找文本内容：</span><br><span class="line">$ git grep &quot;Hello&quot;</span><br><span class="line"># 在某一版本中搜索文本：</span><br><span class="line">$ git grep &quot;Hello&quot; v2.5</span><br><span class="line"># 生成一个可供发布的压缩包</span><br><span class="line">$ git archive</span><br></pre></td></tr></table></figure>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
-<li>当工作区和暂存区都有的时候</li>
-<li>直接更改工作区的文件 通过</li>
-<li>commit -am “xx”</li>
-<li>可以直接把修改了的文件传到本地仓库</li>
-<li>merge : 经过merge的文件 ， 相当于把其他地方的分支给回收回来 ，</li>
-</ul>
-<h3 id="git文件夹的目录介绍"><a href="#git文件夹的目录介绍" class="headerlink" title=".git文件夹的目录介绍"></a>.git文件夹的目录介绍</h3><ul>
-<li>HEAD ： 当前项目正在工作的分支</li>
-<li>config ： 我们当前项目的一些配置信息（我们本地的配置信息）</li>
-<li>可以通过 <code>git config --local user.name &quot;xxx&quot;</code> 来进行设置</li>
-<li>或者直接在这个文件按照格式改也一样</li>
-<li>同样 ， 有set就有get</li>
-<li>refs ： 指向的是那个分支的指向</li>
-<li>commit 的hash值对应的是什么内容的</li>
-<li>object : git真正的存储对象 </li>
-<li><code>git cat-file</code> </li>
-<li><code>-t</code> : 文件类型</li>
-<li><code>-p</code> : 文件内容</li>
-<li><code>tree</code> ： 代表是文件夹</li>
-<li><code>blob</code> ： 代表文件内容</li>
-<li>git 存储文件高效的原因 ： 不同的文件只要有相同的地方就是一个blob</li>
-</ul>
-<h3 id="查看git文件存储的方法"><a href="#查看git文件存储的方法" class="headerlink" title="查看git文件存储的方法"></a>查看git文件存储的方法</h3><ul>
-<li>我们先进入到.git的object文件夹里 ，因为object文件夹是git存储的首要位置</li>
-<li>接下来 ，我们找到refs的文件 ，然后进入到heads里</li>
-<li>找到文件 ，里面有我们的commit的哈希值</li>
-<li>通过哈希值的前两个字母</li>
-<li>我们在object文件夹下 ，找到这两个字符的文件夹</li>
-<li>点进去查看文件名字</li>
-<li>然后我们在命令行</li>
-<li>输入<code>git cat-file -p</code></li>
-<li>和<code>git cat-file -t</code></li>
-<li>就可以查看到文件的类型和文件的内容</li>
-<li>对于文件的内容，我们可以对于上次-p出来的文件再次进行 -p操作 哈希值 ，</li>
-<li>就可以看见了</li>
-<li>修改之前的某个commit的message</li>
-<li>可以用 <code>git rebase</code></li>
-<li>git rebase -i &lt;after - this - commit&gt;: 交互式 : 基于前一个commit 进行修改当前的commit ，这样修改了之后所有的hash值会改变，因为变头了 ，但是如果先进行了 ， <code>git cherry-pick</code>操作,则会把吗，master和以前的分支都改变（hash），但是一般是不带master等其他分支的</li>
-<li>常用的操作</li>
-<li>-p ： </li>
-<li>-r ： 重写一个commit的message</li>
-<li>-e ： </li>
-<li>-s ： 合并多个commit的message</li>
-<li>输入上面的那个命令之后我们要进入到一个界面</li>
-<li>把要修改的前面改成 r</li>
-<li>然后保存退出</li>
-<li>然后就会跳转到另外可以编辑这个要编辑的conmmit的地方</li>
-<li>就改掉message就好</li>
-<li>合并本地message 要在本地合并 ，不能在远程合并</li>
-<li>把多个commit合并成一个commit的操作和上面一样 ，只不过是把r改成s了</li>
-<li>但是这样合并之后，你相当于把这些信息合并到一起 ，就把最上面的那个看成是一个集合</li>
-<li>这样之后一般会放到 .git文件之下的 ， rebase</li>
-</ul>
-<h2 id="忽略文件-1"><a href="#忽略文件-1" class="headerlink" title="忽略文件"></a>忽略文件</h2><ul>
-<li><code>.gitignore</code>文件就是忽略文件</li>
-</ul>
-<h2 id="仓库备份"><a href="#仓库备份" class="headerlink" title="仓库备份"></a>仓库备份</h2><ul>
-<li>git clone ： 就是克隆&#x2F;备份</li>
-<li>克隆一个仓库到一个新的文件夹</li>
-<li>git clone &lt;仓库&gt; &lt;名字&gt;</li>
-<li>这个仓库是本地或者远程仓库</li>
-<li>仓库 ： 可以接url，或者本地的.git文件</li>
-<li>克隆到名字的文件夹里 ，如果么没有则创建</li>
-<li>本地备份本地不常用</li>
-<li>一般都是备份远程仓库</li>
-<li>对于远程仓库的地址 ，则是为我们通过查看远程仓库的地址进行</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2071,7 +2141,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2129,7 +2199,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共67k字</span>
+  <span class="post-count">博客全站共69.2k字</span>
 </div>
 
 
