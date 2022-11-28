@@ -181,51 +181,6 @@
       </categories>
   </entry>
   <entry>
-    <title>io流</title>
-    <url>/2022/10/20/10-20/</url>
-    <content><![CDATA[<h1 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h1><ul>
-<li>字节流的结尾一般都是InputStream ， OutputStream</li>
-<li>是个抽象类</li>
-<li>可以自动关闭</li>
-<li>顶层类，上面就是Object</li>
-<li>这个东西是要有参照物的</li>
-</ul>
-<h2 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 作业;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.OutputStream;</span><br><span class="line">public class sd3333sdfse &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		OutputStream os1;</span><br><span class="line">		try &#123;</span><br><span class="line">			os1 = new FileOutputStream( new File(&quot;D:\\a.txt&quot;), false); // 这个false代表是覆盖源文件，如果是true就是把字符串加入</span><br><span class="line">			String s = &quot;hello word&quot;;</span><br><span class="line">			os1.write(s.getBytes());</span><br><span class="line">			os1.flush();  // 落盘到磁盘上</span><br><span class="line">			os1.close(); // 关闭文件输出流</span><br><span class="line">		&#125; catch (FileNotFoundException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">public class read &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	try &#123;</span><br><span class="line">		InputStream is = new FileInputStream(&quot;D:/a.txt&quot;);</span><br><span class="line">//			while(is.available() != 0) &#123;</span><br><span class="line">//				System.out.println((char)is.read()); // 默认一次只读一个字符</span><br><span class="line">//			&#125;</span><br><span class="line">		</span><br><span class="line">		byte[] buffer = new byte[10]; // 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span><br><span class="line">		int len = 0; // 设置个长度</span><br><span class="line">		while((len = is.read(buffer)) != -1) // 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.print(new String(buffer , 0 , len)); </span><br><span class="line">		&#125;</span><br><span class="line">		is.close();</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li>定义：File d &#x3D; new File(“XXxxx”，”name”); &#x2F;&#x2F; 这里XXxxx是文件目录 , 第二个是文件名字</li>
-<li>文件或者目录</li>
-</ul>
-<h2 id="exist（）"><a href="#exist（）" class="headerlink" title="exist（）"></a>exist（）</h2><ul>
-<li>文件是有大小的，目录是无大小</li>
-<li>判断文件&#x2F;目录是不是存在</li>
-</ul>
-<h2 id="isFile"><a href="#isFile" class="headerlink" title="isFile"></a>isFile</h2><ul>
-<li>代表判断是不是文件</li>
-</ul>
-<h2 id="isDirectory"><a href="#isDirectory" class="headerlink" title="isDirectory"></a>isDirectory</h2><ul>
-<li>代表是不是文件夹</li>
-</ul>
-<h2 id="length"><a href="#length" class="headerlink" title="length"></a>length</h2><ul>
-<li>代表查看其字节的长度，大小，但是文件有大小，目录无大小</li>
-</ul>
-<h2 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h2><ul>
-<li>代表删除文件，注意这里删除的文件不是送进回收站里的，如果要删除目录，要先把里面的文件清空</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">public class file &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	File m = new File(&quot;D:\\&quot; , &quot;a.txt&quot;);</span><br><span class="line">	File k = new File(&quot;D//&quot;);</span><br><span class="line">	System.out.println(m.exists());</span><br><span class="line">	System.out.println(k.exists());</span><br><span class="line">	System.out.println(k.isFile());</span><br><span class="line">	System.out.println(m.isDirectory());</span><br><span class="line">	System.out.println(k.length());</span><br><span class="line">	System.out.println(k.delete());</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="删除文件夹"><a href="#删除文件夹" class="headerlink" title="删除文件夹"></a>删除文件夹</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">	File[] ds =	k.listFiles(); </span><br><span class="line">	for (int i = 0; i &lt; ds.length ; i++ ) &#123;</span><br><span class="line">		File[] h = ds[i].listFiles();</span><br><span class="line">		if(h == null) &#123;</span><br><span class="line">			System.out.println(&quot;这个是个文件&quot;);</span><br><span class="line">			ds[i].delete();</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			k.delete();</span><br><span class="line">			SHANCHU(ds[i]);</span><br><span class="line">				&#125;</span><br><span class="line">		k.delete();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="makedir"><a href="#makedir" class="headerlink" title="makedir"></a>makedir</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">public class adsgqjd &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	File file = new File(&quot;D:/a/abc.txt&quot;);</span><br><span class="line">	System.out.println(file.exists());</span><br><span class="line">	System.out.println(file.mkdir());</span><br><span class="line">	File file2 =new File(&quot;D:/a/c/v/bv/nb&quot;);</span><br><span class="line">	System.out.println(file2.mkdirs());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>我们通过mkdirs可以直接深度创建</li>
-<li>但是如果没有父目录，一般的文件就无法创建</li>
-</ul>
-<h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">private static File getCopy(File f1) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	String sufString = f1.getName().substring(f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String qi = f1.getName().substring(0, f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String use = qi + &quot;-副本&quot; + sufString;</span><br><span class="line">	File newf = new File(f1.getParent() , use);</span><br><span class="line">	if(newf.exists()) &#123;</span><br><span class="line">	return	getCopy(newf);</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">	return newf;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-  </entry>
-  <entry>
     <title>设计模式和反射</title>
     <url>/2022/10/19/10-19/</url>
     <content><![CDATA[<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><ul>
@@ -320,6 +275,51 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public @interface lesson14 &#123;</span><br><span class="line">String value()</span><br><span class="line">default &quot;默认信息&quot;; // 代表默认值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@lesson14(&quot;klsdajhal&quot;)</span><br><span class="line">或者@lesson14(value = &quot;sadajd&quot;)</span><br></pre></td></tr></table></figure>
 
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>io流</title>
+    <url>/2022/10/20/10-20/</url>
+    <content><![CDATA[<h1 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h1><ul>
+<li>字节流的结尾一般都是InputStream ， OutputStream</li>
+<li>是个抽象类</li>
+<li>可以自动关闭</li>
+<li>顶层类，上面就是Object</li>
+<li>这个东西是要有参照物的</li>
+</ul>
+<h2 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 作业;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.OutputStream;</span><br><span class="line">public class sd3333sdfse &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		OutputStream os1;</span><br><span class="line">		try &#123;</span><br><span class="line">			os1 = new FileOutputStream( new File(&quot;D:\\a.txt&quot;), false); // 这个false代表是覆盖源文件，如果是true就是把字符串加入</span><br><span class="line">			String s = &quot;hello word&quot;;</span><br><span class="line">			os1.write(s.getBytes());</span><br><span class="line">			os1.flush();  // 落盘到磁盘上</span><br><span class="line">			os1.close(); // 关闭文件输出流</span><br><span class="line">		&#125; catch (FileNotFoundException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">public class read &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	try &#123;</span><br><span class="line">		InputStream is = new FileInputStream(&quot;D:/a.txt&quot;);</span><br><span class="line">//			while(is.available() != 0) &#123;</span><br><span class="line">//				System.out.println((char)is.read()); // 默认一次只读一个字符</span><br><span class="line">//			&#125;</span><br><span class="line">		</span><br><span class="line">		byte[] buffer = new byte[10]; // 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span><br><span class="line">		int len = 0; // 设置个长度</span><br><span class="line">		while((len = is.read(buffer)) != -1) // 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.print(new String(buffer , 0 , len)); </span><br><span class="line">		&#125;</span><br><span class="line">		is.close();</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+<li>定义：File d &#x3D; new File(“XXxxx”，”name”); &#x2F;&#x2F; 这里XXxxx是文件目录 , 第二个是文件名字</li>
+<li>文件或者目录</li>
+</ul>
+<h2 id="exist（）"><a href="#exist（）" class="headerlink" title="exist（）"></a>exist（）</h2><ul>
+<li>文件是有大小的，目录是无大小</li>
+<li>判断文件&#x2F;目录是不是存在</li>
+</ul>
+<h2 id="isFile"><a href="#isFile" class="headerlink" title="isFile"></a>isFile</h2><ul>
+<li>代表判断是不是文件</li>
+</ul>
+<h2 id="isDirectory"><a href="#isDirectory" class="headerlink" title="isDirectory"></a>isDirectory</h2><ul>
+<li>代表是不是文件夹</li>
+</ul>
+<h2 id="length"><a href="#length" class="headerlink" title="length"></a>length</h2><ul>
+<li>代表查看其字节的长度，大小，但是文件有大小，目录无大小</li>
+</ul>
+<h2 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h2><ul>
+<li>代表删除文件，注意这里删除的文件不是送进回收站里的，如果要删除目录，要先把里面的文件清空</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">public class file &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	File m = new File(&quot;D:\\&quot; , &quot;a.txt&quot;);</span><br><span class="line">	File k = new File(&quot;D//&quot;);</span><br><span class="line">	System.out.println(m.exists());</span><br><span class="line">	System.out.println(k.exists());</span><br><span class="line">	System.out.println(k.isFile());</span><br><span class="line">	System.out.println(m.isDirectory());</span><br><span class="line">	System.out.println(k.length());</span><br><span class="line">	System.out.println(k.delete());</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="删除文件夹"><a href="#删除文件夹" class="headerlink" title="删除文件夹"></a>删除文件夹</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">	File[] ds =	k.listFiles(); </span><br><span class="line">	for (int i = 0; i &lt; ds.length ; i++ ) &#123;</span><br><span class="line">		File[] h = ds[i].listFiles();</span><br><span class="line">		if(h == null) &#123;</span><br><span class="line">			System.out.println(&quot;这个是个文件&quot;);</span><br><span class="line">			ds[i].delete();</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			k.delete();</span><br><span class="line">			SHANCHU(ds[i]);</span><br><span class="line">				&#125;</span><br><span class="line">		k.delete();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="makedir"><a href="#makedir" class="headerlink" title="makedir"></a>makedir</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">public class adsgqjd &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	File file = new File(&quot;D:/a/abc.txt&quot;);</span><br><span class="line">	System.out.println(file.exists());</span><br><span class="line">	System.out.println(file.mkdir());</span><br><span class="line">	File file2 =new File(&quot;D:/a/c/v/bv/nb&quot;);</span><br><span class="line">	System.out.println(file2.mkdirs());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>我们通过mkdirs可以直接深度创建</li>
+<li>但是如果没有父目录，一般的文件就无法创建</li>
+</ul>
+<h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">private static File getCopy(File f1) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	String sufString = f1.getName().substring(f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String qi = f1.getName().substring(0, f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String use = qi + &quot;-副本&quot; + sufString;</span><br><span class="line">	File newf = new File(f1.getParent() , use);</span><br><span class="line">	if(newf.exists()) &#123;</span><br><span class="line">	return	getCopy(newf);</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">	return newf;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -626,68 +626,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Map</title>
-    <url>/2022/10/27/10-27/</url>
-    <content><![CDATA[<h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><ul>
-<li><p>Map和集合是无关系的</p>
-</li>
-<li><p>Map是个接口</p>
-</li>
-<li><p>旗下有hashMap和TreeMap</p>
-</li>
-<li><p>简单代码</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Map&lt;String , String&gt; map1 = new HashMap&lt;&gt;();</span><br><span class="line">	map1.put(&quot;1&quot;, &quot;事假&quot;);</span><br><span class="line">	map1.put(&quot;2&quot;, &quot;病假&quot;);</span><br><span class="line">	map1.put(&quot;3&quot;, &quot;产假&quot;);</span><br><span class="line">	map1.put(&quot;2&quot;, &quot;施加&quot;);</span><br><span class="line">	Set&lt;String&gt; ks = map1.keySet();</span><br><span class="line">	Iterator&lt;String&gt; it = ks.iterator();</span><br><span class="line">	while(it.hasNext()) &#123;</span><br><span class="line">		String item = it.next();</span><br><span class="line">		System.out.println(&quot;key&quot; + item + &quot;@value:&quot; + map1.get(item));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>entrySet</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Set&lt;Map.Entry&lt;String, String&gt;&gt; km = map1.entrySet();</span><br><span class="line">Iterator&lt;Map.Entry&lt;String, String&gt;&gt; il = km.iterator();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">while(il.hasNext()) &#123;</span><br><span class="line">Entry&lt;String , String&gt; entry = il.next();</span><br><span class="line">System.out.println(entry.getKey() + entry.getValue());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for (Entry&lt;String, String&gt; entry : km) &#123;</span><br><span class="line">	System.out.println(entry.getKey() + entry.getValue());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">km.forEach(new Consumer() &#123;</span><br><span class="line">@Override</span><br><span class="line">public void accept(Object t) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	System.out.println(t);</span><br><span class="line">&#125;&#125;); // Consumer里面有个抽象方法 ，accept，我们要做的事情放进这个accept里，就代表对其每个元素进行accept里的操作 ，就是lambda的表达式</span><br><span class="line">		</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>上述是两种遍历方式，迭代器可边遍历便删除，是我们最古老的，可是也是唯一有这个功能的 ，iterator</li>
-<li>其他的都要遍历完了才能再删除</li>
-<li>而且entrySet比keySet是要更快点的（单纯遍历）</li>
-<li>迭代器的算法是要比后来的算法速度快的，遍历的时候</li>
-</ul>
-<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><ul>
-<li>lambda表达式是很便捷的一种方法</li>
-<li>要求：定义规则，定义几个变量</li>
-<li>首先，我们要定义一个接口</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">interface Yunsuan&#123;</span><br><span class="line">	public int yunsuan(int i , int j);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>然后在这个接口上增加@FunctionalInterface ，注意这个标志是让这个接口只有一个抽象方法，多个抽象方法会报错</li>
-<li>这一步是定义我们的，几个元素</li>
-<li>接下来我们定义一个函数 ，让这个接口当作参数 ，并且给这个接口传入两个参数</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">public static int getresult(int a , int b, Yunsuan yunsuan) &#123;</span><br><span class="line">	return	yunsuan.yunsuan(a, b);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>这样 ，我们就算是把这个规则实体化了，接下来我们只要调用这个规则的实例化，就可以对这两个数进行任意操作了</li>
-<li>比如<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">System.out.println(getresult(3,2, (i,j)-&gt;i+j)); // 前面两个是实参 ，后面的是规则就这样写就行 ，格式固定，但是语法不固定</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>上面的foreach里嵌套的就算lambda的表达式</li>
-</ul>
-<h1 id="Map特殊事项"><a href="#Map特殊事项" class="headerlink" title="Map特殊事项"></a>Map特殊事项</h1><ul>
-<li><p>如果在map里把key放入引用类型，则对比key的操作会变成对比hashcode和equals，可控性更强</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">package 重新开始;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">public class TEstmain1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		Map&lt;stu , Object&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">		map.put(new stu(&quot;小明&quot;  , 1), 1);</span><br><span class="line">		map.put(null , null);</span><br><span class="line">		map.put(new stu(&quot;狗蛋&quot; , 1) , 2);</span><br><span class="line">		System.out.println(map.size());</span><br><span class="line">		map.forEach((k , v) -&gt; &#123;System.out.println(k + &quot;@&quot; +v);&#125;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>stu类，通过自动生成hashcode和equals，（我这里只生成了num的）</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">class stu implements Comparable&lt;stu&gt;&#123;</span><br><span class="line">	private int num;</span><br><span class="line">	private String name;</span><br><span class="line">	private double score;</span><br><span class="line">	public stu( String name , int num) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.num = num;</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	public stu( String name , int num , double m) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.num = num;</span><br><span class="line">		this.score = m;</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public stu() &#123;</span><br><span class="line">		super();</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	public int getNum() &#123;</span><br><span class="line">		return num;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setNum(int num) &#123;</span><br><span class="line">		this.num = num;</span><br><span class="line">	&#125;</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public String toString() &#123;</span><br><span class="line">		return &quot;stu [num=&quot; + num + &quot;, name=&quot; + name + &quot;, score=&quot; + score + &quot;]&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public int hashCode() &#123;</span><br><span class="line">		final int prime = 31;</span><br><span class="line">		int result = 1;</span><br><span class="line">		result = prime * result + num;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public boolean equals(Object obj) &#123;</span><br><span class="line">		if (this == obj)</span><br><span class="line">			return true;</span><br><span class="line">		if (obj == null)</span><br><span class="line">			return false;</span><br><span class="line">		if (getClass() != obj.getClass())</span><br><span class="line">			return false;</span><br><span class="line">		stu other = (stu) obj;</span><br><span class="line">		if (num != other.num)</span><br><span class="line">			return false;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 大于0是正数，小于0是负数 ，等于0是相等 ，</span><br><span class="line">	@Override</span><br><span class="line">	public int compareTo(stu o) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		if(this.num == o.num) &#123;</span><br><span class="line">			return this.name.length() - o.name.length();</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			return o.num - this.num;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public double getScore() &#123;</span><br><span class="line">		return score;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setScore(double score) &#123;</span><br><span class="line">		this.score = score;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="lambda加for循环-加上TreeMap"><a href="#lambda加for循环-加上TreeMap" class="headerlink" title="lambda加for循环 加上TreeMap"></a>lambda加for循环 加上TreeMap</h1><ul>
-<li><p>通过treeMap实现</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">package 重新开始;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.TreeMap;</span><br><span class="line"></span><br><span class="line">public class TEstmain1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		TreeMap&lt;stu , Object&gt; map11 = new TreeMap();</span><br><span class="line">		map11.put(new stu(&quot;小明&quot;,  1), 1);</span><br><span class="line">		map11.put(new stu(&quot;狗蛋&quot; ,  2) ,2);</span><br><span class="line">		map11.put(new stu(&quot;linux&quot; , 3), 3);</span><br><span class="line">		map11.put(new stu(&quot;狗蛋&quot; ,  2) ,99);</span><br><span class="line">		map11.forEach(TEstmain1::abc);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void abc(stu s , Object value) &#123;</span><br><span class="line">		System.out.println(s + &quot;@&quot; +value);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上述的是针对foreach有两个参数的情况，可以定义一个函数，让他去传递参数，和lambda一样</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-  </entry>
-  <entry>
     <title>SetTree</title>
     <url>/2022/10/26/10-26/</url>
     <content><![CDATA[<h1 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h1><ul>
@@ -751,6 +689,68 @@
 <li>ｒｅｍｏｖｅ（ｋ）删除ｋｅｙ</li>
 <li>ｓｉｚｅ（）条目个数</li>
 <li>Ｃｏｌｌｅｃｔｉｏｎ＜Ｖ＞　ｖａｌｕｅｓ（）获取值组成的集合<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 重新开始;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">public class Main2 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Map&lt;String , String&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">		map.put(&quot;akjsdhs&quot;, &quot;sdjal&quot;);</span><br><span class="line">		map.put(&quot;dshd&quot; , &quot;sdjjdjd&quot;);</span><br><span class="line">		System.out.println(map.get(&quot;dshd&quot;));</span><br><span class="line">		System.out.println(map.containsKey(&quot;dshd&quot;));</span><br><span class="line">		System.out.println(map.remove(&quot;dshd&quot;));</span><br><span class="line">		System.out.println(map.size());</span><br><span class="line">		System.out.println(map.entrySet());</span><br><span class="line">		System.out.println(map.containsKey(&quot;dshd&quot;));</span><br><span class="line">		map.clear();</span><br><span class="line">		System.out.println(map.size());</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Map</title>
+    <url>/2022/10/27/10-27/</url>
+    <content><![CDATA[<h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><ul>
+<li><p>Map和集合是无关系的</p>
+</li>
+<li><p>Map是个接口</p>
+</li>
+<li><p>旗下有hashMap和TreeMap</p>
+</li>
+<li><p>简单代码</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Map&lt;String , String&gt; map1 = new HashMap&lt;&gt;();</span><br><span class="line">	map1.put(&quot;1&quot;, &quot;事假&quot;);</span><br><span class="line">	map1.put(&quot;2&quot;, &quot;病假&quot;);</span><br><span class="line">	map1.put(&quot;3&quot;, &quot;产假&quot;);</span><br><span class="line">	map1.put(&quot;2&quot;, &quot;施加&quot;);</span><br><span class="line">	Set&lt;String&gt; ks = map1.keySet();</span><br><span class="line">	Iterator&lt;String&gt; it = ks.iterator();</span><br><span class="line">	while(it.hasNext()) &#123;</span><br><span class="line">		String item = it.next();</span><br><span class="line">		System.out.println(&quot;key&quot; + item + &quot;@value:&quot; + map1.get(item));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>entrySet</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Set&lt;Map.Entry&lt;String, String&gt;&gt; km = map1.entrySet();</span><br><span class="line">Iterator&lt;Map.Entry&lt;String, String&gt;&gt; il = km.iterator();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">while(il.hasNext()) &#123;</span><br><span class="line">Entry&lt;String , String&gt; entry = il.next();</span><br><span class="line">System.out.println(entry.getKey() + entry.getValue());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for (Entry&lt;String, String&gt; entry : km) &#123;</span><br><span class="line">	System.out.println(entry.getKey() + entry.getValue());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">km.forEach(new Consumer() &#123;</span><br><span class="line">@Override</span><br><span class="line">public void accept(Object t) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	System.out.println(t);</span><br><span class="line">&#125;&#125;); // Consumer里面有个抽象方法 ，accept，我们要做的事情放进这个accept里，就代表对其每个元素进行accept里的操作 ，就是lambda的表达式</span><br><span class="line">		</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>上述是两种遍历方式，迭代器可边遍历便删除，是我们最古老的，可是也是唯一有这个功能的 ，iterator</li>
+<li>其他的都要遍历完了才能再删除</li>
+<li>而且entrySet比keySet是要更快点的（单纯遍历）</li>
+<li>迭代器的算法是要比后来的算法速度快的，遍历的时候</li>
+</ul>
+<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><ul>
+<li>lambda表达式是很便捷的一种方法</li>
+<li>要求：定义规则，定义几个变量</li>
+<li>首先，我们要定义一个接口</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">interface Yunsuan&#123;</span><br><span class="line">	public int yunsuan(int i , int j);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后在这个接口上增加@FunctionalInterface ，注意这个标志是让这个接口只有一个抽象方法，多个抽象方法会报错</li>
+<li>这一步是定义我们的，几个元素</li>
+<li>接下来我们定义一个函数 ，让这个接口当作参数 ，并且给这个接口传入两个参数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">public static int getresult(int a , int b, Yunsuan yunsuan) &#123;</span><br><span class="line">	return	yunsuan.yunsuan(a, b);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>这样 ，我们就算是把这个规则实体化了，接下来我们只要调用这个规则的实例化，就可以对这两个数进行任意操作了</li>
+<li>比如<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">System.out.println(getresult(3,2, (i,j)-&gt;i+j)); // 前面两个是实参 ，后面的是规则就这样写就行 ，格式固定，但是语法不固定</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>上面的foreach里嵌套的就算lambda的表达式</li>
+</ul>
+<h1 id="Map特殊事项"><a href="#Map特殊事项" class="headerlink" title="Map特殊事项"></a>Map特殊事项</h1><ul>
+<li><p>如果在map里把key放入引用类型，则对比key的操作会变成对比hashcode和equals，可控性更强</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">package 重新开始;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">public class TEstmain1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		Map&lt;stu , Object&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">		map.put(new stu(&quot;小明&quot;  , 1), 1);</span><br><span class="line">		map.put(null , null);</span><br><span class="line">		map.put(new stu(&quot;狗蛋&quot; , 1) , 2);</span><br><span class="line">		System.out.println(map.size());</span><br><span class="line">		map.forEach((k , v) -&gt; &#123;System.out.println(k + &quot;@&quot; +v);&#125;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>stu类，通过自动生成hashcode和equals，（我这里只生成了num的）</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">class stu implements Comparable&lt;stu&gt;&#123;</span><br><span class="line">	private int num;</span><br><span class="line">	private String name;</span><br><span class="line">	private double score;</span><br><span class="line">	public stu( String name , int num) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.num = num;</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	public stu( String name , int num , double m) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.num = num;</span><br><span class="line">		this.score = m;</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public stu() &#123;</span><br><span class="line">		super();</span><br><span class="line">		// TODO Auto-generated constructor stub</span><br><span class="line">	&#125;</span><br><span class="line">	public int getNum() &#123;</span><br><span class="line">		return num;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setNum(int num) &#123;</span><br><span class="line">		this.num = num;</span><br><span class="line">	&#125;</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public String toString() &#123;</span><br><span class="line">		return &quot;stu [num=&quot; + num + &quot;, name=&quot; + name + &quot;, score=&quot; + score + &quot;]&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public int hashCode() &#123;</span><br><span class="line">		final int prime = 31;</span><br><span class="line">		int result = 1;</span><br><span class="line">		result = prime * result + num;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public boolean equals(Object obj) &#123;</span><br><span class="line">		if (this == obj)</span><br><span class="line">			return true;</span><br><span class="line">		if (obj == null)</span><br><span class="line">			return false;</span><br><span class="line">		if (getClass() != obj.getClass())</span><br><span class="line">			return false;</span><br><span class="line">		stu other = (stu) obj;</span><br><span class="line">		if (num != other.num)</span><br><span class="line">			return false;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 大于0是正数，小于0是负数 ，等于0是相等 ，</span><br><span class="line">	@Override</span><br><span class="line">	public int compareTo(stu o) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		if(this.num == o.num) &#123;</span><br><span class="line">			return this.name.length() - o.name.length();</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			return o.num - this.num;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public double getScore() &#123;</span><br><span class="line">		return score;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setScore(double score) &#123;</span><br><span class="line">		this.score = score;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="lambda加for循环-加上TreeMap"><a href="#lambda加for循环-加上TreeMap" class="headerlink" title="lambda加for循环 加上TreeMap"></a>lambda加for循环 加上TreeMap</h1><ul>
+<li><p>通过treeMap实现</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">package 重新开始;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.TreeMap;</span><br><span class="line"></span><br><span class="line">public class TEstmain1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		TreeMap&lt;stu , Object&gt; map11 = new TreeMap();</span><br><span class="line">		map11.put(new stu(&quot;小明&quot;,  1), 1);</span><br><span class="line">		map11.put(new stu(&quot;狗蛋&quot; ,  2) ,2);</span><br><span class="line">		map11.put(new stu(&quot;linux&quot; , 3), 3);</span><br><span class="line">		map11.put(new stu(&quot;狗蛋&quot; ,  2) ,99);</span><br><span class="line">		map11.forEach(TEstmain1::abc);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void abc(stu s , Object value) &#123;</span><br><span class="line">		System.out.println(s + &quot;@&quot; +value);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上述的是针对foreach有两个参数的情况，可以定义一个函数，让他去传递参数，和lambda一样</p>
+</li>
 </ul>
 ]]></content>
       <categories>
@@ -1522,6 +1522,109 @@
       </categories>
   </entry>
   <entry>
+    <title>hadoop面试会问</title>
+    <url>/2022/11/17/11-17/</url>
+    <content><![CDATA[<h1 id="hdfs的写流程"><a href="#hdfs的写流程" class="headerlink" title="hdfs的写流程"></a>hdfs的写流程</h1><ul>
+<li>面试|必备</li>
+<li>通过客户端，写文件</li>
+<li>首先客户端会调用 FileSystem 的creat</li>
+<li>去和namenode进行通信 ， 是通过rpc通信</li>
+<li>然后namenode会去检查这个路径的文件是不是存在并且检查你的权限</li>
+<li>假如都ok ， 则执行你的操作</li>
+<li>但是这个时候还没有写数据</li>
+<li>是不关联任何block的</li>
+<li>而namenode根据上传文件的大小，和块的大小，以及副本数</li>
+<li>计算要上传多少块以及后续要在datanode上的什么位置</li>
+<li>最后把信息返回到客户端</li>
+<li>就是 ： fsdataoutputstream</li>
+<li>Client 调用 fdsdataoutputstream</li>
+<li>将第一个块的第一个副本数写第一个dn节点</li>
+<li>写完去写第二个</li>
+<li>然后是第三个</li>
+<li>当三个都写完了 ， 会返回一个ack package</li>
+<li>把确认包给dn2</li>
+<li>当dn2确认并加上自己的</li>
+<li>然后给dn3，同上</li>
+<li>最后将ack package 返回给 fdsdataoutputstream</li>
+<li>上面只是对于第一个块</li>
+<li>当所有的块全部写完的时候，我们会调用</li>
+<li>这个流对象的close方法</li>
+<li>告诉namenode ，文件写入成功</li>
+</ul>
+<h1 id="hdfs读操作"><a href="#hdfs读操作" class="headerlink" title="hdfs读操作"></a>hdfs读操作</h1><ul>
+<li>面试|必备</li>
+<li>Cilent调用FS.open(filepath)</li>
+<li>nn和pc进行通信，返回该文件的部分或者全部的block列表</li>
+<li>以fdsdatainputstream的形式</li>
+<li>Client的FSDDataInputstream的read方法</li>
+<li>会去和最近的dn进行匹配，读取完成</li>
+<li>会check，假如ok，就关闭通信</li>
+<li>假如读取失败</li>
+<li>会记录dn+block信息</li>
+<li>下次就也不会从这个节点读取，转而从其他的节点读取</li>
+<li>然后会去和第二块的最近的dn进行读取，以此类推</li>
+<li>当整个block全部读取完之后，文件还没读取完，就会继续调用fs的方法进行下一次block的读取</li>
+<li>以此类推</li>
+<li>最后用close方法关闭</li>
+</ul>
+<h1 id="hdfs的副本放置策略"><a href="#hdfs的副本放置策略" class="headerlink" title="hdfs的副本放置策略"></a>hdfs的副本放置策略</h1><ul>
+<li>机架</li>
+<li>生产上读写操作，选择dn节点进行读取</li>
+<li>第一副本 ： </li>
+<li>放置在client上传的dn节点</li>
+<li>client 不在dn节点 ，就随机选择一个dn</li>
+<li>第二副本 ： </li>
+<li>放置在第一个副本不同的机架上的一个dn节点</li>
+<li>第三副本 ： </li>
+<li>和第二副本相同机架但是不同节点</li>
+<li>补充 ；</li>
+<li>副本数是三</li>
+<li>上述都是以副本数为3的情况</li>
+<li>如果是4就多几个随机</li>
+</ul>
+<h1 id="hdfs的安全模式"><a href="#hdfs的安全模式" class="headerlink" title="hdfs的安全模式"></a>hdfs的安全模式</h1><ul>
+<li>什么时候会发生安全模式</li>
+<li>刚启动hadoop的时候</li>
+<li>hsdf发生故障的时候 ： 集群文件大量会丢失</li>
+<li>人为进入</li>
+<li>命令 ： <code>hdfs dfsadmin -safemode &lt;enter | leave | get | wait | forceExit&gt;</code></li>
+</ul>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><ul>
+<li>kill 命令 不只有一个-9</li>
+<li>还有很多 ： 目前我所看见的至少有64个</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">1) SIGHUP     2) SIGINT     3) SIGQUIT     4) SIGILL     5) SIGTRAP</span><br><span class="line">6) SIGABRT     7) SIGBUS     8) SIGFPE     9) SIGKILL    10) SIGUSR1</span><br><span class="line">11) SIGSEGV    12) SIGUSR2    13) SIGPIPE    14) SIGALRM    15) SIGTERM</span><br><span class="line">16) SIGSTKFLT    17) SIGCHLD    18) SIGCONT    19) SIGSTOP    20) SIGTSTP</span><br><span class="line">21) SIGTTIN    22) SIGTTOU    23) SIGURG    24) SIGXCPU    25) SIGXFSZ</span><br><span class="line">26) SIGVTALRM    27) SIGPROF    28) SIGWINCH    29) SIGIO    30) SIGPWR</span><br><span class="line">31) SIGSYS    34) SIGRTMIN    35) SIGRTMIN+1    36) SIGRTMIN+2    37) SIGRTMIN+3</span><br><span class="line">38) SIGRTMIN+4    39) SIGRTMIN+5    40) SIGRTMIN+6    41) SIGRTMIN+7    42) SIGRTMIN+8</span><br><span class="line">43) SIGRTMIN+9    44) SIGRTMIN+10    45) SIGRTMIN+11    46) SIGRTMIN+12    47) SIGRTMIN+13</span><br><span class="line">48) SIGRTMIN+14    49) SIGRTMIN+15    50) SIGRTMAX-14    51) SIGRTMAX-13    52) SIGRTMAX-12</span><br><span class="line">53) SIGRTMAX-11    54) SIGRTMAX-10    55) SIGRTMAX-9    56) SIGRTMAX-8    57) SIGRTMAX-7</span><br><span class="line">58) SIGRTMAX-6    59) SIGRTMAX-5    60) SIGRTMAX-4    61) SIGRTMAX-3    62) SIGRTMAX-2</span><br><span class="line">63) SIGRTMAX-1    64) SIGRTMAX</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这个简单介绍几个 ： </li>
+<li>1 ： 重新加载合格进程</li>
+<li>9 ： 杀死一个进程</li>
+<li>15 ： 正常停止一个进程</li>
+</ul>
+<h1 id="公司内部的逻辑"><a href="#公司内部的逻辑" class="headerlink" title="公司内部的逻辑"></a>公司内部的逻辑</h1><ul>
+<li>一般一个组件都会有一个用户进行管理</li>
+<li>比如 ： mysql ： 可以创建一个mysql用户</li>
+<li>等</li>
+<li>创建数据库的流程 ： </li>
+<li><code>create dataase dl2262;</code></li>
+<li><code>grant all priviledges on dl2262 identified by &quot;1234546;&quot;</code></li>
+<li><code>flush priviledges;</code></li>
+</ul>
+<h1 id="hdfs生产最佳实践"><a href="#hdfs生产最佳实践" class="headerlink" title="hdfs生产最佳实践"></a>hdfs生产最佳实践</h1><ul>
+<li>如何查看hdfs的文件块是不是丢失<br>-<code>hdfs fsck&lt;path&gt;</code></li>
+</ul>
+<h2 id="hdfs-的block块丢失了如何解决"><a href="#hdfs-的block块丢失了如何解决" class="headerlink" title="hdfs 的block块丢失了如何解决"></a>hdfs 的block块丢失了如何解决</h2><ul>
+<li>第一种 ： 不用解决 ，也因为hdfs会自动回复，一般是6h ， 就是dn上传的时候</li>
+<li>第二种 ： 手动进行回复</li>
+<li><code>hdfs debug recoverLease -path &lt;filename&gt; retries num</code> </li>
+<li>后面的是重试次数</li>
+</ul>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
     <title>shell</title>
     <url>/2022/11/02/11-2/</url>
     <content><![CDATA[<h1 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h1><ul>
@@ -1744,109 +1847,6 @@
       </categories>
   </entry>
   <entry>
-    <title>hadoop面试会问</title>
-    <url>/2022/11/17/11-17/</url>
-    <content><![CDATA[<h1 id="hdfs的写流程"><a href="#hdfs的写流程" class="headerlink" title="hdfs的写流程"></a>hdfs的写流程</h1><ul>
-<li>面试|必备</li>
-<li>通过客户端，写文件</li>
-<li>首先客户端会调用 FileSystem 的creat</li>
-<li>去和namenode进行通信 ， 是通过rpc通信</li>
-<li>然后namenode会去检查这个路径的文件是不是存在并且检查你的权限</li>
-<li>假如都ok ， 则执行你的操作</li>
-<li>但是这个时候还没有写数据</li>
-<li>是不关联任何block的</li>
-<li>而namenode根据上传文件的大小，和块的大小，以及副本数</li>
-<li>计算要上传多少块以及后续要在datanode上的什么位置</li>
-<li>最后把信息返回到客户端</li>
-<li>就是 ： fsdataoutputstream</li>
-<li>Client 调用 fdsdataoutputstream</li>
-<li>将第一个块的第一个副本数写第一个dn节点</li>
-<li>写完去写第二个</li>
-<li>然后是第三个</li>
-<li>当三个都写完了 ， 会返回一个ack package</li>
-<li>把确认包给dn2</li>
-<li>当dn2确认并加上自己的</li>
-<li>然后给dn3，同上</li>
-<li>最后将ack package 返回给 fdsdataoutputstream</li>
-<li>上面只是对于第一个块</li>
-<li>当所有的块全部写完的时候，我们会调用</li>
-<li>这个流对象的close方法</li>
-<li>告诉namenode ，文件写入成功</li>
-</ul>
-<h1 id="hdfs读操作"><a href="#hdfs读操作" class="headerlink" title="hdfs读操作"></a>hdfs读操作</h1><ul>
-<li>面试|必备</li>
-<li>Cilent调用FS.open(filepath)</li>
-<li>nn和pc进行通信，返回该文件的部分或者全部的block列表</li>
-<li>以fdsdatainputstream的形式</li>
-<li>Client的FSDDataInputstream的read方法</li>
-<li>会去和最近的dn进行匹配，读取完成</li>
-<li>会check，假如ok，就关闭通信</li>
-<li>假如读取失败</li>
-<li>会记录dn+block信息</li>
-<li>下次就也不会从这个节点读取，转而从其他的节点读取</li>
-<li>然后会去和第二块的最近的dn进行读取，以此类推</li>
-<li>当整个block全部读取完之后，文件还没读取完，就会继续调用fs的方法进行下一次block的读取</li>
-<li>以此类推</li>
-<li>最后用close方法关闭</li>
-</ul>
-<h1 id="hdfs的副本放置策略"><a href="#hdfs的副本放置策略" class="headerlink" title="hdfs的副本放置策略"></a>hdfs的副本放置策略</h1><ul>
-<li>机架</li>
-<li>生产上读写操作，选择dn节点进行读取</li>
-<li>第一副本 ： </li>
-<li>放置在client上传的dn节点</li>
-<li>client 不在dn节点 ，就随机选择一个dn</li>
-<li>第二副本 ： </li>
-<li>放置在第一个副本不同的机架上的一个dn节点</li>
-<li>第三副本 ： </li>
-<li>和第二副本相同机架但是不同节点</li>
-<li>补充 ；</li>
-<li>副本数是三</li>
-<li>上述都是以副本数为3的情况</li>
-<li>如果是4就多几个随机</li>
-</ul>
-<h1 id="hdfs的安全模式"><a href="#hdfs的安全模式" class="headerlink" title="hdfs的安全模式"></a>hdfs的安全模式</h1><ul>
-<li>什么时候会发生安全模式</li>
-<li>刚启动hadoop的时候</li>
-<li>hsdf发生故障的时候 ： 集群文件大量会丢失</li>
-<li>人为进入</li>
-<li>命令 ： <code>hdfs dfsadmin -safemode &lt;enter | leave | get | wait | forceExit&gt;</code></li>
-</ul>
-<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><ul>
-<li>kill 命令 不只有一个-9</li>
-<li>还有很多 ： 目前我所看见的至少有64个</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">1) SIGHUP     2) SIGINT     3) SIGQUIT     4) SIGILL     5) SIGTRAP</span><br><span class="line">6) SIGABRT     7) SIGBUS     8) SIGFPE     9) SIGKILL    10) SIGUSR1</span><br><span class="line">11) SIGSEGV    12) SIGUSR2    13) SIGPIPE    14) SIGALRM    15) SIGTERM</span><br><span class="line">16) SIGSTKFLT    17) SIGCHLD    18) SIGCONT    19) SIGSTOP    20) SIGTSTP</span><br><span class="line">21) SIGTTIN    22) SIGTTOU    23) SIGURG    24) SIGXCPU    25) SIGXFSZ</span><br><span class="line">26) SIGVTALRM    27) SIGPROF    28) SIGWINCH    29) SIGIO    30) SIGPWR</span><br><span class="line">31) SIGSYS    34) SIGRTMIN    35) SIGRTMIN+1    36) SIGRTMIN+2    37) SIGRTMIN+3</span><br><span class="line">38) SIGRTMIN+4    39) SIGRTMIN+5    40) SIGRTMIN+6    41) SIGRTMIN+7    42) SIGRTMIN+8</span><br><span class="line">43) SIGRTMIN+9    44) SIGRTMIN+10    45) SIGRTMIN+11    46) SIGRTMIN+12    47) SIGRTMIN+13</span><br><span class="line">48) SIGRTMIN+14    49) SIGRTMIN+15    50) SIGRTMAX-14    51) SIGRTMAX-13    52) SIGRTMAX-12</span><br><span class="line">53) SIGRTMAX-11    54) SIGRTMAX-10    55) SIGRTMAX-9    56) SIGRTMAX-8    57) SIGRTMAX-7</span><br><span class="line">58) SIGRTMAX-6    59) SIGRTMAX-5    60) SIGRTMAX-4    61) SIGRTMAX-3    62) SIGRTMAX-2</span><br><span class="line">63) SIGRTMAX-1    64) SIGRTMAX</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>这个简单介绍几个 ： </li>
-<li>1 ： 重新加载合格进程</li>
-<li>9 ： 杀死一个进程</li>
-<li>15 ： 正常停止一个进程</li>
-</ul>
-<h1 id="公司内部的逻辑"><a href="#公司内部的逻辑" class="headerlink" title="公司内部的逻辑"></a>公司内部的逻辑</h1><ul>
-<li>一般一个组件都会有一个用户进行管理</li>
-<li>比如 ： mysql ： 可以创建一个mysql用户</li>
-<li>等</li>
-<li>创建数据库的流程 ： </li>
-<li><code>create dataase dl2262;</code></li>
-<li><code>grant all priviledges on dl2262 identified by &quot;1234546;&quot;</code></li>
-<li><code>flush priviledges;</code></li>
-</ul>
-<h1 id="hdfs生产最佳实践"><a href="#hdfs生产最佳实践" class="headerlink" title="hdfs生产最佳实践"></a>hdfs生产最佳实践</h1><ul>
-<li>如何查看hdfs的文件块是不是丢失<br>-<code>hdfs fsck&lt;path&gt;</code></li>
-</ul>
-<h2 id="hdfs-的block块丢失了如何解决"><a href="#hdfs-的block块丢失了如何解决" class="headerlink" title="hdfs 的block块丢失了如何解决"></a>hdfs 的block块丢失了如何解决</h2><ul>
-<li>第一种 ： 不用解决 ，也因为hdfs会自动回复，一般是6h ， 就是dn上传的时候</li>
-<li>第二种 ： 手动进行回复</li>
-<li><code>hdfs debug recoverLease -path &lt;filename&gt; retries num</code> </li>
-<li>后面的是重试次数</li>
-</ul>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-  </entry>
-  <entry>
     <title>mapreduce</title>
     <url>/2022/11/21/11-21/</url>
     <content><![CDATA[<h1 id="续讲Hadoop"><a href="#续讲Hadoop" class="headerlink" title="续讲Hadoop"></a>续讲Hadoop</h1><h2 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h2><p>关于mapreduce的操作模式就是模板模式，加上自定义的变量</p>
@@ -1976,6 +1976,55 @@
 ]]></content>
       <categories>
         <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>mapreduce</title>
+    <url>/2022/11/24/11-24/</url>
+    <content><![CDATA[<h1 id="typeScript"><a href="#typeScript" class="headerlink" title="typeScript"></a>typeScript</h1><h2 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h2><p>ts：typescript ： 简单来说就是js的超集，可以向下兼容js，所以我们使用ts不用对js进行更改，ts会自动转换成js</p>
+<p>因为现在的浏览器不支持ts的语法 ： ts的编译环境是node.js</p>
+<p>安装运行 ： npm install -g typescript</p>
+<p>安装之后用tsv -v 查看</p>
+<p>与逆行的时候下载一个json</p>
+<p>命令行 : tsc -init</p>
+<p>然后运行命令 ： ts-node .&#x2F;文件名</p>
+<p>下面是关于ts的简单介绍</p>
+<p>首先ts是静态类型，js是动态类型</p>
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p>静态类型是编译阶段就会发现问题，而动态类型则是直到运行阶段才会问问题的</p>
+<p>所以相比较而言，静态类型，比动态类型更加可控</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>ts的类型 ：</p>
+<p>包括 : 布尔 ， 数值，字符串， null , symbol , BigInt,undefined</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> isDone :<span class="built_in">boolean</span> = <span class="literal">false</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">s</span>: <span class="built_in">number</span> = <span class="number">6</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">a</span>: <span class="built_in">number</span> = <span class="title class_">NaN</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">b</span>: <span class="built_in">number</span> = <span class="title class_">Infinity</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">my</span>: <span class="built_in">string</span> = <span class="string">&#x27;yon&#x27;</span></span><br><span class="line"><span class="keyword">let</span> o : <span class="literal">undefined</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">nme</span>: <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">alertName</span>(<span class="params"></span>) : <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;my first name&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr</span>: <span class="built_in">any</span>[] = [<span class="string">&quot;hello&quot;</span> , <span class="number">1</span> , <span class="literal">true</span>]</span><br><span class="line"><span class="keyword">let</span> <span class="attr">ids</span>:<span class="built_in">number</span>[] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> <span class="attr">names</span>: <span class="title class_">String</span>[] = [<span class="string">&quot;xxx&quot;</span> , <span class="string">&quot;yyy&quot;</span> , <span class="string">&quot;zzzz&quot;</span>];</span><br><span class="line"><span class="keyword">let</span> <span class="attr">book</span>: <span class="title class_">Object</span>[] = [&#123;<span class="attr">name1</span>:<span class="string">&#x27;tom&#x27;</span> , <span class="attr">animal</span>:<span class="string">&#x27;cont&#x27;</span>&#125;,&#123;<span class="attr">name1</span>:<span class="string">&#x27;gggg&#x27;</span>,<span class="attr">animal</span>:<span class="string">&#x27;hhhh&#x27;</span>&#125;];</span><br><span class="line">ids.<span class="title function_">push</span>(<span class="number">6</span>);</span><br><span class="line"><span class="keyword">let</span> <span class="attr">person</span>:(<span class="built_in">string</span>|<span class="built_in">number</span>|<span class="built_in">boolean</span>)[]=[<span class="string">&#x27;aslkdjla&#x27;</span>,<span class="number">1</span>,<span class="literal">true</span>]; <span class="comment">// 这个是三个值</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">person1</span>:[<span class="built_in">string</span>,<span class="built_in">number</span>,<span class="built_in">boolean</span>]=[<span class="string">&#x27;sdfjkl&#x27;</span>,<span class="number">1</span>,<span class="literal">true</span>]; <span class="comment">// 这个是一个值</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">info</span>(isDone)<span class="keyword">let</span> isDone :<span class="built_in">boolean</span> = <span class="literal">false</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">s</span>: <span class="built_in">number</span> = <span class="number">6</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">a</span>: <span class="built_in">number</span> = <span class="title class_">NaN</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">b</span>: <span class="built_in">number</span> = <span class="title class_">Infinity</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">my</span>: <span class="built_in">string</span> = <span class="string">&#x27;yon&#x27;</span></span><br><span class="line"><span class="keyword">let</span> o : <span class="literal">undefined</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">nme</span>: <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">alertName</span>(<span class="params"></span>) : <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;my first name&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">info</span>(isDone)</span><br></pre></td></tr></table></figure>
+
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>我们定义接口的方式如下：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> a&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">age</span>:<span class="built_in">number</span>;</span><br><span class="line">    <span class="attr">isP</span>:<span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>和上述数组的作用一样，不过这样定义可以增强复用性，随便让一个东西继承一下他，就可以了</p>
+<p>比如：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> a&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">age</span>:<span class="built_in">number</span>;</span><br><span class="line">    <span class="attr">isP</span>:<span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">p</span>:a=&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;kjds&#x27;</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">11</span>,</span><br><span class="line">    <span class="attr">isP</span>:<span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>函数合上述的接口很像，他是在接口创建了几个方法，如下</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> s&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="built_in">string</span>;</span><br><span class="line">    <span class="title function_">eat</span>(<span class="attr">name</span>:<span class="built_in">string</span>):<span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">j</span>:s=&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;lkasdj&#x27;</span>,</span><br><span class="line">    <span class="attr">eat</span>:<span class="keyword">function</span>(<span class="params">name:<span class="built_in">string</span></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;eat$&#123;name&#125;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">add</span> = (<span class="params">a:<span class="built_in">number</span>,b:<span class="built_in">number</span>,c?:<span class="built_in">number</span>|<span class="built_in">string</span></span>)=&gt;&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(c)</span><br><span class="line">    <span class="keyword">return</span> a+b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>问号代表从后面的类型里选数据，这里是number和string</p>
+<p>上面的是lambad多</p>
+<p>把ts转换成js的语法是any</p>
+<h2 id="Dom和类型转换"><a href="#Dom和类型转换" class="headerlink" title="Dom和类型转换"></a>Dom和类型转换</h2><p>ts无法像js一样进行访问dom这个就意味着ts无法确定这些dom是不是存在，所以使用非空断言，我们可用明确的告诉他，这个表达式是null&#x2F;undefined</p>
+<p>非空断言 X! 代表把x中的null和undefined给去除了</p>
+<p>例如 ：下面是关于ts和获取dom的</p>
+<p><code>const link = document.querySelector(&#39;a&#39;);</code></p>
+<p>当我们要通过class来选择一个dom元素的时候，可以进行一层转化</p>
+<p>例如 ： <code>const from = document.getElementById(&#39;form&#39;) as HTMLAnchorElement</code></p>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>和java中的类异常类似</p>
+<p>比如 ： </p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Preson</span> &#123; </span><br><span class="line">    <span class="attr">name</span>:<span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">iscool</span>:<span class="built_in">boolean</span>;</span><br><span class="line">    <span class="attr">age</span>:<span class="built_in">number</span>;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">n:<span class="built_in">string</span>,c:<span class="built_in">boolean</span>,a:<span class="built_in">number</span></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">name</span>=n</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">iscool</span>=c</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">age</span>=a</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">sayhai</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hi,wosshi$&#123;this.name&#125;,jinnnan$&#123;this.age&#125;&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>类的修饰符</p>
+<p>readonly,privatee,protected,public</p>
+<p>简单的介绍就到这里为止，具体以后再慢慢补充</p>
+]]></content>
+      <categories>
+        <category>杂货技术栈</category>
       </categories>
   </entry>
   <entry>
@@ -2191,55 +2240,6 @@ hdfs diskbalancer
 ]]></content>
       <categories>
         <category>日志</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>mapreduce</title>
-    <url>/2022/11/24/11-24/</url>
-    <content><![CDATA[<h1 id="typeScript"><a href="#typeScript" class="headerlink" title="typeScript"></a>typeScript</h1><h2 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h2><p>ts：typescript ： 简单来说就是js的超集，可以向下兼容js，所以我们使用ts不用对js进行更改，ts会自动转换成js</p>
-<p>因为现在的浏览器不支持ts的语法 ： ts的编译环境是node.js</p>
-<p>安装运行 ： npm install -g typescript</p>
-<p>安装之后用tsv -v 查看</p>
-<p>与逆行的时候下载一个json</p>
-<p>命令行 : tsc -init</p>
-<p>然后运行命令 ： ts-node .&#x2F;文件名</p>
-<p>下面是关于ts的简单介绍</p>
-<p>首先ts是静态类型，js是动态类型</p>
-<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p>静态类型是编译阶段就会发现问题，而动态类型则是直到运行阶段才会问问题的</p>
-<p>所以相比较而言，静态类型，比动态类型更加可控</p>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>ts的类型 ：</p>
-<p>包括 : 布尔 ， 数值，字符串， null , symbol , BigInt,undefined</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> isDone :<span class="built_in">boolean</span> = <span class="literal">false</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">s</span>: <span class="built_in">number</span> = <span class="number">6</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">a</span>: <span class="built_in">number</span> = <span class="title class_">NaN</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">b</span>: <span class="built_in">number</span> = <span class="title class_">Infinity</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">my</span>: <span class="built_in">string</span> = <span class="string">&#x27;yon&#x27;</span></span><br><span class="line"><span class="keyword">let</span> o : <span class="literal">undefined</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">nme</span>: <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">alertName</span>(<span class="params"></span>) : <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;my first name&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">arr</span>: <span class="built_in">any</span>[] = [<span class="string">&quot;hello&quot;</span> , <span class="number">1</span> , <span class="literal">true</span>]</span><br><span class="line"><span class="keyword">let</span> <span class="attr">ids</span>:<span class="built_in">number</span>[] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> <span class="attr">names</span>: <span class="title class_">String</span>[] = [<span class="string">&quot;xxx&quot;</span> , <span class="string">&quot;yyy&quot;</span> , <span class="string">&quot;zzzz&quot;</span>];</span><br><span class="line"><span class="keyword">let</span> <span class="attr">book</span>: <span class="title class_">Object</span>[] = [&#123;<span class="attr">name1</span>:<span class="string">&#x27;tom&#x27;</span> , <span class="attr">animal</span>:<span class="string">&#x27;cont&#x27;</span>&#125;,&#123;<span class="attr">name1</span>:<span class="string">&#x27;gggg&#x27;</span>,<span class="attr">animal</span>:<span class="string">&#x27;hhhh&#x27;</span>&#125;];</span><br><span class="line">ids.<span class="title function_">push</span>(<span class="number">6</span>);</span><br><span class="line"><span class="keyword">let</span> <span class="attr">person</span>:(<span class="built_in">string</span>|<span class="built_in">number</span>|<span class="built_in">boolean</span>)[]=[<span class="string">&#x27;aslkdjla&#x27;</span>,<span class="number">1</span>,<span class="literal">true</span>]; <span class="comment">// 这个是三个值</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">person1</span>:[<span class="built_in">string</span>,<span class="built_in">number</span>,<span class="built_in">boolean</span>]=[<span class="string">&#x27;sdfjkl&#x27;</span>,<span class="number">1</span>,<span class="literal">true</span>]; <span class="comment">// 这个是一个值</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">info</span>(isDone)<span class="keyword">let</span> isDone :<span class="built_in">boolean</span> = <span class="literal">false</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">s</span>: <span class="built_in">number</span> = <span class="number">6</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">a</span>: <span class="built_in">number</span> = <span class="title class_">NaN</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">b</span>: <span class="built_in">number</span> = <span class="title class_">Infinity</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">my</span>: <span class="built_in">string</span> = <span class="string">&#x27;yon&#x27;</span></span><br><span class="line"><span class="keyword">let</span> o : <span class="literal">undefined</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">nme</span>: <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">alertName</span>(<span class="params"></span>) : <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;my first name&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">info</span>(isDone)</span><br></pre></td></tr></table></figure>
-
-<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>我们定义接口的方式如下：</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> a&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">age</span>:<span class="built_in">number</span>;</span><br><span class="line">    <span class="attr">isP</span>:<span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>和上述数组的作用一样，不过这样定义可以增强复用性，随便让一个东西继承一下他，就可以了</p>
-<p>比如：</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> a&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">age</span>:<span class="built_in">number</span>;</span><br><span class="line">    <span class="attr">isP</span>:<span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">p</span>:a=&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;kjds&#x27;</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">11</span>,</span><br><span class="line">    <span class="attr">isP</span>:<span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>函数合上述的接口很像，他是在接口创建了几个方法，如下</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> s&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="built_in">string</span>;</span><br><span class="line">    <span class="title function_">eat</span>(<span class="attr">name</span>:<span class="built_in">string</span>):<span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">j</span>:s=&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;lkasdj&#x27;</span>,</span><br><span class="line">    <span class="attr">eat</span>:<span class="keyword">function</span>(<span class="params">name:<span class="built_in">string</span></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;eat$&#123;name&#125;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">add</span> = (<span class="params">a:<span class="built_in">number</span>,b:<span class="built_in">number</span>,c?:<span class="built_in">number</span>|<span class="built_in">string</span></span>)=&gt;&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(c)</span><br><span class="line">    <span class="keyword">return</span> a+b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>问号代表从后面的类型里选数据，这里是number和string</p>
-<p>上面的是lambad多</p>
-<p>把ts转换成js的语法是any</p>
-<h2 id="Dom和类型转换"><a href="#Dom和类型转换" class="headerlink" title="Dom和类型转换"></a>Dom和类型转换</h2><p>ts无法像js一样进行访问dom这个就意味着ts无法确定这些dom是不是存在，所以使用非空断言，我们可用明确的告诉他，这个表达式是null&#x2F;undefined</p>
-<p>非空断言 X! 代表把x中的null和undefined给去除了</p>
-<p>例如 ：下面是关于ts和获取dom的</p>
-<p><code>const link = document.querySelector(&#39;a&#39;);</code></p>
-<p>当我们要通过class来选择一个dom元素的时候，可以进行一层转化</p>
-<p>例如 ： <code>const from = document.getElementById(&#39;form&#39;) as HTMLAnchorElement</code></p>
-<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>和java中的类异常类似</p>
-<p>比如 ： </p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Preson</span> &#123; </span><br><span class="line">    <span class="attr">name</span>:<span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">iscool</span>:<span class="built_in">boolean</span>;</span><br><span class="line">    <span class="attr">age</span>:<span class="built_in">number</span>;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">n:<span class="built_in">string</span>,c:<span class="built_in">boolean</span>,a:<span class="built_in">number</span></span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">name</span>=n</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">iscool</span>=c</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">age</span>=a</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">sayhai</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hi,wosshi$&#123;this.name&#125;,jinnnan$&#123;this.age&#125;&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>类的修饰符</p>
-<p>readonly,privatee,protected,public</p>
-<p>简单的介绍就到这里为止，具体以后再慢慢补充</p>
-]]></content>
-      <categories>
-        <category>杂货技术栈</category>
       </categories>
   </entry>
   <entry>
@@ -2504,6 +2504,105 @@ hdfs diskbalancer
       </categories>
   </entry>
   <entry>
+    <title>jdbc</title>
+    <url>/2022/11/07/11-7/</url>
+    <content><![CDATA[<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>Maven项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。</li>
+<li>注意是工具</li>
+</ul>
+<h2 id="Maven的配置以及idea使用"><a href="#Maven的配置以及idea使用" class="headerlink" title="Maven的配置以及idea使用"></a>Maven的配置以及idea使用</h2><h3 id="下载及解压"><a href="#下载及解压" class="headerlink" title="下载及解压"></a>下载及解压</h3><ul>
+<li>首先在Maven的官网下载Maven</li>
+<li><a href="http://maven.apache.org/download.cgi" title="Maven官网">Maven官网</a></li>
+<li>我们windows一般下载 ： Binary zip archive的</li>
+<li>我这里下载的是 apache-maven-3.8.6-bin.zip</li>
+<li>下载完之后 ， 解压到一个文件目录下 </li>
+<li>我是新建了个文件目录 命名为 maven</li>
+<li>如何解压到文件目录下</li>
+</ul>
+<h3 id="配置相关文件"><a href="#配置相关文件" class="headerlink" title="配置相关文件"></a>配置相关文件</h3><ul>
+<li>解压成功之后 ，我们会获得几个文件夹</li>
+<li>bin</li>
+<li>boot</li>
+<li>conf</li>
+<li>lib</li>
+<li>这个里conf是maven的配置文件</li>
+<li>我们在这个目录下新建maven_repossitory文件夹</li>
+<li>这个文件夹可以作为，我们的本地仓库</li>
+<li>接下来，我们要修改 conf 文件夹下</li>
+<li>settings.xml文件</li>
+<li>我们先找到</li>
+<li><code>&lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;</code></li>
+<li>这条语句的位置</li>
+<li>把它更改成</li>
+<li><code>&lt;localRepository&gt;你的maven_repossitory路径&lt;/localRepository&gt;</code></li>
+<li>这样我们就自己创建了个</li>
+<li>因为一般maven的默认仓库是</li>
+<li><code>C:\Users\Administrator\.m2\repository</code></li>
+<li>接下来 ， 我们进行设置国内镜像源</li>
+<li>找到 mirrors 标签</li>
+<li>在mirrors里</li>
+<li>加上：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;mirror&gt;</span><br><span class="line">	&lt;id&gt;alimaven&lt;/id&gt;</span><br><span class="line">	&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line">	&lt;name&gt;aliyun maven&lt;/name&gt;</span><br><span class="line">	&lt;url&gt;http://maven.aliyun.com/nexus/content/repositories/central/&lt;/url&gt;</span><br><span class="line">&lt;/mirror&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>这个是阿里云的镜像 ， 如果不好使 可以以换成腾讯云 和网易的</li>
+<li>添加方法和上面一样</li>
+<li>接下来我们可以为maven配置全局的jdk，这样我们在创建maven项目时就会自动使用该jdk版本，我配置的是jdk1.8</li>
+<li>找到标签 <profiles></profiles></li>
+<li>然后在标签里加入<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!-- java版本 --&gt; </span><br><span class="line">&lt;profile&gt;</span><br><span class="line">  &lt;id&gt;jdk-1.8&lt;/id&gt;</span><br><span class="line">  &lt;activation&gt;</span><br><span class="line">	&lt;activeByDefault&gt;true&lt;/activeByDefault&gt;</span><br><span class="line">	&lt;jdk&gt;1.8&lt;/jdk&gt;</span><br><span class="line">  &lt;/activation&gt;</span><br><span class="line"></span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">	&lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">	&lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">	&lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">&lt;/profile&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="更改idea的maven"><a href="#更改idea的maven" class="headerlink" title="更改idea的maven"></a>更改idea的maven</h3><ul>
+<li>file 文件里的 setting</li>
+<li>在上面搜索 maven</li>
+<li>点进去之后</li>
+<li>把Maven home directory</li>
+<li>配置成自己的解压的文件夹</li>
+<li>然后设置user setting file</li>
+<li>把他设置成解压的文件的setting.xml</li>
+<li>然后把 local repository</li>
+<li>设置成之前自己配置的本地仓库</li>
+<li>关于idea的配置就完成了</li>
+</ul>
+<h2 id="简单的链接mysql"><a href="#简单的链接mysql" class="headerlink" title="简单的链接mysql"></a>简单的链接mysql</h2><ul>
+<li>首先创建maven项目</li>
+<li>然后在pom.xml中加上</li>
+<li><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;5.1.28&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>在<dependencies>标签中加上</li>
+<li>然后import change</li>
+<li>然后在主程序的java项目包里</li>
+<li>写上：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line">import java.sql.Connection;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Hello world!</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class App </span><br><span class="line">&#123;</span><br><span class="line">    public static void main( String[] args )</span><br><span class="line">    &#123;</span><br><span class="line">        String url = &quot;jdbc:mysql://192.168.41.131:3306/try&quot;;</span><br><span class="line">        String user = &quot;root&quot;;</span><br><span class="line">        String passwd = &quot;liuzihan010616&quot;;</span><br><span class="line"></span><br><span class="line">        Connection conect = dbutils.getConnection(url , user , passwd);</span><br><span class="line"></span><br><span class="line">        System.out.println(conect);</span><br><span class="line">        dbutils.closeConnection(conect);</span><br><span class="line"></span><br><span class="line">        System.out.println( &quot;Hello World!&quot; );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>-然后创建一个dbutils</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.DriverManager;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author sxwang</span><br><span class="line"> * 11 07 15:02</span><br><span class="line"> */</span><br><span class="line">public class dbutils &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 获取mysql 连接</span><br><span class="line">     * @param url</span><br><span class="line">     * @param user</span><br><span class="line">     * @param passwd</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Connection getConnection(String url, String user, String passwd)&#123;</span><br><span class="line"></span><br><span class="line">        Connection connection=null;</span><br><span class="line">        try &#123;</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">            try &#123;</span><br><span class="line">                connection = DriverManager.getConnection(url, user, passwd);</span><br><span class="line">            &#125; catch (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return connection;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 关闭连接</span><br><span class="line">     * @param conn</span><br><span class="line">     */</span><br><span class="line">    public static void closeConnection(Connection conn)&#123;</span><br><span class="line"></span><br><span class="line">        if(conn !=null)&#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                conn.close();</span><br><span class="line">            &#125; catch (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Mysql对表的操作"><a href="#Mysql对表的操作" class="headerlink" title="Mysql对表的操作"></a>Mysql对表的操作</h2><ul>
+<li>alter table 旧表名 rename to 新表名 ： 更改表名字</li>
+<li>alter table 表名 modify 列名 数据类型 ： 修改数据类型</li>
+<li>alter table 表名 change 旧表名 新列名 数据类型 ： 修改列名</li>
+<li>alter table 表名 drop 列名 ： 删除列</li>
+<li>alter table 表名 add 新列名 数据类型</li>
+<li>alter table 表名 modify 列名1 数据类型 after 列名2；</li>
+<li>alter table 表明 modify 列名1 数据类型 first</li>
+<li>清空表 </li>
+<li>建议</li>
+<li>truncate table xxx<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">insert into xxx</span><br><span class="line">select xxx from xxx</span><br></pre></td></tr></table></figure></li>
+<li>create</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">create table ...like xxxx</span><br><span class="line">create table xxx like mmm</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>基于xxx表创建新表</li>
+<li>但是，是空表</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">create table ..[as]select xxxx from kkk</span><br><span class="line">create table emp_dev01 as select ename,job</span><br><span class="line">from emp</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>基于其select的表给生成一个表</li>
+<li>叫ctas</li>
+<li>可以用别名该表头</li>
+</ul>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
     <title>git</title>
     <url>/2022/11/08/11-8/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
@@ -2636,105 +2735,6 @@ hdfs diskbalancer
 <li>本地备份本地不常用</li>
 <li>一般都是备份远程仓库</li>
 <li>对于远程仓库的地址 ，则是为我们通过查看远程仓库的地址进行</li>
-</ul>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>jdbc</title>
-    <url>/2022/11/07/11-7/</url>
-    <content><![CDATA[<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
-<li>Maven项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。</li>
-<li>注意是工具</li>
-</ul>
-<h2 id="Maven的配置以及idea使用"><a href="#Maven的配置以及idea使用" class="headerlink" title="Maven的配置以及idea使用"></a>Maven的配置以及idea使用</h2><h3 id="下载及解压"><a href="#下载及解压" class="headerlink" title="下载及解压"></a>下载及解压</h3><ul>
-<li>首先在Maven的官网下载Maven</li>
-<li><a href="http://maven.apache.org/download.cgi" title="Maven官网">Maven官网</a></li>
-<li>我们windows一般下载 ： Binary zip archive的</li>
-<li>我这里下载的是 apache-maven-3.8.6-bin.zip</li>
-<li>下载完之后 ， 解压到一个文件目录下 </li>
-<li>我是新建了个文件目录 命名为 maven</li>
-<li>如何解压到文件目录下</li>
-</ul>
-<h3 id="配置相关文件"><a href="#配置相关文件" class="headerlink" title="配置相关文件"></a>配置相关文件</h3><ul>
-<li>解压成功之后 ，我们会获得几个文件夹</li>
-<li>bin</li>
-<li>boot</li>
-<li>conf</li>
-<li>lib</li>
-<li>这个里conf是maven的配置文件</li>
-<li>我们在这个目录下新建maven_repossitory文件夹</li>
-<li>这个文件夹可以作为，我们的本地仓库</li>
-<li>接下来，我们要修改 conf 文件夹下</li>
-<li>settings.xml文件</li>
-<li>我们先找到</li>
-<li><code>&lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;</code></li>
-<li>这条语句的位置</li>
-<li>把它更改成</li>
-<li><code>&lt;localRepository&gt;你的maven_repossitory路径&lt;/localRepository&gt;</code></li>
-<li>这样我们就自己创建了个</li>
-<li>因为一般maven的默认仓库是</li>
-<li><code>C:\Users\Administrator\.m2\repository</code></li>
-<li>接下来 ， 我们进行设置国内镜像源</li>
-<li>找到 mirrors 标签</li>
-<li>在mirrors里</li>
-<li>加上：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;mirror&gt;</span><br><span class="line">	&lt;id&gt;alimaven&lt;/id&gt;</span><br><span class="line">	&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line">	&lt;name&gt;aliyun maven&lt;/name&gt;</span><br><span class="line">	&lt;url&gt;http://maven.aliyun.com/nexus/content/repositories/central/&lt;/url&gt;</span><br><span class="line">&lt;/mirror&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>这个是阿里云的镜像 ， 如果不好使 可以以换成腾讯云 和网易的</li>
-<li>添加方法和上面一样</li>
-<li>接下来我们可以为maven配置全局的jdk，这样我们在创建maven项目时就会自动使用该jdk版本，我配置的是jdk1.8</li>
-<li>找到标签 <profiles></profiles></li>
-<li>然后在标签里加入<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!-- java版本 --&gt; </span><br><span class="line">&lt;profile&gt;</span><br><span class="line">  &lt;id&gt;jdk-1.8&lt;/id&gt;</span><br><span class="line">  &lt;activation&gt;</span><br><span class="line">	&lt;activeByDefault&gt;true&lt;/activeByDefault&gt;</span><br><span class="line">	&lt;jdk&gt;1.8&lt;/jdk&gt;</span><br><span class="line">  &lt;/activation&gt;</span><br><span class="line"></span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">	&lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">	&lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">	&lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">&lt;/profile&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="更改idea的maven"><a href="#更改idea的maven" class="headerlink" title="更改idea的maven"></a>更改idea的maven</h3><ul>
-<li>file 文件里的 setting</li>
-<li>在上面搜索 maven</li>
-<li>点进去之后</li>
-<li>把Maven home directory</li>
-<li>配置成自己的解压的文件夹</li>
-<li>然后设置user setting file</li>
-<li>把他设置成解压的文件的setting.xml</li>
-<li>然后把 local repository</li>
-<li>设置成之前自己配置的本地仓库</li>
-<li>关于idea的配置就完成了</li>
-</ul>
-<h2 id="简单的链接mysql"><a href="#简单的链接mysql" class="headerlink" title="简单的链接mysql"></a>简单的链接mysql</h2><ul>
-<li>首先创建maven项目</li>
-<li>然后在pom.xml中加上</li>
-<li><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;5.1.28&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>在<dependencies>标签中加上</li>
-<li>然后import change</li>
-<li>然后在主程序的java项目包里</li>
-<li>写上：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line">import java.sql.Connection;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Hello world!</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class App </span><br><span class="line">&#123;</span><br><span class="line">    public static void main( String[] args )</span><br><span class="line">    &#123;</span><br><span class="line">        String url = &quot;jdbc:mysql://192.168.41.131:3306/try&quot;;</span><br><span class="line">        String user = &quot;root&quot;;</span><br><span class="line">        String passwd = &quot;liuzihan010616&quot;;</span><br><span class="line"></span><br><span class="line">        Connection conect = dbutils.getConnection(url , user , passwd);</span><br><span class="line"></span><br><span class="line">        System.out.println(conect);</span><br><span class="line">        dbutils.closeConnection(conect);</span><br><span class="line"></span><br><span class="line">        System.out.println( &quot;Hello World!&quot; );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>-然后创建一个dbutils</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.DriverManager;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author sxwang</span><br><span class="line"> * 11 07 15:02</span><br><span class="line"> */</span><br><span class="line">public class dbutils &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 获取mysql 连接</span><br><span class="line">     * @param url</span><br><span class="line">     * @param user</span><br><span class="line">     * @param passwd</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Connection getConnection(String url, String user, String passwd)&#123;</span><br><span class="line"></span><br><span class="line">        Connection connection=null;</span><br><span class="line">        try &#123;</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">            try &#123;</span><br><span class="line">                connection = DriverManager.getConnection(url, user, passwd);</span><br><span class="line">            &#125; catch (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return connection;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 关闭连接</span><br><span class="line">     * @param conn</span><br><span class="line">     */</span><br><span class="line">    public static void closeConnection(Connection conn)&#123;</span><br><span class="line"></span><br><span class="line">        if(conn !=null)&#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                conn.close();</span><br><span class="line">            &#125; catch (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="Mysql对表的操作"><a href="#Mysql对表的操作" class="headerlink" title="Mysql对表的操作"></a>Mysql对表的操作</h2><ul>
-<li>alter table 旧表名 rename to 新表名 ： 更改表名字</li>
-<li>alter table 表名 modify 列名 数据类型 ： 修改数据类型</li>
-<li>alter table 表名 change 旧表名 新列名 数据类型 ： 修改列名</li>
-<li>alter table 表名 drop 列名 ： 删除列</li>
-<li>alter table 表名 add 新列名 数据类型</li>
-<li>alter table 表名 modify 列名1 数据类型 after 列名2；</li>
-<li>alter table 表明 modify 列名1 数据类型 first</li>
-<li>清空表 </li>
-<li>建议</li>
-<li>truncate table xxx<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">insert into xxx</span><br><span class="line">select xxx from xxx</span><br></pre></td></tr></table></figure></li>
-<li>create</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">create table ...like xxxx</span><br><span class="line">create table xxx like mmm</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>基于xxx表创建新表</li>
-<li>但是，是空表</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">create table ..[as]select xxxx from kkk</span><br><span class="line">create table emp_dev01 as select ename,job</span><br><span class="line">from emp</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>基于其select的表给生成一个表</li>
-<li>叫ctas</li>
-<li>可以用别名该表头</li>
 </ul>
 ]]></content>
       <categories>
@@ -3207,31 +3207,6 @@ hdfs diskbalancer
       </categories>
   </entry>
   <entry>
-    <title>11-19作业</title>
-    <url>/2022/11/19/%E4%BD%9C%E4%B8%9A11-19/</url>
-    <content><![CDATA[<h1 id="通过mapreduce的api统计emp表里的每个工作的人数"><a href="#通过mapreduce的api统计emp表里的每个工作的人数" class="headerlink" title="通过mapreduce的api统计emp表里的每个工作的人数"></a>通过mapreduce的api统计emp表里的每个工作的人数</h1><ul>
-<li>数据源</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">7369,SMITH,CLERK,7902,1980-12-17 14:00:00,800.00,,20</span><br><span class="line">7499,ALLEN,SALESMAN,7698,1981-02-20 14:00:00,1600.00,300.00,30</span><br><span class="line">7521,WARD,SALESMAN,7698,1981-02-22 14:00:00,1250.00,500.00,30</span><br><span class="line">7566,JONES,MANAGER,7839,1981-04-02 14:00:00,2975.00,,20</span><br><span class="line">7654,MARTIN,SALESMAN,7698,1981-09-28 13:00:00,1250.00,1400.00,30</span><br><span class="line">7698,BLAKE,MANAGER,7839,1981-05-01 13:00:00,2850.00,,30</span><br><span class="line">7782,CLARK,MANAGER,7839,1981-06-09 13:00:00,2450.00,,10</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7839,KING,PRESIDENT,,1981-11-17 14:00:00,5000.00,,10</span><br><span class="line">7844,TURNER,SALESMAN,7698,1981-09-08 13:00:00,1500.00,0.00,30</span><br><span class="line">7876,ADAMS,CLERK,7788,1983-01-12 14:00:00,1100.00,,20</span><br><span class="line">7900,lebulang,CLERK,7698,1981-12-03 14:00:00,950.00,,30</span><br><span class="line">7902,FORD,ANALYST,7566,1981-12-03 14:00:00,3000.00,,20</span><br><span class="line">7934,MILLER,CLERK,7782,1982-01-23 14:00:00,1300.00,,10</span><br><span class="line">7839,KING,PRESIDENT,,1981-11-17 14:00:00,5000.00,,10</span><br><span class="line">7654,MARTIN,SALESMAN,7698,1981-09-28 13:00:00,3200.00,1400.00,30</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>其中第二列就是工作</p>
-</li>
-<li><p>代码如下 ：</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import org.apache.hadoop.conf.Configuration;</span><br><span class="line">import org.apache.hadoop.fs.Path;</span><br><span class="line">import org.apache.hadoop.io.IntWritable;</span><br><span class="line">import org.apache.hadoop.io.Text;</span><br><span class="line">import org.apache.hadoop.mapreduce.Job;</span><br><span class="line">import org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line">import org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.util.StringTokenizer;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author sxwang</span><br><span class="line"> * 11 18 14:00</span><br><span class="line"> */</span><br><span class="line">public class test &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * driver</span><br><span class="line">     * @param args</span><br><span class="line">     */</span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        String input=&quot;D://emp.txt&quot;;</span><br><span class="line">        String output=&quot;out&quot;;</span><br><span class="line">        Configuration conf = new Configuration();</span><br><span class="line">        //0.todo... 删除目标路径</span><br><span class="line">        FileUtils.deletePath(conf,output);</span><br><span class="line"></span><br><span class="line">        //1.设置 作业名称</span><br><span class="line">        Job job = Job.getInstance(conf, &quot;WCAPP&quot;);</span><br><span class="line">        //2.设置map reduce 执行代码的主类</span><br><span class="line">        job.setJarByClass(test.class);</span><br><span class="line">        job.setMapperClass(MyMapper.class);</span><br><span class="line">        job.setReducerClass(MyReducer.class);</span><br><span class="line">        //3.指定 oupput kv类型</span><br><span class="line">        job.setOutputKeyClass(Text.class);</span><br><span class="line">        job.setOutputValueClass(IntWritable.class);</span><br><span class="line">        //4. 设置数据源路径 数据输出路径</span><br><span class="line">        FileInputFormat.addInputPath(job, new Path(input));</span><br><span class="line">        FileOutputFormat.setOutputPath(job, new Path(output));</span><br><span class="line">        //5. 提交mr yarn</span><br><span class="line">        System.exit(job.waitForCompletion(true) ? 0 : 1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * mapper</span><br><span class="line">     */</span><br><span class="line">    public static class MyMapper</span><br><span class="line">            extends Mapper&lt;Object, Text, Text, IntWritable&gt; &#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        protected void map(Object key, Text value, Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">            /**</span><br><span class="line">             * 1.按照分隔符 进行拆分 每个单词 ，每个单词赋值为1</span><br><span class="line">             * (word ,1)</span><br><span class="line">             */</span><br><span class="line"></span><br><span class="line">            String[] words = value.toString().split(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">            for (String word : words) &#123;</span><br><span class="line">                String[] split = word.split(&quot;,&quot;);</span><br><span class="line">                context.write(new Text(split[2]) ,new IntWritable(1));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * reducer</span><br><span class="line">     */</span><br><span class="line">    public static class MyReducer</span><br><span class="line">            extends Reducer&lt;Text,IntWritable,Text,IntWritable&gt; &#123;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">         *  (word ,1)</span><br><span class="line">         *</span><br><span class="line">         *  (word,&lt;1,1,1,1&gt;)</span><br><span class="line">         *</span><br><span class="line">         *  1.聚合value</span><br><span class="line">         *</span><br><span class="line">         *  2.写出去</span><br><span class="line">         *  (word ,3)</span><br><span class="line">         */</span><br><span class="line">        @Override</span><br><span class="line">        protected void reduce(Text key, Iterable&lt;IntWritable&gt; values, Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">            int sum=0;</span><br><span class="line">            for (IntWritable value : values) &#123;</span><br><span class="line">                sum +=Integer.parseInt(value.toString());</span><br><span class="line">            &#125;</span><br><span class="line">            context.write(key,new IntWritable(sum));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>基本概念 ： 把数据先通过map进行etl，然后通过redurce进行数据的整合之类的</li>
-<li>最后输出</li>
-</ul>
-]]></content>
-      <categories>
-        <category>作业</category>
-      </categories>
-  </entry>
-  <entry>
     <title>sql练习</title>
     <url>/2022/11/05/sql%E7%BB%83%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">create database bigdata;</span><br><span class="line">use bigdata;</span><br><span class="line"></span><br><span class="line">--部门表</span><br><span class="line">dept部门表(deptno部门编号/dname部门名称/loc地点)</span><br><span class="line">create table dept (</span><br><span class="line">    deptno numeric(2),</span><br><span class="line">    dname varchar(14),</span><br><span class="line">    loc varchar(13)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into dept values (10, &#x27;ACCOUNTING&#x27;, &#x27;NEW YORK&#x27;);</span><br><span class="line">insert into dept values (20, &#x27;RESEARCH&#x27;, &#x27;DALLAS&#x27;);</span><br><span class="line">insert into dept values (30, &#x27;SALES&#x27;, &#x27;CHICAGO&#x27;);</span><br><span class="line">insert into dept values (40, &#x27;OPERATIONS&#x27;, &#x27;BOSTON&#x27;);</span><br><span class="line"></span><br><span class="line">--工资等级表</span><br><span class="line">salgrade工资等级表(grade 等级/losal此等级的最低/hisal此等级的最高)</span><br><span class="line">create table salgrade (</span><br><span class="line">    grade numeric,</span><br><span class="line">    losal numeric,</span><br><span class="line">    hisal numeric</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into salgrade values (1, 700, 1200);</span><br><span class="line">insert into salgrade values (2, 1201, 1400);</span><br><span class="line">insert into salgrade values (3, 1401, 2000);</span><br><span class="line">insert into salgrade values (4, 2001, 3000);</span><br><span class="line">insert into salgrade values (5, 3001, 9999);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">--员工表</span><br><span class="line">emp员工表(empno员工号/ename员工姓名/job工作/mgr上级编号/hiredate受雇日期/sal薪金/comm佣金/deptno部门编号)</span><br><span class="line">工资 ＝ 薪金 ＋ 佣金</span><br><span class="line"></span><br><span class="line">create table emp (</span><br><span class="line">    empno numeric(4) not null,</span><br><span class="line">    ename varchar(10),</span><br><span class="line">    job varchar(9),</span><br><span class="line">    mgr numeric(4),</span><br><span class="line">    hiredate datetime,</span><br><span class="line">    sal numeric(7, 2),</span><br><span class="line">    comm numeric(7, 2),</span><br><span class="line">    deptno numeric(2)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">insert into emp values (7369, &#x27;SMITH&#x27;, &#x27;CLERK&#x27;, 7902, &#x27;1980-12-17&#x27;, 800, null, 20);</span><br><span class="line">insert into emp values (7499, &#x27;ALLEN&#x27;, &#x27;SALESMAN&#x27;, 7698, &#x27;1981-02-20&#x27;, 1600, 300, 30);</span><br><span class="line">insert into emp values (7521, &#x27;WARD&#x27;, &#x27;SALESMAN&#x27;, 7698, &#x27;1981-02-22&#x27;, 1250, 500, 30);</span><br><span class="line">insert into emp values (7566, &#x27;JONES&#x27;, &#x27;MANAGER&#x27;, 7839, &#x27;1981-04-02&#x27;, 2975, null, 20);</span><br><span class="line">insert into emp values (7654, &#x27;MARTIN&#x27;, &#x27;SALESMAN&#x27;, 7698, &#x27;1981-09-28&#x27;, 1250, 1400, 30);</span><br><span class="line">insert into emp values (7698, &#x27;BLAKE&#x27;, &#x27;MANAGER&#x27;, 7839, &#x27;1981-05-01&#x27;, 2850, null, 30);</span><br><span class="line">insert into emp values (7782, &#x27;CLARK&#x27;, &#x27;MANAGER&#x27;, 7839, &#x27;1981-06-09&#x27;, 2450, null, 10);</span><br><span class="line">insert into emp values (7788, &#x27;SCOTT&#x27;, &#x27;ANALYST&#x27;, 7566, &#x27;1982-12-09&#x27;, 3000, null, 20);</span><br><span class="line">insert into emp values (7839, &#x27;KING&#x27;, &#x27;PRESIDENT&#x27;, null, &#x27;1981-11-17&#x27;, 5000, null, 10);</span><br><span class="line">insert into emp values (7844, &#x27;TURNER&#x27;, &#x27;SALESMAN&#x27;, 7698, &#x27;1981-09-08&#x27;, 1500, 0, 30);</span><br><span class="line">insert into emp values (7876, &#x27;ADAMS&#x27;, &#x27;CLERK&#x27;, 7788, &#x27;1983-01-12&#x27;, 1100, null, 20);</span><br><span class="line">insert into emp values (7900, &#x27;JAMES&#x27;, &#x27;CLERK&#x27;, 7698, &#x27;1981-12-03&#x27;, 950, null, 30);</span><br><span class="line">insert into emp values (7902, &#x27;FORD&#x27;, &#x27;ANALYST&#x27;, 7566, &#x27;1981-12-03&#x27;, 3000, null, 20);</span><br><span class="line">insert into emp values (7934, &#x27;MILLER&#x27;, &#x27;CLERK&#x27;, 7782, &#x27;1982-01-23&#x27;, 1300, null, 10);</span><br><span class="line"></span><br><span class="line">1.查询出部门编号为30的所有员工的编号和姓名</span><br><span class="line"></span><br><span class="line">	table： emp</span><br><span class="line">	查什么： </span><br><span class="line">		1.维度：group by</span><br><span class="line">		2.指标: 聚合函数</span><br><span class="line">		3.普普通通的字段：	编号和姓名</span><br><span class="line">	怎么查：</span><br><span class="line">		where：</span><br><span class="line">			部门编号为30</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2.找出部门编号为10中所有经理，和部门编号为20中所有销售员的详细资料。</span><br><span class="line">3.查询所有员工详细信息，用工资降序排序，如果工资相同使用入职日期升序排序</span><br><span class="line">4.列出薪金大于1500的各种工作及从事此工作的员工人数。</span><br><span class="line">5.列出在销售部工作的员工的姓名，假定不知道销售部的部门编号。</span><br><span class="line">6.查询姓名以S开头的\以S结尾\包含S字符\第二个字母为L  __</span><br><span class="line">7.查询每种工作的最高工资、最低工资、人数</span><br><span class="line">8.列出薪金 高于 公司平均薪金的所有员工号，员工姓名，所在部门名称，上级领导，工资，工资等级</span><br><span class="line">9.列出薪金  高于  在各自部门工作的员工的平均薪金的员工姓名和薪金、部门名称。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">80% sqlboy sqlgirl</span><br><span class="line">20% 大数据平台</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -3608,6 +3583,31 @@ hdfs diskbalancer
 <li>数据源<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">drop table if exists `user_profile`;</span><br><span class="line">drop table if  exists `question_practice_detail`;</span><br><span class="line">drop table if  exists `question_detail`;</span><br><span class="line">CREATE TABLE `user_profile` (</span><br><span class="line">  `id` int(11) NOT NULL,</span><br><span class="line">  `device_id` int(11) NOT NULL,</span><br><span class="line">  `gender` varchar(14) NOT NULL,</span><br><span class="line">  `age` int(11) DEFAULT NULL,</span><br><span class="line">  `university` varchar(32) NOT NULL,</span><br><span class="line">  `gpa` float DEFAULT NULL,</span><br><span class="line">  `active_days_within_30` int(11) DEFAULT NULL,</span><br><span class="line">  `question_cnt` int(11) DEFAULT NULL,</span><br><span class="line">  `answer_cnt` int(11) DEFAULT NULL</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br><span class="line">CREATE TABLE `question_practice_detail` (</span><br><span class="line">`id` int NOT NULL,</span><br><span class="line">`device_id` int NOT NULL,</span><br><span class="line">`question_id`int NOT NULL,</span><br><span class="line">`result` varchar(32) NOT NULL,</span><br><span class="line">`date` date NOT NULL</span><br><span class="line">);</span><br><span class="line">CREATE TABLE `question_detail` (</span><br><span class="line">`id` int NOT NULL,</span><br><span class="line">`question_id`int NOT NULL,</span><br><span class="line">`difficult_level` varchar(32) NOT NULL</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">INSERT INTO user_profile VALUES(1,2138,&#x27;male&#x27;,21,&#x27;北京大学&#x27;,3.4,7,2,12);</span><br><span class="line">INSERT INTO user_profile VALUES(2,3214,&#x27;male&#x27;,null,&#x27;复旦大学&#x27;,4.0,15,5,25);</span><br><span class="line">INSERT INTO user_profile VALUES(3,6543,&#x27;female&#x27;,20,&#x27;北京大学&#x27;,3.2,12,3,30);</span><br><span class="line">INSERT INTO user_profile VALUES(4,2315,&#x27;female&#x27;,23,&#x27;浙江大学&#x27;,3.6,5,1,2);</span><br><span class="line">INSERT INTO user_profile VALUES(5,5432,&#x27;male&#x27;,25,&#x27;山东大学&#x27;,3.8,20,15,70);</span><br><span class="line">INSERT INTO user_profile VALUES(6,2131,&#x27;male&#x27;,28,&#x27;山东大学&#x27;,3.3,15,7,13);</span><br><span class="line">INSERT INTO user_profile VALUES(7,4321,&#x27;male&#x27;,28,&#x27;复旦大学&#x27;,3.6,9,6,52);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(1,2138,111,&#x27;wrong&#x27;,&#x27;2021-05-03&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(2,3214,112,&#x27;wrong&#x27;,&#x27;2021-05-09&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(3,3214,113,&#x27;wrong&#x27;,&#x27;2021-06-15&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(4,6543,111,&#x27;right&#x27;,&#x27;2021-08-13&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(5,2315,115,&#x27;right&#x27;,&#x27;2021-08-13&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(6,2315,116,&#x27;right&#x27;,&#x27;2021-08-14&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(7,2315,117,&#x27;wrong&#x27;,&#x27;2021-08-15&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(8,3214,112,&#x27;wrong&#x27;,&#x27;2021-05-09&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(9,3214,113,&#x27;wrong&#x27;,&#x27;2021-08-15&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(10,6543,111,&#x27;right&#x27;,&#x27;2021-08-13&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(11,2315,115,&#x27;right&#x27;,&#x27;2021-08-13&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(12,2315,116,&#x27;right&#x27;,&#x27;2021-08-14&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(13,2315,117,&#x27;wrong&#x27;,&#x27;2021-08-15&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(14,3214,112,&#x27;wrong&#x27;,&#x27;2021-08-16&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(15,3214,113,&#x27;wrong&#x27;,&#x27;2021-08-18&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(16,6543,111,&#x27;right&#x27;,&#x27;2021-08-13&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(1,111,&#x27;hard&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(2,112,&#x27;medium&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(3,113,&#x27;easy&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(4,115,&#x27;easy&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(5,116,&#x27;medium&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(6,117,&#x27;easy&#x27;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="解答-1"><a href="#解答-1" class="headerlink" title="解答"></a>解答</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">select avg(if(datediff(date2, date1)=1, 1, 0)) as avg_ret</span><br><span class="line">from (</span><br><span class="line">    select</span><br><span class="line">        distinct device_id,</span><br><span class="line">        date as date1,</span><br><span class="line">        lead(date) over (partition by device_id order by date) as date2</span><br><span class="line">    from (</span><br><span class="line">        select distinct device_id, date</span><br><span class="line">        from question_practice_detail</span><br><span class="line">    ) as uniq_id_date</span><br><span class="line">) as id_last_next_date</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>作业</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>11-19作业</title>
+    <url>/2022/11/19/%E4%BD%9C%E4%B8%9A11-19/</url>
+    <content><![CDATA[<h1 id="通过mapreduce的api统计emp表里的每个工作的人数"><a href="#通过mapreduce的api统计emp表里的每个工作的人数" class="headerlink" title="通过mapreduce的api统计emp表里的每个工作的人数"></a>通过mapreduce的api统计emp表里的每个工作的人数</h1><ul>
+<li>数据源</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">7369,SMITH,CLERK,7902,1980-12-17 14:00:00,800.00,,20</span><br><span class="line">7499,ALLEN,SALESMAN,7698,1981-02-20 14:00:00,1600.00,300.00,30</span><br><span class="line">7521,WARD,SALESMAN,7698,1981-02-22 14:00:00,1250.00,500.00,30</span><br><span class="line">7566,JONES,MANAGER,7839,1981-04-02 14:00:00,2975.00,,20</span><br><span class="line">7654,MARTIN,SALESMAN,7698,1981-09-28 13:00:00,1250.00,1400.00,30</span><br><span class="line">7698,BLAKE,MANAGER,7839,1981-05-01 13:00:00,2850.00,,30</span><br><span class="line">7782,CLARK,MANAGER,7839,1981-06-09 13:00:00,2450.00,,10</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7839,KING,PRESIDENT,,1981-11-17 14:00:00,5000.00,,10</span><br><span class="line">7844,TURNER,SALESMAN,7698,1981-09-08 13:00:00,1500.00,0.00,30</span><br><span class="line">7876,ADAMS,CLERK,7788,1983-01-12 14:00:00,1100.00,,20</span><br><span class="line">7900,lebulang,CLERK,7698,1981-12-03 14:00:00,950.00,,30</span><br><span class="line">7902,FORD,ANALYST,7566,1981-12-03 14:00:00,3000.00,,20</span><br><span class="line">7934,MILLER,CLERK,7782,1982-01-23 14:00:00,1300.00,,10</span><br><span class="line">7839,KING,PRESIDENT,,1981-11-17 14:00:00,5000.00,,10</span><br><span class="line">7654,MARTIN,SALESMAN,7698,1981-09-28 13:00:00,3200.00,1400.00,30</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line">7788,SCOTT,ANALYST,7566,1982-12-09 14:00:00,3000.00,,20</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>其中第二列就是工作</p>
+</li>
+<li><p>代码如下 ：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import org.apache.hadoop.conf.Configuration;</span><br><span class="line">import org.apache.hadoop.fs.Path;</span><br><span class="line">import org.apache.hadoop.io.IntWritable;</span><br><span class="line">import org.apache.hadoop.io.Text;</span><br><span class="line">import org.apache.hadoop.mapreduce.Job;</span><br><span class="line">import org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line">import org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.util.StringTokenizer;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author sxwang</span><br><span class="line"> * 11 18 14:00</span><br><span class="line"> */</span><br><span class="line">public class test &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * driver</span><br><span class="line">     * @param args</span><br><span class="line">     */</span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        String input=&quot;D://emp.txt&quot;;</span><br><span class="line">        String output=&quot;out&quot;;</span><br><span class="line">        Configuration conf = new Configuration();</span><br><span class="line">        //0.todo... 删除目标路径</span><br><span class="line">        FileUtils.deletePath(conf,output);</span><br><span class="line"></span><br><span class="line">        //1.设置 作业名称</span><br><span class="line">        Job job = Job.getInstance(conf, &quot;WCAPP&quot;);</span><br><span class="line">        //2.设置map reduce 执行代码的主类</span><br><span class="line">        job.setJarByClass(test.class);</span><br><span class="line">        job.setMapperClass(MyMapper.class);</span><br><span class="line">        job.setReducerClass(MyReducer.class);</span><br><span class="line">        //3.指定 oupput kv类型</span><br><span class="line">        job.setOutputKeyClass(Text.class);</span><br><span class="line">        job.setOutputValueClass(IntWritable.class);</span><br><span class="line">        //4. 设置数据源路径 数据输出路径</span><br><span class="line">        FileInputFormat.addInputPath(job, new Path(input));</span><br><span class="line">        FileOutputFormat.setOutputPath(job, new Path(output));</span><br><span class="line">        //5. 提交mr yarn</span><br><span class="line">        System.exit(job.waitForCompletion(true) ? 0 : 1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * mapper</span><br><span class="line">     */</span><br><span class="line">    public static class MyMapper</span><br><span class="line">            extends Mapper&lt;Object, Text, Text, IntWritable&gt; &#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        protected void map(Object key, Text value, Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">            /**</span><br><span class="line">             * 1.按照分隔符 进行拆分 每个单词 ，每个单词赋值为1</span><br><span class="line">             * (word ,1)</span><br><span class="line">             */</span><br><span class="line"></span><br><span class="line">            String[] words = value.toString().split(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">            for (String word : words) &#123;</span><br><span class="line">                String[] split = word.split(&quot;,&quot;);</span><br><span class="line">                context.write(new Text(split[2]) ,new IntWritable(1));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * reducer</span><br><span class="line">     */</span><br><span class="line">    public static class MyReducer</span><br><span class="line">            extends Reducer&lt;Text,IntWritable,Text,IntWritable&gt; &#123;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">         *  (word ,1)</span><br><span class="line">         *</span><br><span class="line">         *  (word,&lt;1,1,1,1&gt;)</span><br><span class="line">         *</span><br><span class="line">         *  1.聚合value</span><br><span class="line">         *</span><br><span class="line">         *  2.写出去</span><br><span class="line">         *  (word ,3)</span><br><span class="line">         */</span><br><span class="line">        @Override</span><br><span class="line">        protected void reduce(Text key, Iterable&lt;IntWritable&gt; values, Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">            int sum=0;</span><br><span class="line">            for (IntWritable value : values) &#123;</span><br><span class="line">                sum +=Integer.parseInt(value.toString());</span><br><span class="line">            &#125;</span><br><span class="line">            context.write(key,new IntWritable(sum));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>基本概念 ： 把数据先通过map进行etl，然后通过redurce进行数据的整合之类的</li>
+<li>最后输出</li>
+</ul>
+]]></content>
       <categories>
         <category>作业</category>
       </categories>
