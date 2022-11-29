@@ -30,7 +30,7 @@
 <meta property="og:description" content="yarn架构主从架构 ： resourcemanager(资源的分配) : nodemanager(资源的供给与隔离) 资源调度通过rm把nm的资源分配给我们的 task上 资源隔离nm按照要求给task提供资源，保证提供的资源具有独占性 资源nm指挥分配的资源 一个task对应一个container ： cpu&#x2F;mem（cpu和内存） 每个container之间是相互隔离的 yarn的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-28T00:34:31.253Z">
-<meta property="article:modified_time" content="2022-11-28T12:09:40.792Z">
+<meta property="article:modified_time" content="2022-11-29T01:48:22.254Z">
 <meta property="article:author" content="liu zihang">
 <meta name="twitter:card" content="summary">
 
@@ -224,10 +224,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-28 08:34:31 / 修改时间：20:09:40" itemprop="dateCreated datePublished" datetime="2022-11-28T08:34:31+08:00">2022-11-28</time>
+              <time title="创建时间：2022-11-28 08:34:31" itemprop="dateCreated datePublished" datetime="2022-11-28T08:34:31+08:00">2022-11-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-29 09:48:22" itemprop="dateModified" datetime="2022-11-29T09:48:22+08:00">2022-11-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -251,7 +257,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.2k</span>
+              <span>5.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -310,8 +316,9 @@
 </ul>
 <p>主流的中小企业：Capacity</p>
 <p>大公司会用：fair</p>
-<h3 id="默认调度器"><a href="#默认调度器" class="headerlink" title="默认调度器"></a>默认调度器</h3><p>容量调度器</p>
+<h3 id="默认调度器"><a href="#默认调度器" class="headerlink" title="默认调度器"></a>默认调度器</h3><p>3.x：默认是容量调度器</p>
 <p>通过调度器进行其作业调度</p>
+<p>2.x: 版本是fair（默认）</p>
 <h2 id="yarn的web界面的简介"><a href="#yarn的web界面的简介" class="headerlink" title="yarn的web界面的简介"></a>yarn的web界面的简介</h2><p>左侧侧边栏 ： 有几个选项卡 ： 分别是 </p>
 <h2 id="yarn资源的调优"><a href="#yarn资源的调优" class="headerlink" title="yarn资源的调优"></a>yarn资源的调优</h2><p>container? </p>
 <p>一定比例的cpu和mem</p>
@@ -343,7 +350,7 @@
 <p>最小:1c  (默认)</p>
 <p>最大:4c（默认）</p>
 <p>实际开发角度 ：</p>
-<p>mem</p>
+<p>mem：最大不要超过32G ，如果超过32G则会导致压缩指针失效</p>
 <p>cpu ： cloudera的公司推荐一个container的core最好不要超过5</p>
 <p>配置core  ：在yarn-site.xml</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.resource.memory-mb&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;4096&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.minimum-allocation-mb&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;1024&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.maximum-allocation-mb&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;2048&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">cpu： </span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.resource.pcores-vcores-multiplier&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;2&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.resource.cpu-vcores&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;4&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.minimum-allocation-vcores&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;1&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.maximum-allocation-vcores&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;2&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -390,7 +397,7 @@
 <li>LZ4</li>
 </ul>
 <p>常见的压缩注意点：</p>
-<p>压缩比 Bzip2 30%  GZIP    snappy、lzo 50%</p>
+<p>压缩比 Bzip2 30%  GZIP    snappy、lzo 50%  ： 这个30%和50%代表能把源文件压缩到源文件的%多少</p>
 <p>解压速度 ： snappy、lzo GZIP   Bzip2</p>
 <p>压缩文件可不可以一被切分 </p>
 <p>假设一个 5G文件 不能被切分 split 意味着 只能使用一个map task去处理</p>
@@ -418,18 +425,14 @@
 <p>集群所有的job 在配置文件里配置</p>
 <p>对mapreduce 进行配置 </p>
 <ul>
-<li><p>配置压缩的codec</p>
-</li>
-<li><p>map reduce 输出配置</p>
-<ul>
+<li>配置压缩的codec</li>
+<li>map reduce 输出配置<ul>
 <li>先打开压缩的开关</li>
 <li>配置codec即可</li>
 </ul>
 </li>
-<li><p>hadoop是不是支持哪些压缩 ，通过命令 ：或者配置文件</p>
-</li>
-<li><p>core-site.xm</p>
-<ul>
+<li>hadoop是不是支持哪些压缩 ，通过命令 ：或者配置文件</li>
+<li>core-site.xm<ul>
 <li>配置支持的压缩有什么</li>
 <li>原生的hadoop默认不支持lzo的算法，因为lzo要把整个hadooop重新编译一遍才可以重新实行</li>
 <li>&#96;&#96;&#96;<property>
@@ -443,43 +446,35 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mapred-site.xml:</span><br><span class="line"></span><br><span class="line">* 1.先打开压缩的开关</span><br><span class="line">* 2.map reduce 输出 压缩算法</span><br><span class="line"></span><br><span class="line">reduce： 开关</span><br><span class="line"></span><br><span class="line">* mapreduce.output.fileoutputformat.compress</span><br><span class="line">* ```</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">          &lt;name&gt;mapreduce.output.fileoutputformat.compress&lt;/name&gt;</span><br><span class="line">          &lt;value&gt;true&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li><p>&#96;&#96;&#96;</p>
-<property>
+<li>&#96;&#96;&#96;<property>
         <name>mapreduce.output.fileoutputformat.compress.codec</name>
         <value>org.apache.hadoop.io.compress.BZip2Codec</value>
 </property>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">map阶段的：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+// 设置在map输出阶段压缩
+      conf.set("mapreduce.map.output.compress", "true");</li>
+</ul>
+<p>&#x2F;&#x2F; 设置解压缩编码器<br>        conf.set(“mapreduce.map.output.compress.codec”, “org.apache.hadoop.io.compress.DefaultCodec”);</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">各个datanode数据节点的平衡</span><br><span class="line"></span><br><span class="line">* DN1 存储空间 90%</span><br><span class="line">* DN2 存储空间 60%</span><br><span class="line">* DN3 存储空间 80%</span><br><span class="line"></span><br><span class="line">如何做呢？</span><br><span class="line"></span><br><span class="line">* sbin/start-balancer.sh</span><br><span class="line"></span><br><span class="line">parameters = Balancer.BalancerParameters</span><br><span class="line"></span><br><span class="line">[BalancingPolicy.Node, threshold = 10.0, max idle iteration = 5</span><br><span class="line"></span><br><span class="line">数据平衡的默认阈值：threshold = 10.0</span><br><span class="line"></span><br><span class="line">每个节点的磁盘使用率 - 平均的磁盘使用率 &lt;10%</span><br><span class="line"></span><br><span class="line">DN1 存储空间 90%  -76% = 14% 说明这个节点数据多 往别的节点迁移数据 出</span><br><span class="line">DN2 存储空间 60%  -76% = -12% 说明这个节点数据少 别的节点迁移数据 进</span><br><span class="line">DN3 存储空间 80%  -76% = 4% 	说明这个节点数据多 往别的节点迁移数据</span><br><span class="line"></span><br><span class="line">avg=90 + 80 +60 /3 = 76%</span><br><span class="line"></span><br><span class="line">生产上 从现在开始 start-balancer.sh -threshold 10  每天要定时做的</span><br><span class="line"></span><br><span class="line">放到业务低谷期去做 数据平衡操作</span><br><span class="line"></span><br><span class="line">注意： 不要在业务高峰期做</span><br><span class="line"></span><br><span class="line">1.数据平衡 数据传输  带宽有关</span><br><span class="line"></span><br><span class="line">调优参数 ：平衡的网络带宽  w</span><br><span class="line"></span><br><span class="line">dfs.datanode.balance.bandwidthPerSec 100m 【2.x 默认是10m】</span><br><span class="line"></span><br><span class="line">每个节点数据几十T  需要数据平衡的数据 几十T  可以申请维护窗口时间 ：</span><br><span class="line"></span><br><span class="line">dfs.datanode.balance.bandwidthPerSec 临时调大 200M</span><br><span class="line"></span><br><span class="line">单个DN节点 多块磁盘的数据平衡</span><br><span class="line"></span><br><span class="line">投产前规划：</span><br><span class="line">		DN 机器   10块 2T 【不做raid】  =》 20T   副本的</span><br><span class="line"></span><br><span class="line">1.dn 配置多个磁盘</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <property>
-      <name>dfs.datanode.data.dir</name>
-      <value>/data01,/data02,/data03</value>
-</property></li>
-</ul>
-<pre><code>
-2.为什么要使用多块物理磁盘？
+        <name>dfs.datanode.data.dir</name>
+        <value>/data01,/data02,/data03</value>
+</property>
+```
 
-1.存储
-2.因为多个磁盘的io也是叠加的
-每块磁盘 磁盘io 每秒 100m
-三块磁盘 1s 能 300m文件内容
-一块磁盘 1s 100m
-
-3.可以让服务一直运行，加入一个磁盘挂了，服务不会减少
-
-做多个磁盘数据均衡
-    dfs.disk.balancer.enabled  true 【3.x有这个功能 cdh 2.x 也有】 apache 2.x 没有这个功能
-
-得通过命令去解决磁盘数据均衡？
-
-hdfs diskbalancer
-
-1.步骤
-
-    hdfs diskbalancer -plan  bigdata32  =&gt; 生成一个  bigdata32.plan.json 文件
-        hdfs diskbalancer -execute bigdata32.plan.json =》 执行disk 数据均衡计划文件
-        hdfs diskbalancer -query bigdata32
-
-生产上 当你发现 磁盘写入不均衡 可以做一下 【一般 一个月 半个月 做一次即可】
+<p>挂载磁盘一般最省钱的是 2W 转数 2T的</p>
+<p>2.为什么要使用多块物理磁盘？</p>
+<p>1.存储<br>2.因为多个磁盘的io也是叠加的<br>每块磁盘 磁盘io 每秒 100m<br>三块磁盘 1s 能 300m文件内容<br>一块磁盘 1s 100m</p>
+<p>3.可以让服务一直运行，加入一个磁盘挂了，服务不会减少</p>
+<p>做多个磁盘数据均衡<br>    dfs.disk.balancer.enabled  true 【3.x有这个功能 cdh 2.x 也有】 apache 2.x 没有这个功能</p>
+<p>得通过命令去解决磁盘数据均衡？</p>
+<p>hdfs diskbalancer</p>
+<p>1.步骤</p>
+<pre><code>hdfs diskbalancer -plan  bigdata32  =&gt; 生成一个  bigdata32.plan.json 文件
+    hdfs diskbalancer -execute bigdata32.plan.json =》 执行disk 数据均衡计划文件
+    hdfs diskbalancer -query bigdata32
 </code></pre>
+<p>生产上 当你发现 磁盘写入不均衡 可以做一下 【一般 一个月 半个月 做一次即可】</p>
 
     </div>
 
@@ -571,7 +566,10 @@ hdfs diskbalancer
     <a href="/2022/11/24/11-24/" rel="prev" title="mapreduce">
       <i class="fa fa-chevron-left"></i> mapreduce
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/11/29/11-29/" rel="next" title="hive">
+      hive <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -651,7 +649,7 @@ hdfs diskbalancer
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -709,7 +707,7 @@ hdfs diskbalancer
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共69.2k字</span>
+  <span class="post-count">博客全站共71.1k字</span>
 </div>
 
 
