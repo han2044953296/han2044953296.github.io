@@ -281,138 +281,6 @@
       </categories>
   </entry>
   <entry>
-    <title>线程</title>
-    <url>/2022/10/24/10-24/</url>
-    <content><![CDATA[<h1 id="线程的概念以及原理"><a href="#线程的概念以及原理" class="headerlink" title="线程的概念以及原理"></a>线程的概念以及原理</h1><h2 id="操作系统中线程和进程的概念"><a href="#操作系统中线程和进程的概念" class="headerlink" title="操作系统中线程和进程的概念"></a>操作系统中线程和进程的概念</h2><ul>
-<li>进程是指一个内存中运行的应用程序，每个进程都有自己的独立空间，一个进程中可以启动多个线程，比如在windows里一个运行的exe就是一个进程</li>
-<li>线程是指进程中的一个执行流程，一个进程中可以用运行多个线程。线程总是属于某个进程的，进程中多个线程共享进程的内存</li>
-</ul>
-<h2 id="java中的线程"><a href="#java中的线程" class="headerlink" title="java中的线程"></a>java中的线程</h2><ul>
-<li>在java中，线程是指两件不同的事</li>
-<li>java.lang.Thread类的一个实例</li>
-<li>线程的执行</li>
-<li>使用java.lang.Thread类或者java.lang.Runnable接口编写代码来定义实例化，和启动新线程。</li>
-<li>一个Thread类实例只是一个对象，像java和其他对象一样，有变量和方法，生死于堆上</li>
-<li>在java里每个线程都拥有一个调用栈，即使不在程序中创建任何的新线程，线程也会在后台运行着</li>
-<li>一个java应用总是从main方法开始，main方法运行在一个线程里，他被称为主线程</li>
-<li>一旦创建一个线程，就会产生一个新的栈调用。</li>
-<li>线程总体分为两类，用户线程和守护线程</li>
-<li>当所有用户距线程执行完毕，jvm自己关闭，守护线程一般是由操作系统或者或者用户自己创建</li>
-</ul>
-<h1 id="创建与启动"><a href="#创建与启动" class="headerlink" title="创建与启动"></a>创建与启动</h1><ul>
-<li><p>扩展java.lang.Thread</p>
-</li>
-<li><p>这个类中有个run方法，应该注意其用法</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public void run()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果该线程是使用独立的Runnable运行对象构造的，则调用该Runnable对象的run方法，要不然，该方法不执行任何操作并返回</p>
-</li>
-<li><p>Thread的子类应该重写这个方法，因为其底层也是继承的Runnable接口</p>
-</li>
-<li><p>run操作里是他会执行的事情</p>
-</li>
-</ul>
-<h2 id="实例化线程"><a href="#实例化线程" class="headerlink" title="实例化线程"></a>实例化线程</h2><ul>
-<li>如果是用Thread，则直接new就行</li>
-<li>如果是实现了，java.lang.Runnable接口的类，则用Thread的构造方法:</li>
-<li><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Thread(Runnable target)</span><br><span class="line">Thread(Runnable target , String name)</span><br><span class="line">Thread(ThreadGroup group, Runnable target)</span><br><span class="line">Thread(ThreadGroup group, Runnable target, String name)</span><br><span class="line">Thread(ThreadGroup group, Runnable target, String name, long stackSize)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="启动线程"><a href="#启动线程" class="headerlink" title="启动线程"></a>启动线程</h2><ul>
-<li>在线程的Thread对象上调用Start（）方法而不是用run或者别的</li>
-<li>在调用start之前线程处于新状态中，新状态指有一个Thread对象，但是还没有一个真正的线程</li>
-<li>调用了之后发生了一系列复杂的事情</li>
-<li>尝试启动新的线程（具有新的调用栈）</li>
-<li>该线程从新状态转移到可运行状态</li>
-<li>当线程获得执行机会，就会调用run</li>
-</ul>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">* 实现Runnable接口的类</span><br><span class="line">*</span><br><span class="line">* @author leizhimin 2008-9-13 18:12:10</span><br><span class="line">*/</span><br><span class="line">publicclass DoSomethingimplements Runnable &#123;</span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    public DoSomething(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    publicvoid run() &#123;</span><br><span class="line">        for (int i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">            for (long k = 0; k &lt; 100000000; k++) ;</span><br><span class="line">            System.out.println(name + &quot;: &quot; + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">* 测试Runnable类实现的多线程程序</span><br><span class="line">*</span><br><span class="line">* @author leizhimin 2008-9-13 18:15:02</span><br><span class="line">*/</span><br><span class="line">publicclass TestRunnable &#123;</span><br><span class="line">    publicstaticvoid main(String[] args) &#123;</span><br><span class="line">        DoSomething ds1 = new DoSomething(&quot;阿三&quot;);</span><br><span class="line">        DoSomething ds2 = new DoSomething(&quot;李四&quot;);</span><br><span class="line"></span><br><span class="line">        Thread t1 = new Thread(ds1);</span><br><span class="line">        Thread t2 = new Thread(ds2);</span><br><span class="line"></span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="扩展Thread类实现多线程的例子"><a href="#扩展Thread类实现多线程的例子" class="headerlink" title="扩展Thread类实现多线程的例子"></a>扩展Thread类实现多线程的例子</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">* 测试扩展Thread类实现的多线程程序</span><br><span class="line">*</span><br><span class="line">* @author leizhimin 2008-9-13 18:22:13</span><br><span class="line">*/</span><br><span class="line">publicclass TestThreadextends Thread&#123;</span><br><span class="line">    public TestThread(String name) &#123;</span><br><span class="line">        super(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    publicvoid run() &#123;</span><br><span class="line">        for(int i = 0;i&lt;5;i++)&#123;</span><br><span class="line">            for(long k= 0; k &lt;100000000;k++);</span><br><span class="line">            System.out.println(this.getName()+&quot; :&quot;+i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    publicstaticvoid main(String[] args) &#123;</span><br><span class="line">        Thread t1 = new TestThread(&quot;阿三&quot;);</span><br><span class="line">        Thread t2 = new TestThread(&quot;李四&quot;);</span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><ul>
-<li>线程的名字，一个运行中的线程总是有名字的，名字有两个来源，第一是自己，第二是虚拟机</li>
-<li>而且主线程的名字总是mian，非主线程的名字不确定</li>
-<li>线程都可以设置名字，主线程的也不例外</li>
-<li>线程的调用不一定是顺序的他们是随机的</li>
-<li>线程一旦启动，他就不可能重新启动</li>
-<li>线程的调度是jvm的一部分，在cpu的机器上，实际上一次只能运行一个线程，一次只有一个线程栈执行，jvm线程调度程序决定实际运行的哪个处于可运行的状态</li>
-<li>尽管我们无法控制线程调度的程序，但是可以通过别的方式来影响线程调度的方式</li>
-</ul>
-<h1 id="线程的转换"><a href="#线程的转换" class="headerlink" title="线程的转换"></a>线程的转换</h1><ul>
-<li>线程的状态转换是线程控制的基础。线程状态总的可分为五大状态：分别是生、死、可运行、运行、等待&#x2F;阻塞。</li>
-<li>可运行状态：当线程有资格运行，但调度程序还没有把它选定为运行线程时线程所处的状态。当start()方法调用时，线程首先进入可运行状态。在线程运行之后或者从阻塞、等待或睡眠状态回来后，也返回到可运行状态。</li>
-<li>运行状态：线程调度程序从可运行池中选择一个线程作为当前线程时线程所处的状态。这也是线程进入运行状态的唯一一种方式</li>
-<li>等待&#x2F;阻塞&#x2F;睡眠状态：这是线程有资格运行时它所处的状态。实际上这个三状态组合为一种，其共同点是：线程仍旧是活的，但是当前没有条件运行。换句话说，它是可运行的，但是如果某件事件出现，他可能返回到可运行状态。</li>
-<li>死亡态：当线程的run()方法完成时就认为它死去。这个线程对象也许是活的，但是，它已经不是一个单独执行的线程。线程一旦死亡，就不能复生。如果在一个死去的线程上调用start()方法，会抛出java.lang.IllegalThreadStateException异常。</li>
-</ul>
-<h2 id="阻止线程的执行"><a href="#阻止线程的执行" class="headerlink" title="阻止线程的执行"></a>阻止线程的执行</h2><ul>
-<li>对于线程的阻止，考虑一下三个方面，不考虑IO阻塞的情况：</li>
-<li>睡眠</li>
-<li>等待</li>
-<li>睡眠：Thread.sleep(long millis)和Thread.sleep(long millis, int nanos)静态方法强制当前正在执行的线程休眠（暂停执行），以“减慢线程”。当线程睡眠时，它入睡在某个地方，在苏醒之前不会返回到可运行状态。当睡眠时间到期，则返回到可运行状态。</li>
-<li>线程睡眠的原因：线程执行太快，或者需要强制进入下一轮，因为Java规范不保证合理的轮换。</li>
-<li>睡眠的实现：调用静态方法。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">          Thread.sleep(123);</span><br><span class="line">      &#125; catch (InterruptedException e) &#123;</span><br><span class="line">          e.printStackTrace(); </span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></li>
-<li>睡眠的位置：为了让其他线程有机会执行，可以将Thread.sleep()的调用放线程run()之内。这样才能保证该线程执行过程中会睡眠。</li>
-<li>线程睡眠是帮助所有线程获得运行机会的最好方法。</li>
-<li>线程睡眠到期自动苏醒，并返回到可运行状态，不是运行状态。sleep()中指定的时间是线程不会运行的最短时间。因此，sleep()方法不能保证该线程睡眠到期后就开始执行。</li>
-<li>sleep()是静态方法，只能控制当前正在运行的线程。</li>
-</ul>
-<h2 id="线程的优先级和线程让步yield"><a href="#线程的优先级和线程让步yield" class="headerlink" title="线程的优先级和线程让步yield()"></a>线程的优先级和线程让步yield()</h2><ul>
-<li>线程的让步是通过Thread.yield()来实现的。yield()方法的作用是：暂停当前正在执行的线程对象，并执行其他线程。</li>
-<li>线程总是存在优先级，优先级范围在1~10之间。JVM线程调度程序是基于优先级的抢先调度机制。在大多数情况下，当前运行的线程优先级将大于或等于线程池中任何线程的优先级。但这仅仅是大多数情况。</li>
-<li>注意：当设计多线程应用程序的时候，一定不要依赖于线程的优先级。因为线程调度优先级操作是没有保障的，只能把线程优先级作用作为一种提高程序效率的方法，但是要保证程序不依赖这种操作。</li>
-<li>当线程池中线程都具有相同的优先级，调度程序的JVM实现自由选择它喜欢的线程。这时候调度程序的操作有两种可能：一是选择一个线程运行，直到它阻塞或者运行完成为止。二是时间分片，为池内的每个线程提供均等的运行机会。<br>-设置线程的优先级：线程默认的优先级是创建它的执行线程的优先级。可以通过setPriority(int newPriority)更改线程的优先级。例如：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Thread t = new MyThread();</span><br><span class="line">       t.setPriority(8);</span><br><span class="line">       t.start();</span><br></pre></td></tr></table></figure></li>
-<li>线程优先级为1<del>10之间的正整数，JVM从不会改变一个线程的优先级。然而，1</del>10之间的值是没有保证的。一些JVM可能不能识别10个不同的值，而将这些优先级进行每两个或多个合并，变成少于10个的优先级，则两个或多个优先级的线程可能被映射为一个优先级。</li>
-<li>线程默认优先级是5，Thread类中有三个常量，定义线程优先级范围：</li>
-<li>static int MAX_PRIORITY线程可以具有的最高优先级。</li>
-<li>static int MIN_PRIORITY线程可以具有的最低优先级。</li>
-<li>static int NORM_PRIORITY分配给线程的默认优先级。</li>
-</ul>
-<h2 id="Thread-yield-方法"><a href="#Thread-yield-方法" class="headerlink" title="Thread.yield()方法"></a>Thread.yield()方法</h2><ul>
-<li>Thread.yield()方法作用是：暂停当前正在执行的线程对象，并执行其他线程。</li>
-<li>yield()应该做的是让当前运行线程回到可运行状态，以允许具有相同优先级的其他线程获得运行机会。因此，使用yield()的目的是让相同优先级的线程之间能适当的轮转执行。但是，实际中无法保证yield()达到让步目的，因为让步的线程还有可能被线程调度程序再次选中。</li>
-<li>结论：yield()从未导致线程转到等待&#x2F;睡眠&#x2F;阻塞状态。在大多数情况下，yield()将导致线程从运行状态转到可运行状态，但有可能没有效果。</li>
-</ul>
-<h2 id="join"><a href="#join" class="headerlink" title="join"></a>join</h2><ul>
-<li><p>Thread的非静态方法join()让一个线程B“加入”到另外一个线程A的尾部。在A执行完毕之前，B不能工作</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Thread t = new MyThread();</span><br><span class="line">      t.start();</span><br><span class="line">      t.join();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>另外，join()方法还有带超时限制的重载版本。例如t.join(5000);则让线程等待5000毫秒，如果超过这个时间，则停止等待，变为可运行状态。</p>
-</li>
-<li><p>线程的加入join()对线程栈导致的结果是线程栈发生了变化，当然这些变化都是瞬时的。</p>
-</li>
-</ul>
-<h2 id="Object类的wait方法"><a href="#Object类的wait方法" class="headerlink" title="Object类的wait方法"></a>Object类的wait方法</h2><ul>
-<li>让当前线程进入等待池</li>
-<li>通过Object类的notify方法通知线程池随机让一条回归</li>
-<li>而notifyall 是让所有回归</li>
-</ul>
-<h1 id="同步锁"><a href="#同步锁" class="headerlink" title="同步锁"></a>同步锁</h1><ul>
-<li>synchronized</li>
-<li>是一种对象锁，可重入，不可中断，实际上就是一个字节码</li>
-<li>基于jvm的监控机制</li>
-<li>栈帧线程独享，不用锁，堆是内存共享的需要线程考虑，方法区也是要线程共享<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">public class sdhakdh &#123;</span><br><span class="line"></span><br><span class="line">	public static int flag = 0;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		new Thread(&quot;线程1&quot;) &#123;</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">					System.out.println(Thread.currentThread().getName().toString() + &quot;@&quot; + flag++);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;.start();</span><br><span class="line">		</span><br><span class="line">		new Thread(&quot;线程2&quot;) &#123;</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">					System.out.println(Thread.currentThread().getName().toString() + &quot;@&quot; + flag++);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;.start();</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>这样的会出现线程抢占的问题，容易让一个线程卡住，然后另外一个框框执行</li>
-<li>结果就是无序的</li>
-<li>如果加上synchronized则不会出现这个请况<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">public class sdhakdh &#123;</span><br><span class="line"></span><br><span class="line">	public static int flag = 0;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		new Thread(&quot;线程1&quot;) &#123;</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				synchronized (&quot;hello&quot;) &#123;</span><br><span class="line">					for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">						System.out.println(Thread.currentThread().getName().toString() + &quot;@&quot; + flag++);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;.start();</span><br><span class="line">		</span><br><span class="line">		new Thread(&quot;线程2&quot;) &#123;</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				synchronized (&quot;hello&quot;) &#123;</span><br><span class="line">					for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">						System.out.println(Thread.currentThread().getName().toString() + &quot;@&quot; + flag++);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;.start();</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>这样就不会发生问题了</li>
-<li>就会出现顺序的，因为线程回退的时候，下次会继续线程锁锁住的位置进行执行，同时不让同一个锁内的其他线程执行，直到被所著的线程回来</li>
-<li>多线程不加锁不安全，可是慢，如果能解决这个问题，就厉害了</li>
-<li>如果锁不是同一个名字则无用</li>
-<li>下面的例子,是生产者消费者的例子</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">public class repo &#123;</span><br><span class="line"></span><br><span class="line">	private int count;</span><br><span class="line">	</span><br><span class="line">	public synchronized void add() &#123;</span><br><span class="line">		while(count &gt;= 100) &#123; // 设置上限</span><br><span class="line">			try &#123;</span><br><span class="line">				wait();</span><br><span class="line">			&#125; catch (InterruptedException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		notifyAll(); // 把减少线程从等待池放出来</span><br><span class="line">		count++;</span><br><span class="line">		System.out.println(count);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public synchronized void substrct() &#123;</span><br><span class="line">		while(count &lt;= 0) &#123; // 设置下限</span><br><span class="line">			try &#123;</span><br><span class="line">				wait();</span><br><span class="line">			&#125; catch (InterruptedException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		notifyAll(); // 把add线程从等待池放出来</span><br><span class="line">		count--;</span><br><span class="line">		System.out.println(count);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">public class product &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		repo r =new repo();</span><br><span class="line">		Prou P = new Prou();</span><br><span class="line">		P.re = r;</span><br><span class="line">		Consumer C = new Consumer();</span><br><span class="line">		C.re = r;</span><br><span class="line">		Thread t1 = new Thread(P , &quot;生产者&quot;);</span><br><span class="line">		Thread t2 = new Thread(C , &quot;消费者&quot;);</span><br><span class="line">		t1.start();</span><br><span class="line">		t2.start();</span><br><span class="line">		</span><br><span class="line">		Prou P1 = new Prou();</span><br><span class="line">		P1.re = r;</span><br><span class="line">		Consumer C1 = new Consumer();</span><br><span class="line">		C1.re = r;</span><br><span class="line">		Thread t11 = new Thread(P , &quot;生产者&quot;);</span><br><span class="line">		Thread t21 = new Thread(C , &quot;消费者&quot;);</span><br><span class="line">		t11.start();</span><br><span class="line">		t21.start();</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class Prou implements Runnable&#123;</span><br><span class="line"></span><br><span class="line">	repo re;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		</span><br><span class="line">			for(int i = 0; i &lt; 1000; i++) &#123;</span><br><span class="line">				re.add();</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line">class Consumer implements Runnable &#123;</span><br><span class="line"></span><br><span class="line">	repo re;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		</span><br><span class="line">			for(int i = 0; i &lt; 1000; i++) &#123;</span><br><span class="line">				re.substrct();</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>注意，wait的时候是直接放开锁的</li>
-</ul>
-<h1 id="创建线程的第三种和第四种方式"><a href="#创建线程的第三种和第四种方式" class="headerlink" title="创建线程的第三种和第四种方式"></a>创建线程的第三种和第四种方式</h1><h2 id="实现Callable接口"><a href="#实现Callable接口" class="headerlink" title="实现Callable接口"></a>实现Callable接口</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">import java.util.concurrent.Callable;</span><br><span class="line">import java.util.concurrent.ExecutionException;</span><br><span class="line">import java.util.concurrent.FutureTask;</span><br><span class="line">//实现Callable接口</span><br><span class="line">public class CallableTest &#123;</span><br><span class="line"> </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        //执行Callable 方式，需要FutureTask 实现实现，用于接收运算结果</span><br><span class="line">        FutureTask&lt;Integer&gt; futureTask = new FutureTask&lt;Integer&gt;(new MyCallable());</span><br><span class="line">        new Thread(futureTask).start();</span><br><span class="line">        //接收线程运算后的结果</span><br><span class="line">        try &#123;</span><br><span class="line">            Integer sum = futureTask.get();</span><br><span class="line">            System.out.println(sum);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (ExecutionException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class MyCallable implements Callable&lt;Integer&gt; &#123;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public Integer call() throws Exception &#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">            sum += i;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">//结果：</span><br><span class="line">/*</span><br><span class="line">4950</span><br><span class="line">Process finished with exit code 0</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
-<h2 id="线程池创建线程"><a href="#线程池创建线程" class="headerlink" title="线程池创建线程"></a>线程池创建线程</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">import java.util.concurrent.ExecutorService;</span><br><span class="line">import java.util.concurrent.Executors;</span><br><span class="line">//线程池实现</span><br><span class="line">public class ThreadPoolExecutorTest &#123;</span><br><span class="line"> </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        //创建线程池</span><br><span class="line">        ExecutorService executorService = Executors.newFixedThreadPool(10);</span><br><span class="line">        ThreadPool threadPool = new ThreadPool();</span><br><span class="line">        for(int i =0;i&lt;5;i++)&#123;</span><br><span class="line">            //为线程池分配任务</span><br><span class="line">            executorService.submit(threadPool);</span><br><span class="line">        &#125;</span><br><span class="line">        //关闭线程池</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class ThreadPool implements Runnable &#123;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        for(int i = 0 ;i&lt;10;i++)&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + &quot;:&quot; + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">// 打印结果（不唯一）：</span><br><span class="line">/*</span><br><span class="line">pool-1-thread-1:0</span><br><span class="line">pool-1-thread-2:0</span><br><span class="line">pool-1-thread-2:1</span><br><span class="line">pool-1-thread-3:0</span><br><span class="line">pool-1-thread-3:1</span><br><span class="line">pool-1-thread-3:2</span><br><span class="line">pool-1-thread-2:2</span><br><span class="line">pool-1-thread-2:3</span><br><span class="line">pool-1-thread-2:4</span><br><span class="line">pool-1-thread-2:5</span><br><span class="line">pool-1-thread-1:1</span><br><span class="line">pool-1-thread-5:0</span><br><span class="line">pool-1-thread-5:1</span><br><span class="line">pool-1-thread-5:2</span><br><span class="line">pool-1-thread-5:3</span><br><span class="line">pool-1-thread-2:6</span><br><span class="line">pool-1-thread-2:7</span><br><span class="line">pool-1-thread-2:8</span><br><span class="line">pool-1-thread-3:3</span><br><span class="line">pool-1-thread-2:9</span><br><span class="line">pool-1-thread-5:4</span><br><span class="line">pool-1-thread-4:0</span><br><span class="line">pool-1-thread-4:1</span><br><span class="line">pool-1-thread-1:2</span><br><span class="line">pool-1-thread-1:3</span><br><span class="line">pool-1-thread-1:4</span><br><span class="line">pool-1-thread-1:5</span><br><span class="line">pool-1-thread-1:6</span><br><span class="line">pool-1-thread-1:7</span><br><span class="line">pool-1-thread-1:8</span><br><span class="line">pool-1-thread-1:9</span><br><span class="line">pool-1-thread-4:2</span><br><span class="line">pool-1-thread-4:3</span><br><span class="line">pool-1-thread-4:4</span><br><span class="line">pool-1-thread-4:5</span><br><span class="line">pool-1-thread-5:5</span><br><span class="line">pool-1-thread-3:4</span><br><span class="line">pool-1-thread-3:5</span><br><span class="line">pool-1-thread-3:6</span><br><span class="line">pool-1-thread-3:7</span><br><span class="line">pool-1-thread-3:8</span><br><span class="line">pool-1-thread-3:9</span><br><span class="line">pool-1-thread-5:6</span><br><span class="line">pool-1-thread-4:6</span><br><span class="line">pool-1-thread-5:7</span><br><span class="line">pool-1-thread-4:7</span><br><span class="line">pool-1-thread-5:8</span><br><span class="line">pool-1-thread-4:8</span><br><span class="line">pool-1-thread-4:9</span><br><span class="line">pool-1-thread-5:9</span><br><span class="line">Process finished with exit code 0</span><br><span class="line">*/</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-  </entry>
-  <entry>
     <title>io流</title>
     <url>/2022/10/20/10-20/</url>
     <content><![CDATA[<h1 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h1><ul>
@@ -626,6 +494,138 @@
       </categories>
   </entry>
   <entry>
+    <title>线程</title>
+    <url>/2022/10/24/10-24/</url>
+    <content><![CDATA[<h1 id="线程的概念以及原理"><a href="#线程的概念以及原理" class="headerlink" title="线程的概念以及原理"></a>线程的概念以及原理</h1><h2 id="操作系统中线程和进程的概念"><a href="#操作系统中线程和进程的概念" class="headerlink" title="操作系统中线程和进程的概念"></a>操作系统中线程和进程的概念</h2><ul>
+<li>进程是指一个内存中运行的应用程序，每个进程都有自己的独立空间，一个进程中可以启动多个线程，比如在windows里一个运行的exe就是一个进程</li>
+<li>线程是指进程中的一个执行流程，一个进程中可以用运行多个线程。线程总是属于某个进程的，进程中多个线程共享进程的内存</li>
+</ul>
+<h2 id="java中的线程"><a href="#java中的线程" class="headerlink" title="java中的线程"></a>java中的线程</h2><ul>
+<li>在java中，线程是指两件不同的事</li>
+<li>java.lang.Thread类的一个实例</li>
+<li>线程的执行</li>
+<li>使用java.lang.Thread类或者java.lang.Runnable接口编写代码来定义实例化，和启动新线程。</li>
+<li>一个Thread类实例只是一个对象，像java和其他对象一样，有变量和方法，生死于堆上</li>
+<li>在java里每个线程都拥有一个调用栈，即使不在程序中创建任何的新线程，线程也会在后台运行着</li>
+<li>一个java应用总是从main方法开始，main方法运行在一个线程里，他被称为主线程</li>
+<li>一旦创建一个线程，就会产生一个新的栈调用。</li>
+<li>线程总体分为两类，用户线程和守护线程</li>
+<li>当所有用户距线程执行完毕，jvm自己关闭，守护线程一般是由操作系统或者或者用户自己创建</li>
+</ul>
+<h1 id="创建与启动"><a href="#创建与启动" class="headerlink" title="创建与启动"></a>创建与启动</h1><ul>
+<li><p>扩展java.lang.Thread</p>
+</li>
+<li><p>这个类中有个run方法，应该注意其用法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public void run()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果该线程是使用独立的Runnable运行对象构造的，则调用该Runnable对象的run方法，要不然，该方法不执行任何操作并返回</p>
+</li>
+<li><p>Thread的子类应该重写这个方法，因为其底层也是继承的Runnable接口</p>
+</li>
+<li><p>run操作里是他会执行的事情</p>
+</li>
+</ul>
+<h2 id="实例化线程"><a href="#实例化线程" class="headerlink" title="实例化线程"></a>实例化线程</h2><ul>
+<li>如果是用Thread，则直接new就行</li>
+<li>如果是实现了，java.lang.Runnable接口的类，则用Thread的构造方法:</li>
+<li><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Thread(Runnable target)</span><br><span class="line">Thread(Runnable target , String name)</span><br><span class="line">Thread(ThreadGroup group, Runnable target)</span><br><span class="line">Thread(ThreadGroup group, Runnable target, String name)</span><br><span class="line">Thread(ThreadGroup group, Runnable target, String name, long stackSize)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="启动线程"><a href="#启动线程" class="headerlink" title="启动线程"></a>启动线程</h2><ul>
+<li>在线程的Thread对象上调用Start（）方法而不是用run或者别的</li>
+<li>在调用start之前线程处于新状态中，新状态指有一个Thread对象，但是还没有一个真正的线程</li>
+<li>调用了之后发生了一系列复杂的事情</li>
+<li>尝试启动新的线程（具有新的调用栈）</li>
+<li>该线程从新状态转移到可运行状态</li>
+<li>当线程获得执行机会，就会调用run</li>
+</ul>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">* 实现Runnable接口的类</span><br><span class="line">*</span><br><span class="line">* @author leizhimin 2008-9-13 18:12:10</span><br><span class="line">*/</span><br><span class="line">publicclass DoSomethingimplements Runnable &#123;</span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    public DoSomething(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    publicvoid run() &#123;</span><br><span class="line">        for (int i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">            for (long k = 0; k &lt; 100000000; k++) ;</span><br><span class="line">            System.out.println(name + &quot;: &quot; + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">* 测试Runnable类实现的多线程程序</span><br><span class="line">*</span><br><span class="line">* @author leizhimin 2008-9-13 18:15:02</span><br><span class="line">*/</span><br><span class="line">publicclass TestRunnable &#123;</span><br><span class="line">    publicstaticvoid main(String[] args) &#123;</span><br><span class="line">        DoSomething ds1 = new DoSomething(&quot;阿三&quot;);</span><br><span class="line">        DoSomething ds2 = new DoSomething(&quot;李四&quot;);</span><br><span class="line"></span><br><span class="line">        Thread t1 = new Thread(ds1);</span><br><span class="line">        Thread t2 = new Thread(ds2);</span><br><span class="line"></span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="扩展Thread类实现多线程的例子"><a href="#扩展Thread类实现多线程的例子" class="headerlink" title="扩展Thread类实现多线程的例子"></a>扩展Thread类实现多线程的例子</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">* 测试扩展Thread类实现的多线程程序</span><br><span class="line">*</span><br><span class="line">* @author leizhimin 2008-9-13 18:22:13</span><br><span class="line">*/</span><br><span class="line">publicclass TestThreadextends Thread&#123;</span><br><span class="line">    public TestThread(String name) &#123;</span><br><span class="line">        super(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    publicvoid run() &#123;</span><br><span class="line">        for(int i = 0;i&lt;5;i++)&#123;</span><br><span class="line">            for(long k= 0; k &lt;100000000;k++);</span><br><span class="line">            System.out.println(this.getName()+&quot; :&quot;+i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    publicstaticvoid main(String[] args) &#123;</span><br><span class="line">        Thread t1 = new TestThread(&quot;阿三&quot;);</span><br><span class="line">        Thread t2 = new TestThread(&quot;李四&quot;);</span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><ul>
+<li>线程的名字，一个运行中的线程总是有名字的，名字有两个来源，第一是自己，第二是虚拟机</li>
+<li>而且主线程的名字总是mian，非主线程的名字不确定</li>
+<li>线程都可以设置名字，主线程的也不例外</li>
+<li>线程的调用不一定是顺序的他们是随机的</li>
+<li>线程一旦启动，他就不可能重新启动</li>
+<li>线程的调度是jvm的一部分，在cpu的机器上，实际上一次只能运行一个线程，一次只有一个线程栈执行，jvm线程调度程序决定实际运行的哪个处于可运行的状态</li>
+<li>尽管我们无法控制线程调度的程序，但是可以通过别的方式来影响线程调度的方式</li>
+</ul>
+<h1 id="线程的转换"><a href="#线程的转换" class="headerlink" title="线程的转换"></a>线程的转换</h1><ul>
+<li>线程的状态转换是线程控制的基础。线程状态总的可分为五大状态：分别是生、死、可运行、运行、等待&#x2F;阻塞。</li>
+<li>可运行状态：当线程有资格运行，但调度程序还没有把它选定为运行线程时线程所处的状态。当start()方法调用时，线程首先进入可运行状态。在线程运行之后或者从阻塞、等待或睡眠状态回来后，也返回到可运行状态。</li>
+<li>运行状态：线程调度程序从可运行池中选择一个线程作为当前线程时线程所处的状态。这也是线程进入运行状态的唯一一种方式</li>
+<li>等待&#x2F;阻塞&#x2F;睡眠状态：这是线程有资格运行时它所处的状态。实际上这个三状态组合为一种，其共同点是：线程仍旧是活的，但是当前没有条件运行。换句话说，它是可运行的，但是如果某件事件出现，他可能返回到可运行状态。</li>
+<li>死亡态：当线程的run()方法完成时就认为它死去。这个线程对象也许是活的，但是，它已经不是一个单独执行的线程。线程一旦死亡，就不能复生。如果在一个死去的线程上调用start()方法，会抛出java.lang.IllegalThreadStateException异常。</li>
+</ul>
+<h2 id="阻止线程的执行"><a href="#阻止线程的执行" class="headerlink" title="阻止线程的执行"></a>阻止线程的执行</h2><ul>
+<li>对于线程的阻止，考虑一下三个方面，不考虑IO阻塞的情况：</li>
+<li>睡眠</li>
+<li>等待</li>
+<li>睡眠：Thread.sleep(long millis)和Thread.sleep(long millis, int nanos)静态方法强制当前正在执行的线程休眠（暂停执行），以“减慢线程”。当线程睡眠时，它入睡在某个地方，在苏醒之前不会返回到可运行状态。当睡眠时间到期，则返回到可运行状态。</li>
+<li>线程睡眠的原因：线程执行太快，或者需要强制进入下一轮，因为Java规范不保证合理的轮换。</li>
+<li>睡眠的实现：调用静态方法。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">          Thread.sleep(123);</span><br><span class="line">      &#125; catch (InterruptedException e) &#123;</span><br><span class="line">          e.printStackTrace(); </span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></li>
+<li>睡眠的位置：为了让其他线程有机会执行，可以将Thread.sleep()的调用放线程run()之内。这样才能保证该线程执行过程中会睡眠。</li>
+<li>线程睡眠是帮助所有线程获得运行机会的最好方法。</li>
+<li>线程睡眠到期自动苏醒，并返回到可运行状态，不是运行状态。sleep()中指定的时间是线程不会运行的最短时间。因此，sleep()方法不能保证该线程睡眠到期后就开始执行。</li>
+<li>sleep()是静态方法，只能控制当前正在运行的线程。</li>
+</ul>
+<h2 id="线程的优先级和线程让步yield"><a href="#线程的优先级和线程让步yield" class="headerlink" title="线程的优先级和线程让步yield()"></a>线程的优先级和线程让步yield()</h2><ul>
+<li>线程的让步是通过Thread.yield()来实现的。yield()方法的作用是：暂停当前正在执行的线程对象，并执行其他线程。</li>
+<li>线程总是存在优先级，优先级范围在1~10之间。JVM线程调度程序是基于优先级的抢先调度机制。在大多数情况下，当前运行的线程优先级将大于或等于线程池中任何线程的优先级。但这仅仅是大多数情况。</li>
+<li>注意：当设计多线程应用程序的时候，一定不要依赖于线程的优先级。因为线程调度优先级操作是没有保障的，只能把线程优先级作用作为一种提高程序效率的方法，但是要保证程序不依赖这种操作。</li>
+<li>当线程池中线程都具有相同的优先级，调度程序的JVM实现自由选择它喜欢的线程。这时候调度程序的操作有两种可能：一是选择一个线程运行，直到它阻塞或者运行完成为止。二是时间分片，为池内的每个线程提供均等的运行机会。<br>-设置线程的优先级：线程默认的优先级是创建它的执行线程的优先级。可以通过setPriority(int newPriority)更改线程的优先级。例如：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Thread t = new MyThread();</span><br><span class="line">       t.setPriority(8);</span><br><span class="line">       t.start();</span><br></pre></td></tr></table></figure></li>
+<li>线程优先级为1<del>10之间的正整数，JVM从不会改变一个线程的优先级。然而，1</del>10之间的值是没有保证的。一些JVM可能不能识别10个不同的值，而将这些优先级进行每两个或多个合并，变成少于10个的优先级，则两个或多个优先级的线程可能被映射为一个优先级。</li>
+<li>线程默认优先级是5，Thread类中有三个常量，定义线程优先级范围：</li>
+<li>static int MAX_PRIORITY线程可以具有的最高优先级。</li>
+<li>static int MIN_PRIORITY线程可以具有的最低优先级。</li>
+<li>static int NORM_PRIORITY分配给线程的默认优先级。</li>
+</ul>
+<h2 id="Thread-yield-方法"><a href="#Thread-yield-方法" class="headerlink" title="Thread.yield()方法"></a>Thread.yield()方法</h2><ul>
+<li>Thread.yield()方法作用是：暂停当前正在执行的线程对象，并执行其他线程。</li>
+<li>yield()应该做的是让当前运行线程回到可运行状态，以允许具有相同优先级的其他线程获得运行机会。因此，使用yield()的目的是让相同优先级的线程之间能适当的轮转执行。但是，实际中无法保证yield()达到让步目的，因为让步的线程还有可能被线程调度程序再次选中。</li>
+<li>结论：yield()从未导致线程转到等待&#x2F;睡眠&#x2F;阻塞状态。在大多数情况下，yield()将导致线程从运行状态转到可运行状态，但有可能没有效果。</li>
+</ul>
+<h2 id="join"><a href="#join" class="headerlink" title="join"></a>join</h2><ul>
+<li><p>Thread的非静态方法join()让一个线程B“加入”到另外一个线程A的尾部。在A执行完毕之前，B不能工作</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Thread t = new MyThread();</span><br><span class="line">      t.start();</span><br><span class="line">      t.join();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>另外，join()方法还有带超时限制的重载版本。例如t.join(5000);则让线程等待5000毫秒，如果超过这个时间，则停止等待，变为可运行状态。</p>
+</li>
+<li><p>线程的加入join()对线程栈导致的结果是线程栈发生了变化，当然这些变化都是瞬时的。</p>
+</li>
+</ul>
+<h2 id="Object类的wait方法"><a href="#Object类的wait方法" class="headerlink" title="Object类的wait方法"></a>Object类的wait方法</h2><ul>
+<li>让当前线程进入等待池</li>
+<li>通过Object类的notify方法通知线程池随机让一条回归</li>
+<li>而notifyall 是让所有回归</li>
+</ul>
+<h1 id="同步锁"><a href="#同步锁" class="headerlink" title="同步锁"></a>同步锁</h1><ul>
+<li>synchronized</li>
+<li>是一种对象锁，可重入，不可中断，实际上就是一个字节码</li>
+<li>基于jvm的监控机制</li>
+<li>栈帧线程独享，不用锁，堆是内存共享的需要线程考虑，方法区也是要线程共享<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">public class sdhakdh &#123;</span><br><span class="line"></span><br><span class="line">	public static int flag = 0;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		new Thread(&quot;线程1&quot;) &#123;</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">					System.out.println(Thread.currentThread().getName().toString() + &quot;@&quot; + flag++);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;.start();</span><br><span class="line">		</span><br><span class="line">		new Thread(&quot;线程2&quot;) &#123;</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">					System.out.println(Thread.currentThread().getName().toString() + &quot;@&quot; + flag++);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;.start();</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>这样的会出现线程抢占的问题，容易让一个线程卡住，然后另外一个框框执行</li>
+<li>结果就是无序的</li>
+<li>如果加上synchronized则不会出现这个请况<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">public class sdhakdh &#123;</span><br><span class="line"></span><br><span class="line">	public static int flag = 0;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		new Thread(&quot;线程1&quot;) &#123;</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				synchronized (&quot;hello&quot;) &#123;</span><br><span class="line">					for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">						System.out.println(Thread.currentThread().getName().toString() + &quot;@&quot; + flag++);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;.start();</span><br><span class="line">		</span><br><span class="line">		new Thread(&quot;线程2&quot;) &#123;</span><br><span class="line">			public void run() &#123;</span><br><span class="line">				synchronized (&quot;hello&quot;) &#123;</span><br><span class="line">					for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">						System.out.println(Thread.currentThread().getName().toString() + &quot;@&quot; + flag++);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;.start();</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>这样就不会发生问题了</li>
+<li>就会出现顺序的，因为线程回退的时候，下次会继续线程锁锁住的位置进行执行，同时不让同一个锁内的其他线程执行，直到被所著的线程回来</li>
+<li>多线程不加锁不安全，可是慢，如果能解决这个问题，就厉害了</li>
+<li>如果锁不是同一个名字则无用</li>
+<li>下面的例子,是生产者消费者的例子</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">public class repo &#123;</span><br><span class="line"></span><br><span class="line">	private int count;</span><br><span class="line">	</span><br><span class="line">	public synchronized void add() &#123;</span><br><span class="line">		while(count &gt;= 100) &#123; // 设置上限</span><br><span class="line">			try &#123;</span><br><span class="line">				wait();</span><br><span class="line">			&#125; catch (InterruptedException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		notifyAll(); // 把减少线程从等待池放出来</span><br><span class="line">		count++;</span><br><span class="line">		System.out.println(count);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public synchronized void substrct() &#123;</span><br><span class="line">		while(count &lt;= 0) &#123; // 设置下限</span><br><span class="line">			try &#123;</span><br><span class="line">				wait();</span><br><span class="line">			&#125; catch (InterruptedException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		notifyAll(); // 把add线程从等待池放出来</span><br><span class="line">		count--;</span><br><span class="line">		System.out.println(count);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">public class product &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		repo r =new repo();</span><br><span class="line">		Prou P = new Prou();</span><br><span class="line">		P.re = r;</span><br><span class="line">		Consumer C = new Consumer();</span><br><span class="line">		C.re = r;</span><br><span class="line">		Thread t1 = new Thread(P , &quot;生产者&quot;);</span><br><span class="line">		Thread t2 = new Thread(C , &quot;消费者&quot;);</span><br><span class="line">		t1.start();</span><br><span class="line">		t2.start();</span><br><span class="line">		</span><br><span class="line">		Prou P1 = new Prou();</span><br><span class="line">		P1.re = r;</span><br><span class="line">		Consumer C1 = new Consumer();</span><br><span class="line">		C1.re = r;</span><br><span class="line">		Thread t11 = new Thread(P , &quot;生产者&quot;);</span><br><span class="line">		Thread t21 = new Thread(C , &quot;消费者&quot;);</span><br><span class="line">		t11.start();</span><br><span class="line">		t21.start();</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class Prou implements Runnable&#123;</span><br><span class="line"></span><br><span class="line">	repo re;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		</span><br><span class="line">			for(int i = 0; i &lt; 1000; i++) &#123;</span><br><span class="line">				re.add();</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line">class Consumer implements Runnable &#123;</span><br><span class="line"></span><br><span class="line">	repo re;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		</span><br><span class="line">			for(int i = 0; i &lt; 1000; i++) &#123;</span><br><span class="line">				re.substrct();</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意，wait的时候是直接放开锁的</li>
+</ul>
+<h1 id="创建线程的第三种和第四种方式"><a href="#创建线程的第三种和第四种方式" class="headerlink" title="创建线程的第三种和第四种方式"></a>创建线程的第三种和第四种方式</h1><h2 id="实现Callable接口"><a href="#实现Callable接口" class="headerlink" title="实现Callable接口"></a>实现Callable接口</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">import java.util.concurrent.Callable;</span><br><span class="line">import java.util.concurrent.ExecutionException;</span><br><span class="line">import java.util.concurrent.FutureTask;</span><br><span class="line">//实现Callable接口</span><br><span class="line">public class CallableTest &#123;</span><br><span class="line"> </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        //执行Callable 方式，需要FutureTask 实现实现，用于接收运算结果</span><br><span class="line">        FutureTask&lt;Integer&gt; futureTask = new FutureTask&lt;Integer&gt;(new MyCallable());</span><br><span class="line">        new Thread(futureTask).start();</span><br><span class="line">        //接收线程运算后的结果</span><br><span class="line">        try &#123;</span><br><span class="line">            Integer sum = futureTask.get();</span><br><span class="line">            System.out.println(sum);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (ExecutionException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class MyCallable implements Callable&lt;Integer&gt; &#123;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public Integer call() throws Exception &#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">            sum += i;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">//结果：</span><br><span class="line">/*</span><br><span class="line">4950</span><br><span class="line">Process finished with exit code 0</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<h2 id="线程池创建线程"><a href="#线程池创建线程" class="headerlink" title="线程池创建线程"></a>线程池创建线程</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">import java.util.concurrent.ExecutorService;</span><br><span class="line">import java.util.concurrent.Executors;</span><br><span class="line">//线程池实现</span><br><span class="line">public class ThreadPoolExecutorTest &#123;</span><br><span class="line"> </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        //创建线程池</span><br><span class="line">        ExecutorService executorService = Executors.newFixedThreadPool(10);</span><br><span class="line">        ThreadPool threadPool = new ThreadPool();</span><br><span class="line">        for(int i =0;i&lt;5;i++)&#123;</span><br><span class="line">            //为线程池分配任务</span><br><span class="line">            executorService.submit(threadPool);</span><br><span class="line">        &#125;</span><br><span class="line">        //关闭线程池</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class ThreadPool implements Runnable &#123;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        for(int i = 0 ;i&lt;10;i++)&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + &quot;:&quot; + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">// 打印结果（不唯一）：</span><br><span class="line">/*</span><br><span class="line">pool-1-thread-1:0</span><br><span class="line">pool-1-thread-2:0</span><br><span class="line">pool-1-thread-2:1</span><br><span class="line">pool-1-thread-3:0</span><br><span class="line">pool-1-thread-3:1</span><br><span class="line">pool-1-thread-3:2</span><br><span class="line">pool-1-thread-2:2</span><br><span class="line">pool-1-thread-2:3</span><br><span class="line">pool-1-thread-2:4</span><br><span class="line">pool-1-thread-2:5</span><br><span class="line">pool-1-thread-1:1</span><br><span class="line">pool-1-thread-5:0</span><br><span class="line">pool-1-thread-5:1</span><br><span class="line">pool-1-thread-5:2</span><br><span class="line">pool-1-thread-5:3</span><br><span class="line">pool-1-thread-2:6</span><br><span class="line">pool-1-thread-2:7</span><br><span class="line">pool-1-thread-2:8</span><br><span class="line">pool-1-thread-3:3</span><br><span class="line">pool-1-thread-2:9</span><br><span class="line">pool-1-thread-5:4</span><br><span class="line">pool-1-thread-4:0</span><br><span class="line">pool-1-thread-4:1</span><br><span class="line">pool-1-thread-1:2</span><br><span class="line">pool-1-thread-1:3</span><br><span class="line">pool-1-thread-1:4</span><br><span class="line">pool-1-thread-1:5</span><br><span class="line">pool-1-thread-1:6</span><br><span class="line">pool-1-thread-1:7</span><br><span class="line">pool-1-thread-1:8</span><br><span class="line">pool-1-thread-1:9</span><br><span class="line">pool-1-thread-4:2</span><br><span class="line">pool-1-thread-4:3</span><br><span class="line">pool-1-thread-4:4</span><br><span class="line">pool-1-thread-4:5</span><br><span class="line">pool-1-thread-5:5</span><br><span class="line">pool-1-thread-3:4</span><br><span class="line">pool-1-thread-3:5</span><br><span class="line">pool-1-thread-3:6</span><br><span class="line">pool-1-thread-3:7</span><br><span class="line">pool-1-thread-3:8</span><br><span class="line">pool-1-thread-3:9</span><br><span class="line">pool-1-thread-5:6</span><br><span class="line">pool-1-thread-4:6</span><br><span class="line">pool-1-thread-5:7</span><br><span class="line">pool-1-thread-4:7</span><br><span class="line">pool-1-thread-5:8</span><br><span class="line">pool-1-thread-4:8</span><br><span class="line">pool-1-thread-4:9</span><br><span class="line">pool-1-thread-5:9</span><br><span class="line">Process finished with exit code 0</span><br><span class="line">*/</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
     <title>SetTree</title>
     <url>/2022/10/26/10-26/</url>
     <content><![CDATA[<h1 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h1><ul>
@@ -778,6 +778,195 @@
 <li>然后对于流我们加上filter（过滤器）</li>
 <li>筛选我们想要的结构，这个过滤器里面只能放返回值是布尔的</li>
 <li>然后筛选完了，我们可以对他进行lambda的表达输出语句</li>
+</ul>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Linux命令</title>
+    <url>/2022/10/31/10-31/</url>
+    <content><![CDATA[<h1 id="linux的目录形式"><a href="#linux的目录形式" class="headerlink" title="linux的目录形式"></a>linux的目录形式</h1><ul>
+<li>层级式</li>
+<li>当用了Xshell登录了管理员之后会显示</li>
+<li>root@bigdata1 liuzihan</li>
+<li>前面表示root用户</li>
+<li>@后面的是机器名字</li>
+<li>在后面的是普通用户的名字</li>
+<li>~表示当前用户的家目录</li>
+<li>有命令帮助 应用 xx–help ， 这个xx代表是命令</li>
+<li>例如： 用法：ls [选项]… [文件]…</li>
+<li>上面代表ls后面可以加多个辅助命令 ， 还可以加多个文件</li>
+<li>中断命令 ： ctrl + c 或者 ctrl + z</li>
+<li>用键盘自动补全 ，</li>
+<li>按一次 ： 匹配当前据有唯一标识的补全</li>
+<li>按两次 ： 把所有匹配的项目都展示出来</li>
+</ul>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><ul>
+<li>pwd : 查看当前所在的目录</li>
+<li>ls ： 查看所在的目录下有文件或者文件夹</li>
+<li>mkdir ： 创建文件夹 ， 后面加文件夹的名字</li>
+<li>cd ： 切换路径 ， 就算现在所在的目录 ， 只能切换文件夹</li>
+<li>ls -l ： 表示看这个文件夹的额外的详细信息 ， 权限 ，用户 ， 用户组 ， 大小 ， 创建时间。 </li>
+<li>ls -l -a ：显示以.开头的文件或者文件夹 ， 就是隐藏文件</li>
+<li>ls -l -h ：查看文件的大小 ， 文件夹是不可以的</li>
+<li>上面的 ls -l &#x3D;&#x3D; ll 但是在一些操作系统里是不行的在centos里是可以的但是ubanto上是不行的</li>
+<li>其实现是通过别名</li>
+<li>ll -r -t ： 可以看见按照时间顺序降序的排序文件 ，就算最下面的就是最近更改的</li>
+<li>上述还可以改成 ll -rt &#x3D;&#x3D;ll -r -t</li>
+</ul>
+<h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹##"></a>创建文件夹##</h2><h3 id="并级创建"><a href="#并级创建" class="headerlink" title="并级创建"></a>并级创建</h3><ul>
+<li>mkdir 1 2 3</li>
+</ul>
+<h3 id="串级创建"><a href="#串级创建" class="headerlink" title="串级创建"></a>串级创建</h3><ul>
+<li>mkdir 1&#x2F;2&#x2F;3</li>
+<li>但是这样要求必须有上级目录</li>
+<li>不过可以用</li>
+<li>mkdir -p 1&#x2F;2&#x2F;3</li>
+<li>就可以了</li>
+</ul>
+<h2 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h2><ul>
+<li>cd</li>
+<li>不过有绝对路径和相对路径的区别</li>
+<li>绝对路径 ： 从根目录</li>
+<li>相对路径 ： 从当前目录</li>
+<li>cd的可以是绝对，也可以是相对</li>
+<li>cd..&#x2F; : 返回上级目录</li>
+<li>cd.&#x2F; : 表示当前目录</li>
+<li>可以这样用 ： cd .&#x2F;1</li>
+</ul>
+<h3 id="快速回到家目录"><a href="#快速回到家目录" class="headerlink" title="快速回到家目录"></a>快速回到家目录</h3><ul>
+<li>1 , cd &#x2F;xx</li>
+<li>2 , cd + 回车 &#x3D;&#x3D;&gt;推荐</li>
+<li>3 , cd + ~</li>
+<li>cd - 回到上次操作的目录</li>
+</ul>
+<h2 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h2><ul>
+<li>touch 1.log</li>
+<li>vi&#x2F;vim 1.log</li>
+<li>echo “bigdata” &gt; 3.log</li>
+<li><blockquote>
+<p>: 表示创建或者覆盖一个文件</p>
+</blockquote>
+</li>
+<li>cat ： 查看文件内容</li>
+<li>比如 ： cat 3.log</li>
+<li><blockquote>
+<blockquote>
+<p>: 追加 ，上述一个 &gt; 是覆盖 ，这个是追加</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h2 id="编辑文件"><a href="#编辑文件" class="headerlink" title="编辑文件"></a>编辑文件</h2><ul>
+<li>命令行模式</li>
+<li>编辑模式</li>
+<li>尾行模式</li>
+<li>vi&#x2F;vim xxx</li>
+<li>然后用insert</li>
+<li>编辑完了</li>
+<li>用esc ， 之后有几种选项</li>
+<li>:q ：代表退出并且不保存</li>
+<li>:w ：代表写入，但是不退出</li>
+<li>:wq ：代表保存且退出</li>
+<li>：！ ：强制</li>
+<li>还可以以应用nano</li>
+<li>就nano Xxx</li>
+<li>然后下面就会有提示</li>
+<li>如果没有这个文件，就会创建文件</li>
+</ul>
+<h2 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h2><ul>
+<li>cat ： 查看文件所有内容</li>
+<li>more ： 查看文件内容，按空格是往下翻，按q退出</li>
+<li>less ： 查看大文件，也是一页一页的 ， q是退出，按小键盘的上下键，是翻页</li>
+<li>一般小文件，用 cat 大文件more或者less</li>
+<li>实时查看文件产生的内容</li>
+<li>tail ： </li>
+<li>-f</li>
+<li>-F &#x3D;&#x3D; -f + retry</li>
+<li>意义：-F ， 如果我们查看一个文件的时候，文件被删了，然后又重新生成了给一样文件名的文件 ， 则f就不会动态显示了</li>
+<li>但是F会重显示新的那个文件</li>
+<li>用法 tail -f xxx</li>
+<li>用法 tail -F xxx</li>
+</ul>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>查找特定日志里的xx字段</li>
+<li>通过 vi&#x2F;vim 进入 然后进行搜索</li>
+<li>在尾行模式 ，输入要查找的字符 例如 &#x2F;error</li>
+<li>然后键盘 n 查找下一个词 N 查找上一个词</li>
+<li>通过cat </li>
+<li>cat xxxx文件 | grep error 通过后面的grep 过滤文件</li>
+<li>查看进程也可以用这种方式筛选</li>
+<li>可以和其他命令联用 比如 把所有error的信息收集起来</li>
+<li>cat xxx文件 | grep error &gt; xxx文件</li>
+<li>grep的常用的参数</li>
+<li>grep -A xx行： 查看某一个词的后xx行</li>
+<li>grep -B xx行： 查看某一个词的前xx行</li>
+<li>grep -C xx行： 查看某一个词的前后xx行</li>
+<li>与上面的了连用为</li>
+<li>cat xxx文件 | grep -A xx行 error &gt; xxx文件</li>
+<li>nano方式</li>
+<li>管道符| ：代表让上一个语句的输出代表 代表下一个语句的输入</li>
+</ul>
+<h2 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h2><ul>
+<li>上传 ： win 到 linux</li>
+<li>下载 ： linux 到 win</li>
+</ul>
+<h3 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h3><ul>
+<li>工具 ： Xshell 通过Xshell的Xftp进行下载和上传</li>
+<li>linux命令 ： yum install lzxx ，通过他进行下载上传</li>
+</ul>
+<h2 id="清屏"><a href="#清屏" class="headerlink" title="清屏"></a>清屏</h2><ul>
+<li>clear : 清屏</li>
+<li>ctrl + l ： 清屏</li>
+</ul>
+<h2 id="查看操作命令历史"><a href="#查看操作命令历史" class="headerlink" title="查看操作命令历史"></a>查看操作命令历史</h2><ul>
+<li>history </li>
+<li>或者键盘上的上下箭头号</li>
+<li>按键盘的！ + 命令行数</li>
+</ul>
+<h2 id="移动与复制"><a href="#移动与复制" class="headerlink" title="移动与复制"></a>移动与复制</h2><ul>
+<li>mv[选项]..源文件..目录</li>
+<li>例如： mv dir1 bigdata</li>
+<li>cp[选项]..源文件..目录</li>
+<li>例如： cp -r dir2 bigdata</li>
+<li>但是 cp还可以复制的时候改文件名字</li>
+<li>例如 cp 源文件 目标文件</li>
+<li>就会把源文件中的内容给目标文件，命名就是这里的目标文件</li>
+<li>也可以和上一个复制到文件夹联用</li>
+<li>例如 ： cp xx xxx目录&#x2F;xx文件</li>
+<li>mv始终是一份</li>
+<li>而cp则是两份</li>
+<li>所以mv比cp快</li>
+</ul>
+<h2 id="删除文件或者文件夹"><a href="#删除文件或者文件夹" class="headerlink" title="删除文件或者文件夹"></a>删除文件或者文件夹</h2><ul>
+<li>rm[选项]..文件..</li>
+<li>有删除提示 ： rm reeor.log</li>
+<li>删除文件夹 ： rm -r xxxx文件夹</li>
+<li>无删除提示 ： rm -f</li>
+<li>用法和上面一样</li>
+<li>且 rm-r -f xxx &#x3D; rm-rf xxx</li>
+<li>比如 我们可以 rm -rf&#x2F; &#x3D;&gt; 把整个全删除了</li>
+</ul>
+<h2 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h2><ul>
+<li>alias </li>
+<li>创建别名：</li>
+<li>alias aa &#x3D;”cd&#x2F;tmp” &#x3D;&gt;仅仅当前会话生效 ， 让aa代表cd&#x2F;tmp</li>
+<li>但是在其他会话里就不会生效，因为这个没有在环境变量里设置</li>
+</ul>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><ul>
+<li>就像java的jdk环境一样 我们也有环境变量</li>
+<li>全局环境变量 &#x2F;etc&#x2F;profile</li>
+<li>个人变量 ： 只能当前用户使用 其他用户不能使用</li>
+<li>~&#x2F;.bashrcc</li>
+<li>~&#x2F;.bash_profile</li>
+<li>生效环境变量</li>
+<li>source &#x2F;etc&#x2F;profile</li>
+<li>重新打开一个会话</li>
+<li>然后这个别名就会好用了</li>
+<li>但是这个不能跨用户访问，比如root的不能在普通用户这么用，相反也是</li>
+<li></li>
 </ul>
 ]]></content>
       <categories>
@@ -984,195 +1173,6 @@
 <li>我们可以通过外部机器访问这个端口进入服务界面</li>
 <li>kill -9 $(pgrep -f xxx名字)</li>
 <li>下面的会强制把他们全杀掉 ， 包括子进程</li>
-<li></li>
-</ul>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Linux命令</title>
-    <url>/2022/10/31/10-31/</url>
-    <content><![CDATA[<h1 id="linux的目录形式"><a href="#linux的目录形式" class="headerlink" title="linux的目录形式"></a>linux的目录形式</h1><ul>
-<li>层级式</li>
-<li>当用了Xshell登录了管理员之后会显示</li>
-<li>root@bigdata1 liuzihan</li>
-<li>前面表示root用户</li>
-<li>@后面的是机器名字</li>
-<li>在后面的是普通用户的名字</li>
-<li>~表示当前用户的家目录</li>
-<li>有命令帮助 应用 xx–help ， 这个xx代表是命令</li>
-<li>例如： 用法：ls [选项]… [文件]…</li>
-<li>上面代表ls后面可以加多个辅助命令 ， 还可以加多个文件</li>
-<li>中断命令 ： ctrl + c 或者 ctrl + z</li>
-<li>用键盘自动补全 ，</li>
-<li>按一次 ： 匹配当前据有唯一标识的补全</li>
-<li>按两次 ： 把所有匹配的项目都展示出来</li>
-</ul>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><ul>
-<li>pwd : 查看当前所在的目录</li>
-<li>ls ： 查看所在的目录下有文件或者文件夹</li>
-<li>mkdir ： 创建文件夹 ， 后面加文件夹的名字</li>
-<li>cd ： 切换路径 ， 就算现在所在的目录 ， 只能切换文件夹</li>
-<li>ls -l ： 表示看这个文件夹的额外的详细信息 ， 权限 ，用户 ， 用户组 ， 大小 ， 创建时间。 </li>
-<li>ls -l -a ：显示以.开头的文件或者文件夹 ， 就是隐藏文件</li>
-<li>ls -l -h ：查看文件的大小 ， 文件夹是不可以的</li>
-<li>上面的 ls -l &#x3D;&#x3D; ll 但是在一些操作系统里是不行的在centos里是可以的但是ubanto上是不行的</li>
-<li>其实现是通过别名</li>
-<li>ll -r -t ： 可以看见按照时间顺序降序的排序文件 ，就算最下面的就是最近更改的</li>
-<li>上述还可以改成 ll -rt &#x3D;&#x3D;ll -r -t</li>
-</ul>
-<h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹##"></a>创建文件夹##</h2><h3 id="并级创建"><a href="#并级创建" class="headerlink" title="并级创建"></a>并级创建</h3><ul>
-<li>mkdir 1 2 3</li>
-</ul>
-<h3 id="串级创建"><a href="#串级创建" class="headerlink" title="串级创建"></a>串级创建</h3><ul>
-<li>mkdir 1&#x2F;2&#x2F;3</li>
-<li>但是这样要求必须有上级目录</li>
-<li>不过可以用</li>
-<li>mkdir -p 1&#x2F;2&#x2F;3</li>
-<li>就可以了</li>
-</ul>
-<h2 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h2><ul>
-<li>cd</li>
-<li>不过有绝对路径和相对路径的区别</li>
-<li>绝对路径 ： 从根目录</li>
-<li>相对路径 ： 从当前目录</li>
-<li>cd的可以是绝对，也可以是相对</li>
-<li>cd..&#x2F; : 返回上级目录</li>
-<li>cd.&#x2F; : 表示当前目录</li>
-<li>可以这样用 ： cd .&#x2F;1</li>
-</ul>
-<h3 id="快速回到家目录"><a href="#快速回到家目录" class="headerlink" title="快速回到家目录"></a>快速回到家目录</h3><ul>
-<li>1 , cd &#x2F;xx</li>
-<li>2 , cd + 回车 &#x3D;&#x3D;&gt;推荐</li>
-<li>3 , cd + ~</li>
-<li>cd - 回到上次操作的目录</li>
-</ul>
-<h2 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h2><ul>
-<li>touch 1.log</li>
-<li>vi&#x2F;vim 1.log</li>
-<li>echo “bigdata” &gt; 3.log</li>
-<li><blockquote>
-<p>: 表示创建或者覆盖一个文件</p>
-</blockquote>
-</li>
-<li>cat ： 查看文件内容</li>
-<li>比如 ： cat 3.log</li>
-<li><blockquote>
-<blockquote>
-<p>: 追加 ，上述一个 &gt; 是覆盖 ，这个是追加</p>
-</blockquote>
-</blockquote>
-</li>
-</ul>
-<h2 id="编辑文件"><a href="#编辑文件" class="headerlink" title="编辑文件"></a>编辑文件</h2><ul>
-<li>命令行模式</li>
-<li>编辑模式</li>
-<li>尾行模式</li>
-<li>vi&#x2F;vim xxx</li>
-<li>然后用insert</li>
-<li>编辑完了</li>
-<li>用esc ， 之后有几种选项</li>
-<li>:q ：代表退出并且不保存</li>
-<li>:w ：代表写入，但是不退出</li>
-<li>:wq ：代表保存且退出</li>
-<li>：！ ：强制</li>
-<li>还可以以应用nano</li>
-<li>就nano Xxx</li>
-<li>然后下面就会有提示</li>
-<li>如果没有这个文件，就会创建文件</li>
-</ul>
-<h2 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h2><ul>
-<li>cat ： 查看文件所有内容</li>
-<li>more ： 查看文件内容，按空格是往下翻，按q退出</li>
-<li>less ： 查看大文件，也是一页一页的 ， q是退出，按小键盘的上下键，是翻页</li>
-<li>一般小文件，用 cat 大文件more或者less</li>
-<li>实时查看文件产生的内容</li>
-<li>tail ： </li>
-<li>-f</li>
-<li>-F &#x3D;&#x3D; -f + retry</li>
-<li>意义：-F ， 如果我们查看一个文件的时候，文件被删了，然后又重新生成了给一样文件名的文件 ， 则f就不会动态显示了</li>
-<li>但是F会重显示新的那个文件</li>
-<li>用法 tail -f xxx</li>
-<li>用法 tail -F xxx</li>
-</ul>
-<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
-<li>查找特定日志里的xx字段</li>
-<li>通过 vi&#x2F;vim 进入 然后进行搜索</li>
-<li>在尾行模式 ，输入要查找的字符 例如 &#x2F;error</li>
-<li>然后键盘 n 查找下一个词 N 查找上一个词</li>
-<li>通过cat </li>
-<li>cat xxxx文件 | grep error 通过后面的grep 过滤文件</li>
-<li>查看进程也可以用这种方式筛选</li>
-<li>可以和其他命令联用 比如 把所有error的信息收集起来</li>
-<li>cat xxx文件 | grep error &gt; xxx文件</li>
-<li>grep的常用的参数</li>
-<li>grep -A xx行： 查看某一个词的后xx行</li>
-<li>grep -B xx行： 查看某一个词的前xx行</li>
-<li>grep -C xx行： 查看某一个词的前后xx行</li>
-<li>与上面的了连用为</li>
-<li>cat xxx文件 | grep -A xx行 error &gt; xxx文件</li>
-<li>nano方式</li>
-<li>管道符| ：代表让上一个语句的输出代表 代表下一个语句的输入</li>
-</ul>
-<h2 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h2><ul>
-<li>上传 ： win 到 linux</li>
-<li>下载 ： linux 到 win</li>
-</ul>
-<h3 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h3><ul>
-<li>工具 ： Xshell 通过Xshell的Xftp进行下载和上传</li>
-<li>linux命令 ： yum install lzxx ，通过他进行下载上传</li>
-</ul>
-<h2 id="清屏"><a href="#清屏" class="headerlink" title="清屏"></a>清屏</h2><ul>
-<li>clear : 清屏</li>
-<li>ctrl + l ： 清屏</li>
-</ul>
-<h2 id="查看操作命令历史"><a href="#查看操作命令历史" class="headerlink" title="查看操作命令历史"></a>查看操作命令历史</h2><ul>
-<li>history </li>
-<li>或者键盘上的上下箭头号</li>
-<li>按键盘的！ + 命令行数</li>
-</ul>
-<h2 id="移动与复制"><a href="#移动与复制" class="headerlink" title="移动与复制"></a>移动与复制</h2><ul>
-<li>mv[选项]..源文件..目录</li>
-<li>例如： mv dir1 bigdata</li>
-<li>cp[选项]..源文件..目录</li>
-<li>例如： cp -r dir2 bigdata</li>
-<li>但是 cp还可以复制的时候改文件名字</li>
-<li>例如 cp 源文件 目标文件</li>
-<li>就会把源文件中的内容给目标文件，命名就是这里的目标文件</li>
-<li>也可以和上一个复制到文件夹联用</li>
-<li>例如 ： cp xx xxx目录&#x2F;xx文件</li>
-<li>mv始终是一份</li>
-<li>而cp则是两份</li>
-<li>所以mv比cp快</li>
-</ul>
-<h2 id="删除文件或者文件夹"><a href="#删除文件或者文件夹" class="headerlink" title="删除文件或者文件夹"></a>删除文件或者文件夹</h2><ul>
-<li>rm[选项]..文件..</li>
-<li>有删除提示 ： rm reeor.log</li>
-<li>删除文件夹 ： rm -r xxxx文件夹</li>
-<li>无删除提示 ： rm -f</li>
-<li>用法和上面一样</li>
-<li>且 rm-r -f xxx &#x3D; rm-rf xxx</li>
-<li>比如 我们可以 rm -rf&#x2F; &#x3D;&gt; 把整个全删除了</li>
-</ul>
-<h2 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h2><ul>
-<li>alias </li>
-<li>创建别名：</li>
-<li>alias aa &#x3D;”cd&#x2F;tmp” &#x3D;&gt;仅仅当前会话生效 ， 让aa代表cd&#x2F;tmp</li>
-<li>但是在其他会话里就不会生效，因为这个没有在环境变量里设置</li>
-</ul>
-<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><ul>
-<li>就像java的jdk环境一样 我们也有环境变量</li>
-<li>全局环境变量 &#x2F;etc&#x2F;profile</li>
-<li>个人变量 ： 只能当前用户使用 其他用户不能使用</li>
-<li>~&#x2F;.bashrcc</li>
-<li>~&#x2F;.bash_profile</li>
-<li>生效环境变量</li>
-<li>source &#x2F;etc&#x2F;profile</li>
-<li>重新打开一个会话</li>
-<li>然后这个别名就会好用了</li>
-<li>但是这个不能跨用户访问，比如root的不能在普通用户这么用，相反也是</li>
 <li></li>
 </ul>
 ]]></content>
@@ -2408,6 +2408,105 @@
       </categories>
   </entry>
   <entry>
+    <title>jdbc</title>
+    <url>/2022/11/07/11-7/</url>
+    <content><![CDATA[<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>Maven项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。</li>
+<li>注意是工具</li>
+</ul>
+<h2 id="Maven的配置以及idea使用"><a href="#Maven的配置以及idea使用" class="headerlink" title="Maven的配置以及idea使用"></a>Maven的配置以及idea使用</h2><h3 id="下载及解压"><a href="#下载及解压" class="headerlink" title="下载及解压"></a>下载及解压</h3><ul>
+<li>首先在Maven的官网下载Maven</li>
+<li><a href="http://maven.apache.org/download.cgi" title="Maven官网">Maven官网</a></li>
+<li>我们windows一般下载 ： Binary zip archive的</li>
+<li>我这里下载的是 apache-maven-3.8.6-bin.zip</li>
+<li>下载完之后 ， 解压到一个文件目录下 </li>
+<li>我是新建了个文件目录 命名为 maven</li>
+<li>如何解压到文件目录下</li>
+</ul>
+<h3 id="配置相关文件"><a href="#配置相关文件" class="headerlink" title="配置相关文件"></a>配置相关文件</h3><ul>
+<li>解压成功之后 ，我们会获得几个文件夹</li>
+<li>bin</li>
+<li>boot</li>
+<li>conf</li>
+<li>lib</li>
+<li>这个里conf是maven的配置文件</li>
+<li>我们在这个目录下新建maven_repossitory文件夹</li>
+<li>这个文件夹可以作为，我们的本地仓库</li>
+<li>接下来，我们要修改 conf 文件夹下</li>
+<li>settings.xml文件</li>
+<li>我们先找到</li>
+<li><code>&lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;</code></li>
+<li>这条语句的位置</li>
+<li>把它更改成</li>
+<li><code>&lt;localRepository&gt;你的maven_repossitory路径&lt;/localRepository&gt;</code></li>
+<li>这样我们就自己创建了个</li>
+<li>因为一般maven的默认仓库是</li>
+<li><code>C:\Users\Administrator\.m2\repository</code></li>
+<li>接下来 ， 我们进行设置国内镜像源</li>
+<li>找到 mirrors 标签</li>
+<li>在mirrors里</li>
+<li>加上：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;mirror&gt;</span><br><span class="line">	&lt;id&gt;alimaven&lt;/id&gt;</span><br><span class="line">	&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line">	&lt;name&gt;aliyun maven&lt;/name&gt;</span><br><span class="line">	&lt;url&gt;http://maven.aliyun.com/nexus/content/repositories/central/&lt;/url&gt;</span><br><span class="line">&lt;/mirror&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>这个是阿里云的镜像 ， 如果不好使 可以以换成腾讯云 和网易的</li>
+<li>添加方法和上面一样</li>
+<li>接下来我们可以为maven配置全局的jdk，这样我们在创建maven项目时就会自动使用该jdk版本，我配置的是jdk1.8</li>
+<li>找到标签 <profiles></profiles></li>
+<li>然后在标签里加入<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!-- java版本 --&gt; </span><br><span class="line">&lt;profile&gt;</span><br><span class="line">  &lt;id&gt;jdk-1.8&lt;/id&gt;</span><br><span class="line">  &lt;activation&gt;</span><br><span class="line">	&lt;activeByDefault&gt;true&lt;/activeByDefault&gt;</span><br><span class="line">	&lt;jdk&gt;1.8&lt;/jdk&gt;</span><br><span class="line">  &lt;/activation&gt;</span><br><span class="line"></span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">	&lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">	&lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">	&lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">&lt;/profile&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="更改idea的maven"><a href="#更改idea的maven" class="headerlink" title="更改idea的maven"></a>更改idea的maven</h3><ul>
+<li>file 文件里的 setting</li>
+<li>在上面搜索 maven</li>
+<li>点进去之后</li>
+<li>把Maven home directory</li>
+<li>配置成自己的解压的文件夹</li>
+<li>然后设置user setting file</li>
+<li>把他设置成解压的文件的setting.xml</li>
+<li>然后把 local repository</li>
+<li>设置成之前自己配置的本地仓库</li>
+<li>关于idea的配置就完成了</li>
+</ul>
+<h2 id="简单的链接mysql"><a href="#简单的链接mysql" class="headerlink" title="简单的链接mysql"></a>简单的链接mysql</h2><ul>
+<li>首先创建maven项目</li>
+<li>然后在pom.xml中加上</li>
+<li><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;5.1.28&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>在<dependencies>标签中加上</li>
+<li>然后import change</li>
+<li>然后在主程序的java项目包里</li>
+<li>写上：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line">import java.sql.Connection;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Hello world!</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class App </span><br><span class="line">&#123;</span><br><span class="line">    public static void main( String[] args )</span><br><span class="line">    &#123;</span><br><span class="line">        String url = &quot;jdbc:mysql://192.168.41.131:3306/try&quot;;</span><br><span class="line">        String user = &quot;root&quot;;</span><br><span class="line">        String passwd = &quot;liuzihan010616&quot;;</span><br><span class="line"></span><br><span class="line">        Connection conect = dbutils.getConnection(url , user , passwd);</span><br><span class="line"></span><br><span class="line">        System.out.println(conect);</span><br><span class="line">        dbutils.closeConnection(conect);</span><br><span class="line"></span><br><span class="line">        System.out.println( &quot;Hello World!&quot; );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>-然后创建一个dbutils</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.DriverManager;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author sxwang</span><br><span class="line"> * 11 07 15:02</span><br><span class="line"> */</span><br><span class="line">public class dbutils &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 获取mysql 连接</span><br><span class="line">     * @param url</span><br><span class="line">     * @param user</span><br><span class="line">     * @param passwd</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Connection getConnection(String url, String user, String passwd)&#123;</span><br><span class="line"></span><br><span class="line">        Connection connection=null;</span><br><span class="line">        try &#123;</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">            try &#123;</span><br><span class="line">                connection = DriverManager.getConnection(url, user, passwd);</span><br><span class="line">            &#125; catch (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return connection;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 关闭连接</span><br><span class="line">     * @param conn</span><br><span class="line">     */</span><br><span class="line">    public static void closeConnection(Connection conn)&#123;</span><br><span class="line"></span><br><span class="line">        if(conn !=null)&#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                conn.close();</span><br><span class="line">            &#125; catch (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Mysql对表的操作"><a href="#Mysql对表的操作" class="headerlink" title="Mysql对表的操作"></a>Mysql对表的操作</h2><ul>
+<li>alter table 旧表名 rename to 新表名 ： 更改表名字</li>
+<li>alter table 表名 modify 列名 数据类型 ： 修改数据类型</li>
+<li>alter table 表名 change 旧表名 新列名 数据类型 ： 修改列名</li>
+<li>alter table 表名 drop 列名 ： 删除列</li>
+<li>alter table 表名 add 新列名 数据类型</li>
+<li>alter table 表名 modify 列名1 数据类型 after 列名2；</li>
+<li>alter table 表明 modify 列名1 数据类型 first</li>
+<li>清空表 </li>
+<li>建议</li>
+<li>truncate table xxx<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">insert into xxx</span><br><span class="line">select xxx from xxx</span><br></pre></td></tr></table></figure></li>
+<li>create</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">create table ...like xxxx</span><br><span class="line">create table xxx like mmm</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>基于xxx表创建新表</li>
+<li>但是，是空表</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">create table ..[as]select xxxx from kkk</span><br><span class="line">create table emp_dev01 as select ename,job</span><br><span class="line">from emp</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>基于其select的表给生成一个表</li>
+<li>叫ctas</li>
+<li>可以用别名该表头</li>
+</ul>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
     <title>mysql</title>
     <url>/2022/11/03/11-3/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
@@ -2669,103 +2768,22 @@
       </categories>
   </entry>
   <entry>
-    <title>jdbc</title>
-    <url>/2022/11/07/11-7/</url>
-    <content><![CDATA[<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
-<li>Maven项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。</li>
-<li>注意是工具</li>
-</ul>
-<h2 id="Maven的配置以及idea使用"><a href="#Maven的配置以及idea使用" class="headerlink" title="Maven的配置以及idea使用"></a>Maven的配置以及idea使用</h2><h3 id="下载及解压"><a href="#下载及解压" class="headerlink" title="下载及解压"></a>下载及解压</h3><ul>
-<li>首先在Maven的官网下载Maven</li>
-<li><a href="http://maven.apache.org/download.cgi" title="Maven官网">Maven官网</a></li>
-<li>我们windows一般下载 ： Binary zip archive的</li>
-<li>我这里下载的是 apache-maven-3.8.6-bin.zip</li>
-<li>下载完之后 ， 解压到一个文件目录下 </li>
-<li>我是新建了个文件目录 命名为 maven</li>
-<li>如何解压到文件目录下</li>
-</ul>
-<h3 id="配置相关文件"><a href="#配置相关文件" class="headerlink" title="配置相关文件"></a>配置相关文件</h3><ul>
-<li>解压成功之后 ，我们会获得几个文件夹</li>
-<li>bin</li>
-<li>boot</li>
-<li>conf</li>
-<li>lib</li>
-<li>这个里conf是maven的配置文件</li>
-<li>我们在这个目录下新建maven_repossitory文件夹</li>
-<li>这个文件夹可以作为，我们的本地仓库</li>
-<li>接下来，我们要修改 conf 文件夹下</li>
-<li>settings.xml文件</li>
-<li>我们先找到</li>
-<li><code>&lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;</code></li>
-<li>这条语句的位置</li>
-<li>把它更改成</li>
-<li><code>&lt;localRepository&gt;你的maven_repossitory路径&lt;/localRepository&gt;</code></li>
-<li>这样我们就自己创建了个</li>
-<li>因为一般maven的默认仓库是</li>
-<li><code>C:\Users\Administrator\.m2\repository</code></li>
-<li>接下来 ， 我们进行设置国内镜像源</li>
-<li>找到 mirrors 标签</li>
-<li>在mirrors里</li>
-<li>加上：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;mirror&gt;</span><br><span class="line">	&lt;id&gt;alimaven&lt;/id&gt;</span><br><span class="line">	&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line">	&lt;name&gt;aliyun maven&lt;/name&gt;</span><br><span class="line">	&lt;url&gt;http://maven.aliyun.com/nexus/content/repositories/central/&lt;/url&gt;</span><br><span class="line">&lt;/mirror&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>这个是阿里云的镜像 ， 如果不好使 可以以换成腾讯云 和网易的</li>
-<li>添加方法和上面一样</li>
-<li>接下来我们可以为maven配置全局的jdk，这样我们在创建maven项目时就会自动使用该jdk版本，我配置的是jdk1.8</li>
-<li>找到标签 <profiles></profiles></li>
-<li>然后在标签里加入<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!-- java版本 --&gt; </span><br><span class="line">&lt;profile&gt;</span><br><span class="line">  &lt;id&gt;jdk-1.8&lt;/id&gt;</span><br><span class="line">  &lt;activation&gt;</span><br><span class="line">	&lt;activeByDefault&gt;true&lt;/activeByDefault&gt;</span><br><span class="line">	&lt;jdk&gt;1.8&lt;/jdk&gt;</span><br><span class="line">  &lt;/activation&gt;</span><br><span class="line"></span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">	&lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">	&lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">	&lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">&lt;/profile&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="更改idea的maven"><a href="#更改idea的maven" class="headerlink" title="更改idea的maven"></a>更改idea的maven</h3><ul>
-<li>file 文件里的 setting</li>
-<li>在上面搜索 maven</li>
-<li>点进去之后</li>
-<li>把Maven home directory</li>
-<li>配置成自己的解压的文件夹</li>
-<li>然后设置user setting file</li>
-<li>把他设置成解压的文件的setting.xml</li>
-<li>然后把 local repository</li>
-<li>设置成之前自己配置的本地仓库</li>
-<li>关于idea的配置就完成了</li>
-</ul>
-<h2 id="简单的链接mysql"><a href="#简单的链接mysql" class="headerlink" title="简单的链接mysql"></a>简单的链接mysql</h2><ul>
-<li>首先创建maven项目</li>
-<li>然后在pom.xml中加上</li>
-<li><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;5.1.28&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>在<dependencies>标签中加上</li>
-<li>然后import change</li>
-<li>然后在主程序的java项目包里</li>
-<li>写上：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line">import java.sql.Connection;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Hello world!</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class App </span><br><span class="line">&#123;</span><br><span class="line">    public static void main( String[] args )</span><br><span class="line">    &#123;</span><br><span class="line">        String url = &quot;jdbc:mysql://192.168.41.131:3306/try&quot;;</span><br><span class="line">        String user = &quot;root&quot;;</span><br><span class="line">        String passwd = &quot;liuzihan010616&quot;;</span><br><span class="line"></span><br><span class="line">        Connection conect = dbutils.getConnection(url , user , passwd);</span><br><span class="line"></span><br><span class="line">        System.out.println(conect);</span><br><span class="line">        dbutils.closeConnection(conect);</span><br><span class="line"></span><br><span class="line">        System.out.println( &quot;Hello World!&quot; );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <title>Hello World</title>
+    <url>/2022/11/03/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash</span><br><span class="line">$ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
 
-<p>-然后创建一个dbutils</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.DriverManager;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author sxwang</span><br><span class="line"> * 11 07 15:02</span><br><span class="line"> */</span><br><span class="line">public class dbutils &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 获取mysql 连接</span><br><span class="line">     * @param url</span><br><span class="line">     * @param user</span><br><span class="line">     * @param passwd</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static Connection getConnection(String url, String user, String passwd)&#123;</span><br><span class="line"></span><br><span class="line">        Connection connection=null;</span><br><span class="line">        try &#123;</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">            try &#123;</span><br><span class="line">                connection = DriverManager.getConnection(url, user, passwd);</span><br><span class="line">            &#125; catch (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return connection;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 关闭连接</span><br><span class="line">     * @param conn</span><br><span class="line">     */</span><br><span class="line">    public static void closeConnection(Connection conn)&#123;</span><br><span class="line"></span><br><span class="line">        if(conn !=null)&#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                conn.close();</span><br><span class="line">            &#125; catch (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="Mysql对表的操作"><a href="#Mysql对表的操作" class="headerlink" title="Mysql对表的操作"></a>Mysql对表的操作</h2><ul>
-<li>alter table 旧表名 rename to 新表名 ： 更改表名字</li>
-<li>alter table 表名 modify 列名 数据类型 ： 修改数据类型</li>
-<li>alter table 表名 change 旧表名 新列名 数据类型 ： 修改列名</li>
-<li>alter table 表名 drop 列名 ： 删除列</li>
-<li>alter table 表名 add 新列名 数据类型</li>
-<li>alter table 表名 modify 列名1 数据类型 after 列名2；</li>
-<li>alter table 表明 modify 列名1 数据类型 first</li>
-<li>清空表 </li>
-<li>建议</li>
-<li>truncate table xxx<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">insert into xxx</span><br><span class="line">select xxx from xxx</span><br></pre></td></tr></table></figure></li>
-<li>create</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">create table ...like xxxx</span><br><span class="line">create table xxx like mmm</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>基于xxx表创建新表</li>
-<li>但是，是空表</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">create table ..[as]select xxxx from kkk</span><br><span class="line">create table emp_dev01 as select ename,job</span><br><span class="line">from emp</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>基于其select的表给生成一个表</li>
-<li>叫ctas</li>
-<li>可以用别名该表头</li>
-</ul>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
   </entry>
   <entry>
     <title>git</title>
@@ -2977,24 +2995,6 @@
       <categories>
         <category>杂货技术栈</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/11/03/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash</span><br><span class="line">$ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>java面试题</title>
@@ -3348,6 +3348,27 @@
 ]]></content>
       <categories>
         <category>Java中的易错点</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>作业10-21</title>
+    <url>/2022/10/21/%E4%BD%9C%E4%B8%9A10-21/</url>
+    <content><![CDATA[<h1 id="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"><a href="#3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称" class="headerlink" title="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"></a>3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">import 作业.file;</span><br><span class="line"></span><br><span class="line">public class file过滤 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File M = new File(&quot;D:\\&quot; , &quot;try&quot;);</span><br><span class="line">		chakan(M);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void chakan(File M) &#123;</span><br><span class="line">		File[] k = M.listFiles();</span><br><span class="line">		System.out.println(k);</span><br><span class="line">		for (int i = 0; i &lt; k.length; i++) &#123;</span><br><span class="line">			File[] t = k[i].listFiles();</span><br><span class="line">			if(t == null) &#123;</span><br><span class="line">				String g =  k[i].getName();</span><br><span class="line">				String d = g.substring(k[i].getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">				if(d.equals(&quot;.java&quot;)) &#123;</span><br><span class="line">					System.out.println(g.substring(0, k[i].getName().lastIndexOf(&quot;.&quot;)));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				chakan(k[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>重点字符串的相等要用equals，递归</li>
+</ul>
+<h1 id="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"><a href="#判断指定路径下的所有子文件或是目录，如果是子文件则全部删除" class="headerlink" title="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"></a>判断指定路径下的所有子文件或是目录，如果是子文件则全部删除</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">File[] ds =	k.listFiles(); </span><br><span class="line">for (int i = 0; i &lt; ds.length ; i++ ) &#123;</span><br><span class="line">	File[] h = ds[i].listFiles();</span><br><span class="line">	if(h == null) &#123;</span><br><span class="line">		System.out.println(&quot;这个是个文件&quot;);</span><br><span class="line">		ds[i].delete();</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		k.delete();</span><br><span class="line">		SHANCHU(ds[i]);</span><br><span class="line">			&#125;</span><br><span class="line">	k.delete();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重点：递归</li>
+</ul>
+<h1 id="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）"><a href="#5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）" class="headerlink" title="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）"></a>5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">File G = new File(&quot;D:\\\\102班级\\\\javaSE作业&quot;);</span><br><span class="line"></span><br><span class="line">G.mkdirs();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="从磁盘读取一个文件到内存中，再打印到控制台"><a href="#从磁盘读取一个文件到内存中，再打印到控制台" class="headerlink" title="从磁盘读取一个文件到内存中，再打印到控制台"></a>从磁盘读取一个文件到内存中，再打印到控制台</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line"></span><br><span class="line">public class lkdjfslasfj &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		try &#123;</span><br><span class="line">			InputStream is = new FileInputStream(&quot;D:/a.txt&quot;);</span><br><span class="line">//				while(is.available() != 0) &#123;</span><br><span class="line">//					System.out.println((char)is.read()); // 默认一次只读一个字符</span><br><span class="line">//				&#125;</span><br><span class="line">			</span><br><span class="line">			byte[] buffer = new byte[10]; // 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span><br><span class="line">			int len = 0; // 设置个长度</span><br><span class="line">			while((len = is.read(buffer)) != -1) // 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span><br><span class="line">			&#123;</span><br><span class="line">				System.out.print(new String(buffer , 0 , len)); </span><br><span class="line">			&#125;</span><br><span class="line">			is.close();</span><br><span class="line">			&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125; catch (IOException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="模拟用户登录："><a href="#模拟用户登录：" class="headerlink" title="模拟用户登录："></a>模拟用户登录：</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class login &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File basic = new File(&quot;D://&quot; , &quot;a.txt&quot;);</span><br><span class="line">		try(InputStream in = new FileInputStream(basic);</span><br><span class="line">			Reader re = new InputStreamReader(in , &quot;UTF-8&quot;);	</span><br><span class="line">			) &#123;</span><br><span class="line">			Map db = new HashMap();</span><br><span class="line">			Scanner scanner = new Scanner(re);</span><br><span class="line">			while(scanner.hasNext()) &#123;</span><br><span class="line">			String usertotal = scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(&quot; &quot;);</span><br><span class="line">//			System.out.println(username[0]);</span><br><span class="line">//			System.out.println(username[1]);</span><br><span class="line">			db.put(username[0],username[1]);</span><br><span class="line">//			System.out.println(db);</span><br><span class="line">			&#125;</span><br><span class="line">			Scanner name = new Scanner(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			System.out.println(&quot;请输入账号：&quot;);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			if(usename == null) &#123;</span><br><span class="line">				System.out.println(&quot;姓名不能为空&quot;);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">				System.out.println(&quot;请输入密码&quot;);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				if(password == null) &#123;</span><br><span class="line">					System.out.println(&quot;密码不能为空&quot;);</span><br><span class="line">					</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(&quot;登陆成功&quot;);</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(&quot;输入错误请重新输入&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class login &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File basic = new File(&quot;D://&quot; , &quot;a.txt&quot;);</span><br><span class="line">		try(InputStream in = new FileInputStream(basic);</span><br><span class="line">			Reader re = new InputStreamReader(in , &quot;UTF-8&quot;);	</span><br><span class="line">			) &#123;</span><br><span class="line">			Map db = new HashMap();</span><br><span class="line">			Scanner scanner = new Scanner(re);</span><br><span class="line">			while(scanner.hasNext()) &#123;</span><br><span class="line">			String usertotal = scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(&quot; &quot;);</span><br><span class="line">//			System.out.println(username[0]);</span><br><span class="line">//			System.out.println(username[1]);</span><br><span class="line">			db.put(username[0],username[1]);</span><br><span class="line">//			System.out.println(db);</span><br><span class="line">			&#125;</span><br><span class="line">			Scanner name = new Scanner(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			System.out.println(&quot;请输入账号：&quot;);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			if(usename == null) &#123;</span><br><span class="line">				System.out.println(&quot;姓名不能为空&quot;);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">				System.out.println(&quot;请输入密码&quot;);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				if(password == null) &#123;</span><br><span class="line">					System.out.println(&quot;密码不能为空&quot;);</span><br><span class="line">					</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(&quot;登陆成功&quot;);</span><br><span class="line">				System.out.println(&quot;输入1进行修改密码&quot;);</span><br><span class="line">				int m = Integer.parseInt(name.nextLine());</span><br><span class="line">				if(m == 1) &#123;</span><br><span class="line">					if(db.containsKey(usename)) &#123;</span><br><span class="line">						System.out.println(&quot;请输入更改之后的密码&quot;);</span><br><span class="line">						String newpassword = name.nextLine();</span><br><span class="line">						db.put(usename, newpassword);</span><br><span class="line">					&#125; </span><br><span class="line">				&#125;</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(&quot;输入错误请重新输入&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>作业</category>
       </categories>
   </entry>
   <entry>
@@ -3727,27 +3748,6 @@
 <li>数据源<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">drop table if exists `user_profile`;</span><br><span class="line">drop table if  exists `question_practice_detail`;</span><br><span class="line">drop table if  exists `question_detail`;</span><br><span class="line">CREATE TABLE `user_profile` (</span><br><span class="line">  `id` int(11) NOT NULL,</span><br><span class="line">  `device_id` int(11) NOT NULL,</span><br><span class="line">  `gender` varchar(14) NOT NULL,</span><br><span class="line">  `age` int(11) DEFAULT NULL,</span><br><span class="line">  `university` varchar(32) NOT NULL,</span><br><span class="line">  `gpa` float DEFAULT NULL,</span><br><span class="line">  `active_days_within_30` int(11) DEFAULT NULL,</span><br><span class="line">  `question_cnt` int(11) DEFAULT NULL,</span><br><span class="line">  `answer_cnt` int(11) DEFAULT NULL</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br><span class="line">CREATE TABLE `question_practice_detail` (</span><br><span class="line">`id` int NOT NULL,</span><br><span class="line">`device_id` int NOT NULL,</span><br><span class="line">`question_id`int NOT NULL,</span><br><span class="line">`result` varchar(32) NOT NULL,</span><br><span class="line">`date` date NOT NULL</span><br><span class="line">);</span><br><span class="line">CREATE TABLE `question_detail` (</span><br><span class="line">`id` int NOT NULL,</span><br><span class="line">`question_id`int NOT NULL,</span><br><span class="line">`difficult_level` varchar(32) NOT NULL</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">INSERT INTO user_profile VALUES(1,2138,&#x27;male&#x27;,21,&#x27;北京大学&#x27;,3.4,7,2,12);</span><br><span class="line">INSERT INTO user_profile VALUES(2,3214,&#x27;male&#x27;,null,&#x27;复旦大学&#x27;,4.0,15,5,25);</span><br><span class="line">INSERT INTO user_profile VALUES(3,6543,&#x27;female&#x27;,20,&#x27;北京大学&#x27;,3.2,12,3,30);</span><br><span class="line">INSERT INTO user_profile VALUES(4,2315,&#x27;female&#x27;,23,&#x27;浙江大学&#x27;,3.6,5,1,2);</span><br><span class="line">INSERT INTO user_profile VALUES(5,5432,&#x27;male&#x27;,25,&#x27;山东大学&#x27;,3.8,20,15,70);</span><br><span class="line">INSERT INTO user_profile VALUES(6,2131,&#x27;male&#x27;,28,&#x27;山东大学&#x27;,3.3,15,7,13);</span><br><span class="line">INSERT INTO user_profile VALUES(7,4321,&#x27;male&#x27;,28,&#x27;复旦大学&#x27;,3.6,9,6,52);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(1,2138,111,&#x27;wrong&#x27;,&#x27;2021-05-03&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(2,3214,112,&#x27;wrong&#x27;,&#x27;2021-05-09&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(3,3214,113,&#x27;wrong&#x27;,&#x27;2021-06-15&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(4,6543,111,&#x27;right&#x27;,&#x27;2021-08-13&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(5,2315,115,&#x27;right&#x27;,&#x27;2021-08-13&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(6,2315,116,&#x27;right&#x27;,&#x27;2021-08-14&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(7,2315,117,&#x27;wrong&#x27;,&#x27;2021-08-15&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(8,3214,112,&#x27;wrong&#x27;,&#x27;2021-05-09&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(9,3214,113,&#x27;wrong&#x27;,&#x27;2021-08-15&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(10,6543,111,&#x27;right&#x27;,&#x27;2021-08-13&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(11,2315,115,&#x27;right&#x27;,&#x27;2021-08-13&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(12,2315,116,&#x27;right&#x27;,&#x27;2021-08-14&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(13,2315,117,&#x27;wrong&#x27;,&#x27;2021-08-15&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(14,3214,112,&#x27;wrong&#x27;,&#x27;2021-08-16&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(15,3214,113,&#x27;wrong&#x27;,&#x27;2021-08-18&#x27;);</span><br><span class="line">INSERT INTO question_practice_detail VALUES(16,6543,111,&#x27;right&#x27;,&#x27;2021-08-13&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(1,111,&#x27;hard&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(2,112,&#x27;medium&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(3,113,&#x27;easy&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(4,115,&#x27;easy&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(5,116,&#x27;medium&#x27;);</span><br><span class="line">INSERT INTO question_detail VALUES(6,117,&#x27;easy&#x27;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="解答-1"><a href="#解答-1" class="headerlink" title="解答"></a>解答</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">select avg(if(datediff(date2, date1)=1, 1, 0)) as avg_ret</span><br><span class="line">from (</span><br><span class="line">    select</span><br><span class="line">        distinct device_id,</span><br><span class="line">        date as date1,</span><br><span class="line">        lead(date) over (partition by device_id order by date) as date2</span><br><span class="line">    from (</span><br><span class="line">        select distinct device_id, date</span><br><span class="line">        from question_practice_detail</span><br><span class="line">    ) as uniq_id_date</span><br><span class="line">) as id_last_next_date</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>作业</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>作业10-21</title>
-    <url>/2022/10/21/%E4%BD%9C%E4%B8%9A10-21/</url>
-    <content><![CDATA[<h1 id="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"><a href="#3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称" class="headerlink" title="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"></a>3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">import 作业.file;</span><br><span class="line"></span><br><span class="line">public class file过滤 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File M = new File(&quot;D:\\&quot; , &quot;try&quot;);</span><br><span class="line">		chakan(M);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void chakan(File M) &#123;</span><br><span class="line">		File[] k = M.listFiles();</span><br><span class="line">		System.out.println(k);</span><br><span class="line">		for (int i = 0; i &lt; k.length; i++) &#123;</span><br><span class="line">			File[] t = k[i].listFiles();</span><br><span class="line">			if(t == null) &#123;</span><br><span class="line">				String g =  k[i].getName();</span><br><span class="line">				String d = g.substring(k[i].getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">				if(d.equals(&quot;.java&quot;)) &#123;</span><br><span class="line">					System.out.println(g.substring(0, k[i].getName().lastIndexOf(&quot;.&quot;)));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				chakan(k[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>重点字符串的相等要用equals，递归</li>
-</ul>
-<h1 id="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"><a href="#判断指定路径下的所有子文件或是目录，如果是子文件则全部删除" class="headerlink" title="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"></a>判断指定路径下的所有子文件或是目录，如果是子文件则全部删除</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">File[] ds =	k.listFiles(); </span><br><span class="line">for (int i = 0; i &lt; ds.length ; i++ ) &#123;</span><br><span class="line">	File[] h = ds[i].listFiles();</span><br><span class="line">	if(h == null) &#123;</span><br><span class="line">		System.out.println(&quot;这个是个文件&quot;);</span><br><span class="line">		ds[i].delete();</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		k.delete();</span><br><span class="line">		SHANCHU(ds[i]);</span><br><span class="line">			&#125;</span><br><span class="line">	k.delete();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>重点：递归</li>
-</ul>
-<h1 id="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）"><a href="#5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）" class="headerlink" title="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）"></a>5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">File G = new File(&quot;D:\\\\102班级\\\\javaSE作业&quot;);</span><br><span class="line"></span><br><span class="line">G.mkdirs();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="从磁盘读取一个文件到内存中，再打印到控制台"><a href="#从磁盘读取一个文件到内存中，再打印到控制台" class="headerlink" title="从磁盘读取一个文件到内存中，再打印到控制台"></a>从磁盘读取一个文件到内存中，再打印到控制台</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 项目实训;</span><br><span class="line"></span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line"></span><br><span class="line">public class lkdjfslasfj &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		try &#123;</span><br><span class="line">			InputStream is = new FileInputStream(&quot;D:/a.txt&quot;);</span><br><span class="line">//				while(is.available() != 0) &#123;</span><br><span class="line">//					System.out.println((char)is.read()); // 默认一次只读一个字符</span><br><span class="line">//				&#125;</span><br><span class="line">			</span><br><span class="line">			byte[] buffer = new byte[10]; // 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span><br><span class="line">			int len = 0; // 设置个长度</span><br><span class="line">			while((len = is.read(buffer)) != -1) // 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span><br><span class="line">			&#123;</span><br><span class="line">				System.out.print(new String(buffer , 0 , len)); </span><br><span class="line">			&#125;</span><br><span class="line">			is.close();</span><br><span class="line">			&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125; catch (IOException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="模拟用户登录："><a href="#模拟用户登录：" class="headerlink" title="模拟用户登录："></a>模拟用户登录：</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class login &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File basic = new File(&quot;D://&quot; , &quot;a.txt&quot;);</span><br><span class="line">		try(InputStream in = new FileInputStream(basic);</span><br><span class="line">			Reader re = new InputStreamReader(in , &quot;UTF-8&quot;);	</span><br><span class="line">			) &#123;</span><br><span class="line">			Map db = new HashMap();</span><br><span class="line">			Scanner scanner = new Scanner(re);</span><br><span class="line">			while(scanner.hasNext()) &#123;</span><br><span class="line">			String usertotal = scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(&quot; &quot;);</span><br><span class="line">//			System.out.println(username[0]);</span><br><span class="line">//			System.out.println(username[1]);</span><br><span class="line">			db.put(username[0],username[1]);</span><br><span class="line">//			System.out.println(db);</span><br><span class="line">			&#125;</span><br><span class="line">			Scanner name = new Scanner(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			System.out.println(&quot;请输入账号：&quot;);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			if(usename == null) &#123;</span><br><span class="line">				System.out.println(&quot;姓名不能为空&quot;);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">				System.out.println(&quot;请输入密码&quot;);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				if(password == null) &#123;</span><br><span class="line">					System.out.println(&quot;密码不能为空&quot;);</span><br><span class="line">					</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(&quot;登陆成功&quot;);</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(&quot;输入错误请重新输入&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.Reader;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class login &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		File basic = new File(&quot;D://&quot; , &quot;a.txt&quot;);</span><br><span class="line">		try(InputStream in = new FileInputStream(basic);</span><br><span class="line">			Reader re = new InputStreamReader(in , &quot;UTF-8&quot;);	</span><br><span class="line">			) &#123;</span><br><span class="line">			Map db = new HashMap();</span><br><span class="line">			Scanner scanner = new Scanner(re);</span><br><span class="line">			while(scanner.hasNext()) &#123;</span><br><span class="line">			String usertotal = scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(&quot; &quot;);</span><br><span class="line">//			System.out.println(username[0]);</span><br><span class="line">//			System.out.println(username[1]);</span><br><span class="line">			db.put(username[0],username[1]);</span><br><span class="line">//			System.out.println(db);</span><br><span class="line">			&#125;</span><br><span class="line">			Scanner name = new Scanner(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">			System.out.println(&quot;请输入账号：&quot;);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			if(usename == null) &#123;</span><br><span class="line">				System.out.println(&quot;姓名不能为空&quot;);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			while(true) &#123;</span><br><span class="line">				System.out.println(&quot;请输入密码&quot;);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				if(password == null) &#123;</span><br><span class="line">					System.out.println(&quot;密码不能为空&quot;);</span><br><span class="line">					</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">					break;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(&quot;登陆成功&quot;);</span><br><span class="line">				System.out.println(&quot;输入1进行修改密码&quot;);</span><br><span class="line">				int m = Integer.parseInt(name.nextLine());</span><br><span class="line">				if(m == 1) &#123;</span><br><span class="line">					if(db.containsKey(usename)) &#123;</span><br><span class="line">						System.out.println(&quot;请输入更改之后的密码&quot;);</span><br><span class="line">						String newpassword = name.nextLine();</span><br><span class="line">						db.put(usename, newpassword);</span><br><span class="line">					&#125; </span><br><span class="line">				&#125;</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(&quot;输入错误请重新输入&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
       <categories>
         <category>作业</category>
       </categories>
