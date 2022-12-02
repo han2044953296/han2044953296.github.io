@@ -198,6 +198,496 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/31/10-31/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/31/10-31/" class="post-title-link" itemprop="url">Linux命令</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-31 11:03:51" itemprop="dateCreated datePublished" datetime="2022-10-31T11:03:51+08:00">2022-10-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="linux的目录形式"><a href="#linux的目录形式" class="headerlink" title="linux的目录形式"></a>linux的目录形式</h1><ul>
+<li>层级式</li>
+<li>当用了Xshell登录了管理员之后会显示</li>
+<li>root@bigdata1 liuzihan</li>
+<li>前面表示root用户</li>
+<li>@后面的是机器名字</li>
+<li>在后面的是普通用户的名字</li>
+<li>~表示当前用户的家目录</li>
+<li>有命令帮助 应用 xx–help ， 这个xx代表是命令</li>
+<li>例如： 用法：ls [选项]… [文件]…</li>
+<li>上面代表ls后面可以加多个辅助命令 ， 还可以加多个文件</li>
+<li>中断命令 ： ctrl + c 或者 ctrl + z</li>
+<li>用键盘自动补全 ，</li>
+<li>按一次 ： 匹配当前据有唯一标识的补全</li>
+<li>按两次 ： 把所有匹配的项目都展示出来</li>
+</ul>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><ul>
+<li>pwd : 查看当前所在的目录</li>
+<li>ls ： 查看所在的目录下有文件或者文件夹</li>
+<li>mkdir ： 创建文件夹 ， 后面加文件夹的名字</li>
+<li>cd ： 切换路径 ， 就算现在所在的目录 ， 只能切换文件夹</li>
+<li>ls -l ： 表示看这个文件夹的额外的详细信息 ， 权限 ，用户 ， 用户组 ， 大小 ， 创建时间。 </li>
+<li>ls -l -a ：显示以.开头的文件或者文件夹 ， 就是隐藏文件</li>
+<li>ls -l -h ：查看文件的大小 ， 文件夹是不可以的</li>
+<li>上面的 ls -l &#x3D;&#x3D; ll 但是在一些操作系统里是不行的在centos里是可以的但是ubanto上是不行的</li>
+<li>其实现是通过别名</li>
+<li>ll -r -t ： 可以看见按照时间顺序降序的排序文件 ，就算最下面的就是最近更改的</li>
+<li>上述还可以改成 ll -rt &#x3D;&#x3D;ll -r -t</li>
+</ul>
+<h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹##"></a>创建文件夹##</h2><h3 id="并级创建"><a href="#并级创建" class="headerlink" title="并级创建"></a>并级创建</h3><ul>
+<li>mkdir 1 2 3</li>
+</ul>
+<h3 id="串级创建"><a href="#串级创建" class="headerlink" title="串级创建"></a>串级创建</h3><ul>
+<li>mkdir 1&#x2F;2&#x2F;3</li>
+<li>但是这样要求必须有上级目录</li>
+<li>不过可以用</li>
+<li>mkdir -p 1&#x2F;2&#x2F;3</li>
+<li>就可以了</li>
+</ul>
+<h2 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h2><ul>
+<li>cd</li>
+<li>不过有绝对路径和相对路径的区别</li>
+<li>绝对路径 ： 从根目录</li>
+<li>相对路径 ： 从当前目录</li>
+<li>cd的可以是绝对，也可以是相对</li>
+<li>cd..&#x2F; : 返回上级目录</li>
+<li>cd.&#x2F; : 表示当前目录</li>
+<li>可以这样用 ： cd .&#x2F;1</li>
+</ul>
+<h3 id="快速回到家目录"><a href="#快速回到家目录" class="headerlink" title="快速回到家目录"></a>快速回到家目录</h3><ul>
+<li>1 , cd &#x2F;xx</li>
+<li>2 , cd + 回车 &#x3D;&#x3D;&gt;推荐</li>
+<li>3 , cd + ~</li>
+<li>cd - 回到上次操作的目录</li>
+</ul>
+<h2 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h2><ul>
+<li>touch 1.log</li>
+<li>vi&#x2F;vim 1.log</li>
+<li>echo “bigdata” &gt; 3.log</li>
+<li><blockquote>
+<p>: 表示创建或者覆盖一个文件</p>
+</blockquote>
+</li>
+<li>cat ： 查看文件内容</li>
+<li>比如 ： cat 3.log</li>
+<li><blockquote>
+<blockquote>
+<p>: 追加 ，上述一个 &gt; 是覆盖 ，这个是追加</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h2 id="编辑文件"><a href="#编辑文件" class="headerlink" title="编辑文件"></a>编辑文件</h2><ul>
+<li>命令行模式</li>
+<li>编辑模式</li>
+<li>尾行模式</li>
+<li>vi&#x2F;vim xxx</li>
+<li>然后用insert</li>
+<li>编辑完了</li>
+<li>用esc ， 之后有几种选项</li>
+<li>:q ：代表退出并且不保存</li>
+<li>:w ：代表写入，但是不退出</li>
+<li>:wq ：代表保存且退出</li>
+<li>：！ ：强制</li>
+<li>还可以以应用nano</li>
+<li>就nano Xxx</li>
+<li>然后下面就会有提示</li>
+<li>如果没有这个文件，就会创建文件</li>
+</ul>
+<h2 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h2><ul>
+<li>cat ： 查看文件所有内容</li>
+<li>more ： 查看文件内容，按空格是往下翻，按q退出</li>
+<li>less ： 查看大文件，也是一页一页的 ， q是退出，按小键盘的上下键，是翻页</li>
+<li>一般小文件，用 cat 大文件more或者less</li>
+<li>实时查看文件产生的内容</li>
+<li>tail ： </li>
+<li>-f</li>
+<li>-F &#x3D;&#x3D; -f + retry</li>
+<li>意义：-F ， 如果我们查看一个文件的时候，文件被删了，然后又重新生成了给一样文件名的文件 ， 则f就不会动态显示了</li>
+<li>但是F会重显示新的那个文件</li>
+<li>用法 tail -f xxx</li>
+<li>用法 tail -F xxx</li>
+</ul>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>查找特定日志里的xx字段</li>
+<li>通过 vi&#x2F;vim 进入 然后进行搜索</li>
+<li>在尾行模式 ，输入要查找的字符 例如 &#x2F;error</li>
+<li>然后键盘 n 查找下一个词 N 查找上一个词</li>
+<li>通过cat </li>
+<li>cat xxxx文件 | grep error 通过后面的grep 过滤文件</li>
+<li>查看进程也可以用这种方式筛选</li>
+<li>可以和其他命令联用 比如 把所有error的信息收集起来</li>
+<li>cat xxx文件 | grep error &gt; xxx文件</li>
+<li>grep的常用的参数</li>
+<li>grep -A xx行： 查看某一个词的后xx行</li>
+<li>grep -B xx行： 查看某一个词的前xx行</li>
+<li>grep -C xx行： 查看某一个词的前后xx行</li>
+<li>与上面的了连用为</li>
+<li>cat xxx文件 | grep -A xx行 error &gt; xxx文件</li>
+<li>nano方式</li>
+<li>管道符| ：代表让上一个语句的输出代表 代表下一个语句的输入</li>
+</ul>
+<h2 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h2><ul>
+<li>上传 ： win 到 linux</li>
+<li>下载 ： linux 到 win</li>
+</ul>
+<h3 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h3><ul>
+<li>工具 ： Xshell 通过Xshell的Xftp进行下载和上传</li>
+<li>linux命令 ： yum install lzxx ，通过他进行下载上传</li>
+</ul>
+<h2 id="清屏"><a href="#清屏" class="headerlink" title="清屏"></a>清屏</h2><ul>
+<li>clear : 清屏</li>
+<li>ctrl + l ： 清屏</li>
+</ul>
+<h2 id="查看操作命令历史"><a href="#查看操作命令历史" class="headerlink" title="查看操作命令历史"></a>查看操作命令历史</h2><ul>
+<li>history </li>
+<li>或者键盘上的上下箭头号</li>
+<li>按键盘的！ + 命令行数</li>
+</ul>
+<h2 id="移动与复制"><a href="#移动与复制" class="headerlink" title="移动与复制"></a>移动与复制</h2><ul>
+<li>mv[选项]..源文件..目录</li>
+<li>例如： mv dir1 bigdata</li>
+<li>cp[选项]..源文件..目录</li>
+<li>例如： cp -r dir2 bigdata</li>
+<li>但是 cp还可以复制的时候改文件名字</li>
+<li>例如 cp 源文件 目标文件</li>
+<li>就会把源文件中的内容给目标文件，命名就是这里的目标文件</li>
+<li>也可以和上一个复制到文件夹联用</li>
+<li>例如 ： cp xx xxx目录&#x2F;xx文件</li>
+<li>mv始终是一份</li>
+<li>而cp则是两份</li>
+<li>所以mv比cp快</li>
+</ul>
+<h2 id="删除文件或者文件夹"><a href="#删除文件或者文件夹" class="headerlink" title="删除文件或者文件夹"></a>删除文件或者文件夹</h2><ul>
+<li>rm[选项]..文件..</li>
+<li>有删除提示 ： rm reeor.log</li>
+<li>删除文件夹 ： rm -r xxxx文件夹</li>
+<li>无删除提示 ： rm -f</li>
+<li>用法和上面一样</li>
+<li>且 rm-r -f xxx &#x3D; rm-rf xxx</li>
+<li>比如 我们可以 rm -rf&#x2F; &#x3D;&gt; 把整个全删除了</li>
+</ul>
+<h2 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h2><ul>
+<li>alias </li>
+<li>创建别名：</li>
+<li>alias aa &#x3D;”cd&#x2F;tmp” &#x3D;&gt;仅仅当前会话生效 ， 让aa代表cd&#x2F;tmp</li>
+<li>但是在其他会话里就不会生效，因为这个没有在环境变量里设置</li>
+</ul>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><ul>
+<li>就像java的jdk环境一样 我们也有环境变量</li>
+<li>全局环境变量 &#x2F;etc&#x2F;profile</li>
+<li>个人变量 ： 只能当前用户使用 其他用户不能使用</li>
+<li>~&#x2F;.bashrcc</li>
+<li>~&#x2F;.bash_profile</li>
+<li>生效环境变量</li>
+<li>source &#x2F;etc&#x2F;profile</li>
+<li>重新打开一个会话</li>
+<li>然后这个别名就会好用了</li>
+<li>但是这个不能跨用户访问，比如root的不能在普通用户这么用，相反也是</li>
+<li></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/28/10-28/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/28/10-28/" class="post-title-link" itemprop="url">细节</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-28 09:26:29" itemprop="dateCreated datePublished" datetime="2022-10-28T09:26:29+08:00">2022-10-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>520</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="关于Map的遍历"><a href="#关于Map的遍历" class="headerlink" title="关于Map的遍历"></a>关于Map的遍历</h1><ul>
+<li>我们可以用Set来遍历</li>
+<li>代码如下:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">map2.put(&quot;Tom&quot;, &quot;Corejava&quot;);</span><br><span class="line">map2.put(&quot;Jerry&quot;, &quot;Jsp&quot;);</span><br><span class="line">map2.put(&quot;KJSHHKJ&quot; , &quot;Oracle&quot;);</span><br><span class="line">Set m = map2.entrySet();</span><br><span class="line">m.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>我们还可以用，把map转换成流再进行</li>
+<li>代码如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">map2.entrySet().stream().filter((item) -&gt; &quot;Oracle&quot;.equals(item.getValue())).forEach((item) -&gt; System.out.println(item.getKey()));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>特别帅气，</li>
+<li>而且foreach的本质就是流</li>
+<li>先通过entryset转换成集合</li>
+<li>然后集合有Stream方法，可以转化成流</li>
+<li>然后对于流我们加上filter（过滤器）</li>
+<li>筛选我们想要的结构，这个过滤器里面只能放返回值是布尔的</li>
+<li>然后筛选完了，我们可以对他进行lambda的表达输出语句</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/27/%E6%9D%82%E9%A1%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/27/%E6%9D%82%E9%A1%B9/" class="post-title-link" itemprop="url">杂项</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-27 12:19:27" itemprop="dateCreated datePublished" datetime="2022-10-27T12:19:27+08:00">2022-10-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E9%A1%B9/" itemprop="url" rel="index"><span itemprop="name">杂项</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>106</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="查看自己电脑可支持的最大内存"><a href="#查看自己电脑可支持的最大内存" class="headerlink" title="查看自己电脑可支持的最大内存"></a>查看自己电脑可支持的最大内存</h1><ul>
+<li>打开cmd</li>
+<li>输入wmic memphysical get maxcapacity</li>
+<li>就会获得字节数</li>
+<li>除以两个1024，就会是xxxG</li>
+</ul>
+<h1 id="查看电脑有几个卡槽"><a href="#查看电脑有几个卡槽" class="headerlink" title="查看电脑有几个卡槽"></a>查看电脑有几个卡槽</h1><ul>
+<li>打开任务管理器</li>
+<li>选择性能</li>
+<li>上面就有已经使用了几个卡槽</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/27/%E7%89%9B%E5%AE%A21/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1277,485 +1767,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/20/10-20/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/20/10-20/" class="post-title-link" itemprop="url">io流</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-20 10:23:03" itemprop="dateCreated datePublished" datetime="2022-10-20T10:23:03+08:00">2022-10-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h1><ul>
-<li>字节流的结尾一般都是InputStream ， OutputStream</li>
-<li>是个抽象类</li>
-<li>可以自动关闭</li>
-<li>顶层类，上面就是Object</li>
-<li>这个东西是要有参照物的</li>
-</ul>
-<h2 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package 作业;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.OutputStream;</span><br><span class="line">public class sd3333sdfse &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		OutputStream os1;</span><br><span class="line">		try &#123;</span><br><span class="line">			os1 = new FileOutputStream( new File(&quot;D:\\a.txt&quot;), false); // 这个false代表是覆盖源文件，如果是true就是把字符串加入</span><br><span class="line">			String s = &quot;hello word&quot;;</span><br><span class="line">			os1.write(s.getBytes());</span><br><span class="line">			os1.flush();  // 落盘到磁盘上</span><br><span class="line">			os1.close(); // 关闭文件输出流</span><br><span class="line">		&#125; catch (FileNotFoundException e1) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line">public class read &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	try &#123;</span><br><span class="line">		InputStream is = new FileInputStream(&quot;D:/a.txt&quot;);</span><br><span class="line">//			while(is.available() != 0) &#123;</span><br><span class="line">//				System.out.println((char)is.read()); // 默认一次只读一个字符</span><br><span class="line">//			&#125;</span><br><span class="line">		</span><br><span class="line">		byte[] buffer = new byte[10]; // 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span><br><span class="line">		int len = 0; // 设置个长度</span><br><span class="line">		while((len = is.read(buffer)) != -1) // 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.print(new String(buffer , 0 , len)); </span><br><span class="line">		&#125;</span><br><span class="line">		is.close();</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			// TODO Auto-generated catch block</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li>定义：File d &#x3D; new File(“XXxxx”，”name”); &#x2F;&#x2F; 这里XXxxx是文件目录 , 第二个是文件名字</li>
-<li>文件或者目录</li>
-</ul>
-<h2 id="exist（）"><a href="#exist（）" class="headerlink" title="exist（）"></a>exist（）</h2><ul>
-<li>文件是有大小的，目录是无大小</li>
-<li>判断文件&#x2F;目录是不是存在</li>
-</ul>
-<h2 id="isFile"><a href="#isFile" class="headerlink" title="isFile"></a>isFile</h2><ul>
-<li>代表判断是不是文件</li>
-</ul>
-<h2 id="isDirectory"><a href="#isDirectory" class="headerlink" title="isDirectory"></a>isDirectory</h2><ul>
-<li>代表是不是文件夹</li>
-</ul>
-<h2 id="length"><a href="#length" class="headerlink" title="length"></a>length</h2><ul>
-<li>代表查看其字节的长度，大小，但是文件有大小，目录无大小</li>
-</ul>
-<h2 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h2><ul>
-<li>代表删除文件，注意这里删除的文件不是送进回收站里的，如果要删除目录，要先把里面的文件清空</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">public class file &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	File m = new File(&quot;D:\\&quot; , &quot;a.txt&quot;);</span><br><span class="line">	File k = new File(&quot;D//&quot;);</span><br><span class="line">	System.out.println(m.exists());</span><br><span class="line">	System.out.println(k.exists());</span><br><span class="line">	System.out.println(k.isFile());</span><br><span class="line">	System.out.println(m.isDirectory());</span><br><span class="line">	System.out.println(k.length());</span><br><span class="line">	System.out.println(k.delete());</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="删除文件夹"><a href="#删除文件夹" class="headerlink" title="删除文件夹"></a>删除文件夹</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">	File[] ds =	k.listFiles(); </span><br><span class="line">	for (int i = 0; i &lt; ds.length ; i++ ) &#123;</span><br><span class="line">		File[] h = ds[i].listFiles();</span><br><span class="line">		if(h == null) &#123;</span><br><span class="line">			System.out.println(&quot;这个是个文件&quot;);</span><br><span class="line">			ds[i].delete();</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			k.delete();</span><br><span class="line">			SHANCHU(ds[i]);</span><br><span class="line">				&#125;</span><br><span class="line">		k.delete();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="makedir"><a href="#makedir" class="headerlink" title="makedir"></a>makedir</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">public class adsgqjd &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	File file = new File(&quot;D:/a/abc.txt&quot;);</span><br><span class="line">	System.out.println(file.exists());</span><br><span class="line">	System.out.println(file.mkdir());</span><br><span class="line">	File file2 =new File(&quot;D:/a/c/v/bv/nb&quot;);</span><br><span class="line">	System.out.println(file2.mkdirs());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>我们通过mkdirs可以直接深度创建</li>
-<li>但是如果没有父目录，一般的文件就无法创建</li>
-</ul>
-<h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">private static File getCopy(File f1) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line">	String sufString = f1.getName().substring(f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String qi = f1.getName().substring(0, f1.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">	String use = qi + &quot;-副本&quot; + sufString;</span><br><span class="line">	File newf = new File(f1.getParent() , use);</span><br><span class="line">	if(newf.exists()) &#123;</span><br><span class="line">	return	getCopy(newf);</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">	return newf;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/19/%E5%88%B6%E4%BD%9C%E7%AD%BE%E5%88%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/19/%E5%88%B6%E4%BD%9C%E7%AD%BE%E5%88%B0/" class="post-title-link" itemprop="url">签到的制作（后端＋前端）</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-19 13:22:28" itemprop="dateCreated datePublished" datetime="2022-10-19T13:22:28+08:00">2022-10-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AD%BE%E5%88%B0%E7%9A%84%E5%88%B6%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">签到的制作</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>31k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>28 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前提准备"><a href="#前提准备" class="headerlink" title="前提准备"></a>前提准备</h1><ul>
-<li>Centos7.8</li>
-<li>在虚拟机安装好redis，并且可以成功ping通</li>
-<li>使用jdk 11</li>
-<li>使用idea 2019.3</li>
-<li>准备好post man</li>
-<li>准备好可以观察redis的软件，比如redisDespoketManger等</li>
-</ul>
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><ul>
-<li>先打开虚拟机，并开启redis</li>
-<li>然后打开idea，创建springboot项目，在插件列表选择 </li>
-<li>spring web</li>
-<li>spring Data Redis</li>
-<li>Lombok</li>
-<li>然后在pom文件里添加hutool插件（我们要用到的）</li>
-<li>接下来修改application文件，我习惯把他的后缀改成yml</li>
-<li>然后在application文件里添加<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">    redis:</span><br><span class="line">       # host: 192.168.1.121 #ip地址</span><br><span class="line">        host: 192.168.41.110</span><br><span class="line">        port: 6379 #端口</span><br><span class="line">        password: liuzihan #密码</span><br><span class="line">        timeout: 3000 #超时时间</span><br><span class="line">        database: 0 #第几号数据库</span><br><span class="line">server:</span><br><span class="line">    port: 9999 #这个是程序启动之后的端口号，也就是tomcat插件的端口号</span><br></pre></td></tr></table></figure></li>
-<li>ip地址是虚拟机，或者局域网内真实机的ip</li>
-</ul>
-<h1 id="思考编写方式"><a href="#思考编写方式" class="headerlink" title="思考编写方式"></a>思考编写方式</h1><ul>
-<li>我的编写思路是通过redis里的bitMap进行日期的存取</li>
-<li>首先在SignDemoApplication的包内创建几个包，分别代表客户端，服务端以及自动启动还有配置文件包，</li>
-<li>首先确定的是浏览器页面，原因很简单，网页有强大的动态效果，以及平台的适配能力，而且很美观，比较与传统的GUI要好不少</li>
-<li>我的文件层级目录如下</li>
-<li><img src="/%5B!%5Bx4XBBd.jpg%5D(https:/s1.ax1x.com/2022/10/29/x4XBBd.jpg)%5D(https:/imgse.com/i/x4XBBd)"></li>
-</ul>
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><ul>
-<li>创建config包，然后在包里创建RedisTemplateConfiguration.class</li>
-<li>然后写入<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import com.fasterxml.jackson.annotation.JsonAutoDetect;</span><br><span class="line">import com.fasterxml.jackson.annotation.PropertyAccessor;</span><br><span class="line">import com.fasterxml.jackson.databind.ObjectMapper;</span><br><span class="line">import org.springframework.context.annotation.Bean;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line">import org.springframework.data.redis.connection.RedisConnectionFactory;</span><br><span class="line">import org.springframework.data.redis.core.RedisTemplate;</span><br><span class="line">import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;</span><br><span class="line">import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;</span><br><span class="line">import org.springframework.data.redis.serializer.RedisSerializer;</span><br><span class="line">import org.springframework.data.redis.serializer.StringRedisSerializer;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * &lt;p&gt;ClassName: RedisConfigure&lt;/p &gt;</span><br><span class="line"> * &lt;p&gt;Description: redisTemplate自定义序列化配置，更改其默认序列化器&lt;/p &gt;</span><br><span class="line"> * &lt;p&gt;Date: 2021/10/23&lt;/p &gt;</span><br><span class="line"> */</span><br><span class="line">@Configuration</span><br><span class="line">public class RedisTemplateConfiguration &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public RedisTemplate&lt;String,Object&gt; redisTemplate(RedisConnectionFactory redisConnectionFactory)&#123;</span><br><span class="line"></span><br><span class="line">        RedisTemplate&lt;String,Object&gt; redisTemplate = new RedisTemplate&lt;&gt;();</span><br><span class="line">        // 参照StringRedisTemplate内部实现指定序列化器</span><br><span class="line">        redisTemplate.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">        //使用 jackson2jasonRedisSerialize替换默认序列化</span><br><span class="line">        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);</span><br><span class="line">        ObjectMapper objectMapper = new ObjectMapper();</span><br><span class="line">        objectMapper.setVisibility(PropertyAccessor.ALL , JsonAutoDetect.Visibility.ANY);</span><br><span class="line">        jackson2JsonRedisSerializer.setObjectMapper(objectMapper);</span><br><span class="line">        //为String类型 key/value 设置序列化</span><br><span class="line">        redisTemplate.setKeySerializer(new StringRedisSerializer());</span><br><span class="line">        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">        //为hash ；类型 key、value 设置序列化</span><br><span class="line">        redisTemplate.setHashKeySerializer(new StringRedisSerializer());</span><br><span class="line">        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">        redisTemplate.afterPropertiesSet();</span><br><span class="line">        return redisTemplate;</span><br><span class="line"></span><br><span class="line">       /* redisTemplate.setKeySerializer(keySerializer());</span><br><span class="line">        redisTemplate.setHashKeySerializer(keySerializer());</span><br><span class="line">        redisTemplate.setValueSerializer(valueSerializer());</span><br><span class="line">        redisTemplate.setHashValueSerializer(valueSerializer());</span><br><span class="line"></span><br><span class="line">        return redisTemplate;*/</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //使用Jackson序列化器，key使用字符串</span><br><span class="line">    private RedisSerializer&lt;String&gt; keySerializer() &#123;</span><br><span class="line">        return new StringRedisSerializer();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //使用Jackson序列化器，value使用Object</span><br><span class="line">    private RedisSerializer&lt;Object&gt; valueSerializer() &#123;</span><br><span class="line">        return new GenericJackson2JsonRedisSerializer();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>这个就是个简单的redis自动序列化类，网上一抓一大把</li>
-</ul>
-<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><ul>
-<li>客户端是我们主要想写的地方，就是实现签到，以及获取mac地址等功能的地方</li>
-<li>于是我们创建Severdemo包</li>
-<li>在这个包下，写入SignSeverce类写上<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import cn.hutool.core.date.DateUtil;</span><br><span class="line">import cn.hutool.core.date.LocalDateTimeUtil;</span><br><span class="line">import cn.hutool.core.net.NetUtil;</span><br><span class="line">import cn.hutool.core.util.StrUtil;</span><br><span class="line">import org.apache.ibatis.annotations.Mapper;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import org.springframework.data.redis.connection.BitFieldSubCommands;</span><br><span class="line">import org.springframework.data.redis.core.RedisCallback;</span><br><span class="line">import org.springframework.data.redis.core.RedisTemplate;</span><br><span class="line">import org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line">import javax.annotation.Resource;</span><br><span class="line">import java.net.InetAddress;</span><br><span class="line">import java.net.UnknownHostException;</span><br><span class="line">import java.time.LocalDateTime;</span><br><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line">@Service</span><br><span class="line">@Mapper</span><br><span class="line">public class SignService &#123;</span><br><span class="line"></span><br><span class="line">    @Resource</span><br><span class="line">    private RedisTemplate redisTemplate;</span><br><span class="line">    /*</span><br><span class="line">     *用户签到可以补签</span><br><span class="line">     * @param UserId</span><br><span class="line">     * @param DataStr</span><br><span class="line">     * */</span><br><span class="line">    public Map&lt;String , Object&gt; doSign(String UserId , String DataStr)&#123;</span><br><span class="line"></span><br><span class="line">        InetAddress inetAddress = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            inetAddress = InetAddress.getLocalHost();</span><br><span class="line">        &#125; catch (UnknownHostException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        //第二种方式：利用hutool工具类中的封装方法获取本机mac地址</span><br><span class="line">        String localMacAddress2 = NetUtil.getMacAddress(inetAddress);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Map&lt;String , Object&gt; result = new HashMap&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">		// 判断MAc地址和redis中的是不是一样</span><br><span class="line">        if (String.valueOf(redisTemplate.keys(&quot;user:&quot; + UserId + &quot;:*&quot;)).equals(&quot;[]&quot;))&#123;</span><br><span class="line"></span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            String MAc = String.valueOf(redisTemplate.keys(&quot;user:&quot; + UserId + &quot;:*&quot;));</span><br><span class="line">            String[] split = MAc.split(&quot;:&quot;);</span><br><span class="line">            if (localMacAddress2.equals(split[2]))&#123;</span><br><span class="line"></span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                result.put(&quot;code&quot; , 404);</span><br><span class="line">                result.put(&quot;message&quot; , &quot;你不是在同一台电脑上进行的签到，请联系管理员进行修复&quot;);</span><br><span class="line">                return  result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		 // 获取日期</span><br><span class="line">        Date  date = getDate(DataStr);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		// 判断获取到了补签权限吗</span><br><span class="line">        if (DataStr != null)&#123;</span><br><span class="line">          if (String.valueOf(redisTemplate.keys(&quot;user:&quot; + UserId + &quot;:*&quot;)).equals(&quot;[]&quot;)) &#123;</span><br><span class="line"></span><br><span class="line">          &#125; else &#123;</span><br><span class="line">              String MAc = String.valueOf(redisTemplate.keys(&quot;user:&quot; + UserId + &quot;:*&quot;));</span><br><span class="line">              String[] split = MAc.split(&quot;:&quot;);</span><br><span class="line">              if (&quot;0&quot;.equals(split[3])) &#123;</span><br><span class="line">                  result.put(&quot;code&quot;, 407);</span><br><span class="line">                  result.put(&quot;message&quot;, &quot;你未经过老师同意无法补签&quot;);</span><br><span class="line">                  return result;</span><br><span class="line">              &#125; else&#123;</span><br><span class="line"></span><br><span class="line">                  // 获取日期</span><br><span class="line"></span><br><span class="line">                  // 获取日期对应的天数</span><br><span class="line">                  int day = DateUtil.dayOfMonth(date) - 1;</span><br><span class="line">                  // 构建redis 的 key</span><br><span class="line">                  String signkey = buildSignKEy1(UserId,date , localMacAddress2);</span><br><span class="line">                  // 查看日期是不是签到</span><br><span class="line">                  boolean isSigned = redisTemplate.opsForValue().getBit(signkey , day);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  if(isSigned)&#123;</span><br><span class="line">                      result.put(&quot;code&quot; , 400);</span><br><span class="line">                      result.put(&quot;message&quot; , &quot;当前日期已完成签到，无需再签&quot;);</span><br><span class="line">                      return  result;</span><br><span class="line">                  &#125;</span><br><span class="line">                  // 签到</span><br><span class="line">                  redisTemplate.opsForValue().setBit(signkey , day , true);</span><br><span class="line">                  //根据当前日期获取签到的天数</span><br><span class="line">                  Date today = new Date();</span><br><span class="line">                  //统计总次数</span><br><span class="line">                  long count = getSumSignCount(UserId , today);</span><br><span class="line">                  //统计连续次数</span><br><span class="line">                  int continuous = getContinusSignCount(UserId , today);</span><br><span class="line"></span><br><span class="line">                  result.put(&quot;code&quot; , 200);</span><br><span class="line">                  result.put(&quot;message&quot; , &quot;签到成功&quot;);</span><br><span class="line">                  result.put(&quot;continuous&quot; , continuous);</span><br><span class="line">                  result.put(&quot;count&quot; , count);</span><br><span class="line"></span><br><span class="line">                  String basicname = String.valueOf(redisTemplate.keys(&quot;user:&quot; +UserId+ &quot;:*&quot;));</span><br><span class="line">                  String changgename = basicname.substring(basicname.indexOf(&quot;[&quot;)+1 , basicname.indexOf(&quot;]&quot;));</span><br><span class="line">                  String[] namebasic  =  changgename.split(&quot;:&quot;);</span><br><span class="line">                  String newname = namebasic[0] + &quot;:&quot; + namebasic[1] + &quot;:&quot; + namebasic[2] + &quot;:0:&quot; + namebasic[4];</span><br><span class="line">                  redisTemplate.rename(changgename , newname);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  return  result;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        // 获取日期对应的天数</span><br><span class="line">        int day = DateUtil.dayOfMonth(date) - 1;</span><br><span class="line">        // 构建redis 的 key</span><br><span class="line">        String signkey = buildSignKEy(UserId,date , localMacAddress2);</span><br><span class="line">        // 查看日期是不是签到</span><br><span class="line">        boolean isSigned = redisTemplate.opsForValue().getBit(signkey , day);</span><br><span class="line"></span><br><span class="line">		// 判断今天是不是已经签到了</span><br><span class="line">        if(isSigned)&#123;</span><br><span class="line">            result.put(&quot;code&quot; , 400);</span><br><span class="line">            result.put(&quot;message&quot; , &quot;当前日期已完成签到，无需再签&quot;);</span><br><span class="line">            return  result;</span><br><span class="line">        &#125;</span><br><span class="line">        // 签到</span><br><span class="line">        redisTemplate.opsForValue().setBit(signkey , day , true);</span><br><span class="line">        //根据当前日期获取签到的天数</span><br><span class="line">        Date today = new Date();</span><br><span class="line">        //统计总次数</span><br><span class="line">        long count = getSumSignCount(UserId , today);</span><br><span class="line">        //统计连续次数</span><br><span class="line">        int continuous = getContinusSignCount(UserId , today);</span><br><span class="line"></span><br><span class="line">        result.put(&quot;code&quot; , 200);</span><br><span class="line">        result.put(&quot;message&quot; , &quot;签到成功&quot;);</span><br><span class="line">        result.put(&quot;continuous&quot; , continuous);</span><br><span class="line">        result.put(&quot;count&quot; , count);</span><br><span class="line">		</span><br><span class="line">		// 更改补签权限</span><br><span class="line">        String basicname = String.valueOf(redisTemplate.keys(&quot;user:&quot; +UserId+ &quot;:*&quot;));</span><br><span class="line">        String changgename = basicname.substring(basicname.indexOf(&quot;[&quot;)+1 , basicname.indexOf(&quot;]&quot;));</span><br><span class="line">        String[] namebasic  =  changgename.split(&quot;:&quot;);</span><br><span class="line">        String newname = namebasic[0] + &quot;:&quot; + namebasic[1] + &quot;:&quot; + namebasic[2] + &quot;:0:&quot; + namebasic[4];</span><br><span class="line">        redisTemplate.rename(changgename , newname);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        return  result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	// 获取用户当天签到的情况</span><br><span class="line">    public Map&lt;String , Object&gt;getSignByDate(String UserId , String DataStr)&#123;</span><br><span class="line"></span><br><span class="line">        InetAddress inetAddress = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            inetAddress = InetAddress.getLocalHost();</span><br><span class="line">        &#125; catch (UnknownHostException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        //第二种方式：利用hutool工具类中的封装方法获取本机mac地址</span><br><span class="line">        String localMacAddress2 = NetUtil.getMacAddress(inetAddress);</span><br><span class="line">        System.out.println(&quot;localMacAddress2 = &quot; + localMacAddress2);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Map&lt;String , Object&gt; result = new HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        if (String.valueOf(redisTemplate.keys(&quot;user:&quot; + UserId + &quot;:*&quot;)).equals(&quot;[]&quot;))&#123;</span><br><span class="line"></span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            String MAc = String.valueOf(redisTemplate.keys(&quot;user:&quot; + UserId + &quot;:*&quot;));</span><br><span class="line">            String[] split = MAc.split(&quot;:&quot;);</span><br><span class="line">            if (localMacAddress2.equals(split[2]))&#123;</span><br><span class="line">                System.out.println(split[2]);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                result.put(&quot;code&quot; , 404);</span><br><span class="line">                result.put(&quot;message&quot; , &quot;你不是在同一台电脑上进行的签到，请联系管理员进行修复&quot;);</span><br><span class="line">                return  result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">       </span><br><span class="line">        Date date = getDate(DataStr);</span><br><span class="line">        // 获取日期对应的天数</span><br><span class="line">        int day = DateUtil.dayOfMonth(date) - 1;</span><br><span class="line">        // 构建redis 的 key</span><br><span class="line">        String signkey = buildSignKEy(UserId, date , localMacAddress2);</span><br><span class="line">        // 查看日期是不是签到</span><br><span class="line">        boolean isSigned = redisTemplate.opsForValue().getBit(signkey , day);</span><br><span class="line"></span><br><span class="line">        // 签到</span><br><span class="line"></span><br><span class="line">        //根据当前日期获取签到的天数</span><br><span class="line">        Date today = new Date();</span><br><span class="line">        //统计总次数</span><br><span class="line">        long count = getSumSignCount(UserId , today);</span><br><span class="line">        //统计连续次数</span><br><span class="line">        int continuous = getContinusSignCount(UserId , today);</span><br><span class="line">        result.put(&quot;today&quot; , isSigned);</span><br><span class="line"></span><br><span class="line">        result.put(&quot;continuous&quot; , continuous);</span><br><span class="line">        result.put(&quot;count&quot; , count);</span><br><span class="line">        return  result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	// 获取签到天数的信息</span><br><span class="line">    public Map&lt;String , Object&gt; getSignInfo(String UserId , String DataStr)&#123;</span><br><span class="line"></span><br><span class="line">        InetAddress inetAddress = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            inetAddress = InetAddress.getLocalHost();</span><br><span class="line">        &#125; catch (UnknownHostException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        //第二种方式：利用hutool工具类中的封装方法获取本机mac地址</span><br><span class="line">        String localMacAddress2 = NetUtil.getMacAddress(inetAddress);</span><br><span class="line">        System.out.println(&quot;localMacAddress2 = &quot; + localMacAddress2);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Date date = getDate(DataStr);</span><br><span class="line">        String signkey = buildSignKEy(UserId , date , localMacAddress2);</span><br><span class="line">        // 构建一个归自动排序的Map</span><br><span class="line">        Map&lt;String , Object&gt; signInfo = new TreeMap&lt;&gt;();</span><br><span class="line">        // 获取一个月的总天数</span><br><span class="line">        int dayOfMouth = DateUtil.lengthOfMonth(DateUtil.month(date) + 1 , DateUtil.isLeapYear(DateUtil.dayOfYear(date)));</span><br><span class="line"></span><br><span class="line">        // bitfiled user : sign : 5 : 2021 014 u30</span><br><span class="line">        BitFieldSubCommands bitFieldSubCommands = BitFieldSubCommands.create().get(BitFieldSubCommands.BitFieldType.unsigned(dayOfMouth)).valueAt(0);</span><br><span class="line"></span><br><span class="line">        // 获取用户从该当前日期到1号的状态</span><br><span class="line">        List&lt;Long&gt; list = redisTemplate.opsForValue().bitField(signkey , bitFieldSubCommands);</span><br><span class="line">        if (list == null || list.isEmpty())&#123;</span><br><span class="line">            return  signInfo;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        long v = list.get(0) == null ? 0 :list.get(0);</span><br><span class="line">        for (int i = dayOfMouth ; i &gt; 0 ; i--)&#123;</span><br><span class="line">            /**</span><br><span class="line">             *  map的存储格式</span><br><span class="line">             *      签到：  yyyy-mm-01</span><br><span class="line">             *      未签到  yyyy-mm-02 不做任何处理</span><br><span class="line">             *</span><br><span class="line">             */</span><br><span class="line"></span><br><span class="line">            // 获取日期</span><br><span class="line">         LocalDateTime localDateTime =  LocalDateTimeUtil.of(date).withDayOfMonth(i);</span><br><span class="line">            // 右移再左移</span><br><span class="line">            boolean flag = v &gt;&gt; 1 &lt;&lt; 1 !=v;</span><br><span class="line">            if (flag)&#123;</span><br><span class="line">                signInfo.put(DateUtil.format(localDateTime , &quot;yyyy-MM-dd&quot;) , &quot;✔&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            v &gt;&gt;= 1 ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return signInfo;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	// 获取签到天数的总和</span><br><span class="line">    private long getSumSignCount(String userId, Date today) &#123;</span><br><span class="line"></span><br><span class="line">        InetAddress inetAddress = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            inetAddress = InetAddress.getLocalHost();</span><br><span class="line">        &#125; catch (UnknownHostException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        //第二种方式：利用hutool工具类中的封装方法获取本机mac地址</span><br><span class="line">        String localMacAddress2 = NetUtil.getMacAddress(inetAddress);</span><br><span class="line">        System.out.println(&quot;localMacAddress2 = &quot; + localMacAddress2);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        String signkey = buildSignKEy(userId , today , localMacAddress2);</span><br><span class="line">        //bitcount命令</span><br><span class="line">        return(long) redisTemplate.execute((RedisCallback&lt;Long&gt;)con -&gt; con.bitCount(signkey.getBytes()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	// 获取连续签到天数</span><br><span class="line">    private int getContinusSignCount(String userId, Date today) &#123;</span><br><span class="line"></span><br><span class="line">        InetAddress inetAddress = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            inetAddress = InetAddress.getLocalHost();</span><br><span class="line">        &#125; catch (UnknownHostException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        //第二种方式：利用hutool工具类中的封装方法获取本机mac地址</span><br><span class="line">        String localMacAddress2 = NetUtil.getMacAddress(inetAddress);</span><br><span class="line">        System.out.println(&quot;localMacAddress2 = &quot; + localMacAddress2);</span><br><span class="line"></span><br><span class="line">        // 获取日期对应的天数</span><br><span class="line">        int dayofMonth = DateUtil.dayOfMonth(today);</span><br><span class="line">        String signkey = buildSignKEy(userId , today , localMacAddress2);</span><br><span class="line"></span><br><span class="line">        BitFieldSubCommands bitFieldSubCommands = BitFieldSubCommands.create().get(BitFieldSubCommands.BitFieldType.unsigned(dayofMonth)).valueAt(0);</span><br><span class="line"></span><br><span class="line">        // 获取用户从该当前日期到1号的状态</span><br><span class="line">        List&lt;Long&gt; list = redisTemplate.opsForValue().bitField(signkey , bitFieldSubCommands);</span><br><span class="line">        if (list == null || list.isEmpty())&#123;</span><br><span class="line">            return  0;</span><br><span class="line">        &#125;</span><br><span class="line">        int Signcount = 0;</span><br><span class="line">        long v = list.get(0) == null ? 0 :list.get(0);</span><br><span class="line">        for (int i = dayofMonth ; i &gt; 0 ; i--)&#123;</span><br><span class="line">            // i表示位移操作的次数</span><br><span class="line">            if(v &gt;&gt; 1 &lt;&lt; 1 == v) &#123;</span><br><span class="line">                // 用户当前可能未签到，所以要排除当天的可能性</span><br><span class="line">                if(i != dayofMonth) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                // 如果右移后又左移和自己不相等 代表她已经签到</span><br><span class="line">                Signcount++;</span><br><span class="line">            &#125;</span><br><span class="line">            // 右移一位并重新赋值，相当于丢弃已经判断的数字</span><br><span class="line">            v &gt;&gt;= 1 ;</span><br><span class="line">        &#125;</span><br><span class="line">        return Signcount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	// redis里存储的key方法</span><br><span class="line">    private String buildSignKEy(String userId, Date date , String localMacAddress) &#123;</span><br><span class="line">        return  String.format(&quot;user:%s:%s:0:%s&quot;,userId ,localMacAddress, DateUtil.format(date, &quot;yyyyMM&quot;));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	// 判断是不是补签</span><br><span class="line">    private Date getDate(String dataStr) &#123;</span><br><span class="line">        return StrUtil.isBlank(dataStr) ? new Date() : DateUtil.parseDate(dataStr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	// 教师查看端</span><br><span class="line">    public List&lt;Object&gt; teachercck(String DataStr) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Map&lt;Object , Object&gt; result = new HashMap();</span><br><span class="line">        List&lt;Object&gt; end = new ArrayList&lt;&gt;();</span><br><span class="line">        String basicname = String.valueOf(redisTemplate.keys(&quot;user:&quot; + &quot;*&quot;));</span><br><span class="line">        String[] basic = basicname.split(&quot;,&quot;);</span><br><span class="line">        Date date = getDate(DataStr);</span><br><span class="line">        int day = DateUtil.dayOfMonth(date) - 1;</span><br><span class="line">//        end.put(&quot;code&quot; , 0);</span><br><span class="line">//        end.put(&quot;msg&quot; , &quot;&quot;);</span><br><span class="line">//        result.put(&quot;count&quot; , basic.length);</span><br><span class="line">        end.add(basic.length);</span><br><span class="line">        for( int i = 0 ; i &lt; basic.length ; i++ )&#123;</span><br><span class="line">                String[] namebasic  =  basic[i].split(&quot;:&quot;);</span><br><span class="line">                String signkey = buildSignKEy(namebasic[1], date , namebasic[2]);</span><br><span class="line">                boolean isSigned = redisTemplate.opsForValue().getBit(signkey , day);</span><br><span class="line">//                result.put(i+1 , namebasic[1]);</span><br><span class="line">                end.add(namebasic[1]);</span><br><span class="line">                end.add(namebasic[2]);</span><br><span class="line">//                result.put(namebasic[1], namebasic[2]);</span><br><span class="line">                if (isSigned)&#123;</span><br><span class="line">//                    result.put(namebasic[2] , &quot;今日已经签到&quot;);</span><br><span class="line">                    end.add(&quot;今日已经签到&quot;);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">//                    result.put(namebasic[2] , &quot;今日没有签到&quot;);</span><br><span class="line">                    end.add(&quot;今日未签到&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">                if (namebasic[3].equals(&quot;0&quot;))&#123;</span><br><span class="line">                    end.add(&quot;未获得补签权限&quot;);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    end.add(&quot;已经获得补签权限&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	// 教师更改学生可以补签的权限</span><br><span class="line">    public Map&lt;Object , Object&gt; teacherchange(String UserId)</span><br><span class="line">    &#123;</span><br><span class="line">        Map&lt;Object , Object&gt; result = new HashMap();</span><br><span class="line">        String basicname = String.valueOf(redisTemplate.keys(&quot;user:&quot; +UserId+ &quot;:*&quot;));</span><br><span class="line">        String changgename = basicname.substring(basicname.indexOf(&quot;[&quot;)+1 , basicname.indexOf(&quot;]&quot;));</span><br><span class="line">        String[] namebasic  =  changgename.split(&quot;:&quot;);</span><br><span class="line"></span><br><span class="line">        String newname = namebasic[0] + &quot;:&quot; + namebasic[1] + &quot;:&quot; + namebasic[2] + &quot;:1:&quot; + namebasic[4];</span><br><span class="line">        redisTemplate.rename(changgename , newname);</span><br><span class="line"></span><br><span class="line">        result.put(&quot;code&quot; , 404);</span><br><span class="line">        result.put(&quot;message&quot; , &quot;成功修改&quot;);</span><br><span class="line">        return  result;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="控制端"><a href="#控制端" class="headerlink" title="控制端"></a>控制端</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package com.example.demo.controller;</span><br><span class="line"></span><br><span class="line">import com.example.demo.Servicedemo.SignService;</span><br><span class="line">import org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.PostMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import javax.annotation.Resource;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@RestController</span><br><span class="line"></span><br><span class="line">@RequestMapping(&quot;sign&quot;)</span><br><span class="line">public class SignController &#123;</span><br><span class="line">    @Resource</span><br><span class="line">    private SignService signservice;</span><br><span class="line"></span><br><span class="line">    /*</span><br><span class="line">     * 用户的签到可以补签</span><br><span class="line">     * */</span><br><span class="line">    @PostMapping</span><br><span class="line">    public Map&lt;String  , Object&gt; doSignIn(String UserId , String DataStr)&#123;</span><br><span class="line"></span><br><span class="line">        return signservice.doSign(UserId , DataStr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 获取用户当天的签到情况</span><br><span class="line">    @GetMapping(&quot;today&quot;)</span><br><span class="line">    public Map&lt;String  , Object&gt; getSignByDate(String UserId , String DataStr)&#123;</span><br><span class="line"></span><br><span class="line">        return signservice.getSignByDate(UserId , DataStr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @PostMapping(&quot;SIGNFO&quot;)</span><br><span class="line">    public  Map&lt;String , Object&gt; GetSignInfo(String UserId , String DataStr)&#123;</span><br><span class="line"></span><br><span class="line">        return  signservice.getSignInfo(UserId , DataStr);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    @PostMapping(&quot;/teacher&quot;)</span><br><span class="line">    public java.util.List&lt;Object&gt; Getinfo(String DataStr)&#123;</span><br><span class="line"></span><br><span class="line">        return signservice.teachercck(DataStr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @PostMapping(&quot;/change&quot;)</span><br><span class="line">    public Map&lt;Object, Object&gt; chenge(String USerId)&#123;</span><br><span class="line"></span><br><span class="line">        return signservice.teacherchange(USerId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="自动启动浏览器"><a href="#自动启动浏览器" class="headerlink" title="自动启动浏览器"></a>自动启动浏览器</h2><ul>
-<li>先在SignDemo的同级目录下创建web启动类</li>
-<li>如下</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package com.example.demo;</span><br><span class="line"></span><br><span class="line">import org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line">@RestController</span><br><span class="line">public class ControllerTest &#123;</span><br><span class="line">    @GetMapping</span><br><span class="line">    public String run() &#123;</span><br><span class="line"></span><br><span class="line">        return &quot;启动springboot成功!&quot;;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后在与SignDEmo同级的包里创建一个浏览器自动启动类</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">package com.example.demo.AutoB;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import org.springframework.boot.context.event.ApplicationReadyEvent;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line">import org.springframework.context.event.EventListener;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">public class AutoBrower &#123;</span><br><span class="line">    @EventListener(&#123;ApplicationReadyEvent.class&#125;)</span><br><span class="line">    void applicationReadyEvent() &#123;</span><br><span class="line">        System.out.println(&quot;应用已经准备就绪 ... 启动浏览器&quot;);</span><br><span class="line">        // 这里需要注url:端口号+测试类方法名</span><br><span class="line">        String url = &quot;http://localhost:9999/index.html&quot;;</span><br><span class="line">        Runtime runtime = Runtime.getRuntime();</span><br><span class="line">        try &#123;</span><br><span class="line">            runtime.exec(&quot;rundll32 url.dll,FileProtocolHandler &quot; + url);</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>上面那个url是我们要自动启动的网页</li>
-</ul>
-<h1 id="前端浏览器页面"><a href="#前端浏览器页面" class="headerlink" title="前端浏览器页面"></a>前端浏览器页面</h1><ul>
-<li>前端浏览器页面我们主要使用ajax进行浏览器的传值，</li>
-<li>前端我们使用了嵌套的布局，是一个index嵌套一个welcome</li>
-<li>代码如下</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;</span><br><span class="line">    &lt;title&gt;个人中心&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/layui/2.7.6/css/layui.css&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;fieldset class=&quot;layui-elem-field layui-field-title&quot; style=&quot;margin-top: 30px;&quot;&gt;</span><br><span class="line">    &lt;legend&gt;个人中心&lt;/legend&gt;</span><br><span class="line">&lt;/fieldset&gt;</span><br><span class="line"></span><br><span class="line">&lt;div style=&quot;padding: 20px&quot;&gt;</span><br><span class="line">&lt;div class = &quot;layui-col-md3&quot;&gt;</span><br><span class="line">&lt;div class=&quot;layui-tab layui-tab-card&quot;&gt;</span><br><span class="line">    &lt;ul class=&quot;layui-tab-title&quot;&gt;</span><br><span class="line">        &lt;li class=&quot;layui-this&quot;&gt;签到&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;补签&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;&quot;&gt;记录&lt;/li&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;div class=&quot;layui-tab-content&quot; style=&quot;height: 100px;&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;layui-tab-item layui-show&quot;&gt;</span><br><span class="line"></span><br><span class="line">            &lt;div class=&quot;layui-form-item&quot;&gt;</span><br><span class="line">                &lt;button class=&quot;layui-btn layui-btn-radius layui-btn-normal layui-form-label&quot; id = &quot;SignBtn&quot; style=&quot;margin-left: 20px&quot; &gt; 签 &amp;nbsp 到&lt;/button&gt;</span><br><span class="line">                &lt;div class=&quot;layui-input-block&quot;&gt;</span><br><span class="line">                    &lt;input type=&quot;text&quot; name=&quot;username&quot; lay-verify=&quot;title&quot; autocomplete=&quot;off&quot; placeholder=&quot;请输入姓名&quot; class=&quot;layui-input&quot; id=&quot;user&quot;&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;hr&gt;</span><br><span class="line">            &lt;p&gt;你已签到&amp;nbsp;&lt;span style = &quot;color: red;&quot; id=&quot;count&quot; &gt;0 &lt;/span&gt;&amp;nbsp;天&lt;/p&gt;</span><br><span class="line">            &lt;p&gt;连续签到&amp;nbsp;&lt;span style = &quot;color: red;&quot; id=&quot;continuous&quot;&gt;0&lt;/span&gt;&amp;nbsp;天&lt;/p&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        &lt;div class=&quot;layui-tab-item&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;layui-inline&quot;&gt;</span><br><span class="line">                &lt;input type=&quot;text&quot; class=&quot;layui-input&quot; id=&quot;reissue&quot; placeholder=&quot;请选择日期&quot;&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;button class=&quot;layui-btn layui-btn-radius layui-btn-normal&quot; id = &quot;reissueBtn&quot;&gt; 补签&lt;/button&gt;</span><br><span class="line">            &lt;div class=&quot;layui-form-item&quot;&gt;</span><br><span class="line">                    &lt;input type=&quot;text&quot; name=&quot;username&quot; lay-verify=&quot;title&quot; autocomplete=&quot;off&quot; placeholder=&quot;请输入姓名&quot; class=&quot;layui-input&quot; id=&quot;user1&quot;&gt;</span><br><span class="line"></span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;layui-tab-item&quot;&gt;</span><br><span class="line"></span><br><span class="line">            &lt;div class=&quot;layui-form-item&quot;&gt;</span><br><span class="line">                &lt;button class=&quot;layui-btn layui-btn-radius layui-btn-normal layui-form-label&quot; id = &quot;recordLi&quot;&gt;查询记录&lt;/button&gt;</span><br><span class="line">                &lt;div class=&quot;layui-input-block&quot;&gt;</span><br><span class="line">                    &lt;input type=&quot;text&quot; name=&quot;username&quot; lay-verify=&quot;title&quot; autocomplete=&quot;off&quot; placeholder=&quot;请输入姓名&quot; class=&quot;layui-input&quot; id=&quot;user2&quot;&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">            &lt;div class=&quot;layui-inline&quot; id=&quot;record&quot;&gt;</span><br><span class="line"></span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.15.10/index.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/layui/2.7.6/layui.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // $(function () &#123;</span><br><span class="line">    //</span><br><span class="line">    //     var value = jQuery(&quot;#user&quot;).val();</span><br><span class="line">    //</span><br><span class="line">    //     $.ajax(&#123;</span><br><span class="line">    //         url: &quot;/sign/today&quot;,</span><br><span class="line">    //         type: &quot;GET&quot;,</span><br><span class="line">    //         data: &#123;&quot;UserId&quot; : value&#125;, // 模拟的用户id</span><br><span class="line">    //         dataType: &quot;JSON&quot;,</span><br><span class="line">    //         success: function f(result) &#123;</span><br><span class="line">    //             layer.msg(result.message);</span><br><span class="line">    //             if(200 == result.code)&#123;</span><br><span class="line">    //                 if (true == result.today) &#123;</span><br><span class="line">    //                     $(&quot;#count&quot;).text(result.count);</span><br><span class="line">    //                     // 设置连续签到次数</span><br><span class="line">    //                     $(&quot;#continuous&quot;).text(result.continuous);</span><br><span class="line">    //                     // 设置签到按钮的文本</span><br><span class="line">    //                     $(&quot;#SignBtn&quot;).text(&quot;已经签到&quot;);</span><br><span class="line">    //                     // 禁用签到按钮</span><br><span class="line">    //                     $(&quot;#SignBtn&quot;).addClass(&quot;layui-btn-disabled&quot;);</span><br><span class="line">    //                     $(&quot;#SignBtn&quot;).attr(&quot;disabled&quot; , &quot;true&quot;);</span><br><span class="line">    //                 &#125;</span><br><span class="line">    //</span><br><span class="line">    //             &#125;</span><br><span class="line">    //</span><br><span class="line">    //</span><br><span class="line">    //         &#125;</span><br><span class="line">    //</span><br><span class="line">    //     &#125;);</span><br><span class="line">    //</span><br><span class="line">    // &#125;)</span><br><span class="line"></span><br><span class="line">    layui.use(&#x27;laydate&#x27;, function()&#123;</span><br><span class="line">        var laydate = layui.laydate;</span><br><span class="line"></span><br><span class="line">        //执行一个laydate实例</span><br><span class="line">        laydate.render(&#123;</span><br><span class="line">            elem: &#x27;#reissue&#x27; //指定元素</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    layui.use(&#x27;layer&#x27; , function () &#123;</span><br><span class="line">        // 签到</span><br><span class="line">        $(&quot;#SignBtn&quot;).on(&quot;click&quot;, function () &#123;</span><br><span class="line">            var value = jQuery(&quot;#user&quot;).val();</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                url: &quot;/sign&quot;,</span><br><span class="line">                type: &quot;POST&quot;,</span><br><span class="line">                data: &#123;&quot;UserId&quot;: value&#125;, // 模拟的用户id</span><br><span class="line">                dataType: &quot;JSON&quot;,</span><br><span class="line">                success: function f(result) &#123;</span><br><span class="line">                    // for (var m in result)&#123;</span><br><span class="line">                    //     alert(m)</span><br><span class="line">                    //     alert(result[m])</span><br><span class="line">                    // &#125;</span><br><span class="line">                    layer.msg(result.message);</span><br><span class="line">                    if (200 == result.code) &#123;</span><br><span class="line">                        // 设置总签到次数</span><br><span class="line">                        $(&quot;#count&quot;).text(result.count);</span><br><span class="line">                        // 设置连续签到次数</span><br><span class="line">                        $(&quot;#continuous&quot;).text(result.continuous);</span><br><span class="line">                        // 设置签到按钮的文本</span><br><span class="line">                        $(&quot;#SignBtn&quot;).text(&quot;已经签到&quot;);</span><br><span class="line">                        // 禁用签到按钮</span><br><span class="line">                        $(&quot;#SignBtn&quot;).addClass(&quot;layui-btn-disabled&quot;);</span><br><span class="line">                        $(&quot;#SignBtn&quot;).attr(&quot;disabled&quot;, &quot;true&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        //补签</span><br><span class="line">        $(&quot;#reissueBtn&quot;).on(&quot;click&quot; , function () &#123;</span><br><span class="line">            var va = jQuery(&quot;#user1&quot;).val();</span><br><span class="line"></span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                url: &quot;/sign&quot;,</span><br><span class="line">                type: &quot;POST&quot;,</span><br><span class="line">                data: &#123;&quot;UserId&quot; : va , &quot;DataStr&quot; : $(&quot;#reissue&quot;).val()&#125;, // 模拟的用户id</span><br><span class="line">                dataType: &quot;JSON&quot;,</span><br><span class="line">                success: function f(result) &#123;</span><br><span class="line">                    layer.msg(result.message);</span><br><span class="line">                    if(200 == result.code)&#123;</span><br><span class="line">                        // 设置总签到次数</span><br><span class="line">                        $(&quot;#count&quot;).text(result.count);</span><br><span class="line"></span><br><span class="line">                        // 设置连续签到次数</span><br><span class="line">                        $(&quot;#continuous&quot;).text(result.continuous);</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 签到记录的元素</span><br><span class="line">    $(&quot;#recordLi&quot;).on(&quot;click&quot; , function () &#123;</span><br><span class="line">        var vae = jQuery(&quot;#user2&quot;).val();</span><br><span class="line">        layui.use(&#x27;layer&#x27; , function () &#123;</span><br><span class="line">            var laydate = layui.laydate;</span><br><span class="line"></span><br><span class="line">            // 获取签到记录</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                url: &quot;/sign/SIGNFO&quot;,</span><br><span class="line">                type: &quot;POST&quot;,</span><br><span class="line">                data: &#123;&quot;UserId&quot;: vae&#125;, // 模拟的用户id</span><br><span class="line">                dataType: &quot;JSON&quot;,</span><br><span class="line">                success: function f(result) &#123;</span><br><span class="line"></span><br><span class="line">                    // 清空日历元素</span><br><span class="line">                    $(&quot;#record&quot;).html(&quot;&quot;);</span><br><span class="line"></span><br><span class="line">                    laydate.render(&#123;</span><br><span class="line">                        elem: &#x27;#record&#x27;</span><br><span class="line">                        ,mark: result,</span><br><span class="line">                        position: &#x27;static&#x27;</span><br><span class="line">                    &#125;)</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>index的</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;</span><br><span class="line">    &lt;title&gt;用户签到系统&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/layui/2.7.6/css/layui.css&quot; media=&quot;all&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;layui-layout layui-layout-admin&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;layui-header&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;layui-logo layui-hide-xs layui-bg-black&quot;&gt;用户签到系统&lt;/div&gt;</span><br><span class="line">        &lt;!-- 头部区域（可配合layui 已有的水平导航） --&gt;</span><br><span class="line">        &lt;ul class=&quot;layui-nav layui-layout-left&quot;&gt;</span><br><span class="line">            &lt;!-- 移动端显示 --&gt;</span><br><span class="line">            &lt;li class=&quot;layui-nav-item layui-show-xs-inline-block layui-hide-sm&quot; lay-header-event=&quot;menuLeft&quot;&gt;</span><br><span class="line">                &lt;i class=&quot;layui-icon layui-icon-spread-left&quot;&gt;&lt;/i&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line"></span><br><span class="line">            &lt;li class=&quot;layui-nav-item layui-hide-xs&quot;&gt;&lt;a href=&quot;&quot;&gt;签到&lt;/a&gt;&lt;/li&gt;</span><br><span class="line"></span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;layui-side layui-bg-black&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;layui-side-scroll&quot;&gt;</span><br><span class="line">            &lt;!-- 左侧导航区域（可配合layui已有的垂直导航） --&gt;</span><br><span class="line"></span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;layui-body&quot;&gt;</span><br><span class="line">        &lt;!-- 内容主体区域 --&gt;</span><br><span class="line">        &lt;iframe src=&quot;welcome.html&quot;  name=&quot;container&quot; style=&quot;width: 100%; height: 100%; &quot;&gt;&lt;/iframe&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;layui-footer&quot;&gt;</span><br><span class="line">        &lt;!-- 底部固定区域 --&gt;</span><br><span class="line">        底部固定区域</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/layui/2.7.6/layui.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>上述只是学生端的，对于教师端也和其大差不差，代码如下</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Layui&lt;/title&gt;</span><br><span class="line">    &lt;meta name=&quot;renderer&quot; content=&quot;webkit&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/layui/2.7.6/css/layui.css&quot;    media=&quot;all&quot;&gt;</span><br><span class="line">    &lt;!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 --&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;legend&gt;教师中心&lt;/legend&gt;</span><br><span class="line">&lt;/fieldset&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;layui-tab layui-tab-card&quot;&gt;</span><br><span class="line">    &lt;ul class=&quot;layui-tab-title&quot;&gt;</span><br><span class="line">        &lt;li class=&quot;layui-this&quot;&gt;查看签到情况&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;更改权限&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;div class=&quot;layui-tab-content&quot; style=&quot;height: 100px;&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;layui-tab-item layui-show&quot;&gt;</span><br><span class="line">            &lt;table border=&quot;1&quot; width=&quot;600px&quot;&gt;</span><br><span class="line">            &lt;tbody &gt;</span><br><span class="line">            &lt;tr  style=&#x27;width:300px&#x27; &gt;</span><br><span class="line">                &lt;td&gt;姓名&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;Mac地址&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;今日签到情况&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;补签情况&lt;/td&gt;</span><br><span class="line">            &lt;/tr&gt;</span><br><span class="line">            &lt;/tbody&gt;</span><br><span class="line">            &lt;tbody id=&quot;tbody1&quot;&gt;</span><br><span class="line">            &lt;/tbody&gt;</span><br><span class="line">        &lt;/table&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;layui-tab-item&quot;&gt;</span><br><span class="line"></span><br><span class="line">            &lt;button class=&quot;layui-btn layui-btn-radius layui-btn-normal&quot; id = &quot;reissueBtn&quot;&gt;更改补签权限&lt;/button&gt;</span><br><span class="line">            &lt;div class=&quot;layui-form-item&quot;&gt;</span><br><span class="line">                &lt;input type=&quot;text&quot; name=&quot;username&quot; lay-verify=&quot;title&quot; autocomplete=&quot;off&quot; placeholder=&quot;请输入姓名&quot; class=&quot;layui-input&quot; id=&quot;user1&quot;&gt;</span><br><span class="line"></span><br><span class="line">            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/layui/2.7.6/layui.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 --&gt;</span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.15.10/index.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/layui/2.7.6/layui.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">            url: &quot;/sign/teacher&quot;,</span><br><span class="line">            type: &quot;POST&quot;,</span><br><span class="line">            data: &#123;&quot;DataStr&quot;: null&#125;,</span><br><span class="line">            dataType: &quot;JSON&quot;,</span><br><span class="line">            success: function f(result) &#123;</span><br><span class="line">                var m = 0;</span><br><span class="line">                var tableData = null;</span><br><span class="line">                for (let k = 1; k &lt;= result[0]; k++) &#123;</span><br><span class="line"></span><br><span class="line">                    tableData += &quot;&lt;tr  style=&#x27;width:300px&#x27; &gt;&quot;</span><br><span class="line">                    for (let i = 1 + m; i &lt;= 4 + m; i++) &#123;</span><br><span class="line">                        tableData += &quot;&lt;td&gt;&quot; + result[i] + &quot;&lt;/td&gt;&quot;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                    // tableData += &quot;&lt;td&gt;&lt;button type=&#x27;submit&#x27; onclick=&#x27;btnAction&#x27; name=&#x27;btn&#x27;&gt;更改补签权限&lt;/button&gt;&lt;/td&gt;&quot;</span><br><span class="line">                    tableData += &quot;&lt;/tr&gt;&quot;</span><br><span class="line">                    m += 4;</span><br><span class="line">                &#125;</span><br><span class="line">                $(&quot;#tbody1&quot;).html(tableData)</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     $(&quot;#reissueBtn&quot;).on(&quot;click&quot; , function () &#123;</span><br><span class="line">         var va = jQuery(&quot;#user1&quot;).val();</span><br><span class="line">                alert(va)</span><br><span class="line">         $.ajax(&#123;</span><br><span class="line">             url: &quot;/sign/change&quot;,</span><br><span class="line">             type: &quot;POST&quot;,</span><br><span class="line">             data: &#123;&quot;USerId&quot; : va&#125;,</span><br><span class="line">             dataType: &quot;JSON&quot;,</span><br><span class="line">             success: function f(result) &#123;</span><br><span class="line">                 layer.msg(result.message);</span><br><span class="line"></span><br><span class="line">             &#125;</span><br><span class="line"></span><br><span class="line">         &#125;);</span><br><span class="line">     &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>教师的index</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;</span><br><span class="line">    &lt;title&gt;教师观察系统&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/layui/2.7.6/css/layui.css&quot; media=&quot;all&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;layui-layout layui-layout-admin&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;layui-header&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;layui-logo layui-hide-xs layui-bg-black&quot;&gt;教师观察系统&lt;/div&gt;</span><br><span class="line">        &lt;!-- 头部区域（可配合layui 已有的水平导航） --&gt;</span><br><span class="line">        &lt;ul class=&quot;layui-nav layui-layout-left&quot;&gt;</span><br><span class="line">            &lt;!-- 移动端显示 --&gt;</span><br><span class="line">            &lt;li class=&quot;layui-nav-item layui-show-xs-inline-block layui-hide-sm&quot; lay-header-event=&quot;menuLeft&quot;&gt;</span><br><span class="line">                &lt;i class=&quot;layui-icon layui-icon-spread-left&quot;&gt;&lt;/i&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line"></span><br><span class="line">            &lt;li class=&quot;layui-nav-item layui-hide-xs&quot;&gt;&lt;a href=&quot;&quot;&gt;签到情况&lt;/a&gt;&lt;/li&gt;</span><br><span class="line"></span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;layui-side layui-bg-black&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;layui-side-scroll&quot;&gt;</span><br><span class="line">            &lt;!-- 左侧导航区域（可配合layui已有的垂直导航） --&gt;</span><br><span class="line"></span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;layui-body&quot;&gt;</span><br><span class="line">        &lt;!-- 内容主体区域 --&gt;</span><br><span class="line">        &lt;iframe src=&quot;teacher.html&quot;  name=&quot;container&quot; style=&quot;width: 100%; height: 100%; &quot;&gt;&lt;/iframe&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;layui-footer&quot;&gt;</span><br><span class="line">        &lt;!-- 底部固定区域 --&gt;</span><br><span class="line">        底部固定区域</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/layui/2.7.6/layui.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/19/10-19/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/19/10-19/" class="post-title-link" itemprop="url">设计模式和反射</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-19 08:30:00" itemprop="dateCreated datePublished" datetime="2022-10-19T08:30:00+08:00">2022-10-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>11k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>10 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><ul>
-<li>一个类只有一个实例</li>
-<li>通过private ， 构造方法</li>
-<li>static方法</li>
-<li>饿汉式</li>
-</ul>
-<hr>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class testmain1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">		A a1 = A.getInstance();</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class A &#123;</span><br><span class="line">	private A() &#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	private static A a1 = new A();</span><br><span class="line">	public static A getInstance() &#123;</span><br><span class="line">		return a1;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<ul>
-<li>懒汉式</li>
-</ul>
-<hr>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line">public class testmain1 &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-generated method stub</span><br><span class="line"></span><br><span class="line">	A a1 = A.getInstance();</span><br><span class="line">	B a2 = B.getInstance();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B &#123;</span><br><span class="line">	private B() &#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line">private static B ai;</span><br><span class="line">public synchronized static B getInstance() &#123;</span><br><span class="line">	if(ai == null) &#123;</span><br><span class="line">		ai = new B();</span><br><span class="line">	&#125;</span><br><span class="line">	return ai;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>开发的时候懒汉式用的比较多，因为可控</li>
-<li>但是一般都在懒汉式哪里添加一个线程锁，为了线程安全，就是synchronized</li>
-</ul>
-<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><ul>
-<li>创建型设计模式</li>
-<li>通过方法创建对象</li>
-</ul>
-<h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><ul>
-<li>静态工厂方法模式，例如单例模式，单例模式是特殊的工厂模式</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Diver &#123;</span><br><span class="line">	public static Car driverCar(String s) &#123;</span><br><span class="line">		if(s.equalsIgnoreCase(&quot;宝马&quot;)) &#123;</span><br><span class="line">			return new Car(&quot;宝马&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		if(s.equalsIgnoreCase(&quot;奔驰&quot;)) &#123;</span><br><span class="line">			return new Car(&quot;奔驰&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		if(s.equalsIgnoreCase(&quot;奥迪&quot;)) &#123;</span><br><span class="line">			return new Car(&quot;奥迪&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><ul>
-<li>非静态方法，不同的工厂生成不同的产品</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package factory;</span><br><span class="line">public  class bzfactory &#123;</span><br><span class="line"></span><br><span class="line">public  Car product() &#123;</span><br><span class="line">	return new Car();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">class BenzCar extends bzfactory&#123;</span><br><span class="line">public Car product() &#123;</span><br><span class="line">	return new bz();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class bmwfactory extends bzfactory&#123;</span><br><span class="line">public Car product() &#123;</span><br><span class="line">	return new bmw();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Car&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class bz extends Car&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class bmw extends Car&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">class audi extends Car&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>这样可以不用动代码，可以直接加类，进而直接引</li>
-<li>而第一种要把别的人已经打包好的解包进而对其代码进行操作</li>
-<li>而这种不用，只要新加几个类就可以</li>
-</ul>
-<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><ul>
-<li>工厂的工厂模式</li>
-<li>给用户提供一个接口，可以创建多个产品族中的对象</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">	package com.icss.javasechapter.factory;</span><br><span class="line">//抽象工厂模式</span><br><span class="line">	interface Car&#123;</span><br><span class="line">		public void drive();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	interface SportsCar extends Car&#123;</span><br><span class="line">		public boolean isConvertible();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	interface BussinessCar extends Car&#123;</span><br><span class="line">		public boolean isAutoDoor();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	// 具体产品角色</span><br><span class="line">	class BenzSprotsCar implements SportsCar &#123;</span><br><span class="line">		public void drive() &#123;</span><br><span class="line">			System.out.println(&quot;Driving Benz S&quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public boolean isConvertible() &#123;</span><br><span class="line">			// TODO Auto-generated method stub</span><br><span class="line">			return true;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	class BenzBussinessCar implements BussinessCar &#123;</span><br><span class="line">		public void drive() &#123;</span><br><span class="line">			System.out.println(&quot;Driving Benz B&quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">		public boolean isAutoDoor() &#123;</span><br><span class="line">			// TODO Auto-generated method stub</span><br><span class="line">			return false;</span><br><span class="line">				&#125;	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	class BmwSprotsCar implements SportsCar &#123;</span><br><span class="line">		public void drive() &#123;</span><br><span class="line">			System.out.println(&quot;Driving Bmw S &quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public boolean isConvertible() &#123;</span><br><span class="line">			return true;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	class BmwBussinessCar implements BussinessCar &#123;</span><br><span class="line">		public void drive() &#123;</span><br><span class="line">			System.out.println(&quot;Driving Bmw B &quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public boolean isAutoDoor() &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		return false;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	interface CarFactory&#123;</span><br><span class="line">		public SportsCar getSportsCar();</span><br><span class="line">		public BussinessCar getBussinessCar();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	class BenzCarFactory implements CarFactory&#123;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public SportsCar getSportsCar() &#123;</span><br><span class="line">			// TODO Auto-generated method stub</span><br><span class="line">			return new BenzSprotsCar();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public BussinessCar getBussinessCar() &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		return new BenzBussinessCar();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	class BmwCarFactroy implements CarFactory&#123;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public SportsCar getSportsCar() &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">			return new BmwSprotsCar();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public BussinessCar getBussinessCar() &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">			return new BmwBussinessCar();</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 抽象产品角色，具体产品角色与简单工厂模式类似，只是变得复杂了些，这里略。</span><br><span class="line">	// 抽象工厂角色</span><br><span class="line">	class AbstractCarFactory&#123;</span><br><span class="line">	</span><br><span class="line">	public static CarFactory getCarFactory(String name)&#123;</span><br><span class="line">		if(&quot;Benz&quot;.equals(name))&#123;</span><br><span class="line">			return new BenzCarFactory();</span><br><span class="line">		&#125;else if(&quot;Bmw&quot;.equals(name))&#123;</span><br><span class="line">			return new BmwCarFactroy();</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			throw new RuntimeException();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	public class MagnateAbstractFactory &#123;</span><br><span class="line">		public static void main(String[] args) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				CarFactory factory = AbstractCarFactory.getCarFactory(&quot;Bmw&quot;);</span><br><span class="line">				BussinessCar car = factory.getBussinessCar();</span><br><span class="line">				car.drive();</span><br><span class="line">				System.out.println(car.isAutoDoor());</span><br><span class="line">			&#125; catch (Exception e) &#123;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><ul>
-<li>订阅与发布</li>
-<li>java通过Observable和Observer来实现<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line">public class lesson13 &#123;</span><br><span class="line"></span><br><span class="line">	public int aaa =0;</span><br><span class="line">	public MyObsever[] array = new MyObsever[10];</span><br><span class="line">	int index = -1;</span><br><span class="line">	public void addObsever(MyObsever obs) &#123;</span><br><span class="line">			array[++index &gt; 9 ? index = 0 : index] =obs;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setAaa(int newvalue) &#123;</span><br><span class="line">		this.aaa = newvalue;</span><br><span class="line">		for(int i =0; i &lt; array.length ; i++) &#123;</span><br><span class="line">			if(array[i] == null)break;</span><br><span class="line">				array[i].update(this.aaa , newvalue);</span><br><span class="line">			&#125;</span><br><span class="line">		this.aaa = newvalue;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		MyObsever ob = new MyObsever();</span><br><span class="line">		lesson13 data = new lesson13();</span><br><span class="line">		data.addObsever(ob);</span><br><span class="line">		data.setAaa(10000);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class MyObsever &#123;</span><br><span class="line">	String name;</span><br><span class="line">	public void update(int aaa , int newvalue) &#123;</span><br><span class="line">		System.out.println(&quot;观察者&quot; + this.name + &quot;,&quot; + aaa + &quot;变成&quot; + newvalue);</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>简单来说就是群发消息，或者说是改变github上的代码的那种改变</li>
-</ul>
-<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><ul>
-<li>代理模式给一个对象提供代理对象，比如代打，比如代刷xxx等<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">package 作业;</span><br><span class="line">public class TestMain4 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		Target t = new Target();</span><br><span class="line">		Proxy proxy = new Proxy();</span><br><span class="line">		proxy.target = t;</span><br><span class="line">		proxy.price();</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line">class Target &#123;</span><br><span class="line">	public void price() &#123;</span><br><span class="line">		System.out.println(&quot;---100--&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class Proxy &#123;</span><br><span class="line">	Target target;</span><br><span class="line">	public void price() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			System.out.println(&quot;100&quot;);</span><br><span class="line">			target.price();</span><br><span class="line">			System.out.println(&quot;50&quot;);</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			// TODO: handle exception</span><br><span class="line">			System.out.println(&quot;10&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>就相当于中间商赚差价，商家会把货发送到代理这里，代理再提高价格发送出去，上面的这个叫静态代理</li>
-</ul>
-<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><ul>
-<li>动态代理要用接口来实现<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">package lesson13;</span><br><span class="line">import java.lang.reflect.InvocationHandler;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line">import java.lang.reflect.Proxy;</span><br><span class="line">import java.nio.channels.NonWritableChannelException;</span><br><span class="line">public class TestMain4 &#123;</span><br><span class="line">	public static void main(String[] args) // 主方法调用代理的 </span><br><span class="line">	&#123;</span><br><span class="line">		DynamicTargetInf inf = DynamicProxFactory.getInstance();	</span><br><span class="line">		inf.price();</span><br><span class="line">		int r = inf.add(1, 2);</span><br><span class="line">		System.out.println(r);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">interface DynamicTargetInf // 要代理的接口 </span><br><span class="line">&#123;</span><br><span class="line">	void price();</span><br><span class="line">	int add(int i, int j);</span><br><span class="line">&#125;</span><br><span class="line">class DynamicTarget implements DynamicTargetInf // 要代理的目标类，我们接下来要代理这里的方法</span><br><span class="line">&#123;</span><br><span class="line">	public void price() &#123;</span><br><span class="line">		System.out.println(&quot;--target-100--&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public int add(int i, int j) &#123;</span><br><span class="line">		System.out.println(&quot;--target-i + j--&quot;);</span><br><span class="line">		return i + j;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	// invocationHandle   invoke执行 handle句柄    welcome,xxx</span><br><span class="line">	class DynamicProxFactory implements InvocationHandler // 代理控制器，就是代理对象每次要运行方法都要经过他</span><br><span class="line">	&#123;</span><br><span class="line">	DynamicTargetInf target = new DynamicTarget();	// 一般这个地方是要传值进来的，不过这里为了方便，我们就直接赋值了</span><br><span class="line">	// 代理对象每次运行方法的时候会执行</span><br><span class="line">	@Override</span><br><span class="line">	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable // invoke方法是InvocationHandler接口的方法，这个方法是执行的意思</span><br><span class="line">	&#123;</span><br><span class="line">			Object result = null; // 定义一个返回值 ，Object类代表可以转化成任何类型</span><br><span class="line">		try &#123;  // try catch包裹，一是为了判断是不是出错，二是为了安全性</span><br><span class="line">		System.out.println(&quot;-之前-100---&quot;);</span><br><span class="line">		// 反射。当前方法执行。target对象的当前方法， args方法的参数</span><br><span class="line">		result = method.invoke(target, args);</span><br><span class="line">		//	target.price();</span><br><span class="line">		System.out.println(&quot;-之后-50---&quot;);	</span><br><span class="line">	&#125; catch (Exception e) &#123;</span><br><span class="line">		System.out.println(&quot;-异常-10---&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	return result;</span><br><span class="line">	&#125;</span><br><span class="line">	public static DynamicTargetInf getInstance() // 要代理的目标的接口的实例化方法 ， 通过这个方法会把要代理对象的接口和代理工厂连接到一起</span><br><span class="line">	&#123;</span><br><span class="line">	Object object = java.lang.reflect.Proxy.newProxyInstance(DynamicProxFactory.class.getClassLoader(), new Class[] &#123;DynamicTargetInf.class&#125;, new DynamicProxFactory()); // 这里的三个参数其实是，第一个是类加载器 ， 第二个是目标接口的类数组 ， 第三个是代理工厂的句柄，也就是句柄</span><br><span class="line">	return (DynamicTargetInf) object;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>对于静态的代理，每一个方法都要写一个代理，于是就很麻烦，可是对于动态的代理，他会自动的把那个方法里的方法都代理一边，只要在主函数里调用就行，</li>
-<li>其实基本上思想就是，把要代理的目标变成一个接口，然后通过实例化这个接口，再通过接口的特性，让代理去实现目标的方法</li>
-<li>私有的方法无法代理</li>
-</ul>
-<h1 id="反射，类的类型"><a href="#反射，类的类型" class="headerlink" title="反射，类的类型"></a>反射，类的类型</h1><p>类的类型，就是所有类都可以有的东西比如：属性，构造方法，方法。</p>
-<ul>
-<li>可以用这些类的类型去创建一个新类</li>
-<li>而我们如果想获取这个类的类型，就要用到反射，</li>
-<li>他可以获取这个类的类型，就是上面说的属性，构造方法，方法</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line">import java.lang.reflect.Constructor;</span><br><span class="line">public class wjw1 &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	// 获取反射的三种方式 第一种</span><br><span class="line">	Class clzz1 = student.class;</span><br><span class="line">	// 第二中 </span><br><span class="line">	student student = new student();</span><br><span class="line">	Class a = student.getClass();</span><br><span class="line">	// 第三种</span><br><span class="line">	try &#123;</span><br><span class="line">		Class ae = Class.forName(&quot;作业.student&quot;);</span><br><span class="line">	&#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	Constructor[] cons = clzz1.getConstructors(); // 查看构造器</span><br><span class="line">	for (int i = 0; i &lt; cons.length; i++) &#123;</span><br><span class="line">		System.out.println(cons[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	Field[] d = a.getFields(); // 查看变量，非私有的</span><br><span class="line">	for (int i = 0; i &lt; d.length; i++) &#123;</span><br><span class="line">		System.out.println(d[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	Field[] f = a.getDeclaredFields(); // 私有变量只能这样查看</span><br><span class="line">	for (int i = 0; i &lt; f.length; i++) &#123;</span><br><span class="line">		System.out.println(f[i]);</span><br><span class="line">	&#125;</span><br><span class="line">		Constructor Con; // 获取有特定参数的构造器</span><br><span class="line">	try &#123;</span><br><span class="line">		Con = clzz1.getConstructor(new Class[] &#123;String.class , int.class&#125;);//里面放那个类型的对应的.class</span><br><span class="line">		&#125; catch (NoSuchMethodException | SecurityException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">	try &#123; // 通过反射进行实例化，证明了，实例化不一定非要用new</span><br><span class="line">		Object object = Con.newInstance(new Object[] &#123;343,&quot;sdajkdha&quot;&#125;);</span><br><span class="line">		&#125; catch (InstantiationException | IllegalAccessException | IllegalArgumentException</span><br><span class="line">			| InvocationTargetException e) &#123;</span><br><span class="line">		// TODO Auto-generated catch block</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>上面，是我们要运行的方法里如何写</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;	</span><br><span class="line">public class student &#123;</span><br><span class="line">private String name;</span><br><span class="line">private String num;</span><br><span class="line">private String sex;</span><br><span class="line">public int age;</span><br><span class="line">public String getName() &#123;</span><br><span class="line">	return name;</span><br><span class="line">&#125;</span><br><span class="line">public void setName(String name) &#123;</span><br><span class="line">	this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">public String getNum() &#123;</span><br><span class="line">	return num;</span><br><span class="line">&#125;</span><br><span class="line">public void setNum(String num) &#123;</span><br><span class="line">	this.num = num;</span><br><span class="line">&#125;</span><br><span class="line">public String getSex() &#123;</span><br><span class="line">	return sex;</span><br><span class="line">&#125;</span><br><span class="line">public void setSex(String sex) &#123;</span><br><span class="line">	this.sex = sex;</span><br><span class="line">&#125;</span><br><span class="line">public int getAge() &#123;</span><br><span class="line">	return age;</span><br><span class="line">&#125;</span><br><span class="line">public void setAge(int age) &#123;</span><br><span class="line">	this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">public student() &#123;</span><br><span class="line">	super();</span><br><span class="line">	// TODO Auto-generated constructor stub</span><br><span class="line">&#125;</span><br><span class="line">public student( int x , String name) &#123;</span><br><span class="line">	this.age = x;</span><br><span class="line">	this.name = name;</span><br><span class="line">	// TODO Auto-generated constructor stub</span><br><span class="line">&#125;</span><br><span class="line">clzz1.getMethods() // 获取里面所有可以访问的方法</span><br><span class="line">clzz1.getMethod(name, parameterTypes) // 获取特定的可以访问的方法</span><br><span class="line">clzz1.getDeclaredMethod(name, parameterTypes); // 查找特定参数的自己定义的方法</span><br><span class="line">clzz1.getDeclaredMethods(); // 查询所有自己定义的方法</span><br><span class="line">Method m = clzz1.getDeclaredMethod(name, parameterTypes);</span><br><span class="line">Object r = m.invoke(obj, args); // 执行前面一个参数里的方法m方法 ， 后面的一个是这个方法的参数</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Field f1 =	clzz1.getField(&quot;name&quot;); // 获取单独的与里面字符串匹配的变量 ， 如果是私有的要用declaer方法，比如</span><br><span class="line"> Field f2 = clzz1.getDeclaredField(&quot;name&quot;); // 可以获取私有的变量</span><br><span class="line"> f1.setAccessible(true); // 修改访问权限修饰符，true代表public false代表private</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>下面只是个普通的方法</li>
-<li>这是两个class，要注意，因为都是public，所以必须单独建立两个class，才可以</li>
-</ul>
-<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><ul>
-<li><p>用@interface</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">package 作业;</span><br><span class="line">@Target (value = &#123;ElementType.CONSTRUCTOR,ElementType.FIELD,ElementType.METHOD,ElementType.TYPE&#125;) // target是代表要修饰的目标种类，比如方法，构造器，属性等</span><br><span class="line">@Retention(value = RetentionPolicy.SOURCE) // 代表这个存活的位置，一般我们用不到，这个是存活于源码里，编译之后就无了</span><br><span class="line">@Retention(value = RetentionPolicy.CLASS) // 这个是存活与class中</span><br><span class="line">@Retention(value = RetentionPolicy.RUNTIME) // 这个是存活在运行时</span><br><span class="line">public @interface lesson14 &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上面的@Retention只能用一个，而且只能选择一个</p>
-</li>
-<li><p>而后再有一个类</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package 作业;</span><br><span class="line">@lesson14</span><br><span class="line">public class try1 &#123;</span><br><span class="line">	@lesson14</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>上面是一般用法。</li>
-<li>如果在接口上面增加@Target，就是代表让你可以修饰的东西</li>
-<li>@Retention 代表设置其存活的地方</li>
-</ul>
-<h2 id="value"><a href="#value" class="headerlink" title="value"></a>value</h2><p>可以在接口内写value，如果加上了value则在引用的时候要在括号内写上内容<br>如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public @interface lesson14 &#123;</span><br><span class="line">String value()</span><br><span class="line">default &quot;默认信息&quot;; // 代表默认值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@lesson14(&quot;klsdajhal&quot;)</span><br><span class="line">或者@lesson14(value = &quot;sadajd&quot;)</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1827,7 +1838,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1885,7 +1896,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共71.1k字</span>
+  <span class="post-count">博客全站共73.8k字</span>
 </div>
 
 

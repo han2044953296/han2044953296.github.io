@@ -19,6 +19,295 @@
 ]]></content>
   </entry>
   <entry>
+    <title>hive第四天</title>
+    <url>/2022/12/02/12-02/</url>
+    <content><![CDATA[<p>维度组合分析 ： </p>
+<p>sql 关键字 ： grouping sets</p>
+<p>例子  ：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create table user_shop (</span><br><span class="line">user_id String,</span><br><span class="line">shop_name String,</span><br><span class="line">channe String,</span><br><span class="line">os String</span><br><span class="line">)</span><br><span class="line">row format delimited fields terminated by &#x27;,&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>一般我们进行维度计算的时候，我们可以通过group by 的方式进行 </p>
+<p>但是假如我们每次都要处理一个维度，那么我们难道要写很多个sql语句吗</p>
+<p>这明显是不行的</p>
+<p>那么我们如何解决呢</p>
+<p>通过grouping sets 就可以解决了</p>
+<p>代码如下  ：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT empid,custid,</span><br><span class="line">       sum(qty) as sumqty</span><br><span class="line">FROM Orders</span><br><span class="line">GROUP BY</span><br><span class="line">    GROUPING SETS</span><br><span class="line">    (</span><br><span class="line">        (empid,custid),</span><br><span class="line">        (empid),(custid),</span><br><span class="line">        ()</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+
+<p>上面代码的意思就是 ：我要按照ｇｒｏｕｐ　ｂｙ　的方法　把empid,custid和empid和custid这几个维度都选出来，然后是上下在一起的　相当于用ｕｎｉｏｎ在一起</p>
+<p>如果是这次选择的维度中未选择的维度，比如说　，我只选择了　维度empid　，那么custid列就会是空，但是这个比多次重复性写ｓｑｌ语句要好的多</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>hive第三天</title>
+    <url>/2022/12/01/12-01/</url>
+    <content><![CDATA[<h1 id="内部和外部表和普通表和分区表"><a href="#内部和外部表和普通表和分区表" class="headerlink" title="内部和外部表和普通表和分区表"></a>内部和外部表和普通表和分区表</h1><p>分区表 ： 提升查询效率的表</p>
+<p>关于hive的查询 ： 对于普通表 则是要先读取所有的数据然后进行筛选的 ， 但是对于分区表，则是把数据进行分区，如果要查询的话，则是针对符合的数据进行查询</p>
+<p>往往用分区表进行查询，普通表数据量较少的时候可以用</p>
+<p>创建分区表 ：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create table order(</span><br><span class="line"></span><br><span class="line">orderid int,</span><br><span class="line"></span><br><span class="line">oredergg String</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">PARTITIONED BY (dt String)</span><br><span class="line"></span><br><span class="line">row format delimited fields terminated by &#x27;\t&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>show partitions 表名 &#x2F;&#x2F;查看现在这个表的分区</p>
+<p>修改分区  ：</p>
+<p>删除分区  ：<code>alter table 表名 drop partition(分区列 = &#39;分区名&#39;)</code></p>
+<p>创建分区 ： 在建表的时候创建</p>
+<p>导入数据 ： load&#x2F;insert</p>
+<ul>
+<li>load : load data (local) inpath ‘’ (overwrite) into table 表名 partition (分区名称) ：数据列数如果对不上就会出现问题 : 加上overwrite则是把一个分区的数据给覆盖掉</li>
+<li>insert : insert into table partition(分区) …</li>
+<li>insert into 是追加的</li>
+<li>如果不要追加则要进行覆盖 insert 后面的 into 变成 overwrite</li>
+</ul>
+<h2 id="使用一个sql让所有数据落到对应的分区里"><a href="#使用一个sql让所有数据落到对应的分区里" class="headerlink" title="使用一个sql让所有数据落到对应的分区里"></a>使用一个sql让所有数据落到对应的分区里</h2><p>动态分区：相当于我们要进行分区的字段是我们的数据的字段，就可以直接用那个字段当我们的分区但是要打开一个开关</p>
+<p><code>set hive.exec.dynamic.partition.mode=nonstrict;</code></p>
+<p>静态分区：就是自己制定好分区的标题的</p>
+<p>离线任务 ： 业务周期性 T+1</p>
+<p>就是延迟一天处理 </p>
+<p>默认底层创建的是内部表</p>
+<p>内部表 ： 受hive管控的 ： 如果有删表的操作，那么会清理干净，所有数据都会被删除</p>
+<p>外部表 ： 如果被删除的情况下，只是hdfs上指向metastore的索引被删除了，源数据不会被删除 ，而且我们还可通过建表的方式让他们的索引再次关联上</p>
+<p>创建外部表 ：</p>
+<p>相互转换 ：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">外部转内部</span><br><span class="line">ALTER TABLE 外部表名字 SET TBLPROPERTIES (&quot;EXTERNAL&quot; = &quot;true&quot;);</span><br><span class="line"></span><br><span class="line">内部转外部</span><br><span class="line">ALTER TABLE 外部表名字 SET TBLPROPERTIES (&quot;EXTERNAL&quot; = &quot;false&quot;);</span><br><span class="line">但是这上述的EXTERNAL 是不能小写的会造成失效的问题</span><br></pre></td></tr></table></figure>
+
+<h1 id="复杂的数据类型"><a href="#复杂的数据类型" class="headerlink" title="复杂的数据类型"></a>复杂的数据类型</h1><p>中小企业用的不多，，大企业用的多</p>
+<p>会建表 ，会查询</p>
+<p>maps: <code>MAP&lt;primitive_type, data_type&gt; </code></p>
+<p>数据如下 ：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1,zhangsan,father:xiaoming#mother:xiaohuang#brother:xiaoxu,28</span><br><span class="line">2,lisi,father:mayun#mother:huangyi#brother:guanyu,22</span><br><span class="line">3,wangwu,father:wangjianlin#mother:ruhua#sister:jingtian,29</span><br><span class="line">4,mayun,father:mayongzhen#mother:angelababy,26</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create table hive_map(</span><br><span class="line">id int  comment &#x27;用户id&#x27;,</span><br><span class="line">name string comment &#x27;用户名字&#x27;,</span><br><span class="line">relation map&lt;string,string&gt; comment &#x27;家庭成员&#x27;,</span><br><span class="line">age int comment &#x27;年龄&#x27;</span><br><span class="line">)</span><br><span class="line">row format  delimited fields terminated by &#x27;,&#x27;</span><br><span class="line">collection items terminated by &#x27;#&#x27;</span><br><span class="line">map keys terminated by &#x27;:&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>arrays:  <code>ARRAY&lt;data_type&gt;</code></p>
+<p>数据</p>
+<p><code>zihan   beijing,shanghai,chengdu,dalian</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create table hive_array(</span><br><span class="line">name String,</span><br><span class="line">locations array&lt;String&gt;</span><br><span class="line">)</span><br><span class="line">row format delimited fields terminated by &#x27;\t&#x27;</span><br><span class="line">collection items terminated by &#x27;,&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>structs:<code>STRUCT&lt;col_name : data_type [COMMENT col_comment], ...&gt;</code></p>
+<p>数据</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">192.168.1.1#zhangsan:40</span><br><span class="line">192.168.1.2#lisi:50</span><br><span class="line">192.168.1.3#wangwu:60</span><br><span class="line">192.168.1.4#zhaoliu:70</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create table hive_struct(</span><br><span class="line">ip string,</span><br><span class="line">userinfo STRUCT&lt;name:string,age:int&gt;</span><br><span class="line">)</span><br><span class="line">row format  delimited fields terminated by &#x27;#&#x27;</span><br><span class="line">collection items terminated by &#x27;:&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="数据形式的不同使用方法"><a href="#数据形式的不同使用方法" class="headerlink" title="数据形式的不同使用方法"></a>数据形式的不同使用方法</h1><h2 id="array"><a href="#array" class="headerlink" title="array"></a>array</h2><p>案例分析：</p>
+<p>1.查询每个用户第一个工作地点？</p>
+<p>select  name ,locations[0] as first_loc_work from  hive_array;</p>
+<p>2.查询每个人 工作地点的数量</p>
+<p>select  name , size(locations) from  hive_array ;</p>
+<p>3.查询在shanghai 工作的有哪些人</p>
+<p>select  * from hive_array  where array_contains(locations,’shanghai’);</p>
+<h3 id="行转列"><a href="#行转列" class="headerlink" title="行转列"></a>行转列</h3><p>思路是先把一个array的元素炸开，然后通过显示出来</p>
+<p>显示手段 ： LATERAL VIEW（侧写视图）</p>
+<ul>
+<li>LATERAL VIEW udtf(expression) tableAlias AS columnAlias</li>
+<li>udtf : 一进多出</li>
+<li>FROM baseTable (lateralView)*</li>
+<li>最终代码 ：</li>
+<li><pre><code>select name,location
+from hive_array lateral view explode(locations) loc_table as location;
+</code></pre>
+</li>
+</ul>
+<h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>需求： 1.查询表中每个人的father的名字</p>
+<p>select id,name,age,relation[‘father’] as father from hive_map;</p>
+<p>2.查询表中 每个人的家庭成员   keys</p>
+<p>select id,name,age,map_keys(relation) as members from hive_map;</p>
+<p>3.查询表中 每个人的家庭成员的名字 values</p>
+<p>select id,name,age,map_values(relation) as members from hive_map;</p>
+<p>4.查询表中 有brother的人以及brother的名字</p>
+<p>select<br> id,name,age,relation[‘brother’] as brother<br>from hive_map<br>where<br>relation[‘brother’] is not null;</p>
+<p>或者可以</p>
+<p>select<br> id,name,age,relation[‘brother’] as brother<br>from hive_map<br>where<br>array_contains(map_keys(relation), ‘brother’);</p>
+<p>&#x2F;&#x2F; map_key()函数的意思是可以把这个列的map的key当作array取出来</p>
+<h2 id="structs"><a href="#structs" class="headerlink" title="structs"></a>structs</h2><p>select ip,userinfo.name as name ,userinfo.age as age from hive_struct;</p>
+<h2 id="开窗函数-："><a href="#开窗函数-：" class="headerlink" title="开窗函数 ："></a>开窗函数 ：</h2><ul>
+<li>分析函数：对开窗函数的分析的函数<ul>
+<li>rank : 使用方法 rank()over(partition by xx order by yy) as rk  : 如果有重复的数据，会丢失排名</li>
+<li>dense_rank :使用方法同上 ： 如果有重复数据 ，则不会丢失排名 ：</li>
+<li>row_number:同上 ： 排名相同且不会重复 ， 就是会顺序往下 ：</li>
+</ul>
+</li>
+</ul>
+<p>上述的常用手段 ： 求topn的排名</p>
+<p>比如要求top3 的</p>
+<p>作业 ： </p>
+<p>统计每个店铺的uv</p>
+<p>统计top3的用户记录</p>
+<p>pv ： 页面的浏览量</p>
+<p>uv ： 访客的次数</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>hive第二天</title>
+    <url>/2022/11/30/11-30/</url>
+    <content><![CDATA[<h1 id="关于hive里的数据类型"><a href="#关于hive里的数据类型" class="headerlink" title="关于hive里的数据类型"></a>关于hive里的数据类型</h1><ul>
+<li>整数<ul>
+<li>int</li>
+<li>bigint &#x3D;&#x3D;long</li>
+</ul>
+</li>
+<li>小数 ：<ul>
+<li>float</li>
+<li>double</li>
+<li>Decimal</li>
+</ul>
+</li>
+<li>字符串：<ul>
+<li>String (建议统一用String)</li>
+<li>varchar</li>
+<li>char</li>
+</ul>
+</li>
+<li>时间：<ul>
+<li>时间日期 DATE 格式：YYYY-MM-DD</li>
+<li>时间戳：TIMESTAMP YYYY-MM-DD HH:MM:SS</li>
+</ul>
+</li>
+</ul>
+<h1 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h1><p>CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name<br>  [(col_name data_type [column_constraint_specification] [COMMENT col_comment], … [constraint_specification])]<br>  [COMMENT table_comment]<br>  [PARTITIONED BY (col_name data_type [COMMENT col_comment], …)]<br>  [CLUSTERED BY (col_name, col_name, …) [SORTED BY (col_name [ASC|DESC], …)] INTO num_buckets BUCKETS]<br>  [<br>   [ROW FORMAT row_format]<br>   [STORED AS file_format]<br>     | STORED BY ‘storage.handler.class.name’ [WITH SERDEPROPERTIES (…)]  – (Note: Available in Hive 0.6.0 and later)<br>  ]</p>
+<p>数据字段名字 字段类型</p>
+<p>例如</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create table mytest(</span><br><span class="line">	id String comment &#x27;用户id&#x27;,</span><br><span class="line">	name string,</span><br><span class="line">	age bigint</span><br><span class="line">) comment &#x27;第一个表&#x27;</span><br><span class="line">ROW FORMAT delimited fields terminated by &#x27;,&#x27; //指定分隔符</span><br><span class="line">STORED as TEXTFILE; // 存储形式</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">create table emp2 like emp;</span><br><span class="line">复制表结构</span><br><span class="line"></span><br><span class="line">或者</span><br></pre></td></tr></table></figure>
+
+<h2 id="为什么要分隔符"><a href="#为什么要分隔符" class="headerlink" title="为什么要分隔符"></a>为什么要分隔符</h2><p>因为我们的元数据都在hdfs上，对于hdfs上的数据可以通过分隔符进行自动导入到hive里，比如上述是，分割的，然后我hdfs上有如下数据</p>
+<p>1，zihan,11</p>
+<p>2,zhangsan,23</p>
+<p>3,liu,33</p>
+<p>就会自动按照每一行进行insert</p>
+<p>导入数据 ： load data local inpath ‘本地的绝对路径’ into table 表名</p>
+<p>清空表的操作 ： truncate table 表名</p>
+<h1 id="删除库"><a href="#删除库" class="headerlink" title="删除库"></a>删除库</h1><p>DROP (DATABASE|SCHEMA) [IF EXISTS] database_name [RESTRICT|CASCADE];</p>
+<p>DROP DATABASE bigdata_hive4;</p>
+<p>DROP DATABASE bigdata_hive2 CASCADE; &#x3D;&gt;删库跑路的操作</p>
+<p>CASCADE : 代表联合删除 ，一般删除的时候如果里面有表，会造成无法删除的问题，但是联合删除会直接删除掉</p>
+<h1 id="DMl"><a href="#DMl" class="headerlink" title="DMl"></a>DMl</h1><h2 id="load-："><a href="#load-：" class="headerlink" title="load ："></a>load ：</h2><ul>
+<li>加载本地数据</li>
+<li>加载hdfs上的数据</li>
+</ul>
+<p>LOAD原本是追加，不是覆盖 ， 但是可以通过 加上 overwrite 关键字 进行 覆盖操作</p>
+<h2 id="覆盖例子"><a href="#覆盖例子" class="headerlink" title="覆盖例子"></a>覆盖例子</h2><p>load data local inpath ‘&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;emp.txt’ OVERWRITE INTO TABLE emp;</p>
+<h2 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h2><p>本地：load data inpath ‘本地路径’ into table 表名</p>
+<p>hdfs ： load data inpath ‘hdfs上的路径’ into table 表名</p>
+<p>上述的hdfs上的相当于把其路径里的文件移动到table 表名的下面 并且改名，且关联到metastore</p>
+<p>但是我们的hdfs mv 是不会关联到metastore的</p>
+<p>在hive 里 update 和 delete 不要做 &#x3D;》 因为效率低下</p>
+<p>把所有的update和delete都转化成insert和overwrite</p>
+<h2 id="插入语句-："><a href="#插入语句-：" class="headerlink" title="插入语句 ："></a>插入语句 ：</h2><p>Inserting data into Hive Tables from queries</p>
+<p>insert into|OVERWRITE table tablename selectQury</p>
+<p>2.Inserting values into tables from SQL 【不推荐使用】<br>INSERT INTO TABLE tablename<br>VALUES values_row [, values_row …]<br>1.每导入一条数据 就会触发一次 mapreduce job  效率太低</p>
+<p>emp2：<br>    insert into table emp2<br>    select *  from emp;<br>insert overwrite table emp2<br>select *  from emp where deptno&#x3D;10;</p>
+<h2 id="关于hive里的一些函数以及使用"><a href="#关于hive里的一些函数以及使用" class="headerlink" title="关于hive里的一些函数以及使用"></a>关于hive里的一些函数以及使用</h2><h3 id="1-where-过滤条件"><a href="#1-where-过滤条件" class="headerlink" title="1.where 过滤条件"></a>1.where 过滤条件</h3><pre><code> where_condition
+ &lt;
+ &gt;
+ =
+ &lt;&gt;  !=
+ and
+ or
+ in
+ not in
+ between  and
+ is
+ is not
+</code></pre>
+<h3 id="需求：查询表中-deptno-20-10"><a href="#需求：查询表中-deptno-20-10" class="headerlink" title="需求：查询表中 deptno 20 10"></a>需求：查询表中 deptno 20 10</h3><p>select<br>*<br>from emp<br>where deptno&#x3D;20 or deptno &#x3D;10;</p>
+<p>select<br>*<br>from emp<br>where deptno in (10,20);</p>
+<p>select<br>*<br>from emp<br>where deptno &lt;&gt; 20;<br>select<br>*<br>from emp<br>where deptno !&#x3D; 20;</p>
+<h3 id="2-order-by-排序语法"><a href="#2-order-by-排序语法" class="headerlink" title="2.order by  排序语法"></a>2.order by  排序语法</h3><pre><code>1.默认asc 升序
+2.降序 desc
+</code></pre>
+<p>select<br>sal<br>from emp<br>order by sal desc;</p>
+<h3 id="3-like-语法-模糊匹配"><a href="#3-like-语法-模糊匹配" class="headerlink" title="3.like 语法 模糊匹配"></a>3.like 语法 模糊匹配</h3><pre><code>1._  占位符
+2.%  模糊
+
+rlike regexp
+</code></pre>
+<h3 id="4-合并表"><a href="#4-合并表" class="headerlink" title="4.合并表"></a>4.合并表</h3><pre><code>1.union  去重
+2.union all  不去重
+</code></pre>
+<h3 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h3><p>create table a(id int ,name string) row format  delimited fields terminated by ‘,’ ;<br>create table b(id int ,name string) row format  delimited fields terminated by ‘,’ ;</p>
+<p>load data local inpath “&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;a.txt” into table a;<br>load data local inpath “&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;b.txt” into table b;</p>
+<p>select name from a<br>union all<br>select name from b;</p>
+<p>select name from a<br>union all<br>select name from b<br>union all<br>select “lisi” as name ;</p>
+<p>select name,”1” as pk from a<br>union all<br>select name,”2” as pk from b<br>union all<br>select “lisi” as name,”3” as id ;</p>
+<p>思考： hive建表 默认column 分割符是什么？</p>
+<h3 id="5-null-处理"><a href="#5-null-处理" class="headerlink" title="5.null 处理"></a>5.null 处理</h3><pre><code>1. 过滤
+    where xxx is not null
+is null 作用一样 &lt;=&gt;
+2. etl 转换
+    ifnull  =&gt; hive里没有
+    coalesce =》
+    nvl  =》
+</code></pre>
+<h3 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h3><pre><code>查看hive支持的function ：
+            y=f(x)
+    SHOW FUNCTIONS [LIKE &quot;`&lt;pattern&gt;`&quot;];
+    show functions like nvl;  =&gt; 判断 function hive 是否存在
+    desc function nvl; =》  查看某个函数具体使用
+</code></pre>
+<p>select<br>empno,<br>ename,<br>job,<br>mgr,<br>hiredate,<br>sal,<br>nvl(comm,0) as comm_alias,<br>deptno<br>from emp ;</p>
+<h2 id="分组-聚合函数-join"><a href="#分组-聚合函数-join" class="headerlink" title="分组 聚合函数 join"></a>分组 聚合函数 join</h2><p>聚合函数 ： </p>
+<ul>
+<li>sum</li>
+<li>max</li>
+<li>min</li>
+<li>avg</li>
+<li>count</li>
+</ul>
+<h3 id="group-by"><a href="#group-by" class="headerlink" title="group by"></a>group by</h3><ul>
+<li>和聚合函数一起使用</li>
+<li>一个或者多个colum进行分组</li>
+<li>字段必须select出现 和 group by 出现要一致</li>
+</ul>
+<h3 id="having-："><a href="#having-：" class="headerlink" title="having ："></a>having ：</h3><ul>
+<li>在group by 后面使用</li>
+</ul>
+<p>select job,</p>
+<p>sum(sal) as sal_num,</p>
+<p>max(sal),</p>
+<p>min(sal),</p>
+<p>avg(sal),</p>
+<p>count(1) as cnt</p>
+<p>from emp</p>
+<p>group by job</p>
+<p>having sal_num &gt; 6000</p>
+<h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p>找准关联字段</p>
+<ul>
+<li>inner join [join]</li>
+<li>left join</li>
+<li>right join</li>
+<li>full join</li>
+</ul>
+<h3 id="需求：既要显示聚合前的数据，又要显示聚合后的数据？"><a href="#需求：既要显示聚合前的数据，又要显示聚合后的数据？" class="headerlink" title="需求：既要显示聚合前的数据，又要显示聚合后的数据？"></a>需求：既要显示聚合前的数据，又要显示聚合后的数据？</h3><p>函数  over([partition by xxx,…] [order by xxx,….])</p>
+<p>over: 以谁进行开窗 table、<br>parition by : 以谁进行分组   table columns<br>order by : 以谁进行排序  table columns</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">数据： </span><br><span class="line">haige,2022-11-10,1</span><br><span class="line">haige,2022-11-11,5</span><br><span class="line">haige,2022-11-12,7</span><br><span class="line">haige,2022-11-13,3</span><br><span class="line">haige,2022-11-14,2</span><br><span class="line">haige,2022-11-15,4</span><br><span class="line">haige,2022-11-16,4</span><br></pre></td></tr></table></figure>
+
+<p>需求：<br>    统计累计问题 ，每个用户每天累计点外卖次数</p>
+<p>[partition by xxx,…] [order by xxx,….]</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select </span><br><span class="line">name ,</span><br><span class="line">dt ,</span><br><span class="line">cnt ,</span><br><span class="line">sum(cnt) over(partition by name  order by dt ) as sum_cnt</span><br><span class="line">from user_mt;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="命令行更改"><a href="#命令行更改" class="headerlink" title="命令行更改"></a>命令行更改</h3><p>command line<br>    1.hive shell<br>    2.jdbc &#x3D;&gt; hiveServer2</p>
+<pre><code>hive clinet:
+    1. hive shell
+    2. beeline shell jdbc   开启 hiveServer2 服务 thift
+</code></pre>
+<p>在beeline中 <code>!connect jdbc:hive2://localhost:10000 hadoop</code></p>
+<p>补充：<br>beeline &#x3D;&gt; 连接 hive  &#x3D;》 hdfs<br>对hdfs 做一个设置 代理设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">core-site.xml:</span><br><span class="line">&lt;property&gt;</span><br><span class="line">	&lt;name&gt;hadoop.proxyuser.hadoop.hosts&lt;/name&gt;</span><br><span class="line">	&lt;value&gt;*&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">	&lt;name&gt;hadoop.proxyuser.hadoop.groups&lt;/name&gt;</span><br><span class="line">	&lt;value&gt;*&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+  </entry>
+  <entry>
     <title>hive</title>
     <url>/2022/11/29/11-29/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>简单来说就是用sql处理hadoop的数据的</p>
@@ -155,7 +444,7 @@
 <p>成功就ok了</p>
 <p>然后再mysql的数据库里会有hive这个数据库</p>
 <p>mysql里\G是格式化的意思</p>
-<h2 id="思考-：-表中的字段-存在哪里？"><a href="#思考-：-表中的字段-存在哪里？" class="headerlink" title="思考 ： 表中的字段 存在哪里？"></a>思考 ： 表中的字段 存在哪里？</h2><p>我们先进入hive ： <code>create table test(String name); </code></p>
+<h2 id="思考-：-表中的字段-存在哪里？"><a href="#思考-：-表中的字段-存在哪里？" class="headerlink" title="思考 ： 表中的字段 存在哪里？"></a>思考 ： 表中的字段 存在哪里？</h2><p>我们先进入hive ： <code>create table test(name String); </code></p>
 <p>一个 hive 表 会被拆分成n个表存储再mysql里</p>
 <p>比如　： TBl表存放的是我们的表名 <code>select * from tbls \G;</code></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">*************************** 1. row ***************************</span><br><span class="line">            TBL_ID: 1</span><br><span class="line">       CREATE_TIME: 1669707861</span><br><span class="line">             DB_ID: 1</span><br><span class="line">  LAST_ACCESS_TIME: 0</span><br><span class="line">             OWNER: hadoop</span><br><span class="line">        OWNER_TYPE: USER</span><br><span class="line">         RETENTION: 0</span><br><span class="line">             SD_ID: 1</span><br><span class="line">          TBL_NAME: test</span><br><span class="line">          TBL_TYPE: MANAGED_TABLE</span><br><span class="line">VIEW_EXPANDED_TEXT: NULL</span><br><span class="line">VIEW_ORIGINAL_TEXT: NULL</span><br><span class="line">IS_REWRITE_ENABLED:  </span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -172,10 +461,10 @@
 <p>[] 可有可无<br>(|) 选择其中一个即可</p>
 <p>CREATE DATABASE 名称；</p>
 <p>CREATE DATABASE 名称 LOCATION ‘创建的地方’；</p>
-<p>例子 ： </p>
+<p>例子 ：</p>
 <p>create database if not exists bigdata_hive;<br>create database  bigdata_hive2  LOCATION ‘&#x2F;data&#x2F;bigdata_hive2’;<br>create database  bigdata_hive3 WITH DBPROPERTIES (‘creator’&#x3D;’doublehappy’, ‘create_dt’&#x3D;”2099-11-29”);<br>create database if not exists bigdata_hive4 COMMENT “这是一个数据库4”;</p>
 <p>解决此处中文乱码的问题</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER TABLE hive.dbs MODIFY COLUMN `DESC` varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER TABLE hive.dbs MODIFY COLUMN `DESC` varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL;</span><br></pre></td></tr></table></figure>
 
 <h3 id="显示数据库"><a href="#显示数据库" class="headerlink" title="显示数据库"></a>显示数据库</h3><p>show databases;<br>show databases like “bigdata_hive*”<br>desc database  bigdata_hive3;<br>desc database EXTENDED bigdata_hive3;</p>
 <h2 id="思考-：-这个数据库在hdfs的哪一个地方"><a href="#思考-：-这个数据库在hdfs的哪一个地方" class="headerlink" title="思考 ： 这个数据库在hdfs的哪一个地方"></a>思考 ： 这个数据库在hdfs的哪一个地方</h2><p>可以通过查看DBS表</p>

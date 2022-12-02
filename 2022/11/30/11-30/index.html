@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/%E6%A0%91%E5%8F%B6_sleaves%20(1).png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/%E6%A0%91%E5%8F%B6_sleaves.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="关于hive里的数据类型 整数 int bigint &#x3D;&#x3D;long   小数 ： float double Decimal   字符串： String (建议统一用String) varchar char   时间： 时间日期 DATE 格式：YYYY-MM-DD 时间戳：TIMESTAMP YYYY-MM-DD HH:MM:SS    建表CREATE [TEMPORARY]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hive第二天">
+<meta property="og:url" content="http://example.com/2022/11/30/11-30/index.html">
+<meta property="og:site_name" content="枫叶冢">
+<meta property="og:description" content="关于hive里的数据类型 整数 int bigint &#x3D;&#x3D;long   小数 ： float double Decimal   字符串： String (建议统一用String) varchar char   时间： 时间日期 DATE 格式：YYYY-MM-DD 时间戳：TIMESTAMP YYYY-MM-DD HH:MM:SS    建表CREATE [TEMPORARY]">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-30T01:57:50.411Z">
+<meta property="article:modified_time" content="2022-11-30T10:31:17.591Z">
+<meta property="article:author" content="liu zihang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/11/30/11-30/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>hive第二天 | 枫叶冢</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/rss2.xml" title="枫叶冢" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a target="_blank" rel="noopener" href="https://github.com/han2044953296" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#151513; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">枫叶冢</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/30/11-30/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hive第二天
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-30 09:57:50 / 修改时间：18:31:17" itemprop="dateCreated datePublished" datetime="2022-11-30T09:57:50+08:00">2022-11-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="关于hive里的数据类型"><a href="#关于hive里的数据类型" class="headerlink" title="关于hive里的数据类型"></a>关于hive里的数据类型</h1><ul>
+<li>整数<ul>
+<li>int</li>
+<li>bigint &#x3D;&#x3D;long</li>
+</ul>
+</li>
+<li>小数 ：<ul>
+<li>float</li>
+<li>double</li>
+<li>Decimal</li>
+</ul>
+</li>
+<li>字符串：<ul>
+<li>String (建议统一用String)</li>
+<li>varchar</li>
+<li>char</li>
+</ul>
+</li>
+<li>时间：<ul>
+<li>时间日期 DATE 格式：YYYY-MM-DD</li>
+<li>时间戳：TIMESTAMP YYYY-MM-DD HH:MM:SS</li>
+</ul>
+</li>
+</ul>
+<h1 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h1><p>CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name<br>  [(col_name data_type [column_constraint_specification] [COMMENT col_comment], … [constraint_specification])]<br>  [COMMENT table_comment]<br>  [PARTITIONED BY (col_name data_type [COMMENT col_comment], …)]<br>  [CLUSTERED BY (col_name, col_name, …) [SORTED BY (col_name [ASC|DESC], …)] INTO num_buckets BUCKETS]<br>  [<br>   [ROW FORMAT row_format]<br>   [STORED AS file_format]<br>     | STORED BY ‘storage.handler.class.name’ [WITH SERDEPROPERTIES (…)]  – (Note: Available in Hive 0.6.0 and later)<br>  ]</p>
+<p>数据字段名字 字段类型</p>
+<p>例如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">create table mytest(</span><br><span class="line">	id String comment &#x27;用户id&#x27;,</span><br><span class="line">	name string,</span><br><span class="line">	age bigint</span><br><span class="line">) comment &#x27;第一个表&#x27;</span><br><span class="line">ROW FORMAT delimited fields terminated by &#x27;,&#x27; //指定分隔符</span><br><span class="line">STORED as TEXTFILE; // 存储形式</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">create table emp2 like emp;</span><br><span class="line">复制表结构</span><br><span class="line"></span><br><span class="line">或者</span><br></pre></td></tr></table></figure>
+
+<h2 id="为什么要分隔符"><a href="#为什么要分隔符" class="headerlink" title="为什么要分隔符"></a>为什么要分隔符</h2><p>因为我们的元数据都在hdfs上，对于hdfs上的数据可以通过分隔符进行自动导入到hive里，比如上述是，分割的，然后我hdfs上有如下数据</p>
+<p>1，zihan,11</p>
+<p>2,zhangsan,23</p>
+<p>3,liu,33</p>
+<p>就会自动按照每一行进行insert</p>
+<p>导入数据 ： load data local inpath ‘本地的绝对路径’ into table 表名</p>
+<p>清空表的操作 ： truncate table 表名</p>
+<h1 id="删除库"><a href="#删除库" class="headerlink" title="删除库"></a>删除库</h1><p>DROP (DATABASE|SCHEMA) [IF EXISTS] database_name [RESTRICT|CASCADE];</p>
+<p>DROP DATABASE bigdata_hive4;</p>
+<p>DROP DATABASE bigdata_hive2 CASCADE; &#x3D;&gt;删库跑路的操作</p>
+<p>CASCADE : 代表联合删除 ，一般删除的时候如果里面有表，会造成无法删除的问题，但是联合删除会直接删除掉</p>
+<h1 id="DMl"><a href="#DMl" class="headerlink" title="DMl"></a>DMl</h1><h2 id="load-："><a href="#load-：" class="headerlink" title="load ："></a>load ：</h2><ul>
+<li>加载本地数据</li>
+<li>加载hdfs上的数据</li>
+</ul>
+<p>LOAD原本是追加，不是覆盖 ， 但是可以通过 加上 overwrite 关键字 进行 覆盖操作</p>
+<h2 id="覆盖例子"><a href="#覆盖例子" class="headerlink" title="覆盖例子"></a>覆盖例子</h2><p>load data local inpath ‘&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;emp.txt’ OVERWRITE INTO TABLE emp;</p>
+<h2 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h2><p>本地：load data inpath ‘本地路径’ into table 表名</p>
+<p>hdfs ： load data inpath ‘hdfs上的路径’ into table 表名</p>
+<p>上述的hdfs上的相当于把其路径里的文件移动到table 表名的下面 并且改名，且关联到metastore</p>
+<p>但是我们的hdfs mv 是不会关联到metastore的</p>
+<p>在hive 里 update 和 delete 不要做 &#x3D;》 因为效率低下</p>
+<p>把所有的update和delete都转化成insert和overwrite</p>
+<h2 id="插入语句-："><a href="#插入语句-：" class="headerlink" title="插入语句 ："></a>插入语句 ：</h2><p>Inserting data into Hive Tables from queries</p>
+<p>insert into|OVERWRITE table tablename selectQury</p>
+<p>2.Inserting values into tables from SQL 【不推荐使用】<br>INSERT INTO TABLE tablename<br>VALUES values_row [, values_row …]<br>1.每导入一条数据 就会触发一次 mapreduce job  效率太低</p>
+<p>emp2：<br>    insert into table emp2<br>    select *  from emp;<br>insert overwrite table emp2<br>select *  from emp where deptno&#x3D;10;</p>
+<h2 id="关于hive里的一些函数以及使用"><a href="#关于hive里的一些函数以及使用" class="headerlink" title="关于hive里的一些函数以及使用"></a>关于hive里的一些函数以及使用</h2><h3 id="1-where-过滤条件"><a href="#1-where-过滤条件" class="headerlink" title="1.where 过滤条件"></a>1.where 过滤条件</h3><pre><code> where_condition
+ &lt;
+ &gt;
+ =
+ &lt;&gt;  !=
+ and
+ or
+ in
+ not in
+ between  and
+ is
+ is not
+</code></pre>
+<h3 id="需求：查询表中-deptno-20-10"><a href="#需求：查询表中-deptno-20-10" class="headerlink" title="需求：查询表中 deptno 20 10"></a>需求：查询表中 deptno 20 10</h3><p>select<br>*<br>from emp<br>where deptno&#x3D;20 or deptno &#x3D;10;</p>
+<p>select<br>*<br>from emp<br>where deptno in (10,20);</p>
+<p>select<br>*<br>from emp<br>where deptno &lt;&gt; 20;<br>select<br>*<br>from emp<br>where deptno !&#x3D; 20;</p>
+<h3 id="2-order-by-排序语法"><a href="#2-order-by-排序语法" class="headerlink" title="2.order by  排序语法"></a>2.order by  排序语法</h3><pre><code>1.默认asc 升序
+2.降序 desc
+</code></pre>
+<p>select<br>sal<br>from emp<br>order by sal desc;</p>
+<h3 id="3-like-语法-模糊匹配"><a href="#3-like-语法-模糊匹配" class="headerlink" title="3.like 语法 模糊匹配"></a>3.like 语法 模糊匹配</h3><pre><code>1._  占位符
+2.%  模糊
+
+rlike regexp
+</code></pre>
+<h3 id="4-合并表"><a href="#4-合并表" class="headerlink" title="4.合并表"></a>4.合并表</h3><pre><code>1.union  去重
+2.union all  不去重
+</code></pre>
+<h3 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h3><p>create table a(id int ,name string) row format  delimited fields terminated by ‘,’ ;<br>create table b(id int ,name string) row format  delimited fields terminated by ‘,’ ;</p>
+<p>load data local inpath “&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;a.txt” into table a;<br>load data local inpath “&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;b.txt” into table b;</p>
+<p>select name from a<br>union all<br>select name from b;</p>
+<p>select name from a<br>union all<br>select name from b<br>union all<br>select “lisi” as name ;</p>
+<p>select name,”1” as pk from a<br>union all<br>select name,”2” as pk from b<br>union all<br>select “lisi” as name,”3” as id ;</p>
+<p>思考： hive建表 默认column 分割符是什么？</p>
+<h3 id="5-null-处理"><a href="#5-null-处理" class="headerlink" title="5.null 处理"></a>5.null 处理</h3><pre><code>1. 过滤
+    where xxx is not null
+is null 作用一样 &lt;=&gt;
+2. etl 转换
+    ifnull  =&gt; hive里没有
+    coalesce =》
+    nvl  =》
+</code></pre>
+<h3 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h3><pre><code>查看hive支持的function ：
+            y=f(x)
+    SHOW FUNCTIONS [LIKE &quot;`&lt;pattern&gt;`&quot;];
+    show functions like nvl;  =&gt; 判断 function hive 是否存在
+    desc function nvl; =》  查看某个函数具体使用
+</code></pre>
+<p>select<br>empno,<br>ename,<br>job,<br>mgr,<br>hiredate,<br>sal,<br>nvl(comm,0) as comm_alias,<br>deptno<br>from emp ;</p>
+<h2 id="分组-聚合函数-join"><a href="#分组-聚合函数-join" class="headerlink" title="分组 聚合函数 join"></a>分组 聚合函数 join</h2><p>聚合函数 ： </p>
+<ul>
+<li>sum</li>
+<li>max</li>
+<li>min</li>
+<li>avg</li>
+<li>count</li>
+</ul>
+<h3 id="group-by"><a href="#group-by" class="headerlink" title="group by"></a>group by</h3><ul>
+<li>和聚合函数一起使用</li>
+<li>一个或者多个colum进行分组</li>
+<li>字段必须select出现 和 group by 出现要一致</li>
+</ul>
+<h3 id="having-："><a href="#having-：" class="headerlink" title="having ："></a>having ：</h3><ul>
+<li>在group by 后面使用</li>
+</ul>
+<p>select job,</p>
+<p>sum(sal) as sal_num,</p>
+<p>max(sal),</p>
+<p>min(sal),</p>
+<p>avg(sal),</p>
+<p>count(1) as cnt</p>
+<p>from emp</p>
+<p>group by job</p>
+<p>having sal_num &gt; 6000</p>
+<h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p>找准关联字段</p>
+<ul>
+<li>inner join [join]</li>
+<li>left join</li>
+<li>right join</li>
+<li>full join</li>
+</ul>
+<h3 id="需求：既要显示聚合前的数据，又要显示聚合后的数据？"><a href="#需求：既要显示聚合前的数据，又要显示聚合后的数据？" class="headerlink" title="需求：既要显示聚合前的数据，又要显示聚合后的数据？"></a>需求：既要显示聚合前的数据，又要显示聚合后的数据？</h3><p>函数  over([partition by xxx,…] [order by xxx,….])</p>
+<p>over: 以谁进行开窗 table、<br>parition by : 以谁进行分组   table columns<br>order by : 以谁进行排序  table columns</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">数据： </span><br><span class="line">haige,2022-11-10,1</span><br><span class="line">haige,2022-11-11,5</span><br><span class="line">haige,2022-11-12,7</span><br><span class="line">haige,2022-11-13,3</span><br><span class="line">haige,2022-11-14,2</span><br><span class="line">haige,2022-11-15,4</span><br><span class="line">haige,2022-11-16,4</span><br></pre></td></tr></table></figure>
+
+<p>需求：<br>    统计累计问题 ，每个用户每天累计点外卖次数</p>
+<p>[partition by xxx,…] [order by xxx,….]</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select </span><br><span class="line">name ,</span><br><span class="line">dt ,</span><br><span class="line">cnt ,</span><br><span class="line">sum(cnt) over(partition by name  order by dt ) as sum_cnt</span><br><span class="line">from user_mt;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="命令行更改"><a href="#命令行更改" class="headerlink" title="命令行更改"></a>命令行更改</h3><p>command line<br>    1.hive shell<br>    2.jdbc &#x3D;&gt; hiveServer2</p>
+<pre><code>hive clinet:
+    1. hive shell
+    2. beeline shell jdbc   开启 hiveServer2 服务 thift
+</code></pre>
+<p>在beeline中 <code>!connect jdbc:hive2://localhost:10000 hadoop</code></p>
+<p>补充：<br>beeline &#x3D;&gt; 连接 hive  &#x3D;》 hdfs<br>对hdfs 做一个设置 代理设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">core-site.xml:</span><br><span class="line">&lt;property&gt;</span><br><span class="line">	&lt;name&gt;hadoop.proxyuser.hadoop.hosts&lt;/name&gt;</span><br><span class="line">	&lt;value&gt;*&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">	&lt;name&gt;hadoop.proxyuser.hadoop.groups&lt;/name&gt;</span><br><span class="line">	&lt;value&gt;*&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      
+   <div>
+     <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+   </div>
+     
+        <div class="reward-container">
+  <div>你们的鼓励是对我最大的支持</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="liu zihang 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>liu zihang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/11/30/11-30/" title="hive第二天">http://example.com/2022/11/30/11-30/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+     
+    
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/29/11-29/" rel="prev" title="hive">
+      <i class="fa fa-chevron-left"></i> hive
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/01/12-01/" rel="next" title="hive第三天">
+      hive第三天 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81NzQzNy8zMzkwMQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Ehive%E9%87%8C%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">关于hive里的数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BB%BA%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">建表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%88%86%E9%9A%94%E7%AC%A6"><span class="nav-number">2.1.</span> <span class="nav-text">为什么要分隔符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%BA%93"><span class="nav-number">3.</span> <span class="nav-text">删除库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DMl"><span class="nav-number">4.</span> <span class="nav-text">DMl</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#load-%EF%BC%9A"><span class="nav-number">4.1.</span> <span class="nav-text">load ：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A6%86%E7%9B%96%E4%BE%8B%E5%AD%90"><span class="nav-number">4.2.</span> <span class="nav-text">覆盖例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0"><span class="nav-number">4.3.</span> <span class="nav-text">上传</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E8%AF%AD%E5%8F%A5-%EF%BC%9A"><span class="nav-number">4.4.</span> <span class="nav-text">插入语句 ：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Ehive%E9%87%8C%E7%9A%84%E4%B8%80%E4%BA%9B%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8"><span class="nav-number">4.5.</span> <span class="nav-text">关于hive里的一些函数以及使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-where-%E8%BF%87%E6%BB%A4%E6%9D%A1%E4%BB%B6"><span class="nav-number">4.5.1.</span> <span class="nav-text">1.where 过滤条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%EF%BC%9A%E6%9F%A5%E8%AF%A2%E8%A1%A8%E4%B8%AD-deptno-20-10"><span class="nav-number">4.5.2.</span> <span class="nav-text">需求：查询表中 deptno 20 10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-order-by-%E6%8E%92%E5%BA%8F%E8%AF%AD%E6%B3%95"><span class="nav-number">4.5.3.</span> <span class="nav-text">2.order by  排序语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-like-%E8%AF%AD%E6%B3%95-%E6%A8%A1%E7%B3%8A%E5%8C%B9%E9%85%8D"><span class="nav-number">4.5.4.</span> <span class="nav-text">3.like 语法 模糊匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%90%88%E5%B9%B6%E8%A1%A8"><span class="nav-number">4.5.5.</span> <span class="nav-text">4.合并表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A"><span class="nav-number">4.5.6.</span> <span class="nav-text">例子：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-null-%E5%A4%84%E7%90%86"><span class="nav-number">4.5.7.</span> <span class="nav-text">5.null 处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A"><span class="nav-number">4.5.8.</span> <span class="nav-text">补充：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%BB%84-%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0-join"><span class="nav-number">4.6.</span> <span class="nav-text">分组 聚合函数 join</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#group-by"><span class="nav-number">4.6.1.</span> <span class="nav-text">group by</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#having-%EF%BC%9A"><span class="nav-number">4.6.2.</span> <span class="nav-text">having ：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join"><span class="nav-number">4.6.3.</span> <span class="nav-text">join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%EF%BC%9A%E6%97%A2%E8%A6%81%E6%98%BE%E7%A4%BA%E8%81%9A%E5%90%88%E5%89%8D%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%8C%E5%8F%88%E8%A6%81%E6%98%BE%E7%A4%BA%E8%81%9A%E5%90%88%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%9F"><span class="nav-number">4.6.4.</span> <span class="nav-text">需求：既要显示聚合前的数据，又要显示聚合后的数据？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%9B%B4%E6%94%B9"><span class="nav-number">4.6.5.</span> <span class="nav-text">命令行更改</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liu zihang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">liu zihang</p>
+  <div class="site-description" itemprop="description">只有努力不会辜负你</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      链接网站
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://baidu.com/" title="https:&#x2F;&#x2F;baidu.com" rel="noopener" target="_blank">百度</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://fishc.com.cn/" title="https:&#x2F;&#x2F;fishc.com.cn" rel="noopener" target="_blank">鱼C论坛</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liu zihang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共73.8k字</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

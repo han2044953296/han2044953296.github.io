@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介简单来说就是用sql处理hadoop的数据的 除了hive之外 ： sparksql ，presto ， impala 要求掌握sql udf hadoop包含hdfs ：命令行 mapreduce ：目前工作中几乎不用，但是关于核心类和思想要掌握 yarn：提交作业 xxx （mr&#x2F;spark&#x2F;flink）on yarn ： 必须会 mapreduce的弊端 ：  开发大">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-29T00:36:32.639Z">
-<meta property="article:modified_time" content="2022-11-29T10:44:01.456Z">
+<meta property="article:modified_time" content="2022-11-30T14:00:51.419Z">
 <meta property="article:author" content="liu zihang">
 <meta name="twitter:card" content="summary">
 
@@ -224,10 +224,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-29 08:36:32 / 修改时间：18:44:01" itemprop="dateCreated datePublished" datetime="2022-11-29T08:36:32+08:00">2022-11-29</time>
+              <time title="创建时间：2022-11-29 08:36:32" itemprop="dateCreated datePublished" datetime="2022-11-29T08:36:32+08:00">2022-11-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-30 22:00:51" itemprop="dateModified" datetime="2022-11-30T22:00:51+08:00">2022-11-30</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -407,7 +413,7 @@
 <p>成功就ok了</p>
 <p>然后再mysql的数据库里会有hive这个数据库</p>
 <p>mysql里\G是格式化的意思</p>
-<h2 id="思考-：-表中的字段-存在哪里？"><a href="#思考-：-表中的字段-存在哪里？" class="headerlink" title="思考 ： 表中的字段 存在哪里？"></a>思考 ： 表中的字段 存在哪里？</h2><p>我们先进入hive ： <code>create table test(String name); </code></p>
+<h2 id="思考-：-表中的字段-存在哪里？"><a href="#思考-：-表中的字段-存在哪里？" class="headerlink" title="思考 ： 表中的字段 存在哪里？"></a>思考 ： 表中的字段 存在哪里？</h2><p>我们先进入hive ： <code>create table test(name String); </code></p>
 <p>一个 hive 表 会被拆分成n个表存储再mysql里</p>
 <p>比如　： TBl表存放的是我们的表名 <code>select * from tbls \G;</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">*************************** 1. row ***************************</span><br><span class="line">            TBL_ID: 1</span><br><span class="line">       CREATE_TIME: 1669707861</span><br><span class="line">             DB_ID: 1</span><br><span class="line">  LAST_ACCESS_TIME: 0</span><br><span class="line">             OWNER: hadoop</span><br><span class="line">        OWNER_TYPE: USER</span><br><span class="line">         RETENTION: 0</span><br><span class="line">             SD_ID: 1</span><br><span class="line">          TBL_NAME: test</span><br><span class="line">          TBL_TYPE: MANAGED_TABLE</span><br><span class="line">VIEW_EXPANDED_TEXT: NULL</span><br><span class="line">VIEW_ORIGINAL_TEXT: NULL</span><br><span class="line">IS_REWRITE_ENABLED:  </span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -424,10 +430,10 @@
 <p>[] 可有可无<br>(|) 选择其中一个即可</p>
 <p>CREATE DATABASE 名称；</p>
 <p>CREATE DATABASE 名称 LOCATION ‘创建的地方’；</p>
-<p>例子 ： </p>
+<p>例子 ：</p>
 <p>create database if not exists bigdata_hive;<br>create database  bigdata_hive2  LOCATION ‘&#x2F;data&#x2F;bigdata_hive2’;<br>create database  bigdata_hive3 WITH DBPROPERTIES (‘creator’&#x3D;’doublehappy’, ‘create_dt’&#x3D;”2099-11-29”);<br>create database if not exists bigdata_hive4 COMMENT “这是一个数据库4”;</p>
 <p>解决此处中文乱码的问题</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE hive.dbs MODIFY COLUMN `DESC` varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE hive.dbs MODIFY COLUMN `DESC` varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL;</span><br></pre></td></tr></table></figure>
 
 <h3 id="显示数据库"><a href="#显示数据库" class="headerlink" title="显示数据库"></a>显示数据库</h3><p>show databases;<br>show databases like “bigdata_hive*”<br>desc database  bigdata_hive3;<br>desc database EXTENDED bigdata_hive3;</p>
 <h2 id="思考-：-这个数据库在hdfs的哪一个地方"><a href="#思考-：-这个数据库在hdfs的哪一个地方" class="headerlink" title="思考 ： 这个数据库在hdfs的哪一个地方"></a>思考 ： 这个数据库在hdfs的哪一个地方</h2><p>可以通过查看DBS表</p>
@@ -532,7 +538,10 @@
     <a href="/2022/11/28/11-28/" rel="prev" title="yarn">
       <i class="fa fa-chevron-left"></i> yarn
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/11/30/11-30/" rel="next" title="hive第二天">
+      hive第二天 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -612,7 +621,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -670,7 +679,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共71.1k字</span>
+  <span class="post-count">博客全站共73.8k字</span>
 </div>
 
 
