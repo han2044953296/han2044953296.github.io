@@ -30,7 +30,7 @@
 <meta property="og:description" content="yarn架构主从架构 ： resourcemanager(资源的分配) : nodemanager(资源的供给与隔离) 资源调度通过rm把nm的资源分配给我们的 task上 资源隔离nm按照要求给task提供资源，保证提供的资源具有独占性 资源nm指挥分配的资源 一个task对应一个container ： cpu&#x2F;mem（cpu和内存） 每个container之间是相互隔离的 yarn的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-28T00:34:31.253Z">
-<meta property="article:modified_time" content="2022-11-29T01:48:22.254Z">
+<meta property="article:modified_time" content="2022-12-05T04:07:08.154Z">
 <meta property="article:author" content="liu zihang">
 <meta name="twitter:card" content="summary">
 
@@ -232,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-29 09:48:22" itemprop="dateModified" datetime="2022-11-29T09:48:22+08:00">2022-11-29</time>
+                <time title="修改时间：2022-12-05 12:07:08" itemprop="dateModified" datetime="2022-12-05T12:07:08+08:00">2022-12-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -290,7 +290,7 @@
 <p>app master 会向apps manager 去注册我的作业</p>
 <p>app master 向resource scheduler 申请资源去运行 我的代码</p>
 <p>nodemanager 会开启资源 container 去运行map task 以及reduce task</p>
-<p>tsak 会向 app master 汇报代码与运行情况 </p>
+<p>tsak 会向 app master 汇报代码与运行情况</p>
 <p>当代码运行完成 app master 会给apps 发送请求 ，通知我的作业完成了</p>
 <p>apps manager 收到请求之后会通知你的客户端 ，告诉已经运行完成</p>
 <p>输入阶段 ： map tsak 的个数 &#x3D;》container 的申请个数 redurce task 同理</p>
@@ -319,22 +319,22 @@
 <h3 id="默认调度器"><a href="#默认调度器" class="headerlink" title="默认调度器"></a>默认调度器</h3><p>3.x：默认是容量调度器</p>
 <p>通过调度器进行其作业调度</p>
 <p>2.x: 版本是fair（默认）</p>
-<h2 id="yarn的web界面的简介"><a href="#yarn的web界面的简介" class="headerlink" title="yarn的web界面的简介"></a>yarn的web界面的简介</h2><p>左侧侧边栏 ： 有几个选项卡 ： 分别是 </p>
-<h2 id="yarn资源的调优"><a href="#yarn资源的调优" class="headerlink" title="yarn资源的调优"></a>yarn资源的调优</h2><p>container? </p>
+<h2 id="yarn的web界面的简介"><a href="#yarn的web界面的简介" class="headerlink" title="yarn的web界面的简介"></a>yarn的web界面的简介</h2><p>左侧侧边栏 ： 有几个选项卡 ： 分别是</p>
+<h2 id="yarn资源的调优"><a href="#yarn资源的调优" class="headerlink" title="yarn资源的调优"></a>yarn资源的调优</h2><p>container?</p>
 <p>一定比例的cpu和mem</p>
 <p>刀片服务器的配置 ： 128G 16 core :假设一个机器的配置</p>
-<p>刀片服务器 装完系统 消耗内存 1G </p>
+<p>刀片服务器 装完系统 消耗内存 1G</p>
 <p>系统预留 ： 预留 20%左右 包含装完成系统 消耗的1G</p>
 <p>原因 ：给未来部署组件预留空间，防止全部使用 ： 会导致系统夯住 就是卡住 ，oom机制【linux系统】：系统会自己杀死进程当内存不足的时候</p>
 <p>预留空间 ： 128 * 0.2 &#x3D; 26G</p>
 <p>其余空间用于大数据 102G</p>
-<p>hadoop ： </p>
+<p>hadoop ：</p>
 <ul>
 <li>datanode  进程内存 ： 默认 1G &#x3D;》 生产上 2G</li>
 <li>nodemanager 进程内存 ： ，默认 1G &#x3D;》 生产上 4G</li>
 </ul>
 <p>接下来还有96G全部给我们的yarn资源 ： 96G</p>
-<p>container的资源分配 ： </p>
+<p>container的资源分配 ：</p>
 <p>内存</p>
 <p>cpu</p>
 <p>相比：cpu更重要一些</p>
@@ -346,7 +346,7 @@
 <p>比如 ： 一个cpu是另外一个cpu的2倍</p>
 <p>第一机器 ： pcore ：vcore &#x3D; 1：2 相当于1个物理核当成两个虚拟核用</p>
 <p>给container的核数 ： 默认是8core</p>
-<p>总数 ： </p>
+<p>总数 ：</p>
 <p>最小:1c  (默认)</p>
 <p>最大:4c（默认）</p>
 <p>实际开发角度 ：</p>
@@ -355,16 +355,14 @@
 <p>配置core  ：在yarn-site.xml</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.resource.memory-mb&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;4096&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.minimum-allocation-mb&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;1024&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.maximum-allocation-mb&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;2048&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">cpu： </span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.resource.pcores-vcores-multiplier&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;2&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.resource.cpu-vcores&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;4&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.minimum-allocation-vcores&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;1&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.maximum-allocation-vcores&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;2&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-
-
 <h2 id="mapreduce"><a href="#mapreduce" class="headerlink" title="mapreduce"></a>mapreduce</h2><p>map task :mem  : 默认是1024m ，一个map task 申请的资源是1024m ， 但是如果实际使用的资源的内存量超过这个值，你的task会强制被杀死 ，reduce task 也一样</p>
 <p>map task :vcore ： 默认是1</p>
 <p>reduce task :mem : 默认是1024m</p>
 <p>reduce task :vcore : 默认是1</p>
 <p>mr作业是进程级别 &#x3D;》 jvm</p>
 <p>map task</p>
-<p>reduce task </p>
-<p>jvm参数调优 ： </p>
+<p>reduce task</p>
+<p>jvm参数调优 ：</p>
 <p>存储 hdfs</p>
 <p>存储文件</p>
 <p>压缩</p>
@@ -399,7 +397,7 @@
 <p>常见的压缩注意点：</p>
 <p>压缩比 Bzip2 30%  GZIP    snappy、lzo 50%  ： 这个30%和50%代表能把源文件压缩到源文件的%多少</p>
 <p>解压速度 ： snappy、lzo GZIP   Bzip2</p>
-<p>压缩文件可不可以一被切分 </p>
+<p>压缩文件可不可以一被切分</p>
 <p>假设一个 5G文件 不能被切分 split 意味着 只能使用一个map task去处理</p>
 <p>map task  5G</p>
 <p>假设一个 5G文件 能被切片  splits 10map task 去并行处理</p>
@@ -420,10 +418,10 @@
 <li>2.bzip2  、lzo带索引的</li>
 </ul>
 <p>reduce out 数据 作为下一个<br>map 的输入咋办？<br>建议使用bzip2【如果采用压缩的话】</p>
-<p>进行压缩配置的两种方式 ： </p>
+<p>进行压缩配置的两种方式 ：</p>
 <p>job &#x3D;》 code 针对少数job生产生效</p>
 <p>集群所有的job 在配置文件里配置</p>
-<p>对mapreduce 进行配置 </p>
+<p>对mapreduce 进行配置</p>
 <ul>
 <li>配置压缩的codec</li>
 <li>map reduce 输出配置<ul>
@@ -432,7 +430,7 @@
 </ul>
 </li>
 <li>hadoop是不是支持哪些压缩 ，通过命令 ：或者配置文件</li>
-<li>core-site.xm<ul>
+<li>core-site.xml<ul>
 <li>配置支持的压缩有什么</li>
 <li>原生的hadoop默认不支持lzo的算法，因为lzo要把整个hadooop重新编译一遍才可以重新实行</li>
 <li>&#96;&#96;&#96;<property>
@@ -441,7 +439,7 @@
         org.apache.hadoop.io.compress.SnappyCodec,
         org.apache.hadoop.io.compress.GzipCodec,
         org.apache.hadoop.io.compress.DefaultCodec
-        </value>
+    </value>
 </property>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mapred-site.xml:</span><br><span class="line"></span><br><span class="line">* 1.先打开压缩的开关</span><br><span class="line">* 2.map reduce 输出 压缩算法</span><br><span class="line"></span><br><span class="line">reduce： 开关</span><br><span class="line"></span><br><span class="line">* mapreduce.output.fileoutputformat.compress</span><br><span class="line">* ```</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">          &lt;name&gt;mapreduce.output.fileoutputformat.compress&lt;/name&gt;</span><br><span class="line">          &lt;value&gt;true&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br></pre></td></tr></table></figure></li>
 </ul>
@@ -649,7 +647,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -707,7 +705,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共73.8k字</span>
+  <span class="post-count">博客全站共81.3k字</span>
 </div>
 
 

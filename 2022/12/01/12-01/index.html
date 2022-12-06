@@ -30,7 +30,7 @@
 <meta property="og:description" content="内部和外部表和普通表和分区表分区表 ： 提升查询效率的表 关于hive的查询 ： 对于普通表 则是要先读取所有的数据然后进行筛选的 ， 但是对于分区表，则是把数据进行分区，如果要查询的话，则是针对符合的数据进行查询 往往用分区表进行查询，普通表数据量较少的时候可以用 创建分区表 ： 1234567891011create table order(orderid int,oredergg Strin">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-01T01:47:23.417Z">
-<meta property="article:modified_time" content="2022-12-01T09:23:01.259Z">
+<meta property="article:modified_time" content="2022-12-03T04:04:48.178Z">
 <meta property="article:author" content="liu zihang">
 <meta name="twitter:card" content="summary">
 
@@ -224,10 +224,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-01 09:47:23 / 修改时间：17:23:01" itemprop="dateCreated datePublished" datetime="2022-12-01T09:47:23+08:00">2022-12-01</time>
+              <time title="创建时间：2022-12-01 09:47:23" itemprop="dateCreated datePublished" datetime="2022-12-01T09:47:23+08:00">2022-12-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-03 12:04:48" itemprop="dateModified" datetime="2022-12-03T12:04:48+08:00">2022-12-03</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -279,8 +285,6 @@
 <p>创建分区表 ：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">create table order(</span><br><span class="line"></span><br><span class="line">orderid int,</span><br><span class="line"></span><br><span class="line">oredergg String</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">PARTITIONED BY (dt String)</span><br><span class="line"></span><br><span class="line">row format delimited fields terminated by &#x27;\t&#x27;</span><br></pre></td></tr></table></figure>
 
-
-
 <p>show partitions 表名 &#x2F;&#x2F;查看现在这个表的分区</p>
 <p>修改分区  ：</p>
 <p>删除分区  ：<code>alter table 表名 drop partition(分区列 = &#39;分区名&#39;)</code></p>
@@ -296,7 +300,7 @@
 <p><code>set hive.exec.dynamic.partition.mode=nonstrict;</code></p>
 <p>静态分区：就是自己制定好分区的标题的</p>
 <p>离线任务 ： 业务周期性 T+1</p>
-<p>就是延迟一天处理 </p>
+<p>就是延迟一天处理</p>
 <p>默认底层创建的是内部表</p>
 <p>内部表 ： 受hive管控的 ： 如果有删表的操作，那么会清理干净，所有数据都会被删除</p>
 <p>外部表 ： 如果被删除的情况下，只是hdfs上指向metastore的索引被删除了，源数据不会被删除 ，而且我们还可通过建表的方式让他们的索引再次关联上</p>
@@ -333,14 +337,14 @@
 <h3 id="行转列"><a href="#行转列" class="headerlink" title="行转列"></a>行转列</h3><p>思路是先把一个array的元素炸开，然后通过显示出来</p>
 <p>显示手段 ： LATERAL VIEW（侧写视图）</p>
 <ul>
-<li>LATERAL VIEW udtf(expression) tableAlias AS columnAlias</li>
-<li>udtf : 一进多出</li>
-<li>FROM baseTable (lateralView)*</li>
-<li>最终代码 ：</li>
-<li><pre><code>select name,location
-from hive_array lateral view explode(locations) loc_table as location;
-</code></pre>
+<li><p>LATERAL VIEW udtf(expression) tableAlias AS columnAlias</p>
 </li>
+<li><p>udtf : 一进多出</p>
+</li>
+<li><p>FROM baseTable (lateralView)*</p>
+</li>
+<li><p>最终代码 ：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> name,location</span><br><span class="line"><span class="keyword">from</span> hive_array <span class="keyword">lateral</span> <span class="keyword">view</span> explode(locations) loc_table <span class="keyword">as</span> location;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>需求： 1.查询表中每个人的father的名字</p>
 <p>select id,name,age,relation[‘father’] as father from hive_map;</p>
@@ -364,7 +368,7 @@ from hive_array lateral view explode(locations) loc_table as location;
 </ul>
 <p>上述的常用手段 ： 求topn的排名</p>
 <p>比如要求top3 的</p>
-<p>作业 ： </p>
+<p>作业 ：</p>
 <p>统计每个店铺的uv</p>
 <p>统计top3的用户记录</p>
 <p>pv ： 页面的浏览量</p>
@@ -543,7 +547,7 @@ from hive_array lateral view explode(locations) loc_table as location;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -601,7 +605,7 @@ from hive_array lateral view explode(locations) loc_table as location;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共73.8k字</span>
+  <span class="post-count">博客全站共81.3k字</span>
 </div>
 
 

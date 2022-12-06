@@ -198,6 +198,282 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/19/jar%E5%88%B0exe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/19/jar%E5%88%B0exe/" class="post-title-link" itemprop="url">把jar包打包成exe</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-19 11:40:21 / 修改时间：12:22:44" itemprop="dateCreated datePublished" datetime="2022-11-19T11:40:21+08:00">2022-11-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E8%B4%A7%E6%8A%80%E6%9C%AF%E6%A0%88/" itemprop="url" rel="index"><span itemprop="name">杂货技术栈</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>768</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h1><ul>
+<li>我们所使用的工具是exe4j 和 inno setup</li>
+</ul>
+<h2 id="exe4j"><a href="#exe4j" class="headerlink" title="exe4j"></a>exe4j</h2><ul>
+<li>简单来说这个就是个工具，可以把java的jar包打包成exe的</li>
+<li>可以让其他由java运行环境的机器运行这个jar</li>
+<li>而且还可以稍微做到保密的程度</li>
+<li>exe4j 是一个帮助你集成 Java 应用程序到 Windows 操作环境的 java 可执行文件生成工具，无论这些应用是用于服务器，还是图形用户界面（GUI）或命令行的应用程序。如果你想在任务管理器中及 Windows XP 分组的用户友好任务栏里以你的进程名取代 java.exe 的出现，那么 exe4j 可以完成这个工作。exe4j 帮助你以一种安全的方式启动你的 java 应用程序，来显示本地启动画面，检测及发布合适的 JRE 和 JDK，以及进行启动时所发生的错误处理等，以至于更多。</li>
+<li>关于exe4j的破解我就不多赘述了，懂的都懂</li>
+<li>接下来是实际操作</li>
+<li>下面是开始界面</li>
+<li><img src="https://pic.imgdb.cn/item/6378540416f2c2beb192c11f.jpg" alt="开始界面"></li>
+<li>然后接下来</li>
+<li>选择jar到exe的模式</li>
+<li><img src="https://pic.imgdb.cn/item/6378546916f2c2beb1932dfa.jpg"></li>
+<li>然后接下来要选择你的输出路径</li>
+<li><img src="https://pic.imgdb.cn/item/637854cd16f2c2beb193c56c.jpg"></li>
+<li>接下来选择我们的启动方式，我选择的是控制台启动</li>
+<li><img src="https://pic.imgdb.cn/item/6378550616f2c2beb1942a62.jpg"></li>
+<li>接下来选择可以在32位和64位机器上都可以运行</li>
+<li><img src="https://pic.imgdb.cn/item/6378553316f2c2beb194a3be.jpg"></li>
+<li><img src="https://pic.imgdb.cn/item/6378556516f2c2beb1952fa9.jpg"></li>
+<li>接下来选择我们exe要执行的主类</li>
+<li>我这个项目是boot项目，所以选择的是这个</li>
+<li><img src="https://pic.imgdb.cn/item/6378558416f2c2beb195719f.jpg"></li>
+<li>然后设置我们的jdk版本</li>
+<li><img src="https://pic.imgdb.cn/item/637855bd16f2c2beb195f1d6.jpg"></li>
+<li><img src="https://pic.imgdb.cn/item/637855dc16f2c2beb1962843.jpg"></li>
+<li>最后一直点击next就好了</li>
+<li><img src="https://pic.imgdb.cn/item/6378564016f2c2beb196ce41.jpg"></li>
+<li>这样我们就打包完成了</li>
+<li>但是这样的打包只能再有jdk的环境中运行</li>
+<li>接下来我们要为这个添加依赖</li>
+</ul>
+<h2 id="inno-setup"><a href="#inno-setup" class="headerlink" title="inno setup"></a>inno setup</h2><ul>
+<li>简单来说就是个绑定依赖的程序</li>
+<li>打开</li>
+<li><img src="https://pic.imgdb.cn/item/6378572316f2c2beb198e2a2.jpg"></li>
+<li><img src="https://pic.imgdb.cn/item/6378577616f2c2beb199aecb.jpg"></li>
+<li><img src="https://pic.imgdb.cn/item/6378579d16f2c2beb19a1b5f.jpg"></li>
+<li>然后配置我们的名称和版本号</li>
+<li>然后选择我们，刚刚弄个出来的exe程序</li>
+<li><img src="https://pic.imgdb.cn/item/637858cd16f2c2beb19b780b.jpg"></li>
+<li>然后就一直傻瓜式next</li>
+<li><img src="https://pic.imgdb.cn/item/6378593316f2c2beb19be141.jpg"></li>
+<li>设置输出文件夹</li>
+<li>图标</li>
+<li>以及运行时的密码</li>
+<li>然后一直next就好</li>
+<li>然后会跳出两个对话框</li>
+<li>全部选择是</li>
+<li>最后会出现这个东西</li>
+<li><img src="https://pic.imgdb.cn/item/637859e916f2c2beb19d21f9.jpg"></li>
+<li>就代表导入依赖了</li>
+<li>接下来我们要对他进行修改</li>
+<li><img src="https://pic.imgdb.cn/item/63785a3d16f2c2beb19d8050.jpg"></li>
+<li>这个是自己电脑本机的jdk路径</li>
+<li>然后还有要在这里加上MYjrename</li>
+<li><img src="https://pic.imgdb.cn/item/63785a8116f2c2beb19dd2fa.jpg"></li>
+<li>最后运行就成功了</li>
+<li>他会给你成一个setup文件，通过这个文件安装的exe</li>
+<li>就会自己带环境了</li>
+<li></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/19/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/19/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" class="post-title-link" itemprop="url">内网穿透</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-19 11:18:15 / 修改时间：11:39:54" itemprop="dateCreated datePublished" datetime="2022-11-19T11:18:15+08:00">2022-11-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E8%B4%A7%E6%8A%80%E6%9C%AF%E6%A0%88/" itemprop="url" rel="index"><span itemprop="name">杂货技术栈</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>404</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>内网穿透简单来说就是让我们处于局域网的机器或者本地的项目，可以在外部的公网访问</li>
+</ul>
+<h3 id="常见的内网穿透工具"><a href="#常见的内网穿透工具" class="headerlink" title="常见的内网穿透工具"></a>常见的内网穿透工具</h3><ul>
+<li>natapp网站</li>
+<li>frp</li>
+<li>ngrok</li>
+<li>蜻蜓映射</li>
+<li>ssh命令</li>
+</ul>
+<h3 id="natapp"><a href="#natapp" class="headerlink" title="natapp"></a>natapp</h3><ul>
+<li>natapp网站 ： 注册账号之后会免费给你送一条隧道，不过临时用可以，不能长久用，</li>
+<li>因为隧道名字会被强制更换</li>
+<li>而vip隧道就不会强制更换</li>
+</ul>
+<h3 id="frp"><a href="#frp" class="headerlink" title="frp"></a>frp</h3><ul>
+<li>frp是专业的反向代理工具</li>
+<li><code>https:github.com/fatedier/frp</code></li>
+<li>其中部署也非常简单 ： </li>
+<li>frps在云服务器上</li>
+<li>而要进行内网穿透的机器运行frpc</li>
+<li>再改改配置就ok了</li>
+</ul>
+<h3 id="ngrok"><a href="#ngrok" class="headerlink" title="ngrok"></a>ngrok</h3><ul>
+<li>属于专门做内网穿透的平台，以前是免费的不过最近好像收费了</li>
+<li>注册之后我们就可以根据平台上的帮助文档进行配置，</li>
+</ul>
+<h3 id="蜻蜓映射"><a href="#蜻蜓映射" class="headerlink" title="蜻蜓映射"></a>蜻蜓映射</h3><ul>
+<li>同上</li>
+</ul>
+<h3 id="ssh命令"><a href="#ssh命令" class="headerlink" title="ssh命令"></a>ssh命令</h3><ul>
+<li>我们可以通过<code>ssh -R 80:localhost:80 xxxxx@localhost.run</code></li>
+<li>进行反向映射端口</li>
+<li>xxxx是远程云主机</li>
+<li>前面的80是云主机的端口</li>
+<li>后面的是本地的端口</li>
+<li>这个命令是ssh自带的</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/19/%E4%BD%9C%E4%B8%9A11-19/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2287,605 +2563,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/02/11-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/02/11-2/" class="post-title-link" itemprop="url">shell</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-02 12:08:22" itemprop="dateCreated datePublished" datetime="2022-11-02T12:08:22+08:00">2022-11-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-03 19:20:08" itemprop="dateModified" datetime="2022-11-03T19:20:08+08:00">2022-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h1><ul>
-<li>文件命名 ： 结尾一般以.sh结尾</li>
-<li>不要编译 </li>
-<li>文件第一行 ，一般写一个编辑器 ，就比如：#！bin&#x2F;bash</li>
-<li>编写脚本</li>
-<li>添加权限</li>
-<li>chmod添加权限</li>
-</ul>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><ul>
-<li>sh .&#x2F;xxx.sh（脚本名字）</li>
-<li>如果给予了执行权限就可以直接执行</li>
-<li>debug</li>
-<li>在 #！bin&#x2F;bash 后面加一个 -x</li>
-<li>就可以看见程序运行的过程</li>
-<li>还可以用 sh -x xxx脚本名字</li>
-</ul>
-<h1 id="在shell里定义变量以及引用"><a href="#在shell里定义变量以及引用" class="headerlink" title="在shell里定义变量以及引用"></a>在shell里定义变量以及引用</h1><ul>
-<li>用read xx xx xx ：代表要从键盘输入3次，以空格分割 ， 如果要在自变量里面定义空格可以用 “xxx xxx” 这样就可以当成一个变量输入了</li>
-<li>key&#x3D;value ： 定义变量</li>
-<li>等号前后不能有空格</li>
-<li>引用变量则用$xxx（变量的名字）</li>
-<li>但是其中有单引号和双引号和反引号的区别</li>
-<li>如果是单引号和双引号都是默认定义成字符串</li>
-<li>如果是反引号&#96;&#96; 里面的会被解释成系统命令，并且执行</li>
-<li>引用变量一般是要通过${} 而不是$</li>
-<li>因为如果要拼接字符串的时候 ，我们就可以${name}xxxx（要拼接的内容）</li>
-</ul>
-<h2 id="特殊的命令"><a href="#特殊的命令" class="headerlink" title="特殊的命令"></a>特殊的命令</h2><ul>
-<li>如果要在里面定义参数 ， 则$1代表脚本的第一个需要输入的参数 ， $2 ,$3…要第二个第三个。。。</li>
-<li>而$0 :获取当前的文件名字</li>
-<li>$? : 返回执行之后的状态 ： 0是正常执行 ， 非0是错误</li>
-<li>$*代表所有传入的内容</li>
-<li>$#代表传入的数量</li>
-<li>$$代表是当前进程的进程号</li>
-<li>$@把传入的参数作为一个字符串输出，但是里面仍然认为由多个字符串而$*则是认为他只有一个字符串</li>
-<li>转义字符 ： 和c一样</li>
-<li>定义数组 ： arr&#x3D;（zs lis ww zl wrm）</li>
-<li>获取数组里的元素 ： ${arr[*]} :这个是获取所有的 。 </li>
-<li>但是这个里面不能由；</li>
-<li>如果要查看单个和java里一样，把【】中的换成从0开始的数字</li>
-<li>代表查看数组里的元素个数 ： <code>$&#123;井号arr[*]&#125;</code></li>
-<li>两种括号的形式</li>
-<li>由子shell执行 ，不会影响到这个shell <code>（）</code></li>
-<li>由当前shell执行 ，会影响到这个shell <code>&#123;&#125;</code></li>
-<li>权限判断：</li>
-<li><code>-r</code> ：读权限</li>
-<li><code>-w</code> ：写权限</li>
-<li><code>-x</code> ：执行权限</li>
-<li><code>-e</code> ：文件是不是存在</li>
-<li><code>-d</code> ：是不是目录</li>
-<li><code>-f</code> ：是不是文件</li>
-<li><code>-c</code> ：是不是字符设备</li>
-<li><code>-b</code> ：是不是块设备</li>
-<li><code>-s</code> ：文件是不是非空</li>
-<li><code>-l</code> ：符号连接</li>
-</ul>
-<h2 id="对变量以及字符串的操作"><a href="#对变量以及字符串的操作" class="headerlink" title="对变量以及字符串的操作"></a>对变量以及字符串的操作</h2><ul>
-<li><code>$&#123;num:-val&#125;</code> : 若num存在则是num , 要不然就是val</li>
-<li><code>$&#123;num!=val&#125;</code> : 如果num存在，则是num 要不然就是val 且将num赋值为val</li>
-</ul>
-<h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><ul>
-<li><code>if else</code></li>
-<li><code>if condition(条件判断);then</code></li>
-<li><code>command</code></li>
-<li><code>else</code></li>
-<li><code>command</code></li>
-<li><code>fi</code> </li>
-<li><code>condition</code> ： [] 比如：[ 1 &#x3D;&#x3D; 2 ] 变量以及判断符号前后有空格</li>
-<li>值判断 ：</li>
-<li>常规的都可以用</li>
-<li><code>=</code> 等于</li>
-<li><code>==</code>等于</li>
-<li><code>-ne</code> 数值不等</li>
-<li><code>-eq</code> 数值相等</li>
-<li><code>-gt</code> 大于</li>
-<li><code>-ge</code> 大于等于</li>
-<li><code>-le</code> 小于等于</li>
-<li><code>-lt</code> 小于</li>
-<li><code>if con; then</code></li>
-<li><code>command</code></li>
-<li><code>elif con; then</code></li>
-<li><code>com</code></li>
-<li><code>....</code></li>
-<li>后面<code>elif</code>可以无限加</li>
-<li>同时也有<code>break</code>和<code>countinue</code></li>
-</ul>
-<h2 id="与或非"><a href="#与或非" class="headerlink" title="与或非"></a>与或非</h2><ul>
-<li>与 <code>||</code></li>
-<li>或 <code>&amp;&amp;</code></li>
-</ul>
-<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><ul>
-<li><code>for var in con1 con2 con3</code></li>
-<li><code>do</code></li>
-<li><code>程序段</code></li>
-<li><code>done</code></li>
-<li><code>for((i=0;i&lt;10;i++))</code></li>
-<li><code>do</code></li>
-<li><code>程序段</code></li>
-<li><code>done</code></li>
-</ul>
-<h2 id="while"><a href="#while" class="headerlink" title="while"></a>while</h2><ul>
-<li><code>while【con】</code></li>
-<li><code>do</code></li>
-<li><code>程序段</code></li>
-<li><code>done</code></li>
-</ul>
-<h2 id="until"><a href="#until" class="headerlink" title="until"></a>until</h2><ul>
-<li><code>until【con】</code></li>
-<li><code>do</code></li>
-<li><code>程序段</code></li>
-<li><code>done</code></li>
-<li>这个和<code>while</code>相反 ，条件为错，一直执行</li>
-<li>上述的程序段中可以用let i++等</li>
-<li>这个<code>con</code>可以应用（（））或者中括号都行</li>
-</ul>
-<h2 id="case"><a href="#case" class="headerlink" title="case"></a>case</h2><ul>
-<li><code>case $变量名 in</code></li>
-<li><code>&quot;值 1&quot;）</code></li>
-<li><code>如果变量的值等于1 ，则执行程序1</code></li>
-<li><code>；；</code></li>
-<li><code>&quot;值 2&quot;）</code></li>
-<li><code>如果变量的值等于2 ，则执行程序2</code></li>
-<li><code>；；</code></li>
-<li><code>。。。还可以衔接很多的</code></li>
-<li><code>*)</code></li>
-</ul>
-<h2 id="对字符串的操作"><a href="#对字符串的操作" class="headerlink" title="对字符串的操作"></a>对字符串的操作</h2><ul>
-<li>字符串的长度 ： <code>$&#123;井号xxx&#125;</code></li>
-<li>从下标n处开始进行提取 ： <code>$&#123;xxx:n&#125;</code></li>
-<li>从下表为n处提取m个 ： <code>$&#123;xxx:n:m&#125;</code></li>
-<li>用new替换xxx中出现的第一个mm ： <code>$&#123;xxx/mm/new&#125;</code></li>
-<li>用new替换xxx中出现的所有mm ： <code>$&#123;xxx//mm/new&#125;</code></li>
-<li>IFS变量进行字符串分割</li>
-<li></li>
-</ul>
-<h1 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h1><ul>
-<li>函数名（）{}</li>
-<li>fnction 函数名（）{}</li>
-<li>函数的返回值可以应用return来进行结束</li>
-</ul>
-<h1 id="shell分析工具"><a href="#shell分析工具" class="headerlink" title="shell分析工具"></a>shell分析工具</h1><ul>
-<li>cut ：剪</li>
-<li>cut[选项参数] filename</li>
-<li><code>-f</code> 列号，第几列</li>
-<li><code>-f 2 </code>：代表第二列</li>
-<li><code>-f 2-</code> ：代表第二列之后的所有</li>
-<li><code>-d</code> 分隔符，按照指定的分隔符分割列，默认是\t</li>
-<li><code>-c</code> 按照字符切割 后面夹n表示第几列 如-c1</li>
-<li><code>awk</code> : 文本分析工具 或者叫 gawk</li>
-<li><code>awk[选项参数] &#39;/pattern1&#123;action1&#125; /pattern2/&#123;action2&#125;...&#39; (filename)</code></li>
-<li>选项参数</li>
-<li><code>-F</code> ：指定输入文件分隔符</li>
-<li><code>-v</code> ：赋值一个用户自己定义的变量</li>
-<li>打印第一和第二列 ： <code>awk &#39;&#123;print $1，$2&#125;&#39; （filename）</code></li>
-<li>awk一般和cat联用 ： <code>cat xxx | awk &#39;&#123;print $1，$2&#125;&#39;</code></li>
-<li>也可以这样 ： <code>cat xxx | awk &#39;&#123;print $1&quot;,&quot;$2&#125;&#39;</code> : 这样代表会让其中两列用，分割的形式表示出来</li>
-<li>还可以加上 ：<code>cat xxx | awk &#39;BEGINH&#123;print xxx&#125;&#123;print $1&quot;,&quot;$2&#125;END&#123;print mmm&#125;&#39;</code> ：就会在开始及结束的时候分别加上xxx和mmm</li>
-<li><code>-f</code> 则是执行脚本</li>
-<li>还可以 <code>cat xxx | awk -v i=1 -F &quot;:&quot; &#39;&#123;print $3 +i&#125;&#39;</code> :代表xxx文件的由：分割的第3列都加一在输出</li>
-<li>内置变量</li>
-<li><code>FILENAME</code> ：文件名</li>
-<li><code>NR</code> ： 已读的记录数（行号）</li>
-<li><code>NF</code> ： 浏览记录的域的个数（切割后的列的个数）</li>
-<li>获取第一行 <code>cat xxx | awk &#39;NR==1&#123;print&#125;&#39;</code></li>
-<li>里面的条件&#x3D;&#x3D;可以换成  &gt; &lt; &gt;&#x3D; &lt;&#x3D;</li>
-<li></li>
-<li><code>sed</code> : 文本替换(回去自己查)</li>
-<li>把文本中 d 替换成 m ,每行第一次遇见a才会替换</li>
-<li><code>sed -i &#39;s/d/m/&#39;</code> xxx文件名</li>
-<li>全文替换</li>
-<li><code>sed -i &#39;s/d/m/g&#39;</code> xxx文件名</li>
-<li>把值路径替换成&#x2F;root</li>
-<li><code>sed -i &#39;s//fata/spark//root</code> xxx文件’</li>
-<li>不过会爆错</li>
-<li>不过加上\就对了</li>
-<li><code>sed -i &#39;s\/fata\/spark\/root&#39;</code> xxx文件’</li>
-<li><code>sed -i &#39;s#/root#/data/spark#g&#39;</code> xxx文件</li>
-</ul>
-<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><ul>
-<li>模糊式的匹配搜索</li>
-<li>pattern</li>
-<li>最简单的正则 ： 直接给一个关键字 就是grep的时候</li>
-<li>特殊字符</li>
-<li>^作为一行的开头 ：比如^a 代表以a开头</li>
-<li>$作为一行的结束 ：比如n$ 代表以n结尾</li>
-<li>正则可以多种一起应用</li>
-<li>比如 ^$代表空行</li>
-<li>grep -n显示行号</li>
-<li>通配符 ： . 代表匹配一个任意的字符</li>
-<li>比如 ： r..t :代表r和t中间有两个字符的</li>
-<li>特殊字符 ： * ：代表一个字符出现任意次数</li>
-<li>比如 o* 代表o出现任意次数</li>
-<li>.*则表示任意一个字符出现任意次数 ，甚至可以匹配空字符串</li>
-<li>于是可以和上面的联用 ： ^a.*b$</li>
-<li>代表以a开头 b结尾 中间任意字符的</li>
-<li>字符区间：</li>
-<li>[]表示匹配其中范围内的字符</li>
-<li>比如[0-9]* ：任意长度的数字</li>
-<li>[0,7] : 0或7</li>
-<li>还可以这样写 ： [a-c , b-f]</li>
-<li>[ab]* ：代表任意以ab组成的 比如 ：aab<br> abb 等</li>
-<li>转义字符 \</li>
-<li>当我们要搜索$等关键字的时候</li>
-<li>要’反斜杠$’ :表示转义 ，才可以用做搜索</li>
-</ul>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><ul>
-<li>匹配手机号</li>
-<li><code>^1[345678][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$</code></li>
-<li><code>^1[345678][0-9]&#123;9&#125;$</code></li>
-<li>但是下面的花括号是扩展</li>
-<li>要用<code>grep -E ^1[345678][0-9]&#123;9&#125;$ </code>才可以</li>
-<li>但是上面的最开始的是都可以支持的</li>
-<li></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/01/11-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/01/11-1/" class="post-title-link" itemprop="url">Linux命令（运维）</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-01 09:10:45" itemprop="dateCreated datePublished" datetime="2022-11-01T09:10:45+08:00">2022-11-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="用户常用命令"><a href="#用户常用命令" class="headerlink" title="用户常用命令"></a>用户常用命令</h1><ul>
-<li>ll &#x2F;usr&#x2F;sbin&#x2F;user* 查看用户命令</li>
-<li>ll &#x2F;usr&#x2F;sbin&#x2F;group* 查看组命令</li>
-<li>查看用户信息 &#x2F;etc&#x2F;passwd</li>
-<li>查看组信息 &#x2F;etc&#x2F;group</li>
-<li>查看用户 id xxx名称</li>
-<li>userdel xxx ： 代表删除xx用户</li>
-<li>useradd xxx ： 代表添加xx用户</li>
-<li>usermod xxx ： 代表对一个用户进行操作</li>
-</ul>
-<h2 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h2><ul>
-<li>su xxx</li>
-<li>su -xxx </li>
-<li>切换用户 ，如果用下面的那种，会获得该用户的环境变量并且执行</li>
-<li>用上面的那种目录不会跑到所切换的用户的home</li>
-<li>而下面的会跑到切换用户的home</li>
-<li>用exit退回</li>
-<li>如果删除了一个已经存在的user ， 再次添加相同名称的用户的时候，会有警告，说明此用户的目录已经存在</li>
-<li>在skel文件夹下有隐藏文件</li>
-<li>如果把这个里的东西删掉，就会出现环境变量丢失的情况</li>
-<li>我们可以从别的地方的给他cp过来</li>
-<li>就会恢复了</li>
-</ul>
-<h1 id="组常见命令"><a href="#组常见命令" class="headerlink" title="组常见命令"></a>组常见命令</h1><ul>
-<li>groupadd xxx</li>
-<li>把一个用户添加到一个组上</li>
-<li>usermod -a -G xxx组 xxx用户</li>
-<li>usermod -g ： 更改用户主组 ，但是这样会让追加组丢失</li>
-</ul>
-<h1 id="设置用户密码"><a href="#设置用户密码" class="headerlink" title="设置用户密码"></a>设置用户密码</h1><ul>
-<li>passwd</li>
-<li>默认修改当前用户的密码</li>
-</ul>
-<h2 id="修改其他用户的密码"><a href="#修改其他用户的密码" class="headerlink" title="修改其他用户的密码"></a>修改其他用户的密码</h2><ul>
-<li>只有root有权限修改其他的密码</li>
-<li>passwd xxx名字</li>
-</ul>
-<h3 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h3><ul>
-<li>是一个普通用户临时具有最大权限</li>
-<li>修改 etc&#x2F;sudoers</li>
-<li>xxx用户 ALL&#x3D;(root) NOPASSWD:ALL</li>
-<li>然后就可以用 sudo xxx 命令这就代表这条指令具有了最高的权限</li>
-<li>su 和 sudo 联用</li>
-<li>sudo su xx人员</li>
-<li>代表通过root权限切换</li>
-</ul>
-<h3 id="etc-x2F-paswd"><a href="#etc-x2F-paswd" class="headerlink" title="etc&#x2F;paswd"></a>etc&#x2F;paswd</h3><ul>
-<li>这个文件是密码文件</li>
-<li>在这个文件里 有解释器 如果后面变成nologin代表不让登录</li>
-<li>如果最后变成false 则你无论如何都登陆不成功 </li>
-<li>CDH平台 可能会用到</li>
-<li>把上面两中改成 bin&#x2F;bash 就可以成功了</li>
-</ul>
-<h1 id="权限相关命令"><a href="#权限相关命令" class="headerlink" title="权限相关命令"></a>权限相关命令</h1><ul>
-<li>第一个字母 </li>
-<li>d :文件夹</li>
-<li>-(横杠) ： 文件</li>
-<li>l ： 链接</li>
-<li>后面9个字母 ，每三个一组</li>
-<li>r表示read  代表数字 4</li>
-<li>w表示write 代表数字 2</li>
-<li>x表示执行权限 代表数字 1</li>
-<li>-表示无权限 代表数字 0</li>
-<li>例子 ：-rw-r- -r- -. 1 root root 2047 10月 31 09:48 initial-setup-ks.cfg</li>
-<li>第一组 ： rw- 4+2+0&#x3D;6 代表文件或者文件夹的所属用户拥有的权限</li>
-<li>第二组 ： r- - 4+0+0&#x3D;4 代表文件或者文件夹的组的成员的权限</li>
-<li>第三组 ： r- - 4+0+0&#x3D;4 代表文件或者文件夹的其他组的权限</li>
-<li>字母顺序只能按照rwxr这个顺序</li>
-</ul>
-<h2 id="权限修改命令"><a href="#权限修改命令" class="headerlink" title="权限修改命令"></a>权限修改命令</h2><ul>
-<li>chmod 修改文件或者文件夹权限</li>
-<li>chown 修改文件或者文件夹的组 ， 或者用户</li>
-<li>例子 ： chmod xxx（数字）xxx名字</li>
-<li>如果要该文件夹 则要 chmod -R xxx数字 xxx名字</li>
-<li>例子 ： chown xxx用户：xxx用户 文件名</li>
-<li>同样也可以用-R ，来修改文件夹</li>
-</ul>
-<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
-<li>如果要访问问文件夹里的文件，要先看上面的文件夹的权限是啥样的</li>
-</ul>
-<h2 id="大小"><a href="#大小" class="headerlink" title="大小"></a>大小</h2><ul>
-<li>ll -h ，du -sh</li>
-<li>而对于文件夹 du -sh也可以查看 ，ll -h 就不行</li>
-<li>du -sh ： 最小是4k ， 但是他无法查看权限</li>
-</ul>
-<h2 id="搜索文件"><a href="#搜索文件" class="headerlink" title="搜索文件"></a>搜索文件</h2><ul>
-<li>find</li>
-<li>locate（没有网，不建议用）</li>
-<li>例子 ： find 【path】 【表达式】 </li>
-<li>表达式 ： -name “xxx” : 按照名字查找</li>
-<li>比如 ： find &#x2F; -name “1.log”</li>
-</ul>
-<h2 id="vi-x2F-vim"><a href="#vi-x2F-vim" class="headerlink" title="vi&#x2F;vim"></a>vi&#x2F;vim</h2><ul>
-<li>编辑文件</li>
-<li>尾行模式 ： wq 退出保存</li>
-<li>如果编辑文件的时候突然不小心把编辑的时候中断了，就是ctrl + c 或者 ctrl + z</li>
-<li>解决方法 ： 删除Swap文件是隐藏文件 ，.开头的</li>
-<li>行号 ： 首先进入尾行模式</li>
-<li>set nu 就会有行号</li>
-<li>set nonu就可以取消行号</li>
-</ul>
-<h2 id="常用快捷方式"><a href="#常用快捷方式" class="headerlink" title="常用快捷方式"></a>常用快捷方式</h2><ul>
-<li>dd ： 删除当前行</li>
-<li>dG ： 删除当前行 以及以下所有行</li>
-<li>ndd ： 删除这个行 以及下面n行</li>
-<li>u ：　撤回</li>
-<li>ｇｇ　：　跳转到第一行的第一个字母</li>
-<li>Ｇ　：　跳转到最后一行的第一个字母</li>
-<li>ｓｈｉｆｔ　＋ $  ： 就是跳转到行尾</li>
-<li>ｓｈｉｆｔ　＋ ^  : 跳转到行头</li>
-<li>i ： 是当前行编辑</li>
-<li>o ： 是跳转到下一行编辑</li>
-</ul>
-<h3 id="清空文件内容"><a href="#清空文件内容" class="headerlink" title="清空文件内容"></a>清空文件内容</h3><ul>
-<li>gg -&gt; dG</li>
-<li>linux 有一个空的文件</li>
-<li>然后 cat &#x2F;dev&#x2F;null  &gt; xxx文件名字</li>
-</ul>
-<h2 id="系统相关命令"><a href="#系统相关命令" class="headerlink" title="系统相关命令"></a>系统相关命令</h2><ul>
-<li>内存 ： free</li>
-<li>磁盘 ： df</li>
-<li>可能会添加磁盘</li>
-<li>可通过这个来判断</li>
-<li>后来挂载的一般是vdb的</li>
-<li>负载 ： top</li>
-<li>load average ： xxx xxx xxx</li>
-<li>第一个是5分钟之内的负载</li>
-<li>第二个是10分钟</li>
-<li>第三个是15分钟</li>
-<li>如果任意一个超过十 ，说明当前公司的服务器 比较卡</li>
-<li>pid是进程号</li>
-<li>user是那个用户</li>
-<li>重启的目的 ： </li>
-<li>检查是不是硬件有无问题</li>
-</ul>
-<h2 id="yum-x2F-rpm"><a href="#yum-x2F-rpm" class="headerlink" title="yum&#x2F;rpm"></a>yum&#x2F;rpm</h2><ul>
-<li>安装linux软件的方式 联网</li>
-<li>yum search xxx</li>
-<li>下载下来的一个安装包以rpm存储</li>
-<li>yum install xxx</li>
-</ul>
-<h2 id="通讯命令"><a href="#通讯命令" class="headerlink" title="通讯命令"></a>通讯命令</h2><ul>
-<li>ping + ip</li>
-<li>telnet ip 端口 :检查对面的端口是不是开放</li>
-<li>端口 ： 1-65535</li>
-<li>两个机器要在一个网段</li>
-<li>ping通就代表是网络ok</li>
-</ul>
-<h2 id="补充命令"><a href="#补充命令" class="headerlink" title="补充命令"></a>补充命令</h2><ul>
-<li>which + 命令</li>
-<li>whereis + 命令</li>
-<li>查看linux或者某个软件的shell脚本是不是存在</li>
-<li>which ： 是查看自己环境变量的命令存在吗</li>
-<li>whereis ： 是查看全局变量的名利给的存在吗</li>
-</ul>
-<h2 id="修改机器名字"><a href="#修改机器名字" class="headerlink" title="修改机器名字"></a>修改机器名字</h2><ul>
-<li>hostnamectl ： xxxx</li>
-</ul>
-<h2 id="解压缩命令"><a href="#解压缩命令" class="headerlink" title="解压缩命令"></a>解压缩命令</h2><ul>
-<li>linux 对zip和gz可以解压</li>
-<li>zip xxx.zip （-r） xxx文件（这里压缩可以多个）如果是文件夹则要加上-r</li>
-<li>代表压缩到xxx.zip里</li>
-<li>解压</li>
-<li>unzip xxx.zip （-d xxx文件夹）</li>
-<li>tar ：</li>
-<li>例子 ： tar -cf xxx.tar xxx文件（可以多个）</li>
-<li>解压：</li>
-<li>例子 ： tar -xf xxx.tar -C xxx文件夹</li>
-<li>可以不加-C就是默认解压当前文件目录</li>
-<li>压缩：</li>
-<li>用z命令</li>
-<li>tar -zcf xxx.tar xxx文件（可以多个）</li>
-<li>解压：</li>
-<li>tar -zxf xxx.tar -C xxx文件夹</li>
-<li>我们可以再加上v让他们显示详细得处理文件的过程</li>
-<li>zxvf：同上</li>
-<li>zxcf：同上</li>
-</ul>
-<h2 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h2><ul>
-<li>当用yum安装成功之后 ，可以直接用系统命令启动</li>
-<li>比如 ： service name start|status|restart|stop  : centos6</li>
-<li>syystemctl start|status|restart|stop name : centos7</li>
-<li>查看进程</li>
-<li>ps -ef</li>
-<li>可以进行筛选</li>
-<li>ps -ef|grep xxx名字</li>
-<li>杀死进程 </li>
-<li>kill -9 + 进程号</li>
-<li>查端口：</li>
-<li>netstat -nlp | grep xxxname</li>
-<li>通过</li>
-<li>:::80</li>
-<li>ip:80</li>
-<li>0.0.0.0:80</li>
-<li>我们可以通过外部机器访问这个端口进入服务界面</li>
-<li>kill -9 $(pgrep -f xxx名字)</li>
-<li>下面的会强制把他们全杀掉 ， 包括子进程</li>
-<li></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2957,7 +2634,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -3015,7 +2692,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共73.8k字</span>
+  <span class="post-count">博客全站共81.3k字</span>
 </div>
 
 
