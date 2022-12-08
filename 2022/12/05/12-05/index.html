@@ -30,7 +30,7 @@
 <meta property="og:description" content="大数据的三件事数据采集  ：  采集业务数据 ： sqoop ,datax,实时采集maxwell ,flinkdoc 采集日志数据 ： flume ，logstush  数据存储 :  hdfs (hadoop中的) hive hbase【大数据】 数据分析之后的结果数据 ： mysql clickhouse drios    数据分析：  map reduce 但是现在不怎么用了，但是思想最重">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-05T01:12:53.467Z">
-<meta property="article:modified_time" content="2022-12-07T00:00:26.439Z">
+<meta property="article:modified_time" content="2022-12-08T01:43:07.494Z">
 <meta property="article:author" content="liu zihang">
 <meta name="twitter:card" content="summary">
 
@@ -232,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-07 08:00:26" itemprop="dateModified" datetime="2022-12-07T08:00:26+08:00">2022-12-07</time>
+                <time title="修改时间：2022-12-08 09:43:07" itemprop="dateModified" datetime="2022-12-08T09:43:07+08:00">2022-12-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -523,6 +523,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sqoop export \</span><br><span class="line">--connect jdbc:mysql://bigdata2:3306/try  \</span><br><span class="line">--username root  \</span><br><span class="line">--password liuzihan010616 \</span><br><span class="line">--table xxxX \</span><br><span class="line">--fields-terminated-by &#x27;分隔符&#x27; \</span><br><span class="line">--export-dir hdfs上的数据的路径 \</span><br></pre></td></tr></table></figure>
 
 <p>这个是hdfs导入到mysql</p>
+<p>sqoop导入hive到mysql的时候空值要先进行处理，</p>
 <h1 id="开启历史日志"><a href="#开启历史日志" class="headerlink" title="开启历史日志"></a>开启历史日志</h1><p>开启开关 ：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.log-aggregation-enable&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;true&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
 
@@ -795,7 +796,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共84.6k字</span>
+  <span class="post-count">博客全站共87.1k字</span>
 </div>
 
 

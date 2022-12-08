@@ -316,10 +316,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-07 08:53:05 / 修改时间：09:21:37" itemprop="dateCreated datePublished" datetime="2022-12-07T08:53:05+08:00">2022-12-07</time>
+              <time title="创建时间：2022-12-07 08:53:05" itemprop="dateCreated datePublished" datetime="2022-12-07T08:53:05+08:00">2022-12-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-08 19:02:33" itemprop="dateModified" datetime="2022-12-08T19:02:33+08:00">2022-12-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -336,14 +342,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>71</span>
+              <span>7.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -361,6 +367,48 @@
           <h1 id="数据可视化的数据库选择"><a href="#数据可视化的数据库选择" class="headerlink" title="数据可视化的数据库选择"></a>数据可视化的数据库选择</h1><p>一般选择响应数据库比较快的一般是 秒级，或者毫秒级 ： 不要选择hive</p>
 <p>因为hive太慢</p>
 <p>我们一般都把数据最后导入到mysql里</p>
+<p>作业：</p>
+<p>自己做一个dashboard</p>
+<h1 id="xxl"><a href="#xxl" class="headerlink" title="xxl"></a>xxl</h1><p>定时任务调度</p>
+<p>就是按照每天都要做的任务</p>
+<ul>
+<li>crontab 进行 用的比较少 而因为不方便</li>
+<li>定时任务的调度的框架<ul>
+<li>ozio , azkaban,airflow,xxl,dolphinscheduler</li>
+<li>现在ozio 和 azkaban 因为操作比较反人类，所以不太推荐</li>
+<li>airflow ： 通过python进行任务调度的</li>
+<li>公司首选 dolphinscheduler ，其次 xxl</li>
+</ul>
+</li>
+<li>针对 xxl 或者 dolphinscheduler 可以串联的方式进行执行调度，就是a任务完成，直接执行b任务等等</li>
+<li>但是crontab它要设置时间间隔，不可以串联的方式进行执行</li>
+<li>多任务之间的依赖关系 ：<ul>
+<li>DAG 有向无环图</li>
+</ul>
+</li>
+<li>xxl 官网 ： 国人开发的 <code>https://github.com/xuxueli/xxl-job</code><ul>
+<li>架构：主从架构，分布式架构</li>
+<li>老大：调度中心</li>
+<li>小弟：调度器</li>
+</ul>
+</li>
+<li>其他的都是apache的</li>
+</ul>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>下载源码 ；</p>
+<p>导入idea 进行编译</p>
+<p>初始化“调度数据库”xxl源数据库 -》 mysql中</p>
+<p>首先在mysql中执行语句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># XXL-JOB v2.4.0-SNAPSHOT</span><br><span class="line"># Copyright (c) 2015-present, xuxueli.</span><br><span class="line"></span><br><span class="line">CREATE database if NOT EXISTS `xxl_job` default character set utf8mb4 collate utf8mb4_unicode_ci;</span><br><span class="line">use `xxl_job`;</span><br><span class="line"></span><br><span class="line">SET NAMES utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_info` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `job_group` int(11) NOT NULL COMMENT &#x27;执行器主键ID&#x27;,</span><br><span class="line">  `job_desc` varchar(255) NOT NULL,</span><br><span class="line">  `add_time` datetime DEFAULT NULL,</span><br><span class="line">  `update_time` datetime DEFAULT NULL,</span><br><span class="line">  `author` varchar(64) DEFAULT NULL COMMENT &#x27;作者&#x27;,</span><br><span class="line">  `alarm_email` varchar(255) DEFAULT NULL COMMENT &#x27;报警邮件&#x27;,</span><br><span class="line">  `schedule_type` varchar(50) NOT NULL DEFAULT &#x27;NONE&#x27; COMMENT &#x27;调度类型&#x27;,</span><br><span class="line">  `schedule_conf` varchar(128) DEFAULT NULL COMMENT &#x27;调度配置，值含义取决于调度类型&#x27;,</span><br><span class="line">  `misfire_strategy` varchar(50) NOT NULL DEFAULT &#x27;DO_NOTHING&#x27; COMMENT &#x27;调度过期策略&#x27;,</span><br><span class="line">  `executor_route_strategy` varchar(50) DEFAULT NULL COMMENT &#x27;执行器路由策略&#x27;,</span><br><span class="line">  `executor_handler` varchar(255) DEFAULT NULL COMMENT &#x27;执行器任务handler&#x27;,</span><br><span class="line">  `executor_param` varchar(512) DEFAULT NULL COMMENT &#x27;执行器任务参数&#x27;,</span><br><span class="line">  `executor_block_strategy` varchar(50) DEFAULT NULL COMMENT &#x27;阻塞处理策略&#x27;,</span><br><span class="line">  `executor_timeout` int(11) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;任务执行超时时间，单位秒&#x27;,</span><br><span class="line">  `executor_fail_retry_count` int(11) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;失败重试次数&#x27;,</span><br><span class="line">  `glue_type` varchar(50) NOT NULL COMMENT &#x27;GLUE类型&#x27;,</span><br><span class="line">  `glue_source` mediumtext COMMENT &#x27;GLUE源代码&#x27;,</span><br><span class="line">  `glue_remark` varchar(128) DEFAULT NULL COMMENT &#x27;GLUE备注&#x27;,</span><br><span class="line">  `glue_updatetime` datetime DEFAULT NULL COMMENT &#x27;GLUE更新时间&#x27;,</span><br><span class="line">  `child_jobid` varchar(255) DEFAULT NULL COMMENT &#x27;子任务ID，多个逗号分隔&#x27;,</span><br><span class="line">  `trigger_status` tinyint(4) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;调度状态：0-停止，1-运行&#x27;,</span><br><span class="line">  `trigger_last_time` bigint(13) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;上次调度时间&#x27;,</span><br><span class="line">  `trigger_next_time` bigint(13) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;下次调度时间&#x27;,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_log` (</span><br><span class="line">  `id` bigint(20) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `job_group` int(11) NOT NULL COMMENT &#x27;执行器主键ID&#x27;,</span><br><span class="line">  `job_id` int(11) NOT NULL COMMENT &#x27;任务，主键ID&#x27;,</span><br><span class="line">  `executor_address` varchar(255) DEFAULT NULL COMMENT &#x27;执行器地址，本次执行的地址&#x27;,</span><br><span class="line">  `executor_handler` varchar(255) DEFAULT NULL COMMENT &#x27;执行器任务handler&#x27;,</span><br><span class="line">  `executor_param` varchar(512) DEFAULT NULL COMMENT &#x27;执行器任务参数&#x27;,</span><br><span class="line">  `executor_sharding_param` varchar(20) DEFAULT NULL COMMENT &#x27;执行器任务分片参数，格式如 1/2&#x27;,</span><br><span class="line">  `executor_fail_retry_count` int(11) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;失败重试次数&#x27;,</span><br><span class="line">  `trigger_time` datetime DEFAULT NULL COMMENT &#x27;调度-时间&#x27;,</span><br><span class="line">  `trigger_code` int(11) NOT NULL COMMENT &#x27;调度-结果&#x27;,</span><br><span class="line">  `trigger_msg` text COMMENT &#x27;调度-日志&#x27;,</span><br><span class="line">  `handle_time` datetime DEFAULT NULL COMMENT &#x27;执行-时间&#x27;,</span><br><span class="line">  `handle_code` int(11) NOT NULL COMMENT &#x27;执行-状态&#x27;,</span><br><span class="line">  `handle_msg` text COMMENT &#x27;执行-日志&#x27;,</span><br><span class="line">  `alarm_status` tinyint(4) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;告警状态：0-默认、1-无需告警、2-告警成功、3-告警失败&#x27;,</span><br><span class="line">  PRIMARY KEY (`id`),</span><br><span class="line">  KEY `I_trigger_time` (`trigger_time`),</span><br><span class="line">  KEY `I_handle_code` (`handle_code`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_log_report` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `trigger_day` datetime DEFAULT NULL COMMENT &#x27;调度-时间&#x27;,</span><br><span class="line">  `running_count` int(11) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;运行中-日志数量&#x27;,</span><br><span class="line">  `suc_count` int(11) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;执行成功-日志数量&#x27;,</span><br><span class="line">  `fail_count` int(11) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;执行失败-日志数量&#x27;,</span><br><span class="line">  `update_time` datetime DEFAULT NULL,</span><br><span class="line">  PRIMARY KEY (`id`),</span><br><span class="line">  UNIQUE KEY `i_trigger_day` (`trigger_day`) USING BTREE</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_logglue` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `job_id` int(11) NOT NULL COMMENT &#x27;任务，主键ID&#x27;,</span><br><span class="line">  `glue_type` varchar(50) DEFAULT NULL COMMENT &#x27;GLUE类型&#x27;,</span><br><span class="line">  `glue_source` mediumtext COMMENT &#x27;GLUE源代码&#x27;,</span><br><span class="line">  `glue_remark` varchar(128) NOT NULL COMMENT &#x27;GLUE备注&#x27;,</span><br><span class="line">  `add_time` datetime DEFAULT NULL,</span><br><span class="line">  `update_time` datetime DEFAULT NULL,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_registry` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `registry_group` varchar(50) NOT NULL,</span><br><span class="line">  `registry_key` varchar(255) NOT NULL,</span><br><span class="line">  `registry_value` varchar(255) NOT NULL,</span><br><span class="line">  `update_time` datetime DEFAULT NULL,</span><br><span class="line">  PRIMARY KEY (`id`),</span><br><span class="line">  KEY `i_g_k_v` (`registry_group`,`registry_key`,`registry_value`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_group` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `app_name` varchar(64) NOT NULL COMMENT &#x27;执行器AppName&#x27;,</span><br><span class="line">  `title` varchar(12) NOT NULL COMMENT &#x27;执行器名称&#x27;,</span><br><span class="line">  `address_type` tinyint(4) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;执行器地址类型：0=自动注册、1=手动录入&#x27;,</span><br><span class="line">  `address_list` text COMMENT &#x27;执行器地址列表，多地址逗号分隔&#x27;,</span><br><span class="line">  `update_time` datetime DEFAULT NULL,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_user` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `username` varchar(50) NOT NULL COMMENT &#x27;账号&#x27;,</span><br><span class="line">  `password` varchar(50) NOT NULL COMMENT &#x27;密码&#x27;,</span><br><span class="line">  `role` tinyint(4) NOT NULL COMMENT &#x27;角色：0-普通用户、1-管理员&#x27;,</span><br><span class="line">  `permission` varchar(255) DEFAULT NULL COMMENT &#x27;权限：执行器ID列表，多个逗号分割&#x27;,</span><br><span class="line">  PRIMARY KEY (`id`),</span><br><span class="line">  UNIQUE KEY `i_username` (`username`) USING BTREE</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_lock` (</span><br><span class="line">  `lock_name` varchar(50) NOT NULL COMMENT &#x27;锁名称&#x27;,</span><br><span class="line">  PRIMARY KEY (`lock_name`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">INSERT INTO `xxl_job_group`(`id`, `app_name`, `title`, `address_type`, `address_list`, `update_time`) VALUES (1, &#x27;xxl-job-executor-sample&#x27;, &#x27;示例执行器&#x27;, 0, NULL, &#x27;2018-11-03 22:21:31&#x27; );</span><br><span class="line">INSERT INTO `xxl_job_info`(`id`, `job_group`, `job_desc`, `add_time`, `update_time`, `author`, `alarm_email`, `schedule_type`, `schedule_conf`, `misfire_strategy`, `executor_route_strategy`, `executor_handler`, `executor_param`, `executor_block_strategy`, `executor_timeout`, `executor_fail_retry_count`, `glue_type`, `glue_source`, `glue_remark`, `glue_updatetime`, `child_jobid`) VALUES (1, 1, &#x27;测试任务1&#x27;, &#x27;2018-11-03 22:21:31&#x27;, &#x27;2018-11-03 22:21:31&#x27;, &#x27;XXL&#x27;, &#x27;&#x27;, &#x27;CRON&#x27;, &#x27;0 0 0 * * ? *&#x27;, &#x27;DO_NOTHING&#x27;, &#x27;FIRST&#x27;, &#x27;demoJobHandler&#x27;, &#x27;&#x27;, &#x27;SERIAL_EXECUTION&#x27;, 0, 0, &#x27;BEAN&#x27;, &#x27;&#x27;, &#x27;GLUE代码初始化&#x27;, &#x27;2018-11-03 22:21:31&#x27;, &#x27;&#x27;);</span><br><span class="line">INSERT INTO `xxl_job_user`(`id`, `username`, `password`, `role`, `permission`) VALUES (1, &#x27;admin&#x27;, &#x27;e10adc3949ba59abbe56e057f20f883e&#x27;, 1, NULL);</span><br><span class="line">INSERT INTO `xxl_job_lock` ( `lock_name`) VALUES ( &#x27;schedule_lock&#x27;);</span><br><span class="line"></span><br><span class="line">commit;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后再把从GitHub上下载的文件夹用idea打开进行编译</p>
+<p>进行配置我们的web端口以及数据库：在application.properties文件中，然后配置一下</p>
+<p>配置好之后maven，之间打成jar包，然后上传到linux服务器上</p>
+<p>运行java -jar 上传的文件的路径</p>
+<p>然后会报错，就创建个文件夹就好了 <code>mkdir -p /data/applogs/xxl-job</code></p>
+<p>使用su 进行用户切换</p>
+<p>然后通过chown 进行修改组以及用户 <code>chown -R hadoop:hadoop /data</code></p>
+<p>然后再次运行就可以了</p>
+<p>然后在调度器管理页面添加调度器，然后分配任务就可以了</p>
 
       
     </div>
@@ -663,7 +711,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-07 07:56:03" itemprop="dateModified" datetime="2022-12-07T07:56:03+08:00">2022-12-07</time>
+                <time title="修改时间：2022-12-08 19:10:37" itemprop="dateModified" datetime="2022-12-08T19:10:37+08:00">2022-12-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -681,14 +729,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>9.5k</span>
+              <span>12k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>11 分钟</span>
             </span>
 
         </div>
@@ -713,7 +761,7 @@
 <p>anconda -》 python</p>
 <p>python原生 ： 建议</p>
 <h2 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h2><p>毫无疑问docker安装是最快速的而且，不用担心依赖等</p>
-<p>docker安装的步骤如下  ： </p>
+<p>docker安装的步骤如下  ：</p>
 <p>先安装yarn工具集</p>
 <p><code>yum -y install yum-utils</code></p>
 <p>然后把docker源添加到镜像里</p>
@@ -735,7 +783,8 @@
 <p><code>mkdir -p /opt/module/docker/superset/conf </code></p>
 <p><code>mkdir -p /opt/module/docker/superset/data</code></p>
 <p>接下来我们要创建superset的容器，并把端口映射出来</p>
-<p><code>docker run --name superset -u 0 -d -p 8088:8088 -v /opt/module/docker/superset/conf:/etc/superset -v /opt/module/docker/superset/data:/var/lib/superset amancevice/superset:0.37.2</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name superset -u 0 -d -p 8088:8088 -v /opt/module/docker/superset/conf:/etc/superset -v /opt/module/docker/superset/data:/var/lib/superset amancevice/superset:0.37.2</span><br></pre></td></tr></table></figure>
+
 <p>然后初始化我们的superset数据库</p>
 <p><code>docker exec -it superset superset db upgrade</code></p>
 <p>创建superset的管理员账号</p>
@@ -814,6 +863,27 @@
 <p>关于superset的原生安装就ok了</p>
 <h1 id="dataease"><a href="#dataease" class="headerlink" title="dataease"></a>dataease</h1><p>先在官网下载官网地址 ： <a target="_blank" rel="noopener" href="https://www.fit2cloud.com/dataease/features.html">https://www.fit2cloud.com/dataease/features.html</a></p>
 <p>目前没有时间等周六周日补上</p>
+<p>dataease安装特别简单而且图形炫酷，首推</p>
+<p>但是有问题：安装dataease的机器上不能有mysql或者你把mysql的端口改掉，因为它要占用3306端口</p>
+<p>不管是在线安装还是离线安装对我们的数据库都有要求，mysql 5.7起步</p>
+<p>而且要求我们编辑&#x2F;etc&#x2F;my.cnf文件</p>
+<p>然后添加以下内容 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">datadir=/var/lib/mysql</span><br><span class="line"></span><br><span class="line">default-storage-engine=INNODB</span><br><span class="line">character_set_server=utf8</span><br><span class="line">lower_case_table_names=1</span><br><span class="line">table_open_cache=128</span><br><span class="line">max_connections=2000</span><br><span class="line">max_connect_errors=6000</span><br><span class="line">innodb_file_per_table=1</span><br><span class="line">innodb_buffer_pool_size=1G</span><br><span class="line">max_allowed_packet=64M</span><br><span class="line">transaction_isolation=READ-COMMITTED</span><br><span class="line">innodb_flush_method=O_DIRECT</span><br><span class="line">innodb_lock_wait_timeout=1800</span><br><span class="line">innodb_flush_log_at_trx_commit=0</span><br><span class="line">sync_binlog=0</span><br><span class="line">group_concat_max_len=1024000</span><br><span class="line">sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br><span class="line">skip-name-resolve</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">default-character-set=utf8</span><br><span class="line"></span><br><span class="line">[mysql.server]</span><br><span class="line">default-character-set=utf8</span><br></pre></td></tr></table></figure>
+
+<p>在线安装 ：<code>curl -sSL https://github.com/dataease/dataease/releases/latest/download/quick_start.sh | sh</code></p>
+<p>就可以了</p>
+<p>离线安装：</p>
+<p>先下载好安装包然后解压，之后到解压的目录，然后编辑install.conf文件下面是install.conf的配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"># 基础配置</span><br><span class="line">## 安装目录</span><br><span class="line">DE_BASE=/opt</span><br><span class="line">## Service 端口</span><br><span class="line">DE_PORT=80</span><br><span class="line">## 部署及运行模式，可选值有 local、simple、cluster，分别对应 本地模式、精简模式、集群模式</span><br><span class="line">DE_ENGINE_MODE=simple</span><br><span class="line">## docker 网段设置</span><br><span class="line">DE_DOCKER_SUBNET=172.19.0.0/16</span><br><span class="line">## docker 网关 IP</span><br><span class="line">DE_DOCKER_GATEWAY=172.19.0.1</span><br><span class="line">## Apache Doris FE IP (外部 Doris 此参数无效)</span><br><span class="line">DE_DORIS_FE_IP=172.19.0.198</span><br><span class="line">## Apache Doris BE IP (外部 Doris 此参数无效)</span><br><span class="line">DE_DORIS_BE_IP=172.19.0.199</span><br><span class="line"></span><br><span class="line"># 数据库配置</span><br><span class="line">## 是否使用外部数据库</span><br><span class="line">DE_EXTERNAL_MYSQL=false</span><br><span class="line">## 数据库地址</span><br><span class="line">DE_MYSQL_HOST=mysql</span><br><span class="line">## 数据库端口</span><br><span class="line">DE_MYSQL_PORT=3306</span><br><span class="line">## DataEase 数据库库名</span><br><span class="line">DE_MYSQL_DB=dataease</span><br><span class="line">## 数据库用户名</span><br><span class="line">DE_MYSQL_USER=root</span><br><span class="line">## 数据库密码</span><br><span class="line">DE_MYSQL_PASSWORD=Password123@mysql</span><br><span class="line"></span><br><span class="line"># Apache Doris 配置</span><br><span class="line">## 是否使用外部 Apache Doris</span><br><span class="line">DE_EXTERNAL_DORIS=false</span><br><span class="line">## Doris 地址</span><br><span class="line">DE_DORIS_HOST=doris-fe</span><br><span class="line">## Doris 查询连接端口</span><br><span class="line">DE_DORIS_PORT=9030</span><br><span class="line">## Doris http端口</span><br><span class="line">DE_DORIS_HTTPPORT=8030</span><br><span class="line">## Doris 数据库名称</span><br><span class="line">DE_DORIS_DB=dataease</span><br><span class="line">## Doris 用户名</span><br><span class="line">DE_DORIS_USER=root</span><br><span class="line">## Doris 密码</span><br><span class="line">DE_DORIS_PASSWORD=Password123@doris</span><br><span class="line"></span><br><span class="line"># Kettle 配置</span><br><span class="line">## 是否使用外部 Kettle - (目前还不支持外部Kettle，除非不需运行Kettle，否则请不要修改此参数)</span><br><span class="line">DE_EXTERNAL_KETTLE=false</span><br><span class="line">## Kettle 服务器地址</span><br><span class="line">DE_CARTE_HOST=kettle</span><br><span class="line">## Kettle 访问端口</span><br><span class="line">DE_CARTE_PORT=18080</span><br><span class="line">## Kettle 用户名</span><br><span class="line">DE_CARTE_USER=cluster</span><br><span class="line">## Kettle 密码</span><br><span class="line">DE_CARTE_PASSWORD=cluster</span><br></pre></td></tr></table></figure>
+
+<p>安装模式有三种 ：</p>
+<p><strong>DE_ENGINE_MODE&#x3D;local</strong><br>使用本地模式安装，DataEase 会自带 Doris 与 Kettle 组件，无需再做额外配置，但各组件均为单点，不具备高可用特性。<br>在此模式下，Excel 数据集、API 数据集以及定时同步的数据默认保存在自带的 Doris 组件中。</p>
+<p><strong>DE_ENGINE_MODE&#x3D;simple</strong><br>使用精简模式安装，系统不会额外安装 Doris 与 Kettle 组件，提供用户轻量级的应用系统，尤其是对接数据量较小的情况。<br>在此模式下，若用户需要使用 Excel 数据集或 API 数据集可在系统管理界面配置数据引擎（目前仅支持 MySQL 类型），相关数据会存储到该数据引擎中。若只需使用数据库直连则无需做此配置。<br><strong>注意：由于精简模式未配置 Kettle 与 Doris，故相关 SQL 数据集&#x2F;数据库数据集不提供定时同步模式。</strong></p>
+<p><strong>DE_ENGINE_MODE&#x3D;cluster</strong><br>使用集群模式安装，系统不会额外安装 Doris 与 Kettle 组件，但会在系统管理模块提供 Doris 与 Kettle 的链接配置界面（请参考【系统管理】的【系统参数】说明），用户可独立安装 Doris 集群及 Kettle 并配置在 DataEase 中。集群模式下 Excel 数据集，API 数据集以及定时同步的数据通过 Kettle 抽取到 Doris 集群中。<br>Doris 安装部署可参考：<a target="_blank" rel="noopener" href="http://doris.incubator.apache.org/zh-CN/">http://doris.incubator.apache.org/zh-CN/</a><br>Kettle 安装部署可参考：<a target="_blank" rel="noopener" href="http://www.kettle.org.cn/">http://www.kettle.org.cn/</a></p>
+<p>然后对于离线安装执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 进入安装包目录</span><br><span class="line">cd dataease-v1.5.0-offline</span><br><span class="line"># 运行安装脚本</span><br><span class="line">/bin/bash install.sh</span><br></pre></td></tr></table></figure>
+
+<p>就可以了，效果个很酷炫</p>
 <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>有一个城市表 ： mysql中</p>
 <p>有一个商品表 ： mysql中</p>
 <p>用户行为数据 ： hdfs上的</p>
@@ -871,7 +941,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-07 08:00:26" itemprop="dateModified" datetime="2022-12-07T08:00:26+08:00">2022-12-07</time>
+                <time title="修改时间：2022-12-08 09:43:07" itemprop="dateModified" datetime="2022-12-08T09:43:07+08:00">2022-12-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1155,6 +1225,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sqoop export \</span><br><span class="line">--connect jdbc:mysql://bigdata2:3306/try  \</span><br><span class="line">--username root  \</span><br><span class="line">--password liuzihan010616 \</span><br><span class="line">--table xxxX \</span><br><span class="line">--fields-terminated-by &#x27;分隔符&#x27; \</span><br><span class="line">--export-dir hdfs上的数据的路径 \</span><br></pre></td></tr></table></figure>
 
 <p>这个是hdfs导入到mysql</p>
+<p>sqoop导入hive到mysql的时候空值要先进行处理，</p>
 <h1 id="开启历史日志"><a href="#开启历史日志" class="headerlink" title="开启历史日志"></a>开启历史日志</h1><p>开启开关 ：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.log-aggregation-enable&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;true&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
 
@@ -2630,7 +2701,7 @@ is null 作用一样 &lt;=&gt;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共84.6k字</span>
+  <span class="post-count">博客全站共87.1k字</span>
 </div>
 
 

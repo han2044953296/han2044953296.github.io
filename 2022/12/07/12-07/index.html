@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="数据可视化的数据库选择一般选择响应数据库比较快的一般是 秒级，或者毫秒级 ： 不要选择hive 因为hive太慢 我们一般都把数据最后导入到mysql里">
+  <meta name="description" content="数据可视化的数据库选择一般选择响应数据库比较快的一般是 秒级，或者毫秒级 ： 不要选择hive 因为hive太慢 我们一般都把数据最后导入到mysql里 作业： 自己做一个dashboard xxl定时任务调度 就是按照每天都要做的任务  crontab 进行 用的比较少 而因为不方便 定时任务的调度的框架 ozio , azkaban,airflow,xxl,dolphinscheduler 现">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据可视化">
 <meta property="og:url" content="http://example.com/2022/12/07/12-07/index.html">
 <meta property="og:site_name" content="枫叶冢">
-<meta property="og:description" content="数据可视化的数据库选择一般选择响应数据库比较快的一般是 秒级，或者毫秒级 ： 不要选择hive 因为hive太慢 我们一般都把数据最后导入到mysql里">
+<meta property="og:description" content="数据可视化的数据库选择一般选择响应数据库比较快的一般是 秒级，或者毫秒级 ： 不要选择hive 因为hive太慢 我们一般都把数据最后导入到mysql里 作业： 自己做一个dashboard xxl定时任务调度 就是按照每天都要做的任务  crontab 进行 用的比较少 而因为不方便 定时任务的调度的框架 ozio , azkaban,airflow,xxl,dolphinscheduler 现">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-07T00:53:05.244Z">
-<meta property="article:modified_time" content="2022-12-07T01:21:37.024Z">
+<meta property="article:modified_time" content="2022-12-08T11:02:33.837Z">
 <meta property="article:author" content="liu zihang">
 <meta name="twitter:card" content="summary">
 
@@ -224,10 +224,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-07 08:53:05 / 修改时间：09:21:37" itemprop="dateCreated datePublished" datetime="2022-12-07T08:53:05+08:00">2022-12-07</time>
+              <time title="创建时间：2022-12-07 08:53:05" itemprop="dateCreated datePublished" datetime="2022-12-07T08:53:05+08:00">2022-12-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-08 19:02:33" itemprop="dateModified" datetime="2022-12-08T19:02:33+08:00">2022-12-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -251,14 +257,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>71</span>
+              <span>7.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -276,6 +282,48 @@
         <h1 id="数据可视化的数据库选择"><a href="#数据可视化的数据库选择" class="headerlink" title="数据可视化的数据库选择"></a>数据可视化的数据库选择</h1><p>一般选择响应数据库比较快的一般是 秒级，或者毫秒级 ： 不要选择hive</p>
 <p>因为hive太慢</p>
 <p>我们一般都把数据最后导入到mysql里</p>
+<p>作业：</p>
+<p>自己做一个dashboard</p>
+<h1 id="xxl"><a href="#xxl" class="headerlink" title="xxl"></a>xxl</h1><p>定时任务调度</p>
+<p>就是按照每天都要做的任务</p>
+<ul>
+<li>crontab 进行 用的比较少 而因为不方便</li>
+<li>定时任务的调度的框架<ul>
+<li>ozio , azkaban,airflow,xxl,dolphinscheduler</li>
+<li>现在ozio 和 azkaban 因为操作比较反人类，所以不太推荐</li>
+<li>airflow ： 通过python进行任务调度的</li>
+<li>公司首选 dolphinscheduler ，其次 xxl</li>
+</ul>
+</li>
+<li>针对 xxl 或者 dolphinscheduler 可以串联的方式进行执行调度，就是a任务完成，直接执行b任务等等</li>
+<li>但是crontab它要设置时间间隔，不可以串联的方式进行执行</li>
+<li>多任务之间的依赖关系 ：<ul>
+<li>DAG 有向无环图</li>
+</ul>
+</li>
+<li>xxl 官网 ： 国人开发的 <code>https://github.com/xuxueli/xxl-job</code><ul>
+<li>架构：主从架构，分布式架构</li>
+<li>老大：调度中心</li>
+<li>小弟：调度器</li>
+</ul>
+</li>
+<li>其他的都是apache的</li>
+</ul>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>下载源码 ；</p>
+<p>导入idea 进行编译</p>
+<p>初始化“调度数据库”xxl源数据库 -》 mysql中</p>
+<p>首先在mysql中执行语句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># XXL-JOB v2.4.0-SNAPSHOT</span><br><span class="line"># Copyright (c) 2015-present, xuxueli.</span><br><span class="line"></span><br><span class="line">CREATE database if NOT EXISTS `xxl_job` default character set utf8mb4 collate utf8mb4_unicode_ci;</span><br><span class="line">use `xxl_job`;</span><br><span class="line"></span><br><span class="line">SET NAMES utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_info` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `job_group` int(11) NOT NULL COMMENT &#x27;执行器主键ID&#x27;,</span><br><span class="line">  `job_desc` varchar(255) NOT NULL,</span><br><span class="line">  `add_time` datetime DEFAULT NULL,</span><br><span class="line">  `update_time` datetime DEFAULT NULL,</span><br><span class="line">  `author` varchar(64) DEFAULT NULL COMMENT &#x27;作者&#x27;,</span><br><span class="line">  `alarm_email` varchar(255) DEFAULT NULL COMMENT &#x27;报警邮件&#x27;,</span><br><span class="line">  `schedule_type` varchar(50) NOT NULL DEFAULT &#x27;NONE&#x27; COMMENT &#x27;调度类型&#x27;,</span><br><span class="line">  `schedule_conf` varchar(128) DEFAULT NULL COMMENT &#x27;调度配置，值含义取决于调度类型&#x27;,</span><br><span class="line">  `misfire_strategy` varchar(50) NOT NULL DEFAULT &#x27;DO_NOTHING&#x27; COMMENT &#x27;调度过期策略&#x27;,</span><br><span class="line">  `executor_route_strategy` varchar(50) DEFAULT NULL COMMENT &#x27;执行器路由策略&#x27;,</span><br><span class="line">  `executor_handler` varchar(255) DEFAULT NULL COMMENT &#x27;执行器任务handler&#x27;,</span><br><span class="line">  `executor_param` varchar(512) DEFAULT NULL COMMENT &#x27;执行器任务参数&#x27;,</span><br><span class="line">  `executor_block_strategy` varchar(50) DEFAULT NULL COMMENT &#x27;阻塞处理策略&#x27;,</span><br><span class="line">  `executor_timeout` int(11) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;任务执行超时时间，单位秒&#x27;,</span><br><span class="line">  `executor_fail_retry_count` int(11) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;失败重试次数&#x27;,</span><br><span class="line">  `glue_type` varchar(50) NOT NULL COMMENT &#x27;GLUE类型&#x27;,</span><br><span class="line">  `glue_source` mediumtext COMMENT &#x27;GLUE源代码&#x27;,</span><br><span class="line">  `glue_remark` varchar(128) DEFAULT NULL COMMENT &#x27;GLUE备注&#x27;,</span><br><span class="line">  `glue_updatetime` datetime DEFAULT NULL COMMENT &#x27;GLUE更新时间&#x27;,</span><br><span class="line">  `child_jobid` varchar(255) DEFAULT NULL COMMENT &#x27;子任务ID，多个逗号分隔&#x27;,</span><br><span class="line">  `trigger_status` tinyint(4) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;调度状态：0-停止，1-运行&#x27;,</span><br><span class="line">  `trigger_last_time` bigint(13) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;上次调度时间&#x27;,</span><br><span class="line">  `trigger_next_time` bigint(13) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;下次调度时间&#x27;,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_log` (</span><br><span class="line">  `id` bigint(20) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `job_group` int(11) NOT NULL COMMENT &#x27;执行器主键ID&#x27;,</span><br><span class="line">  `job_id` int(11) NOT NULL COMMENT &#x27;任务，主键ID&#x27;,</span><br><span class="line">  `executor_address` varchar(255) DEFAULT NULL COMMENT &#x27;执行器地址，本次执行的地址&#x27;,</span><br><span class="line">  `executor_handler` varchar(255) DEFAULT NULL COMMENT &#x27;执行器任务handler&#x27;,</span><br><span class="line">  `executor_param` varchar(512) DEFAULT NULL COMMENT &#x27;执行器任务参数&#x27;,</span><br><span class="line">  `executor_sharding_param` varchar(20) DEFAULT NULL COMMENT &#x27;执行器任务分片参数，格式如 1/2&#x27;,</span><br><span class="line">  `executor_fail_retry_count` int(11) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;失败重试次数&#x27;,</span><br><span class="line">  `trigger_time` datetime DEFAULT NULL COMMENT &#x27;调度-时间&#x27;,</span><br><span class="line">  `trigger_code` int(11) NOT NULL COMMENT &#x27;调度-结果&#x27;,</span><br><span class="line">  `trigger_msg` text COMMENT &#x27;调度-日志&#x27;,</span><br><span class="line">  `handle_time` datetime DEFAULT NULL COMMENT &#x27;执行-时间&#x27;,</span><br><span class="line">  `handle_code` int(11) NOT NULL COMMENT &#x27;执行-状态&#x27;,</span><br><span class="line">  `handle_msg` text COMMENT &#x27;执行-日志&#x27;,</span><br><span class="line">  `alarm_status` tinyint(4) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;告警状态：0-默认、1-无需告警、2-告警成功、3-告警失败&#x27;,</span><br><span class="line">  PRIMARY KEY (`id`),</span><br><span class="line">  KEY `I_trigger_time` (`trigger_time`),</span><br><span class="line">  KEY `I_handle_code` (`handle_code`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_log_report` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `trigger_day` datetime DEFAULT NULL COMMENT &#x27;调度-时间&#x27;,</span><br><span class="line">  `running_count` int(11) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;运行中-日志数量&#x27;,</span><br><span class="line">  `suc_count` int(11) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;执行成功-日志数量&#x27;,</span><br><span class="line">  `fail_count` int(11) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;执行失败-日志数量&#x27;,</span><br><span class="line">  `update_time` datetime DEFAULT NULL,</span><br><span class="line">  PRIMARY KEY (`id`),</span><br><span class="line">  UNIQUE KEY `i_trigger_day` (`trigger_day`) USING BTREE</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_logglue` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `job_id` int(11) NOT NULL COMMENT &#x27;任务，主键ID&#x27;,</span><br><span class="line">  `glue_type` varchar(50) DEFAULT NULL COMMENT &#x27;GLUE类型&#x27;,</span><br><span class="line">  `glue_source` mediumtext COMMENT &#x27;GLUE源代码&#x27;,</span><br><span class="line">  `glue_remark` varchar(128) NOT NULL COMMENT &#x27;GLUE备注&#x27;,</span><br><span class="line">  `add_time` datetime DEFAULT NULL,</span><br><span class="line">  `update_time` datetime DEFAULT NULL,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_registry` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `registry_group` varchar(50) NOT NULL,</span><br><span class="line">  `registry_key` varchar(255) NOT NULL,</span><br><span class="line">  `registry_value` varchar(255) NOT NULL,</span><br><span class="line">  `update_time` datetime DEFAULT NULL,</span><br><span class="line">  PRIMARY KEY (`id`),</span><br><span class="line">  KEY `i_g_k_v` (`registry_group`,`registry_key`,`registry_value`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_group` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `app_name` varchar(64) NOT NULL COMMENT &#x27;执行器AppName&#x27;,</span><br><span class="line">  `title` varchar(12) NOT NULL COMMENT &#x27;执行器名称&#x27;,</span><br><span class="line">  `address_type` tinyint(4) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;执行器地址类型：0=自动注册、1=手动录入&#x27;,</span><br><span class="line">  `address_list` text COMMENT &#x27;执行器地址列表，多地址逗号分隔&#x27;,</span><br><span class="line">  `update_time` datetime DEFAULT NULL,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_user` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `username` varchar(50) NOT NULL COMMENT &#x27;账号&#x27;,</span><br><span class="line">  `password` varchar(50) NOT NULL COMMENT &#x27;密码&#x27;,</span><br><span class="line">  `role` tinyint(4) NOT NULL COMMENT &#x27;角色：0-普通用户、1-管理员&#x27;,</span><br><span class="line">  `permission` varchar(255) DEFAULT NULL COMMENT &#x27;权限：执行器ID列表，多个逗号分割&#x27;,</span><br><span class="line">  PRIMARY KEY (`id`),</span><br><span class="line">  UNIQUE KEY `i_username` (`username`) USING BTREE</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `xxl_job_lock` (</span><br><span class="line">  `lock_name` varchar(50) NOT NULL COMMENT &#x27;锁名称&#x27;,</span><br><span class="line">  PRIMARY KEY (`lock_name`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line">INSERT INTO `xxl_job_group`(`id`, `app_name`, `title`, `address_type`, `address_list`, `update_time`) VALUES (1, &#x27;xxl-job-executor-sample&#x27;, &#x27;示例执行器&#x27;, 0, NULL, &#x27;2018-11-03 22:21:31&#x27; );</span><br><span class="line">INSERT INTO `xxl_job_info`(`id`, `job_group`, `job_desc`, `add_time`, `update_time`, `author`, `alarm_email`, `schedule_type`, `schedule_conf`, `misfire_strategy`, `executor_route_strategy`, `executor_handler`, `executor_param`, `executor_block_strategy`, `executor_timeout`, `executor_fail_retry_count`, `glue_type`, `glue_source`, `glue_remark`, `glue_updatetime`, `child_jobid`) VALUES (1, 1, &#x27;测试任务1&#x27;, &#x27;2018-11-03 22:21:31&#x27;, &#x27;2018-11-03 22:21:31&#x27;, &#x27;XXL&#x27;, &#x27;&#x27;, &#x27;CRON&#x27;, &#x27;0 0 0 * * ? *&#x27;, &#x27;DO_NOTHING&#x27;, &#x27;FIRST&#x27;, &#x27;demoJobHandler&#x27;, &#x27;&#x27;, &#x27;SERIAL_EXECUTION&#x27;, 0, 0, &#x27;BEAN&#x27;, &#x27;&#x27;, &#x27;GLUE代码初始化&#x27;, &#x27;2018-11-03 22:21:31&#x27;, &#x27;&#x27;);</span><br><span class="line">INSERT INTO `xxl_job_user`(`id`, `username`, `password`, `role`, `permission`) VALUES (1, &#x27;admin&#x27;, &#x27;e10adc3949ba59abbe56e057f20f883e&#x27;, 1, NULL);</span><br><span class="line">INSERT INTO `xxl_job_lock` ( `lock_name`) VALUES ( &#x27;schedule_lock&#x27;);</span><br><span class="line"></span><br><span class="line">commit;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后再把从GitHub上下载的文件夹用idea打开进行编译</p>
+<p>进行配置我们的web端口以及数据库：在application.properties文件中，然后配置一下</p>
+<p>配置好之后maven，之间打成jar包，然后上传到linux服务器上</p>
+<p>运行java -jar 上传的文件的路径</p>
+<p>然后会报错，就创建个文件夹就好了 <code>mkdir -p /data/applogs/xxl-job</code></p>
+<p>使用su 进行用户切换</p>
+<p>然后通过chown 进行修改组以及用户 <code>chown -R hadoop:hadoop /data</code></p>
+<p>然后再次运行就可以了</p>
+<p>然后在调度器管理页面添加调度器，然后分配任务就可以了</p>
 
     </div>
 
@@ -431,7 +479,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E9%80%89%E6%8B%A9"><span class="nav-number">1.</span> <span class="nav-text">数据可视化的数据库选择</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E9%80%89%E6%8B%A9"><span class="nav-number">1.</span> <span class="nav-text">数据可视化的数据库选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xxl"><span class="nav-number">2.</span> <span class="nav-text">xxl</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2"><span class="nav-number">2.1.</span> <span class="nav-text">部署</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -505,7 +553,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共84.6k字</span>
+  <span class="post-count">博客全站共87.1k字</span>
 </div>
 
 
