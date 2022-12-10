@@ -30,7 +30,7 @@
 <meta property="og:description" content="数据可视化的数据库选择一般选择响应数据库比较快的一般是 秒级，或者毫秒级 ： 不要选择hive 因为hive太慢 我们一般都把数据最后导入到mysql里 作业： 自己做一个dashboard xxl定时任务调度 就是按照每天都要做的任务  crontab 进行 用的比较少 而因为不方便 定时任务的调度的框架 ozio , azkaban,airflow,xxl,dolphinscheduler 现">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-07T00:53:05.244Z">
-<meta property="article:modified_time" content="2022-12-08T11:02:33.837Z">
+<meta property="article:modified_time" content="2022-12-09T05:34:57.406Z">
 <meta property="article:author" content="liu zihang">
 <meta name="twitter:card" content="summary">
 
@@ -232,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-08 19:02:33" itemprop="dateModified" datetime="2022-12-08T19:02:33+08:00">2022-12-08</time>
+                <time title="修改时间：2022-12-09 13:34:57" itemprop="dateModified" datetime="2022-12-09T13:34:57+08:00">2022-12-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -257,14 +257,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.2k</span>
+              <span>9.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
+              <span>8 分钟</span>
             </span>
 
         </div>
@@ -324,6 +324,51 @@
 <p>然后通过chown 进行修改组以及用户 <code>chown -R hadoop:hadoop /data</code></p>
 <p>然后再次运行就可以了</p>
 <p>然后在调度器管理页面添加调度器，然后分配任务就可以了</p>
+<h1 id="钉钉报警"><a href="#钉钉报警" class="headerlink" title="钉钉报警"></a>钉钉报警</h1><p>钉钉机器人可发送的类型</p>
+<ul>
+<li>文本</li>
+<li>链接</li>
+<li>markdown</li>
+<li>actioncard</li>
+<li>feedcard</li>
+</ul>
+<p>weget  ： 从互联网上下载的时候用的 ： 下载安装包 ，但是占用网络资源较大，且会一直重复下载直到结果成功，所以占用的资源较大</p>
+<p>curl ： 发送请求的，发送网页请求访问的，也可以进行下载</p>
+<ul>
+<li>-o ： 把访问的一个页面存储到文件里</li>
+</ul>
+<p>机器人发送消息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;机器人的token&#x27;</span><br><span class="line">-H &#x27;Content-type:application/json&#x27;</span><br><span class="line">-d &#x27;&#123;&quot;msgtype&quot; : text&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+<p>需求 ： </p>
+<ul>
+<li>日志数据 ： hdfs 上 linux user_click.log</li>
+<li>例子： u01,鼠标,ios</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">u01,鼠标,ios</span><br><span class="line">u01,鼠标,ios</span><br><span class="line">u01,鼠标,ios</span><br><span class="line">u01,鼠标,ios</span><br><span class="line">u01,鼠标,ios</span><br><span class="line">u02,键盘,android</span><br><span class="line">u02,键盘,android</span><br><span class="line">u02,键盘,android</span><br><span class="line">u02,键盘,android</span><br><span class="line">u03,显示器,ios</span><br><span class="line">u04,托特包,ios</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>业务数据 ：mysql user_info</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">u01,子航</span><br><span class="line">u02,祖安</span><br><span class="line">u03,海哥</span><br><span class="line">u04,轩轩</span><br></pre></td></tr></table></figure>
+
+<p>统计：</p>
+<p>uid ， name ，sku ， os 每个用户点击商品的次数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select bianhao,shop_name,caozuoxit,count(*) as cishu from user_click1 group by bianhao,shop_name,caozuoxit;</span><br></pre></td></tr></table></figure>
+
+<p>取出表中重复数据，的次数做个排序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select shop_name,caozuoxit,name,row_number() over (partition by name) as rm from (</span><br><span class="line">select * from user_click1 left join user_info on user_click1.bianhao=user_info.bianhao</span><br><span class="line">) as king</span><br></pre></td></tr></table></figure>
+
+<p>不重复字段标识为1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">u01,子航,鼠标,ios 1</span><br><span class="line">u01,子航,鼠标,ios 2</span><br><span class="line">u01,子航,鼠标,ios 3</span><br><span class="line">u04,托特包,ios 1</span><br></pre></td></tr></table></figure>
+
+<p>统计表中不重复的数据，一起做排序，但是对于重复数据它还是对自己排序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">select name,caozuoxit,shop_name,row_number() over(partition by cishu) from (</span><br><span class="line">select * from user_click1 left join (</span><br><span class="line">select bianhao,count(*) as cishu from user_click1 group by bianhao,shop_name,caozuoxit</span><br><span class="line">) as count_click on count_click.bianhao=user_click1.bianhao</span><br><span class="line">left join user_info on count_click.bianhao=user_info.bianhao  </span><br><span class="line">) as ds;</span><br><span class="line">上述是取巧的方法</span><br><span class="line">下面是正经的方法</span><br><span class="line">select count_clickbianhao,name,caozuoxit,shop_name,row_number() over(order by cishu) as rm from (</span><br><span class="line">select * from user_click1 left join (</span><br><span class="line">select bianhao as count_clickbianhao,count(*) as cishu from user_click1 group by bianhao,shop_name,caozuoxit</span><br><span class="line">) as count_click on count_click.count_clickbianhao=user_click1.bianhao </span><br><span class="line">left join user_info on count_click.count_clickbianhao=user_info.bianhao  </span><br><span class="line">) as jj where cishu = 1 </span><br><span class="line">union all</span><br><span class="line">select count_clickbianhao,name,caozuoxit,shop_name,row_number() over(partition by (name,caozuoxit,shop_name,cishu)) from (</span><br><span class="line">select * from user_click1 left join (</span><br><span class="line">select bianhao as count_clickbianhao,count(*) as cishu from user_click1 group by bianhao,shop_name,caozuoxit</span><br><span class="line">) as count_click on count_click.count_clickbianhao=user_click1.bianhao </span><br><span class="line">left join user_info on count_click.count_clickbianhao=user_info.bianhao  </span><br><span class="line">) as j where cishu != 1;</span><br></pre></td></tr></table></figure>
+
+<p>整个流程使用xxl进行调度</p>
+<p>最后结果导入到mysql</p>
+<p>数据导入mysql保证幂等性</p>
 
     </div>
 
@@ -415,7 +460,10 @@
     <a href="/2022/12/07/docker/" rel="prev" title="docker">
       <i class="fa fa-chevron-left"></i> docker
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/10/12-08/" rel="next" title="云原生教学视频">
+      云原生教学视频 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -479,7 +527,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E9%80%89%E6%8B%A9"><span class="nav-number">1.</span> <span class="nav-text">数据可视化的数据库选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xxl"><span class="nav-number">2.</span> <span class="nav-text">xxl</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2"><span class="nav-number">2.1.</span> <span class="nav-text">部署</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E9%80%89%E6%8B%A9"><span class="nav-number">1.</span> <span class="nav-text">数据可视化的数据库选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xxl"><span class="nav-number">2.</span> <span class="nav-text">xxl</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2"><span class="nav-number">2.1.</span> <span class="nav-text">部署</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%92%89%E9%92%89%E6%8A%A5%E8%AD%A6"><span class="nav-number">3.</span> <span class="nav-text">钉钉报警</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -495,14 +543,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -553,7 +601,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共87.1k字</span>
+  <span class="post-count">博客全站共89k字</span>
 </div>
 
 

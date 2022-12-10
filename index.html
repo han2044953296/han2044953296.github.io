@@ -292,6 +292,154 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/10/12-08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/10/12-08/" class="post-title-link" itemprop="url">云原生教学视频</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-10 11:38:03 / 修改时间：13:42:14" itemprop="dateCreated datePublished" datetime="2022-12-10T11:38:03+08:00">2022-12-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%EF%BC%88%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%EF%BC%89/" itemprop="url" rel="index"><span itemprop="name">云原生（哔哩哔哩）</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="云原生"><a href="#云原生" class="headerlink" title="云原生"></a>云原生</h1><p>理解 ： 理解上要把他们拆开理解会更好</p>
+<p>云 ：云基础设施（cloud）</p>
+<p>原生：native ：在云计算平台里可以原生的计算和运行的</p>
+<p>云原生的概念由来：<br>2013年被prvoyal公司的Ms提出</p>
+<p>2015年谷歌带头成立了云原生的计算基金会</p>
+<p>云原生的定义 ：</p>
+<p>基于微服务原理而开发的应用，用容器的方式打包，在运行时，容器由运行于云基础设施之上的平台进行调度，应用开发采用持续交付和devOps实践</p>
+<p>2015年：容器化封装+自动化管理+面向微服务</p>
+<p>2018年：容器化封装+面向微服务+服务网格+声明格式API</p>
+<p>云原生有利于各种组织在共有云，私有云和混合云等新动态环境中，构建和运行可扩展性的应用</p>
+<p>微服务 ：把原有的单体应用拆分为多个独立自治的组件，每个组件都可以独立开发，设计，测试，运维，部署，这个组件可以单独的对外进行服务，我们称其为微服务</p>
+<p>容器化：docker容器，容器属于it基础设施层概念，是比虚拟机更轻量化的隔离工具，是微服务的最佳载体</p>
+<p>使用k8s的资源调度与容器编排，可以实现docker容器更优管理，进一步实现其PaaS能力</p>
+<p>服务网格</p>
+<p>服务网格存在的目的，就是中心化的服务治理框架</p>
+<p>以往需要对微服务或者对api接口区做治理和管理请求</p>
+<p>不可以改变基础设施指的是镜像：日后如果想再次改变他的部署，可以用镜像进行改变</p>
+<p>应用部署：命令行：声明式</p>
+<p>DevOps</p>
+<p>借助云原生的相关技术，DevOps的时代才到来</p>
+<p>云原生的最佳实现的实现三个层面</p>
+<p>服务编排要实现计算资源弹性化</p>
+<p>服务构建和部署要实现高可用</p>
+<p>实践驱动基础设施标准初始化</p>
+<p>云原生应用的领域</p>
+<p>云原生的生态也已经覆盖到了，大数据，人工智能，边缘计算，区域局等领域</p>
+<p>云原生的编排以及管理</p>
+<p>编排与调度k8s</p>
+<p>原生调用grpc</p>
+<p>服务代理envoy</p>
+<p>api网关apisix</p>
+<p>服务网格istio</p>
+<p>服务发现coreDns</p>
+<p>消息和流式处理kafka</p>
+<p>Severless ：只是对服务器的关心比较少，并不是完全无服务器</p>
+<p>自动化配置：ansible</p>
+<p>数据库：不赘述了</p>
+<p>容器镜像仓库：harbor</p>
+<p>定义及镜像制作：helm</p>
+<p>密钥管理：spiffe</p>
+<p>存储技术：ceph</p>
+<p>网络技术：calico</p>
+<p>监控分析：prometheus</p>
+<p>等</p>
+<h1 id="4步制作超级精简的大厂docker镜像"><a href="#4步制作超级精简的大厂docker镜像" class="headerlink" title="4步制作超级精简的大厂docker镜像"></a>4步制作超级精简的大厂docker镜像</h1><h2 id="什么是镜像"><a href="#什么是镜像" class="headerlink" title="什么是镜像"></a>什么是镜像</h2><p>镜像是：分层联合文件系统</p>
+<p>一种轻量级，可执行的独立软件包</p>
+<p>镜像大小：有大有小</p>
+<p>曾经网易蜂巢logo镜像只有585B</p>
+<p><code>docker pull hub.c.163.com/public/logo</code></p>
+<p>精简docker镜像的优势</p>
+<p>减少构建时间</p>
+<p>减少磁盘使用量</p>
+<p>减少下载时间</p>
+<p>提高安全性</p>
+<h2 id="镜像的分层原理"><a href="#镜像的分层原理" class="headerlink" title="镜像的分层原理"></a>镜像的分层原理</h2><p>doccker镜像的分层</p>
+<p>第一层：本机的系统</p>
+<p>第二层：镜像上安装的虚拟环境比如：python</p>
+<p>第三层：打的补丁文件</p>
+<p><code>docker pull busybox:latest</code></p>
+<p>拉下来之后我们对它进行多层的镜像</p>
+<p>简单来说，一个命令就是一层</p>
+<h2 id="制作精简镜像"><a href="#制作精简镜像" class="headerlink" title="制作精简镜像"></a>制作精简镜像</h2><h2 id="构建企业debian-10-基础测试镜像"><a href="#构建企业debian-10-基础测试镜像" class="headerlink" title="构建企业debian 10 基础测试镜像"></a>构建企业debian 10 基础测试镜像</h2>
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/07/12-07/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -324,7 +472,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-08 19:02:33" itemprop="dateModified" datetime="2022-12-08T19:02:33+08:00">2022-12-08</time>
+                <time title="修改时间：2022-12-09 13:34:57" itemprop="dateModified" datetime="2022-12-09T13:34:57+08:00">2022-12-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -342,14 +490,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.2k</span>
+              <span>9.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
+              <span>8 分钟</span>
             </span>
 
         </div>
@@ -409,6 +557,51 @@
 <p>然后通过chown 进行修改组以及用户 <code>chown -R hadoop:hadoop /data</code></p>
 <p>然后再次运行就可以了</p>
 <p>然后在调度器管理页面添加调度器，然后分配任务就可以了</p>
+<h1 id="钉钉报警"><a href="#钉钉报警" class="headerlink" title="钉钉报警"></a>钉钉报警</h1><p>钉钉机器人可发送的类型</p>
+<ul>
+<li>文本</li>
+<li>链接</li>
+<li>markdown</li>
+<li>actioncard</li>
+<li>feedcard</li>
+</ul>
+<p>weget  ： 从互联网上下载的时候用的 ： 下载安装包 ，但是占用网络资源较大，且会一直重复下载直到结果成功，所以占用的资源较大</p>
+<p>curl ： 发送请求的，发送网页请求访问的，也可以进行下载</p>
+<ul>
+<li>-o ： 把访问的一个页面存储到文件里</li>
+</ul>
+<p>机器人发送消息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;机器人的token&#x27;</span><br><span class="line">-H &#x27;Content-type:application/json&#x27;</span><br><span class="line">-d &#x27;&#123;&quot;msgtype&quot; : text&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+<p>需求 ： </p>
+<ul>
+<li>日志数据 ： hdfs 上 linux user_click.log</li>
+<li>例子： u01,鼠标,ios</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">u01,鼠标,ios</span><br><span class="line">u01,鼠标,ios</span><br><span class="line">u01,鼠标,ios</span><br><span class="line">u01,鼠标,ios</span><br><span class="line">u01,鼠标,ios</span><br><span class="line">u02,键盘,android</span><br><span class="line">u02,键盘,android</span><br><span class="line">u02,键盘,android</span><br><span class="line">u02,键盘,android</span><br><span class="line">u03,显示器,ios</span><br><span class="line">u04,托特包,ios</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>业务数据 ：mysql user_info</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">u01,子航</span><br><span class="line">u02,祖安</span><br><span class="line">u03,海哥</span><br><span class="line">u04,轩轩</span><br></pre></td></tr></table></figure>
+
+<p>统计：</p>
+<p>uid ， name ，sku ， os 每个用户点击商品的次数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select bianhao,shop_name,caozuoxit,count(*) as cishu from user_click1 group by bianhao,shop_name,caozuoxit;</span><br></pre></td></tr></table></figure>
+
+<p>取出表中重复数据，的次数做个排序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select shop_name,caozuoxit,name,row_number() over (partition by name) as rm from (</span><br><span class="line">select * from user_click1 left join user_info on user_click1.bianhao=user_info.bianhao</span><br><span class="line">) as king</span><br></pre></td></tr></table></figure>
+
+<p>不重复字段标识为1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">u01,子航,鼠标,ios 1</span><br><span class="line">u01,子航,鼠标,ios 2</span><br><span class="line">u01,子航,鼠标,ios 3</span><br><span class="line">u04,托特包,ios 1</span><br></pre></td></tr></table></figure>
+
+<p>统计表中不重复的数据，一起做排序，但是对于重复数据它还是对自己排序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">select name,caozuoxit,shop_name,row_number() over(partition by cishu) from (</span><br><span class="line">select * from user_click1 left join (</span><br><span class="line">select bianhao,count(*) as cishu from user_click1 group by bianhao,shop_name,caozuoxit</span><br><span class="line">) as count_click on count_click.bianhao=user_click1.bianhao</span><br><span class="line">left join user_info on count_click.bianhao=user_info.bianhao  </span><br><span class="line">) as ds;</span><br><span class="line">上述是取巧的方法</span><br><span class="line">下面是正经的方法</span><br><span class="line">select count_clickbianhao,name,caozuoxit,shop_name,row_number() over(order by cishu) as rm from (</span><br><span class="line">select * from user_click1 left join (</span><br><span class="line">select bianhao as count_clickbianhao,count(*) as cishu from user_click1 group by bianhao,shop_name,caozuoxit</span><br><span class="line">) as count_click on count_click.count_clickbianhao=user_click1.bianhao </span><br><span class="line">left join user_info on count_click.count_clickbianhao=user_info.bianhao  </span><br><span class="line">) as jj where cishu = 1 </span><br><span class="line">union all</span><br><span class="line">select count_clickbianhao,name,caozuoxit,shop_name,row_number() over(partition by (name,caozuoxit,shop_name,cishu)) from (</span><br><span class="line">select * from user_click1 left join (</span><br><span class="line">select bianhao as count_clickbianhao,count(*) as cishu from user_click1 group by bianhao,shop_name,caozuoxit</span><br><span class="line">) as count_click on count_click.count_clickbianhao=user_click1.bianhao </span><br><span class="line">left join user_info on count_click.count_clickbianhao=user_info.bianhao  </span><br><span class="line">) as j where cishu != 1;</span><br></pre></td></tr></table></figure>
+
+<p>整个流程使用xxl进行调度</p>
+<p>最后结果导入到mysql</p>
+<p>数据导入mysql保证幂等性</p>
 
       
     </div>
@@ -454,10 +647,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-07 08:23:07 / 修改时间：09:50:53" itemprop="dateCreated datePublished" datetime="2022-12-07T08:23:07+08:00">2022-12-07</time>
+              <time title="创建时间：2022-12-07 08:23:07" itemprop="dateCreated datePublished" datetime="2022-12-07T08:23:07+08:00">2022-12-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-10 23:57:16" itemprop="dateModified" datetime="2022-12-10T23:57:16+08:00">2022-12-10</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -474,7 +673,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.3k</span>
+              <span>7.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -508,6 +707,11 @@
 <p><code>curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</code></p>
 <p>也可以用国内的daocloud安装</p>
 <p><code>curl -sSL https://get.daocloud.io/docker | sh</code></p>
+<p>当执行安装命令出现以下情况报错的时候</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># Executing docker install script, commit: 4f282167c425347a931ccfd95cc91fab041d414f</span><br><span class="line">+ sh -c &#x27;yum install -y -q yum-utils&#x27;</span><br><span class="line">error: rpmdb: BDB0113 Thread/process 16675/139942115395648 failed: BDB1507 Thread died in Berkeley DB library</span><br><span class="line">error: db5 error(-30973) from dbenv-&gt;failchk: BDB0087 DB_RUNRECOVERY: Fatal error, run database recovery</span><br><span class="line">error: cannot open Packages index using db5 -  (-30973)</span><br><span class="line">error: cannot open Packages database in /var/lib/rpm</span><br><span class="line">CRITICAL:yum.main:</span><br><span class="line"></span><br><span class="line">Error: rpmdb open failed</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>执行 <code>mv /var/lib/rpm/__db.00* /tmp/&amp;&amp;yum clean all</code></p>
+<p>再执行安装命令就可以了</p>
 <p>这样在有网的机器上就安装完成了，是不是很简单 ，</p>
 <p>接下来我们要说手动安装的情况</p>
 <p>首先要卸载旧版本</p>
@@ -550,7 +754,6 @@
 <h1 id="docker-命令"><a href="#docker-命令" class="headerlink" title="docker 命令"></a>docker 命令</h1><p>docker命令的种类不多但是其中的分支较多</p>
 <p>docker run : 原本的意义是创建一个docker容器，并运行它</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">-a stdin: 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项；</span><br><span class="line"></span><br><span class="line">-d: 后台运行容器，并返回容器ID；</span><br><span class="line"></span><br><span class="line">-i: 以交互模式运行容器，通常与 -t 同时使用；</span><br><span class="line"></span><br><span class="line">-P: 随机端口映射，容器内部端口随机映射到主机的端口</span><br><span class="line"></span><br><span class="line">-p: 指定端口映射，格式为：主机(宿主)端口:容器端口</span><br><span class="line"></span><br><span class="line">-t: 为容器重新分配一个伪输入终端，通常与 -i 同时使用；</span><br><span class="line"></span><br><span class="line">--name=&quot;nginx-lb&quot;: 为容器指定一个名称；</span><br><span class="line"></span><br><span class="line">--dns 8.8.8.8: 指定容器使用的DNS服务器，默认和宿主一致；</span><br><span class="line"></span><br><span class="line">--dns-search example.com: 指定容器DNS搜索域名，默认和宿主一致；</span><br><span class="line"></span><br><span class="line">-h &quot;mars&quot;: 指定容器的hostname；</span><br><span class="line"></span><br><span class="line">-e username=&quot;ritchie&quot;: 设置环境变量；</span><br><span class="line"></span><br><span class="line">--env-file=[]: 从指定文件读入环境变量；</span><br><span class="line"></span><br><span class="line">--cpuset=&quot;0-2&quot; or --cpuset=&quot;0,1,2&quot;: 绑定容器到指定CPU运行；</span><br><span class="line"></span><br><span class="line">-m :设置容器使用内存最大值；</span><br><span class="line"></span><br><span class="line">--net=&quot;bridge&quot;: 指定容器的网络连接类型，支持 bridge/host/none/container: 四种类型；</span><br><span class="line"></span><br><span class="line">--link=[]: 添加链接到另一个容器；</span><br><span class="line"></span><br><span class="line">--expose=[]: 开放一个端口或一组端口；</span><br><span class="line"></span><br><span class="line">--volume , -v: 绑定一个卷</span><br></pre></td></tr></table></figure>
-
 
 <p><strong>docker start</strong> :启动一个或多个已经被停止的容器</p>
 <p><strong>docker stop</strong> :停止一个运行中的容器</p>
@@ -2285,293 +2488,6 @@ is null 作用一样 &lt;=&gt;
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/28/11-28/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/28/11-28/" class="post-title-link" itemprop="url">yarn</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-28 08:34:31" itemprop="dateCreated datePublished" datetime="2022-11-28T08:34:31+08:00">2022-11-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-05 12:07:08" itemprop="dateModified" datetime="2022-12-05T12:07:08+08:00">2022-12-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="yarn"><a href="#yarn" class="headerlink" title="yarn"></a>yarn</h1><h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>主从架构 ： resourcemanager(资源的分配) : nodemanager(资源的供给与隔离)</p>
-<h3 id="资源调度"><a href="#资源调度" class="headerlink" title="资源调度"></a>资源调度</h3><p>通过rm把nm的资源分配给我们的 task上</p>
-<h3 id="资源隔离"><a href="#资源隔离" class="headerlink" title="资源隔离"></a>资源隔离</h3><p>nm按照要求给task提供资源，保证提供的资源具有独占性</p>
-<h3 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h3><p>nm指挥分配的资源</p>
-<p>一个task对应一个container ： cpu&#x2F;mem（cpu和内存）</p>
-<p>每个container之间是相互隔离的</p>
-<h2 id="yarn的架构设计"><a href="#yarn的架构设计" class="headerlink" title="yarn的架构设计"></a>yarn的架构设计</h2><p>作业提交的流程：<br>client &#x3D;&gt; 给rm 的apps 发送请求 去运行 jar （app master）</p>
-<p>apps 分配一个container 去运行 app master</p>
-<p>app master 会向apps manager 去注册我的作业</p>
-<p>app master 向resource scheduler 申请资源去运行 我的代码</p>
-<p>nodemanager 会开启资源 container 去运行map task 以及reduce task</p>
-<p>tsak 会向 app master 汇报代码与运行情况</p>
-<p>当代码运行完成 app master 会给apps 发送请求 ，通知我的作业完成了</p>
-<p>apps manager 收到请求之后会通知你的客户端 ，告诉已经运行完成</p>
-<p>输入阶段 ： map tsak 的个数 &#x3D;》container 的申请个数 redurce task 同理</p>
-<h2 id="面试会问"><a href="#面试会问" class="headerlink" title="面试会问"></a>面试会问</h2><p>yarn的架构设计 &#x3D;&#x3D;mr作业提交流程</p>
-<h2 id="调度器"><a href="#调度器" class="headerlink" title="调度器"></a>调度器</h2><p>FIFO ：</p>
-<ul>
-<li>先进先出</li>
-<li>单队列</li>
-</ul>
-<p>Capacity ：容量调度器</p>
-<ul>
-<li>多队列</li>
-<li>先进先出（针对一个队列）</li>
-<li>每个队列之间互不影响</li>
-<li>每个队列之间是事先定好的</li>
-</ul>
-<p>Fair：公平调度器</p>
-<ul>
-<li>多队列</li>
-<li>每个队列之间的每个job是有影响的 不是先进先出</li>
-<li>哪一个job的优先级高就执行哪一个</li>
-<li>如果相同优先级，则是顺序</li>
-</ul>
-<p>主流的中小企业：Capacity</p>
-<p>大公司会用：fair</p>
-<h3 id="默认调度器"><a href="#默认调度器" class="headerlink" title="默认调度器"></a>默认调度器</h3><p>3.x：默认是容量调度器</p>
-<p>通过调度器进行其作业调度</p>
-<p>2.x: 版本是fair（默认）</p>
-<h2 id="yarn的web界面的简介"><a href="#yarn的web界面的简介" class="headerlink" title="yarn的web界面的简介"></a>yarn的web界面的简介</h2><p>左侧侧边栏 ： 有几个选项卡 ： 分别是</p>
-<h2 id="yarn资源的调优"><a href="#yarn资源的调优" class="headerlink" title="yarn资源的调优"></a>yarn资源的调优</h2><p>container?</p>
-<p>一定比例的cpu和mem</p>
-<p>刀片服务器的配置 ： 128G 16 core :假设一个机器的配置</p>
-<p>刀片服务器 装完系统 消耗内存 1G</p>
-<p>系统预留 ： 预留 20%左右 包含装完成系统 消耗的1G</p>
-<p>原因 ：给未来部署组件预留空间，防止全部使用 ： 会导致系统夯住 就是卡住 ，oom机制【linux系统】：系统会自己杀死进程当内存不足的时候</p>
-<p>预留空间 ： 128 * 0.2 &#x3D; 26G</p>
-<p>其余空间用于大数据 102G</p>
-<p>hadoop ：</p>
-<ul>
-<li>datanode  进程内存 ： 默认 1G &#x3D;》 生产上 2G</li>
-<li>nodemanager 进程内存 ： ，默认 1G &#x3D;》 生产上 4G</li>
-</ul>
-<p>接下来还有96G全部给我们的yarn资源 ： 96G</p>
-<p>container的资源分配 ：</p>
-<p>内存</p>
-<p>cpu</p>
-<p>相比：cpu更重要一些</p>
-<p>container的内存划分 ：默认是86G</p>
-<p>其最小是 1G（默认）</p>
-<p>最大是 8G（默认） 但是可以设置</p>
-<p>注意 container的内存会自动增加 默认以1G递增</p>
-<p>container cpu ： 是虚拟核 &#x3D;》 考虑初衷是不同节点的cpu性能不同</p>
-<p>比如 ： 一个cpu是另外一个cpu的2倍</p>
-<p>第一机器 ： pcore ：vcore &#x3D; 1：2 相当于1个物理核当成两个虚拟核用</p>
-<p>给container的核数 ： 默认是8core</p>
-<p>总数 ：</p>
-<p>最小:1c  (默认)</p>
-<p>最大:4c（默认）</p>
-<p>实际开发角度 ：</p>
-<p>mem：最大不要超过32G ，如果超过32G则会导致压缩指针失效</p>
-<p>cpu ： cloudera的公司推荐一个container的core最好不要超过5</p>
-<p>配置core  ：在yarn-site.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.resource.memory-mb&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;4096&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.minimum-allocation-mb&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;1024&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.maximum-allocation-mb&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;2048&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">cpu： </span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.resource.pcores-vcores-multiplier&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;2&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.resource.cpu-vcores&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;4&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.minimum-allocation-vcores&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;1&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.scheduler.maximum-allocation-vcores&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;2&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="mapreduce"><a href="#mapreduce" class="headerlink" title="mapreduce"></a>mapreduce</h2><p>map task :mem  : 默认是1024m ，一个map task 申请的资源是1024m ， 但是如果实际使用的资源的内存量超过这个值，你的task会强制被杀死 ，reduce task 也一样</p>
-<p>map task :vcore ： 默认是1</p>
-<p>reduce task :mem : 默认是1024m</p>
-<p>reduce task :vcore : 默认是1</p>
-<p>mr作业是进程级别 &#x3D;》 jvm</p>
-<p>map task</p>
-<p>reduce task</p>
-<p>jvm参数调优 ：</p>
-<p>存储 hdfs</p>
-<p>存储文件</p>
-<p>压缩</p>
-<ul>
-<li>为什么使用压缩？</li>
-<li>节省空间</li>
-<li>节省时间<ul>
-<li>网络io核磁盘io会减少</li>
-<li>指的是mapreduce数据计算过程中</li>
-<li>经过网络传输的数据会变少，</li>
-<li>同样到磁盘上的时候，数据量少也会减少磁盘的io</li>
-</ul>
-</li>
-<li>使用场景<ul>
-<li>采用压缩 ， 对机器的cpu要求比较高</li>
-<li>存储数据的空间不够了，才会用压缩</li>
-</ul>
-</li>
-<li>两面性</li>
-<li>采用压缩的确会让空间和时间减少</li>
-<li>cpu消耗 cpu利用率高 &#x3D;》会导致处理的时间变长一点</li>
-<li>如何使用压缩？</li>
-</ul>
-<p>常见的压缩格式</p>
-<ul>
-<li>gzip</li>
-<li>bzip2</li>
-<li>Lzo</li>
-<li>Snappy</li>
-<li>LZ4</li>
-</ul>
-<p>常见的压缩注意点：</p>
-<p>压缩比 Bzip2 30%  GZIP    snappy、lzo 50%  ： 这个30%和50%代表能把源文件压缩到源文件的%多少</p>
-<p>解压速度 ： snappy、lzo GZIP   Bzip2</p>
-<p>压缩文件可不可以一被切分</p>
-<p>假设一个 5G文件 不能被切分 split 意味着 只能使用一个map task去处理</p>
-<p>map task  5G</p>
-<p>假设一个 5G文件 能被切片  splits 10map task 去并行处理</p>
-<p>5*1024 &#x2F;10 &#x3D; 一个map task 处理的数据</p>
-<p>能否被切分 决定了 你的 一个map task处理的数据量有多少</p>
-<p>压缩后的文件是否支持分割？<br>            gzip  不可分割<br>            bzip2  可分割<br>            lzo   带索引的可以分割 (默认是不支持分割的)<br>            snappy 不可分割的</p>
-<p>mapreduce 每个阶段该如何采用这些算法？</p>
-<p>input &#x3D;》 maps &#x3D;》 reduce &#x3D;》 output</p>
-<p>input：<br>    1.Bzip2 ：支持分割 多个map task 进行出</p>
-<p>map out：</p>
-<ul>
-<li>snappy 、lzo</li>
-<li>shuffle 过程 要选择一个解压 速度快的压缩格式</li>
-</ul>
-<p>reduce out ：</p>
-<ul>
-<li>1.高的压缩比 + 支持分片  &#x3D;》 节省空间</li>
-<li>2.bzip2  、lzo带索引的</li>
-</ul>
-<p>reduce out 数据 作为下一个<br>map 的输入咋办？<br>建议使用bzip2【如果采用压缩的话】</p>
-<p>进行压缩配置的两种方式 ：</p>
-<p>job &#x3D;》 code 针对少数job生产生效</p>
-<p>集群所有的job 在配置文件里配置</p>
-<p>对mapreduce 进行配置</p>
-<ul>
-<li>配置压缩的codec</li>
-<li>map reduce 输出配置<ul>
-<li>先打开压缩的开关</li>
-<li>配置codec即可</li>
-</ul>
-</li>
-<li>hadoop是不是支持哪些压缩 ，通过命令 ：或者配置文件</li>
-<li>core-site.xml<ul>
-<li>配置支持的压缩有什么</li>
-<li>原生的hadoop默认不支持lzo的算法，因为lzo要把整个hadooop重新编译一遍才可以重新实行</li>
-<li>&#96;&#96;&#96;<property>
-        <name>io.compression.codecs</name>
-        <value>org.apache.hadoop.io.compress.BZip2Codec,
-        org.apache.hadoop.io.compress.SnappyCodec,
-        org.apache.hadoop.io.compress.GzipCodec,
-        org.apache.hadoop.io.compress.DefaultCodec
-    </value>
-</property>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mapred-site.xml:</span><br><span class="line"></span><br><span class="line">* 1.先打开压缩的开关</span><br><span class="line">* 2.map reduce 输出 压缩算法</span><br><span class="line"></span><br><span class="line">reduce： 开关</span><br><span class="line"></span><br><span class="line">* mapreduce.output.fileoutputformat.compress</span><br><span class="line">* ```</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">          &lt;name&gt;mapreduce.output.fileoutputformat.compress&lt;/name&gt;</span><br><span class="line">          &lt;value&gt;true&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>&#96;&#96;&#96;<property>
-        <name>mapreduce.output.fileoutputformat.compress.codec</name>
-        <value>org.apache.hadoop.io.compress.BZip2Codec</value>
-</property>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">map阶段的：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-// 设置在map输出阶段压缩
-      conf.set("mapreduce.map.output.compress", "true");</li>
-</ul>
-<p>&#x2F;&#x2F; 设置解压缩编码器<br>        conf.set(“mapreduce.map.output.compress.codec”, “org.apache.hadoop.io.compress.DefaultCodec”);</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">各个datanode数据节点的平衡</span><br><span class="line"></span><br><span class="line">* DN1 存储空间 90%</span><br><span class="line">* DN2 存储空间 60%</span><br><span class="line">* DN3 存储空间 80%</span><br><span class="line"></span><br><span class="line">如何做呢？</span><br><span class="line"></span><br><span class="line">* sbin/start-balancer.sh</span><br><span class="line"></span><br><span class="line">parameters = Balancer.BalancerParameters</span><br><span class="line"></span><br><span class="line">[BalancingPolicy.Node, threshold = 10.0, max idle iteration = 5</span><br><span class="line"></span><br><span class="line">数据平衡的默认阈值：threshold = 10.0</span><br><span class="line"></span><br><span class="line">每个节点的磁盘使用率 - 平均的磁盘使用率 &lt;10%</span><br><span class="line"></span><br><span class="line">DN1 存储空间 90%  -76% = 14% 说明这个节点数据多 往别的节点迁移数据 出</span><br><span class="line">DN2 存储空间 60%  -76% = -12% 说明这个节点数据少 别的节点迁移数据 进</span><br><span class="line">DN3 存储空间 80%  -76% = 4% 	说明这个节点数据多 往别的节点迁移数据</span><br><span class="line"></span><br><span class="line">avg=90 + 80 +60 /3 = 76%</span><br><span class="line"></span><br><span class="line">生产上 从现在开始 start-balancer.sh -threshold 10  每天要定时做的</span><br><span class="line"></span><br><span class="line">放到业务低谷期去做 数据平衡操作</span><br><span class="line"></span><br><span class="line">注意： 不要在业务高峰期做</span><br><span class="line"></span><br><span class="line">1.数据平衡 数据传输  带宽有关</span><br><span class="line"></span><br><span class="line">调优参数 ：平衡的网络带宽  w</span><br><span class="line"></span><br><span class="line">dfs.datanode.balance.bandwidthPerSec 100m 【2.x 默认是10m】</span><br><span class="line"></span><br><span class="line">每个节点数据几十T  需要数据平衡的数据 几十T  可以申请维护窗口时间 ：</span><br><span class="line"></span><br><span class="line">dfs.datanode.balance.bandwidthPerSec 临时调大 200M</span><br><span class="line"></span><br><span class="line">单个DN节点 多块磁盘的数据平衡</span><br><span class="line"></span><br><span class="line">投产前规划：</span><br><span class="line">		DN 机器   10块 2T 【不做raid】  =》 20T   副本的</span><br><span class="line"></span><br><span class="line">1.dn 配置多个磁盘</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<property>
-        <name>dfs.datanode.data.dir</name>
-        <value>/data01,/data02,/data03</value>
-</property>
-```
-
-<p>挂载磁盘一般最省钱的是 2W 转数 2T的</p>
-<p>2.为什么要使用多块物理磁盘？</p>
-<p>1.存储<br>2.因为多个磁盘的io也是叠加的<br>每块磁盘 磁盘io 每秒 100m<br>三块磁盘 1s 能 300m文件内容<br>一块磁盘 1s 100m</p>
-<p>3.可以让服务一直运行，加入一个磁盘挂了，服务不会减少</p>
-<p>做多个磁盘数据均衡<br>    dfs.disk.balancer.enabled  true 【3.x有这个功能 cdh 2.x 也有】 apache 2.x 没有这个功能</p>
-<p>得通过命令去解决磁盘数据均衡？</p>
-<p>hdfs diskbalancer</p>
-<p>1.步骤</p>
-<pre><code>hdfs diskbalancer -plan  bigdata32  =&gt; 生成一个  bigdata32.plan.json 文件
-    hdfs diskbalancer -execute bigdata32.plan.json =》 执行disk 数据均衡计划文件
-    hdfs diskbalancer -query bigdata32
-</code></pre>
-<p>生产上 当你发现 磁盘写入不均衡 可以做一下 【一般 一个月 半个月 做一次即可】</p>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2643,14 +2559,14 @@ is null 作用一样 &lt;=&gt;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -2701,7 +2617,7 @@ is null 作用一样 &lt;=&gt;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共87.1k字</span>
+  <span class="post-count">博客全站共89k字</span>
 </div>
 
 

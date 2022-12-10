@@ -19,6 +19,75 @@
 ]]></content>
   </entry>
   <entry>
+    <title>云原生教学视频</title>
+    <url>/2022/12/10/12-08/</url>
+    <content><![CDATA[<h1 id="云原生"><a href="#云原生" class="headerlink" title="云原生"></a>云原生</h1><p>理解 ： 理解上要把他们拆开理解会更好</p>
+<p>云 ：云基础设施（cloud）</p>
+<p>原生：native ：在云计算平台里可以原生的计算和运行的</p>
+<p>云原生的概念由来：<br>2013年被prvoyal公司的Ms提出</p>
+<p>2015年谷歌带头成立了云原生的计算基金会</p>
+<p>云原生的定义 ：</p>
+<p>基于微服务原理而开发的应用，用容器的方式打包，在运行时，容器由运行于云基础设施之上的平台进行调度，应用开发采用持续交付和devOps实践</p>
+<p>2015年：容器化封装+自动化管理+面向微服务</p>
+<p>2018年：容器化封装+面向微服务+服务网格+声明格式API</p>
+<p>云原生有利于各种组织在共有云，私有云和混合云等新动态环境中，构建和运行可扩展性的应用</p>
+<p>微服务 ：把原有的单体应用拆分为多个独立自治的组件，每个组件都可以独立开发，设计，测试，运维，部署，这个组件可以单独的对外进行服务，我们称其为微服务</p>
+<p>容器化：docker容器，容器属于it基础设施层概念，是比虚拟机更轻量化的隔离工具，是微服务的最佳载体</p>
+<p>使用k8s的资源调度与容器编排，可以实现docker容器更优管理，进一步实现其PaaS能力</p>
+<p>服务网格</p>
+<p>服务网格存在的目的，就是中心化的服务治理框架</p>
+<p>以往需要对微服务或者对api接口区做治理和管理请求</p>
+<p>不可以改变基础设施指的是镜像：日后如果想再次改变他的部署，可以用镜像进行改变</p>
+<p>应用部署：命令行：声明式</p>
+<p>DevOps</p>
+<p>借助云原生的相关技术，DevOps的时代才到来</p>
+<p>云原生的最佳实现的实现三个层面</p>
+<p>服务编排要实现计算资源弹性化</p>
+<p>服务构建和部署要实现高可用</p>
+<p>实践驱动基础设施标准初始化</p>
+<p>云原生应用的领域</p>
+<p>云原生的生态也已经覆盖到了，大数据，人工智能，边缘计算，区域局等领域</p>
+<p>云原生的编排以及管理</p>
+<p>编排与调度k8s</p>
+<p>原生调用grpc</p>
+<p>服务代理envoy</p>
+<p>api网关apisix</p>
+<p>服务网格istio</p>
+<p>服务发现coreDns</p>
+<p>消息和流式处理kafka</p>
+<p>Severless ：只是对服务器的关心比较少，并不是完全无服务器</p>
+<p>自动化配置：ansible</p>
+<p>数据库：不赘述了</p>
+<p>容器镜像仓库：harbor</p>
+<p>定义及镜像制作：helm</p>
+<p>密钥管理：spiffe</p>
+<p>存储技术：ceph</p>
+<p>网络技术：calico</p>
+<p>监控分析：prometheus</p>
+<p>等</p>
+<h1 id="4步制作超级精简的大厂docker镜像"><a href="#4步制作超级精简的大厂docker镜像" class="headerlink" title="4步制作超级精简的大厂docker镜像"></a>4步制作超级精简的大厂docker镜像</h1><h2 id="什么是镜像"><a href="#什么是镜像" class="headerlink" title="什么是镜像"></a>什么是镜像</h2><p>镜像是：分层联合文件系统</p>
+<p>一种轻量级，可执行的独立软件包</p>
+<p>镜像大小：有大有小</p>
+<p>曾经网易蜂巢logo镜像只有585B</p>
+<p><code>docker pull hub.c.163.com/public/logo</code></p>
+<p>精简docker镜像的优势</p>
+<p>减少构建时间</p>
+<p>减少磁盘使用量</p>
+<p>减少下载时间</p>
+<p>提高安全性</p>
+<h2 id="镜像的分层原理"><a href="#镜像的分层原理" class="headerlink" title="镜像的分层原理"></a>镜像的分层原理</h2><p>doccker镜像的分层</p>
+<p>第一层：本机的系统</p>
+<p>第二层：镜像上安装的虚拟环境比如：python</p>
+<p>第三层：打的补丁文件</p>
+<p><code>docker pull busybox:latest</code></p>
+<p>拉下来之后我们对它进行多层的镜像</p>
+<p>简单来说，一个命令就是一层</p>
+<h2 id="制作精简镜像"><a href="#制作精简镜像" class="headerlink" title="制作精简镜像"></a>制作精简镜像</h2><h2 id="构建企业debian-10-基础测试镜像"><a href="#构建企业debian-10-基础测试镜像" class="headerlink" title="构建企业debian 10 基础测试镜像"></a>构建企业debian 10 基础测试镜像</h2>]]></content>
+      <categories>
+        <category>云原生（哔哩哔哩）</category>
+      </categories>
+  </entry>
+  <entry>
     <title>数据可视化</title>
     <url>/2022/12/07/12-07/</url>
     <content><![CDATA[<h1 id="数据可视化的数据库选择"><a href="#数据可视化的数据库选择" class="headerlink" title="数据可视化的数据库选择"></a>数据可视化的数据库选择</h1><p>一般选择响应数据库比较快的一般是 秒级，或者毫秒级 ： 不要选择hive</p>
@@ -66,6 +135,51 @@
 <p>然后通过chown 进行修改组以及用户 <code>chown -R hadoop:hadoop /data</code></p>
 <p>然后再次运行就可以了</p>
 <p>然后在调度器管理页面添加调度器，然后分配任务就可以了</p>
+<h1 id="钉钉报警"><a href="#钉钉报警" class="headerlink" title="钉钉报警"></a>钉钉报警</h1><p>钉钉机器人可发送的类型</p>
+<ul>
+<li>文本</li>
+<li>链接</li>
+<li>markdown</li>
+<li>actioncard</li>
+<li>feedcard</li>
+</ul>
+<p>weget  ： 从互联网上下载的时候用的 ： 下载安装包 ，但是占用网络资源较大，且会一直重复下载直到结果成功，所以占用的资源较大</p>
+<p>curl ： 发送请求的，发送网页请求访问的，也可以进行下载</p>
+<ul>
+<li>-o ： 把访问的一个页面存储到文件里</li>
+</ul>
+<p>机器人发送消息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl &#x27;机器人的token&#x27;</span><br><span class="line">-H &#x27;Content-type:application/json&#x27;</span><br><span class="line">-d &#x27;&#123;&quot;msgtype&quot; : text&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+<p>需求 ： </p>
+<ul>
+<li>日志数据 ： hdfs 上 linux user_click.log</li>
+<li>例子： u01,鼠标,ios</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">u01,鼠标,ios</span><br><span class="line">u01,鼠标,ios</span><br><span class="line">u01,鼠标,ios</span><br><span class="line">u01,鼠标,ios</span><br><span class="line">u01,鼠标,ios</span><br><span class="line">u02,键盘,android</span><br><span class="line">u02,键盘,android</span><br><span class="line">u02,键盘,android</span><br><span class="line">u02,键盘,android</span><br><span class="line">u03,显示器,ios</span><br><span class="line">u04,托特包,ios</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>业务数据 ：mysql user_info</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">u01,子航</span><br><span class="line">u02,祖安</span><br><span class="line">u03,海哥</span><br><span class="line">u04,轩轩</span><br></pre></td></tr></table></figure>
+
+<p>统计：</p>
+<p>uid ， name ，sku ， os 每个用户点击商品的次数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select bianhao,shop_name,caozuoxit,count(*) as cishu from user_click1 group by bianhao,shop_name,caozuoxit;</span><br></pre></td></tr></table></figure>
+
+<p>取出表中重复数据，的次数做个排序</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select shop_name,caozuoxit,name,row_number() over (partition by name) as rm from (</span><br><span class="line">select * from user_click1 left join user_info on user_click1.bianhao=user_info.bianhao</span><br><span class="line">) as king</span><br></pre></td></tr></table></figure>
+
+<p>不重复字段标识为1</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">u01,子航,鼠标,ios 1</span><br><span class="line">u01,子航,鼠标,ios 2</span><br><span class="line">u01,子航,鼠标,ios 3</span><br><span class="line">u04,托特包,ios 1</span><br></pre></td></tr></table></figure>
+
+<p>统计表中不重复的数据，一起做排序，但是对于重复数据它还是对自己排序</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select name,caozuoxit,shop_name,row_number() over(partition by cishu) from (</span><br><span class="line">select * from user_click1 left join (</span><br><span class="line">select bianhao,count(*) as cishu from user_click1 group by bianhao,shop_name,caozuoxit</span><br><span class="line">) as count_click on count_click.bianhao=user_click1.bianhao</span><br><span class="line">left join user_info on count_click.bianhao=user_info.bianhao  </span><br><span class="line">) as ds;</span><br><span class="line">上述是取巧的方法</span><br><span class="line">下面是正经的方法</span><br><span class="line">select count_clickbianhao,name,caozuoxit,shop_name,row_number() over(order by cishu) as rm from (</span><br><span class="line">select * from user_click1 left join (</span><br><span class="line">select bianhao as count_clickbianhao,count(*) as cishu from user_click1 group by bianhao,shop_name,caozuoxit</span><br><span class="line">) as count_click on count_click.count_clickbianhao=user_click1.bianhao </span><br><span class="line">left join user_info on count_click.count_clickbianhao=user_info.bianhao  </span><br><span class="line">) as jj where cishu = 1 </span><br><span class="line">union all</span><br><span class="line">select count_clickbianhao,name,caozuoxit,shop_name,row_number() over(partition by (name,caozuoxit,shop_name,cishu)) from (</span><br><span class="line">select * from user_click1 left join (</span><br><span class="line">select bianhao as count_clickbianhao,count(*) as cishu from user_click1 group by bianhao,shop_name,caozuoxit</span><br><span class="line">) as count_click on count_click.count_clickbianhao=user_click1.bianhao </span><br><span class="line">left join user_info on count_click.count_clickbianhao=user_info.bianhao  </span><br><span class="line">) as j where cishu != 1;</span><br></pre></td></tr></table></figure>
+
+<p>整个流程使用xxl进行调度</p>
+<p>最后结果导入到mysql</p>
+<p>数据导入mysql保证幂等性</p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -86,6 +200,11 @@
 <p><code>curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</code></p>
 <p>也可以用国内的daocloud安装</p>
 <p><code>curl -sSL https://get.daocloud.io/docker | sh</code></p>
+<p>当执行安装命令出现以下情况报错的时候</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Executing docker install script, commit: 4f282167c425347a931ccfd95cc91fab041d414f</span><br><span class="line">+ sh -c &#x27;yum install -y -q yum-utils&#x27;</span><br><span class="line">error: rpmdb: BDB0113 Thread/process 16675/139942115395648 failed: BDB1507 Thread died in Berkeley DB library</span><br><span class="line">error: db5 error(-30973) from dbenv-&gt;failchk: BDB0087 DB_RUNRECOVERY: Fatal error, run database recovery</span><br><span class="line">error: cannot open Packages index using db5 -  (-30973)</span><br><span class="line">error: cannot open Packages database in /var/lib/rpm</span><br><span class="line">CRITICAL:yum.main:</span><br><span class="line"></span><br><span class="line">Error: rpmdb open failed</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>执行 <code>mv /var/lib/rpm/__db.00* /tmp/&amp;&amp;yum clean all</code></p>
+<p>再执行安装命令就可以了</p>
 <p>这样在有网的机器上就安装完成了，是不是很简单 ，</p>
 <p>接下来我们要说手动安装的情况</p>
 <p>首先要卸载旧版本</p>
@@ -128,7 +247,6 @@
 <h1 id="docker-命令"><a href="#docker-命令" class="headerlink" title="docker 命令"></a>docker 命令</h1><p>docker命令的种类不多但是其中的分支较多</p>
 <p>docker run : 原本的意义是创建一个docker容器，并运行它</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-a stdin: 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项；</span><br><span class="line"></span><br><span class="line">-d: 后台运行容器，并返回容器ID；</span><br><span class="line"></span><br><span class="line">-i: 以交互模式运行容器，通常与 -t 同时使用；</span><br><span class="line"></span><br><span class="line">-P: 随机端口映射，容器内部端口随机映射到主机的端口</span><br><span class="line"></span><br><span class="line">-p: 指定端口映射，格式为：主机(宿主)端口:容器端口</span><br><span class="line"></span><br><span class="line">-t: 为容器重新分配一个伪输入终端，通常与 -i 同时使用；</span><br><span class="line"></span><br><span class="line">--name=&quot;nginx-lb&quot;: 为容器指定一个名称；</span><br><span class="line"></span><br><span class="line">--dns 8.8.8.8: 指定容器使用的DNS服务器，默认和宿主一致；</span><br><span class="line"></span><br><span class="line">--dns-search example.com: 指定容器DNS搜索域名，默认和宿主一致；</span><br><span class="line"></span><br><span class="line">-h &quot;mars&quot;: 指定容器的hostname；</span><br><span class="line"></span><br><span class="line">-e username=&quot;ritchie&quot;: 设置环境变量；</span><br><span class="line"></span><br><span class="line">--env-file=[]: 从指定文件读入环境变量；</span><br><span class="line"></span><br><span class="line">--cpuset=&quot;0-2&quot; or --cpuset=&quot;0,1,2&quot;: 绑定容器到指定CPU运行；</span><br><span class="line"></span><br><span class="line">-m :设置容器使用内存最大值；</span><br><span class="line"></span><br><span class="line">--net=&quot;bridge&quot;: 指定容器的网络连接类型，支持 bridge/host/none/container: 四种类型；</span><br><span class="line"></span><br><span class="line">--link=[]: 添加链接到另一个容器；</span><br><span class="line"></span><br><span class="line">--expose=[]: 开放一个端口或一组端口；</span><br><span class="line"></span><br><span class="line">--volume , -v: 绑定一个卷</span><br></pre></td></tr></table></figure>
-
 
 <p><strong>docker start</strong> :启动一个或多个已经被停止的容器</p>
 <p><strong>docker stop</strong> :停止一个运行中的容器</p>
@@ -1932,6 +2050,26 @@ is null 作用一样 &lt;=&gt;
 
 <p>或者之间checkout -b 根据远程建立本地分支</p>
 <h1 id="git-删除远程分支"><a href="#git-删除远程分支" class="headerlink" title="git 删除远程分支"></a>git 删除远程分支</h1><p><code> git push origin --delete [branch_name]</code></p>
+<h1 id="云服务器内存不够，设置swap交换分区"><a href="#云服务器内存不够，设置swap交换分区" class="headerlink" title="云服务器内存不够，设置swap交换分区"></a>云服务器内存不够，设置swap交换分区</h1><p>闲来无事自己用云主机搭建了一台gitlab，但是由于云主机是2G2核的在刚开始布置完成之后，访问的时候时常会502</p>
+<p>就是服务器的内存被占据太多了，无法响应导致的</p>
+<p>然后就想办法设置交换分区解决这个问题</p>
+<p>首先要在root 用户下</p>
+<p>然后是创建交换分区的文件 <code>/file/swap</code></p>
+<p>然后执行 <code>dd if=/dev/zero of=/file/swap bs=1024 count=4096000</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/dev/zero是输入，/file/swap是交换文件位置，路径得存在，bs读/写的块大小，count是swap大小</span><br></pre></td></tr></table></figure>
+
+<p>然后执行 <code>mkswap /file/swap</code></p>
+<p>把第一步的文件设置成swap交换区</p>
+<p>启用swap交换分区</p>
+<p><code>swapon /file/swap</code></p>
+<p>设置成开机挂载交换区</p>
+<p><code>echo &quot;/file/swap swap swap defaults 0 0&quot; &gt;&gt; /etc/fstab</code></p>
+<p>设置启动的条件</p>
+<p><code>vim /etc/sysctl.conf 将vm.swappiness = 0值改为50</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这个值是如何使用swap分区值越大越积极使用swap分区，越小表示越积极使用物理内存，wappiness=50，表示内存使用率超过100-50=50%时开始使用交换分区，swappiness=0时不使用swapswappiness＝100的时候表示积极使用swap分区，并把内存上的数据及时搬运到swap空间</span><br></pre></td></tr></table></figure>
+
+<p>加载参数</p>
+<p><code>sysctl -p</code></p>
 ]]></content>
       <categories>
         <category>日志</category>
