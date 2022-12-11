@@ -80,7 +80,19 @@
 <p>第二层：镜像上安装的虚拟环境比如：python</p>
 <p>第三层：打的补丁文件</p>
 <p><code>docker pull busybox:latest</code></p>
-<p>拉下来之后我们对它进行多层的镜像</p>
+<p>拉下来之后我们对它进行多层的镜像,进行演示一遍</p>
+<p>拉下来之后随便找个地方创建个文件叫dockerfile</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">FROM busybox</span><br><span class="line">RUN mkdir /tmp/foo</span><br><span class="line">RUN dd if=/dev/zero of=/tmp/foo/bar bs=1048576 count=100</span><br><span class="line">RUN rm /tmp/foo/bar</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>上面这个是设置swap的交换分区的代码，count后面跟着的是字节数，bs是每秒的吞吐量</p>
+<p>然后同步到docker容器上并执行这个文件 <code>docker build -t busybox:text . </code>这个语句的意思是根据本地镜像，加上我们的文本语句，进行创建我们的一个新的docker镜像，后面的.代表这个文件夹里所有的文本文件，也可以单独指明是哪一个文本文件</p>
+<p>运行之前</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@VM-8-16-centos dockerfile]# docker images | grep busybox</span><br><span class="line">busybox                     latest    334e4a014c81   4 days ago      4.86MB</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行之后</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@VM-8-16-centos dockerfile]# docker images | grep busybox</span><br><span class="line">busybox                     text      efa9b412f2f7   4 minutes ago   110MB</span><br><span class="line">busybox                     latest    334e4a014c81   4 days ago      4.86MB</span><br></pre></td></tr></table></figure>
+
+<p>这个新的镜像是基于我们之前的busybox进行创建的，而且执行了上面的分区文件</p>
 <p>简单来说，一个命令就是一层</p>
 <h2 id="制作精简镜像"><a href="#制作精简镜像" class="headerlink" title="制作精简镜像"></a>制作精简镜像</h2><h2 id="构建企业debian-10-基础测试镜像"><a href="#构建企业debian-10-基础测试镜像" class="headerlink" title="构建企业debian 10 基础测试镜像"></a>构建企业debian 10 基础测试镜像</h2>]]></content>
       <categories>
