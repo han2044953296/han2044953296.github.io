@@ -87,14 +87,87 @@
 <p>上面这个是设置swap的交换分区的代码，count后面跟着的是字节数，bs是每秒的吞吐量</p>
 <p>然后同步到docker容器上并执行这个文件 <code>docker build -t busybox:text . </code>这个语句的意思是根据本地镜像，加上我们的文本语句，进行创建我们的一个新的docker镜像，后面的.代表这个文件夹里所有的文本文件，也可以单独指明是哪一个文本文件</p>
 <p>运行之前</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@VM-8-16-centos dockerfile]# docker images | grep busybox</span><br><span class="line">busybox                     latest    334e4a014c81   4 days ago      4.86MB</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@VM-8-16-centos dockerfile]# docker images | grep busybox</span><br><span class="line">busybox                     latest    334e4a014c81   4 days ago      4.86MB</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>运行之后</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@VM-8-16-centos dockerfile]# docker images | grep busybox</span><br><span class="line">busybox                     text      efa9b412f2f7   4 minutes ago   110MB</span><br><span class="line">busybox                     latest    334e4a014c81   4 days ago      4.86MB</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@VM-8-16-centos dockerfile]# docker images | grep busybox</span><br><span class="line">busybox                     text      efa9b412f2f7   4 minutes ago   110MB</span><br><span class="line">busybox                     latest    334e4a014c81   4 days ago      4.86MB</span><br></pre></td></tr></table></figure>
 
 <p>这个新的镜像是基于我们之前的busybox进行创建的，而且执行了上面的分区文件</p>
-<p>简单来说，一个命令就是一层</p>
-<h2 id="制作精简镜像"><a href="#制作精简镜像" class="headerlink" title="制作精简镜像"></a>制作精简镜像</h2><h2 id="构建企业debian-10-基础测试镜像"><a href="#构建企业debian-10-基础测试镜像" class="headerlink" title="构建企业debian 10 基础测试镜像"></a>构建企业debian 10 基础测试镜像</h2>]]></content>
+<p>我们通过代码查看一下我们的容器代码情况 通过 <code>docker inspect busybox:容器的标识</code></p>
+<p>容器的标识就是 TAG</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">REPOSITORY                  TAG       IMAGE ID       CREATED             SIZE</span><br><span class="line">busybox                     text      efa9b412f2f7   About an hour ago   110MB</span><br><span class="line">busybox                     latest    334e4a014c81   4 days ago          4.86MB</span><br><span class="line">gitlab/gitlab-ce            latest    08f00af277b7   5 days ago          2.79GB</span><br><span class="line">hub.c.163.com/public/logo   latest    6fbdd13cd204   6 years ago         585B</span><br></pre></td></tr></table></figure>
+
+<p>然后我们分别查看一下text和latest的代码情况，我们查看最后的layter有几层</p>
+<p><code>docker inspect busybox:text</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&quot;Layers&quot;: [</span><br><span class="line">                &quot;sha256:98004ed6104b2f4cc21559ea6e4a742ebf6731e37b5d1b04013ca68862749ba3&quot;,</span><br><span class="line">                &quot;sha256:c7a7aa6d1d87d0af266545bb8a56bdedfc79a14be948c092900ffb841c919c87&quot;,</span><br><span class="line">                &quot;sha256:88d1f859f65e27bca2996107976f04ed974c062b507b33b2388b2228b5d80122&quot;,</span><br><span class="line">                &quot;sha256:8e9b239d68ef8acc6fe2b2a82c7c803a79f0bdc5bf200b6d35fc2b062de24963&quot;</span><br><span class="line">            ]</span><br></pre></td></tr></table></figure>
+
+<p><code>docker inspect busybox:latest</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&quot;Layers&quot;: [</span><br><span class="line">               &quot;sha256:98004ed6104b2f4cc21559ea6e4a742ebf6731e37b5d1b04013ca68862749ba3&quot;</span><br><span class="line">           ]</span><br><span class="line">       &#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>简单来说，一个run就是一层</p>
+<h2 id="制作精简镜像"><a href="#制作精简镜像" class="headerlink" title="制作精简镜像"></a>制作精简镜像</h2><p>但是我们如何精简镜像呢，就像上述所说，仅仅用了三个命令，就多了100m</p>
+<p>而且docker最多只有127个run</p>
+<p>接下来我们来制作一个精简的redis的docker镜像</p>
+<p>先创建一个dockerfile2文件在文件中输入</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">FROM 192.168.5.160/library/ubantu:trusty</span><br><span class="line">ENV VER    3.0.0</span><br><span class="line">ENV TARBALL http://download.redis.io/releases/redis-$VER.tar.gz</span><br><span class="line">RUN apt-get update</span><br><span class="line">RUN apt-get install -y curl make gcc</span><br><span class="line">RUN curl -L $TARBALL | tar zxv</span><br><span class="line">WORKDIR redis-$$VER</span><br><span class="line">RUN make</span><br><span class="line">RUN make install</span><br><span class="line">WORKDIR /</span><br><span class="line">RUN apt-get remove -y --auto-remove curl make gcc</span><br><span class="line">RUN apt-get clean</span><br><span class="line">RUN rm -rf /var/lib/apt/lists/* /redis-$$VER</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>save 和 export</p>
+<p>导出的区别 ：</p>
+<p>export 导出的包括的东西更多一点，它有压缩功能，保留历史层，有历史层的可以进行回滚操作 ;算是导出容器，</p>
+<p>容器相当于镜像加个读写层</p>
+<p>save 导出的仅仅是镜像，不保留历史层</p>
+<p>但是下完之后是300多M有点大</p>
+<p>我们对他进行缩小</p>
+<p>缩小的方式</p>
+<p>用更小的基础镜像 <code>debain</code></p>
+<p>如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM 192.168.5.160/library/debain:jessie</span><br><span class="line">ENV VER    3.0.0</span><br><span class="line">ENV TARBALL http://download.redis.io/releases/redis-$VER.tar.gz</span><br><span class="line">RUN apt-get update</span><br><span class="line">RUN apt-get install -y curl make gcc</span><br><span class="line">RUN curl -L $TARBALL | tar zxv</span><br><span class="line">WORKDIR redis-$$VER</span><br><span class="line">RUN make</span><br><span class="line">RUN make install</span><br><span class="line">WORKDIR /</span><br><span class="line">RUN apt-get remove -y --auto-remove curl make gcc</span><br><span class="line">RUN apt-get clean</span><br><span class="line">RUN rm -rf /var/lib/apt/lists/* /redis-$$VER</span><br></pre></td></tr></table></figure>
+
+<p>成功之后会发现少了很多的空间</p>
+<p>然后再进一步瘦身<br>把dockerfile里的命令串联起来</p>
+<p>如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">FROM 192.168.5.160/library/debain:jessie</span><br><span class="line">ENV VER    3.0.0</span><br><span class="line">ENV TARBALL http://download.redis.io/releases/redis-$VER.tar.gz</span><br><span class="line">RUN apt-get update &amp;&amp; \</span><br><span class="line">apt-get install -y curl make gcc &amp;&amp; \</span><br><span class="line">curl -L $TARBALL | tar zxv &amp;&amp; \</span><br><span class="line">WORKDIR redis-$$VER &amp;&amp; \</span><br><span class="line">make &amp;&amp; \</span><br><span class="line">make install &amp;&amp; \</span><br><span class="line">WORKDIR / &amp;&amp; \</span><br><span class="line">apt-get remove -y --auto-remove curl make gcc &amp;&amp; \</span><br><span class="line">apt-get clean &amp;&amp; \</span><br><span class="line">rm -rf /var/lib/apt/lists/* /redis-$$VER</span><br></pre></td></tr></table></figure>
+
+<p>通过串联命令编排之后的镜像体积比不编排的能小上一半左右</p>
+<p>压缩镜像 ： 但是有时候并不会好使，但是能压缩多少就压缩多少吧，对一个外来镜像进行压缩的时候，可能会比较明显</p>
+<p><code>docker save 镜像的名字 | docker-squash -verbose -t 生成的镜像的名字 | docker load 这个对mac不好使，再linux可以</code></p>
+<p>使用容器专用的基础镜像 —— scratch 或者busybox作为基础镜像</p>
+<p>上面两个是空镜像，所以我们可以把docker里的程序文件拿出来，打包成gz的压缩包</p>
+<p>然后再用空镜像再次生成一个容器，进行极致的压缩</p>
+<p>这种方式进行的docker容器对于redis而言，会被压缩到个位数的空间，而且可以正常运行</p>
+<p>dockerfile</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM scratch</span><br><span class="line">ADD 压缩的文件及其依赖 /</span><br><span class="line">COPY redis.conf /etc/redis/redis.conf</span><br><span class="line">EXPOSE 6379</span><br><span class="line">CMD [&quot;usr/local/bin/redis-server&quot;]</span><br><span class="line"> ENTRYPOINT [&quot;docker-entrypoint.sh&quot;]</span><br></pre></td></tr></table></figure>
+
+<p>其中压缩的文件是从debain上搞来的依赖，以及redis的包一起打的压缩</p>
+<p>EXPOSE ：设置的是端口</p>
+<p>查询依赖的方式，通过 ldd 查出所需要的.so文件</p>
+<p>然后把所以依赖都打包成tar或者gz文件，用scratch</p>
+<p>至于如何获取空镜像，我们可以通过官网命令 <code>tar cv --files-from /dev/null | docker import - scratch</code></p>
+<p>就会自动获取了</p>
+<p>实操</p>
+<p>首先拉去空镜像</p>
+<p>对于已经拉去过空镜像的同学就不用了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tar cv --files-from /dev/null | docker import - scratch</span><br></pre></td></tr></table></figure>
+
+<p>拉去之后找到我们的模板机</p>
+<p>然后进入我们的模板机里 <code>docker exec -it 名字 /bin/bash</code></p>
+<p>然后找到我们的程序比如我找的是redis-server</p>
+<p>然后我们找到之后通过ldd命令查看他的依赖 <code>ldd redis-srever</code></p>
+<p>查看到依赖之后把文件夹结构以及文件都弄出来，通过cp命令 <code> docker cp 模板机的名字:文件路径 宿主机的路径</code></p>
+<p>然后我们把所有的文件，都打包成一个tar.gz <code>tar -zxcf 生成的文件名（带tar.gz的） 打包的内容的路径</code></p>
+<p>然后我们编辑dockerfile文件如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM scratch #从什么镜像中创建</span><br><span class="line">ADD 压缩的文件及其依赖 / # 通过ADD可以把文件自动解压</span><br><span class="line">COPY redis.conf /etc/redis/redis.conf #redis 的配置文件</span><br><span class="line">EXPOSE 6379 #端口号</span><br><span class="line">CMD [&quot;usr/local/bin/redis-server&quot;] #这个相当于解释器，要用的</span><br></pre></td></tr></table></figure>
+
+<p>然后执行 <code>docker build -t 生成的容器的内容 -f dockerfile</code></p>
+<p>构建容器，最后成功之后，通过 <code>docker run -d --name 你的image的名字 你自己起的名字 </code></p>
+<p>然后就运行成功了</p>
+<p>我们通过docker images</p>
+<p>查看一下存储大小如下 ：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">redis-01           latest    c654e9a88af9   13 minutes ago   22.3MB</span><br><span class="line">scratch            latest    89a161411e52   2 hours ago      0B</span><br><span class="line">busybox            latest    334e4a014c81   4 days ago       4.86MB</span><br><span class="line">redis              latest    3e12e2ceb68f   5 days ago       117MB</span><br><span class="line">gitlab/gitlab-ce   latest    08f00af277b7   5 days ago       2.79GB</span><br></pre></td></tr></table></figure>
+
+<p>如上所属，redis-01 是我们自己创建的，redis是官方提供的</p>
+<p>差距显而易见</p>
+<h2 id="构建企业debian-10-基础测试镜像"><a href="#构建企业debian-10-基础测试镜像" class="headerlink" title="构建企业debian 10 基础测试镜像"></a>构建企业debian 10 基础测试镜像</h2>]]></content>
       <categories>
         <category>云原生（哔哩哔哩）</category>
       </categories>
