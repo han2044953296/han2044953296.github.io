@@ -19,13 +19,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"zihang.fun","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="内部和外部表和普通表和分区表分区表 ： 提升查询效率的表 关于hive的查询 ： 对于普通表 则是要先读取所有的数据然后进行筛选的 ， 但是对于分区表，则是把数据进行分区，如果要查询的话，则是针对符合的数据进行查询 往往用分区表进行查询，普通表数据量较少的时候可以用 创建分区表 ： 1234567891011create table order(orderid int,oredergg Strin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hive第三天">
-<meta property="og:url" content="http://example.com/2022/12/01/12-01/index.html">
+<meta property="og:url" content="http://zihang.fun/2022/12/01/12-01/index.html">
 <meta property="og:site_name" content="枫叶冢">
 <meta property="og:description" content="内部和外部表和普通表和分区表分区表 ： 提升查询效率的表 关于hive的查询 ： 对于普通表 则是要先读取所有的数据然后进行筛选的 ， 但是对于分区表，则是把数据进行分区，如果要查询的话，则是针对符合的数据进行查询 往往用分区表进行查询，普通表数据量较少的时候可以用 创建分区表 ： 1234567891011create table order(orderid int,oredergg Strin">
 <meta property="og:locale" content="zh_CN">
@@ -34,7 +34,7 @@
 <meta property="article:author" content="liu zihang">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2022/12/01/12-01/">
+<link rel="canonical" href="http://zihang.fun/2022/12/01/12-01/">
 
 
 <script id="page-configurations">
@@ -201,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/01/12-01/">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/01/12-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -283,7 +283,7 @@
 <p>关于hive的查询 ： 对于普通表 则是要先读取所有的数据然后进行筛选的 ， 但是对于分区表，则是把数据进行分区，如果要查询的话，则是针对符合的数据进行查询</p>
 <p>往往用分区表进行查询，普通表数据量较少的时候可以用</p>
 <p>创建分区表 ：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">create table order(</span><br><span class="line"></span><br><span class="line">orderid int,</span><br><span class="line"></span><br><span class="line">oredergg String</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">PARTITIONED BY (dt String)</span><br><span class="line"></span><br><span class="line">row format delimited fields terminated by &#x27;\t&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">order</span>(<br><br>orderid <span class="hljs-type">int</span>,<br><br>oredergg String<br><br>)<br><br>PARTITIONED <span class="hljs-keyword">BY</span> (dt String)<br><br><span class="hljs-keyword">row</span> <span class="hljs-keyword">format</span> delimited fields terminated <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;\t&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <p>show partitions 表名 &#x2F;&#x2F;查看现在这个表的分区</p>
 <p>修改分区  ：</p>
@@ -306,26 +306,26 @@
 <p>外部表 ： 如果被删除的情况下，只是hdfs上指向metastore的索引被删除了，源数据不会被删除 ，而且我们还可通过建表的方式让他们的索引再次关联上</p>
 <p>创建外部表 ：</p>
 <p>相互转换 ：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">外部转内部</span><br><span class="line">ALTER TABLE 外部表名字 SET TBLPROPERTIES (&quot;EXTERNAL&quot; = &quot;true&quot;);</span><br><span class="line"></span><br><span class="line">内部转外部</span><br><span class="line">ALTER TABLE 外部表名字 SET TBLPROPERTIES (&quot;EXTERNAL&quot; = &quot;false&quot;);</span><br><span class="line">但是这上述的EXTERNAL 是不能小写的会造成失效的问题</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql">外部转内部<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> 外部表名字 <span class="hljs-keyword">SET</span> TBLPROPERTIES (&quot;EXTERNAL&quot; <span class="hljs-operator">=</span> &quot;true&quot;);<br><br>内部转外部<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> 外部表名字 <span class="hljs-keyword">SET</span> TBLPROPERTIES (&quot;EXTERNAL&quot; <span class="hljs-operator">=</span> &quot;false&quot;);<br>但是这上述的<span class="hljs-keyword">EXTERNAL</span> 是不能小写的会造成失效的问题<br></code></pre></td></tr></table></figure>
 
 <h1 id="复杂的数据类型"><a href="#复杂的数据类型" class="headerlink" title="复杂的数据类型"></a>复杂的数据类型</h1><p>中小企业用的不多，，大企业用的多</p>
 <p>会建表 ，会查询</p>
 <p>maps: <code>MAP&lt;primitive_type, data_type&gt; </code></p>
 <p>数据如下 ：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1,zhangsan,father:xiaoming#mother:xiaohuang#brother:xiaoxu,28</span><br><span class="line">2,lisi,father:mayun#mother:huangyi#brother:guanyu,22</span><br><span class="line">3,wangwu,father:wangjianlin#mother:ruhua#sister:jingtian,29</span><br><span class="line">4,mayun,father:mayongzhen#mother:angelababy,26</span><br></pre></td></tr></table></figure>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs clean"><span class="hljs-number">1</span>,zhangsan,father:xiaoming#mother:xiaohuang#brother:xiaoxu,<span class="hljs-number">28</span><br><span class="hljs-number">2</span>,lisi,father:mayun#mother:huangyi#brother:guanyu,<span class="hljs-number">22</span><br><span class="hljs-number">3</span>,wangwu,father:wangjianlin#mother:ruhua#sister:jingtian,<span class="hljs-number">29</span><br><span class="hljs-number">4</span>,mayun,father:mayongzhen#mother:angelababy,<span class="hljs-number">26</span><br></code></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create table hive_map(</span><br><span class="line">id int  comment &#x27;用户id&#x27;,</span><br><span class="line">name string comment &#x27;用户名字&#x27;,</span><br><span class="line">relation map&lt;string,string&gt; comment &#x27;家庭成员&#x27;,</span><br><span class="line">age int comment &#x27;年龄&#x27;</span><br><span class="line">)</span><br><span class="line">row format  delimited fields terminated by &#x27;,&#x27;</span><br><span class="line">collection items terminated by &#x27;#&#x27;</span><br><span class="line">map keys terminated by &#x27;:&#x27;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> hive_map(<br>id <span class="hljs-type">int</span>  <span class="hljs-keyword">comment</span> <span class="hljs-string">&#x27;用户id&#x27;</span>,<br><span class="hljs-type">name</span> string <span class="hljs-keyword">comment</span> <span class="hljs-string">&#x27;用户名字&#x27;</span>,<br>relation map&lt;string,string&gt; <span class="hljs-keyword">comment</span> <span class="hljs-string">&#x27;家庭成员&#x27;</span>,<br>age <span class="hljs-type">int</span> <span class="hljs-keyword">comment</span> <span class="hljs-string">&#x27;年龄&#x27;</span><br>)<br><span class="hljs-keyword">row</span> <span class="hljs-keyword">format</span>  delimited fields terminated <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;,&#x27;</span><br>collection items terminated <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;#&#x27;</span><br>map keys terminated <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;:&#x27;</span>;<br></code></pre></td></tr></table></figure>
 
 <p>arrays:  <code>ARRAY&lt;data_type&gt;</code></p>
 <p>数据</p>
 <p><code>zihan   beijing,shanghai,chengdu,dalian</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table hive_array(</span><br><span class="line">name String,</span><br><span class="line">locations array&lt;String&gt;</span><br><span class="line">)</span><br><span class="line">row format delimited fields terminated by &#x27;\t&#x27;</span><br><span class="line">collection items terminated by &#x27;,&#x27;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> hive_array(<br><span class="hljs-type">name</span> String,<br>locations <span class="hljs-keyword">array</span>&lt;String&gt;<br>)<br><span class="hljs-keyword">row</span> <span class="hljs-keyword">format</span> delimited fields terminated <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;\t&#x27;</span><br>collection items terminated <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;,&#x27;</span>;<br></code></pre></td></tr></table></figure>
 
 <p>structs:<code>STRUCT&lt;col_name : data_type [COMMENT col_comment], ...&gt;</code></p>
 <p>数据</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.1#zhangsan:40</span><br><span class="line">192.168.1.2#lisi:50</span><br><span class="line">192.168.1.3#wangwu:60</span><br><span class="line">192.168.1.4#zhaoliu:70</span><br></pre></td></tr></table></figure>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">192.168.1.1</span>#zhangsan:<span class="hljs-number">40</span><br><span class="hljs-number">192.168.1.2</span>#lisi:<span class="hljs-number">50</span><br><span class="hljs-number">192.168.1.3</span>#wangwu:<span class="hljs-number">60</span><br><span class="hljs-number">192.168.1.4</span>#zhaoliu:<span class="hljs-number">70</span><br></code></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table hive_struct(</span><br><span class="line">ip string,</span><br><span class="line">userinfo STRUCT&lt;name:string,age:int&gt;</span><br><span class="line">)</span><br><span class="line">row format  delimited fields terminated by &#x27;#&#x27;</span><br><span class="line">collection items terminated by &#x27;:&#x27;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> hive_struct(<br>ip string,<br>userinfo STRUCT&lt;<span class="hljs-type">name</span>:string,age:<span class="hljs-type">int</span>&gt;<br>)<br><span class="hljs-keyword">row</span> <span class="hljs-keyword">format</span>  delimited fields terminated <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;#&#x27;</span><br>collection items terminated <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;:&#x27;</span>;<br></code></pre></td></tr></table></figure>
 
 <h1 id="数据形式的不同使用方法"><a href="#数据形式的不同使用方法" class="headerlink" title="数据形式的不同使用方法"></a>数据形式的不同使用方法</h1><h2 id="array"><a href="#array" class="headerlink" title="array"></a>array</h2><p>案例分析：</p>
 <p>1.查询每个用户第一个工作地点？</p>
@@ -344,7 +344,7 @@
 <li><p>FROM baseTable (lateralView)*</p>
 </li>
 <li><p>最终代码 ：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> name,location</span><br><span class="line"><span class="keyword">from</span> hive_array <span class="keyword">lateral</span> <span class="keyword">view</span> explode(locations) loc_table <span class="keyword">as</span> location;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> name,location<br><span class="hljs-keyword">from</span> hive_array <span class="hljs-keyword">lateral</span> <span class="hljs-keyword">view</span> explode(locations) loc_table <span class="hljs-keyword">as</span> location;<br></code></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>需求： 1.查询表中每个人的father的名字</p>
 <p>select id,name,age,relation[‘father’] as father from hive_map;</p>
@@ -414,7 +414,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://example.com/2022/12/01/12-01/" title="hive第三天">http://example.com/2022/12/01/12-01/</a>
+    <a href="http://zihang.fun/2022/12/01/12-01/" title="hive第三天">http://zihang.fun/2022/12/01/12-01/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
