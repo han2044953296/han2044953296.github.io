@@ -432,7 +432,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-12-12 08:49:24 / 修改时间：15:35:06" itemprop="dateCreated datePublished" datetime="2022-12-12T08:49:24+08:00">2022-12-12</time>
+              <time title="创建时间：2022-12-12 08:49:24 / 修改时间：17:25:35" itemprop="dateCreated datePublished" datetime="2022-12-12T08:49:24+08:00">2022-12-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -450,14 +450,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>9.9k</span>
+              <span>12k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>11 分钟</span>
             </span>
 
         </div>
@@ -643,6 +643,35 @@
 <p>它可以实时性的采集数据，是生产上重点，一般都用它，在flume里模糊匹配的语法要加个点在可以</p>
 <p>断点续传的文件，a1.sources.r1.positionFile &#x3D; &#x2F;var&#x2F;log&#x2F;flume&#x2F;taildir_position.json</p>
 <p>可以自己定义，或者是默认，默认是在~&#x2F;.flume&#x2F;taildir_position.json</p>
+<h1 id="sink-：-hdfs"><a href="#sink-：-hdfs" class="headerlink" title="sink ： hdfs"></a>sink ： hdfs</h1><p>指定到hdfs上</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"># example.conf: A single-node Flume configuration</span><br><span class="line"></span><br><span class="line"># Name the components on this agent</span><br><span class="line">a1.sources = r1</span><br><span class="line">a1.sinks = k1</span><br><span class="line">a1.channels = c1</span><br><span class="line"></span><br><span class="line"># Describe/configure the source</span><br><span class="line">a1.sources.r1.type = TAILDIR</span><br><span class="line">a1.sources.r1.positionFile = /home/hadoop/data/flumepostion/taildir_position.json</span><br><span class="line">a1.sources.r1.filegroups = f1 f2</span><br><span class="line">a1.sources.r1.filegroups.f1 = /home/hadoop/data/try.txt</span><br><span class="line">a1.sources.r1.headers.f1.headerKey1 = value1</span><br><span class="line">a1.sources.r1.filegroups.f2 = /home/hadoop/data/flumetestdata/.*.log</span><br><span class="line">a1.sources.r1.headers.f2.headerKey1 = value2</span><br><span class="line">a1.sources.r1.headers.f2.headerKey2 = value2-2</span><br><span class="line">a1.sources.r1.fileHeader = true</span><br><span class="line">a1.sources.ri.maxBatchCount = 1000</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Describe the sink</span><br><span class="line">a1.sinks.k1.type = hdfs</span><br><span class="line">a1.sinks.k1.hdfs.path = hdfs://bigdata3:9000/data</span><br><span class="line"></span><br><span class="line"># Use a channel which buffers events in memory</span><br><span class="line">a1.channels.c1.type = memory</span><br><span class="line">a1.channels.c1.capacity = 1000</span><br><span class="line">a1.channels.c1.transactionCapacity = 100</span><br><span class="line"></span><br><span class="line"># Bind the source and sink to the channel</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sinks.k1.channel = c1</span><br></pre></td></tr></table></figure>
+
+<p>flume存储的数据才hdfs山观察看不了，因为其默认的数据格式不对</p>
+<p>更改</p>
+<ul>
+<li>hdfs.filetype DataStream</li>
+<li>hdfs.writeFormat : Text</li>
+</ul>
+<p>如下 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"># example.conf: A single-node Flume configuration</span><br><span class="line"></span><br><span class="line"># Name the components on this agent</span><br><span class="line">a1.sources = r1</span><br><span class="line">a1.sinks = k1</span><br><span class="line">a1.channels = c1</span><br><span class="line"></span><br><span class="line"># Describe/configure the source</span><br><span class="line">a1.sources.r1.type = TAILDIR</span><br><span class="line">a1.sources.r1.positionFile = /home/hadoop/data/flumepostion/taildir_position.json</span><br><span class="line">a1.sources.r1.filegroups = f1 f2</span><br><span class="line">a1.sources.r1.filegroups.f1 = /home/hadoop/data/try.txt</span><br><span class="line">a1.sources.r1.headers.f1.headerKey1 = value1</span><br><span class="line">a1.sources.r1.filegroups.f2 = /home/hadoop/data/flumetestdata/.*.log</span><br><span class="line">a1.sources.r1.headers.f2.headerKey1 = value2</span><br><span class="line">a1.sources.r1.headers.f2.headerKey2 = value2-2</span><br><span class="line">a1.sources.r1.fileHeader = true</span><br><span class="line">a1.sources.ri.maxBatchCount = 1000</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Describe the sink</span><br><span class="line">a1.sinks.k1.type = hdfs</span><br><span class="line">a1.sinks.k1.hdfs.path = hdfs://bigdata3:9000/data</span><br><span class="line">a1.sinks.k1.hdfs.fileType = DataStream</span><br><span class="line">s1.sinks.k1.hdfs.writeFormat = Text</span><br><span class="line"></span><br><span class="line"># Use a channel which buffers events in memory</span><br><span class="line">a1.channels.c1.type = memory</span><br><span class="line">a1.channels.c1.capacity = 1000</span><br><span class="line">a1.channels.c1.transactionCapacity = 100</span><br><span class="line"></span><br><span class="line"># Bind the source and sink to the channel</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sinks.k1.channel = c1</span><br></pre></td></tr></table></figure>
+
+<p>执行 ：<code>flume-ng agent --conf $&#123;FLUME_HOME&#125;/conf --conf-file /home/hadoop/data/flumeexample.txt -Dflume.root.logger=info,console --name a1</code></p>
+<p>采集的时候要注意：</p>
+<p>因为采集数据会造成小文件问题就是当flume在采集的时候，如果文件一直发生变化的时候，flume可能会造成有多个小文件</p>
+<p>可以通过增加参数进行设置</p>
+<ul>
+<li>按照条数进行滚动：就是生成下一个文件</li>
+<li>按照时间进行滚动：就是生成下一个文件</li>
+<li>hdfs.round &#x3D;&gt; 文件滚动的开关</li>
+<li>hdfs.batchSize &#x3D;&gt; 按照条目数滚动，一般不会用</li>
+<li>hdfs.roundUnit &#x3D;&gt; 按照时间滚动</li>
+<li>hdfs.roundValue &#x3D;&gt; 时间滚动的具体值</li>
+</ul>
+<h3 id="上面有的时候不好用，下面是一定好用的"><a href="#上面有的时候不好用，下面是一定好用的" class="headerlink" title="上面有的时候不好用，下面是一定好用的"></a>上面有的时候不好用，下面是一定好用的</h3><ul>
+<li>hdfs.rollsize &#x3D;&gt; 按照大小进行滚动 默认是字节</li>
+<li>hdfs.rollInterval &#x3D;&gt;按照时间进行滚动，秒为单位</li>
+<li>hdfs.rollCount &#x3D;&gt; 文件里存的数据条数进行滚动</li>
+</ul>
 
       
     </div>
@@ -2600,7 +2629,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共93.7k字</span>
+  <span class="post-count">博客全站共94.3k字</span>
 </div>
 
 
