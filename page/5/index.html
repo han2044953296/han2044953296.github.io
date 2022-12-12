@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="只有努力不会辜负你">
@@ -194,6 +194,333 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/18/10-18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/18/10-18/" class="post-title-link" itemprop="url">java里的日期和Object的一些方法</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-18 17:44:10" itemprop="dateCreated datePublished" datetime="2022-10-18T17:44:10+08:00">2022-10-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Java-util-Date"><a href="#Java-util-Date" class="headerlink" title="Java.util.Date"></a>Java.util.Date</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Date d = new Date();</span><br><span class="line">System.out.Println(d);</span><br></pre></td></tr></table></figure>
+<p>一般这样直接打印出，是中国国际化标准化时间<br>但是一般除了getTime别的都过时了，保不准会在什么时候就舍弃</p>
+<h2 id="getmonth"><a href="#getmonth" class="headerlink" title="getmonth"></a>getmonth</h2><p>他是用农历算的，范围是0-11</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.getMonth();</span><br></pre></td></tr></table></figure>
+<h2 id="getYear"><a href="#getYear" class="headerlink" title="getYear"></a>getYear</h2><p>获取从1900年到现在的年数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.getYear();</span><br></pre></td></tr></table></figure>
+<h2 id="getDate"><a href="#getDate" class="headerlink" title="getDate"></a>getDate</h2><p>获取到现在的日期</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.getDate();</span><br></pre></td></tr></table></figure>
+<h2 id="getHours"><a href="#getHours" class="headerlink" title="getHours"></a>getHours</h2><p>获取现在的小时</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.getHours();</span><br></pre></td></tr></table></figure>
+<h2 id="getMinutes"><a href="#getMinutes" class="headerlink" title="getMinutes"></a>getMinutes</h2><p>获取现在的分钟数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.getMinutes();</span><br></pre></td></tr></table></figure>
+<h2 id="getSeconds"><a href="#getSeconds" class="headerlink" title="getSeconds"></a>getSeconds</h2><p>获取当前的秒数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.getSeconds();</span><br></pre></td></tr></table></figure>
+<h2 id="getDays"><a href="#getDays" class="headerlink" title="getDays"></a>getDays</h2><p>获取当前日期范围是0-6，周一到周六</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.getDay();</span><br></pre></td></tr></table></figure>
+<h2 id="getTime"><a href="#getTime" class="headerlink" title="getTime"></a>getTime</h2><p>获取从1970年到现在时间</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.getTime();</span><br></pre></td></tr></table></figure>
+<h2 id="compareTo"><a href="#compareTo" class="headerlink" title="compareTo"></a>compareTo</h2><p>自动排序：正数是大于 ， 0是相等 ， -1 是小于</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.compareTo(d);</span><br></pre></td></tr></table></figure>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Deprecated</span><br><span class="line"> 代表过时的，会让方法上面画上横线</span><br></pre></td></tr></table></figure>
+<h1 id="java-sql-Date"><a href="#java-sql-Date" class="headerlink" title="java.sql.Date"></a>java.sql.Date</h1><h2 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java.sql.Date d = new java.sql.Date(date.getTime);</span><br><span class="line">// 获取时间,包含天月的</span><br></pre></td></tr></table></figure>
+<h2 id="Time"><a href="#Time" class="headerlink" title="Time"></a>Time</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java.sql.Time d  = new java.sql.Time(date.getTime);</span><br><span class="line">// 获取时间</span><br></pre></td></tr></table></figure>
+
+<h2 id="Timestamp"><a href="#Timestamp" class="headerlink" title="Timestamp"></a>Timestamp</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java.sql.Timestamp d = new java.sql.Timestamp(date.getTime);</span><br><span class="line">// 获取精确到毫秒数的时间</span><br></pre></td></tr></table></figure>
+
+<h1 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SimpleDateFormat s = new SimpleDateFormat(&quot;yyyy-MM-dd:mm:ss.SSS&quot;);</span><br></pre></td></tr></table></figure>
+<h2 id="format日期变字符串"><a href="#format日期变字符串" class="headerlink" title="format日期变字符串"></a>format日期变字符串</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String string s.format(date);</span><br></pre></td></tr></table></figure>
+
+<h2 id="字符串变日期"><a href="#字符串变日期" class="headerlink" title="字符串变日期"></a>字符串变日期</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s.parse(&quot;2000-11-12 13:14:15.000&quot;);</span><br><span class="line">// 但是这个可能会有错误，所以，我们需要用try catch包住他</span><br></pre></td></tr></table></figure>
+<h1 id="Ccalender"><a href="#Ccalender" class="headerlink" title="Ccalender"></a>Ccalender</h1><p>用静态方法实例化，new 不了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Calendar c = Calendar.getLnstance();</span><br></pre></td></tr></table></figure>
+<h2 id="set设置"><a href="#set设置" class="headerlink" title="set设置"></a>set设置</h2><p>set和get基本相同</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c1.set(Calendar.MONTH ， xxx)；</span><br><span class="line">c1.set(Calendar.HOURS , xxx);等</span><br><span class="line">// 这里xxx代表一个int型的数字，会自动进位，如果xxx超过11则会自动进位，对其他的小时，秒数也同样是适用</span><br></pre></td></tr></table></figure>
+
+<h2 id="get获取"><a href="#get获取" class="headerlink" title="get获取"></a>get获取</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c.get(Calendar.MONTH);</span><br><span class="line">c.get(Calendar.DATE);</span><br><span class="line">等,要通过一系列常量来控制他</span><br></pre></td></tr></table></figure>
+<h2 id="add计算"><a href="#add计算" class="headerlink" title="add计算"></a>add计算</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c.add(Calendar.MONTH , 1);</span><br><span class="line">// 单纯是加到其中前一个变量上，可以进位。还有其他的方法，比如huors等</span><br></pre></td></tr></table></figure>
+<h2 id="getTime-1"><a href="#getTime-1" class="headerlink" title="getTime"></a>getTime</h2><p>转换成Date型，然后就可以用SimpleDateFormat了</p>
+<h1 id="Localdate"><a href="#Localdate" class="headerlink" title="Localdate"></a>Localdate</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LocalDate l = LocalDate.now(); // 获取当前日期</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>最大支持999999999-12-31</p>
+</li>
+<li><p>最小支持-999999999-01-01</p>
+</li>
+</ul>
+<h2 id="adjiustInto"><a href="#adjiustInto" class="headerlink" title="adjiustInto"></a>adjiustInto</h2><p>调整指定的时间对象与此对象时间相同</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.adjustInto(l)</span><br></pre></td></tr></table></figure>
+<h2 id="equals"><a href="#equals" class="headerlink" title="equals"></a>equals</h2><p>检查这个日期是不是等于另外一个日期</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.equals(d)</span><br></pre></td></tr></table></figure>
+<h2 id="format"><a href="#format" class="headerlink" title="format"></a>format</h2><p>使用指定格式格式化日期</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.format(null);</span><br></pre></td></tr></table></figure>
+
+<h2 id="get"><a href="#get" class="headerlink" title="get"></a>get</h2><h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><h2 id="getDayofMonth"><a href="#getDayofMonth" class="headerlink" title="getDayofMonth"></a>getDayofMonth</h2><p>获取月份字段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.getDayofMonth();</span><br></pre></td></tr></table></figure>
+
+<h2 id="getDayofWeek"><a href="#getDayofWeek" class="headerlink" title="getDayofWeek"></a>getDayofWeek</h2><p>同上只是获取星期几，这个是个枚举</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.getDayOfWeek();</span><br></pre></td></tr></table></figure>
+<h2 id="getDayofYear"><a href="#getDayofYear" class="headerlink" title="getDayofYear"></a>getDayofYear</h2><p>同上只是获取日期字段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.getDayofYear();</span><br></pre></td></tr></table></figure>
+<h2 id="getChronology"><a href="#getChronology" class="headerlink" title="getChronology"></a>getChronology</h2><p>获取ios的日历系统的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.getChronology();</span><br></pre></td></tr></table></figure>
+<h2 id="hashcode"><a href="#hashcode" class="headerlink" title="hashcode"></a>hashcode</h2><p>返回这个日期的哈希码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.hashcode();</span><br></pre></td></tr></table></figure>
+<h2 id="isAfter"><a href="#isAfter" class="headerlink" title="isAfter"></a>isAfter</h2><p>检查日期是不是在这个日期之后</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.isAfter(l);</span><br></pre></td></tr></table></figure>
+<h2 id="isBefore"><a href="#isBefore" class="headerlink" title="isBefore"></a>isBefore</h2><p>同上</p>
+<h2 id="isEqual"><a href="#isEqual" class="headerlink" title="isEqual"></a>isEqual</h2><p>检查这个日期是不是等于指定日期</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.isEqual(l);</span><br></pre></td></tr></table></figure>
+<h2 id="isLeapYear"><a href="#isLeapYear" class="headerlink" title="isLeapYear"></a>isLeapYear</h2><p>根据ios日历，检查是不是闰年</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.isLeapYear();</span><br></pre></td></tr></table></figure>
+
+<h2 id="now"><a href="#now" class="headerlink" title="now"></a>now</h2><p>获取当前的时间<br>初始化方法</p>
+<h2 id="parse"><a href="#parse" class="headerlink" title="parse"></a>parse</h2><p>同上面的parse</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.parse(null);</span><br></pre></td></tr></table></figure>
+<h2 id="plus"><a href="#plus" class="headerlink" title="plus"></a>plus</h2><p>返回此日期的副本，并添加指定的金额。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.plus(null);</span><br></pre></td></tr></table></figure>
+<h2 id="plusDays"><a href="#plusDays" class="headerlink" title="plusDays"></a>plusDays</h2><p>返回指定天数的副本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.plusDays(0);</span><br></pre></td></tr></table></figure>
+<h2 id="plusMonths"><a href="#plusMonths" class="headerlink" title="plusMonths"></a>plusMonths</h2><p>返回这个LocalDate的副本，其指定的时间段以月为单位</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.plusMonths(0);</span><br></pre></td></tr></table></figure>
+<h2 id="plusweeks"><a href="#plusweeks" class="headerlink" title="plusweeks"></a>plusweeks</h2><p>返回这个LocalDate的副本并以指定周期添加周数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.plusWeeks(0);</span><br></pre></td></tr></table></figure>
+<h2 id="plusYears"><a href="#plusYears" class="headerlink" title="plusYears"></a>plusYears</h2><p>返回这个LocalDate的副本其中指定的时间段以添加的年数访问</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.plusYears(0);</span><br></pre></td></tr></table></figure>
+<h2 id="query"><a href="#query" class="headerlink" title="query"></a>query</h2><p>返回指定的查询查询日期</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.query(null);</span><br></pre></td></tr></table></figure>
+<h2 id="with"><a href="#with" class="headerlink" title="with"></a>with</h2><p>返回此日期的调整的副本</p>
+<ul>
+<li>其和上面一样有对单独地方调整的函数，比如日期月份等<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">l.with(l);</span><br><span class="line">		l.withDayOfMonth(0);</span><br><span class="line">		l.withDayOfYear(0);</span><br><span class="line">		l.withMonth(0);</span><br><span class="line">		l.withYear(0);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString"></a>toString</h2><p>将日期转换为字符串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l.toString();</span><br></pre></td></tr></table></figure>
+<h1 id="方法的综合应用"><a href="#方法的综合应用" class="headerlink" title="方法的综合应用"></a>方法的综合应用</h1><h2 id="计算每个月的天数通过Calendar运行"><a href="#计算每个月的天数通过Calendar运行" class="headerlink" title="计算每个月的天数通过Calendar运行"></a>计算每个月的天数通过Calendar运行</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C1.add(Calendar.MONTH, 1);</span><br><span class="line">C1.add(Calendar.DAY_OF_MONTH, -(当前天数));</span><br><span class="line">System.out.println(C1.getTime());</span><br></pre></td></tr></table></figure>
+<h2 id="LocalDateTime的实际应用"><a href="#LocalDateTime的实际应用" class="headerlink" title="LocalDateTime的实际应用"></a>LocalDateTime的实际应用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> lesson12;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.time.LocalDate;</span><br><span class="line"><span class="keyword">import</span> java.time.LocalDateTime;</span><br><span class="line"><span class="keyword">import</span> java.time.LocalTime;</span><br><span class="line"><span class="keyword">import</span> java.time.format.DateTimeFormatter;</span><br><span class="line"><span class="keyword">import</span> java.time.temporal.TemporalField;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestMain4</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"><span class="comment">//		LocalTime</span></span><br><span class="line"><span class="comment">//		LocalDate</span></span><br><span class="line">		<span class="type">LocalDateTime</span> <span class="variable">ldtDateTime</span> <span class="operator">=</span> LocalDateTime.now();</span><br><span class="line">		System.out.println(ldtDateTime);</span><br><span class="line">		System.out.println(ldtDateTime.getDayOfWeek().getValue()); <span class="comment">// 2</span></span><br><span class="line">		System.out.println(ldtDateTime.getMonth()); <span class="comment">// 10不会走 国外的历法</span></span><br><span class="line">		System.out.println(ldtDateTime.getMonthValue()); </span><br><span class="line">		</span><br><span class="line">		<span class="type">LocalDateTime</span> <span class="variable">ldtDateTime2</span> <span class="operator">=</span> LocalDateTime.of(<span class="number">2022</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>);</span><br><span class="line">		System.out.println(ldtDateTime2);</span><br><span class="line">		</span><br><span class="line">		<span class="type">DateTimeFormatter</span> <span class="variable">dFormatter</span> <span class="operator">=</span> DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line">		<span class="type">String</span> <span class="variable">string</span> <span class="operator">=</span> dFormatter.format(ldtDateTime);</span><br><span class="line">		System.out.println(string);</span><br><span class="line">		</span><br><span class="line">		<span class="type">LocalDateTime</span> <span class="variable">ldtDateTime3</span> <span class="operator">=</span> LocalDateTime.parse(<span class="string">&quot;2022-10-18 15:21:30&quot;</span>, dFormatter);</span><br><span class="line">		System.out.println(ldtDateTime3);</span><br><span class="line">		</span><br><span class="line">		<span class="type">LocalDateTime</span> <span class="variable">ldtDateTime4</span> <span class="operator">=</span> LocalDateTime.from(dFormatter.parse(<span class="string">&quot;2022-10-18 15:21:30&quot;</span>));</span><br><span class="line">		System.out.println(ldtDateTime4);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h1><h2 id="getClass"><a href="#getClass" class="headerlink" title="getClass"></a>getClass</h2><p>获取反射</p>
+<h2 id="hashCode"><a href="#hashCode" class="headerlink" title="hashCode"></a>hashCode</h2><p>获取hash值，约等于地址</p>
+<h2 id="equals-1"><a href="#equals-1" class="headerlink" title="equals"></a>equals</h2><ul>
+<li>比较对象的值</li>
+<li>&#x3D;&#x3D;对比的是地址</li>
+</ul>
+<h2 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h2><p>暂时不让用，意义是克隆属性,但是对于引用类型直接克隆是克隆地址，就会造成改一个进而全部都改变，但是有办法，可以进行深克隆进而解决</p>
+<ul>
+<li>浅克隆：就是只用一次克隆</li>
+<li>深克隆：通过多次克隆进而使每个被克隆出来的个体都有不同地址的相同引用类型</li>
+</ul>
+<h3 id="使用克隆的方法"><a href="#使用克隆的方法" class="headerlink" title="使用克隆的方法"></a>使用克隆的方法</h3><ul>
+<li><p>Cloneable:  标记型接口，先实现标记性接口 。 JDK就2个标记接口Serializable和Cloneable</p>
+<ul>
+<li><ol>
+<li>覆盖Object的clone方法;</li>
+<li>实现标记Cloneable;</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="finalize"><a href="#finalize" class="headerlink" title="finalize"></a>finalize</h2><p>finalize代表GC回调，就是让垃圾回收不要回收他，但是一般不让用，因为会容易造成卡死，或者因为有关联关系的对象而无法进行进行回收</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">java</span><br><span class="line">  package lesson12;</span><br><span class="line">  </span><br><span class="line">  public class TestMain6 &#123;</span><br><span class="line">  </span><br><span class="line">  	public static void main(String[] args) &#123;</span><br><span class="line">  		Student student = new Student(&quot;jerry&quot;, 2);</span><br><span class="line">  		abc();</span><br><span class="line">  		student = null;</span><br><span class="line">  		System.out.println(111);</span><br><span class="line">  		</span><br><span class="line">  		// 通知jvm在适当时候进行GC</span><br><span class="line">  		System.gc();</span><br><span class="line">  		System.out.println(222);</span><br><span class="line">  		for (;;) &#123;</span><br><span class="line">  			</span><br><span class="line">  		&#125;</span><br><span class="line">  		</span><br><span class="line">  	&#125;</span><br><span class="line">  </span><br><span class="line">  	private static void abc() &#123;</span><br><span class="line">  		// TODO Auto-generated method stub</span><br><span class="line">  		Student student = new Student(&quot;tom&quot;, 1);</span><br><span class="line">  	&#125;</span><br><span class="line">  	</span><br><span class="line">  &#125;</span><br><span class="line">  Student &#123;</span><br><span class="line">  	@Override</span><br><span class="line">  	protected void finalize() throws Throwable &#123;</span><br><span class="line">  		System.out.println(this + &quot;被回收了&quot;);</span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="static-代码块和非static代码块"><a href="#static-代码块和非static代码块" class="headerlink" title="static 代码块和非static代码块"></a>static 代码块和非static代码块</h1><ul>
+<li><p>static 静态代码块。  运行时记载类，只调用一次。</p>
+<ul>
+<li>一次性的操作。例如： 加载资源，加载驱动。</li>
+</ul>
+</li>
+<li><p>非静态代码块，       每次实例化都会调用</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> lesson12;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestMain7</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;这是静态代码块&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;这是非静态代码块&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="type">TestMain7</span> <span class="variable">a1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TestMain7</span>();</span><br><span class="line">		<span class="type">TestMain7</span> <span class="variable">a2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TestMain7</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/17/10-17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/17/10-17/" class="post-title-link" itemprop="url">数字及big类</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-17 17:44:10" itemprop="dateCreated datePublished" datetime="2022-10-17T17:44:10+08:00">2022-10-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="关于数学包里常用的几个类"><a href="#关于数学包里常用的几个类" class="headerlink" title="关于数学包里常用的几个类"></a>关于数学包里常用的几个类</h1><h2 id="abs"><a href="#abs" class="headerlink" title="abs"></a>abs</h2><p>abs是取绝对值</p>
+<h2 id="cell"><a href="#cell" class="headerlink" title="cell"></a>cell</h2><p>向上（正方向）取整</p>
+<h2 id="floor"><a href="#floor" class="headerlink" title="floor"></a>floor</h2><p>向下（负方向）取整</p>
+<h2 id="round"><a href="#round" class="headerlink" title="round"></a>round</h2><p> 四舍五入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> // 简单的例子 ，5舍6入</span><br><span class="line">可以通过floor进行</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="BigInteger"><a href="#BigInteger" class="headerlink" title="BigInteger"></a>BigInteger</h1><p>BigInteger类型的数字范围较Integer，Long类型的数字范围要大得多，它支持任意精度的整数，也就是说在运算中 BigInteger 类型可以准确地表示任何大小的整数值而不会丢失任何信息。</p>
+<h2 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//1.加</span><br><span class="line">BigInteger bigNum1 = a.add(b);			//17</span><br><span class="line">//2.减</span><br><span class="line">BigInteger bigNum2 = a.subtract(b);		//9</span><br><span class="line">//3.乘</span><br><span class="line">BigInteger bigNum3 = a.multiply(b);		//52</span><br><span class="line">//4.除</span><br><span class="line">BigInteger bigNum4 = a.divide(b);		//3</span><br><span class="line">//5.取模(需 b &gt; 0，否则出现异常：ArithmeticException(&quot;BigInteger: modulus not positive&quot;))</span><br><span class="line">BigInteger bigNum5 = a.mod(b);			//1</span><br><span class="line">//6.求余</span><br><span class="line">BigInteger bigNum6 = a.remainder(b);	//1</span><br><span class="line">//7.平方(需 n &gt;= 0，否则出现异常：ArithmeticException(&quot;Negative exponent&quot;))</span><br><span class="line">BigInteger bigNum7 = a.pow(n);			//2197</span><br><span class="line">//8.取绝对值</span><br><span class="line">BigInteger bigNum8 = a.abs();			//13</span><br><span class="line">//9.取相反数</span><br><span class="line">BigInteger bigNum9 = a.negate();		//-13</span><br></pre></td></tr></table></figure>
+
+<h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//读入方法：nextBigInteger()</span><br><span class="line">@Test</span><br><span class="line">public void test5() &#123;</span><br><span class="line">	Scanner scan = new Scanner(System.in);				// 读入</span><br><span class="line">	int n = scan.nextInt(); 							// 读入一个int;</span><br><span class="line">	BigInteger m = scan.nextBigInteger();				// 读入一个BigInteger;</span><br><span class="line">	while(scan.hasNext())&#123;	</span><br><span class="line">		System.out.print(&quot;scan.hasNext()=&quot; + scan.hasNext());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中除了这个还有big浮点型，用法和上面一样</p>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -812,7 +1139,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -865,12 +1192,12 @@
   </span>
   <span class="author" itemprop="copyrightHolder">liu zihang</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共90.5k字</span>
+  <span class="post-count">博客全站共93.7k字</span>
 </div>
 
 

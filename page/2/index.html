@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="只有努力不会辜负你">
@@ -194,6 +194,486 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/30/11-30/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/30/11-30/" class="post-title-link" itemprop="url">hive第二天</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-30 09:57:50" itemprop="dateCreated datePublished" datetime="2022-11-30T09:57:50+08:00">2022-11-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-03 12:09:03" itemprop="dateModified" datetime="2022-12-03T12:09:03+08:00">2022-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="关于hive里的数据类型"><a href="#关于hive里的数据类型" class="headerlink" title="关于hive里的数据类型"></a>关于hive里的数据类型</h1><ul>
+<li>整数<ul>
+<li>int</li>
+<li>bigint &#x3D;&#x3D;long</li>
+</ul>
+</li>
+<li>小数 ：<ul>
+<li>float</li>
+<li>double</li>
+<li>Decimal</li>
+</ul>
+</li>
+<li>字符串：<ul>
+<li>String (建议统一用String)</li>
+<li>varchar</li>
+<li>char</li>
+</ul>
+</li>
+<li>时间：<ul>
+<li>时间日期 DATE 格式：YYYY-MM-DD</li>
+<li>时间戳：TIMESTAMP YYYY-MM-DD HH:MM:SS</li>
+</ul>
+</li>
+</ul>
+<h1 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h1><p>CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name<br>  [(col_name data_type [column_constraint_specification] [COMMENT col_comment], … [constraint_specification])]<br>  [COMMENT table_comment]<br>  [PARTITIONED BY (col_name data_type [COMMENT col_comment], …)]<br>  [CLUSTERED BY (col_name, col_name, …) [SORTED BY (col_name [ASC|DESC], …)] INTO num_buckets BUCKETS]<br>  [<br>   [ROW FORMAT row_format]<br>   [STORED AS file_format]<br>     | STORED BY ‘storage.handler.class.name’ [WITH SERDEPROPERTIES (…)]  – (Note: Available in Hive 0.6.0 and later)<br>  ]</p>
+<p>数据字段名字 字段类型</p>
+<p>例如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">create table mytest(</span><br><span class="line">	id String comment &#x27;用户id&#x27;,</span><br><span class="line">	name string,</span><br><span class="line">	age bigint</span><br><span class="line">) comment &#x27;第一个表&#x27;</span><br><span class="line">ROW FORMAT delimited fields terminated by &#x27;,&#x27; //指定分隔符</span><br><span class="line">STORED as TEXTFILE; // 存储形式</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">create table emp2 like emp;</span><br><span class="line">复制表结构</span><br><span class="line"></span><br><span class="line">或者</span><br></pre></td></tr></table></figure>
+
+<h2 id="为什么要分隔符"><a href="#为什么要分隔符" class="headerlink" title="为什么要分隔符"></a>为什么要分隔符</h2><p>因为我们的元数据都在hdfs上，对于hdfs上的数据可以通过分隔符进行自动导入到hive里，比如上述是，分割的，然后我hdfs上有如下数据</p>
+<p>1，zihan,11</p>
+<p>2,zhangsan,23</p>
+<p>3,liu,33</p>
+<p>就会自动按照每一行进行insert</p>
+<p>导入数据 ： load data local inpath ‘本地的绝对路径’ into table 表名</p>
+<p>清空表的操作 ： truncate table 表名</p>
+<h1 id="删除库"><a href="#删除库" class="headerlink" title="删除库"></a>删除库</h1><p>DROP (DATABASE|SCHEMA) [IF EXISTS] database_name [RESTRICT|CASCADE];</p>
+<p>DROP DATABASE bigdata_hive4;</p>
+<p>DROP DATABASE bigdata_hive2 CASCADE; &#x3D;&gt;删库跑路的操作</p>
+<p>CASCADE : 代表联合删除 ，一般删除的时候如果里面有表，会造成无法删除的问题，但是联合删除会直接删除掉</p>
+<h1 id="DMl"><a href="#DMl" class="headerlink" title="DMl"></a>DMl</h1><h2 id="load-："><a href="#load-：" class="headerlink" title="load ："></a>load ：</h2><ul>
+<li>加载本地数据</li>
+<li>加载hdfs上的数据</li>
+</ul>
+<p>LOAD原本是追加，不是覆盖 ， 但是可以通过 加上 overwrite 关键字 进行 覆盖操作</p>
+<h2 id="覆盖例子"><a href="#覆盖例子" class="headerlink" title="覆盖例子"></a>覆盖例子</h2><p>load data local inpath ‘&#x2F;home&#x2F;hadoop&#x2F;tmp&#x2F;emp.txt’ OVERWRITE INTO TABLE emp;</p>
+<h2 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h2><p>本地：load data inpath ‘本地路径’ into table 表名</p>
+<p>hdfs ： load data inpath ‘hdfs上的路径’ into table 表名</p>
+<p>上述的hdfs上的相当于把其路径里的文件移动到table 表名的下面 并且改名，且关联到metastore</p>
+<p>但是我们的hdfs mv 是不会关联到metastore的</p>
+<p>在hive 里 update 和 delete 不要做 &#x3D;》 因为效率低下</p>
+<p>把所有的update和delete都转化成insert和overwrite</p>
+<h2 id="插入语句-："><a href="#插入语句-：" class="headerlink" title="插入语句 ："></a>插入语句 ：</h2><p>Inserting data into Hive Tables from queries</p>
+<p>insert into|OVERWRITE table tablename selectQury</p>
+<p>2.Inserting values into tables from SQL 【不推荐使用】<br>INSERT INTO TABLE tablename<br>VALUES values_row [, values_row …]<br>1.每导入一条数据 就会触发一次 mapreduce job  效率太低</p>
+<p>emp2：<br>    insert into table emp2<br>    select *  from emp;<br>insert overwrite table emp2<br>select *  from emp where deptno&#x3D;10;</p>
+<h2 id="关于hive里的一些函数以及使用"><a href="#关于hive里的一些函数以及使用" class="headerlink" title="关于hive里的一些函数以及使用"></a>关于hive里的一些函数以及使用</h2><h3 id="1-where-过滤条件"><a href="#1-where-过滤条件" class="headerlink" title="1.where 过滤条件"></a>1.where 过滤条件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">where_condition</span><br><span class="line">	 &lt;</span><br><span class="line">	 &gt;</span><br><span class="line">	 =</span><br><span class="line">	 &lt;&gt;  !=</span><br><span class="line">	 and</span><br><span class="line">	 or</span><br><span class="line">	 in</span><br><span class="line">	 not in</span><br><span class="line">	 between  and</span><br><span class="line">	 is</span><br><span class="line">	 is not</span><br></pre></td></tr></table></figure>
+
+<h3 id="需求：查询表中-deptno-20-10"><a href="#需求：查询表中-deptno-20-10" class="headerlink" title="需求：查询表中 deptno 20 10"></a>需求：查询表中 deptno 20 10</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">select</span><br><span class="line">*</span><br><span class="line">from emp</span><br><span class="line">where deptno=20 or deptno =10;</span><br><span class="line"></span><br><span class="line">select</span><br><span class="line">*</span><br><span class="line">from emp</span><br><span class="line">where deptno in (10,20);</span><br><span class="line"></span><br><span class="line">select</span><br><span class="line">*</span><br><span class="line">from emp</span><br><span class="line">where deptno &lt;&gt; 20;</span><br><span class="line">select</span><br><span class="line">*</span><br><span class="line">from emp</span><br><span class="line">where deptno != 20;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-order-by-排序语法"><a href="#2-order-by-排序语法" class="headerlink" title="2.order by  排序语法"></a>2.order by  排序语法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.默认asc 升序</span><br><span class="line">2.降序 desc</span><br><span class="line"></span><br><span class="line">select</span><br><span class="line">sal</span><br><span class="line">from emp</span><br><span class="line">order by sal desc;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-like-语法-模糊匹配"><a href="#3-like-语法-模糊匹配" class="headerlink" title="3.like 语法 模糊匹配"></a>3.like 语法 模糊匹配</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1._  占位符</span><br><span class="line">2.%  模糊</span><br><span class="line">rlike regexp</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-合并表"><a href="#4-合并表" class="headerlink" title="4.合并表"></a>4.合并表</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">union  去重</span><br><span class="line"></span><br><span class="line">union all  不去重</span><br></pre></td></tr></table></figure>
+
+<h3 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">create table a(id int ,name string) row format  delimited fields terminated by &#x27;,&#x27; ;</span><br><span class="line">create table b(id int ,name string) row format  delimited fields terminated by &#x27;,&#x27; ;</span><br><span class="line"></span><br><span class="line">load data local inpath &quot;/home/hadoop/tmp/a.txt&quot; into table a;</span><br><span class="line">load data local inpath &quot;/home/hadoop/tmp/b.txt&quot; into table b;</span><br><span class="line"></span><br><span class="line">select name from a</span><br><span class="line">union all</span><br><span class="line">select name from b;</span><br><span class="line"></span><br><span class="line">select name from a</span><br><span class="line">union all</span><br><span class="line">select name from b</span><br><span class="line">union all</span><br><span class="line">select &quot;lisi&quot; as name ;</span><br><span class="line"></span><br><span class="line">select name,&quot;1&quot; as pk from a</span><br><span class="line">union all</span><br><span class="line">select name,&quot;2&quot; as pk from b</span><br><span class="line">union all</span><br><span class="line">select &quot;lisi&quot; as name,&quot;3&quot; as id ;</span><br></pre></td></tr></table></figure>
+
+<p>思考： hive建表 默认column 分割符是什么？</p>
+<h3 id="5-null-处理"><a href="#5-null-处理" class="headerlink" title="5.null 处理"></a>5.null 处理</h3><pre><code>1. 过滤
+    where xxx is not null
+is null 作用一样 &lt;=&gt;
+2. etl 转换
+    ifnull  =&gt; hive里没有
+    coalesce =》
+    nvl  =》
+</code></pre>
+<h3 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h3><pre><code>查看hive支持的function ：
+            y=f(x)
+    SHOW FUNCTIONS [LIKE &quot;`&lt;pattern&gt;`&quot;];
+    show functions like nvl;  =&gt; 判断 function hive 是否存在
+    desc function nvl; =》  查看某个函数具体使用
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">select</span><br><span class="line">empno,</span><br><span class="line">ename,</span><br><span class="line">job,</span><br><span class="line">mgr,</span><br><span class="line">hiredate,</span><br><span class="line">sal,</span><br><span class="line">nvl(comm,0) as comm_alias,</span><br><span class="line">deptno</span><br><span class="line">from emp ;</span><br></pre></td></tr></table></figure>
+
+<h2 id="分组-聚合函数-join"><a href="#分组-聚合函数-join" class="headerlink" title="分组 聚合函数 join"></a>分组 聚合函数 join</h2><p>聚合函数 ：</p>
+<ul>
+<li>sum</li>
+<li>max</li>
+<li>min</li>
+<li>avg</li>
+<li>count</li>
+</ul>
+<h3 id="group-by"><a href="#group-by" class="headerlink" title="group by"></a>group by</h3><ul>
+<li>和聚合函数一起使用</li>
+<li>一个或者多个colum进行分组</li>
+<li>字段必须select出现 和 group by 出现要一致</li>
+</ul>
+<h3 id="having-："><a href="#having-：" class="headerlink" title="having ："></a>having ：</h3><ul>
+<li>在group by 后面使用</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">select job,</span><br><span class="line"></span><br><span class="line">sum(sal) as sal_num,</span><br><span class="line"></span><br><span class="line">max(sal),</span><br><span class="line"></span><br><span class="line">min(sal),</span><br><span class="line"></span><br><span class="line">avg(sal),</span><br><span class="line"></span><br><span class="line">count(1) as cnt</span><br><span class="line"></span><br><span class="line">from emp</span><br><span class="line"></span><br><span class="line">group by job</span><br><span class="line"></span><br><span class="line">having sal_num &gt; 6000</span><br></pre></td></tr></table></figure>
+
+<h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p>找准关联字段</p>
+<ul>
+<li>inner join [join]</li>
+<li>left join</li>
+<li>right join</li>
+<li>full join</li>
+</ul>
+<h3 id="需求：既要显示聚合前的数据，又要显示聚合后的数据？"><a href="#需求：既要显示聚合前的数据，又要显示聚合后的数据？" class="headerlink" title="需求：既要显示聚合前的数据，又要显示聚合后的数据？"></a>需求：既要显示聚合前的数据，又要显示聚合后的数据？</h3><p>函数  over([partition by xxx,…] [order by xxx,….])</p>
+<p>over: 以谁进行开窗 table、<br>parition by : 以谁进行分组   table columns<br>order by : 以谁进行排序  table columns</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">数据： </span><br><span class="line">haige,2022-11-10,1</span><br><span class="line">haige,2022-11-11,5</span><br><span class="line">haige,2022-11-12,7</span><br><span class="line">haige,2022-11-13,3</span><br><span class="line">haige,2022-11-14,2</span><br><span class="line">haige,2022-11-15,4</span><br><span class="line">haige,2022-11-16,4</span><br></pre></td></tr></table></figure>
+
+<p>需求：<br>    统计累计问题 ，每个用户每天累计点外卖次数</p>
+<p>[partition by xxx,…] [order by xxx,….]</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select </span><br><span class="line">name ,</span><br><span class="line">dt ,</span><br><span class="line">cnt ,</span><br><span class="line">sum(cnt) over(partition by name  order by dt ) as sum_cnt</span><br><span class="line">from user_mt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="命令行更改"><a href="#命令行更改" class="headerlink" title="命令行更改"></a>命令行更改</h3><p>command line<br>    1.hive shell<br>    2.jdbc &#x3D;&gt; hiveServer2</p>
+<pre><code>hive clinet:
+    1. hive shell
+    2. beeline shell jdbc   开启 hiveServer2 服务 thift
+</code></pre>
+<p>在beeline中 <code>!connect jdbc:hive2://localhost:10000 hadoop</code></p>
+<p>补充：<br>beeline &#x3D;&gt; 连接 hive  &#x3D;》 hdfs<br>对hdfs 做一个设置 代理设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">core-site.xml:</span><br><span class="line">&lt;property&gt;</span><br><span class="line">	&lt;name&gt;hadoop.proxyuser.hadoop.hosts&lt;/name&gt;</span><br><span class="line">	&lt;value&gt;*&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">	&lt;name&gt;hadoop.proxyuser.hadoop.groups&lt;/name&gt;</span><br><span class="line">	&lt;value&gt;*&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/29/11-29/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/29/11-29/" class="post-title-link" itemprop="url">hive</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-29 08:36:32" itemprop="dateCreated datePublished" datetime="2022-11-29T08:36:32+08:00">2022-11-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-30 22:00:51" itemprop="dateModified" datetime="2022-11-30T22:00:51+08:00">2022-11-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>简单来说就是用sql处理hadoop的数据的</p>
+<p>除了hive之外 ： sparksql ，presto ， impala</p>
+<h2 id="要求掌握"><a href="#要求掌握" class="headerlink" title="要求掌握"></a>要求掌握</h2><p>sql</p>
+<p>udf</p>
+<h2 id="hadoop包含"><a href="#hadoop包含" class="headerlink" title="hadoop包含"></a>hadoop包含</h2><p>hdfs ：命令行</p>
+<p>mapreduce ：目前工作中几乎不用，但是关于核心类和思想要掌握</p>
+<p>yarn：提交作业 xxx （mr&#x2F;spark&#x2F;flink）on yarn ： 必须会</p>
+<p>mapreduce的弊端 ：</p>
+<ul>
+<li>开发大量代码</li>
+<li>编程基础不错</li>
+<li>部署麻烦</li>
+<li>修改code蛮麻烦</li>
+<li>对于DBA和RDBMS的小伙伴是不友好的</li>
+</ul>
+<p>大数据处理来说最终落地最好是sql</p>
+<p>大数据开发角度 ：</p>
+<ul>
+<li>基础平台开发<ul>
+<li>涉及很多框架底层的面很广</li>
+</ul>
+</li>
+<li>应用层面开发<ul>
+<li>基于基础平台开发 ，写sql</li>
+</ul>
+</li>
+</ul>
+<p>根据你的兴趣点 + 公司的定位</p>
+<p>必然有新的东西诞生去解决一个场景的问题</p>
+<p>mr主要适用于我们的p计算（离线计算）：不要求时效性 ，但是mr开发太麻烦，就诞生了hive</p>
+<p>hive 介绍 ：</p>
+<p>hive.apache.org</p>
+<p>是由什么人提供出来的？</p>
+<p>facebook 开源 去解决结构化的数据统计问题</p>
+<p>是什么？</p>
+<p>构建在hadoop之上的数据仓库</p>
+<p>hdfs：hive 的数据是在hdfs之上的</p>
+<p>yarn：可以跑在yarn之上</p>
+<p>mmapreduce ： 可以用mr形式去运行</p>
+<p>如何使用：</p>
+<p>定义了一中类sql的语言，类似sql但是又有不同</p>
+<p>适用于离线&#x2F;p处理的</p>
+<p>开发就是写sql &#x3D;》 mr  &#x3D;》 运行在yarn上</p>
+<p>hive的底层引擎是：</p>
+<ul>
+<li>mr （默认）：sql&#x3D;》mr</li>
+<li>Tez：sql&#x3D;》Tez</li>
+<li>Spark：sql&#x3D;》Spark</li>
+</ul>
+<p>hive on spark &#x3D;》生厂上用的用的不多</p>
+<p>spark on hive &#x3D;》 用sparksql查看hive的数据</p>
+<p>hive的存储格式，压缩格式等</p>
+<p>官网：</p>
+<ul>
+<li>in distributed storage （分布式存储）：hdfs , cos,oss,aws</li>
+<li>A command line tool and JDBC driver are provided to connect users to Hive.</li>
+</ul>
+<p>版本介绍 ：</p>
+<p>x.y.z：x是大版本，y是小版本，z是小版本的修复版本</p>
+<p>为什么要学习hive</p>
+<ul>
+<li>简单易用 ： 可以用sql开发</li>
+<li>扩展性好：<ul>
+<li>用自定义函数udf</li>
+<li>数据存储 和 计算角度 ： 如果表中数据存不下，可以加几个节点就好了<ul>
+<li>注意hive不是分布式的，它仅仅是个客户端</li>
+</ul>
+</li>
+<li>Metastore ：hive的元数据管理<ul>
+<li>sparksql ,presto ,impala 只要可以访问hive的元数据就可以访问里面表的数据</li>
+<li>可以分享元数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>hive的架构 ：</p>
+<ul>
+<li>元数据 ： 描述数据的数据<ul>
+<li>表的名字，字段的名字，字段的类型，什么人创建的，数据存储在哪里等</li>
+<li>元数据的内部内置了一个Derby但是有弊端</li>
+<li>元数据都是用mysql进行存储的</li>
+<li>测试的时候一个mysql就可以了</li>
+<li>但是生产上则一个不够</li>
+<li>生产上要遵循 HA ：高可用</li>
+<li>就是要一台做备份</li>
+<li>两个mysql是主从架构</li>
+</ul>
+</li>
+</ul>
+<p>hive和RDBMS的区别</p>
+<ul>
+<li>共同点 sql</li>
+<li>延时性 ： hive 适用于离线计算 慢，千万不要拿hive和mysql的性能做对比，无可比性，mysql要必hive高（数据量小）数据量大的时候就反过来了</li>
+<li>事务 ： 都支持</li>
+<li>update ，delete<ul>
+<li>上面两个语句在hive里基本不用，因为性能太差了</li>
+</ul>
+</li>
+<li>都支持分布式</li>
+<li>部署成本 ：<ul>
+<li>hive ：廉价</li>
+<li>mysql ：成本很高</li>
+</ul>
+</li>
+<li>数据体量<ul>
+<li>hive ：Tb</li>
+<li>mysql：处理Pb都比较费劲</li>
+</ul>
+</li>
+</ul>
+<p>对hive进行部署</p>
+<p>分布式部署 ： cwiki.apache.org(官网)</p>
+<p>首先把用压缩包上传到linux机器上</p>
+<p>然后对linux进行解压</p>
+<p>解压完成之后，我们要对他的的配置进行修改在解压之后的</p>
+<p><code>vim hive-site.xml</code></p>
+<p>编辑完成之后我们把以下内容放进去</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;jdbc:mysql://bigdata2:3306/hive?createDatabaseIfNotExist=true&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;root&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;liuzihan010616&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后在环境变量中编辑我们的hive_home</p>
+<p><code>vim ~/.bashrc </code></p>
+<p>把下列加进去</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">HIVE_HOME</span></span><br><span class="line">export HIVE_HOME=/home/hadoop/app/hive</span><br><span class="line">export PATH=$&#123;PATH&#125;:$&#123;HIVE_HOME&#125;/bin</span><br></pre></td></tr></table></figure>
+
+<p>然后我们要把我们的mysql链接包放在lib文件夹下</p>
+<p>就是 <code>mysql-connector-java-5.1.28.jar</code></p>
+<p>要放在hive的lib文件夹下</p>
+<p>然后对我们的hive进行初始化</p>
+<p><code>schematool -dbType mysql -initSchema</code></p>
+<p>初始化成功之后，先启动hdfs ，然后命令行输入 hive 然后输入show databases;</p>
+<p>成功就ok了</p>
+<p>然后再mysql的数据库里会有hive这个数据库</p>
+<p>mysql里\G是格式化的意思</p>
+<h2 id="思考-：-表中的字段-存在哪里？"><a href="#思考-：-表中的字段-存在哪里？" class="headerlink" title="思考 ： 表中的字段 存在哪里？"></a>思考 ： 表中的字段 存在哪里？</h2><p>我们先进入hive ： <code>create table test(name String); </code></p>
+<p>一个 hive 表 会被拆分成n个表存储再mysql里</p>
+<p>比如　： TBl表存放的是我们的表名 <code>select * from tbls \G;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">*************************** 1. row ***************************</span><br><span class="line">            TBL_ID: 1</span><br><span class="line">       CREATE_TIME: 1669707861</span><br><span class="line">             DB_ID: 1</span><br><span class="line">  LAST_ACCESS_TIME: 0</span><br><span class="line">             OWNER: hadoop</span><br><span class="line">        OWNER_TYPE: USER</span><br><span class="line">         RETENTION: 0</span><br><span class="line">             SD_ID: 1</span><br><span class="line">          TBL_NAME: test</span><br><span class="line">          TBL_TYPE: MANAGED_TABLE</span><br><span class="line">VIEW_EXPANDED_TEXT: NULL</span><br><span class="line">VIEW_ORIGINAL_TEXT: NULL</span><br><span class="line">IS_REWRITE_ENABLED:  </span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>比如 ： columns_v2表存放的是我们的字段 <code>select * from columns_v2 \G;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">*************************** 1. row ***************************</span><br><span class="line">      CD_ID: 1</span><br><span class="line">    COMMENT: NULL</span><br><span class="line">COLUMN_NAME: name</span><br><span class="line">  TYPE_NAME: string</span><br><span class="line">INTEGER_IDX: 0</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>比如 ： DBS是存放的我们的物理存储路径的 <code>select * from DBS \G;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">*************************** 1. row ***************************</span><br><span class="line">          DB_ID: 1</span><br><span class="line">           DESC: Default Hive database</span><br><span class="line">DB_LOCATION_URI: hdfs://bigdata3:9000/user/hive/warehouse</span><br><span class="line">           NAME: default</span><br><span class="line">     OWNER_NAME: public</span><br><span class="line">     OWNER_TYPE: ROLE</span><br><span class="line">      CTLG_NAME: hive</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h2 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h2><p>hive有个默认数据库 是default 路径 ：&#x2F;user&#x2F;hive&#x2F;warehouse</p>
+<p>非默认数据库 ： &#x2F;user&#x2F;hive&#x2F;warehouse&#x2F;dbname.db</p>
+<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><p>CREATE [REMOTE] (DATABASE|SCHEMA) [IF NOT EXISTS] database_name<br>  [COMMENT database_comment]<br>  [LOCATION hdfs_path]<br>  [MANAGEDLOCATION hdfs_path]<br>  [WITH DBPROPERTIES (property_name&#x3D;property_value, …)];</p>
+<p>[] 可有可无<br>(|) 选择其中一个即可</p>
+<p>CREATE DATABASE 名称；</p>
+<p>CREATE DATABASE 名称 LOCATION ‘创建的地方’；</p>
+<p>例子 ：</p>
+<p>create database if not exists bigdata_hive;<br>create database  bigdata_hive2  LOCATION ‘&#x2F;data&#x2F;bigdata_hive2’;<br>create database  bigdata_hive3 WITH DBPROPERTIES (‘creator’&#x3D;’doublehappy’, ‘create_dt’&#x3D;”2099-11-29”);<br>create database if not exists bigdata_hive4 COMMENT “这是一个数据库4”;</p>
+<p>解决此处中文乱码的问题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE hive.dbs MODIFY COLUMN `DESC` varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL;</span><br></pre></td></tr></table></figure>
+
+<h3 id="显示数据库"><a href="#显示数据库" class="headerlink" title="显示数据库"></a>显示数据库</h3><p>show databases;<br>show databases like “bigdata_hive*”<br>desc database  bigdata_hive3;<br>desc database EXTENDED bigdata_hive3;</p>
+<h2 id="思考-：-这个数据库在hdfs的哪一个地方"><a href="#思考-：-这个数据库在hdfs的哪一个地方" class="headerlink" title="思考 ： 这个数据库在hdfs的哪一个地方"></a>思考 ： 这个数据库在hdfs的哪一个地方</h2><p>可以通过查看DBS表</p>
+<h1 id="hive-的注释-comment-中文乱码的解决方法"><a href="#hive-的注释-comment-中文乱码的解决方法" class="headerlink" title="hive 的注释(comment) 中文乱码的解决方法"></a>hive 的注释(comment) 中文乱码的解决方法</h1><p>（1）修改表字段注解和表注解</p>
+<p>alter table COLUMNS_V2 modify column COMMENT varchar(256) character set utf8;<br>alter table TABLE_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8;</p>
+<p>（2）修改分区字段注解</p>
+<p>alter table PARTITION_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8 ;<br>alter table PARTITION_KEYS modify column PKEY_COMMENT varchar(4000) character set utf8;</p>
+<p>（3）修改索引注解</p>
+<p>alter table INDEX_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8;</p>
+<p>修改hive-site.xml配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;jdbc:mysql://IP:3306/db_name?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&lt;/value&gt;</span><br><span class="line">    &lt;description&gt;JDBC connect string for a JDBC metastore&lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上述的 <code>&amp; 是 &amp;amp; </code></p>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1236,7 +1716,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-11 00:48:49" itemprop="dateModified" datetime="2022-12-11T00:48:49+08:00">2022-12-11</time>
+                <time title="修改时间：2022-12-11 17:19:17" itemprop="dateModified" datetime="2022-12-11T17:19:17+08:00">2022-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1254,7 +1734,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
+              <span>3.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1358,6 +1838,13 @@
 
 <p>加载参数</p>
 <p><code>sysctl -p</code></p>
+<h1 id="git出现fatal-the-remote-end-hung-up-unexpectedly"><a href="#git出现fatal-the-remote-end-hung-up-unexpectedly" class="headerlink" title="git出现fatal: the remote end hung up unexpectedly"></a>git出现<strong>fatal: the remote end hung up unexpectedly</strong></h1><p>上传项目报fatal: the remote end hung up unexpectedly的错误，</p>
+<p>应该是项目太大的原因， 要么是网络不行，要么墙的原因</p>
+<p>解决办法：<br>修改提交缓存大小为500M，或者更大的数字<br>git config –global http.postBuffer 524288000</p>
+<p>some comments below report having to double the value:</p>
+<p>git config –global http.postBuffer 1048576000</p>
+<p>或者是 在克隆&#x2F;创建版本库生成的 .git&#x2F;config 文件中加入:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[http]</span><br><span class="line">postBuffer = 524288000</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1563,656 +2050,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/11/11-10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/11/11-10/" class="post-title-link" itemprop="url">hadoop</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-11 10:07:37" itemprop="dateCreated datePublished" datetime="2022-11-11T10:07:37+08:00">2022-11-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-18 13:52:53" itemprop="dateModified" datetime="2022-11-18T13:52:53+08:00">2022-11-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>16k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>15 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="hadoop简介"><a href="#hadoop简介" class="headerlink" title="hadoop简介"></a>hadoop简介</h1><ul>
-<li>以阿帕奇软件 ，hadoop为主的生态圈 </li>
-<li>狭义就是Hadoop</li>
-</ul>
-<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><ul>
-<li>hdfs ： 存储海量的数据</li>
-<li>mapreduce ： 计算分析</li>
-<li>yarn ： 资源和作业的调度</li>
-</ul>
-<h3 id="观点"><a href="#观点" class="headerlink" title="观点"></a>观点</h3><ul>
-<li>存储是第一位的</li>
-<li>计算是第二位的</li>
-</ul>
-<h2 id="学习介绍"><a href="#学习介绍" class="headerlink" title="学习介绍"></a>学习介绍</h2><ul>
-<li>官网进行学习</li>
-<li><code>hadoop.apache.org</code></li>
-<li>但是后面的其余框架对应的官网就是 把hadoop 改掉</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">The Apache Hadoop software library is a framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models. It is designed to scale up from single servers to thousands of machines, each offering local computation and storage. Rather than rely on hardware to deliver high-availability, the library itself is designed to detect and handle failures at the application layer, so delivering a highly-available service on top of a cluster of computers, each of which may be prone to failures.</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="hadoop模块的简介"><a href="#hadoop模块的简介" class="headerlink" title="hadoop模块的简介"></a>hadoop模块的简介</h3><ul>
-<li>hdfs ：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">A distributed file system that provides high-throughput access to application data.</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>mapredurce :</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">A YARN-based system for parallel processing of large data sets</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>yarm :</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">A framework for job scheduling and cluster resource management</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="版本以及主流"><a href="#版本以及主流" class="headerlink" title="版本以及主流"></a>版本以及主流</h3><ul>
-<li>版本 ： 1.x ， 2.x ， 3.x</li>
-<li>主流 ： 2.x -》 3.x</li>
-<li>公司所用 ： </li>
-<li>apache 原生</li>
-<li>cdh ： 5.x ， 6.x 从6.3之后开始收费</li>
-</ul>
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><ul>
-<li>安装的是什么？</li>
-<li>Hadoop有什么？</li>
-<li>我们只用部署 yarn hdfs 因为mapredurce是java代码人员给我们的 ：都是主从架构的</li>
-<li>hdfs ： </li>
-<li>namenode : 老大 负责指挥数据的存储</li>
-<li>datanode ： 主要负责数据的存储</li>
-<li>seconderynamenode ： 负责辅助namenode的</li>
-<li>yarn :</li>
-<li>resourcemanager : 老大 负责资源分配</li>
-<li>nodemanager ： 小弟负责资源分配给xxx</li>
-</ul>
-<h3 id="部署模式"><a href="#部署模式" class="headerlink" title="部署模式"></a>部署模式</h3><ul>
-<li>单点模式 ：所有都在一台机器上</li>
-<li>完全分布式模式 ：分布在多台机器上</li>
-</ul>
-<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><ul>
-<li>部署平台 ： windows 和linux</li>
-<li>一般linux用的多 ，而且在linux上最少2000台</li>
-<li>jdk ： 安装java的要求</li>
-<li>3.3-目前 ： java8 - 11</li>
-<li>3.0-3.2 ： java8</li>
-<li>2.7-2.10 ： java8</li>
-<li>但是有些的java8 的版本也不行 ，详细参考官网</li>
-<li>要下载补丁安装就好</li>
-<li>ssh ： 默认centos是安装的，但是ubantu是没安装的</li>
-<li>个人要求 ：创建hadoop用户 ，以后我们都用那个用户开发</li>
-<li>而且创建 几个文件夹进行规范</li>
-<li>app ：app</li>
-<li>data ：数据 </li>
-<li>log ：监控日志</li>
-<li>project ：项目 </li>
-<li>shell ： shell脚本</li>
-<li>software ： 安装包</li>
-<li>以前版本的apche 版本框架 在</li>
-<li><code>archive.apache.org/dist</code></li>
-<li>部署jdk</li>
-<li>hadoop ： 无要求</li>
-</ul>
-<h3 id="配置开始"><a href="#配置开始" class="headerlink" title="配置开始"></a>配置开始</h3><ul>
-<li>把文件解压</li>
-<li>配置环境变量</li>
-<li>个人 ： 修改 .&#x2F;bashrc </li>
-<li>添加 exprot JAVA_HOME&#x3D; xxxx</li>
-<li>export PATH&#x3D;${JAVA_HOME}&#x2F;bin:$PATH</li>
-<li>export HADOOP_HOME&#x3D;mmm</li>
-<li>export PATH&#x3D;${HADOOP_HOME}&#x2F;bin:${HADOOP_HOME}&#x2F;sbin:$PATH</li>
-<li>上面xxxx和mmm</li>
-<li>分别代表我们的java的和hadoop的解压目录</li>
-<li>然后我们导入个人环境变量 ， </li>
-<li>source ~&#x2F;.bashrc</li>
-<li>然后验证安装 java -version 和 hadoop version</li>
-<li>如果成功就代表安装成功了</li>
-<li>接下来我们更改hadoop的配置文件</li>
-<li>进入到hadoop的etc文件夹里</li>
-<li>编辑 core-site.xml</li>
-<li>在两个标签之间输入</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;property&gt;</span><br><span class="line">	&lt;name&gt;fs.defaultFS&lt;/name&gt;</span><br><span class="line">	&lt;value&gt;hdfs://你的机器名:9000&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>编辑hdfs-site.xml</li>
-<li>在两个标签之间输入</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;property&gt;</span><br><span class="line">	&lt;name&gt;dfs.replication&lt;/name&gt;</span><br><span class="line">	&lt;value&gt;1&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>接下来我们进行开放访问 ， 我们先执行</li>
-<li><code>ssh user@hostname [com]</code> 进行登录</li>
-<li>然后通过输入密码登陆一次</li>
-<li>上一条的的命令如果加上com则代表登录并执行这个命令</li>
-<li>然后我们要设置免密登录</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">ssh-keygen -t rsa -P &#x27;&#x27; -f ~/.ssh/id_rsa</span><br><span class="line">cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br><span class="line">chmod 0600 ~/.ssh/authorized_keys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>然后继续上述的命令：看看能不能免密登录</li>
-<li>成功之后，我们要更改文件格式 ： 相当于初始化操作</li>
-<li>然后我们启动dhfs</li>
-<li><code>start-dfs.sh</code></li>
-<li>然后我们访问 <code>http://你的虚拟机ip:9870/</code></li>
-<li>成功看见hadoop的web页面就好了</li>
-<li>然后可以更简便的方法</li>
-<li>在c盘找到 windows 然后进去system32</li>
-<li>然后进去driver</li>
-<li>然后进入etc文件</li>
-<li>然后在hosts文件最后的加上我们在linux里的主机和ip映射</li>
-<li>就可以通过 <code>http://你的虚拟机名称:9870/</code>访问我们的hadoop了</li>
-</ul>
-<h3 id="部署yarn"><a href="#部署yarn" class="headerlink" title="部署yarn"></a>部署yarn</h3><ul>
-<li>对于部署单点的yarn</li>
-<li>我们可以通过配置yarn的配置文件</li>
-<li><code>mapred-site.xml</code> 和<code>yarn-site.xml</code></li>
-</ul>
-<h4 id="mapred-site-xml"><a href="#mapred-site-xml" class="headerlink" title="mapred-site.xml"></a>mapred-site.xml</h4><ul>
-<li>对于这个文件我们这样更改</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;yarn&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;mapreduce.application.classpath&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="yarn-site-xml"><a href="#yarn-site-xml" class="headerlink" title="yarn-site.xml"></a>yarn-site.xml</h4><ul>
-<li>对于这个文件我们进行</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">#设置web访问的端口</span><br><span class="line"> &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.resourcemanager.webapp.address&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;你的主机名称:9999&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">#设置运行在那个虚拟机上</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;你的主机名&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#下面两个要基本配置</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.env-whitelist&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_HOME,PATH,LANG,TZ,HADOOP_MAPRED_HOME&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>配置完成之后我们要进行<code>start-yarn.sh</code></li>
-<li>然后开启这个服务 ： 我们可以通过访问浏览器的 <code>xxx你的ip:9999</code> ,访问这个服务</li>
-<li>这样我们的单点就算配置完成了</li>
-</ul>
-<h2 id="关于分布式的配置"><a href="#关于分布式的配置" class="headerlink" title="关于分布式的配置"></a>关于分布式的配置</h2><ul>
-<li>分布式的配置就是把单点的配置分到多台机器上</li>
-<li>比如 ： 把hdfs的namenode 和 datanode 和secondnamenode分到三台机器上</li>
-<li>把yarn的部署也分到三台机器上</li>
-</ul>
-<h3 id="开始分布式"><a href="#开始分布式" class="headerlink" title="开始分布式"></a>开始分布式</h3><ul>
-<li>首先我们要明确一点 ： namenode是老大 ，只能有一个</li>
-<li>datanode是小弟 ：  可以有多个</li>
-<li>secondnamenode ：是秘书只能有一个</li>
-<li>对于yarn ： resourcemanager只能有一个</li>
-<li>而 ：nodemanagers ：可有多个</li>
-</ul>
-<h4 id="开始之前的配置"><a href="#开始之前的配置" class="headerlink" title="开始之前的配置"></a>开始之前的配置</h4><ul>
-<li>关于hdfs和上面部署的一样</li>
-<li>只不过在配置免密登录的时候不同</li>
-<li>因为我们现在要做三台机器互相免密</li>
-<li>所以我们要用</li>
-<li><code>ssh-keygen -t rsa</code> 然后三次回车生成公钥和私钥</li>
-<li>然后三台机器都要用一遍</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ssh-copy-id 第一台机器名</span><br><span class="line">ssh-copy-id 第二台机器名</span><br><span class="line">ssh-copy-id 第三台机器名</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后分别对三台机器用</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ssh hadoop@第一台机器名</span><br><span class="line">ssh hadoop@第二台机器名</span><br><span class="line">ssh hadoop@第三台机器名</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>最后分别ssh一下然后如果能成功就代表成功了</li>
-</ul>
-<h4 id="hdfs"><a href="#hdfs" class="headerlink" title="hdfs"></a>hdfs</h4><ul>
-<li><code>core-site.xml</code></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">#设置存储位置</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;/home/hadoop/data/hadoopdate&lt;/value&gt;</span><br><span class="line"> &lt;/property&gt;</span><br><span class="line">#设置namenode在哪一台机器上运行</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;fs.defaultFS&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;hdfs://主机器的名称:9000&lt;/value&gt;</span><br><span class="line"> &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>-<code>workers</code> </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">第一台机器的名称</span><br><span class="line">第二台机器的名称</span><br><span class="line">第三台机器的名称</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>hdfs-site.xml</code></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line"> #下面的values代表是几台机器，我这个是三台机器</span><br><span class="line"> &lt;property&gt;</span><br><span class="line">        &lt;name&gt;dfs.replication&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;3&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  #设置secondarynamenode的端口和在哪一台机器上</span><br><span class="line"> &lt;property&gt;</span><br><span class="line">        &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;bigdata4:9868&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">#同上一个</span><br><span class="line"> &lt;property&gt;</span><br><span class="line">        &lt;name&gt;dfs.namenode.secondary.https-address&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;bigdata4:9869&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后三台机器都要配置相同的环境变量</li>
-</ul>
-<h4 id="yarn"><a href="#yarn" class="headerlink" title="yarn"></a>yarn</h4><ul>
-<li><code>mapred-site.xml</code></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;yarn&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;mapreduce.application.classpath&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>yarn-site.xml</code></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">#设置resourcemanager其所占用的端口</span><br><span class="line"> &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.resourcemanager.webapp.address&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;bigdata5:9999&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">#设置resourcemanager其所在的机器</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;bigdata5&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">#下面两个是正常yarn的配置文件</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.env-whitelist&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_HOME,PATH,LANG,TZ,HADOOP_MAPRED_HOME&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>同样三台机器也要配置相同的文件</li>
-<li>然后我们要在我们的namenode机器上</li>
-<li>开始初始化： <code>hdfs namenode -format</code></li>
-<li>然后我们在namenode上开始运行<code>start-dfs.sh</code></li>
-<li>然后我们在resourcemanager上开始运行<code>start-yarn.sh</code></li>
-<li>然后我们可以用jps查看每个机器的进程</li>
-<li>查看是不是符合我们的想法</li>
-</ul>
-<h3 id="关于datanode缺失"><a href="#关于datanode缺失" class="headerlink" title="关于datanode缺失"></a>关于datanode缺失</h3><ul>
-<li>因为默认hadoop有一个id文件是在<code>/tmp/hadoop-hadoop/dfs</code>下的</li>
-<li>我们默认启动的时候可能有多个原因 ，造成生成的id不一致</li>
-<li>比如 ； 我们忘记关闭hadoop服务之类的，或者卸载的时候忘记删掉他了</li>
-<li>这些都会造成id不一致的问题</li>
-<li>解决方法： </li>
-<li>如果dfs文件夹中没有重要的数据，那么删除dfs文件夹，再重新运行下列指令（格式化指令）</li>
-<li>如果dfs文件中有重要的数据，那么在dfs&#x2F;name目录下找到一个current&#x2F;VERSION文件，记录clusterID并复制。然后dfs&#x2F;data目录下找到一个current&#x2F;VERSION文件，将其中clustreID的值替换成刚刚复制的clusterID的值即可</li>
-</ul>
-<h2 id="hdfs的命令"><a href="#hdfs的命令" class="headerlink" title="hdfs的命令"></a>hdfs的命令</h2><ul>
-<li>创建文件夹 <code>hdfs dfs -mkdir xxx</code> : 创建xxx文件夹，可以多层创建文件夹</li>
-<li>创建文件<code>hdfs dfs -touchz path</code></li>
-<li>复制文件<code>hdfs dfs -cp 源目录 目标路径</code> ：这个是把整个文件夹结构都cp过去：属于hdfs的内部操作不是上传下载</li>
-<li>移动文件<code>hdfs dfs -mv 源目录 目标目录</code></li>
-<li>赋予权限<code>hdfs dfs -chmod 权限参数 </code></li>
-<li>上传文件<code>hdfs dfs -put 源文件夹路径 目标文件夹路径</code></li>
-<li>上传文件<code>hdfs dfs -copyFromLocal 源文件夹 目标文件夹</code></li>
-<li>上传文件且删除本地文件<code>hdfs dfs -moveFromLocal 源文件 目标文件</code></li>
-<li>下载文件<code>hdfs dfs -get 源文件夹路径 目标文件夹路径</code></li>
-<li>查看文件内容 <code>hdfs dfs -cat path</code>从头看这个文件</li>
-<li>查看文件内容 <code>hdfs dfs -tail path</code>查看这个文件的最后1k</li>
-<li>删除文件<code>hdfs dfs -rm 文件路径</code></li>
-<li>删除文件夹<code>hdfs dfs -rm -R 文件夹</code></li>
-</ul>
-<h2 id="javaapi的方式操作hdfs"><a href="#javaapi的方式操作hdfs" class="headerlink" title="javaapi的方式操作hdfs"></a>javaapi的方式操作hdfs</h2><ul>
-<li><p>单元测试 ： 代表我们可以 ， 单独运行某个方法</p>
-</li>
-<li><p>进行部份调试</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line">import org.apache.hadoop.conf.Configuration;</span><br><span class="line">import org.apache.hadoop.fs.FileSystem;</span><br><span class="line">import org.apache.hadoop.fs.Path;</span><br><span class="line">import org.junit.Assert;</span><br><span class="line">import org.junit.Test;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.net.URI;</span><br><span class="line">import java.net.URISyntaxException;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class hdfsapi &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public  void  mkdir() throws IOException, URISyntaxException, InterruptedException &#123;</span><br><span class="line">        // 获取程序入口</span><br><span class="line">        Configuration conf = new org.apache.hadoop.conf.Configuration(); //  配置参数</span><br><span class="line">        URI uri = new URI(&quot;hdfs://192.168.41.132:9000&quot;); //创建uri作为要连接的地址和端口</span><br><span class="line">        FileSystem fs = FileSystem.get( uri , conf , &quot;hadoop&quot;); // 开始链接 ，三个参数分别是其所在地地方，配置参数 ，用户名</span><br><span class="line">        Path path = new Path(&quot;/ggd&quot;); // 路径</span><br><span class="line">        boolean mkdir = fs.mkdirs(path); // 判断是不是执行成功</span><br><span class="line">        Assert.assertEquals(true , mkdir);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>实现创建文件夹并移动且改名</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line">import org.apache.hadoop.conf.Configuration;</span><br><span class="line">import org.apache.hadoop.fs.FileSystem;</span><br><span class="line">import org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">public class hdfsapi &#123;</span><br><span class="line"></span><br><span class="line">    static FileSystem  fs;</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        Configuration conf = new Configuration();</span><br><span class="line">        conf.set(&quot;fs.defaultFS&quot; , &quot;hdfs://192.168.41.132:9000&quot;);</span><br><span class="line">        System.setProperty(&quot;HADOOP_USER_NAME&quot; ,&quot;hadoop&quot;);</span><br><span class="line">        try &#123;</span><br><span class="line">            fs = FileSystem.get(conf);</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        // 移动之前的文件存储路径</span><br><span class="line">        String url = args[1];</span><br><span class="line">        // 移动之后的文件存储路径</span><br><span class="line">        String det = args[2];</span><br><span class="line"></span><br><span class="line">        String hozhui = args[0];</span><br><span class="line"></span><br><span class="line">        // 要上传的文件目录</span><br><span class="line">        String pathlocalfile = args[3];</span><br><span class="line"></span><br><span class="line">        Integer date = Integer.parseInt(args[4]);</span><br><span class="line"></span><br><span class="line">        Integer up = Integer.parseInt(args[5]);</span><br><span class="line"></span><br><span class="line">        Integer down = Integer.parseInt(args[6]);</span><br><span class="line"></span><br><span class="line">        String[] string = new String[args.length - 7];</span><br><span class="line"></span><br><span class="line">        System.arraycopy(args , 7 , string , 0 , args.length - 7);</span><br><span class="line"></span><br><span class="line">        makeream(hozhui,url,det,pathlocalfile,date , up ,down , string);</span><br><span class="line"></span><br><span class="line">      //rm(20221115 , 1 , 1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void rm(int m , int up ,int down ) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        // 通过递归调用本身函数，进行递归调用，删除不同日期的文件夹以及</span><br><span class="line">        while (up &gt; 0)&#123;</span><br><span class="line">            rm(m+1 , --up , 0);</span><br><span class="line">        &#125;</span><br><span class="line">        // 同上</span><br><span class="line">        while (down &gt; 0)&#123;</span><br><span class="line">            rm(m-1 , 0 ,--down);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 把数字改变成字符串</span><br><span class="line">        String uri = String.valueOf(m);</span><br><span class="line"></span><br><span class="line">        // 基础路径</span><br><span class="line">        Path path = new Path(&quot;/data/dt=&quot; + uri);</span><br><span class="line">        Path path1 = new Path(&quot;/data/hive&quot; + &quot;/&quot; + uri + &quot;-01.data&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            fs.delete(path);</span><br><span class="line">            fs.delete(path1);</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private static void makeream(String hozhui, String url , String det ,String pathlocalfile , int nowday , int up , int down , String ...args) &#123;</span><br><span class="line">        // 基礎路徑</span><br><span class="line">        String dataurl = null;</span><br><span class="line">        if (args.length &gt; 0)&#123;</span><br><span class="line">            String[] arg1 = new String[args.length-1];</span><br><span class="line">            System.arraycopy(args , 1 , arg1 ,0 ,args.length-1);</span><br><span class="line">            dataurl = args[0];</span><br><span class="line">            makeream(hozhui,url,det,pathlocalfile,nowday,up,down,arg1);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            dataurl = String.valueOf(nowday);</span><br><span class="line">            // 通过递归的方式 ， 进行创建文件夹等操作</span><br><span class="line">            while (up &gt; 0)&#123;</span><br><span class="line">                makeream(hozhui,url,det,pathlocalfile,nowday+1 , --up , 0);</span><br><span class="line">            &#125;</span><br><span class="line">            while (down &gt; 0)&#123;</span><br><span class="line">                makeream(hozhui,url,det,pathlocalfile,nowday-1 , 0 ,--down);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // 获取文件名字</span><br><span class="line">        String[] split = pathlocalfile.split(&quot;/&quot;);</span><br><span class="line">        String filname = split[split.length-1];</span><br><span class="line">        // 上传的文件路径</span><br><span class="line">        Path pathfile = new Path(pathlocalfile);</span><br><span class="line">        // 最后的文件的名字</span><br><span class="line">        String settotal = det+ &quot;/&quot; + dataurl + hozhui;</span><br><span class="line">        // 刚开始创建的文件目录</span><br><span class="line">        String urltotal = url + dataurl;</span><br><span class="line">        // 创建文件夹的Path</span><br><span class="line">        Path path = new Path(urltotal);</span><br><span class="line">        // 移动前的文件路径</span><br><span class="line">        Path pathfilehdfs = new Path( path + &quot;/&quot; + filname);</span><br><span class="line">        // 新的名字文件路径</span><br><span class="line">        Path newname = new Path(settotal);</span><br><span class="line"></span><br><span class="line">//        // 要移动到的路径</span><br><span class="line">//        Path detPath = new Path(url1);</span><br><span class="line"></span><br><span class="line">        // 后来的文件目录</span><br><span class="line">        // Path detpathfile = new Path(det + &quot;/&quot; + filname);</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            if(!fs.exists(new Path(det)))&#123;</span><br><span class="line">                fs.mkdirs(new Path(det));</span><br><span class="line">            &#125;</span><br><span class="line">            fs.mkdirs(path);</span><br><span class="line">            fs.copyFromLocalFile(pathfile , path);</span><br><span class="line">            // fs.rename(pathfilehdfs , detPath);</span><br><span class="line">            fs.rename(pathfilehdfs , newname);</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>单词统计</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package org.example;</span><br><span class="line"></span><br><span class="line">import org.apache.hadoop.conf.Configuration;</span><br><span class="line">import org.apache.hadoop.fs.FSDataInputStream;</span><br><span class="line">import org.apache.hadoop.fs.FileSystem;</span><br><span class="line">import org.apache.hadoop.fs.Path;</span><br><span class="line">import org.apache.hadoop.io.IOUtils;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">public class wordcount &#123;</span><br><span class="line">    static FileSystem fs;</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        Configuration conf = new Configuration();</span><br><span class="line">        conf.set(&quot;fs.defaultFS&quot; , &quot;hdfs://192.168.41.132:9000&quot;);</span><br><span class="line">        System.setProperty(&quot;HADOOP_USER_NAME&quot; ,&quot;hadoop&quot;);</span><br><span class="line">        try &#123;</span><br><span class="line">            fs = FileSystem.get(conf);</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        wordcounts(&quot;/2.log&quot; , &quot;,&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void wordcounts( String path ,  String regx ) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        String basic = null;</span><br><span class="line"></span><br><span class="line">        try( FSDataInputStream fis = fs.open(new Path(path));</span><br><span class="line">             OutputStream outputStream = new FileOutputStream( new File(&quot;D:\\ bg1.txt&quot;) , false);</span><br><span class="line">             InputStream inputStream = new FileInputStream(new File(&quot;D:\\ bg1.txt&quot;));</span><br><span class="line">             )</span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            IOUtils.copyBytes(fis,outputStream,4096 , true);</span><br><span class="line">            byte[] buffer = new byte[1024];</span><br><span class="line">            int len = 0;</span><br><span class="line">            while((len = inputStream.read(buffer)) != -1)&#123;</span><br><span class="line">                basic = new String(buffer, 0, len);</span><br><span class="line">                System.out.println(basic);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            String[] split = basic.split(regx);</span><br><span class="line"></span><br><span class="line">            Map&lt;String , Integer&gt; result = new HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            for (int i=0;i&lt;split.length;i++)&#123;</span><br><span class="line">                result.put(split[i] , result.getOrDefault(split[i] , 0 )+1);</span><br><span class="line">            &#125;</span><br><span class="line">                result.forEach((k,v)-&gt;System.out.println(k+&quot;,&quot;+v));</span><br><span class="line"></span><br><span class="line">            int[] flag = new int[split.length];</span><br><span class="line">            for (int i =0; i&lt; split.length; i++)&#123;</span><br><span class="line">                for (int j = 0; j&lt; split.length;j++)&#123;</span><br><span class="line">                    if (split[i].equals(split[j]))&#123;</span><br><span class="line">                        flag[i]++;</span><br><span class="line">                    &#125;else&#123;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            System.out.println(&quot;--------------------------------------------------------&quot;);</span><br><span class="line">            for (int i =0; i&lt;split.length-1;i++)&#123;</span><br><span class="line"></span><br><span class="line">                if (!(split[i].equals(split[i+1])))&#123;</span><br><span class="line">                    System.out.println(split[i] + &quot;\t&quot; + flag[i]);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">//            System.out.print(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">//            for (int i =0; i&lt; flag.length;i++)&#123;</span><br><span class="line">//                System.out.print(flag[i]);</span><br><span class="line">//                System.out.print(&quot;\t&quot;);</span><br><span class="line">//            &#125;</span><br><span class="line"></span><br><span class="line">            System.out.println(&quot;--------------------------------------&quot;);</span><br><span class="line"></span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="关于文件的存储"><a href="#关于文件的存储" class="headerlink" title="关于文件的存储"></a>关于文件的存储</h3><ul>
-<li>架构设计 ： 面试必问</li>
-<li>namenode —–nn</li>
-<li>负责对外的访问接口</li>
-<li>负责块的映射</li>
-<li>元数据 ； 描述数据的数据</li>
-<li>文件名称</li>
-<li>文件的目录</li>
-<li>文件的属性，权限，创建时间，副本数据</li>
-<li>blockmap ： 块映射</li>
-<li>一个 文件被分割成多个数据块，</li>
-<li>块映射不会永久化这个存储</li>
-<li>是通过集群运行的时候dn定期发送blockreport给nn进行维护</li>
-<li>控制其数据块在哪一个节点上的</li>
-<li>nn作用 ： 管理文件的命名空间 ，其实就算维护文件系统树的文件以及文件夹</li>
-<li>是以两种的方式永久的存储在磁盘</li>
-<li>镜像文件 ： fsimage</li>
-<li>编辑日志文件 editlogs</li>
-<li>seconderynamenode ——snn</li>
-<li>去老大的节点上拿镜像文件和日志文件，进行合并和备份，然后换给nn</li>
-<li>datanode —–dn</li>
-<li>每个节点都会有这个进程</li>
-<li>负责关于客户端的文件的读写</li>
-<li>负责存储数据</li>
-<li>存储数据块，以及对于数据块的校验</li>
-<li>每隔3秒发送一次心跳给namenode ，告诉你我还在</li>
-<li>每个一定时间（6h）发送一次块报告,这个报告，是扫描磁盘和内存之中的数据一不一样</li>
-<li>目的 ： 生产上 ： 可能会发生文件块丢失或者损坏</li>
-<li></li>
-</ul>
-<h2 id="mapreduce"><a href="#mapreduce" class="headerlink" title="mapreduce"></a>mapreduce</h2><ul>
-<li>简介 ： 其设计理念是计算向数据靠拢，采用分而治之的策略，将庞大的数据分为很多个很多个小切片，并且为每个小切片单独的启动一个map任务</li>
-<li>适合mapredurce处理的数据集要满足一个前提：待处理的数据集可以分解成许多更小的数据集，且每一个更小的数据集都可以并行的处理</li>
-<li>其采用的是主从架构（master&#x2F;Slave），就是一个主服务器多个从服务器（salve），master上运行jobTracker，slaver运行TaskTracker</li>
-</ul>
-<h3 id="mapreduce体系架构"><a href="#mapreduce体系架构" class="headerlink" title="mapreduce体系架构"></a>mapreduce体系架构</h3><ul>
-<li>其主要是由四个部分组成 ： 分别是Client , JobTracker,TaskTracker以及Task</li>
-<li>Client ： 用户编写的Mapredurce程序通过Client提交到jobTracker</li>
-<li>jobTracker(运行在主服务器上) : 负责监控和资源调度</li>
-<li>监控所有的TaskTracker与job的健康情况，一旦发现失败，就把相应的任务转移到其他的节点</li>
-<li>其会跟踪任务的执行调度，资源使用量，并将这些信息告诉任务调度器（TaskScheduler），而调度器会在资源调度器出现空闲时，选择合适的任务去使用这些资源</li>
-<li>jobTracker（运行在服务器） </li>
-<li>TaskTracker会周期性的通过心跳将本节点上资源的使用情况和任务运行进度汇报给jobTracker，同时接受jobTracker发送过来的命令并执行相应的操作（如 ： 启动新任务 ，杀死任务等）</li>
-<li>TaskTracker使用“slot”等量划分本节点上的资源量（CPU ，内存）。一个Task获取到一个slot后才有机会运行，而hadoop调度器的作用就是将各个TaskTracker上的空闲slot分配给Task使用。slot分为Map slot和Reduce slot两种，分别提供Map Task和Redurce Task使用</li>
-<li>Task</li>
-<li>Map Task和Redurce Task 均由TaskTracker</li>
-</ul>
-<h3 id="mapreduce的工作流程"><a href="#mapreduce的工作流程" class="headerlink" title="mapreduce的工作流程"></a>mapreduce的工作流程</h3><ul>
-<li>一个大的mapredurce任务，首先会被分为为若干个Map任务在多台机器上执行运行（map任务通常运行在存储节点上），每一个map任务会输出一个&lt;key , value&gt;形式的中间结果，一个map任务只有全部执行完成之后才会进行reduce任务，map的输出结果&lt;key, value&gt;（存储在本地磁盘） ， 具有相同的key会被发送到同一个reduce任务</li>
-<li>注意 ：不同的map之间不会有通信</li>
-<li>不同的reduce之间也不会</li>
-<li>用户不能显式的从一台机器向另外一台机器发送消息，所有的信息交换都是通过Mapredurce框架自身去实现</li>
-<li>map的输入文件，redurce任务的输出结果都是保存在hdfs分布式文件系统中，map的输出结果保存在本地磁盘文件中</li>
-<li>当一个map任务处理全部结束之后，reduce任务才能开始去取相应的数据</li>
-<li>只有map任务需要考虑数据局限性，实现计算向数据靠拢，reduce无需考虑数据局限性</li>
-</ul>
-<h4 id="各阶段执行内容"><a href="#各阶段执行内容" class="headerlink" title="各阶段执行内容"></a>各阶段执行内容</h4><ul>
-<li>分为 ：5个阶段 预处理，map，shuffle，reduce，输出</li>
-<li>预处理 ： 由inputFormat 进行格式验证以及逻辑上的分区inputSplit ， inputSplit经过redodrdreader</li>
-<li>根据inputSplit的信息来处理inputSplit中的具体记录，转换为键值对 ，输入给map</li>
-<li>map ： 接受来自RR键值对，进行分区，排序，合并，归并，得到&lt;key , value-list&gt;形式的中间结果，输入给reduce，此处包括map端的shuffle和reduce端的shuffle</li>
-<li>reduce ： 接受shuffle输出的&lt;key , value&gt;,执行用户子自定义，输出给outputFromat</li>
-<li>输出 ： outputFromat，模块会验证输出目录是不是已经存在以及输出结果是不是符合配置文件中的配置类型，如果满足，就输出reduce的结果到分布式文件系统</li>
-</ul>
-<h4 id="map的shuffle"><a href="#map的shuffle" class="headerlink" title="map的shuffle"></a>map的shuffle</h4><ul>
-<li>过程有四部</li>
-<li>输入数据并执行map任务</li>
-<li>map任务结果输出，写入缓存</li>
-<li>溢写 ： 如果输出结果超过了一定的比例，每一次溢写会在磁盘上生成一个磁盘文件，写入之前进行会分区，，排序，如果指定了commbiner还可以进行合并，这样经过溢写的磁盘文件就包含了多个分区，且分区内部都是经过排序的</li>
-<li>merge ： 随着map任务的进行，当有多个溢写文件时（就是大于等于2的适合），就会发现merge，生成一个更大的磁盘文件，这个大的溢写文件也是经过排序和分区的，默认情况下每10个溢写会变成一个大文件，通常在merge过程中，如果文件数量大于3则进行combine操作，从而减少磁盘的数据量，如果只有一两个溢写，合并操作得不偿失</li>
-</ul>
-<h4 id="reduce的shuttle"><a href="#reduce的shuttle" class="headerlink" title="reduce的shuttle"></a>reduce的shuttle</h4><ul>
-<li>领取数据 ： 经过map的suffle后，map的输出结果保存在磁盘，此时，需要将磁盘数据取回到reduce机器，此时如果线程被占满，同样会和map端一样开启溢写操作，reduce通过RPC询问JobTracker是不是还拥有未完成的map任务，如果有，将数据提取到reduce机器上，此时实际上是多个reduce机器，同时多线程从map机器领回数据</li>
-<li>merge ： 一个map的shuffle结果因为拥有多个分区，所以会有不同的reduce机器取回自己的数据，而每一个reduce也从不同的map机器取回数据，如果每个reduce机器内存达到阈值，就进行溢写操作，溢写的时候一般有很多键值对可以进行merge，如果定义了combiner还可以进行合并，进行溢写操作的过程中还可以进行combine。并非是一个reduce程序从map机器上取回数据就生成一个溢写文件，而是缓存不够用，则发生溢写，如果缓存够用，则是直接在内存里进行操作</li>
-<li>把数据输出给map任务（对一个reduce而言）：执行用户自定义的逻辑，最终输出</li>
-</ul>
-<h2 id="mapredurce里的数据类型"><a href="#mapredurce里的数据类型" class="headerlink" title="mapredurce里的数据类型"></a>mapredurce里的数据类型</h2><ul>
-<li>intWritable</li>
-<li>longWritable</li>
-<li>等等，</li>
-<li>就是基本数据类型加上Writable</li>
-<li>在redurce里数据类型也是一样的</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/08/11-8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/08/11-8/" class="post-title-link" itemprop="url">git</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-08 10:13:43" itemprop="dateCreated datePublished" datetime="2022-11-08T10:13:43+08:00">2022-11-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-13 19:14:21" itemprop="dateModified" datetime="2022-11-13T19:14:21+08:00">2022-11-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>7.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
-<li>Git是一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。</li>
-<li>Git是一个开源的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。</li>
-<li>记录文件变化的 ，之后可以指定版本恢复</li>
-</ul>
-<h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><ul>
-<li>本地 ： 常用 ：简单 ， 缺点 ： 容易出错 ， 集成效率低下</li>
-<li>集中 ： svn ： 缺点 ： 中央服务器出现故障就全完了</li>
-<li>分布（目前的主流）： 解决单点故障的问题 ： git</li>
-<li>git 可以分支 ，，且支持文件备份 ， 多个工作流</li>
-<li></li>
-</ul>
-<h1 id="Git工作流程"><a href="#Git工作流程" class="headerlink" title="Git工作流程"></a>Git工作流程</h1><ul>
-<li>从远程仓库中克隆 Git 资源作为本地仓库</li>
-<li>从本地仓库中checkout代码然后进行代码修改</li>
-<li>在提交本地仓库前先将代码提交到暂存区</li>
-<li>提交修改，提交到本地仓库；本地仓库中保存修改的各个历史版本</li>
-<li>在需要和团队成员共享代码时，可以将修改代码push到远程仓库</li>
-<li>git 的核心概念 ： 工作区、暂存区、版本库、远程仓库</li>
-<li>Workspace： 工作区，就是你平时存放项目代码的地方</li>
-<li>Index &#x2F; Stage： 暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息</li>
-<li>Repository： 仓库区（或版本库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本</li>
-<li>Remote： 远程仓库，托管代码的服务器，可以简单的认为是你项目组中的一台电脑用于远程数据交换</li>
-</ul>
-<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><ul>
-<li>每次的提交Git都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在Git里这个分支叫主分支，即master分支。HEAD指针严格来说不是指向提交，而是指向master，master才是指向提交的。</li>
-</ul>
-<h1 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h1><ul>
-<li>远程仓库分为公有远程仓库和私有远程仓库。</li>
-</ul>
-<h1 id="公有远程仓库"><a href="#公有远程仓库" class="headerlink" title="公有远程仓库"></a>公有远程仓库</h1><ul>
-<li>本质和本地仓库无异，只是这个仓库①不在本地②大家可能都知道③需要将代码共享到远程仓库④可以被其他人克隆同步代码等。</li>
-<li>一般情况下在企业中会有一个搭建在公司的远程仓库，可以让本公司内部的开发人员同步开发。而业界最富盛名的远程仓库则为github；它上面存放了非常多的开源组织、个人、企业等的开放源码库，任何都可以从上面获取源码。</li>
-</ul>
-<h1 id="私有远程仓库"><a href="#私有远程仓库" class="headerlink" title="私有远程仓库"></a>私有远程仓库</h1><ul>
-<li>远程仓库实际上和本地仓库一样，纯粹为了7x24小时开机并交换大家的修改。GitHub就是一个免费托管开源代码的远程仓库。但是对于某些视源代码如生命的商业公司来说，既不想公开源代码，又舍不得给GitHub交保护费，那就只能自己搭建一台Git服务器作为私有仓库使用。</li>
-<li>在本地创建了一个Git仓库，又想让其他人来协作开发，此时就可以把本地仓库同步到远程仓库，同时还增加了本地仓库的一个备份。</li>
-<li>常用的远程仓库就是github：<a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a></li>
-<li>Github支持两种同步方式“https”和“ssh”。如果使用https很简单基本不需要配置就可以使用，但是每次提交代码和下载代码时都需要输入用户名和密码。而且如果是公司配置的私有git服务器一般不提供https方式访问。</li>
-</ul>
-<h1 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h1><ul>
-<li>在工程中，并不是所有文件都需要保存到版本库中的，例如“target”目录及目录下的文件就可以忽略。Git忽略文件详解可参考Git忽略文件.gitignore详解</li>
-</ul>
-<h1 id="常用Git命令"><a href="#常用Git命令" class="headerlink" title="常用Git命令"></a>常用Git命令</h1><ul>
-<li>经常使用 Git ，但是很多命令还是记不住。但要熟练掌握，恐怕要记住40~60个命令，所以整理了一份常用Git命令清单。可以参考常用Git命令</li>
-</ul>
-<h2 id="常用的git"><a href="#常用的git" class="headerlink" title="常用的git"></a>常用的git</h2><h3 id="配置用户名和邮箱"><a href="#配置用户名和邮箱" class="headerlink" title="配置用户名和邮箱"></a>配置用户名和邮箱</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">$ git --version   # 查看git的版本信息</span><br><span class="line">$ git config --global user.name   # 获取当前登录的用户</span><br><span class="line">$ git config --global user.email  # 获取当前登录用户的邮箱</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="登录git"><a href="#登录git" class="headerlink" title="登录git"></a>登录git</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 如果刚没有获取到用户配置，则只能拉取代码，不能修改  要是使用git，你要告诉git是谁在使用</span><br><span class="line">$ git config --global user.name &#x27;userName&#x27;    # 设置git账户，userName为你的git账号，</span><br><span class="line">$ git config --global user.email &#x27;email&#x27;</span><br><span class="line"># 获取Git配置信息，执行以下命令：</span><br><span class="line">$ git config –list</span><br></pre></td></tr></table></figure>
-<h3 id="配置https和ssh推送时保存用户名和密码"><a href="#配置https和ssh推送时保存用户名和密码" class="headerlink" title="配置https和ssh推送时保存用户名和密码"></a>配置https和ssh推送时保存用户名和密码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"># https提交保存用户名和密码</span><br><span class="line">$ git config --global credential.helper store</span><br><span class="line"># 生成公钥私钥，将公钥配置到GitHub，ssh提交就可以免输入用户名密码</span><br><span class="line"># 三次回车即可生成 ssh key</span><br><span class="line">$ ssh-keygen -t rsa</span><br><span class="line"># 查看已生成的公钥</span><br><span class="line">$ cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-<h3 id="推送到远程仓库正确流程"><a href="#推送到远程仓库正确流程" class="headerlink" title="推送到远程仓库正确流程"></a>推送到远程仓库正确流程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git init # 初始化仓库</span><br><span class="line">git add .(文件name) # 添加文件到暂存区</span><br><span class="line">git commit -m &quot;first commit&quot; # 添加文件到本地仓库并提交描述信息</span><br><span class="line">git remote add origin 远程仓库地址 # 链接远程仓库，创建主分支</span><br><span class="line">git pull origin master --allow-unrelated-histories # 把本地仓库的变化连接到远程仓库主分支</span><br><span class="line">git push -u origin master # 把本地仓库的文件推送到远程仓库</span><br></pre></td></tr></table></figure>
-<h3 id="新建本地仓库"><a href="#新建本地仓库" class="headerlink" title="新建本地仓库"></a>新建本地仓库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 创建一个文件夹</span><br><span class="line">$ mkdir GitRepositories    # 创建文件夹GitRepositories</span><br><span class="line">$ cd GitRepositories       # 切换到GitRepositories目录下</span><br><span class="line"># 在当前目录新建一个Git代码库</span><br><span class="line">$ git init</span><br><span class="line"># 新建一个目录，将其初始化为Git代码库</span><br><span class="line">$ git init [project-name]</span><br><span class="line"># 下载一个项目和它的整个代码历史</span><br><span class="line">$ git clone [url]</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="配置-全局和项目"><a href="#配置-全局和项目" class="headerlink" title="配置(全局和项目)"></a>配置(全局和项目)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。</span><br><span class="line"># 显示当前的Git配置</span><br><span class="line">$ git config --list</span><br><span class="line"># 编辑Git配置文件</span><br><span class="line">$ git config -e [--global]</span><br><span class="line"># 设置提交代码时的用户信息</span><br><span class="line">$ git config [--global] user.name &quot;[name]&quot;</span><br><span class="line">$ git config [--global] user.email &quot;[email address]&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="增加-x2F-删除文件"><a href="#增加-x2F-删除文件" class="headerlink" title="增加&#x2F;删除文件"></a>增加&#x2F;删除文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"># 添加指定文件到暂存区</span><br><span class="line">$ git add [file1][file2] ...</span><br><span class="line"># 添加指定目录到暂存区，包括子目录</span><br><span class="line">$ git add [dir]</span><br><span class="line"># 添加当前目录的所有文件到暂存区</span><br><span class="line">$ git add .</span><br><span class="line"># 添加每个变化前，都会要求确认</span><br><span class="line"># 对于同一个文件的多处变化，可以实现分次提交</span><br><span class="line">$ git add -p</span><br><span class="line"># 删除工作区文件，并且将这次删除放入暂存区</span><br><span class="line">$ git rm [file1] [file2] ...</span><br><span class="line"># 停止追踪指定文件，但该文件会保留在工作区</span><br><span class="line">$ git rm --cached [file]</span><br><span class="line"># 改名文件，并且将这个改名放入暂存区</span><br><span class="line">$ git mv [file-original] [file-renamed]</span><br></pre></td></tr></table></figure>
-<h3 id="代码提交"><a href="#代码提交" class="headerlink" title="代码提交"></a>代码提交</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 提交暂存区到仓库区</span><br><span class="line">$ git commit -m [message]</span><br><span class="line"># 提交暂存区的指定文件到仓库区</span><br><span class="line">$ git commit [file1] [file2] ... -m [message]</span><br><span class="line"># 提交工作区自上次commit之后的变化，直接到仓库区</span><br><span class="line">$ git commit -a</span><br><span class="line"># 提交时显示所有diff信息</span><br><span class="line">$ git commit -v</span><br><span class="line"># 使用一次新的commit，替代上一次提交</span><br><span class="line"># 如果代码没有任何新变化，则用来改写上一次commit的提交信息</span><br><span class="line">$ git commit --amend -m [message]</span><br><span class="line"># 重做上一次commit，并包括指定文件的新变化</span><br><span class="line">$ git commit --amend [file1] [file2] ...</span><br></pre></td></tr></table></figure>
-<h3 id="分支-1"><a href="#分支-1" class="headerlink" title="分支"></a>分支</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"># 列出所有本地分支</span><br><span class="line">$ git branch</span><br><span class="line"># 列出所有远程分支</span><br><span class="line">$ git branch -r</span><br><span class="line"># 列出所有本地分支和远程分支</span><br><span class="line">$ git branch -a</span><br><span class="line"># 新建一个分支，但依然停留在当前分支</span><br><span class="line">$ git branch [branch-name]</span><br><span class="line"># 新建一个分支，并切换到该分支</span><br><span class="line">$ git checkout -b [branch]</span><br><span class="line"># 新建一个分支，指向指定commit</span><br><span class="line">$ git branch [branch] [commit]</span><br><span class="line"># 新建一个分支，与指定的远程分支建立追踪关系</span><br><span class="line">$ git branch --track [branch] [remote-branch]</span><br><span class="line"># 切换到指定分支，并更新工作区</span><br><span class="line">$ git checkout [branch-name]</span><br><span class="line"># 切换到上一个分支</span><br><span class="line">$ git checkout -</span><br><span class="line"># 建立追踪关系，在现有分支与指定的远程分支之间</span><br><span class="line">$ git branch --set-upstream [branch] [remote-branch]</span><br><span class="line"># 合并指定分支到当前分支</span><br><span class="line">$ git merge [branch]</span><br><span class="line"># 选择一个commit，合并进当前分支</span><br><span class="line">$ git cherry-pick [commit]</span><br><span class="line"># 删除分支</span><br><span class="line">$ git branch -d [branch-name]</span><br><span class="line"># 删除远程分支</span><br><span class="line">$ git push origin --delete [branch-name]</span><br><span class="line">$ git branch -dr [remote/branch]</span><br><span class="line">#强制删除分支</span><br><span class="line">$ git branch -D [branch-name]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 列出所有tag</span><br><span class="line">$ git tag</span><br><span class="line"># 新建一个tag在当前commit</span><br><span class="line">$ git tag [tag]</span><br><span class="line"># 新建一个tag在指定commit</span><br><span class="line">$ git tag [tag] [commit]</span><br><span class="line"># 删除本地tag</span><br><span class="line">$ git tag -d [tag]</span><br><span class="line"># 删除远程tag</span><br><span class="line">$ git push origin :refs/tags/[tagName]</span><br><span class="line"># 查看tag信息</span><br><span class="line">$ git show [tag]</span><br><span class="line"># 提交指定tag</span><br><span class="line">$ git push [remote] [tag]</span><br><span class="line"># 提交所有tag</span><br><span class="line">$ git push [remote] --tags</span><br><span class="line"># 新建一个分支，指向某个tag</span><br><span class="line">$ git checkout -b [branch] [tag]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"># 查看目录</span><br><span class="line">$ ls -al	或者$ ll</span><br><span class="line"># 查看仓库状态，显示有变更的文件</span><br><span class="line">$ git status</span><br><span class="line"># 显示当前分支的版本历史</span><br><span class="line">$ git log</span><br><span class="line"># 显示commit历史，以及每次commit发生变更的文件</span><br><span class="line">$ git log --stat</span><br><span class="line"># 搜索提交历史，根据关键词</span><br><span class="line">$ git log -S [keyword]</span><br><span class="line"># 显示某个commit之后的所有变动，每个commit占据一行</span><br><span class="line">$ git log [tag] HEAD --pretty=format:%s</span><br><span class="line"># 显示某个commit之后的所有变动，其&quot;提交说明&quot;必须符合搜索条件</span><br><span class="line">$ git log [tag] HEAD --grep feature</span><br><span class="line"># 显示某个文件的版本历史，包括文件改名</span><br><span class="line">$ git log --follow [file]</span><br><span class="line">$ git whatchanged [file]</span><br><span class="line"># 显示指定文件相关的每一次diff</span><br><span class="line">$ git log -p [file]</span><br><span class="line"># 显示过去5次提交</span><br><span class="line">$ git log -5 --pretty --oneline</span><br><span class="line"># 显示所有提交过的用户，按提交次数排序</span><br><span class="line">$ git shortlog -sn</span><br><span class="line"># 显示指定文件是什么人在什么时间修改过</span><br><span class="line">$ git blame [file]</span><br><span class="line"># 显示暂存区和工作区的差异</span><br><span class="line">$ git diff</span><br><span class="line"># 显示暂存区和上一个commit的差异</span><br><span class="line">$ git diff --cached [file]</span><br><span class="line"># 显示工作区与当前分支最新commit之间的差异</span><br><span class="line">$ git diff HEAD</span><br><span class="line"># 显示两次提交之间的差异</span><br><span class="line">$ git diff [first-branch]...[second-branch]</span><br><span class="line"># 显示今天你写了多少行代码</span><br><span class="line">$ git diff --shortstat &quot;@&#123;0 day ago&#125;&quot;</span><br><span class="line"># 显示某次提交的元数据和内容变化</span><br><span class="line">$ git show [commit]</span><br><span class="line"># 显示某次提交发生变化的文件</span><br><span class="line">$ git show --name-only [commit]</span><br><span class="line"># 显示某次提交时，某个文件的内容</span><br><span class="line">$ git show [commit]:[filename]</span><br><span class="line"># 显示当前分支的最近几次提交</span><br><span class="line">$ git reflog</span><br><span class="line"># 以图形化界面展示 分支的commit 历史</span><br><span class="line">$ git log --oneline --gragh</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="远程同步"><a href="#远程同步" class="headerlink" title="远程同步"></a>远程同步</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 下载远程仓库的所有变动</span><br><span class="line">$ git fetch [remote]</span><br><span class="line"># 显示所有远程仓库</span><br><span class="line">$ git remote -v</span><br><span class="line"># 显示某个远程仓库的信息</span><br><span class="line">$ git remote show [remote]</span><br><span class="line"># 增加一个新的远程仓库，并命名</span><br><span class="line">$ git remote add [shortname] [url]</span><br><span class="line"># 取回远程仓库的变化，并与本地分支合并</span><br><span class="line">$ git pull [remote] [branch]</span><br><span class="line">$ git fetch 也同上</span><br><span class="line">$ git pull 相当 fetch ＋ merge</span><br><span class="line"># 上传本地指定分支到远程仓库</span><br><span class="line">$ git push [remote] [branch]</span><br><span class="line"># 强行推送当前分支到远程仓库，即使有冲突</span><br><span class="line">$ git push [remote] --force</span><br><span class="line"># 推送所有分支到远程仓库</span><br><span class="line">$ git push [remote] --all</span><br><span class="line">$ push推的是分支不是代码</span><br><span class="line"># 可以选择那个远程仓库那个分支</span><br><span class="line">$ git push [&lt;repository&gt; [&lt;分支的名字&gt;]]</span><br><span class="line">$ git fetch</span><br><span class="line">$ git fetch --all</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"># 恢复暂存区的指定文件到工作区</span><br><span class="line">$ git checkout [file]</span><br><span class="line"># 从工作区撤回文件</span><br><span class="line">$ git restore --staged xxxx xxx xxx... </span><br><span class="line">#从暂存区到工作区撤回</span><br><span class="line">$ git restore xxx xxx xxx..</span><br><span class="line"># 恢复某个commit的指定文件到暂存区和工作区</span><br><span class="line">$ git checkout [commit] [file]</span><br><span class="line"># 恢复暂存区的所有文件到工作区</span><br><span class="line">$ git checkout .</span><br><span class="line"># 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变</span><br><span class="line">$ git reset [file]</span><br><span class="line"># 重置暂存区与工作区，与上一次commit保持一致</span><br><span class="line">$ git reset --hard</span><br><span class="line"># 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变</span><br><span class="line">$ git reset [commit]</span><br><span class="line"># 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致</span><br><span class="line">$ git reset --hard [commit]</span><br><span class="line"># 重置当前HEAD为指定commit，但保持暂存区和工作区不变</span><br><span class="line">$ git reset --keep [commit]</span><br><span class="line"># 新建一个commit，用来撤销指定commit</span><br><span class="line"># 后者的所有变化都将被前者抵消，并且应用到当前分支</span><br><span class="line">$ git revert [commit]</span><br><span class="line"># 暂时将未提交的变化移除，稍后再移入</span><br><span class="line">$ git stash</span><br><span class="line">$ git stash pop</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 从当前目录的所有文件中查找文本内容：</span><br><span class="line">$ git grep &quot;Hello&quot;</span><br><span class="line"># 在某一版本中搜索文本：</span><br><span class="line">$ git grep &quot;Hello&quot; v2.5</span><br><span class="line"># 生成一个可供发布的压缩包</span><br><span class="line">$ git archive</span><br></pre></td></tr></table></figure>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
-<li>当工作区和暂存区都有的时候</li>
-<li>直接更改工作区的文件 通过</li>
-<li>commit -am “xx”</li>
-<li>可以直接把修改了的文件传到本地仓库</li>
-<li>merge : 经过merge的文件 ， 相当于把其他地方的分支给回收回来 ，</li>
-</ul>
-<h3 id="git文件夹的目录介绍"><a href="#git文件夹的目录介绍" class="headerlink" title=".git文件夹的目录介绍"></a>.git文件夹的目录介绍</h3><ul>
-<li>HEAD ： 当前项目正在工作的分支</li>
-<li>config ： 我们当前项目的一些配置信息（我们本地的配置信息）</li>
-<li>可以通过 <code>git config --local user.name &quot;xxx&quot;</code> 来进行设置</li>
-<li>或者直接在这个文件按照格式改也一样</li>
-<li>同样 ， 有set就有get</li>
-<li>refs ： 指向的是那个分支的指向</li>
-<li>commit 的hash值对应的是什么内容的</li>
-<li>object : git真正的存储对象 </li>
-<li><code>git cat-file</code> </li>
-<li><code>-t</code> : 文件类型</li>
-<li><code>-p</code> : 文件内容</li>
-<li><code>tree</code> ： 代表是文件夹</li>
-<li><code>blob</code> ： 代表文件内容</li>
-<li>git 存储文件高效的原因 ： 不同的文件只要有相同的地方就是一个blob</li>
-</ul>
-<h3 id="查看git文件存储的方法"><a href="#查看git文件存储的方法" class="headerlink" title="查看git文件存储的方法"></a>查看git文件存储的方法</h3><ul>
-<li>我们先进入到.git的object文件夹里 ，因为object文件夹是git存储的首要位置</li>
-<li>接下来 ，我们找到refs的文件 ，然后进入到heads里</li>
-<li>找到文件 ，里面有我们的commit的哈希值</li>
-<li>通过哈希值的前两个字母</li>
-<li>我们在object文件夹下 ，找到这两个字符的文件夹</li>
-<li>点进去查看文件名字</li>
-<li>然后我们在命令行</li>
-<li>输入<code>git cat-file -p</code></li>
-<li>和<code>git cat-file -t</code></li>
-<li>就可以查看到文件的类型和文件的内容</li>
-<li>对于文件的内容，我们可以对于上次-p出来的文件再次进行 -p操作 哈希值 ，</li>
-<li>就可以看见了</li>
-<li>修改之前的某个commit的message</li>
-<li>可以用 <code>git rebase</code></li>
-<li>git rebase -i &lt;after - this - commit&gt;: 交互式 : 基于前一个commit 进行修改当前的commit ，这样修改了之后所有的hash值会改变，因为变头了 ，但是如果先进行了 ， <code>git cherry-pick</code>操作,则会把吗，master和以前的分支都改变（hash），但是一般是不带master等其他分支的</li>
-<li>常用的操作</li>
-<li>-p ： </li>
-<li>-r ： 重写一个commit的message</li>
-<li>-e ： </li>
-<li>-s ： 合并多个commit的message</li>
-<li>输入上面的那个命令之后我们要进入到一个界面</li>
-<li>把要修改的前面改成 r</li>
-<li>然后保存退出</li>
-<li>然后就会跳转到另外可以编辑这个要编辑的conmmit的地方</li>
-<li>就改掉message就好</li>
-<li>合并本地message 要在本地合并 ，不能在远程合并</li>
-<li>把多个commit合并成一个commit的操作和上面一样 ，只不过是把r改成s了</li>
-<li>但是这样合并之后，你相当于把这些信息合并到一起 ，就把最上面的那个看成是一个集合</li>
-<li>这样之后一般会放到 .git文件之下的 ， rebase</li>
-</ul>
-<h2 id="忽略文件-1"><a href="#忽略文件-1" class="headerlink" title="忽略文件"></a>忽略文件</h2><ul>
-<li><code>.gitignore</code>文件就是忽略文件</li>
-</ul>
-<h2 id="仓库备份"><a href="#仓库备份" class="headerlink" title="仓库备份"></a>仓库备份</h2><ul>
-<li>git clone ： 就是克隆&#x2F;备份</li>
-<li>克隆一个仓库到一个新的文件夹</li>
-<li>git clone &lt;仓库&gt; &lt;名字&gt;</li>
-<li>这个仓库是本地或者远程仓库</li>
-<li>仓库 ： 可以接url，或者本地的.git文件</li>
-<li>克隆到名字的文件夹里 ，如果么没有则创建</li>
-<li>本地备份本地不常用</li>
-<li>一般都是备份远程仓库</li>
-<li>对于远程仓库的地址 ，则是为我们通过查看远程仓库的地址进行</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2284,7 +2121,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2337,12 +2174,12 @@
   </span>
   <span class="author" itemprop="copyrightHolder">liu zihang</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共90.5k字</span>
+  <span class="post-count">博客全站共93.7k字</span>
 </div>
 
 
