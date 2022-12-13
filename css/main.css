@@ -18,34 +18,6 @@
   --btn-default-hover-color: #fff;
   --btn-default-hover-border-color: #222;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --body-bg-color: #282828;
-    --content-bg-color: #333;
-    --card-bg-color: #555;
-    --text-color: #ccc;
-    --blockquote-color: #bbb;
-    --link-color: #ccc;
-    --link-hover-color: #eee;
-    --brand-color: #ddd;
-    --brand-hover-color: #ddd;
-    --table-row-odd-bg-color: #282828;
-    --table-row-hover-bg-color: #363636;
-    --menu-item-bg-color: #555;
-    --btn-default-bg: #222;
-    --btn-default-color: #ccc;
-    --btn-default-border-color: #555;
-    --btn-default-hover-bg: #666;
-    --btn-default-hover-color: #ccc;
-    --btn-default-hover-border-color: #666;
-  }
-  img {
-    opacity: 0.75;
-  }
-  img:hover {
-    opacity: 0.9;
-  }
-}
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
@@ -1226,7 +1198,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #e55e7f;
+  background: #9067c1;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2426,7 +2398,7 @@ mjx-container + br {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
   box-sizing: border-box;
   padding: 40px;
-  width: calc(100% - 252px);
+  width: calc(100% - 255px);
 }
 @media (max-width: 991px) {
   .content-wrap {
@@ -2589,7 +2561,7 @@ mjx-container + br {
 }
 .sidebar-inner.affix {
   position: fixed;
-  top: 12px;
+  top: 15px;
 }
 .sidebar-inner.affix-bottom {
   position: absolute;
@@ -2679,13 +2651,13 @@ mjx-container + br {
 .post-block + .post-block {
   border-radius: 20px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
-  margin-top: 12px;
+  margin-top: 15px;
 }
 .comments {
   background: var(--content-bg-color);
   border-radius: 20px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
-  margin-top: 12px;
+  margin-top: 15px;
   padding: 40px;
 }
 .tabs-comment {
@@ -2702,7 +2674,7 @@ mjx-container + br {
   border-radius: 20px;
   border-top: initial;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
-  margin: 12px 0 0;
+  margin: 15px 0 0;
   padding: 10px 0 10px;
 }
 .pagination .prev,
@@ -2723,7 +2695,7 @@ mjx-container + br {
 }
 .sub-menu + .content .post-block {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
-  margin-top: 12px;
+  margin-top: 15px;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .sub-menu + .content .post-block {
@@ -2770,20 +2742,20 @@ mjx-container + br {
     padding: 8px;
   }
   .posts-expand .post-button {
-    margin: 12px 0;
+    margin: 15px 0;
   }
   .post-block {
     border-radius: 20px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
     min-height: auto;
-    padding: 12px;
+    padding: 15px;
   }
   .post-block + .post-block {
     margin-top: 8px;
   }
   .comments {
     margin-top: 8px;
-    padding: 10px 12px;
+    padding: 10px 15px;
   }
   .pagination {
     margin: 8px 0 0;
@@ -2798,20 +2770,17 @@ body {
   color: #000;
 }
 code {
-  color: #ff7600;
-  background: #fbf7f8;
+  color: #30f;
+  background: #d6d6d6;
   margin: 2px;
 }
 .highlight,
 pre {
   margin: 5px 0;
   padding: 5px;
-  border-radius: 3px;
-}
-.highlight,
-code,
-pre {
+  border-radius: 4px;
   border: 1px solid #d6d6d6;
+  color: #ff7600;
 }
 .content-wrap {
   opacity: 0.79;
@@ -2820,7 +2789,7 @@ pre {
   background: rgba(255,255,255,0.7) none repeat scroll !important;
 }
 .sidebar {
-  opacity: 0.85;
+  opacity: 0.77;
 }
 .sidebar-inner {
   background: rgba(255,255,255,0.7) none repeat scroll !important;
@@ -2829,7 +2798,7 @@ pre {
   background: rgba(255,255,255,0.8);
 }
 .popup {
-  opacity: 0.8;
+  opacity: 0.78;
 }
 .comments {
   background: rgba(255,255,255,0.7) none repeat scroll !important;
@@ -2837,13 +2806,10 @@ pre {
 .post {
   margin-top: 15px;
   padding: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   -webkit-box-shadow: 0 0 5px #788072;
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
 .posts-expand .post-title-link {
   color: #000;
-}
-.posts-expand .post-meta-container {
-  color: #8d4bbb;
 }
