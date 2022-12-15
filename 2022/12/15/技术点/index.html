@@ -22,19 +22,19 @@
     var CONFIG = {"hostname":"zihang.fun","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":15,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="Linux问题1awk为什么会被称作linux三剑客之一，相比于cut如何？ 场景 ： 通过ssh bigdata2 “jps | xxx | awk ‘{print $1}’” :结果如何 ？前提条件 ：bigdata2的密钥已经添加在当前的机器上，且jps能查到xxx的进程号 问题2场景 ： 当所有命令都提示找不到命令 ，是什么原因 ，如何解决 ？ 场景 ： 当有命令提示找不到命令 ，是什么原">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://zihang.fun/2022/11/03/hello-world/index.html">
+<meta property="og:title" content="自我认为的知识点">
+<meta property="og:url" content="http://zihang.fun/2022/12/15/%E6%8A%80%E6%9C%AF%E7%82%B9/index.html">
 <meta property="og:site_name" content="枫叶冢">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="Linux问题1awk为什么会被称作linux三剑客之一，相比于cut如何？ 场景 ： 通过ssh bigdata2 “jps | xxx | awk ‘{print $1}’” :结果如何 ？前提条件 ：bigdata2的密钥已经添加在当前的机器上，且jps能查到xxx的进程号 问题2场景 ： 当所有命令都提示找不到命令 ，是什么原因 ，如何解决 ？ 场景 ： 当有命令提示找不到命令 ，是什么原">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-11-03T05:38:31.317Z">
-<meta property="article:modified_time" content="2022-11-03T05:38:31.317Z">
+<meta property="article:published_time" content="2022-12-15T08:31:20.095Z">
+<meta property="article:modified_time" content="2022-12-15T10:15:02.145Z">
 <meta property="article:author" content="liu zihang">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://zihang.fun/2022/11/03/hello-world/">
+<link rel="canonical" href="http://zihang.fun/2022/12/15/%E6%8A%80%E6%9C%AF%E7%82%B9/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>Hello World | 枫叶冢</title>
+  <title>自我认为的知识点 | 枫叶冢</title>
   
 
 
@@ -201,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/11/03/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/15/%E6%8A%80%E6%9C%AF%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -214,22 +214,28 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          自我认为的知识点
         </h1>
 
         <div class="post-meta">
-          
-          <i class="fa fa-thumb-tack"></i>
-          <font color=7D26CD>置顶</font>
-          <span class="post-meta-divider">|</span>
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-11-03 13:38:31" itemprop="dateCreated datePublished" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
+              <time title="创建时间：2022-12-15 16:31:20 / 修改时间：18:15:02" itemprop="dateCreated datePublished" datetime="2022-12-15T16:31:20+08:00">2022-12-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B4%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">整理</span></a>
+                </span>
             </span>
 
           
@@ -245,7 +251,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>372</span>
+              <span>1.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -267,19 +273,84 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash</span><br><span class="line">$ hexo <span class="keyword">new</span> <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h2><p>awk为什么会被称作linux三剑客之一，相比于cut如何？</p>
+<p>场景 ： 通过ssh bigdata2 “jps | xxx | awk ‘{print $1}’” :结果如何 ？前提条件 ：bigdata2的密钥已经添加在当前的机器上，且jps能查到xxx的进程号</p>
+<h2 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h2><p>场景 ： 当所有命令都提示找不到命令 ，是什么原因 ，如何解决 ？</p>
+<p>场景 ： 当有命令提示找不到命令 ，是什么原因 ，如何解决 ？</p>
+<h2 id="问题3"><a href="#问题3" class="headerlink" title="问题3"></a>问题3</h2><p>众所周知 ，root用户有最高的权限 ，那么当我们在hadoop用户启动程序通过jps能查看到信息的，切换到root用户我们可以看见信息吗</p>
+<h2 id="问题4"><a href="#问题4" class="headerlink" title="问题4"></a>问题4</h2><p>一台机器里有hadoop ,zihang ,root 三个用户 ，你所在的用户是root ，当你执行su - zihang 的时候什么也没出现并且你还在root用户，这个是什么原因，如何修复</p>
+<h2 id="问题5"><a href="#问题5" class="headerlink" title="问题5"></a>问题5</h2><p>linux里查看内存负载，以及所用内存，以及设置swap分区的命令及步骤，</p>
+<h1 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h1><h2 id="问题1-1"><a href="#问题1-1" class="headerlink" title="问题1"></a>问题1</h2><p>shell里如何控制从控制台输入的参数，传进函数里的个数</p>
+<h2 id="问题2-1"><a href="#问题2-1" class="headerlink" title="问题2"></a>问题2</h2><p>shell 里截取字符串以及替换字符串是如何实现的</p>
+<h2 id="问题3-1"><a href="#问题3-1" class="headerlink" title="问题3"></a>问题3</h2><p>shell里的$全家桶</p>
+<h2 id="问题4-1"><a href="#问题4-1" class="headerlink" title="问题4"></a>问题4</h2><p>shell里单引号，双引号，漂号的区别，以及两种括号的形式（）和{}的区别</p>
+<h2 id="问题5-1"><a href="#问题5-1" class="headerlink" title="问题5"></a>问题5</h2><p>shell脚本执行不了，但是代码毫无问题，只是单纯提示最后一行结尾不对，原因有几种，解决办法是什么</p>
+<h1 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h1><h2 id="问题1-2"><a href="#问题1-2" class="headerlink" title="问题1"></a>问题1</h2><p>mysql中where和having的区别</p>
+<h2 id="问题2-2"><a href="#问题2-2" class="headerlink" title="问题2"></a>问题2</h2><p>mysql中我如果想把竖着的一列变成横着的如何操作：</p>
+<table>
+<thead>
+<tr>
+<th>人数</th>
+<th>部门</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>11</td>
+<td>a</td>
+</tr>
+</tbody></table>
+<p>其中5人生病，6人未生病，如何变成下面的样子:说出大概思路即可</p>
+<table>
+<thead>
+<tr>
+<th>人数</th>
+<th>部门</th>
+<th>生病人数</th>
+<th>未生病人数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>11</td>
+<td>a</td>
+<td>0</td>
+<td>6</td>
+</tr>
+<tr>
+<td>11</td>
+<td>a</td>
+<td>5</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<h2 id="问题3-2"><a href="#问题3-2" class="headerlink" title="问题3"></a>问题3</h2><p>mysql中判断空值的方法有什么，以及多路选择的方法</p>
+<h2 id="问题4-2"><a href="#问题4-2" class="headerlink" title="问题4"></a>问题4</h2><p>在往mysql的表里插入数据的时候，发现带有中文的字符插入不进去，如何解决，什么原因造成的，mysql8及以后如何</p>
+<h2 id="问题5-2"><a href="#问题5-2" class="headerlink" title="问题5"></a>问题5</h2><p>你认为mysql为什么到目前为止都没有被淘汰？</p>
+<h1 id="hadoop"><a href="#hadoop" class="headerlink" title="hadoop"></a>hadoop</h1><h2 id="问题1-3"><a href="#问题1-3" class="headerlink" title="问题1"></a>问题1</h2><p>关于hadoop的基础架构，以及mr的流程</p>
+<h2 id="问题2-3"><a href="#问题2-3" class="headerlink" title="问题2"></a>问题2</h2><p>关于客户端向hdfs上传输数据的流程，而且它是如何被分块的</p>
+<h2 id="问题3-3"><a href="#问题3-3" class="headerlink" title="问题3"></a>问题3</h2><p>hadoop文件存储的放置策略，以及为什么这样放置</p>
+<h2 id="问题4-3"><a href="#问题4-3" class="headerlink" title="问题4"></a>问题4</h2><p>Hadoop上的yarn的申请资源的流程，以及为什么要使用多块物理磁盘？</p>
+<h2 id="问题5-3"><a href="#问题5-3" class="headerlink" title="问题5"></a>问题5</h2><p>hdfs上的压缩格式，以及优缺点，和我们常用的</p>
+<h1 id="hive"><a href="#hive" class="headerlink" title="hive"></a>hive</h1><h2 id="问题1-4"><a href="#问题1-4" class="headerlink" title="问题1"></a>问题1</h2><p>你所理解的hive是什么？</p>
+<h2 id="问题2-4"><a href="#问题2-4" class="headerlink" title="问题2"></a>问题2</h2><p>hive在mysql中的几个关键表都是什么</p>
+<h2 id="问题3-4"><a href="#问题3-4" class="headerlink" title="问题3"></a>问题3</h2><p>hive里空值如何处理，hive中mapjoin如何开启以及开启之后的原理</p>
+<h2 id="问题4-4"><a href="#问题4-4" class="headerlink" title="问题4"></a>问题4</h2><p>hive里内部表和外部表的区别，以及如何转化</p>
+<h2 id="问题5-4"><a href="#问题5-4" class="headerlink" title="问题5"></a>问题5</h2><p>hive里的开窗函数能用在什么函数上，开窗之后还可以分组吗</p>
+<h2 id="问题6"><a href="#问题6" class="headerlink" title="问题6"></a>问题6</h2><p>hive如何把一列数据转化为数组，并且hive的适用场景是什么</p>
+<h1 id="flume"><a href="#flume" class="headerlink" title="flume"></a>flume</h1><h2 id="问题1-5"><a href="#问题1-5" class="headerlink" title="问题1"></a>问题1</h2><p>flume如何设置传输到hdfs上的数据的压缩格式</p>
+<h2 id="问题2-5"><a href="#问题2-5" class="headerlink" title="问题2"></a>问题2</h2><p>flume如何控制小文件的数量，以及如何监控flume的采集情况</p>
+<h2 id="问题3-5"><a href="#问题3-5" class="headerlink" title="问题3"></a>问题3</h2><p>flume如何控制多个channel和Sink，以及控制形式都有什么</p>
+<h2 id="问题4-5"><a href="#问题4-5" class="headerlink" title="问题4"></a>问题4</h2><p>现阶段如何解决日志数据延迟性问题</p>
+<h2 id="问题5-5"><a href="#问题5-5" class="headerlink" title="问题5"></a>问题5</h2><p>flume采集的数据文件会丢失吗，为什么以及taildir所谓的断点续传是什么，由什么控制</p>
+<h1 id="sqoop"><a href="#sqoop" class="headerlink" title="sqoop"></a>sqoop</h1><h2 id="问题1-6"><a href="#问题1-6" class="headerlink" title="问题1"></a>问题1</h2><p>sqoop同步mysql到hive的时候如何设置分区表</p>
+<h2 id="问题2-6"><a href="#问题2-6" class="headerlink" title="问题2"></a>问题2</h2><p>sqoop是走mr程序吗？为什么sqoop运行如此的慢</p>
+<h2 id="问题3-6"><a href="#问题3-6" class="headerlink" title="问题3"></a>问题3</h2><p>sqoop同步hive到mysql的时候经常因为不明原因就中断了，如何解决</p>
+<h2 id="问题4-6"><a href="#问题4-6" class="headerlink" title="问题4"></a>问题4</h2><p>sqoop同步hive到mysql分区表的思路以及操作是什么</p>
+<h2 id="问题5-6"><a href="#问题5-6" class="headerlink" title="问题5"></a>问题5</h2><p>sqoop导入数据的时候如何保证数据的幂等性</p>
+<h1 id="zk"><a href="#zk" class="headerlink" title="zk"></a>zk</h1><h2 id="问题1-7"><a href="#问题1-7" class="headerlink" title="问题1"></a>问题1</h2><p>如何创建临时节点和永久节点</p>
+<h2 id="问题2-7"><a href="#问题2-7" class="headerlink" title="问题2"></a>问题2</h2><p>四字命令是干什么的</p>
+<h2 id="问题3-7"><a href="#问题3-7" class="headerlink" title="问题3"></a>问题3</h2><p>zk命令行监听和api监听的区别，通过上面命令进行监听</p>
+<h2 id="问题4-7"><a href="#问题4-7" class="headerlink" title="问题4"></a>问题4</h2><p>如何创建顺序节点</p>
+<h2 id="问题5-7"><a href="#问题5-7" class="headerlink" title="问题5"></a>问题5</h2><p>zk如何管理我们的namenode的上位，以及，如何监控的</p>
 
     </div>
 
@@ -321,7 +392,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://zihang.fun/2022/11/03/hello-world/" title="Hello World">http://zihang.fun/2022/11/03/hello-world/</a>
+    <a href="http://zihang.fun/2022/12/15/%E6%8A%80%E6%9C%AF%E7%82%B9/" title="自我认为的知识点">http://zihang.fun/2022/12/15/技术点/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -368,13 +439,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/11/03/11-3/" rel="prev" title="mysql">
-      <i class="fa fa-chevron-left"></i> mysql
+    <a href="/2022/12/15/12-15/" rel="prev" title="zookeeper">
+      <i class="fa fa-chevron-left"></i> zookeeper
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/11/05/sql%E7%BB%83%E4%B9%A0/" rel="next" title="sql练习">
-      sql练习 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -438,7 +506,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux"><span class="nav-number">1.</span> <span class="nav-text">Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%981"><span class="nav-number">1.1.</span> <span class="nav-text">问题1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%982"><span class="nav-number">1.2.</span> <span class="nav-text">问题2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%983"><span class="nav-number">1.3.</span> <span class="nav-text">问题3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%984"><span class="nav-number">1.4.</span> <span class="nav-text">问题4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%985"><span class="nav-number">1.5.</span> <span class="nav-text">问题5</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shell"><span class="nav-number">2.</span> <span class="nav-text">shell</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%981-1"><span class="nav-number">2.1.</span> <span class="nav-text">问题1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%982-1"><span class="nav-number">2.2.</span> <span class="nav-text">问题2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%983-1"><span class="nav-number">2.3.</span> <span class="nav-text">问题3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%984-1"><span class="nav-number">2.4.</span> <span class="nav-text">问题4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%985-1"><span class="nav-number">2.5.</span> <span class="nav-text">问题5</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql"><span class="nav-number">3.</span> <span class="nav-text">mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%981-2"><span class="nav-number">3.1.</span> <span class="nav-text">问题1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%982-2"><span class="nav-number">3.2.</span> <span class="nav-text">问题2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%983-2"><span class="nav-number">3.3.</span> <span class="nav-text">问题3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%984-2"><span class="nav-number">3.4.</span> <span class="nav-text">问题4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%985-2"><span class="nav-number">3.5.</span> <span class="nav-text">问题5</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hadoop"><span class="nav-number">4.</span> <span class="nav-text">hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%981-3"><span class="nav-number">4.1.</span> <span class="nav-text">问题1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%982-3"><span class="nav-number">4.2.</span> <span class="nav-text">问题2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%983-3"><span class="nav-number">4.3.</span> <span class="nav-text">问题3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%984-3"><span class="nav-number">4.4.</span> <span class="nav-text">问题4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%985-3"><span class="nav-number">4.5.</span> <span class="nav-text">问题5</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hive"><span class="nav-number">5.</span> <span class="nav-text">hive</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%981-4"><span class="nav-number">5.1.</span> <span class="nav-text">问题1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%982-4"><span class="nav-number">5.2.</span> <span class="nav-text">问题2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%983-4"><span class="nav-number">5.3.</span> <span class="nav-text">问题3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%984-4"><span class="nav-number">5.4.</span> <span class="nav-text">问题4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%985-4"><span class="nav-number">5.5.</span> <span class="nav-text">问题5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%986"><span class="nav-number">5.6.</span> <span class="nav-text">问题6</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#flume"><span class="nav-number">6.</span> <span class="nav-text">flume</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%981-5"><span class="nav-number">6.1.</span> <span class="nav-text">问题1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%982-5"><span class="nav-number">6.2.</span> <span class="nav-text">问题2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%983-5"><span class="nav-number">6.3.</span> <span class="nav-text">问题3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%984-5"><span class="nav-number">6.4.</span> <span class="nav-text">问题4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%985-5"><span class="nav-number">6.5.</span> <span class="nav-text">问题5</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sqoop"><span class="nav-number">7.</span> <span class="nav-text">sqoop</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%981-6"><span class="nav-number">7.1.</span> <span class="nav-text">问题1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%982-6"><span class="nav-number">7.2.</span> <span class="nav-text">问题2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%983-6"><span class="nav-number">7.3.</span> <span class="nav-text">问题3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%984-6"><span class="nav-number">7.4.</span> <span class="nav-text">问题4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%985-6"><span class="nav-number">7.5.</span> <span class="nav-text">问题5</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zk"><span class="nav-number">8.</span> <span class="nav-text">zk</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%981-7"><span class="nav-number">8.1.</span> <span class="nav-text">问题1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%982-7"><span class="nav-number">8.2.</span> <span class="nav-text">问题2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%983-7"><span class="nav-number">8.3.</span> <span class="nav-text">问题3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%984-7"><span class="nav-number">8.4.</span> <span class="nav-text">问题4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%985-7"><span class="nav-number">8.5.</span> <span class="nav-text">问题5</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -643,7 +711,7 @@ $(document).ready(function() {
       quicklink({
         timeout : 3000,
         priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'http://zihang.fun/2022/11/03/hello-world/',]
+        ignores : [uri => uri.includes('#'),uri => uri === 'http://zihang.fun/2022/12/15/%E6%8A%80%E6%9C%AF%E7%82%B9/',]
       });
       });
   </script>
