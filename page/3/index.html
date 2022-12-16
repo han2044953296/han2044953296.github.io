@@ -198,6 +198,235 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/11/19/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/19/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" class="post-title-link" itemprop="url">内网穿透</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-19 11:18:15 / 修改时间：11:39:54" itemprop="dateCreated datePublished" datetime="2022-11-19T11:18:15+08:00">2022-11-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E8%B4%A7%E6%8A%80%E6%9C%AF%E6%A0%88/" itemprop="url" rel="index"><span itemprop="name">杂货技术栈</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>404</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>内网穿透简单来说就是让我们处于局域网的机器或者本地的项目，可以在外部的公网访问</li>
+</ul>
+<h3 id="常见的内网穿透工具"><a href="#常见的内网穿透工具" class="headerlink" title="常见的内网穿透工具"></a>常见的内网穿透工具</h3><ul>
+<li>natapp网站</li>
+<li>frp</li>
+<li>ngrok</li>
+<li>蜻蜓映射</li>
+<li>ssh命令</li>
+</ul>
+<h3 id="natapp"><a href="#natapp" class="headerlink" title="natapp"></a>natapp</h3><ul>
+<li>natapp网站 ： 注册账号之后会免费给你送一条隧道，不过临时用可以，不能长久用，</li>
+<li>因为隧道名字会被强制更换</li>
+<li>而vip隧道就不会强制更换</li>
+</ul>
+<h3 id="frp"><a href="#frp" class="headerlink" title="frp"></a>frp</h3><ul>
+<li>frp是专业的反向代理工具</li>
+<li><code>https:github.com/fatedier/frp</code></li>
+<li>其中部署也非常简单 ： </li>
+<li>frps在云服务器上</li>
+<li>而要进行内网穿透的机器运行frpc</li>
+<li>再改改配置就ok了</li>
+</ul>
+<h3 id="ngrok"><a href="#ngrok" class="headerlink" title="ngrok"></a>ngrok</h3><ul>
+<li>属于专门做内网穿透的平台，以前是免费的不过最近好像收费了</li>
+<li>注册之后我们就可以根据平台上的帮助文档进行配置，</li>
+</ul>
+<h3 id="蜻蜓映射"><a href="#蜻蜓映射" class="headerlink" title="蜻蜓映射"></a>蜻蜓映射</h3><ul>
+<li>同上</li>
+</ul>
+<h3 id="ssh命令"><a href="#ssh命令" class="headerlink" title="ssh命令"></a>ssh命令</h3><ul>
+<li>我们可以通过<code>ssh -R 80:localhost:80 xxxxx@localhost.run</code></li>
+<li>进行反向映射端口</li>
+<li>xxxx是远程云主机</li>
+<li>前面的80是云主机的端口</li>
+<li>后面的是本地的端口</li>
+<li>这个命令是ssh自带的</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/11/19/%E4%BD%9C%E4%B8%9A11-19/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/19/%E4%BD%9C%E4%B8%9A11-19/" class="post-title-link" itemprop="url">11-19作业</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-19 11:13:45 / 修改时间：11:17:52" itemprop="dateCreated datePublished" datetime="2022-11-19T11:13:45+08:00">2022-11-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BD%9C%E4%B8%9A/" itemprop="url" rel="index"><span itemprop="name">作业</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="通过mapreduce的api统计emp表里的每个工作的人数"><a href="#通过mapreduce的api统计emp表里的每个工作的人数" class="headerlink" title="通过mapreduce的api统计emp表里的每个工作的人数"></a>通过mapreduce的api统计emp表里的每个工作的人数</h1><ul>
+<li>数据源</li>
+</ul>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attribute">7369</span>,SMITH,CLERK,<span class="number">7902</span>,<span class="number">1980</span>-<span class="number">12</span>-<span class="number">17</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">800</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"><span class="attribute">7499</span>,ALLEN,SALESMAN,<span class="number">7698</span>,<span class="number">1981</span>-<span class="number">02</span>-<span class="number">20</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">1600</span>.<span class="number">00</span>,<span class="number">300</span>.<span class="number">00</span>,<span class="number">30</span></span><br><span class="line"><span class="attribute">7521</span>,WARD,SALESMAN,<span class="number">7698</span>,<span class="number">1981</span>-<span class="number">02</span>-<span class="number">22</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">1250</span>.<span class="number">00</span>,<span class="number">500</span>.<span class="number">00</span>,<span class="number">30</span></span><br><span class="line"><span class="attribute">7566</span>,JONES,MANAGER,<span class="number">7839</span>,<span class="number">1981</span>-<span class="number">04</span>-<span class="number">02</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">2975</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"><span class="attribute">7654</span>,MARTIN,SALESMAN,<span class="number">7698</span>,<span class="number">1981</span>-<span class="number">09</span>-<span class="number">28</span> <span class="number">13</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">1250</span>.<span class="number">00</span>,<span class="number">1400</span>.<span class="number">00</span>,<span class="number">30</span></span><br><span class="line"><span class="attribute">7698</span>,BLAKE,MANAGER,<span class="number">7839</span>,<span class="number">1981</span>-<span class="number">05</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">2850</span>.<span class="number">00</span>,,<span class="number">30</span></span><br><span class="line"><span class="attribute">7782</span>,CLARK,MANAGER,<span class="number">7839</span>,<span class="number">1981</span>-<span class="number">06</span>-<span class="number">09</span> <span class="number">13</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">2450</span>.<span class="number">00</span>,,<span class="number">10</span></span><br><span class="line"><span class="attribute">7788</span>,SCOTT,ANALYST,<span class="number">7566</span>,<span class="number">1982</span>-<span class="number">12</span>-<span class="number">09</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">3000</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"><span class="attribute">7839</span>,KING,PRESIDENT,,<span class="number">1981</span>-<span class="number">11</span>-<span class="number">17</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">5000</span>.<span class="number">00</span>,,<span class="number">10</span></span><br><span class="line"><span class="attribute">7844</span>,TURNER,SALESMAN,<span class="number">7698</span>,<span class="number">1981</span>-<span class="number">09</span>-<span class="number">08</span> <span class="number">13</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">1500</span>.<span class="number">00</span>,<span class="number">0</span>.<span class="number">00</span>,<span class="number">30</span></span><br><span class="line"><span class="attribute">7876</span>,ADAMS,CLERK,<span class="number">7788</span>,<span class="number">1983</span>-<span class="number">01</span>-<span class="number">12</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">1100</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"><span class="attribute">7900</span>,lebulang,CLERK,<span class="number">7698</span>,<span class="number">1981</span>-<span class="number">12</span>-<span class="number">03</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">950</span>.<span class="number">00</span>,,<span class="number">30</span></span><br><span class="line"><span class="attribute">7902</span>,FORD,ANALYST,<span class="number">7566</span>,<span class="number">1981</span>-<span class="number">12</span>-<span class="number">03</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">3000</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"><span class="attribute">7934</span>,MILLER,CLERK,<span class="number">7782</span>,<span class="number">1982</span>-<span class="number">01</span>-<span class="number">23</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">1300</span>.<span class="number">00</span>,,<span class="number">10</span></span><br><span class="line"><span class="attribute">7839</span>,KING,PRESIDENT,,<span class="number">1981</span>-<span class="number">11</span>-<span class="number">17</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">5000</span>.<span class="number">00</span>,,<span class="number">10</span></span><br><span class="line"><span class="attribute">7654</span>,MARTIN,SALESMAN,<span class="number">7698</span>,<span class="number">1981</span>-<span class="number">09</span>-<span class="number">28</span> <span class="number">13</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">3200</span>.<span class="number">00</span>,<span class="number">1400</span>.<span class="number">00</span>,<span class="number">30</span></span><br><span class="line"><span class="attribute">7788</span>,SCOTT,ANALYST,<span class="number">7566</span>,<span class="number">1982</span>-<span class="number">12</span>-<span class="number">09</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">3000</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"><span class="attribute">7788</span>,SCOTT,ANALYST,<span class="number">7566</span>,<span class="number">1982</span>-<span class="number">12</span>-<span class="number">09</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">3000</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"><span class="attribute">7788</span>,SCOTT,ANALYST,<span class="number">7566</span>,<span class="number">1982</span>-<span class="number">12</span>-<span class="number">09</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">3000</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"><span class="attribute">7788</span>,SCOTT,ANALYST,<span class="number">7566</span>,<span class="number">1982</span>-<span class="number">12</span>-<span class="number">09</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">3000</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"><span class="attribute">7788</span>,SCOTT,ANALYST,<span class="number">7566</span>,<span class="number">1982</span>-<span class="number">12</span>-<span class="number">09</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">3000</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"><span class="attribute">7788</span>,SCOTT,ANALYST,<span class="number">7566</span>,<span class="number">1982</span>-<span class="number">12</span>-<span class="number">09</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">3000</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"><span class="attribute">7788</span>,SCOTT,ANALYST,<span class="number">7566</span>,<span class="number">1982</span>-<span class="number">12</span>-<span class="number">09</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">3000</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"><span class="attribute">7788</span>,SCOTT,ANALYST,<span class="number">7566</span>,<span class="number">1982</span>-<span class="number">12</span>-<span class="number">09</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">3000</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"><span class="attribute">7788</span>,SCOTT,ANALYST,<span class="number">7566</span>,<span class="number">1982</span>-<span class="number">12</span>-<span class="number">09</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">3000</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"><span class="attribute">7788</span>,SCOTT,ANALYST,<span class="number">7566</span>,<span class="number">1982</span>-<span class="number">12</span>-<span class="number">09</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">3000</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"><span class="attribute">7788</span>,SCOTT,ANALYST,<span class="number">7566</span>,<span class="number">1982</span>-<span class="number">12</span>-<span class="number">09</span> <span class="number">14</span>:<span class="number">00</span>:<span class="number">00</span>,<span class="number">3000</span>.<span class="number">00</span>,,<span class="number">20</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>其中第二列就是工作</p>
+</li>
+<li><p>代码如下 ：</p>
+</li>
+</ul>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.<span class="property">example</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.<span class="property">apache</span>.<span class="property">hadoop</span>.<span class="property">conf</span>.<span class="property">Configuration</span>;</span><br><span class="line"><span class="keyword">import</span> org.<span class="property">apache</span>.<span class="property">hadoop</span>.<span class="property">fs</span>.<span class="property">Path</span>;</span><br><span class="line"><span class="keyword">import</span> org.<span class="property">apache</span>.<span class="property">hadoop</span>.<span class="property">io</span>.<span class="property">IntWritable</span>;</span><br><span class="line"><span class="keyword">import</span> org.<span class="property">apache</span>.<span class="property">hadoop</span>.<span class="property">io</span>.<span class="property">Text</span>;</span><br><span class="line"><span class="keyword">import</span> org.<span class="property">apache</span>.<span class="property">hadoop</span>.<span class="property">mapreduce</span>.<span class="property">Job</span>;</span><br><span class="line"><span class="keyword">import</span> org.<span class="property">apache</span>.<span class="property">hadoop</span>.<span class="property">mapreduce</span>.<span class="property">Mapper</span>;</span><br><span class="line"><span class="keyword">import</span> org.<span class="property">apache</span>.<span class="property">hadoop</span>.<span class="property">mapreduce</span>.<span class="property">Reducer</span>;</span><br><span class="line"><span class="keyword">import</span> org.<span class="property">apache</span>.<span class="property">hadoop</span>.<span class="property">mapreduce</span>.<span class="property">lib</span>.<span class="property">input</span>.<span class="property">FileInputFormat</span>;</span><br><span class="line"><span class="keyword">import</span> org.<span class="property">apache</span>.<span class="property">hadoop</span>.<span class="property">mapreduce</span>.<span class="property">lib</span>.<span class="property">output</span>.<span class="property">FileOutputFormat</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.<span class="property">io</span>.<span class="property">IOException</span>;</span><br><span class="line"><span class="keyword">import</span> java.<span class="property">util</span>.<span class="property">StringTokenizer</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @author sxwang</span></span><br><span class="line"><span class="comment"> * 11 18 14:00</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * driver</span></span><br><span class="line"><span class="comment">     * @param args</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span>(<span class="built_in">String</span>[] args) <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">String</span> input=<span class="string">&quot;D://emp.txt&quot;</span>;</span><br><span class="line">        <span class="built_in">String</span> output=<span class="string">&quot;out&quot;</span>;</span><br><span class="line">        Configuration conf = <span class="keyword">new </span><span class="class title_">Configuration</span>();</span><br><span class="line">        <span class="comment">//0.todo... 删除目标路径</span></span><br><span class="line">        FileUtils.<span class="property">deletePath</span>(conf,output);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//1.设置 作业名称</span></span><br><span class="line">        Job job = Job.<span class="property">getInstance</span>(conf, <span class="string">&quot;WCAPP&quot;</span>);</span><br><span class="line">        <span class="comment">//2.设置map reduce 执行代码的主类</span></span><br><span class="line">        job.<span class="property">setJarByClass</span>(test.<span class="property">class</span>);</span><br><span class="line">        job.<span class="property">setMapperClass</span>(MyMapper.<span class="property">class</span>);</span><br><span class="line">        job.<span class="property">setReducerClass</span>(MyReducer.<span class="property">class</span>);</span><br><span class="line">        <span class="comment">//3.指定 oupput kv类型</span></span><br><span class="line">        job.<span class="property">setOutputKeyClass</span>(Text.<span class="property">class</span>);</span><br><span class="line">        job.<span class="property">setOutputValueClass</span>(IntWritable.<span class="property">class</span>);</span><br><span class="line">        <span class="comment">//4. 设置数据源路径 数据输出路径</span></span><br><span class="line">        FileInputFormat.<span class="property">addInputPath</span>(job, <span class="keyword">new </span><span class="class title_">Path</span>(input));</span><br><span class="line">        FileOutputFormat.<span class="property">setOutputPath</span>(job, <span class="keyword">new </span><span class="class title_">Path</span>(output));</span><br><span class="line">        <span class="comment">//5. 提交mr yarn</span></span><br><span class="line">        System.<span class="property">exit</span>(job.<span class="property">waitForCompletion</span>(<span class="literal">true</span>) ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * mapper</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">MyMapper</span></span><br><span class="line">            <span class="keyword">extends</span> <span class="title class_ inherited__">Mapper</span>&lt;<span class="built_in">Object</span>, Text, Text, IntWritable&gt; &#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        <span class="keyword">protected</span> <span class="keyword">void</span> <span class="built_in">map</span>(<span class="built_in">Object</span> <span class="built_in">key</span>, Text value, Context context) <span class="keyword">throws</span> IOException, InterruptedException &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 1.按照分隔符 进行拆分 每个单词 ，每个单词赋值为1</span></span><br><span class="line"><span class="comment">             * (word ,1)</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line"></span><br><span class="line">            <span class="built_in">String</span>[] words = value.<span class="property">toString</span>().<span class="property">split</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="built_in">String</span> word : words) &#123;</span><br><span class="line">                <span class="built_in">String</span>[] <span class="built_in">split</span> = word.<span class="property">split</span>(<span class="string">&quot;,&quot;</span>);</span><br><span class="line">                context.<span class="property">write</span>(<span class="keyword">new </span><span class="class title_">Text</span>(<span class="built_in">split</span>[<span class="number">2</span>]) ,<span class="keyword">new </span><span class="class title_">IntWritable</span>(<span class="number">1</span>));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * reducer</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">MyReducer</span></span><br><span class="line">            <span class="keyword">extends</span> <span class="title class_ inherited__">Reducer</span>&lt;Text,IntWritable,Text,IntWritable&gt; &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         *  (word ,1)</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         *  (word,&lt;1,1,1,1&gt;)</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         *  1.聚合value</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         *  2.写出去</span></span><br><span class="line"><span class="comment">         *  (word ,3)</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        @Override</span><br><span class="line">        <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">reduce</span>(Text <span class="built_in">key</span>, Iterable&lt;IntWritable&gt; values, Context context) <span class="keyword">throws</span> IOException, InterruptedException &#123;</span><br><span class="line">            <span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (IntWritable value : values) &#123;</span><br><span class="line">                sum +=Integer.<span class="property">parseInt</span>(value.<span class="property">toString</span>());</span><br><span class="line">            &#125;</span><br><span class="line">            context.<span class="property">write</span>(<span class="built_in">key</span>,<span class="keyword">new </span><span class="class title_">IntWritable</span>(sum));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>基本概念 ： 把数据先通过map进行etl，然后通过redurce进行数据的整合之类的</li>
+<li>最后输出</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/11/17/%E5%9D%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2517,572 +2746,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/11/01/11-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/01/11-1/" class="post-title-link" itemprop="url">Linux命令（运维）</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-01 09:10:45" itemprop="dateCreated datePublished" datetime="2022-11-01T09:10:45+08:00">2022-11-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="用户常用命令"><a href="#用户常用命令" class="headerlink" title="用户常用命令"></a>用户常用命令</h1><ul>
-<li>ll &#x2F;usr&#x2F;sbin&#x2F;user* 查看用户命令</li>
-<li>ll &#x2F;usr&#x2F;sbin&#x2F;group* 查看组命令</li>
-<li>查看用户信息 &#x2F;etc&#x2F;passwd</li>
-<li>查看组信息 &#x2F;etc&#x2F;group</li>
-<li>查看用户 id xxx名称</li>
-<li>userdel xxx ： 代表删除xx用户</li>
-<li>useradd xxx ： 代表添加xx用户</li>
-<li>usermod xxx ： 代表对一个用户进行操作</li>
-</ul>
-<h2 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h2><ul>
-<li>su xxx</li>
-<li>su -xxx </li>
-<li>切换用户 ，如果用下面的那种，会获得该用户的环境变量并且执行</li>
-<li>用上面的那种目录不会跑到所切换的用户的home</li>
-<li>而下面的会跑到切换用户的home</li>
-<li>用exit退回</li>
-<li>如果删除了一个已经存在的user ， 再次添加相同名称的用户的时候，会有警告，说明此用户的目录已经存在</li>
-<li>在skel文件夹下有隐藏文件</li>
-<li>如果把这个里的东西删掉，就会出现环境变量丢失的情况</li>
-<li>我们可以从别的地方的给他cp过来</li>
-<li>就会恢复了</li>
-</ul>
-<h1 id="组常见命令"><a href="#组常见命令" class="headerlink" title="组常见命令"></a>组常见命令</h1><ul>
-<li>groupadd xxx</li>
-<li>把一个用户添加到一个组上</li>
-<li>usermod -a -G xxx组 xxx用户</li>
-<li>usermod -g ： 更改用户主组 ，但是这样会让追加组丢失</li>
-</ul>
-<h1 id="设置用户密码"><a href="#设置用户密码" class="headerlink" title="设置用户密码"></a>设置用户密码</h1><ul>
-<li>passwd</li>
-<li>默认修改当前用户的密码</li>
-</ul>
-<h2 id="修改其他用户的密码"><a href="#修改其他用户的密码" class="headerlink" title="修改其他用户的密码"></a>修改其他用户的密码</h2><ul>
-<li>只有root有权限修改其他的密码</li>
-<li>passwd xxx名字</li>
-</ul>
-<h3 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h3><ul>
-<li>是一个普通用户临时具有最大权限</li>
-<li>修改 etc&#x2F;sudoers</li>
-<li>xxx用户 ALL&#x3D;(root) NOPASSWD:ALL</li>
-<li>然后就可以用 sudo xxx 命令这就代表这条指令具有了最高的权限</li>
-<li>su 和 sudo 联用</li>
-<li>sudo su xx人员</li>
-<li>代表通过root权限切换</li>
-</ul>
-<h3 id="etc-x2F-paswd"><a href="#etc-x2F-paswd" class="headerlink" title="etc&#x2F;paswd"></a>etc&#x2F;paswd</h3><ul>
-<li>这个文件是密码文件</li>
-<li>在这个文件里 有解释器 如果后面变成nologin代表不让登录</li>
-<li>如果最后变成false 则你无论如何都登陆不成功 </li>
-<li>CDH平台 可能会用到</li>
-<li>把上面两中改成 bin&#x2F;bash 就可以成功了</li>
-</ul>
-<h1 id="权限相关命令"><a href="#权限相关命令" class="headerlink" title="权限相关命令"></a>权限相关命令</h1><ul>
-<li>第一个字母 </li>
-<li>d :文件夹</li>
-<li>-(横杠) ： 文件</li>
-<li>l ： 链接</li>
-<li>后面9个字母 ，每三个一组</li>
-<li>r表示read  代表数字 4</li>
-<li>w表示write 代表数字 2</li>
-<li>x表示执行权限 代表数字 1</li>
-<li>-表示无权限 代表数字 0</li>
-<li>例子 ：-rw-r- -r- -. 1 root root 2047 10月 31 09:48 initial-setup-ks.cfg</li>
-<li>第一组 ： rw- 4+2+0&#x3D;6 代表文件或者文件夹的所属用户拥有的权限</li>
-<li>第二组 ： r- - 4+0+0&#x3D;4 代表文件或者文件夹的组的成员的权限</li>
-<li>第三组 ： r- - 4+0+0&#x3D;4 代表文件或者文件夹的其他组的权限</li>
-<li>字母顺序只能按照rwxr这个顺序</li>
-</ul>
-<h2 id="权限修改命令"><a href="#权限修改命令" class="headerlink" title="权限修改命令"></a>权限修改命令</h2><ul>
-<li>chmod 修改文件或者文件夹权限</li>
-<li>chown 修改文件或者文件夹的组 ， 或者用户</li>
-<li>例子 ： chmod xxx（数字）xxx名字</li>
-<li>如果要该文件夹 则要 chmod -R xxx数字 xxx名字</li>
-<li>例子 ： chown xxx用户：xxx用户 文件名</li>
-<li>同样也可以用-R ，来修改文件夹</li>
-</ul>
-<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
-<li>如果要访问问文件夹里的文件，要先看上面的文件夹的权限是啥样的</li>
-</ul>
-<h2 id="大小"><a href="#大小" class="headerlink" title="大小"></a>大小</h2><ul>
-<li>ll -h ，du -sh</li>
-<li>而对于文件夹 du -sh也可以查看 ，ll -h 就不行</li>
-<li>du -sh ： 最小是4k ， 但是他无法查看权限</li>
-</ul>
-<h2 id="搜索文件"><a href="#搜索文件" class="headerlink" title="搜索文件"></a>搜索文件</h2><ul>
-<li>find</li>
-<li>locate（没有网，不建议用）</li>
-<li>例子 ： find 【path】 【表达式】 </li>
-<li>表达式 ： -name “xxx” : 按照名字查找</li>
-<li>比如 ： find &#x2F; -name “1.log”</li>
-</ul>
-<h2 id="vi-x2F-vim"><a href="#vi-x2F-vim" class="headerlink" title="vi&#x2F;vim"></a>vi&#x2F;vim</h2><ul>
-<li>编辑文件</li>
-<li>尾行模式 ： wq 退出保存</li>
-<li>如果编辑文件的时候突然不小心把编辑的时候中断了，就是ctrl + c 或者 ctrl + z</li>
-<li>解决方法 ： 删除Swap文件是隐藏文件 ，.开头的</li>
-<li>行号 ： 首先进入尾行模式</li>
-<li>set nu 就会有行号</li>
-<li>set nonu就可以取消行号</li>
-</ul>
-<h2 id="常用快捷方式"><a href="#常用快捷方式" class="headerlink" title="常用快捷方式"></a>常用快捷方式</h2><ul>
-<li>dd ： 删除当前行</li>
-<li>dG ： 删除当前行 以及以下所有行</li>
-<li>ndd ： 删除这个行 以及下面n行</li>
-<li>u ：　撤回</li>
-<li>ｇｇ　：　跳转到第一行的第一个字母</li>
-<li>Ｇ　：　跳转到最后一行的第一个字母</li>
-<li>ｓｈｉｆｔ　＋ $  ： 就是跳转到行尾</li>
-<li>ｓｈｉｆｔ　＋ ^  : 跳转到行头</li>
-<li>i ： 是当前行编辑</li>
-<li>o ： 是跳转到下一行编辑</li>
-</ul>
-<h3 id="清空文件内容"><a href="#清空文件内容" class="headerlink" title="清空文件内容"></a>清空文件内容</h3><ul>
-<li>gg -&gt; dG</li>
-<li>linux 有一个空的文件</li>
-<li>然后 cat &#x2F;dev&#x2F;null  &gt; xxx文件名字</li>
-</ul>
-<h2 id="系统相关命令"><a href="#系统相关命令" class="headerlink" title="系统相关命令"></a>系统相关命令</h2><ul>
-<li>内存 ： free</li>
-<li>磁盘 ： df</li>
-<li>可能会添加磁盘</li>
-<li>可通过这个来判断</li>
-<li>后来挂载的一般是vdb的</li>
-<li>负载 ： top</li>
-<li>load average ： xxx xxx xxx</li>
-<li>第一个是5分钟之内的负载</li>
-<li>第二个是10分钟</li>
-<li>第三个是15分钟</li>
-<li>如果任意一个超过十 ，说明当前公司的服务器 比较卡</li>
-<li>pid是进程号</li>
-<li>user是那个用户</li>
-<li>重启的目的 ： </li>
-<li>检查是不是硬件有无问题</li>
-</ul>
-<h2 id="yum-x2F-rpm"><a href="#yum-x2F-rpm" class="headerlink" title="yum&#x2F;rpm"></a>yum&#x2F;rpm</h2><ul>
-<li>安装linux软件的方式 联网</li>
-<li>yum search xxx</li>
-<li>下载下来的一个安装包以rpm存储</li>
-<li>yum install xxx</li>
-</ul>
-<h2 id="通讯命令"><a href="#通讯命令" class="headerlink" title="通讯命令"></a>通讯命令</h2><ul>
-<li>ping + ip</li>
-<li>telnet ip 端口 :检查对面的端口是不是开放</li>
-<li>端口 ： 1-65535</li>
-<li>两个机器要在一个网段</li>
-<li>ping通就代表是网络ok</li>
-</ul>
-<h2 id="补充命令"><a href="#补充命令" class="headerlink" title="补充命令"></a>补充命令</h2><ul>
-<li>which + 命令</li>
-<li>whereis + 命令</li>
-<li>查看linux或者某个软件的shell脚本是不是存在</li>
-<li>which ： 是查看自己环境变量的命令存在吗</li>
-<li>whereis ： 是查看全局变量的名利给的存在吗</li>
-</ul>
-<h2 id="修改机器名字"><a href="#修改机器名字" class="headerlink" title="修改机器名字"></a>修改机器名字</h2><ul>
-<li>hostnamectl ： xxxx</li>
-</ul>
-<h2 id="解压缩命令"><a href="#解压缩命令" class="headerlink" title="解压缩命令"></a>解压缩命令</h2><ul>
-<li>linux 对zip和gz可以解压</li>
-<li>zip xxx.zip （-r） xxx文件（这里压缩可以多个）如果是文件夹则要加上-r</li>
-<li>代表压缩到xxx.zip里</li>
-<li>解压</li>
-<li>unzip xxx.zip （-d xxx文件夹）</li>
-<li>tar ：</li>
-<li>例子 ： tar -cf xxx.tar xxx文件（可以多个）</li>
-<li>解压：</li>
-<li>例子 ： tar -xf xxx.tar -C xxx文件夹</li>
-<li>可以不加-C就是默认解压当前文件目录</li>
-<li>压缩：</li>
-<li>用z命令</li>
-<li>tar -zcf xxx.tar xxx文件（可以多个）</li>
-<li>解压：</li>
-<li>tar -zxf xxx.tar -C xxx文件夹</li>
-<li>我们可以再加上v让他们显示详细得处理文件的过程</li>
-<li>zxvf：同上</li>
-<li>zxcf：同上</li>
-</ul>
-<h2 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h2><ul>
-<li>当用yum安装成功之后 ，可以直接用系统命令启动</li>
-<li>比如 ： service name start|status|restart|stop  : centos6</li>
-<li>syystemctl start|status|restart|stop name : centos7</li>
-<li>查看进程</li>
-<li>ps -ef</li>
-<li>可以进行筛选</li>
-<li>ps -ef|grep xxx名字</li>
-<li>杀死进程 </li>
-<li>kill -9 + 进程号</li>
-<li>查端口：</li>
-<li>netstat -nlp | grep xxxname</li>
-<li>通过</li>
-<li>:::80</li>
-<li>ip:80</li>
-<li>0.0.0.0:80</li>
-<li>我们可以通过外部机器访问这个端口进入服务界面</li>
-<li>kill -9 $(pgrep -f xxx名字)</li>
-<li>下面的会强制把他们全杀掉 ， 包括子进程</li>
-<li></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/10/31/10-31/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/31/10-31/" class="post-title-link" itemprop="url">Linux命令</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-31 11:03:51" itemprop="dateCreated datePublished" datetime="2022-10-31T11:03:51+08:00">2022-10-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="linux的目录形式"><a href="#linux的目录形式" class="headerlink" title="linux的目录形式"></a>linux的目录形式</h1><ul>
-<li>层级式</li>
-<li>当用了Xshell登录了管理员之后会显示</li>
-<li>root@bigdata1 liuzihan</li>
-<li>前面表示root用户</li>
-<li>@后面的是机器名字</li>
-<li>在后面的是普通用户的名字</li>
-<li>~表示当前用户的家目录</li>
-<li>有命令帮助 应用 xx–help ， 这个xx代表是命令</li>
-<li>例如： 用法：ls [选项]… [文件]…</li>
-<li>上面代表ls后面可以加多个辅助命令 ， 还可以加多个文件</li>
-<li>中断命令 ： ctrl + c 或者 ctrl + z</li>
-<li>用键盘自动补全 ，</li>
-<li>按一次 ： 匹配当前据有唯一标识的补全</li>
-<li>按两次 ： 把所有匹配的项目都展示出来</li>
-</ul>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><ul>
-<li>pwd : 查看当前所在的目录</li>
-<li>ls ： 查看所在的目录下有文件或者文件夹</li>
-<li>mkdir ： 创建文件夹 ， 后面加文件夹的名字</li>
-<li>cd ： 切换路径 ， 就算现在所在的目录 ， 只能切换文件夹</li>
-<li>ls -l ： 表示看这个文件夹的额外的详细信息 ， 权限 ，用户 ， 用户组 ， 大小 ， 创建时间。 </li>
-<li>ls -l -a ：显示以.开头的文件或者文件夹 ， 就是隐藏文件</li>
-<li>ls -l -h ：查看文件的大小 ， 文件夹是不可以的</li>
-<li>上面的 ls -l &#x3D;&#x3D; ll 但是在一些操作系统里是不行的在centos里是可以的但是ubanto上是不行的</li>
-<li>其实现是通过别名</li>
-<li>ll -r -t ： 可以看见按照时间顺序降序的排序文件 ，就算最下面的就是最近更改的</li>
-<li>上述还可以改成 ll -rt &#x3D;&#x3D;ll -r -t</li>
-</ul>
-<h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹##"></a>创建文件夹##</h2><h3 id="并级创建"><a href="#并级创建" class="headerlink" title="并级创建"></a>并级创建</h3><ul>
-<li>mkdir 1 2 3</li>
-</ul>
-<h3 id="串级创建"><a href="#串级创建" class="headerlink" title="串级创建"></a>串级创建</h3><ul>
-<li>mkdir 1&#x2F;2&#x2F;3</li>
-<li>但是这样要求必须有上级目录</li>
-<li>不过可以用</li>
-<li>mkdir -p 1&#x2F;2&#x2F;3</li>
-<li>就可以了</li>
-</ul>
-<h2 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h2><ul>
-<li>cd</li>
-<li>不过有绝对路径和相对路径的区别</li>
-<li>绝对路径 ： 从根目录</li>
-<li>相对路径 ： 从当前目录</li>
-<li>cd的可以是绝对，也可以是相对</li>
-<li>cd..&#x2F; : 返回上级目录</li>
-<li>cd.&#x2F; : 表示当前目录</li>
-<li>可以这样用 ： cd .&#x2F;1</li>
-</ul>
-<h3 id="快速回到家目录"><a href="#快速回到家目录" class="headerlink" title="快速回到家目录"></a>快速回到家目录</h3><ul>
-<li>1 , cd &#x2F;xx</li>
-<li>2 , cd + 回车 &#x3D;&#x3D;&gt;推荐</li>
-<li>3 , cd + ~</li>
-<li>cd - 回到上次操作的目录</li>
-</ul>
-<h2 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h2><ul>
-<li>touch 1.log</li>
-<li>vi&#x2F;vim 1.log</li>
-<li>echo “bigdata” &gt; 3.log</li>
-<li><blockquote>
-<p>: 表示创建或者覆盖一个文件</p>
-</blockquote>
-</li>
-<li>cat ： 查看文件内容</li>
-<li>比如 ： cat 3.log</li>
-<li><blockquote>
-<blockquote>
-<p>: 追加 ，上述一个 &gt; 是覆盖 ，这个是追加</p>
-</blockquote>
-</blockquote>
-</li>
-</ul>
-<h2 id="编辑文件"><a href="#编辑文件" class="headerlink" title="编辑文件"></a>编辑文件</h2><ul>
-<li>命令行模式</li>
-<li>编辑模式</li>
-<li>尾行模式</li>
-<li>vi&#x2F;vim xxx</li>
-<li>然后用insert</li>
-<li>编辑完了</li>
-<li>用esc ， 之后有几种选项</li>
-<li>:q ：代表退出并且不保存</li>
-<li>:w ：代表写入，但是不退出</li>
-<li>:wq ：代表保存且退出</li>
-<li>：！ ：强制</li>
-<li>还可以以应用nano</li>
-<li>就nano Xxx</li>
-<li>然后下面就会有提示</li>
-<li>如果没有这个文件，就会创建文件</li>
-</ul>
-<h2 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h2><ul>
-<li>cat ： 查看文件所有内容</li>
-<li>more ： 查看文件内容，按空格是往下翻，按q退出</li>
-<li>less ： 查看大文件，也是一页一页的 ， q是退出，按小键盘的上下键，是翻页</li>
-<li>一般小文件，用 cat 大文件more或者less</li>
-<li>实时查看文件产生的内容</li>
-<li>tail ： </li>
-<li>-f</li>
-<li>-F &#x3D;&#x3D; -f + retry</li>
-<li>意义：-F ， 如果我们查看一个文件的时候，文件被删了，然后又重新生成了给一样文件名的文件 ， 则f就不会动态显示了</li>
-<li>但是F会重显示新的那个文件</li>
-<li>用法 tail -f xxx</li>
-<li>用法 tail -F xxx</li>
-</ul>
-<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
-<li>查找特定日志里的xx字段</li>
-<li>通过 vi&#x2F;vim 进入 然后进行搜索</li>
-<li>在尾行模式 ，输入要查找的字符 例如 &#x2F;error</li>
-<li>然后键盘 n 查找下一个词 N 查找上一个词</li>
-<li>通过cat </li>
-<li>cat xxxx文件 | grep error 通过后面的grep 过滤文件</li>
-<li>查看进程也可以用这种方式筛选</li>
-<li>可以和其他命令联用 比如 把所有error的信息收集起来</li>
-<li>cat xxx文件 | grep error &gt; xxx文件</li>
-<li>grep的常用的参数</li>
-<li>grep -A xx行： 查看某一个词的后xx行</li>
-<li>grep -B xx行： 查看某一个词的前xx行</li>
-<li>grep -C xx行： 查看某一个词的前后xx行</li>
-<li>与上面的了连用为</li>
-<li>cat xxx文件 | grep -A xx行 error &gt; xxx文件</li>
-<li>nano方式</li>
-<li>管道符| ：代表让上一个语句的输出代表 代表下一个语句的输入</li>
-</ul>
-<h2 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h2><ul>
-<li>上传 ： win 到 linux</li>
-<li>下载 ： linux 到 win</li>
-</ul>
-<h3 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h3><ul>
-<li>工具 ： Xshell 通过Xshell的Xftp进行下载和上传</li>
-<li>linux命令 ： yum install lzxx ，通过他进行下载上传</li>
-</ul>
-<h2 id="清屏"><a href="#清屏" class="headerlink" title="清屏"></a>清屏</h2><ul>
-<li>clear : 清屏</li>
-<li>ctrl + l ： 清屏</li>
-</ul>
-<h2 id="查看操作命令历史"><a href="#查看操作命令历史" class="headerlink" title="查看操作命令历史"></a>查看操作命令历史</h2><ul>
-<li>history </li>
-<li>或者键盘上的上下箭头号</li>
-<li>按键盘的！ + 命令行数</li>
-</ul>
-<h2 id="移动与复制"><a href="#移动与复制" class="headerlink" title="移动与复制"></a>移动与复制</h2><ul>
-<li>mv[选项]..源文件..目录</li>
-<li>例如： mv dir1 bigdata</li>
-<li>cp[选项]..源文件..目录</li>
-<li>例如： cp -r dir2 bigdata</li>
-<li>但是 cp还可以复制的时候改文件名字</li>
-<li>例如 cp 源文件 目标文件</li>
-<li>就会把源文件中的内容给目标文件，命名就是这里的目标文件</li>
-<li>也可以和上一个复制到文件夹联用</li>
-<li>例如 ： cp xx xxx目录&#x2F;xx文件</li>
-<li>mv始终是一份</li>
-<li>而cp则是两份</li>
-<li>所以mv比cp快</li>
-</ul>
-<h2 id="删除文件或者文件夹"><a href="#删除文件或者文件夹" class="headerlink" title="删除文件或者文件夹"></a>删除文件或者文件夹</h2><ul>
-<li>rm[选项]..文件..</li>
-<li>有删除提示 ： rm reeor.log</li>
-<li>删除文件夹 ： rm -r xxxx文件夹</li>
-<li>无删除提示 ： rm -f</li>
-<li>用法和上面一样</li>
-<li>且 rm-r -f xxx &#x3D; rm-rf xxx</li>
-<li>比如 我们可以 rm -rf&#x2F; &#x3D;&gt; 把整个全删除了</li>
-</ul>
-<h2 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h2><ul>
-<li>alias </li>
-<li>创建别名：</li>
-<li>alias aa &#x3D;”cd&#x2F;tmp” &#x3D;&gt;仅仅当前会话生效 ， 让aa代表cd&#x2F;tmp</li>
-<li>但是在其他会话里就不会生效，因为这个没有在环境变量里设置</li>
-</ul>
-<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><ul>
-<li>就像java的jdk环境一样 我们也有环境变量</li>
-<li>全局环境变量 &#x2F;etc&#x2F;profile</li>
-<li>个人变量 ： 只能当前用户使用 其他用户不能使用</li>
-<li>~&#x2F;.bashrcc</li>
-<li>~&#x2F;.bash_profile</li>
-<li>生效环境变量</li>
-<li>source &#x2F;etc&#x2F;profile</li>
-<li>重新打开一个会话</li>
-<li>然后这个别名就会好用了</li>
-<li>但是这个不能跨用户访问，比如root的不能在普通用户这么用，相反也是</li>
-<li></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3154,14 +2817,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -3224,7 +2887,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共107.6k字</span>
+  <span class="post-count">博客全站共114.6k字</span>
 </div>
 
 

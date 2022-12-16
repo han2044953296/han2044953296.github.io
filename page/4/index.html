@@ -198,6 +198,572 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/11/01/11-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/01/11-1/" class="post-title-link" itemprop="url">Linux命令（运维）</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-01 09:10:45" itemprop="dateCreated datePublished" datetime="2022-11-01T09:10:45+08:00">2022-11-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="用户常用命令"><a href="#用户常用命令" class="headerlink" title="用户常用命令"></a>用户常用命令</h1><ul>
+<li>ll &#x2F;usr&#x2F;sbin&#x2F;user* 查看用户命令</li>
+<li>ll &#x2F;usr&#x2F;sbin&#x2F;group* 查看组命令</li>
+<li>查看用户信息 &#x2F;etc&#x2F;passwd</li>
+<li>查看组信息 &#x2F;etc&#x2F;group</li>
+<li>查看用户 id xxx名称</li>
+<li>userdel xxx ： 代表删除xx用户</li>
+<li>useradd xxx ： 代表添加xx用户</li>
+<li>usermod xxx ： 代表对一个用户进行操作</li>
+</ul>
+<h2 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h2><ul>
+<li>su xxx</li>
+<li>su -xxx </li>
+<li>切换用户 ，如果用下面的那种，会获得该用户的环境变量并且执行</li>
+<li>用上面的那种目录不会跑到所切换的用户的home</li>
+<li>而下面的会跑到切换用户的home</li>
+<li>用exit退回</li>
+<li>如果删除了一个已经存在的user ， 再次添加相同名称的用户的时候，会有警告，说明此用户的目录已经存在</li>
+<li>在skel文件夹下有隐藏文件</li>
+<li>如果把这个里的东西删掉，就会出现环境变量丢失的情况</li>
+<li>我们可以从别的地方的给他cp过来</li>
+<li>就会恢复了</li>
+</ul>
+<h1 id="组常见命令"><a href="#组常见命令" class="headerlink" title="组常见命令"></a>组常见命令</h1><ul>
+<li>groupadd xxx</li>
+<li>把一个用户添加到一个组上</li>
+<li>usermod -a -G xxx组 xxx用户</li>
+<li>usermod -g ： 更改用户主组 ，但是这样会让追加组丢失</li>
+</ul>
+<h1 id="设置用户密码"><a href="#设置用户密码" class="headerlink" title="设置用户密码"></a>设置用户密码</h1><ul>
+<li>passwd</li>
+<li>默认修改当前用户的密码</li>
+</ul>
+<h2 id="修改其他用户的密码"><a href="#修改其他用户的密码" class="headerlink" title="修改其他用户的密码"></a>修改其他用户的密码</h2><ul>
+<li>只有root有权限修改其他的密码</li>
+<li>passwd xxx名字</li>
+</ul>
+<h3 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h3><ul>
+<li>是一个普通用户临时具有最大权限</li>
+<li>修改 etc&#x2F;sudoers</li>
+<li>xxx用户 ALL&#x3D;(root) NOPASSWD:ALL</li>
+<li>然后就可以用 sudo xxx 命令这就代表这条指令具有了最高的权限</li>
+<li>su 和 sudo 联用</li>
+<li>sudo su xx人员</li>
+<li>代表通过root权限切换</li>
+</ul>
+<h3 id="etc-x2F-paswd"><a href="#etc-x2F-paswd" class="headerlink" title="etc&#x2F;paswd"></a>etc&#x2F;paswd</h3><ul>
+<li>这个文件是密码文件</li>
+<li>在这个文件里 有解释器 如果后面变成nologin代表不让登录</li>
+<li>如果最后变成false 则你无论如何都登陆不成功 </li>
+<li>CDH平台 可能会用到</li>
+<li>把上面两中改成 bin&#x2F;bash 就可以成功了</li>
+</ul>
+<h1 id="权限相关命令"><a href="#权限相关命令" class="headerlink" title="权限相关命令"></a>权限相关命令</h1><ul>
+<li>第一个字母 </li>
+<li>d :文件夹</li>
+<li>-(横杠) ： 文件</li>
+<li>l ： 链接</li>
+<li>后面9个字母 ，每三个一组</li>
+<li>r表示read  代表数字 4</li>
+<li>w表示write 代表数字 2</li>
+<li>x表示执行权限 代表数字 1</li>
+<li>-表示无权限 代表数字 0</li>
+<li>例子 ：-rw-r- -r- -. 1 root root 2047 10月 31 09:48 initial-setup-ks.cfg</li>
+<li>第一组 ： rw- 4+2+0&#x3D;6 代表文件或者文件夹的所属用户拥有的权限</li>
+<li>第二组 ： r- - 4+0+0&#x3D;4 代表文件或者文件夹的组的成员的权限</li>
+<li>第三组 ： r- - 4+0+0&#x3D;4 代表文件或者文件夹的其他组的权限</li>
+<li>字母顺序只能按照rwxr这个顺序</li>
+</ul>
+<h2 id="权限修改命令"><a href="#权限修改命令" class="headerlink" title="权限修改命令"></a>权限修改命令</h2><ul>
+<li>chmod 修改文件或者文件夹权限</li>
+<li>chown 修改文件或者文件夹的组 ， 或者用户</li>
+<li>例子 ： chmod xxx（数字）xxx名字</li>
+<li>如果要该文件夹 则要 chmod -R xxx数字 xxx名字</li>
+<li>例子 ： chown xxx用户：xxx用户 文件名</li>
+<li>同样也可以用-R ，来修改文件夹</li>
+</ul>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>如果要访问问文件夹里的文件，要先看上面的文件夹的权限是啥样的</li>
+</ul>
+<h2 id="大小"><a href="#大小" class="headerlink" title="大小"></a>大小</h2><ul>
+<li>ll -h ，du -sh</li>
+<li>而对于文件夹 du -sh也可以查看 ，ll -h 就不行</li>
+<li>du -sh ： 最小是4k ， 但是他无法查看权限</li>
+</ul>
+<h2 id="搜索文件"><a href="#搜索文件" class="headerlink" title="搜索文件"></a>搜索文件</h2><ul>
+<li>find</li>
+<li>locate（没有网，不建议用）</li>
+<li>例子 ： find 【path】 【表达式】 </li>
+<li>表达式 ： -name “xxx” : 按照名字查找</li>
+<li>比如 ： find &#x2F; -name “1.log”</li>
+</ul>
+<h2 id="vi-x2F-vim"><a href="#vi-x2F-vim" class="headerlink" title="vi&#x2F;vim"></a>vi&#x2F;vim</h2><ul>
+<li>编辑文件</li>
+<li>尾行模式 ： wq 退出保存</li>
+<li>如果编辑文件的时候突然不小心把编辑的时候中断了，就是ctrl + c 或者 ctrl + z</li>
+<li>解决方法 ： 删除Swap文件是隐藏文件 ，.开头的</li>
+<li>行号 ： 首先进入尾行模式</li>
+<li>set nu 就会有行号</li>
+<li>set nonu就可以取消行号</li>
+</ul>
+<h2 id="常用快捷方式"><a href="#常用快捷方式" class="headerlink" title="常用快捷方式"></a>常用快捷方式</h2><ul>
+<li>dd ： 删除当前行</li>
+<li>dG ： 删除当前行 以及以下所有行</li>
+<li>ndd ： 删除这个行 以及下面n行</li>
+<li>u ：　撤回</li>
+<li>ｇｇ　：　跳转到第一行的第一个字母</li>
+<li>Ｇ　：　跳转到最后一行的第一个字母</li>
+<li>ｓｈｉｆｔ　＋ $  ： 就是跳转到行尾</li>
+<li>ｓｈｉｆｔ　＋ ^  : 跳转到行头</li>
+<li>i ： 是当前行编辑</li>
+<li>o ： 是跳转到下一行编辑</li>
+</ul>
+<h3 id="清空文件内容"><a href="#清空文件内容" class="headerlink" title="清空文件内容"></a>清空文件内容</h3><ul>
+<li>gg -&gt; dG</li>
+<li>linux 有一个空的文件</li>
+<li>然后 cat &#x2F;dev&#x2F;null  &gt; xxx文件名字</li>
+</ul>
+<h2 id="系统相关命令"><a href="#系统相关命令" class="headerlink" title="系统相关命令"></a>系统相关命令</h2><ul>
+<li>内存 ： free</li>
+<li>磁盘 ： df</li>
+<li>可能会添加磁盘</li>
+<li>可通过这个来判断</li>
+<li>后来挂载的一般是vdb的</li>
+<li>负载 ： top</li>
+<li>load average ： xxx xxx xxx</li>
+<li>第一个是5分钟之内的负载</li>
+<li>第二个是10分钟</li>
+<li>第三个是15分钟</li>
+<li>如果任意一个超过十 ，说明当前公司的服务器 比较卡</li>
+<li>pid是进程号</li>
+<li>user是那个用户</li>
+<li>重启的目的 ： </li>
+<li>检查是不是硬件有无问题</li>
+</ul>
+<h2 id="yum-x2F-rpm"><a href="#yum-x2F-rpm" class="headerlink" title="yum&#x2F;rpm"></a>yum&#x2F;rpm</h2><ul>
+<li>安装linux软件的方式 联网</li>
+<li>yum search xxx</li>
+<li>下载下来的一个安装包以rpm存储</li>
+<li>yum install xxx</li>
+</ul>
+<h2 id="通讯命令"><a href="#通讯命令" class="headerlink" title="通讯命令"></a>通讯命令</h2><ul>
+<li>ping + ip</li>
+<li>telnet ip 端口 :检查对面的端口是不是开放</li>
+<li>端口 ： 1-65535</li>
+<li>两个机器要在一个网段</li>
+<li>ping通就代表是网络ok</li>
+</ul>
+<h2 id="补充命令"><a href="#补充命令" class="headerlink" title="补充命令"></a>补充命令</h2><ul>
+<li>which + 命令</li>
+<li>whereis + 命令</li>
+<li>查看linux或者某个软件的shell脚本是不是存在</li>
+<li>which ： 是查看自己环境变量的命令存在吗</li>
+<li>whereis ： 是查看全局变量的名利给的存在吗</li>
+</ul>
+<h2 id="修改机器名字"><a href="#修改机器名字" class="headerlink" title="修改机器名字"></a>修改机器名字</h2><ul>
+<li>hostnamectl ： xxxx</li>
+</ul>
+<h2 id="解压缩命令"><a href="#解压缩命令" class="headerlink" title="解压缩命令"></a>解压缩命令</h2><ul>
+<li>linux 对zip和gz可以解压</li>
+<li>zip xxx.zip （-r） xxx文件（这里压缩可以多个）如果是文件夹则要加上-r</li>
+<li>代表压缩到xxx.zip里</li>
+<li>解压</li>
+<li>unzip xxx.zip （-d xxx文件夹）</li>
+<li>tar ：</li>
+<li>例子 ： tar -cf xxx.tar xxx文件（可以多个）</li>
+<li>解压：</li>
+<li>例子 ： tar -xf xxx.tar -C xxx文件夹</li>
+<li>可以不加-C就是默认解压当前文件目录</li>
+<li>压缩：</li>
+<li>用z命令</li>
+<li>tar -zcf xxx.tar xxx文件（可以多个）</li>
+<li>解压：</li>
+<li>tar -zxf xxx.tar -C xxx文件夹</li>
+<li>我们可以再加上v让他们显示详细得处理文件的过程</li>
+<li>zxvf：同上</li>
+<li>zxcf：同上</li>
+</ul>
+<h2 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h2><ul>
+<li>当用yum安装成功之后 ，可以直接用系统命令启动</li>
+<li>比如 ： service name start|status|restart|stop  : centos6</li>
+<li>syystemctl start|status|restart|stop name : centos7</li>
+<li>查看进程</li>
+<li>ps -ef</li>
+<li>可以进行筛选</li>
+<li>ps -ef|grep xxx名字</li>
+<li>杀死进程 </li>
+<li>kill -9 + 进程号</li>
+<li>查端口：</li>
+<li>netstat -nlp | grep xxxname</li>
+<li>通过</li>
+<li>:::80</li>
+<li>ip:80</li>
+<li>0.0.0.0:80</li>
+<li>我们可以通过外部机器访问这个端口进入服务界面</li>
+<li>kill -9 $(pgrep -f xxx名字)</li>
+<li>下面的会强制把他们全杀掉 ， 包括子进程</li>
+<li></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/10/31/10-31/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/31/10-31/" class="post-title-link" itemprop="url">Linux命令</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-31 11:03:51" itemprop="dateCreated datePublished" datetime="2022-10-31T11:03:51+08:00">2022-10-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="linux的目录形式"><a href="#linux的目录形式" class="headerlink" title="linux的目录形式"></a>linux的目录形式</h1><ul>
+<li>层级式</li>
+<li>当用了Xshell登录了管理员之后会显示</li>
+<li>root@bigdata1 liuzihan</li>
+<li>前面表示root用户</li>
+<li>@后面的是机器名字</li>
+<li>在后面的是普通用户的名字</li>
+<li>~表示当前用户的家目录</li>
+<li>有命令帮助 应用 xx–help ， 这个xx代表是命令</li>
+<li>例如： 用法：ls [选项]… [文件]…</li>
+<li>上面代表ls后面可以加多个辅助命令 ， 还可以加多个文件</li>
+<li>中断命令 ： ctrl + c 或者 ctrl + z</li>
+<li>用键盘自动补全 ，</li>
+<li>按一次 ： 匹配当前据有唯一标识的补全</li>
+<li>按两次 ： 把所有匹配的项目都展示出来</li>
+</ul>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><ul>
+<li>pwd : 查看当前所在的目录</li>
+<li>ls ： 查看所在的目录下有文件或者文件夹</li>
+<li>mkdir ： 创建文件夹 ， 后面加文件夹的名字</li>
+<li>cd ： 切换路径 ， 就算现在所在的目录 ， 只能切换文件夹</li>
+<li>ls -l ： 表示看这个文件夹的额外的详细信息 ， 权限 ，用户 ， 用户组 ， 大小 ， 创建时间。 </li>
+<li>ls -l -a ：显示以.开头的文件或者文件夹 ， 就是隐藏文件</li>
+<li>ls -l -h ：查看文件的大小 ， 文件夹是不可以的</li>
+<li>上面的 ls -l &#x3D;&#x3D; ll 但是在一些操作系统里是不行的在centos里是可以的但是ubanto上是不行的</li>
+<li>其实现是通过别名</li>
+<li>ll -r -t ： 可以看见按照时间顺序降序的排序文件 ，就算最下面的就是最近更改的</li>
+<li>上述还可以改成 ll -rt &#x3D;&#x3D;ll -r -t</li>
+</ul>
+<h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹##"></a>创建文件夹##</h2><h3 id="并级创建"><a href="#并级创建" class="headerlink" title="并级创建"></a>并级创建</h3><ul>
+<li>mkdir 1 2 3</li>
+</ul>
+<h3 id="串级创建"><a href="#串级创建" class="headerlink" title="串级创建"></a>串级创建</h3><ul>
+<li>mkdir 1&#x2F;2&#x2F;3</li>
+<li>但是这样要求必须有上级目录</li>
+<li>不过可以用</li>
+<li>mkdir -p 1&#x2F;2&#x2F;3</li>
+<li>就可以了</li>
+</ul>
+<h2 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h2><ul>
+<li>cd</li>
+<li>不过有绝对路径和相对路径的区别</li>
+<li>绝对路径 ： 从根目录</li>
+<li>相对路径 ： 从当前目录</li>
+<li>cd的可以是绝对，也可以是相对</li>
+<li>cd..&#x2F; : 返回上级目录</li>
+<li>cd.&#x2F; : 表示当前目录</li>
+<li>可以这样用 ： cd .&#x2F;1</li>
+</ul>
+<h3 id="快速回到家目录"><a href="#快速回到家目录" class="headerlink" title="快速回到家目录"></a>快速回到家目录</h3><ul>
+<li>1 , cd &#x2F;xx</li>
+<li>2 , cd + 回车 &#x3D;&#x3D;&gt;推荐</li>
+<li>3 , cd + ~</li>
+<li>cd - 回到上次操作的目录</li>
+</ul>
+<h2 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h2><ul>
+<li>touch 1.log</li>
+<li>vi&#x2F;vim 1.log</li>
+<li>echo “bigdata” &gt; 3.log</li>
+<li><blockquote>
+<p>: 表示创建或者覆盖一个文件</p>
+</blockquote>
+</li>
+<li>cat ： 查看文件内容</li>
+<li>比如 ： cat 3.log</li>
+<li><blockquote>
+<blockquote>
+<p>: 追加 ，上述一个 &gt; 是覆盖 ，这个是追加</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h2 id="编辑文件"><a href="#编辑文件" class="headerlink" title="编辑文件"></a>编辑文件</h2><ul>
+<li>命令行模式</li>
+<li>编辑模式</li>
+<li>尾行模式</li>
+<li>vi&#x2F;vim xxx</li>
+<li>然后用insert</li>
+<li>编辑完了</li>
+<li>用esc ， 之后有几种选项</li>
+<li>:q ：代表退出并且不保存</li>
+<li>:w ：代表写入，但是不退出</li>
+<li>:wq ：代表保存且退出</li>
+<li>：！ ：强制</li>
+<li>还可以以应用nano</li>
+<li>就nano Xxx</li>
+<li>然后下面就会有提示</li>
+<li>如果没有这个文件，就会创建文件</li>
+</ul>
+<h2 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h2><ul>
+<li>cat ： 查看文件所有内容</li>
+<li>more ： 查看文件内容，按空格是往下翻，按q退出</li>
+<li>less ： 查看大文件，也是一页一页的 ， q是退出，按小键盘的上下键，是翻页</li>
+<li>一般小文件，用 cat 大文件more或者less</li>
+<li>实时查看文件产生的内容</li>
+<li>tail ： </li>
+<li>-f</li>
+<li>-F &#x3D;&#x3D; -f + retry</li>
+<li>意义：-F ， 如果我们查看一个文件的时候，文件被删了，然后又重新生成了给一样文件名的文件 ， 则f就不会动态显示了</li>
+<li>但是F会重显示新的那个文件</li>
+<li>用法 tail -f xxx</li>
+<li>用法 tail -F xxx</li>
+</ul>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
+<li>查找特定日志里的xx字段</li>
+<li>通过 vi&#x2F;vim 进入 然后进行搜索</li>
+<li>在尾行模式 ，输入要查找的字符 例如 &#x2F;error</li>
+<li>然后键盘 n 查找下一个词 N 查找上一个词</li>
+<li>通过cat </li>
+<li>cat xxxx文件 | grep error 通过后面的grep 过滤文件</li>
+<li>查看进程也可以用这种方式筛选</li>
+<li>可以和其他命令联用 比如 把所有error的信息收集起来</li>
+<li>cat xxx文件 | grep error &gt; xxx文件</li>
+<li>grep的常用的参数</li>
+<li>grep -A xx行： 查看某一个词的后xx行</li>
+<li>grep -B xx行： 查看某一个词的前xx行</li>
+<li>grep -C xx行： 查看某一个词的前后xx行</li>
+<li>与上面的了连用为</li>
+<li>cat xxx文件 | grep -A xx行 error &gt; xxx文件</li>
+<li>nano方式</li>
+<li>管道符| ：代表让上一个语句的输出代表 代表下一个语句的输入</li>
+</ul>
+<h2 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h2><ul>
+<li>上传 ： win 到 linux</li>
+<li>下载 ： linux 到 win</li>
+</ul>
+<h3 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h3><ul>
+<li>工具 ： Xshell 通过Xshell的Xftp进行下载和上传</li>
+<li>linux命令 ： yum install lzxx ，通过他进行下载上传</li>
+</ul>
+<h2 id="清屏"><a href="#清屏" class="headerlink" title="清屏"></a>清屏</h2><ul>
+<li>clear : 清屏</li>
+<li>ctrl + l ： 清屏</li>
+</ul>
+<h2 id="查看操作命令历史"><a href="#查看操作命令历史" class="headerlink" title="查看操作命令历史"></a>查看操作命令历史</h2><ul>
+<li>history </li>
+<li>或者键盘上的上下箭头号</li>
+<li>按键盘的！ + 命令行数</li>
+</ul>
+<h2 id="移动与复制"><a href="#移动与复制" class="headerlink" title="移动与复制"></a>移动与复制</h2><ul>
+<li>mv[选项]..源文件..目录</li>
+<li>例如： mv dir1 bigdata</li>
+<li>cp[选项]..源文件..目录</li>
+<li>例如： cp -r dir2 bigdata</li>
+<li>但是 cp还可以复制的时候改文件名字</li>
+<li>例如 cp 源文件 目标文件</li>
+<li>就会把源文件中的内容给目标文件，命名就是这里的目标文件</li>
+<li>也可以和上一个复制到文件夹联用</li>
+<li>例如 ： cp xx xxx目录&#x2F;xx文件</li>
+<li>mv始终是一份</li>
+<li>而cp则是两份</li>
+<li>所以mv比cp快</li>
+</ul>
+<h2 id="删除文件或者文件夹"><a href="#删除文件或者文件夹" class="headerlink" title="删除文件或者文件夹"></a>删除文件或者文件夹</h2><ul>
+<li>rm[选项]..文件..</li>
+<li>有删除提示 ： rm reeor.log</li>
+<li>删除文件夹 ： rm -r xxxx文件夹</li>
+<li>无删除提示 ： rm -f</li>
+<li>用法和上面一样</li>
+<li>且 rm-r -f xxx &#x3D; rm-rf xxx</li>
+<li>比如 我们可以 rm -rf&#x2F; &#x3D;&gt; 把整个全删除了</li>
+</ul>
+<h2 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h2><ul>
+<li>alias </li>
+<li>创建别名：</li>
+<li>alias aa &#x3D;”cd&#x2F;tmp” &#x3D;&gt;仅仅当前会话生效 ， 让aa代表cd&#x2F;tmp</li>
+<li>但是在其他会话里就不会生效，因为这个没有在环境变量里设置</li>
+</ul>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><ul>
+<li>就像java的jdk环境一样 我们也有环境变量</li>
+<li>全局环境变量 &#x2F;etc&#x2F;profile</li>
+<li>个人变量 ： 只能当前用户使用 其他用户不能使用</li>
+<li>~&#x2F;.bashrcc</li>
+<li>~&#x2F;.bash_profile</li>
+<li>生效环境变量</li>
+<li>source &#x2F;etc&#x2F;profile</li>
+<li>重新打开一个会话</li>
+<li>然后这个别名就会好用了</li>
+<li>但是这个不能跨用户访问，比如root的不能在普通用户这么用，相反也是</li>
+<li></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/10/28/10-28/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1387,242 +1953,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/10/21/%E4%BD%9C%E4%B8%9A10-21/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/21/%E4%BD%9C%E4%B8%9A10-21/" class="post-title-link" itemprop="url">作业10-21</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-21 08:42:15" itemprop="dateCreated datePublished" datetime="2022-10-21T08:42:15+08:00">2022-10-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BD%9C%E4%B8%9A/" itemprop="url" rel="index"><span itemprop="name">作业</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"><a href="#3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称" class="headerlink" title="3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称"></a>3、用文件名过滤器实现输出指定目录下的所有java文件的文件名称</h1><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> 项目实训;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.<span class="keyword">File</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> 作业.<span class="keyword">file</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="keyword">file</span>过滤 &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">File</span> M = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">&quot;D:\\&quot;</span> , <span class="string">&quot;try&quot;</span>);</span><br><span class="line">		chakan(M);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> chakan(<span class="keyword">File</span> M) &#123;</span><br><span class="line">		<span class="keyword">File</span>[] k = M.listFiles();</span><br><span class="line">		System.out.<span class="keyword">println</span>(k);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k.length; i++) &#123;</span><br><span class="line">			<span class="keyword">File</span>[] t = k[i].listFiles();</span><br><span class="line">			<span class="keyword">if</span>(t == <span class="keyword">null</span>) &#123;</span><br><span class="line">				String g =  k[i].getName();</span><br><span class="line">				String d = g.substring(k[i].getName().lastIndexOf(<span class="string">&quot;.&quot;</span>));</span><br><span class="line">				<span class="keyword">if</span>(d.equals(<span class="string">&quot;.java&quot;</span>)) &#123;</span><br><span class="line">					System.out.<span class="keyword">println</span>(g.substring(<span class="number">0</span>, k[i].getName().lastIndexOf(<span class="string">&quot;.&quot;</span>)));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				chakan(k[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>重点字符串的相等要用equals，递归</li>
-</ul>
-<h1 id="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"><a href="#判断指定路径下的所有子文件或是目录，如果是子文件则全部删除" class="headerlink" title="判断指定路径下的所有子文件或是目录，如果是子文件则全部删除"></a>判断指定路径下的所有子文件或是目录，如果是子文件则全部删除</h1><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">File[] ds <span class="operator">=</span>	k.listFiles()<span class="comment">; </span></span><br><span class="line">for (int i <span class="operator">=</span> <span class="number">0</span><span class="comment">; i &lt; ds.length ; i++ ) &#123;</span></span><br><span class="line">	File[] h <span class="operator">=</span> ds[i].listFiles()<span class="comment">;</span></span><br><span class="line">	if(h <span class="operator">=</span><span class="operator">=</span> null) &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;这个是个文件&quot;</span>)<span class="comment">;</span></span><br><span class="line">		ds[i].delete()<span class="comment">;</span></span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		k.delete()<span class="comment">;</span></span><br><span class="line">		SHANCHU(ds[i])<span class="comment">;</span></span><br><span class="line">			&#125;</span><br><span class="line">	k.delete()<span class="comment">;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>重点：递归</li>
-</ul>
-<h1 id="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）"><a href="#5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D-102班级-javaSE作业）" class="headerlink" title="5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）"></a>5、查找API（File），通过程序创建指定的目录。假设在D盘下创建一个目录102班级，在102班级下又有一个子目录javaSE作业（D:\102班级\javaSE作业）</h1><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">File G = new File(<span class="string">&quot;D:<span class="subst">\\</span><span class="subst">\\</span>102班级<span class="subst">\\</span><span class="subst">\\</span>javaSE作业&quot;</span>);</span><br><span class="line"></span><br><span class="line">G.mkdirs();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="从磁盘读取一个文件到内存中，再打印到控制台"><a href="#从磁盘读取一个文件到内存中，再打印到控制台" class="headerlink" title="从磁盘读取一个文件到内存中，再打印到控制台"></a>从磁盘读取一个文件到内存中，再打印到控制台</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> 项目实训;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">lkdjfslasfj</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;D:/a.txt&quot;</span>);</span><br><span class="line"><span class="comment">//				while(is.available() != 0) &#123;</span></span><br><span class="line"><span class="comment">//					System.out.println((char)is.read()); // 默认一次只读一个字符</span></span><br><span class="line"><span class="comment">//				&#125;</span></span><br><span class="line">			</span><br><span class="line">			<span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">10</span>]; <span class="comment">// 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span></span><br><span class="line">			<span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">// 设置个长度</span></span><br><span class="line">			<span class="keyword">while</span>((len = is.read(buffer)) != -<span class="number">1</span>) <span class="comment">// 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span></span><br><span class="line">			&#123;</span><br><span class="line">				System.out.print(<span class="keyword">new</span> <span class="title class_">String</span>(buffer , <span class="number">0</span> , len)); </span><br><span class="line">			&#125;</span><br><span class="line">			is.close();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="模拟用户登录："><a href="#模拟用户登录：" class="headerlink" title="模拟用户登录："></a>模拟用户登录：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> 作业;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.io.Reader;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">login</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">		<span class="type">File</span> <span class="variable">basic</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;D://&quot;</span> , <span class="string">&quot;a.txt&quot;</span>);</span><br><span class="line">		<span class="keyword">try</span>(<span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(basic);</span><br><span class="line">			<span class="type">Reader</span> <span class="variable">re</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(in , <span class="string">&quot;UTF-8&quot;</span>);	</span><br><span class="line">			) &#123;</span><br><span class="line">			<span class="type">Map</span> <span class="variable">db</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line">			<span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(re);</span><br><span class="line">			<span class="keyword">while</span>(scanner.hasNext()) &#123;</span><br><span class="line">			<span class="type">String</span> <span class="variable">usertotal</span> <span class="operator">=</span> scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(<span class="string">&quot; &quot;</span>);</span><br><span class="line"><span class="comment">//			System.out.println(username[0]);</span></span><br><span class="line"><span class="comment">//			System.out.println(username[1]);</span></span><br><span class="line">			db.put(username[<span class="number">0</span>],username[<span class="number">1</span>]);</span><br><span class="line"><span class="comment">//			System.out.println(db);</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="type">Scanner</span> <span class="variable">name</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			<span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">			<span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;请输入账号：&quot;</span>);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			<span class="keyword">if</span>(usename == <span class="literal">null</span>) &#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;姓名不能为空&quot;</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			<span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;请输入密码&quot;</span>);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				<span class="keyword">if</span>(password == <span class="literal">null</span>) &#123;</span><br><span class="line">					System.out.println(<span class="string">&quot;密码不能为空&quot;</span>);</span><br><span class="line">					</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;登陆成功&quot;</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;输入错误请重新输入&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e1) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> 作业;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.io.Reader;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">login</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">		<span class="type">File</span> <span class="variable">basic</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;D://&quot;</span> , <span class="string">&quot;a.txt&quot;</span>);</span><br><span class="line">		<span class="keyword">try</span>(<span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(basic);</span><br><span class="line">			<span class="type">Reader</span> <span class="variable">re</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(in , <span class="string">&quot;UTF-8&quot;</span>);	</span><br><span class="line">			) &#123;</span><br><span class="line">			<span class="type">Map</span> <span class="variable">db</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line">			<span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(re);</span><br><span class="line">			<span class="keyword">while</span>(scanner.hasNext()) &#123;</span><br><span class="line">			<span class="type">String</span> <span class="variable">usertotal</span> <span class="operator">=</span> scanner.nextLine();</span><br><span class="line">			String[] username = usertotal.split(<span class="string">&quot; &quot;</span>);</span><br><span class="line"><span class="comment">//			System.out.println(username[0]);</span></span><br><span class="line"><span class="comment">//			System.out.println(username[1]);</span></span><br><span class="line">			db.put(username[<span class="number">0</span>],username[<span class="number">1</span>]);</span><br><span class="line"><span class="comment">//			System.out.println(db);</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="type">Scanner</span> <span class="variable">name</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">			String usename;</span><br><span class="line">			String password;</span><br><span class="line">			<span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">			<span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;请输入账号：&quot;</span>);</span><br><span class="line">			 usename = name.nextLine();</span><br><span class="line">			<span class="keyword">if</span>(usename == <span class="literal">null</span>) &#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;姓名不能为空&quot;</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			<span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;请输入密码&quot;</span>);</span><br><span class="line">				 password = name.nextLine();</span><br><span class="line">						</span><br><span class="line">				<span class="keyword">if</span>(password == <span class="literal">null</span>) &#123;</span><br><span class="line">					System.out.println(<span class="string">&quot;密码不能为空&quot;</span>);</span><br><span class="line">					</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(password.equals(db.get(usename))) &#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;登陆成功&quot;</span>);</span><br><span class="line">				System.out.println(<span class="string">&quot;输入1进行修改密码&quot;</span>);</span><br><span class="line">				<span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> Integer.parseInt(name.nextLine());</span><br><span class="line">				<span class="keyword">if</span>(m == <span class="number">1</span>) &#123;</span><br><span class="line">					<span class="keyword">if</span>(db.containsKey(usename)) &#123;</span><br><span class="line">						System.out.println(<span class="string">&quot;请输入更改之后的密码&quot;</span>);</span><br><span class="line">						<span class="type">String</span> <span class="variable">newpassword</span> <span class="operator">=</span> name.nextLine();</span><br><span class="line">						db.put(usename, newpassword);</span><br><span class="line">					&#125; </span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;输入错误请重新输入&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e1) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/10/20/10-20/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/20/10-20/" class="post-title-link" itemprop="url">io流</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-20 10:23:03" itemprop="dateCreated datePublished" datetime="2022-10-20T10:23:03+08:00">2022-10-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h1><ul>
-<li>字节流的结尾一般都是InputStream ， OutputStream</li>
-<li>是个抽象类</li>
-<li>可以自动关闭</li>
-<li>顶层类，上面就是Object</li>
-<li>这个东西是要有参照物的</li>
-</ul>
-<h2 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 作业;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">sd3333sdfse</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		OutputStream os1;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			os1 = <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>( <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;D:\\a.txt&quot;</span>), <span class="literal">false</span>); <span class="comment">// 这个false代表是覆盖源文件，如果是true就是把字符串加入</span></span><br><span class="line">			<span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> <span class="string">&quot;hello word&quot;</span>;</span><br><span class="line">			os1.write(s.getBytes());</span><br><span class="line">			os1.flush();  <span class="comment">// 落盘到磁盘上</span></span><br><span class="line">			os1.close(); <span class="comment">// 关闭文件输出流</span></span><br><span class="line">		&#125; <span class="keyword">catch</span> (FileNotFoundException e1) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e1.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> 作业;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">read</span> &#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">	<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;D:/a.txt&quot;</span>);</span><br><span class="line"><span class="comment">//			while(is.available() != 0) &#123;</span></span><br><span class="line"><span class="comment">//				System.out.println((char)is.read()); // 默认一次只读一个字符</span></span><br><span class="line"><span class="comment">//			&#125;</span></span><br><span class="line">		</span><br><span class="line">		<span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">10</span>]; <span class="comment">// 通过设置缓冲区进行扩展一次可读的字符数量，如果是字符型，那这个byte要变char</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">// 设置个长度</span></span><br><span class="line">		<span class="keyword">while</span>((len = is.read(buffer)) != -<span class="number">1</span>) <span class="comment">// 判断我是不是超出缓冲区的限定，如果超出，就只读取超出的部分</span></span><br><span class="line">		&#123;</span><br><span class="line">			System.out.print(<span class="keyword">new</span> <span class="title class_">String</span>(buffer , <span class="number">0</span> , len)); </span><br><span class="line">		&#125;</span><br><span class="line">		is.close();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li>定义：File d &#x3D; new File(“XXxxx”，”name”); &#x2F;&#x2F; 这里XXxxx是文件目录 , 第二个是文件名字</li>
-<li>文件或者目录</li>
-</ul>
-<h2 id="exist（）"><a href="#exist（）" class="headerlink" title="exist（）"></a>exist（）</h2><ul>
-<li>文件是有大小的，目录是无大小</li>
-<li>判断文件&#x2F;目录是不是存在</li>
-</ul>
-<h2 id="isFile"><a href="#isFile" class="headerlink" title="isFile"></a>isFile</h2><ul>
-<li>代表判断是不是文件</li>
-</ul>
-<h2 id="isDirectory"><a href="#isDirectory" class="headerlink" title="isDirectory"></a>isDirectory</h2><ul>
-<li>代表是不是文件夹</li>
-</ul>
-<h2 id="length"><a href="#length" class="headerlink" title="length"></a>length</h2><ul>
-<li>代表查看其字节的长度，大小，但是文件有大小，目录无大小</li>
-</ul>
-<h2 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h2><ul>
-<li>代表删除文件，注意这里删除的文件不是送进回收站里的，如果要删除目录，要先把里面的文件清空</li>
-</ul>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package 作业;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"></span><br><span class="line"><span class="built_in">public</span> <span class="keyword">class</span> file &#123;</span><br><span class="line"></span><br><span class="line"><span class="built_in">public</span> static <span class="type">void</span> main(String[] args) &#123;</span><br><span class="line">	// TODO Auto-<span class="keyword">generated</span> <span class="keyword">method</span> stub</span><br><span class="line"></span><br><span class="line">	File m = <span class="built_in">new</span> File(&quot;D:\\&quot; , &quot;a.txt&quot;);</span><br><span class="line">	File k = <span class="built_in">new</span> File(&quot;D//&quot;);</span><br><span class="line">	<span class="keyword">System</span>.<span class="keyword">out</span>.println(m.<span class="keyword">exists</span>());</span><br><span class="line">	<span class="keyword">System</span>.<span class="keyword">out</span>.println(k.<span class="keyword">exists</span>());</span><br><span class="line">	<span class="keyword">System</span>.<span class="keyword">out</span>.println(k.isFile());</span><br><span class="line">	<span class="keyword">System</span>.<span class="keyword">out</span>.println(m.isDirectory());</span><br><span class="line">	<span class="keyword">System</span>.<span class="keyword">out</span>.println(k.length());</span><br><span class="line">	<span class="keyword">System</span>.<span class="keyword">out</span>.println(k.<span class="keyword">delete</span>());</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="删除文件夹"><a href="#删除文件夹" class="headerlink" title="删除文件夹"></a>删除文件夹</h2><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static void SHANCHU(File k) &#123;</span><br><span class="line">	File[] ds <span class="operator">=</span>	k.listFiles()<span class="comment">; </span></span><br><span class="line">	for (int i <span class="operator">=</span> <span class="number">0</span><span class="comment">; i &lt; ds.length ; i++ ) &#123;</span></span><br><span class="line">		File[] h <span class="operator">=</span> ds[i].listFiles()<span class="comment">;</span></span><br><span class="line">		if(h <span class="operator">=</span><span class="operator">=</span> null) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;这个是个文件&quot;</span>)<span class="comment">;</span></span><br><span class="line">			ds[i].delete()<span class="comment">;</span></span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			k.delete()<span class="comment">;</span></span><br><span class="line">			SHANCHU(ds[i])<span class="comment">;</span></span><br><span class="line">				&#125;</span><br><span class="line">		k.delete()<span class="comment">;</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="makedir"><a href="#makedir" class="headerlink" title="makedir"></a>makedir</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 作业;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.<span class="keyword">File</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> adsgqjd &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) &#123;</span><br><span class="line">	<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">&quot;D:/a/abc.txt&quot;</span>);</span><br><span class="line">	System.out.<span class="keyword">println</span>(<span class="keyword">file</span>.exists());</span><br><span class="line">	System.out.<span class="keyword">println</span>(<span class="keyword">file</span>.mkdir());</span><br><span class="line">	<span class="keyword">File</span> file2 =<span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">&quot;D:/a/c/v/bv/nb&quot;</span>);</span><br><span class="line">	System.out.<span class="keyword">println</span>(file2.mkdirs());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>我们通过mkdirs可以直接深度创建</li>
-<li>但是如果没有父目录，一般的文件就无法创建</li>
-</ul>
-<h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> File getCopy(File f1) &#123;</span><br><span class="line">	<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">	<span class="keyword">String</span> sufString = f1.getName().substring(f1.getName().lastIndexOf(<span class="string">&quot;.&quot;</span>));</span><br><span class="line">	<span class="keyword">String</span> qi = f1.getName().substring(<span class="number">0</span>, f1.getName().lastIndexOf(<span class="string">&quot;.&quot;</span>));</span><br><span class="line">	<span class="keyword">String</span> use = qi + <span class="string">&quot;-副本&quot;</span> + sufString;</span><br><span class="line">	File <span class="keyword">new</span><span class="type">f</span> = <span class="keyword">new</span> <span class="type">File</span>(f1.getParent() , use);</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">new</span><span class="type">f</span>.exists()) &#123;</span><br><span class="line">	<span class="keyword">return</span>	getCopy(<span class="keyword">new</span><span class="type">f</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span><span class="type">f</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1694,14 +2024,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -1764,7 +2094,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共107.6k字</span>
+  <span class="post-count">博客全站共114.6k字</span>
 </div>
 
 
