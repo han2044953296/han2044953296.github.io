@@ -292,6 +292,469 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/18/12-18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/18/12-18/" class="post-title-link" itemprop="url">datax</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-18 09:35:34 / 修改时间：17:30:22" itemprop="dateCreated datePublished" datetime="2022-12-18T09:35:34+08:00">2022-12-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E8%B4%A7%E6%8A%80%E6%9C%AF%E6%A0%88/" itemprop="url" rel="index"><span itemprop="name">杂货技术栈</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="datax"><a href="#datax" class="headerlink" title="datax"></a>datax</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=DataX&spm=1001.2101.3001.7020">DataX</a> 是阿里开源的一个异构数据源离线同步工具，致力于实现包括关系型数据库(MySQL、Oracle等)、HDFS、Hive、ODPS、HBase、FTP等各种异构数据源之间稳定高效的数据同步功能。</p>
+<h2 id="理念"><a href="#理念" class="headerlink" title="理念"></a>理念</h2><p>DataX本身作为数据同步框架，将不同数据源的同步抽象为从源头数据源读取数据的Reader插件，以及向目标端写入数据的Writer插件，理论上DataX框架可以支持任意数据源类型的数据同步工作。同时DataX插件体系作为一套生态系统, 每接入一套新数据源该新加入的数据源即可实现和现有的数据源互通</p>
+<h2 id="框架设计"><a href="#框架设计" class="headerlink" title="框架设计"></a>框架设计</h2><p>DataX本身作为离线数据同步框架，采用Framework + plugin架构构建。将数据源读取和写入抽象成为Reader&#x2F;Writer插件，纳入到整个同步框架中。</p>
+<p>Reader：Reader为数据采集模块，负责采集数据源的数据，将数据发送给Framework。</p>
+<p>Writer： Writer为数据写入模块，负责不断向Framework取数据，并将数据写入到目的端</p>
+<p>Framework：Framework用于连接reader和writer，作为两者的数据传输通道，并处理缓冲，流控，并发，数据转换等核心技术问题。</p>
+<p>DataX目前已经有了比较全面的插件体系，主流的RDBMS数据库、NOSQL、大数据计算系统都已经接入，目前支持数据如下，详情请点击：<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/wiki/DataX-all-data-channels">DataX数据源参考指南</a></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>数据源</th>
+<th align="center">Reader(读)</th>
+<th align="center">Writer(写)</th>
+<th align="center">文档</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RDBMS 关系型数据库</td>
+<td>MySQL</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/mysqlreader/doc/mysqlreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/mysqlwriter/doc/mysqlwriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Oracle</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/oraclereader/doc/oraclereader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/oraclewriter/doc/oraclewriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>OceanBase</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://open.oceanbase.com/docs/community/oceanbase-database/V3.1.0/use-datax-to-full-migration-data-to-oceanbase">读</a> 、<a target="_blank" rel="noopener" href="https://open.oceanbase.com/docs/community/oceanbase-database/V3.1.0/use-datax-to-full-migration-data-to-oceanbase">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>SQLServer</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/sqlserverreader/doc/sqlserverreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/sqlserverwriter/doc/sqlserverwriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>PostgreSQL</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/postgresqlreader/doc/postgresqlreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/postgresqlwriter/doc/postgresqlwriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>DRDS</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/drdsreader/doc/drdsreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/drdswriter/doc/drdswriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Kingbase</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/drdsreader/doc/drdsreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/drdswriter/doc/drdswriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>通用RDBMS(支持所有关系型数据库)</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/rdbmsreader/doc/rdbmsreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/rdbmswriter/doc/rdbmswriter.md">写</a></td>
+</tr>
+<tr>
+<td>阿里云数仓数据存储</td>
+<td>ODPS</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/odpsreader/doc/odpsreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/odpswriter/doc/odpswriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>ADS</td>
+<td align="center"></td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/adswriter/doc/adswriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>OSS</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/ossreader/doc/ossreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/osswriter/doc/osswriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>OCS</td>
+<td align="center"></td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/ocswriter/doc/ocswriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Hologres</td>
+<td align="center"></td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hologresjdbcwriter/doc/hologresjdbcwriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>AnalyticDB For PostgreSQL</td>
+<td align="center"></td>
+<td align="center">√</td>
+<td align="center">写</td>
+</tr>
+<tr>
+<td>阿里云中间件</td>
+<td>datahub</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">读 、写</td>
+</tr>
+<tr>
+<td></td>
+<td>SLS</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">读 、写</td>
+</tr>
+<tr>
+<td>阿里云图数据库</td>
+<td>GDB</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/gdbreader/doc/gdbreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/gdbwriter/doc/gdbwriter.md">写</a></td>
+</tr>
+<tr>
+<td>NoSQL数据存储</td>
+<td>OTS</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/otsreader/doc/otsreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/otswriter/doc/otswriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Hbase0.94</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase094xreader/doc/hbase094xreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase094xwriter/doc/hbase094xwriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Hbase1.1</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase11xreader/doc/hbase11xreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase11xwriter/doc/hbase11xwriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Phoenix4.x</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase11xsqlreader/doc/hbase11xsqlreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase11xsqlwriter/doc/hbase11xsqlwriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Phoenix5.x</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase20xsqlreader/doc/hbase20xsqlreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase20xsqlwriter/doc/hbase20xsqlwriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>MongoDB</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/mongodbreader/doc/mongodbreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/mongodbwriter/doc/mongodbwriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Cassandra</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/cassandrareader/doc/cassandrareader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/cassandrawriter/doc/cassandrawriter.md">写</a></td>
+</tr>
+<tr>
+<td>数仓数据存储</td>
+<td>StarRocks</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">读 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/starrockswriter/doc/starrockswriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>ApacheDoris</td>
+<td align="center"></td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/doriswriter/doc/doriswriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>ClickHouse</td>
+<td align="center"></td>
+<td align="center">√</td>
+<td align="center">写</td>
+</tr>
+<tr>
+<td></td>
+<td>Hive</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hdfsreader/doc/hdfsreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hdfswriter/doc/hdfswriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>kudu</td>
+<td align="center"></td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hdfswriter/doc/hdfswriter.md">写</a></td>
+</tr>
+<tr>
+<td>无结构化数据存储</td>
+<td>TxtFile</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/txtfilereader/doc/txtfilereader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/txtfilewriter/doc/txtfilewriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>FTP</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/ftpreader/doc/ftpreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/ftpwriter/doc/ftpwriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>HDFS</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hdfsreader/doc/hdfsreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hdfswriter/doc/hdfswriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Elasticsearch</td>
+<td align="center"></td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/elasticsearchwriter/doc/elasticsearchwriter.md">写</a></td>
+</tr>
+<tr>
+<td>时间序列数据库</td>
+<td>OpenTSDB</td>
+<td align="center">√</td>
+<td align="center"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/opentsdbreader/doc/opentsdbreader.md">读</a></td>
+</tr>
+<tr>
+<td></td>
+<td>TSDB</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/tsdbreader/doc/tsdbreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/tsdbwriter/doc/tsdbhttpwriter.md">写</a></td>
+</tr>
+<tr>
+<td></td>
+<td>TDengine</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/tdenginereader/doc/tdenginereader-CN.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/tdenginewriter/doc/tdenginewriter-CN.md">写</a></td>
+</tr>
+</tbody></table>
+<h2 id="部署需求"><a href="#部署需求" class="headerlink" title="部署需求"></a>部署需求</h2><ul>
+<li>Linux</li>
+<li><a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/cn/java/javase/downloads/index.html">JDK(1.8以上，推荐1.8)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.python.org/downloads/">Python(2或3都可以)</a></li>
+<li><a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi">Apache Maven 3.x</a> (Compile DataX)</li>
+</ul>
+<h2 id="部署步骤以及问题"><a href="#部署步骤以及问题" class="headerlink" title="部署步骤以及问题"></a>部署步骤以及问题</h2><p>解压datax的安装包 -》 制作软连接 -》 修改环境变量并source -》 执行自检脚本 <code>datax.py $&#123;DATAX_HOME&#125;/job/job.json</code></p>
+<p>如果出现 </p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DataX (DATAX-OPENSOURCE-3.0), <span class="keyword">From</span> Alibaba !</span><br><span class="line">Copyright (C) 2010-2017, Alibaba Group. All Rights Reserved.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2022-12-18 10:01:32.806 [main] <span class="built_in">INFO</span>  VMInfo - VMInfo# operatingSystem class =&gt; sun.management.OperatingSystemImpl</span><br><span class="line">2022-12-18 10:01:32.825 [main] <span class="built_in">INFO</span>  Engine - the machine <span class="built_in">info</span>  =&gt; </span><br><span class="line"></span><br><span class="line">	osInfo:	Oracle Corporation 1.8 25.45-b02</span><br><span class="line">	jvmInfo:	Linux amd64 3.10.0-1127.el7.x86_64</span><br><span class="line">	cpu num:	2</span><br><span class="line"></span><br><span class="line">	totalPhysicalMemory:	-0.00G</span><br><span class="line">	freePhysicalMemory:	-0.00G</span><br><span class="line">	maxFileDescriptorCount:	-1</span><br><span class="line">	currentOpenFileDescriptorCount:	-1</span><br><span class="line"></span><br><span class="line">	GC Names	[PS MarkSweep, PS Scavenge]</span><br><span class="line"></span><br><span class="line">	MEMORY_NAME                    | allocation_size                | init_size                    </span><br><span class="line">	PS Eden Space                  | 256.00MB                       | 256.00MB                     </span><br><span class="line">	Code Cache                     | 240.00MB                       | 2.44MB                       </span><br><span class="line">	Compressed Class Space         | 1,024.00MB                     | 0.00MB                       </span><br><span class="line">	PS Survivor Space              | 42.50MB                        | 42.50MB                      </span><br><span class="line">	PS Old Gen                     | 683.00MB                       | 683.00MB                     </span><br><span class="line">	Metaspace                      | -0.00MB                        | 0.00MB                       </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2022-12-18 10:01:32.848 [main] <span class="built_in">INFO</span>  Engine - </span><br><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;content&quot;</span>:[</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="string">&quot;reader&quot;</span>:&#123;</span><br><span class="line">				<span class="string">&quot;name&quot;</span>:<span class="string">&quot;streamreader&quot;</span>,</span><br><span class="line">				<span class="string">&quot;parameter&quot;</span>:&#123;</span><br><span class="line">					<span class="string">&quot;column&quot;</span>:[</span><br><span class="line">						&#123;</span><br><span class="line">							<span class="string">&quot;type&quot;</span>:<span class="string">&quot;string&quot;</span>,</span><br><span class="line">							<span class="string">&quot;value&quot;</span>:<span class="string">&quot;DataX&quot;</span></span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line">							<span class="string">&quot;type&quot;</span>:<span class="string">&quot;long&quot;</span>,</span><br><span class="line">							<span class="string">&quot;value&quot;</span>:19890604</span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line">							<span class="string">&quot;type&quot;</span>:<span class="string">&quot;date&quot;</span>,</span><br><span class="line">							<span class="string">&quot;value&quot;</span>:<span class="string">&quot;1989-06-04 00:00:00&quot;</span></span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line">							<span class="string">&quot;type&quot;</span>:<span class="string">&quot;bool&quot;</span>,</span><br><span class="line">							<span class="string">&quot;value&quot;</span>:true</span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line">							<span class="string">&quot;type&quot;</span>:<span class="string">&quot;bytes&quot;</span>,</span><br><span class="line">							<span class="string">&quot;value&quot;</span>:<span class="string">&quot;test&quot;</span></span><br><span class="line">						&#125;</span><br><span class="line">					],</span><br><span class="line">					<span class="string">&quot;sliceRecordCount&quot;</span>:100000</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;,</span><br><span class="line">			<span class="string">&quot;writer&quot;</span>:&#123;</span><br><span class="line">				<span class="string">&quot;name&quot;</span>:<span class="string">&quot;streamwriter&quot;</span>,</span><br><span class="line">				<span class="string">&quot;parameter&quot;</span>:&#123;</span><br><span class="line">					<span class="string">&quot;encoding&quot;</span>:<span class="string">&quot;UTF-8&quot;</span>,</span><br><span class="line">					<span class="string">&quot;print&quot;</span>:false</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	],</span><br><span class="line">	<span class="string">&quot;setting&quot;</span>:&#123;</span><br><span class="line">		<span class="string">&quot;errorLimit&quot;</span>:&#123;</span><br><span class="line">			<span class="string">&quot;percentage&quot;</span>:0.02,</span><br><span class="line">			<span class="string">&quot;record&quot;</span>:0</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="string">&quot;speed&quot;</span>:&#123;</span><br><span class="line">			<span class="string">&quot;byte&quot;</span>:10485760</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">2022-12-18 10:01:32.889 [main] WARN  Engine - prioriy <span class="built_in">set</span> <span class="keyword">to</span> 0, because NumberFormatException, the value is: <span class="literal">null</span></span><br><span class="line">2022-12-18 10:01:32.890 [main] <span class="built_in">INFO</span>  PerfTrace - PerfTrace <span class="attribute">traceId</span>=job_-1, <span class="attribute">isEnable</span>=<span class="literal">false</span>, <span class="attribute">priority</span>=0</span><br><span class="line">2022-12-18 10:01:32.890 [main] <span class="built_in">INFO</span>  JobContainer - DataX jobContainer starts job.</span><br><span class="line">2022-12-18 10:01:32.891 [main] <span class="built_in">INFO</span>  JobContainer - <span class="built_in">Set</span> jobId = 0</span><br><span class="line">2022-12-18 10:01:32.916 [job-0] <span class="built_in">INFO</span>  JobContainer - jobContainer starts <span class="keyword">to</span> <span class="keyword">do</span> prepare <span class="built_in">..</span>.</span><br><span class="line">2022-12-18 10:01:32.917 [job-0] <span class="built_in">INFO</span>  JobContainer - DataX Reader.Job [streamreader] <span class="keyword">do</span> prepare work .</span><br><span class="line">2022-12-18 10:01:32.917 [job-0] <span class="built_in">INFO</span>  JobContainer - DataX Writer.Job [streamwriter] <span class="keyword">do</span> prepare work .</span><br><span class="line">2022-12-18 10:01:32.917 [job-0] <span class="built_in">INFO</span>  JobContainer - jobContainer starts <span class="keyword">to</span> <span class="keyword">do</span> split <span class="built_in">..</span>.</span><br><span class="line">2022-12-18 10:01:32.918 [job-0] <span class="built_in">INFO</span>  JobContainer - Job <span class="built_in">set</span> Max-Byte-Speed <span class="keyword">to</span> 10485760 bytes.</span><br><span class="line">2022-12-18 10:01:32.919 [job-0] <span class="built_in">INFO</span>  JobContainer - DataX Reader.Job [streamreader] splits <span class="keyword">to</span> [1] tasks.</span><br><span class="line">2022-12-18 10:01:32.919 [job-0] <span class="built_in">INFO</span>  JobContainer - DataX Writer.Job [streamwriter] splits <span class="keyword">to</span> [1] tasks.</span><br><span class="line">2022-12-18 10:01:32.941 [job-0] <span class="built_in">INFO</span>  JobContainer - jobContainer starts <span class="keyword">to</span> <span class="keyword">do</span> schedule <span class="built_in">..</span>.</span><br><span class="line">2022-12-18 10:01:32.945 [job-0] <span class="built_in">INFO</span>  JobContainer -<span class="built_in"> Scheduler </span>starts [1] taskGroups.</span><br><span class="line">2022-12-18 10:01:32.947 [job-0] <span class="built_in">INFO</span>  JobContainer - Running by standalone Mode.</span><br><span class="line">2022-12-18 10:01:32.967 [taskGroup-0] <span class="built_in">INFO</span>  TaskGroupContainer - taskGroupId=[0] start [1] channels <span class="keyword">for</span> [1] tasks.</span><br><span class="line">2022-12-18 10:01:32.978 [taskGroup-0] <span class="built_in">INFO</span>  Channel - Channel <span class="built_in">set</span> byte_speed_limit <span class="keyword">to</span> -1, <span class="literal">No</span> bps activated.</span><br><span class="line">2022-12-18 10:01:32.978 [taskGroup-0] <span class="built_in">INFO</span>  Channel - Channel <span class="built_in">set</span> record_speed_limit <span class="keyword">to</span> -1, <span class="literal">No</span> tps activated.</span><br><span class="line">2022-12-18 10:01:32.999 [taskGroup-0] <span class="built_in">INFO</span>  TaskGroupContainer - taskGroup[0] taskId[0] attemptCount[1] is started</span><br><span class="line">2022-12-18 10:01:33.100 [taskGroup-0] <span class="built_in">INFO</span>  TaskGroupContainer - taskGroup[0] taskId[0] is successed, used[116]ms</span><br><span class="line">2022-12-18 10:01:33.101 [taskGroup-0] <span class="built_in">INFO</span>  TaskGroupContainer - taskGroup[0] completed it<span class="string">&#x27;s tasks.</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.004 [job-0] INFO  StandAloneJobContainerCommunicator - Total 100000 records, 2600000 bytes | Speed 253.91KB/s, 10000 records/s | Error 0 records, 0 bytes |  All Task WaitWriterTime 0.029s |  All Task WaitReaderTime 0.029s | Percentage 100.00%</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.005 [job-0] INFO  AbstractScheduler - Scheduler accomplished all tasks.</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.005 [job-0] INFO  JobContainer - DataX Writer.Job [streamwriter] do post work.</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.005 [job-0] INFO  JobContainer - DataX Reader.Job [streamreader] do post work.</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.005 [job-0] INFO  JobContainer - DataX jobId [0] completed successfully.</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.006 [job-0] INFO  HookInvoker - No hook invoked, because base dir not exists or is a file: /home/hadoop/app/datax/hook</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.007 [job-0] INFO  JobContainer - </span></span><br><span class="line"><span class="string">	 [total cpu info] =&gt; </span></span><br><span class="line"><span class="string">		averageCpu                     | maxDeltaCpu                    | minDeltaCpu                  </span></span><br><span class="line"><span class="string">		-1.00%                         | -1.00%                         | -1.00%</span></span><br><span class="line"><span class="string">                      </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	 [total gc info] =&gt; </span></span><br><span class="line"><span class="string">		 NAME                 | totalGCCount       | maxDeltaGCCount    | minDeltaGCCount    | totalGCTime        | maxDeltaGCTime     | minDeltaGCTime   </span></span><br><span class="line"><span class="string">		 PS MarkSweep         | 0                  | 0                  | 0                  | 0.000s             | 0.000s             | 0.000s           </span></span><br><span class="line"><span class="string">		 PS Scavenge          | 0                  | 0                  | 0                  | 0.000s             | 0.000s             | 0.000s           </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.007 [job-0] INFO  JobContainer - PerfTrace not enable!</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.007 [job-0] INFO  StandAloneJobContainerCommunicator - Total 100000 records, 2600000 bytes | Speed 253.91KB/s, 10000 records/s | Error 0 records, 0 bytes |  All Task WaitWriterTime 0.029s |  All Task WaitReaderTime 0.029s | Percentage 100.00%</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.011 [job-0] INFO  JobContainer - </span></span><br><span class="line"><span class="string">任务启动时刻                    : 2022-12-18 10:01:32</span></span><br><span class="line"><span class="string">任务结束时刻                    : 2022-12-18 10:01:43</span></span><br><span class="line"><span class="string">任务总计耗时                    :                 10s</span></span><br><span class="line"><span class="string">任务平均流量                    :          253.91KB/s</span></span><br><span class="line"><span class="string">记录写入速度                    :          10000rec/s</span></span><br><span class="line"><span class="string">读出记录总数                    :              100000</span></span><br><span class="line"><span class="string">读写失败总数                    :                   0</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+
+<p>则部署成功</p>
+<h2 id="遇见的问题"><a href="#遇见的问题" class="headerlink" title="遇见的问题"></a>遇见的问题</h2><p>自建的时候出现</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Copyright (C) <span class="number">2010</span>-<span class="number">2017</span>, Alibaba Group. All Rights Reserved.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">2022</span>-<span class="number">12</span>-<span class="number">18</span> <span class="number">09</span>:<span class="number">56</span>:<span class="number">52.120</span> <span class="selector-attr">[main]</span> WARN  ConfigParser - 插件<span class="selector-attr">[streamreader,streamwriter]</span>加载失败，<span class="number">1s</span>后重试... Exception:Code:<span class="selector-attr">[Common-00]</span>, Describe:<span class="selector-attr">[您提供的配置文件存在错误信息，请检查您的作业配置 .]</span> - 配置信息错误，您提供的配置文件<span class="selector-attr">[/home/hadoop/app/datax/plugin/reader/._drdsreader/plugin.json]</span>不存在. 请检查您的配置文件. </span><br><span class="line"><span class="number">2022</span>-<span class="number">12</span>-<span class="number">18</span> <span class="number">09</span>:<span class="number">56</span>:<span class="number">53.124</span> <span class="selector-attr">[main]</span> ERROR Engine - </span><br><span class="line"></span><br><span class="line">经DataX智能分析,该任务最可能的错误原因是:</span><br><span class="line">com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.common</span><span class="selector-class">.exception</span><span class="selector-class">.DataXException</span>: Code:<span class="selector-attr">[Common-00]</span>, Describe:<span class="selector-attr">[您提供的配置文件存在错误信息，请检查您的作业配置 .]</span> - 配置信息错误，您提供的配置文件<span class="selector-attr">[/home/hadoop/app/datax/plugin/reader/._drdsreader/plugin.json]</span>不存在. 请检查您的配置文件.</span><br><span class="line">	at com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.common</span><span class="selector-class">.exception</span><span class="selector-class">.DataXException</span><span class="selector-class">.asDataXException</span>(DataXException<span class="selector-class">.java</span>:<span class="number">26</span>)</span><br><span class="line">	at com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.common</span><span class="selector-class">.util</span><span class="selector-class">.Configuration</span><span class="selector-class">.from</span>(Configuration<span class="selector-class">.java</span>:<span class="number">95</span>)</span><br><span class="line">	at com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.core</span><span class="selector-class">.util</span><span class="selector-class">.ConfigParser</span><span class="selector-class">.parseOnePluginConfig</span>(ConfigParser<span class="selector-class">.java</span>:<span class="number">153</span>)</span><br><span class="line">	at com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.core</span><span class="selector-class">.util</span><span class="selector-class">.ConfigParser</span><span class="selector-class">.parsePluginConfig</span>(ConfigParser<span class="selector-class">.java</span>:<span class="number">125</span>)</span><br><span class="line">	at com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.core</span><span class="selector-class">.util</span><span class="selector-class">.ConfigParser</span><span class="selector-class">.parse</span>(ConfigParser<span class="selector-class">.java</span>:<span class="number">63</span>)</span><br><span class="line">	at com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.core</span><span class="selector-class">.Engine</span><span class="selector-class">.entry</span>(Engine<span class="selector-class">.java</span>:<span class="number">137</span>)</span><br><span class="line">	at com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.core</span><span class="selector-class">.Engine</span><span class="selector-class">.main</span>(Engine<span class="selector-class">.java</span>:<span class="number">204</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find <span class="variable">$&#123;DATAX_HOME&#125;</span>/plugin/reader/ -<span class="built_in">type</span> f -name <span class="string">&quot;._*er&quot;</span> | xargs <span class="built_in">rm</span> -rf</span><br><span class="line">find <span class="variable">$&#123;DATAX_HOME&#125;</span>/plugin/writer/ -<span class="built_in">type</span> f -name <span class="string">&quot;._*er&quot;</span> | xargs <span class="built_in">rm</span> -rf</span><br></pre></td></tr></table></figure>
+
+<p>然后重新自检就成功了</p>
+<h1 id="安装datax-web工具"><a href="#安装datax-web工具" class="headerlink" title="安装datax-web工具"></a>安装datax-web工具</h1><p>简介 ： DataX Web是在DataX之上开发的分布式数据同步工具，提供简单易用的操作界面。</p>
+<p>相当于多了一个图形化界面</p>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>解压压缩包-&gt; 制作软连接 -&gt; 编辑并导入环境变量 </p>
+<ul>
+<li>-&gt; 修改modules下的datax-admin下的conf下的bootstrap.properties</li>
+<li>DB_HOST ： mysql所在的ip</li>
+<li>DB_PORT ： mysql的端口</li>
+<li>DB_USERNAME ： mysql的用户名</li>
+<li>DB_PASSWORD ： mysql的用户名的密码</li>
+<li>DB_DATABASE ： datax的配置文件所在的mysql的数据库</li>
+<li>-&gt; 修改datax-executor下的bin下的env.properties的PYTOHON_PATH的配置地址，需与我们安装的datax目录一致</li>
+<li>比如 ： <code>PYTHON_PATH=/home/hadoop/app/datax/bin/datax.py</code></li>
+<li>-&gt; 修改&#x2F;datax-executor&#x2F;conf下的application.yml，把其中的admin下的addresses: <a href="http://ip:${datax.admin.port}">http://ip:${datax.admin.port}</a> ：ip改成自己机器的</li>
+<li>然后进入到我们的最外层的bin目录下，执行 <code>start-all.sh</code>ps : 这里的start-all.sh和hadoop的启动脚本冲突，我们可以把它改名就好了</li>
+<li>执行 <code>mv ./start-all.sh ./startdatax_web-all.sh停止脚本同理</code></li>
+<li>然后启动脚本执行 ： <code> startdatax_web-all.sh</code></li>
+<li>然后我们访问 <code>http://服务器IP:9527/index.html</code></li>
+<li>初始账号密码 admin  123456</li>
+</ul>
+<p>使用方法和xxl非常类似</p>
+<h1 id="Prometheus"><a href="#Prometheus" class="headerlink" title="Prometheus"></a>Prometheus</h1><p>简介 ： Prometheus(由go语言(golang)开发)是一套开源的监控&amp;报警&amp;时间序列数据库的组合。适合监控容器平台。因为kubernetes(俗称k8s)的流行带动了prometheus的发展</p>
+<p>Prometheus的主要特征有:</p>
+<ol>
+<li>多维度数据模型</li>
+<li>灵活的查询语言</li>
+<li>不依赖分布式存储，单个服务器节点是自主的</li>
+<li>以HTTP方式，通过pull模型拉去时间序列数据</li>
+<li>也可以通过中间网关支持push模型</li>
+<li>通过服务发现或者静态配置, 来发现目标服务对象</li>
+<li>支持多种多样的图表和界面展示</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>主机名</th>
+<th>ip</th>
+<th>身份</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bigdata4</td>
+<td>192.168.41.133</td>
+<td>prometheus服务器</td>
+</tr>
+<tr>
+<td>bigdata3</td>
+<td>192.168.41.132</td>
+<td>被监控服务器</td>
+</tr>
+<tr>
+<td>bigdata5</td>
+<td>192.168.41.134</td>
+<td>granfana服务器</td>
+</tr>
+</tbody></table>
+<p>时间同步</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">systemctl restart ntpd</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">systemctl <span class="built_in">enable</span> ntpd</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>关闭防火墙和seLInux</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">systemctl stop firewalld</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">systemctl <span class="built_in">enable</span> firewalld</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">setenforce 0</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">vim /etc/selinux/config</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">iptables -F</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="部署安装"><a href="#部署安装" class="headerlink" title="部署安装"></a>部署安装</h2><p>去官网下载二进制的安装包这里要下载两个东西 ，一个是prometheus-2.41.0-rc.0.linux-amd64.tar 一个是 node_exporter-1.5.0.linux-amd64.tar.gz</p>
+<p>简单来说 prometheus-2.41.0-rc.0.linux-amd64.ta是服务器 而 node_exporter-1.5.0.linux-amd64.tar.gz是监控器</p>
+<p>监控器除了服务器以外的机器上都要有，服务器只要在你想部署的服务器上就好</p>
+<p>解压 -》 软连接 -》 配置环境变量 </p>
+<ul>
+<li>-》 修改prometheus文件夹下的prometheus.yml文件</li>
+<li>job_name ： 代表监控器的名字</li>
+<li>targets: [“localhost:9090”] 代表监控器的IP地址以及端口号</li>
+<li>监控器的默认端口是9100</li>
+<li>我们对其修改，增加几个</li>
+</ul>
+<p>然后在服务器上执行 <code>prometheus --config.file=&quot;/home/hadoop/app/prometheus/prometheus.yml&quot; &amp;</code></p>
+<p>在另外两个机器上执行 <code> node_exporter</code></p>
+<p>然后访问IP:9090点击Status然后点击Target就可以看见我们的三台机器以及其名字</p>
+<h3 id="监控Zookeeper"><a href="#监控Zookeeper" class="headerlink" title="监控Zookeeper"></a>监控Zookeeper</h3><p>监控Zookeeper和上述监控机器一样，只不过因为github上有开源的<a target="_blank" rel="noopener" href="https://github.com/jiankunking/zookeeper_exporter">zookeeper_exporter</a>然后直接上传到linux上，给他赋权限（执行权限）</p>
+<p>然后执行 <code>zookeeper_exporter ip：ZK的端口：监控日志的对接端口</code>就启动了，然后我们在我们的prometheus服务器上修改配置文件，添加上即可</p>
+<h3 id="监控kafka"><a href="#监控kafka" class="headerlink" title="监控kafka"></a>监控kafka</h3><p>监控kafka同上</p>
+<h3 id="监控flume"><a href="#监控flume" class="headerlink" title="监控flume"></a>监控flume</h3><p>关于监控flume同上步骤，不过，flume的监控器是go语言进行编译的，所以要先安装go语言的环境</p>
+<h1 id="granfana"><a href="#granfana" class="headerlink" title="granfana"></a>granfana</h1><p>其是对普罗米修斯收集的数据进行处理以及显示的一个软件</p>
+<h2 id="部署-1"><a href="#部署-1" class="headerlink" title="部署"></a>部署</h2><p>下载rpm包 执行以下命令 <code> wget https://dl.grafana.com/enterprise/release/grafana-enterprise-9.1.5-1.x86_64.rpm</code></p>
+<p>在完成之后直接执行安装命令要root用户 <code> rpm -ivh grafana-enterprise-9.1.5-1.x86_64.rpm</code></p>
+<p>然后执行 <code> systemctl start grafana-server</code></p>
+<p>然后用 <code>lsof -i:3000</code> 查看一下3000端口出现如下</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">COMMAND    PID    <span class="keyword">USER</span>   <span class="title">FD</span>   <span class="keyword">TYPE</span> DEVICE SIZE/OFF <span class="keyword">NODE</span> <span class="title">NAME</span></span><br><span class="line">grafana-s <span class="number">6962</span> grafana    <span class="number">8</span>u  IPv6  <span class="number">90355</span>      <span class="number">0</span>t0  TCP *:hbci (LISTEN)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后浏览器访问ip:3000就可以了</p>
+<p>进去之后选择数据源，选择普罗米修斯的，然后添加上他的链接就ok了（服务器的链接以及端口）</p>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/16/%E5%91%A8%E5%85%AD%E6%97%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -324,7 +787,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-17 18:28:11" itemprop="dateModified" datetime="2022-12-17T18:28:11+08:00">2022-12-17</time>
+                <time title="修改时间：2022-12-18 17:30:14" itemprop="dateModified" datetime="2022-12-18T17:30:14+08:00">2022-12-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -342,7 +805,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>160</span>
+              <span>164</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -364,7 +827,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Prometheus框架监控zk"><a href="#Prometheus框架监控zk" class="headerlink" title="Prometheus框架监控zk"></a>Prometheus框架监控zk</h1><h1 id="datax"><a href="#datax" class="headerlink" title="datax"></a>datax</h1><h1 id="flume的fileSink"><a href="#flume的fileSink" class="headerlink" title="flume的fileSink"></a>flume的fileSink</h1><p>完成</p>
+          <h1 id="Prometheus框架监控zk"><a href="#Prometheus框架监控zk" class="headerlink" title="Prometheus框架监控zk"></a>Prometheus框架监控zk</h1><p>完成</p>
+<h1 id="datax"><a href="#datax" class="headerlink" title="datax"></a>datax</h1><p>完成</p>
+<h1 id="flume的fileSink"><a href="#flume的fileSink" class="headerlink" title="flume的fileSink"></a>flume的fileSink</h1><p>完成</p>
 <h2 id="kafka-custome-api"><a href="#kafka-custome-api" class="headerlink" title="kafka custome api"></a>kafka custome api</h2><p>完成</p>
 <h2 id="flume-gt-kafka-gt-消费"><a href="#flume-gt-kafka-gt-消费" class="headerlink" title="flume-&gt; kafka -&gt; 消费"></a>flume-&gt; kafka -&gt; 消费</h2><p>完成</p>
 <h2 id="kafka-gt-flume-gt-hdfs-gt-logger"><a href="#kafka-gt-flume-gt-hdfs-gt-logger" class="headerlink" title="kafka -&gt; flume -&gt; hdfs -&gt;logger"></a>kafka -&gt; flume -&gt; hdfs -&gt;logger</h2><p>完成</p>
@@ -2189,265 +2654,6 @@ numChildren = 0 下面的子节点
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/07/docker/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/07/docker/" class="post-title-link" itemprop="url">docker</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-12-07 08:23:07" itemprop="dateCreated datePublished" datetime="2022-12-07T08:23:07+08:00">2022-12-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-11 13:39:59" itemprop="dateModified" datetime="2022-12-11T13:39:59+08:00">2022-12-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9D%82%E8%B4%A7%E6%8A%80%E6%9C%AF%E6%A0%88/" itemprop="url" rel="index"><span itemprop="name">杂货技术栈</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>7.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>这个是关于docker的简单介绍以及使用</p>
-<p>本来这个我其实不打算写的因为网上关于docker的教程很多，而且都比较全，我目前所学的全部都是基于菜鸟教程的</p>
-<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>首先我们要明白，什么是docker</p>
-<p>docker就是相当于一个箱子，其里面有它自己的生态圈</p>
-<p>各种环境依赖是直接现成的那样，和之前java打包成exe文件后面绑定依赖是一样的</p>
-<h1 id="为什么现在docker会会很火"><a href="#为什么现在docker会会很火" class="headerlink" title="为什么现在docker会会很火"></a>为什么现在docker会会很火</h1><p>因为docker不需要我们配置复杂的环境变量，只要我们通过网络下载一个包含这个功能的linux或者unbanto镜像就行</p>
-<p>特别方便，不过方便的同时也会带来隐患，比如，不知道原生安装的话，我们如何详细的知道这个组件的功能？</p>
-<h2 id="docker的安装"><a href="#docker的安装" class="headerlink" title="docker的安装"></a>docker的安装</h2><p>docker支持多种操作系统的安装，以下我只简单介绍关于linux和云服务器的安装方法</p>
-<h3 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h3><p>使用官方命令安装</p>
-<p><code>curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</code></p>
-<p>也可以用国内的daocloud安装</p>
-<p><code>curl -sSL https://get.daocloud.io/docker | sh</code></p>
-<p>当执行安装命令出现以下情况报错的时候</p>
-<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># Executing docker install script, commit: 4f282167c425347a931ccfd95cc91fab041d414f</span><br><span class="line">+ sh -c &#x27;yum install -y -q yum-utils&#x27;</span><br><span class="line"><span class="keyword">error: </span>rpmdb: BDB0113 Thread/process 16675/139942115395648 failed: BDB1507 Thread died in Berkeley DB library</span><br><span class="line"><span class="keyword">error: </span>db5 error(<span class="string">-30973</span>) from dbenv-&gt;failchk: BDB0087 DB_RUNRECOVERY: Fatal error, run database recovery</span><br><span class="line"><span class="keyword">error: </span>cannot open Packages index using db5 -  (<span class="string">-30973</span>)</span><br><span class="line"><span class="keyword">error: </span>cannot open Packages database in /var/lib/rpm</span><br><span class="line">CRITICAL:yum.main:</span><br><span class="line"></span><br><span class="line"><span class="keyword">Error: </span>rpmdb open failed</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>执行 <code>mv /var/lib/rpm/__db.00* /tmp/&amp;&amp;yum clean all</code></p>
-<p>再执行安装命令就可以了</p>
-<p>这样在有网的机器上就安装完成了，是不是很简单 ，</p>
-<p>接下来我们要说手动安装的情况</p>
-<p>首先要卸载旧版本</p>
-<p>较旧的 Docker 版本称为 docker 或 docker-engine 。如果已安装这些程序，请卸载它们以及相关的依赖项。</p>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum remove docker <span class="string">\</span></span><br><span class="line">                  docker-client <span class="string">\</span></span><br><span class="line">                  docker-client-latest <span class="string">\</span></span><br><span class="line">                  docker-common <span class="string">\</span></span><br><span class="line">                  docker-latest <span class="string">\</span></span><br><span class="line">                  docker-latest-logrotate <span class="string">\</span></span><br><span class="line">                  docker-logrotate <span class="string">\</span></span><br><span class="line">                  docker-engine</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>在新主机上首次安装 Docker Engine-Community 之前，需要设置 Docker 仓库。之后，您可以从仓库安装和更新 Docker。</p>
-<p>安装所需的软件包。yum-utils 提供了 yum-config-manager ，并且 device mapper 存储驱动程序需要 device-mapper-persistent-data 和 lvm2。</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -y yum-utils \</span><br><span class="line">  device-mapper-persistent-<span class="class"><span class="keyword">data</span> \</span></span><br><span class="line">  lvm2</span><br></pre></td></tr></table></figure>
-
-<p>使用以下命令来设置稳定的仓库。</p>
-<p>官方地址源</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https:<span class="regexp">//</span>download.docker.com<span class="regexp">/linux/</span>centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
-
-<p>阿里云地址源</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/docker-ce/</span>linux<span class="regexp">/centos/</span>docker-ce.repo</span><br></pre></td></tr></table></figure>
-
-<p>清华大学的</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/docker-ce/</span>linux<span class="regexp">/centos/</span>docker-ce.repo</span><br></pre></td></tr></table></figure>
-
-<p>在国内还是建议阿里和清华大学的</p>
-<p>安装最新版本的 Docker Engine-Community 和 containerd，或者转到下一步安装特定版本：</p>
-<p><code>$ sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin</code></p>
-<p>如果提示您接受 GPG 密钥，请选是。</p>
-<p>Docker 安装完默认未启动。并且已经创建好 docker 用户组，但该用户组下没有用户。</p>
-<p><strong>要安装特定版本的 Docker Engine-Community，请在存储库中列出可用版本，然后选择并安装：</strong></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ yum <span class="keyword">list</span> docker-<span class="keyword">ce</span> --showduplicates | <span class="keyword">sort</span> -r</span><br><span class="line"></span><br><span class="line">docker-<span class="keyword">ce</span>.x86_64  <span class="number">3</span>:<span class="number">18.09</span>.<span class="number">1</span>-<span class="number">3</span>.el7                     docker-<span class="keyword">ce</span>-stable</span><br><span class="line">docker-<span class="keyword">ce</span>.x86_64  <span class="number">3</span>:<span class="number">18.09</span>.<span class="number">0</span>-<span class="number">3</span>.el7                     docker-<span class="keyword">ce</span>-stable</span><br><span class="line">docker-<span class="keyword">ce</span>.x86_64  <span class="number">18.06</span>.<span class="number">1</span>.<span class="keyword">ce</span>-<span class="number">3</span>.el7                    docker-<span class="keyword">ce</span>-stable</span><br><span class="line">docker-<span class="keyword">ce</span>.x86_64  <span class="number">18.06</span>.<span class="number">0</span>.<span class="keyword">ce</span>-<span class="number">3</span>.el7                    docker-<span class="keyword">ce</span>-stable</span><br></pre></td></tr></table></figure>
-
-<p>通过其完整的软件包名称安装特定版本，该软件包名称是软件包名称（docker-ce）加上版本字符串（第二列），从第一个冒号（:）一直到第一个连字符，并用连字符（-）分隔。例如：docker-ce-18.09.1。</p>
-<p><code>$ sudo yum install docker-ce-&lt;VERSION_STRING&gt; docker-ce-cli-&lt;VERSION_STRING&gt; containerd.io</code></p>
-<p>然后启动docker</p>
-<p><code>$ sudo systemctl start docker</code></p>
-<p>然后运行hello world镜像查看是不是我们成功安装了这个docker</p>
-<p><code>$ sudo docker run hello-world</code></p>
-<h3 id="卸载docker"><a href="#卸载docker" class="headerlink" title="卸载docker"></a>卸载docker</h3><p>先删除安装包</p>
-<p><code>yum remove docker-ce </code></p>
-<p>然后删除镜像文件等</p>
-<p><code>rm -rf /var/lib/docker</code></p>
-<p>云服务器和上面一样</p>
-<h1 id="docker-命令"><a href="#docker-命令" class="headerlink" title="docker 命令"></a>docker 命令</h1><p>docker命令的种类不多但是其中的分支较多</p>
-<p>docker run : 原本的意义是创建一个docker容器，并运行它</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">-<span class="selector-tag">a</span> stdin: 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项；</span><br><span class="line"></span><br><span class="line">-d: 后台运行容器，并返回容器ID；</span><br><span class="line"></span><br><span class="line">-<span class="selector-tag">i</span>: 以交互模式运行容器，通常与 -t 同时使用；</span><br><span class="line"></span><br><span class="line">-P: 随机端口映射，容器内部端口随机映射到主机的端口</span><br><span class="line"></span><br><span class="line">-<span class="selector-tag">p</span>: 指定端口映射，格式为：主机(宿主)端口:容器端口</span><br><span class="line"></span><br><span class="line">-t: 为容器重新分配一个伪输入终端，通常与 -<span class="selector-tag">i</span> 同时使用；</span><br><span class="line"></span><br><span class="line"><span class="attr">--name</span>=<span class="string">&quot;nginx-lb&quot;</span>: 为容器指定一个名称；</span><br><span class="line"></span><br><span class="line"><span class="attr">--dns</span> <span class="number">8.8</span>.<span class="number">8.8</span>: 指定容器使用的DNS服务器，默认和宿主一致；</span><br><span class="line"></span><br><span class="line"><span class="attr">--dns-search</span> example<span class="selector-class">.com</span>: 指定容器DNS搜索域名，默认和宿主一致；</span><br><span class="line"></span><br><span class="line">-h <span class="string">&quot;mars&quot;</span>: 指定容器的hostname；</span><br><span class="line"></span><br><span class="line">-e username=<span class="string">&quot;ritchie&quot;</span>: 设置环境变量；</span><br><span class="line"></span><br><span class="line"><span class="attr">--env-file</span>=<span class="selector-attr">[]</span>: 从指定文件读入环境变量；</span><br><span class="line"></span><br><span class="line"><span class="attr">--cpuset</span>=<span class="string">&quot;0-2&quot;</span> or <span class="attr">--cpuset</span>=<span class="string">&quot;0,1,2&quot;</span>: 绑定容器到指定CPU运行；</span><br><span class="line"></span><br><span class="line">-m :设置容器使用内存最大值；</span><br><span class="line"></span><br><span class="line"><span class="attr">--net</span>=<span class="string">&quot;bridge&quot;</span>: 指定容器的网络连接类型，支持 bridge/host/<span class="attribute">none</span>/container: 四种类型；</span><br><span class="line"></span><br><span class="line"><span class="attr">--link</span>=<span class="selector-attr">[]</span>: 添加链接到另一个容器；</span><br><span class="line"></span><br><span class="line"><span class="attr">--expose</span>=<span class="selector-attr">[]</span>: 开放一个端口或一组端口；</span><br><span class="line"></span><br><span class="line"><span class="attr">--volume</span> , -v: 绑定一个卷</span><br></pre></td></tr></table></figure>
-
-<p><strong>docker start</strong> :启动一个或多个已经被停止的容器</p>
-<p><strong>docker stop</strong> :停止一个运行中的容器</p>
-<p><strong>docker restart</strong> :重启容器</p>
-<p><strong>docker kill</strong> :杀掉一个运行中的容器。</p>
-<ul>
-<li><strong>-s :</strong> 向容器发送一个信号</li>
-</ul>
-<p><strong>docker rm ：</strong> 删除一个或多个容器。</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-f :通过 SIGKILL 信号强制删除一个运行中的容器。</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-l :移除容器间的网络连接，而非容器本身。</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-v :删除与容器关联的卷。</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>命令可以嵌套使用如下 ：<ul>
-<li><code>删除所有已经停止的容器：docker rm $(docker ps -a -q)</code></li>
-</ul>
-</li>
-</ul>
-<p><strong>docker pause</strong> :暂停容器中所有的进程。</p>
-<p><strong>docker unpause</strong> :恢复容器中所有的进程。</p>
-<p><strong>docker create ：</strong> 创建一个新的容器但不启动它 ：其语法和run一样</p>
-<p><strong>docker exec ：</strong> 在运行的容器中执行命令</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-d :分离模式: 在后台运行</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-i :即使没有附加也保持STDIN 打开</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-t :分配一个伪终端</span></span><br></pre></td></tr></table></figure>
-
-<p>docker ps : 列出容器</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-a :显示所有的容器，包括未运行的。</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-f :根据条件过滤显示的内容。</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--format :指定返回值的模板文件。</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-l :显示最近创建的容器。</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-n :列出最近创建的n个容器。</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--no-trunc :不截断输出。</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-q :静默模式，只显示容器编号。</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-s :显示总的文件大小。</span></span><br></pre></td></tr></table></figure>
-
-<p>输出介绍</p>
-<figure class="highlight nestedtext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">输出详情介绍：</span></span><br><span class="line"><span class="attribute"></span></span><br><span class="line"><span class="attribute">CONTAINER ID</span><span class="punctuation">:</span> <span class="string">容器 ID。</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">IMAGE</span><span class="punctuation">:</span> <span class="string">使用的镜像。</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">COMMAND</span><span class="punctuation">:</span> <span class="string">启动容器时运行的命令。</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">CREATED</span><span class="punctuation">:</span> <span class="string">容器的创建时间。</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">STATUS</span><span class="punctuation">:</span> <span class="string">容器状态。</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">状态有7种：</span></span><br><span class="line"><span class="attribute"></span></span><br><span class="line"><span class="attribute">created（已创建）</span></span><br><span class="line"><span class="attribute">restarting（重启中）</span></span><br><span class="line"><span class="attribute">running（运行中）</span></span><br><span class="line"><span class="attribute">removing（迁移中）</span></span><br><span class="line"><span class="attribute">paused（暂停）</span></span><br><span class="line"><span class="attribute">exited（停止）</span></span><br><span class="line"><span class="attribute">dead（死亡）</span></span><br><span class="line"><span class="attribute">PORTS</span><span class="punctuation">:</span> <span class="string">容器的端口信息和使用的连接类型（tcp\udp）。</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">NAMES</span><span class="punctuation">:</span> <span class="string">自动分配的容器名称。</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>docker inspect :</strong> 获取容器&#x2F;镜像的元数据。</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-f :指定返回值的模板文件。</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-s :显示总的文件大小。</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--type :为指定类型返回JSON。</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>docker top :</strong> 查看容器中运行的进程信息，支持 ps 命令参数。</p>
-<p><code>docker top [OPTIONS] CONTAINER [ps OPTIONS]</code></p>
-<ul>
-<li>查看所有运行容器的进程信息。</li>
-<li><code>for i in  </code>docker ps |grep Up|awk ‘{print $1}’<code>;do echo \ &amp;&amp;docker top $i; done</code></li>
-</ul>
-<p><strong>docker attach :</strong> 连接到正在运行中的容器。</p>
-<p>要attach上去的容器必须正在运行，可以同时连接上同一个container来共享屏幕（与screen命令的attach类似）。</p>
-<p>docker events : 从服务器获取实时事件</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-f ：根据条件过滤事件；</span><br><span class="line"></span><br><span class="line"><span class="params">--since</span> ：从指定的时间戳后显示所有事件;</span><br><span class="line"></span><br><span class="line"><span class="params">--until</span> ：流水时间显示到指定的时间为止；</span><br><span class="line"></span><br><span class="line">如果指定的时间是到秒级的，需要将时间转成时间戳。如果时间为日期的话，可以直接使用，如<span class="params">--since=</span><span class="string">&quot;2016-07-01&quot;</span>。</span><br></pre></td></tr></table></figure>
-
-<p>docker logs : 获取容器的日志</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-f : 跟踪日志输出</span><br><span class="line"></span><br><span class="line"><span class="comment">--since :显示某个开始时间的所有日志</span></span><br><span class="line"></span><br><span class="line">-t : 显示时间戳</span><br><span class="line"></span><br><span class="line"><span class="comment">--tail :仅列出最新N条容器日志</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>docker wait :</strong> 阻塞运行直到容器停止，然后打印出它的退出代码</p>
-<p><strong>docker export :</strong> 将文件系统作为一个tar归档文件导出到STDOUT。</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-o :将输入内容写到文件。</span></span><br></pre></td></tr></table></figure>
-
-<p>docker port 用于列出指定的容器的端口映射，或者查找将 PRIVATE_PORT NAT 到面向公众的端口。</p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker port <span class="comment">[OPTIONS]</span> <span class="keyword">CONTAINER</span> <span class="comment">[PRIVATE_PORT<span class="comment">[/PROTO]</span>]</span></span><br></pre></td></tr></table></figure>
-
-<p>docker stats : 显示容器资源的使用情况，包括：CPU、内存、网络 I&#x2F;O 等。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">--all</span> , -<span class="selector-tag">a</span> :显示所有的容器，包括未运行的。</span><br><span class="line"></span><br><span class="line"><span class="attr">--format</span> :指定返回值的模板文件。</span><br><span class="line"></span><br><span class="line"><span class="attr">--no-stream</span> :展示当前状态就直接退出了，不再实时更新。</span><br><span class="line"></span><br><span class="line"><span class="attr">--no-trunc</span> :不截断输出。</span><br></pre></td></tr></table></figure>
-
-<p><strong>docker commit :</strong> 从容器创建一个新的镜像。</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-a :提交的镜像作者；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-c :使用Dockerfile指令来创建镜像；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-m :提交时的说明文字；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-p :在commit时，将容器暂停。</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>docker cp :</strong> 用于容器与主机之间的数据拷贝。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-L :保持源目标中的链接</span><br><span class="line">docker <span class="built_in">cp</span> [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-</span><br><span class="line">docker <span class="built_in">cp</span> [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH</span><br><span class="line">例子 ：</span><br><span class="line">实例</span><br><span class="line">将主机/www/runoob目录拷贝到容器96f7f14e99ab的/www目录下。</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">cp</span> /www/runoob 96f7f14e99ab:/www/</span><br><span class="line">将主机/www/runoob目录拷贝到容器96f7f14e99ab中，目录重命名为www。</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">cp</span> /www/runoob 96f7f14e99ab:/www</span><br><span class="line">将容器96f7f14e99ab的/www目录拷贝到主机的/tmp目录中。</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">cp</span>  96f7f14e99ab:/www /tmp/</span><br></pre></td></tr></table></figure>
-
-<p>docker diff : 检查容器里文件结构的更改。</p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker diff <span class="comment">[OPTIONS]</span> <span class="keyword">CONTAINER</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>docker login :</strong> 登陆到一个Docker镜像仓库，如果未指定镜像仓库地址，默认为官方仓库 Docker Hub</p>
-<p><strong>docker logout :</strong> 登出一个Docker镜像仓库，如果未指定镜像仓库地址，默认为官方仓库 Docker Hub</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">login</span> [<span class="keyword">OPTIONS</span>] [<span class="keyword">SERVER</span>]</span><br><span class="line">docker logout [<span class="keyword">OPTIONS</span>] [<span class="keyword">SERVER</span>]</span><br><span class="line">-u :登陆的用户名</span><br><span class="line"></span><br><span class="line">-p :登陆的密码</span><br></pre></td></tr></table></figure>
-
-<p>docker pull : 从镜像仓库中拉取或者更新指定镜像</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-<span class="selector-tag">a</span> :拉取所有 tagged 镜像</span><br><span class="line">docker pull <span class="selector-attr">[OPTIONS]</span> NAME<span class="selector-attr">[:TAG|@DIGEST]</span></span><br><span class="line"><span class="attr">--disable-content-trust</span> :忽略镜像的校验,默认开启</span><br></pre></td></tr></table></figure>
-
-<p>docker push : 将本地的镜像上传到镜像仓库,要先登陆到镜像仓库</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--disable-content-trust :忽略镜像的校验,默认开启</span></span><br><span class="line">docker push [<span class="keyword">OPTIONS</span>] <span class="type">NAME</span>[:TAG]</span><br></pre></td></tr></table></figure>
-
-<p><strong>docker search :</strong> 从Docker Hub查找镜像</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">search</span> [<span class="keyword">OPTIONS</span>] TERM</span><br><span class="line"><span class="comment">--automated :只列出 automated build类型的镜像；</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--no-trunc :显示完整的镜像描述；</span></span><br><span class="line"></span><br><span class="line">-f &lt;过滤条件&gt;:列出收藏数不小于指定值的镜像。</span><br></pre></td></tr></table></figure>
-
-<p>docker images : 列出本地镜像。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">docker images <span class="selector-attr">[OPTIONS]</span> <span class="selector-attr">[REPOSITORY[:TAG]</span>]</span><br><span class="line">-<span class="selector-tag">a</span> :列出本地所有的镜像（含中间映像层，默认情况下，过滤掉中间映像层）；</span><br><span class="line"></span><br><span class="line"><span class="attr">--digests</span> :显示镜像的摘要信息；</span><br><span class="line"></span><br><span class="line">-f :显示满足条件的镜像；</span><br><span class="line"></span><br><span class="line"><span class="attr">--format</span> :指定返回值的模板文件；</span><br><span class="line"></span><br><span class="line"><span class="attr">--no-trunc</span> :显示完整的镜像信息；</span><br><span class="line"></span><br><span class="line">-<span class="selector-tag">q</span> :只显示镜像ID。</span><br></pre></td></tr></table></figure>
-
-<p>docker rmi : 删除本地一个或多个镜像。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker rmi <span class="selector-attr">[OPTIONS]</span> IMAGE <span class="selector-attr">[IMAGE...]</span></span><br><span class="line">-f :强制删除；</span><br><span class="line"></span><br><span class="line"><span class="attr">--no-prune</span> :不移除该镜像的过程镜像，默认移除；</span><br></pre></td></tr></table></figure>
-
-<p>docker tag : 标记本地镜像，将其归入某一仓库。</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">tag</span> <span class="title">[OPTIONS</span>] IMAGE[:<span class="keyword">TAG</span>] [REGISTRYHOST/][USERNAME/]NAME[:<span class="keyword">TAG</span>]</span><br></pre></td></tr></table></figure>
-
-<p>docker build 命令用于使用 Dockerfile 创建镜像</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">docker build [OPTIONS] PATH | URL | -</span><br><span class="line"><span class="deletion">--build-arg=[] :设置镜像创建时的变量；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--cpu-shares :设置 cpu 使用权重；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--cpu-period :限制 CPU CFS周期；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--cpu-quota :限制 CPU CFS配额；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--cpuset-cpus :指定使用的CPU id；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--cpuset-mems :指定使用的内存 id；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--disable-content-trust :忽略校验，默认开启；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-f :指定要使用的Dockerfile路径；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--force-rm :设置镜像过程中删除中间容器；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--isolation :使用容器隔离技术；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--label=[] :设置镜像使用的元数据；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-m :设置内存最大值；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--memory-swap :设置Swap的最大值为内存+swap，&quot;-1&quot;表示不限swap；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--no-cache :创建镜像的过程不使用缓存；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--pull :尝试去更新镜像的新版本；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--quiet, -q :安静模式，成功后只输出镜像 ID；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--rm :设置镜像成功后删除中间容器；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--shm-size :设置/dev/shm的大小，默认值是64M；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--ulimit :Ulimit配置。</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--squash :将 Dockerfile 中所有的操作压缩为一层。</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--tag, -t: 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--network: 默认 default。在构建期间设置RUN指令的网络模式</span></span><br></pre></td></tr></table></figure>
-
-<p>docker history : 查看指定镜像的创建历史。</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker history [OPTIONS] IMAGE</span><br><span class="line"><span class="deletion">-H :以可读的格式打印镜像大小和日期，默认为true；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">--no-trunc :显示完整的提交记录；</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-q :仅列出提交记录ID。</span></span><br></pre></td></tr></table></figure>
-
-<p>docker save : 将指定镜像保存成 tar 归档文件</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker save <span class="selector-attr">[OPTIONS]</span> IMAGE <span class="selector-attr">[IMAGE...]</span></span><br><span class="line">-o :输出到的文件。</span><br></pre></td></tr></table></figure>
-
-<p>docker load : 导入使用 docker save 命令导出的镜像。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker load <span class="selector-attr">[OPTIONS]</span></span><br><span class="line"><span class="attr">--input</span> , -<span class="selector-tag">i</span> : 指定导入的文件，代替 STDIN。</span><br><span class="line"></span><br><span class="line"><span class="attr">--quiet</span> , -<span class="selector-tag">q</span> : 精简输出信息。</span><br></pre></td></tr></table></figure>
-
-<p><strong>docker import :</strong> 从归档文件中创建镜像。</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">import</span> [<span class="keyword">OPTIONS</span>] <span class="keyword">file</span>|URL|- [REPOSITORY[:TAG]]</span><br><span class="line">-c :应用docker 指令创建镜像；</span><br><span class="line"></span><br><span class="line">-m :提交时的说明文字；</span><br></pre></td></tr></table></figure>
-
-<p>docker info : 显示 Docker 系统信息，包括镜像和容器数。</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker</span> <span class="literal">info</span> [OPTIONS]</span><br></pre></td></tr></table></figure>
-
-<p>docker version :显示 Docker 版本信息。</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-f :指定返回值的模板文件。</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2519,7 +2725,7 @@ numChildren = 0 下面的子节点
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2589,7 +2795,7 @@ numChildren = 0 下面的子节点
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共115.6k字</span>
+  <span class="post-count">博客全站共118.6k字</span>
 </div>
 
 
