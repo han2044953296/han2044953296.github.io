@@ -198,6 +198,189 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/07/12-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/07/12-07/" class="post-title-link" itemprop="url">数据可视化</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-07 08:53:05" itemprop="dateCreated datePublished" datetime="2022-12-07T08:53:05+08:00">2022-12-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-09 13:34:57" itemprop="dateModified" datetime="2022-12-09T13:34:57+08:00">2022-12-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数据可视化的数据库选择"><a href="#数据可视化的数据库选择" class="headerlink" title="数据可视化的数据库选择"></a>数据可视化的数据库选择</h1><p>一般选择响应数据库比较快的一般是 秒级，或者毫秒级 ： 不要选择hive</p>
+<p>因为hive太慢</p>
+<p>我们一般都把数据最后导入到mysql里</p>
+<p>作业：</p>
+<p>自己做一个dashboard</p>
+<h1 id="xxl"><a href="#xxl" class="headerlink" title="xxl"></a>xxl</h1><p>定时任务调度</p>
+<p>就是按照每天都要做的任务</p>
+<ul>
+<li>crontab 进行 用的比较少 而因为不方便</li>
+<li>定时任务的调度的框架<ul>
+<li>ozio , azkaban,airflow,xxl,dolphinscheduler</li>
+<li>现在ozio 和 azkaban 因为操作比较反人类，所以不太推荐</li>
+<li>airflow ： 通过python进行任务调度的</li>
+<li>公司首选 dolphinscheduler ，其次 xxl</li>
+</ul>
+</li>
+<li>针对 xxl 或者 dolphinscheduler 可以串联的方式进行执行调度，就是a任务完成，直接执行b任务等等</li>
+<li>但是crontab它要设置时间间隔，不可以串联的方式进行执行</li>
+<li>多任务之间的依赖关系 ：<ul>
+<li>DAG 有向无环图</li>
+</ul>
+</li>
+<li>xxl 官网 ： 国人开发的 <code>https://github.com/xuxueli/xxl-job</code><ul>
+<li>架构：主从架构，分布式架构</li>
+<li>老大：调度中心</li>
+<li>小弟：调度器</li>
+</ul>
+</li>
+<li>其他的都是apache的</li>
+</ul>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>下载源码 ；</p>
+<p>导入idea 进行编译</p>
+<p>初始化“调度数据库”xxl源数据库 -》 mysql中</p>
+<p>首先在mysql中执行语句</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># XXL-JOB v2.4.0-SNAPSHOT</span><br><span class="line"># Copyright (c) 2015-present, xuxueli.</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">database</span> <span class="keyword">if</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> <span class="symbol">`xxl_job`</span> default character <span class="keyword">set</span> utf8mb4 <span class="keyword">collate</span> utf8mb4_unicode_ci;</span><br><span class="line">use `xxl_job`;</span><br><span class="line"></span><br><span class="line">SET NAMES utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_info`</span> (</span><br><span class="line">  <span class="symbol">`id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="symbol">`job_group`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器主键ID&#x27;</span>,</span><br><span class="line">  <span class="symbol">`job_desc`</span> varchar(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`add_time`</span> datetime DEFAULT <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`update_time`</span> datetime DEFAULT <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`author`</span> varchar(<span class="number">64</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;作者&#x27;</span>,</span><br><span class="line">  <span class="symbol">`alarm_email`</span> varchar(<span class="number">255</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;报警邮件&#x27;</span>,</span><br><span class="line">  <span class="symbol">`schedule_type`</span> varchar(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;NONE&#x27;</span> COMMENT <span class="string">&#x27;调度类型&#x27;</span>,</span><br><span class="line">  <span class="symbol">`schedule_conf`</span> varchar(<span class="number">128</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;调度配置，值含义取决于调度类型&#x27;</span>,</span><br><span class="line">  <span class="symbol">`misfire_strategy`</span> varchar(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;DO_NOTHING&#x27;</span> COMMENT <span class="string">&#x27;调度过期策略&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_route_strategy`</span> varchar(<span class="number">50</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器路由策略&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_handler`</span> varchar(<span class="number">255</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器任务handler&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_param`</span> varchar(<span class="number">512</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器任务参数&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_block_strategy`</span> varchar(<span class="number">50</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;阻塞处理策略&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_timeout`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;任务执行超时时间，单位秒&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_fail_retry_count`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;失败重试次数&#x27;</span>,</span><br><span class="line">  <span class="symbol">`glue_type`</span> varchar(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;GLUE类型&#x27;</span>,</span><br><span class="line">  <span class="symbol">`glue_source`</span> mediumtext COMMENT <span class="string">&#x27;GLUE源代码&#x27;</span>,</span><br><span class="line">  <span class="symbol">`glue_remark`</span> varchar(<span class="number">128</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;GLUE备注&#x27;</span>,</span><br><span class="line">  <span class="symbol">`glue_updatetime`</span> datetime DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;GLUE更新时间&#x27;</span>,</span><br><span class="line">  <span class="symbol">`child_jobid`</span> varchar(<span class="number">255</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;子任务ID，多个逗号分隔&#x27;</span>,</span><br><span class="line">  <span class="symbol">`trigger_status`</span> tinyint(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;调度状态：0-停止，1-运行&#x27;</span>,</span><br><span class="line">  <span class="symbol">`trigger_last_time`</span> bigint(<span class="number">13</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;上次调度时间&#x27;</span>,</span><br><span class="line">  <span class="symbol">`trigger_next_time`</span> bigint(<span class="number">13</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;下次调度时间&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`id`</span>)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_log`</span> (</span><br><span class="line">  <span class="symbol">`id`</span> bigint(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="symbol">`job_group`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器主键ID&#x27;</span>,</span><br><span class="line">  <span class="symbol">`job_id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;任务，主键ID&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_address`</span> varchar(<span class="number">255</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器地址，本次执行的地址&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_handler`</span> varchar(<span class="number">255</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器任务handler&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_param`</span> varchar(<span class="number">512</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器任务参数&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_sharding_param`</span> varchar(<span class="number">20</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器任务分片参数，格式如 1/2&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_fail_retry_count`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;失败重试次数&#x27;</span>,</span><br><span class="line">  <span class="symbol">`trigger_time`</span> datetime DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;调度-时间&#x27;</span>,</span><br><span class="line">  <span class="symbol">`trigger_code`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;调度-结果&#x27;</span>,</span><br><span class="line">  <span class="symbol">`trigger_msg`</span> text COMMENT <span class="string">&#x27;调度-日志&#x27;</span>,</span><br><span class="line">  <span class="symbol">`handle_time`</span> datetime DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行-时间&#x27;</span>,</span><br><span class="line">  <span class="symbol">`handle_code`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行-状态&#x27;</span>,</span><br><span class="line">  <span class="symbol">`handle_msg`</span> text COMMENT <span class="string">&#x27;执行-日志&#x27;</span>,</span><br><span class="line">  <span class="symbol">`alarm_status`</span> tinyint(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;告警状态：0-默认、1-无需告警、2-告警成功、3-告警失败&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`id`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="symbol">`I_trigger_time`</span> (<span class="symbol">`trigger_time`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="symbol">`I_handle_code`</span> (<span class="symbol">`handle_code`</span>)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_log_report`</span> (</span><br><span class="line">  <span class="symbol">`id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="symbol">`trigger_day`</span> datetime DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;调度-时间&#x27;</span>,</span><br><span class="line">  <span class="symbol">`running_count`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;运行中-日志数量&#x27;</span>,</span><br><span class="line">  <span class="symbol">`suc_count`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;执行成功-日志数量&#x27;</span>,</span><br><span class="line">  <span class="symbol">`fail_count`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;执行失败-日志数量&#x27;</span>,</span><br><span class="line">  <span class="symbol">`update_time`</span> datetime DEFAULT <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`id`</span>),</span><br><span class="line">  <span class="keyword">UNIQUE</span> <span class="keyword">KEY</span> <span class="symbol">`i_trigger_day`</span> (<span class="symbol">`trigger_day`</span>) <span class="keyword">USING</span> BTREE</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_logglue`</span> (</span><br><span class="line">  <span class="symbol">`id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="symbol">`job_id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;任务，主键ID&#x27;</span>,</span><br><span class="line">  <span class="symbol">`glue_type`</span> varchar(<span class="number">50</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;GLUE类型&#x27;</span>,</span><br><span class="line">  <span class="symbol">`glue_source`</span> mediumtext COMMENT <span class="string">&#x27;GLUE源代码&#x27;</span>,</span><br><span class="line">  <span class="symbol">`glue_remark`</span> varchar(<span class="number">128</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;GLUE备注&#x27;</span>,</span><br><span class="line">  <span class="symbol">`add_time`</span> datetime DEFAULT <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`update_time`</span> datetime DEFAULT <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`id`</span>)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_registry`</span> (</span><br><span class="line">  <span class="symbol">`id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="symbol">`registry_group`</span> varchar(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`registry_key`</span> varchar(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`registry_value`</span> varchar(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`update_time`</span> datetime DEFAULT <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`id`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="symbol">`i_g_k_v`</span> (<span class="symbol">`registry_group`</span>,<span class="symbol">`registry_key`</span>,<span class="symbol">`registry_value`</span>)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_group`</span> (</span><br><span class="line">  <span class="symbol">`id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="symbol">`app_name`</span> varchar(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器AppName&#x27;</span>,</span><br><span class="line">  <span class="symbol">`title`</span> varchar(<span class="number">12</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器名称&#x27;</span>,</span><br><span class="line">  <span class="symbol">`address_type`</span> tinyint(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;执行器地址类型：0=自动注册、1=手动录入&#x27;</span>,</span><br><span class="line">  <span class="symbol">`address_list`</span> text COMMENT <span class="string">&#x27;执行器地址列表，多地址逗号分隔&#x27;</span>,</span><br><span class="line">  <span class="symbol">`update_time`</span> datetime DEFAULT <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`id`</span>)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_user`</span> (</span><br><span class="line">  <span class="symbol">`id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="symbol">`username`</span> varchar(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;账号&#x27;</span>,</span><br><span class="line">  <span class="symbol">`password`</span> varchar(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;密码&#x27;</span>,</span><br><span class="line">  <span class="symbol">`role`</span> tinyint(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;角色：0-普通用户、1-管理员&#x27;</span>,</span><br><span class="line">  <span class="symbol">`permission`</span> varchar(<span class="number">255</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;权限：执行器ID列表，多个逗号分割&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`id`</span>),</span><br><span class="line">  <span class="keyword">UNIQUE</span> <span class="keyword">KEY</span> <span class="symbol">`i_username`</span> (<span class="symbol">`username`</span>) <span class="keyword">USING</span> BTREE</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_lock`</span> (</span><br><span class="line">  <span class="symbol">`lock_name`</span> varchar(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;锁名称&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`lock_name`</span>)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="symbol">`xxl_job_group`</span>(<span class="symbol">`id`</span>, <span class="symbol">`app_name`</span>, <span class="symbol">`title`</span>, <span class="symbol">`address_type`</span>, <span class="symbol">`address_list`</span>, <span class="symbol">`update_time`</span>) <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;xxl-job-executor-sample&#x27;</span>, <span class="string">&#x27;示例执行器&#x27;</span>, <span class="number">0</span>, <span class="literal">NULL</span>, <span class="string">&#x27;2018-11-03 22:21:31&#x27;</span> );</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="symbol">`xxl_job_info`</span>(<span class="symbol">`id`</span>, <span class="symbol">`job_group`</span>, <span class="symbol">`job_desc`</span>, <span class="symbol">`add_time`</span>, <span class="symbol">`update_time`</span>, <span class="symbol">`author`</span>, <span class="symbol">`alarm_email`</span>, <span class="symbol">`schedule_type`</span>, <span class="symbol">`schedule_conf`</span>, <span class="symbol">`misfire_strategy`</span>, <span class="symbol">`executor_route_strategy`</span>, <span class="symbol">`executor_handler`</span>, <span class="symbol">`executor_param`</span>, <span class="symbol">`executor_block_strategy`</span>, <span class="symbol">`executor_timeout`</span>, <span class="symbol">`executor_fail_retry_count`</span>, <span class="symbol">`glue_type`</span>, <span class="symbol">`glue_source`</span>, <span class="symbol">`glue_remark`</span>, <span class="symbol">`glue_updatetime`</span>, <span class="symbol">`child_jobid`</span>) <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="number">1</span>, <span class="string">&#x27;测试任务1&#x27;</span>, <span class="string">&#x27;2018-11-03 22:21:31&#x27;</span>, <span class="string">&#x27;2018-11-03 22:21:31&#x27;</span>, <span class="string">&#x27;XXL&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;CRON&#x27;</span>, <span class="string">&#x27;0 0 0 * * ? *&#x27;</span>, <span class="string">&#x27;DO_NOTHING&#x27;</span>, <span class="string">&#x27;FIRST&#x27;</span>, <span class="string">&#x27;demoJobHandler&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;SERIAL_EXECUTION&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">&#x27;BEAN&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;GLUE代码初始化&#x27;</span>, <span class="string">&#x27;2018-11-03 22:21:31&#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="symbol">`xxl_job_user`</span>(<span class="symbol">`id`</span>, <span class="symbol">`username`</span>, <span class="symbol">`password`</span>, <span class="symbol">`role`</span>, <span class="symbol">`permission`</span>) <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;admin&#x27;</span>, <span class="string">&#x27;e10adc3949ba59abbe56e057f20f883e&#x27;</span>, <span class="number">1</span>, <span class="literal">NULL</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="symbol">`xxl_job_lock`</span> ( <span class="symbol">`lock_name`</span>) <span class="keyword">VALUES</span> ( <span class="string">&#x27;schedule_lock&#x27;</span>);</span><br><span class="line"></span><br><span class="line">commit;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后再把从GitHub上下载的文件夹用idea打开进行编译</p>
+<p>进行配置我们的web端口以及数据库：在application.properties文件中，然后配置一下</p>
+<p>配置好之后maven，之间打成jar包，然后上传到linux服务器上</p>
+<p>运行java -jar 上传的文件的路径</p>
+<p>然后会报错，就创建个文件夹就好了 <code>mkdir -p /data/applogs/xxl-job</code></p>
+<p>使用su 进行用户切换</p>
+<p>然后通过chown 进行修改组以及用户 <code>chown -R hadoop:hadoop /data</code></p>
+<p>然后再次运行就可以了</p>
+<p>然后在调度器管理页面添加调度器，然后分配任务就可以了</p>
+<h1 id="钉钉报警"><a href="#钉钉报警" class="headerlink" title="钉钉报警"></a>钉钉报警</h1><p>钉钉机器人可发送的类型</p>
+<ul>
+<li>文本</li>
+<li>链接</li>
+<li>markdown</li>
+<li>actioncard</li>
+<li>feedcard</li>
+</ul>
+<p>weget  ： 从互联网上下载的时候用的 ： 下载安装包 ，但是占用网络资源较大，且会一直重复下载直到结果成功，所以占用的资源较大</p>
+<p>curl ： 发送请求的，发送网页请求访问的，也可以进行下载</p>
+<ul>
+<li>-o ： 把访问的一个页面存储到文件里</li>
+</ul>
+<p>机器人发送消息</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;机器人的token&#x27;</span><br><span class="line">-H <span class="symbol">&#x27;Content</span>-<span class="keyword">type</span>:application/json&#x27;</span><br><span class="line">-d &#x27;&#123;<span class="string">&quot;msgtype&quot;</span> : <span class="type">text</span>&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+<p>需求 ： </p>
+<ul>
+<li>日志数据 ： hdfs 上 linux user_click.log</li>
+<li>例子： u01,鼠标,ios</li>
+</ul>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">u01,</span>鼠标,ios</span><br><span class="line"><span class="built_in">u01,</span>鼠标,ios</span><br><span class="line"><span class="built_in">u01,</span>鼠标,ios</span><br><span class="line"><span class="built_in">u01,</span>鼠标,ios</span><br><span class="line"><span class="built_in">u01,</span>鼠标,ios</span><br><span class="line"><span class="built_in">u02,</span>键盘,android</span><br><span class="line"><span class="built_in">u02,</span>键盘,android</span><br><span class="line"><span class="built_in">u02,</span>键盘,android</span><br><span class="line"><span class="built_in">u02,</span>键盘,android</span><br><span class="line"><span class="built_in">u03,</span>显示器,ios</span><br><span class="line"><span class="built_in">u04,</span>托特包,ios</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>业务数据 ：mysql user_info</li>
+</ul>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">u01,</span>子航</span><br><span class="line"><span class="built_in">u02,</span>祖安</span><br><span class="line"><span class="built_in">u03,</span>海哥</span><br><span class="line"><span class="built_in">u04,</span>轩轩</span><br></pre></td></tr></table></figure>
+
+<p>统计：</p>
+<p>uid ， name ，sku ， os 每个用户点击商品的次数</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> bianhao,shop_name,caozuoxit,<span class="keyword">count</span>(*) <span class="keyword">as</span> cishu <span class="keyword">from</span> user_click1 <span class="keyword">group</span> <span class="keyword">by</span> bianhao,shop_name,caozuoxit;</span><br></pre></td></tr></table></figure>
+
+<p>取出表中重复数据，的次数做个排序</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> shop_name,caozuoxit,<span class="type">name</span>,row_number() <span class="keyword">over</span> (<span class="keyword">partition</span> <span class="keyword">by</span> <span class="type">name</span>) <span class="keyword">as</span> rm <span class="keyword">from</span> (</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> user_click1 <span class="keyword">left join</span> user_info <span class="keyword">on</span> user_click1.bianhao=user_info.bianhao</span><br><span class="line">) <span class="keyword">as</span> king</span><br></pre></td></tr></table></figure>
+
+<p>不重复字段标识为1</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">u01</span>,子航,鼠标,ios <span class="number">1</span></span><br><span class="line"><span class="attribute">u01</span>,子航,鼠标,ios <span class="number">2</span></span><br><span class="line"><span class="attribute">u01</span>,子航,鼠标,ios <span class="number">3</span></span><br><span class="line"><span class="attribute">u04</span>,托特包,ios <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>统计表中不重复的数据，一起做排序，但是对于重复数据它还是对自己排序</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="type">name</span>,caozuoxit,shop_name,row_number() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> cishu) <span class="keyword">from</span> (</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> user_click1 <span class="keyword">left join</span> (</span><br><span class="line"><span class="keyword">select</span> bianhao,count(*) <span class="keyword">as</span> cishu <span class="keyword">from</span> user_click1 <span class="keyword">group</span> <span class="keyword">by</span> bianhao,shop_name,caozuoxit</span><br><span class="line">) <span class="keyword">as</span> count_click <span class="keyword">on</span> count_click.bianhao=user_click1.bianhao</span><br><span class="line"><span class="keyword">left join</span> user_info <span class="keyword">on</span> count_click.bianhao=user_info.bianhao  </span><br><span class="line">) <span class="keyword">as</span> ds;</span><br><span class="line">上述是取巧的方法</span><br><span class="line">下面是正经的方法</span><br><span class="line"><span class="keyword">select</span> count_clickbianhao,<span class="type">name</span>,caozuoxit,shop_name,row_number() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> cishu) <span class="keyword">as</span> rm <span class="keyword">from</span> (</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> user_click1 <span class="keyword">left join</span> (</span><br><span class="line"><span class="keyword">select</span> bianhao <span class="keyword">as</span> count_clickbianhao,count(*) <span class="keyword">as</span> cishu <span class="keyword">from</span> user_click1 <span class="keyword">group</span> <span class="keyword">by</span> bianhao,shop_name,caozuoxit</span><br><span class="line">) <span class="keyword">as</span> count_click <span class="keyword">on</span> count_click.count_clickbianhao=user_click1.bianhao </span><br><span class="line"><span class="keyword">left join</span> user_info <span class="keyword">on</span> count_click.count_clickbianhao=user_info.bianhao  </span><br><span class="line">) <span class="keyword">as</span> jj <span class="keyword">where</span> cishu = <span class="number">1</span> </span><br><span class="line"><span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line"><span class="keyword">select</span> count_clickbianhao,<span class="type">name</span>,caozuoxit,shop_name,row_number() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> (<span class="type">name</span>,caozuoxit,shop_name,cishu)) <span class="keyword">from</span> (</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> user_click1 <span class="keyword">left join</span> (</span><br><span class="line"><span class="keyword">select</span> bianhao <span class="keyword">as</span> count_clickbianhao,count(*) <span class="keyword">as</span> cishu <span class="keyword">from</span> user_click1 <span class="keyword">group</span> <span class="keyword">by</span> bianhao,shop_name,caozuoxit</span><br><span class="line">) <span class="keyword">as</span> count_click <span class="keyword">on</span> count_click.count_clickbianhao=user_click1.bianhao </span><br><span class="line"><span class="keyword">left join</span> user_info <span class="keyword">on</span> count_click.count_clickbianhao=user_info.bianhao  </span><br><span class="line">) <span class="keyword">as</span> j <span class="keyword">where</span> cishu != <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>整个流程使用xxl进行调度</p>
+<p>最后结果导入到mysql</p>
+<p>数据导入mysql保证幂等性</p>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/07/docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2484,217 +2667,6 @@ is null 作用一样 &lt;=&gt;
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/11/21/11-21/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/21/11-21/" class="post-title-link" itemprop="url">mapreduce</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-11-21 08:47:09 / 修改时间：20:46:23" itemprop="dateCreated datePublished" datetime="2022-11-21T08:47:09+08:00">2022-11-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="续讲Hadoop"><a href="#续讲Hadoop" class="headerlink" title="续讲Hadoop"></a>续讲Hadoop</h1><h2 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h2><p>关于mapreduce的操作模式就是模板模式，加上自定义的变量</p>
-<h3 id="模板模式-1"><a href="#模板模式-1" class="headerlink" title="模板模式"></a>模板模式</h3><p>关于模板模式，就是三步走</p>
-<p>开始阶段 ： map阶段</p>
-<p>处理阶段 ： reduce阶段</p>
-<p>结束阶段 ： 关闭流并输出</p>
-<h3 id="自定义的变量"><a href="#自定义的变量" class="headerlink" title="自定义的变量"></a>自定义的变量</h3><p>BooleanWriteable : 布尔类型</p>
-<p>ByteWriteable : Byte类型</p>
-<p>DoubleWriteable : double类型</p>
-<p>FloatWriteable ：float类型</p>
-<p>intWriteable ： int类型</p>
-<p>…（等等）</p>
-<h3 id="mapreduce的核心方法"><a href="#mapreduce的核心方法" class="headerlink" title="mapreduce的核心方法"></a>mapreduce的核心方法</h3><ul>
-<li>input : InputFormat &#x3D;&gt; 如何加载数据</li>
-<li>查看源码发现有DBInputFormat 和 FileInputFormat，代表我们可以从db（数据库中），或者文件中加载数据（上述两个是抽象类，我们实例化的时候其实是实例化其子类）</li>
-<li>简单来说就是读取数据的方法</li>
-<li>默认实例化的时候是实例化 TextInputFormat</li>
-<li>关于TextInputFormat ： 其有两个参数<ul>
-<li>key 和 value<ul>
-<li>key 是 读取文件的位置</li>
-<li>value 是 一行一行的内容<ul>
-<li>在value中有个属性 判断文件可不可以被切分 ： isSpiltable<ul>
-<li>map task 数据 是由 input 的切片数量决定的 ， 当不可被切片的时候对应的数量就是1，对应一个map task</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>creatRecordReader</p>
-<h2 id="一个文件加载的时候会被切分成几个切片"><a href="#一个文件加载的时候会被切分成几个切片" class="headerlink" title="一个文件加载的时候会被切分成几个切片"></a>一个文件加载的时候会被切分成几个切片</h2><p>前提 ： 文件可以被切分</p>
-<p>当一个文件 在hdfs上的时候是按我们的大小进行切分的 以128m为基础单位</p>
-<p>而我们的map的切片是按照blocksize进行切分的简单来说就是以blocksize的大小进行切分</p>
-<p>总结  ：</p>
-<ul>
-<li>文件大小小于128m<ul>
-<li>那么切分成1片</li>
-</ul>
-</li>
-<li>如果文件大于128m<ul>
-<li>filesize&#x2F;splitesize &#x3D; num 切片数</li>
-<li>filesize剩余的部分 ： 和splitesize的10%比较<ul>
-<li>如果大，则开启一个切片文件</li>
-<li>如果小，则是和上面最后一个合并到一起</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>不能被切分的文件： 某些被压缩文件</p>
-<ul>
-<li>关于这个切片大小的标准 ：<ul>
-<li>在hdfs上是128m</li>
-<li>但是在idea上是32m（在源码里能看）</li>
-</ul>
-</li>
-</ul>
-<h2 id="redurce-task-个数是由上面决定"><a href="#redurce-task-个数是由上面决定" class="headerlink" title="redurce task 个数是由上面决定?"></a>redurce task 个数是由上面决定?</h2><p>默认是 1</p>
-<p>如果要更改要手动更改</p>
-<p>setNumReduceTasks(数量)</p>
-<p>如果 reduce阶段数量变多</p>
-<p>则会把相同的文件拉到一起，就是按照一个规则进行的分区</p>
-<p>默认是走的hashcode ： 这个按照规则来分的就是分区</p>
-<p>一般来说 ： 分区的结果是 suffler 的输出结果是 reduce的输入</p>
-<h3 id="简单需求"><a href="#简单需求" class="headerlink" title="简单需求"></a>简单需求</h3><p>基于phone的存储数据 ，进行分文件存储</p>
-<p>比如</p>
-<p>13开头的存储在一个上</p>
-<p>15开头的在一个文件上</p>
-<p>这就要自定义分区</p>
-<p>通过继承Partitioner类实现方法然后导入方法</p>
-<p>实现getPartition方法进行分区 ： 以下是一个简单的分区函数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.IntWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Partitioner;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">myPartionit</span> <span class="keyword">extends</span> <span class="title class_">Partitioner</span>&lt;Text , IntWritable&gt; &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getPartition</span><span class="params">(Text text, IntWritable intWritable, <span class="type">int</span> i)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (text.toString().equals(<span class="string">&quot;ANALYST&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (text.toString().equals(<span class="string">&quot;CLERK&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (text.toString().equals(<span class="string">&quot;MANAGER&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (text.toString().equals(<span class="string">&quot;PRESIDENT&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (text.toString().equals(<span class="string">&quot;SALESMAN&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">4</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后我们要在我们的主程序中调用这个类 ， test类：就是我们的主类，如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.IntWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Job;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.StringTokenizer;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> sxwang</span></span><br><span class="line"><span class="comment"> * 11 18 14:00</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * driver</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (args.length &lt; <span class="number">2</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;出现问题最少两个参数&quot;</span>);</span><br><span class="line">System.exit(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line">        String input=args[<span class="number">0</span>];</span><br><span class="line">String output=args[<span class="number">1</span>];</span><br><span class="line"><span class="type">Configuration</span> <span class="variable">conf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Configuration</span>();</span><br><span class="line"><span class="comment">//0.todo... 删除目标路径</span></span><br><span class="line">FileUtils.deletePath(conf,output);</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.设置 作业名称</span></span><br><span class="line"><span class="type">Job</span> <span class="variable">job</span> <span class="operator">=</span> Job.getInstance(conf, <span class="string">&quot;WCAPP&quot;</span>);</span><br><span class="line"><span class="comment">//2.设置map reduce 执行代码的主类</span></span><br><span class="line">job.setJarByClass(test.class);</span><br><span class="line">job.setMapperClass(MyMapper.class);</span><br><span class="line">job.setReducerClass(MyReducer.class);</span><br><span class="line"><span class="comment">//3.指定 oupput kv类型</span></span><br><span class="line">job.setOutputKeyClass(Text.class);</span><br><span class="line">job.setOutputValueClass(IntWritable.class);</span><br><span class="line">job.setNumReduceTasks(<span class="number">6</span>);</span><br><span class="line">job.setPartitionerClass(myPartionit.class);</span><br><span class="line"><span class="comment">//4. 设置数据源路径 数据输出路径</span></span><br><span class="line">FileInputFormat.addInputPath(job, <span class="keyword">new</span> <span class="title class_">Path</span>(input));</span><br><span class="line">FileOutputFormat.setOutputPath(job, <span class="keyword">new</span> <span class="title class_">Path</span>(output));</span><br><span class="line"><span class="comment">//5. 提交mr yarn</span></span><br><span class="line">System.exit(job.waitForCompletion(<span class="literal">true</span>) ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * mapper</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">MyMapper</span></span><br><span class="line">            <span class="keyword">extends</span> <span class="title class_">Mapper</span>&lt;Object, Text, Text, IntWritable&gt; &#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">map</span><span class="params">(Object key, Text value, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 1.按照分隔符 进行拆分 每个单词 ，每个单词赋值为1</span></span><br><span class="line"><span class="comment">             * (word ,1)</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line"></span><br><span class="line">String[] words = value.toString().split(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (String word : words) &#123;</span><br><span class="line">                String[] split = word.split(<span class="string">&quot;,&quot;</span>);</span><br><span class="line">context.write(<span class="keyword">new</span> <span class="title class_">Text</span>(split[<span class="number">2</span>]) ,<span class="keyword">new</span> <span class="title class_">IntWritable</span>(<span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * reducer</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">MyReducer</span></span><br><span class="line">            <span class="keyword">extends</span> <span class="title class_">Reducer</span>&lt;Text,IntWritable,Text,IntWritable&gt; &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         *  (word ,1)</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         *  (word,&lt;1,1,1,1&gt;)</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         *  1.聚合value</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         *  2.写出去</span></span><br><span class="line"><span class="comment">*  (word ,3)</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">reduce</span><span class="params">(Text key, Iterable&lt;IntWritable&gt; values, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException &#123;</span><br><span class="line">            <span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (IntWritable value : values) &#123;</span><br><span class="line">                sum +=Integer.parseInt(value.toString());</span><br><span class="line">&#125;</span><br><span class="line">            context.write(key,<span class="keyword">new</span> <span class="title class_">IntWritable</span>(sum));</span><br><span class="line">&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="sql-vs-mr-mapreduce"><a href="#sql-vs-mr-mapreduce" class="headerlink" title="sql vs mr(mapreduce)"></a>sql vs mr(mapreduce)</h2><ul>
-<li>sql  :<ul>
-<li>group by</li>
-<li>distinct</li>
-<li>join</li>
-<li>order by</li>
-<li>union<ul>
-<li><p>group by 用mr实现</p>
-</li>
-<li><p>就是再map阶段进行处理reduce阶段进行合并</p>
-</li>
-<li><p>distinct</p>
-</li>
-<li></li>
-<li><p>去重 ： sql ：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span>(ename) <span class="keyword">from</span> emp;</span><br><span class="line">#或者可以通过分组进行去重</span><br><span class="line"><span class="keyword">select</span> name <span class="keyword">from</span> <span class="keyword">group</span> <span class="keyword">by</span> name;</span><br></pre></td></tr></table></figure></li>
-<li><p>通过上述我们可知group by 也可以进行去重 ，所以后面我们能用group by 就要用group by</p>
-</li>
-<li><p>因为distinct只有一个task进行处理</p>
-</li>
-<li><p>而group by 则是多个task 进行处理 ， 所以效率会比较高</p>
-</li>
-<li><p>接下来是在mr里实现</p>
-</li>
-<li><p>order by</p>
-</li>
-<li><p>mr :</p>
-</li>
-<li><p>全局排序 ： reduce task 是 1</p>
-</li>
-<li><p>分区排序 ： reduce task 是 多个</p>
-</li>
-<li><p>mr : 实现</p>
-</li>
-<li></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><p>如果你的reduce task 大于分区数 ： 会有空白文件</p>
-<p>如果 reduce task 小于分区数 且大于1 ： 则会报错</p>
-<p>如果 reduce task 且分区数 等于 1 ： 则会把东西整合到一个文件</p>
-<h2 id="关于mapreduce在linux上运行的学习，官方提供了源码库"><a href="#关于mapreduce在linux上运行的学习，官方提供了源码库" class="headerlink" title="关于mapreduce在linux上运行的学习，官方提供了源码库"></a>关于mapreduce在linux上运行的学习，官方提供了源码库</h2><p>地址在github上：</p>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2766,7 +2738,7 @@ is null 作用一样 &lt;=&gt;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2836,7 +2808,7 @@ is null 作用一样 &lt;=&gt;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共118.6k字</span>
+  <span class="post-count">博客全站共120.6k字</span>
 </div>
 
 

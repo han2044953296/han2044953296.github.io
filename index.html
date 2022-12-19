@@ -292,6 +292,159 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/19/12-19/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/19/12-19/" class="post-title-link" itemprop="url">clickHouse</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-19 13:14:27 / 修改时间：16:07:36" itemprop="dateCreated datePublished" datetime="2022-12-19T13:14:27+08:00">2022-12-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E8%B4%A7%E6%8A%80%E6%9C%AF%E6%A0%88/" itemprop="url" rel="index"><span itemprop="name">杂货技术栈</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="为什么选择CK"><a href="#为什么选择CK" class="headerlink" title="为什么选择CK"></a>为什么选择CK</h1><ol>
+<li><strong>目前企业用户行为日志每天百亿量级，虽然经过数仓的分层以及数据汇总层通用维度指标的预计算，但有些个性化的分析场景还是需要直接编写程序或sql查询，这种情况下hive sql和spark sql的查询性能已无法满足用户需求，我们迫切的需要一个OLAP引擎来支持快速的即席查询。</strong></li>
+<li><strong>BI存储库主要采用的是Infobright，在千万量级能很快的响应BI的查询请求，但随着时间推移和业务的发展，Infobright的并发量与查询瓶颈日益凸显，我们尝试将大数据量级的表导入TiDB、Hbase、ES等存储库，虽然对查询有一定的提速，但是也存在着相应的问题（后续章节会详细介绍），这时我们考虑到Clickhouse。</strong></li>
+<li><strong>Clickhouse社区活跃度高、版本迭代非常快,几乎几天到十几天更新一个小版本，我们非常看好它以后的发展。</strong></li>
+</ol>
+<h1 id="ck特性"><a href="#ck特性" class="headerlink" title="ck特性"></a>ck特性</h1><p><strong>Clickhouse是俄罗斯yandex公司于2016年开源的一个列式数据库管理系统，在OLAP领域像一匹黑马一样，以其超高的性能受到业界的青睐。</strong>特性：</p>
+<ul>
+<li><strong>基于shard+replica实现的线性扩展和高可靠</strong></li>
+<li><strong>采用列式存储，数据类型一致，压缩性能更高</strong></li>
+<li><strong>硬件利用率高，连续IO，提高了磁盘驱动器的效率</strong></li>
+<li><strong>向量化引擎与SIMD提高了CPU利用率，多核多节点并行化大查询</strong></li>
+</ul>
+<p><strong>不足：</strong></p>
+<ul>
+<li><strong>不支持事务、异步删除与更新</strong></li>
+<li><strong>不适用高并发场景</strong></li>
+</ul>
+<h1 id="数据接入层"><a href="#数据接入层" class="headerlink" title="数据接入层"></a>数据接入层</h1><p><strong>提供了数据导入相关的服务及功能，按照数据的量级和特性我们抽象出三种Clickhouse导入数据的方式。</strong></p>
+<ul>
+<li><strong>方式一：数仓应用层小表导入</strong>这类数据量级相对较小，且分布在不同的数据源如hdfs、es、hbase等，这时我们提供基于DataX自研的TaskPlus数据流转+调度平台导入数据，单分区数据无并发写入，多分区数据小并发写入，且能和线上任务形成依赖关系，确保导入程序的可靠性。</li>
+<li><strong>方式二：离线多维明细宽表导入</strong>这类数据一般是汇总层的明细数据或者是用户基于Hadoop生产的大量级数据，我们基于Spark开发了一个导入工具包，用户可以根据配置直接拉取hdfs或者hive上的数据到clickhouse，同时还能基于配置sql对数据进行ETL处理，工具包会根据配置集群的节点数以及Clickhouse集群负载情况(merges、processes)对local表进行高并发的写入，达到快速导数的目的。</li>
+<li><strong>方式三：实时多维明细宽表导入</strong>实时数据接入场景比较固定，我们封装了通用的ClickhouseSink，将app、pc、m三端每日百亿级的数据通过Flink接入clickhouse，ClickhouseSink也提供了batchSize(单次导入数据量)及batchTime(单次导入时间间隔)供用户选择。</li>
+</ul>
+<h1 id="数据存储层"><a href="#数据存储层" class="headerlink" title="数据存储层"></a>数据存储层</h1><p><strong>数据存储层这里我们采用双副本机制来保证数据的高可靠，同时用nginx代理clickhouse集群，通过域名的方式进行读写操作，实现了数据均衡及高可靠写入，且对于域名的响应时间及流量有对应的实时监控，一旦响应速度出现波动或异常我们能在第一时间收到报警通知。</strong></p>
+<ul>
+<li><strong>nginx_one_replication：代理集群一半节点即一个完整副本，常用于写操作，在每次提交数据时由nginx均衡路由到对应的shard表，当某一个节点出现异常导致写入失败时，nginx会暂时剔除异常节点并报警，然后另选一台节点重新写入。</strong></li>
+<li><strong>nginx_two_replication：代理集群所有节点，一般用作查询和无副本表数据写入，同时也会有对于异常节点的剔除和报警机制。</strong></li>
+</ul>
+<h1 id="数据服务层"><a href="#数据服务层" class="headerlink" title="数据服务层"></a>数据服务层</h1><ul>
+<li><strong>对外：将集群查询统一封装为scf服务(RPC)，供外部调用。</strong></li>
+<li><strong>对内：提供了客户端工具直接供分析师及开发人员使用。</strong></li>
+</ul>
+<h1 id="数据应用层"><a href="#数据应用层" class="headerlink" title="数据应用层"></a>数据应用层</h1><ul>
+<li><strong>埋点系统：对接实时clickhouse集群，提供秒级别的OLAP查询功能。</strong></li>
+<li><strong>用户分析平台：通过标签筛选的方式，从用户访问总集合中根据特定的用户行为捕获所需用户集。</strong></li>
+<li><strong>BI：提供数据应用层的可视化展示，对接单分片多副本Clickhouse集群，可横向扩展。</strong></li>
+</ul>
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>进行集群部署clickhouse的步骤很简单，不过有很多坑</p>
+<p>首先执行</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install yum-utils</span><br><span class="line">sudo rpm --import https:<span class="regexp">//</span>repo.clickhouse.com/CLICKHOUSE-KEY.GPG</span><br><span class="line">sudo yum-config-manager --add-repo https:<span class="regexp">//</span>repo.clickhouse.com<span class="regexp">/rpm/</span>stable/x86_64</span><br></pre></td></tr></table></figure>
+
+<p>然后用命令安装</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install clickhouse-<span class="keyword">server</span> clickhouse-<span class="keyword">client</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后执行</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="regexp">/etc/i</span>nit.d/clickhouse-server start</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>启动服务后，可以使用命令行客户端连接到它:</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#默认没有密码：</span></span><br><span class="line">clickhouse-<span class="keyword">client</span></span><br><span class="line"><span class="meta">#有密码：</span></span><br><span class="line">clickhouse-<span class="keyword">client</span> -u <span class="literal">default</span> --password</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">:) <span class="keyword">SELECT</span> <span class="number">1</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">SELECT</span> <span class="number">1</span></span><br><span class="line"> </span><br><span class="line">┌─<span class="number">1</span>─┐</span><br><span class="line">│ <span class="number">1</span> │</span><br><span class="line">└───┘</span><br><span class="line"> </span><br><span class="line"><span class="number">1</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="built_in">set</span>. Elapsed: <span class="number">0.003</span> sec.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>则基本完成，接下来我们修改配置文件进行集群部署</p>
+<p>注意：接下来的操作要换成root用户</p>
+<p>vi &#x2F;etc&#x2F;clickhouse-server&#x2F;users.xml修改我们的password</p>
+<p>vi &#x2F;etc&#x2F;clickhouse-server&#x2F;config.xml 修改如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">#配置3分片2副本集群</span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">remote_servers</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">ck_cluster</span>&gt;</span>  <span class="comment">&lt;!--集群的名字，随意起 --&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 集群第一个分片 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">shard</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">weight</span>&gt;</span>1<span class="tag">&lt;/<span class="name">weight</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">internal_replication</span>&gt;</span>true<span class="tag">&lt;/<span class="name">internal_replication</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">replica</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">host</span>&gt;</span>ip1<span class="tag">&lt;/<span class="name">host</span>&gt;</span>   </span><br><span class="line">                    <span class="tag">&lt;<span class="name">port</span>&gt;</span>9000<span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">replica</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">replica</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">host</span>&gt;</span>ip2<span class="tag">&lt;/<span class="name">host</span>&gt;</span>  </span><br><span class="line">                    <span class="tag">&lt;<span class="name">port</span>&gt;</span>9000<span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">replica</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">shard</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 集群第二个分片 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">shard</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">weight</span>&gt;</span>1<span class="tag">&lt;/<span class="name">weight</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">internal_replication</span>&gt;</span>true<span class="tag">&lt;/<span class="name">internal_replication</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">replica</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">host</span>&gt;</span>ip3<span class="tag">&lt;/<span class="name">host</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">port</span>&gt;</span>9000<span class="tag">&lt;/<span class="name">port</span>&gt;</span> </span><br><span class="line">                <span class="tag">&lt;/<span class="name">replica</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">replica</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">host</span>&gt;</span>ip4<span class="tag">&lt;/<span class="name">host</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">port</span>&gt;</span>9000<span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">replica</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">shard</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 集群第三个分片 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">shard</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">weight</span>&gt;</span>1<span class="tag">&lt;/<span class="name">weight</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">internal_replication</span>&gt;</span>true<span class="tag">&lt;/<span class="name">internal_replication</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">replica</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">host</span>&gt;</span>ip5<span class="tag">&lt;/<span class="name">host</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">port</span>&gt;</span>9000<span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">replica</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">replica</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">host</span>&gt;</span>ip6<span class="tag">&lt;/<span class="name">host</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">port</span>&gt;</span>9000<span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">replica</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">shard</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ck_cluster</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">remote_servers</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">zookeeper</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">node</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">host</span>&gt;</span>ip1<span class="tag">&lt;/<span class="name">host</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">port</span>&gt;</span>2181<span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">node</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">node</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">host</span>&gt;</span>ip2<span class="tag">&lt;/<span class="name">host</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">port</span>&gt;</span>2181<span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">node</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">node</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">host</span>&gt;</span>ip3<span class="tag">&lt;/<span class="name">host</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">port</span>&gt;</span>2181<span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">node</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">zookeeper</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">&lt;!-- 定义该clickhouse实例存放什么 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">macros</span>&gt;</span></span><br><span class="line">              <span class="comment">&lt;!-- 几号分片 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">shard</span>&gt;</span>01<span class="tag">&lt;/<span class="name">shard</span>&gt;</span></span><br><span class="line">              <span class="comment">&lt;!-- 1分片的2副本 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">replica</span>&gt;</span>集群名-01-2<span class="tag">&lt;/<span class="name">replica</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">macros</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>还可以进行修改我们的数据文件以及日志存放的位置，不过有问题，因为clickhouse自己创建的文件默认分组和用户是clickhouse的所以要把权限赋值给我们的文件夹，chmod 777 </p>
+<p>然后我们进行重新启动我们的clickhouse，通过 <code>sudo systemctl restart clickhouse-server.service</code></p>
+<p>然后通过命令登录clickhouse <code>clickhouse-client -u default --password liuzihan010616</code></p>
+<p>然后我们输入select * from system.clusters; 查看一下自己的集群出现如下结果就成功了</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Query id: a8bda66b-0e9b-4e52-a2ef-bf4450796d91</span><br><span class="line"></span><br><span class="line">┌─cluster────┬─shard_num─┬─shard_weight─┬─replica_num─┬─host_name─┬─host_address───┬─port─┬─is_local─┬─user────┬─default_database─┬─errors_count─┬─slowdowns_count─┬─estimated_recovery_time─┐</span><br><span class="line">│ ck_cluster │        <span class="number"> 1 </span>│           <span class="number"> 1 </span>│          <span class="number"> 1 </span>│ bigdata5  │ 192.168.41.134 │<span class="number"> 9000 </span>│       <span class="number"> 1 </span>│ default │                  │           <span class="number"> 0 </span>│              <span class="number"> 0 </span>│                      <span class="number"> 0 </span>│</span><br><span class="line">│ ck_cluster │        <span class="number"> 2 </span>│           <span class="number"> 1 </span>│          <span class="number"> 1 </span>│ bigdata4  │ 192.168.41.133 │<span class="number"> 9000 </span>│       <span class="number"> 0 </span>│ default │                  │           <span class="number"> 0 </span>│              <span class="number"> 0 </span>│                      <span class="number"> 0 </span>│</span><br><span class="line">│ ck_cluster │        <span class="number"> 3 </span>│           <span class="number"> 1 </span>│          <span class="number"> 1 </span>│ bigdata3  │ 192.168.41.132 │<span class="number"> 9000 </span>│       <span class="number"> 0 </span>│ default │                  │           <span class="number"> 0 </span>│              <span class="number"> 0 </span>│                      <span class="number"> 0 </span>│</span><br><span class="line">└────────────┴───────────┴──────────────┴─────────────┴───────────┴────────────────┴──────┴──────────┴─────────┴──────────────────┴──────────────┴─────────────────┴─────────────────────────┘</span><br><span class="line"></span><br><span class="line">3 rows in set. Elapsed: 0.001 sec. </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>如果启动不成功，就输入 <code>journalctl -xe</code></p>
+<p>查看系统日志，然后看报错信息解决</p>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/18/12-18/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2471,189 +2624,6 @@ numChildren = 0 下面的子节点
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/07/12-07/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/07/12-07/" class="post-title-link" itemprop="url">数据可视化</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-12-07 08:53:05" itemprop="dateCreated datePublished" datetime="2022-12-07T08:53:05+08:00">2022-12-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-09 13:34:57" itemprop="dateModified" datetime="2022-12-09T13:34:57+08:00">2022-12-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>9.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="数据可视化的数据库选择"><a href="#数据可视化的数据库选择" class="headerlink" title="数据可视化的数据库选择"></a>数据可视化的数据库选择</h1><p>一般选择响应数据库比较快的一般是 秒级，或者毫秒级 ： 不要选择hive</p>
-<p>因为hive太慢</p>
-<p>我们一般都把数据最后导入到mysql里</p>
-<p>作业：</p>
-<p>自己做一个dashboard</p>
-<h1 id="xxl"><a href="#xxl" class="headerlink" title="xxl"></a>xxl</h1><p>定时任务调度</p>
-<p>就是按照每天都要做的任务</p>
-<ul>
-<li>crontab 进行 用的比较少 而因为不方便</li>
-<li>定时任务的调度的框架<ul>
-<li>ozio , azkaban,airflow,xxl,dolphinscheduler</li>
-<li>现在ozio 和 azkaban 因为操作比较反人类，所以不太推荐</li>
-<li>airflow ： 通过python进行任务调度的</li>
-<li>公司首选 dolphinscheduler ，其次 xxl</li>
-</ul>
-</li>
-<li>针对 xxl 或者 dolphinscheduler 可以串联的方式进行执行调度，就是a任务完成，直接执行b任务等等</li>
-<li>但是crontab它要设置时间间隔，不可以串联的方式进行执行</li>
-<li>多任务之间的依赖关系 ：<ul>
-<li>DAG 有向无环图</li>
-</ul>
-</li>
-<li>xxl 官网 ： 国人开发的 <code>https://github.com/xuxueli/xxl-job</code><ul>
-<li>架构：主从架构，分布式架构</li>
-<li>老大：调度中心</li>
-<li>小弟：调度器</li>
-</ul>
-</li>
-<li>其他的都是apache的</li>
-</ul>
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>下载源码 ；</p>
-<p>导入idea 进行编译</p>
-<p>初始化“调度数据库”xxl源数据库 -》 mysql中</p>
-<p>首先在mysql中执行语句</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># XXL-JOB v2.4.0-SNAPSHOT</span><br><span class="line"># Copyright (c) 2015-present, xuxueli.</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">database</span> <span class="keyword">if</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> <span class="symbol">`xxl_job`</span> default character <span class="keyword">set</span> utf8mb4 <span class="keyword">collate</span> utf8mb4_unicode_ci;</span><br><span class="line">use `xxl_job`;</span><br><span class="line"></span><br><span class="line">SET NAMES utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_info`</span> (</span><br><span class="line">  <span class="symbol">`id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="symbol">`job_group`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器主键ID&#x27;</span>,</span><br><span class="line">  <span class="symbol">`job_desc`</span> varchar(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`add_time`</span> datetime DEFAULT <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`update_time`</span> datetime DEFAULT <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`author`</span> varchar(<span class="number">64</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;作者&#x27;</span>,</span><br><span class="line">  <span class="symbol">`alarm_email`</span> varchar(<span class="number">255</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;报警邮件&#x27;</span>,</span><br><span class="line">  <span class="symbol">`schedule_type`</span> varchar(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;NONE&#x27;</span> COMMENT <span class="string">&#x27;调度类型&#x27;</span>,</span><br><span class="line">  <span class="symbol">`schedule_conf`</span> varchar(<span class="number">128</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;调度配置，值含义取决于调度类型&#x27;</span>,</span><br><span class="line">  <span class="symbol">`misfire_strategy`</span> varchar(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;DO_NOTHING&#x27;</span> COMMENT <span class="string">&#x27;调度过期策略&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_route_strategy`</span> varchar(<span class="number">50</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器路由策略&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_handler`</span> varchar(<span class="number">255</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器任务handler&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_param`</span> varchar(<span class="number">512</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器任务参数&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_block_strategy`</span> varchar(<span class="number">50</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;阻塞处理策略&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_timeout`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;任务执行超时时间，单位秒&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_fail_retry_count`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;失败重试次数&#x27;</span>,</span><br><span class="line">  <span class="symbol">`glue_type`</span> varchar(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;GLUE类型&#x27;</span>,</span><br><span class="line">  <span class="symbol">`glue_source`</span> mediumtext COMMENT <span class="string">&#x27;GLUE源代码&#x27;</span>,</span><br><span class="line">  <span class="symbol">`glue_remark`</span> varchar(<span class="number">128</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;GLUE备注&#x27;</span>,</span><br><span class="line">  <span class="symbol">`glue_updatetime`</span> datetime DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;GLUE更新时间&#x27;</span>,</span><br><span class="line">  <span class="symbol">`child_jobid`</span> varchar(<span class="number">255</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;子任务ID，多个逗号分隔&#x27;</span>,</span><br><span class="line">  <span class="symbol">`trigger_status`</span> tinyint(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;调度状态：0-停止，1-运行&#x27;</span>,</span><br><span class="line">  <span class="symbol">`trigger_last_time`</span> bigint(<span class="number">13</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;上次调度时间&#x27;</span>,</span><br><span class="line">  <span class="symbol">`trigger_next_time`</span> bigint(<span class="number">13</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;下次调度时间&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`id`</span>)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_log`</span> (</span><br><span class="line">  <span class="symbol">`id`</span> bigint(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="symbol">`job_group`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器主键ID&#x27;</span>,</span><br><span class="line">  <span class="symbol">`job_id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;任务，主键ID&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_address`</span> varchar(<span class="number">255</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器地址，本次执行的地址&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_handler`</span> varchar(<span class="number">255</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器任务handler&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_param`</span> varchar(<span class="number">512</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器任务参数&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_sharding_param`</span> varchar(<span class="number">20</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器任务分片参数，格式如 1/2&#x27;</span>,</span><br><span class="line">  <span class="symbol">`executor_fail_retry_count`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;失败重试次数&#x27;</span>,</span><br><span class="line">  <span class="symbol">`trigger_time`</span> datetime DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;调度-时间&#x27;</span>,</span><br><span class="line">  <span class="symbol">`trigger_code`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;调度-结果&#x27;</span>,</span><br><span class="line">  <span class="symbol">`trigger_msg`</span> text COMMENT <span class="string">&#x27;调度-日志&#x27;</span>,</span><br><span class="line">  <span class="symbol">`handle_time`</span> datetime DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行-时间&#x27;</span>,</span><br><span class="line">  <span class="symbol">`handle_code`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行-状态&#x27;</span>,</span><br><span class="line">  <span class="symbol">`handle_msg`</span> text COMMENT <span class="string">&#x27;执行-日志&#x27;</span>,</span><br><span class="line">  <span class="symbol">`alarm_status`</span> tinyint(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;告警状态：0-默认、1-无需告警、2-告警成功、3-告警失败&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`id`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="symbol">`I_trigger_time`</span> (<span class="symbol">`trigger_time`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="symbol">`I_handle_code`</span> (<span class="symbol">`handle_code`</span>)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_log_report`</span> (</span><br><span class="line">  <span class="symbol">`id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="symbol">`trigger_day`</span> datetime DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;调度-时间&#x27;</span>,</span><br><span class="line">  <span class="symbol">`running_count`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;运行中-日志数量&#x27;</span>,</span><br><span class="line">  <span class="symbol">`suc_count`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;执行成功-日志数量&#x27;</span>,</span><br><span class="line">  <span class="symbol">`fail_count`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;执行失败-日志数量&#x27;</span>,</span><br><span class="line">  <span class="symbol">`update_time`</span> datetime DEFAULT <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`id`</span>),</span><br><span class="line">  <span class="keyword">UNIQUE</span> <span class="keyword">KEY</span> <span class="symbol">`i_trigger_day`</span> (<span class="symbol">`trigger_day`</span>) <span class="keyword">USING</span> BTREE</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_logglue`</span> (</span><br><span class="line">  <span class="symbol">`id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="symbol">`job_id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;任务，主键ID&#x27;</span>,</span><br><span class="line">  <span class="symbol">`glue_type`</span> varchar(<span class="number">50</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;GLUE类型&#x27;</span>,</span><br><span class="line">  <span class="symbol">`glue_source`</span> mediumtext COMMENT <span class="string">&#x27;GLUE源代码&#x27;</span>,</span><br><span class="line">  <span class="symbol">`glue_remark`</span> varchar(<span class="number">128</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;GLUE备注&#x27;</span>,</span><br><span class="line">  <span class="symbol">`add_time`</span> datetime DEFAULT <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`update_time`</span> datetime DEFAULT <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`id`</span>)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_registry`</span> (</span><br><span class="line">  <span class="symbol">`id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="symbol">`registry_group`</span> varchar(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`registry_key`</span> varchar(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`registry_value`</span> varchar(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`update_time`</span> datetime DEFAULT <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`id`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="symbol">`i_g_k_v`</span> (<span class="symbol">`registry_group`</span>,<span class="symbol">`registry_key`</span>,<span class="symbol">`registry_value`</span>)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_group`</span> (</span><br><span class="line">  <span class="symbol">`id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="symbol">`app_name`</span> varchar(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器AppName&#x27;</span>,</span><br><span class="line">  <span class="symbol">`title`</span> varchar(<span class="number">12</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;执行器名称&#x27;</span>,</span><br><span class="line">  <span class="symbol">`address_type`</span> tinyint(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEFAULT <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;执行器地址类型：0=自动注册、1=手动录入&#x27;</span>,</span><br><span class="line">  <span class="symbol">`address_list`</span> text COMMENT <span class="string">&#x27;执行器地址列表，多地址逗号分隔&#x27;</span>,</span><br><span class="line">  <span class="symbol">`update_time`</span> datetime DEFAULT <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`id`</span>)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_user`</span> (</span><br><span class="line">  <span class="symbol">`id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="symbol">`username`</span> varchar(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;账号&#x27;</span>,</span><br><span class="line">  <span class="symbol">`password`</span> varchar(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;密码&#x27;</span>,</span><br><span class="line">  <span class="symbol">`role`</span> tinyint(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;角色：0-普通用户、1-管理员&#x27;</span>,</span><br><span class="line">  <span class="symbol">`permission`</span> varchar(<span class="number">255</span>) DEFAULT <span class="literal">NULL</span> COMMENT <span class="string">&#x27;权限：执行器ID列表，多个逗号分割&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`id`</span>),</span><br><span class="line">  <span class="keyword">UNIQUE</span> <span class="keyword">KEY</span> <span class="symbol">`i_username`</span> (<span class="symbol">`username`</span>) <span class="keyword">USING</span> BTREE</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> TABLE <span class="symbol">`xxl_job_lock`</span> (</span><br><span class="line">  <span class="symbol">`lock_name`</span> varchar(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> COMMENT <span class="string">&#x27;锁名称&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`lock_name`</span>)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="symbol">`xxl_job_group`</span>(<span class="symbol">`id`</span>, <span class="symbol">`app_name`</span>, <span class="symbol">`title`</span>, <span class="symbol">`address_type`</span>, <span class="symbol">`address_list`</span>, <span class="symbol">`update_time`</span>) <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;xxl-job-executor-sample&#x27;</span>, <span class="string">&#x27;示例执行器&#x27;</span>, <span class="number">0</span>, <span class="literal">NULL</span>, <span class="string">&#x27;2018-11-03 22:21:31&#x27;</span> );</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="symbol">`xxl_job_info`</span>(<span class="symbol">`id`</span>, <span class="symbol">`job_group`</span>, <span class="symbol">`job_desc`</span>, <span class="symbol">`add_time`</span>, <span class="symbol">`update_time`</span>, <span class="symbol">`author`</span>, <span class="symbol">`alarm_email`</span>, <span class="symbol">`schedule_type`</span>, <span class="symbol">`schedule_conf`</span>, <span class="symbol">`misfire_strategy`</span>, <span class="symbol">`executor_route_strategy`</span>, <span class="symbol">`executor_handler`</span>, <span class="symbol">`executor_param`</span>, <span class="symbol">`executor_block_strategy`</span>, <span class="symbol">`executor_timeout`</span>, <span class="symbol">`executor_fail_retry_count`</span>, <span class="symbol">`glue_type`</span>, <span class="symbol">`glue_source`</span>, <span class="symbol">`glue_remark`</span>, <span class="symbol">`glue_updatetime`</span>, <span class="symbol">`child_jobid`</span>) <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="number">1</span>, <span class="string">&#x27;测试任务1&#x27;</span>, <span class="string">&#x27;2018-11-03 22:21:31&#x27;</span>, <span class="string">&#x27;2018-11-03 22:21:31&#x27;</span>, <span class="string">&#x27;XXL&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;CRON&#x27;</span>, <span class="string">&#x27;0 0 0 * * ? *&#x27;</span>, <span class="string">&#x27;DO_NOTHING&#x27;</span>, <span class="string">&#x27;FIRST&#x27;</span>, <span class="string">&#x27;demoJobHandler&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;SERIAL_EXECUTION&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">&#x27;BEAN&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;GLUE代码初始化&#x27;</span>, <span class="string">&#x27;2018-11-03 22:21:31&#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="symbol">`xxl_job_user`</span>(<span class="symbol">`id`</span>, <span class="symbol">`username`</span>, <span class="symbol">`password`</span>, <span class="symbol">`role`</span>, <span class="symbol">`permission`</span>) <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;admin&#x27;</span>, <span class="string">&#x27;e10adc3949ba59abbe56e057f20f883e&#x27;</span>, <span class="number">1</span>, <span class="literal">NULL</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="symbol">`xxl_job_lock`</span> ( <span class="symbol">`lock_name`</span>) <span class="keyword">VALUES</span> ( <span class="string">&#x27;schedule_lock&#x27;</span>);</span><br><span class="line"></span><br><span class="line">commit;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>然后再把从GitHub上下载的文件夹用idea打开进行编译</p>
-<p>进行配置我们的web端口以及数据库：在application.properties文件中，然后配置一下</p>
-<p>配置好之后maven，之间打成jar包，然后上传到linux服务器上</p>
-<p>运行java -jar 上传的文件的路径</p>
-<p>然后会报错，就创建个文件夹就好了 <code>mkdir -p /data/applogs/xxl-job</code></p>
-<p>使用su 进行用户切换</p>
-<p>然后通过chown 进行修改组以及用户 <code>chown -R hadoop:hadoop /data</code></p>
-<p>然后再次运行就可以了</p>
-<p>然后在调度器管理页面添加调度器，然后分配任务就可以了</p>
-<h1 id="钉钉报警"><a href="#钉钉报警" class="headerlink" title="钉钉报警"></a>钉钉报警</h1><p>钉钉机器人可发送的类型</p>
-<ul>
-<li>文本</li>
-<li>链接</li>
-<li>markdown</li>
-<li>actioncard</li>
-<li>feedcard</li>
-</ul>
-<p>weget  ： 从互联网上下载的时候用的 ： 下载安装包 ，但是占用网络资源较大，且会一直重复下载直到结果成功，所以占用的资源较大</p>
-<p>curl ： 发送请求的，发送网页请求访问的，也可以进行下载</p>
-<ul>
-<li>-o ： 把访问的一个页面存储到文件里</li>
-</ul>
-<p>机器人发送消息</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;机器人的token&#x27;</span><br><span class="line">-H <span class="symbol">&#x27;Content</span>-<span class="keyword">type</span>:application/json&#x27;</span><br><span class="line">-d &#x27;&#123;<span class="string">&quot;msgtype&quot;</span> : <span class="type">text</span>&#125;&#x27;</span><br></pre></td></tr></table></figure>
-
-
-<p>需求 ： </p>
-<ul>
-<li>日志数据 ： hdfs 上 linux user_click.log</li>
-<li>例子： u01,鼠标,ios</li>
-</ul>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">u01,</span>鼠标,ios</span><br><span class="line"><span class="built_in">u01,</span>鼠标,ios</span><br><span class="line"><span class="built_in">u01,</span>鼠标,ios</span><br><span class="line"><span class="built_in">u01,</span>鼠标,ios</span><br><span class="line"><span class="built_in">u01,</span>鼠标,ios</span><br><span class="line"><span class="built_in">u02,</span>键盘,android</span><br><span class="line"><span class="built_in">u02,</span>键盘,android</span><br><span class="line"><span class="built_in">u02,</span>键盘,android</span><br><span class="line"><span class="built_in">u02,</span>键盘,android</span><br><span class="line"><span class="built_in">u03,</span>显示器,ios</span><br><span class="line"><span class="built_in">u04,</span>托特包,ios</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>业务数据 ：mysql user_info</li>
-</ul>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">u01,</span>子航</span><br><span class="line"><span class="built_in">u02,</span>祖安</span><br><span class="line"><span class="built_in">u03,</span>海哥</span><br><span class="line"><span class="built_in">u04,</span>轩轩</span><br></pre></td></tr></table></figure>
-
-<p>统计：</p>
-<p>uid ， name ，sku ， os 每个用户点击商品的次数</p>
-<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> bianhao,shop_name,caozuoxit,<span class="keyword">count</span>(*) <span class="keyword">as</span> cishu <span class="keyword">from</span> user_click1 <span class="keyword">group</span> <span class="keyword">by</span> bianhao,shop_name,caozuoxit;</span><br></pre></td></tr></table></figure>
-
-<p>取出表中重复数据，的次数做个排序</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> shop_name,caozuoxit,<span class="type">name</span>,row_number() <span class="keyword">over</span> (<span class="keyword">partition</span> <span class="keyword">by</span> <span class="type">name</span>) <span class="keyword">as</span> rm <span class="keyword">from</span> (</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> user_click1 <span class="keyword">left join</span> user_info <span class="keyword">on</span> user_click1.bianhao=user_info.bianhao</span><br><span class="line">) <span class="keyword">as</span> king</span><br></pre></td></tr></table></figure>
-
-<p>不重复字段标识为1</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">u01</span>,子航,鼠标,ios <span class="number">1</span></span><br><span class="line"><span class="attribute">u01</span>,子航,鼠标,ios <span class="number">2</span></span><br><span class="line"><span class="attribute">u01</span>,子航,鼠标,ios <span class="number">3</span></span><br><span class="line"><span class="attribute">u04</span>,托特包,ios <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<p>统计表中不重复的数据，一起做排序，但是对于重复数据它还是对自己排序</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="type">name</span>,caozuoxit,shop_name,row_number() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> cishu) <span class="keyword">from</span> (</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> user_click1 <span class="keyword">left join</span> (</span><br><span class="line"><span class="keyword">select</span> bianhao,count(*) <span class="keyword">as</span> cishu <span class="keyword">from</span> user_click1 <span class="keyword">group</span> <span class="keyword">by</span> bianhao,shop_name,caozuoxit</span><br><span class="line">) <span class="keyword">as</span> count_click <span class="keyword">on</span> count_click.bianhao=user_click1.bianhao</span><br><span class="line"><span class="keyword">left join</span> user_info <span class="keyword">on</span> count_click.bianhao=user_info.bianhao  </span><br><span class="line">) <span class="keyword">as</span> ds;</span><br><span class="line">上述是取巧的方法</span><br><span class="line">下面是正经的方法</span><br><span class="line"><span class="keyword">select</span> count_clickbianhao,<span class="type">name</span>,caozuoxit,shop_name,row_number() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> cishu) <span class="keyword">as</span> rm <span class="keyword">from</span> (</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> user_click1 <span class="keyword">left join</span> (</span><br><span class="line"><span class="keyword">select</span> bianhao <span class="keyword">as</span> count_clickbianhao,count(*) <span class="keyword">as</span> cishu <span class="keyword">from</span> user_click1 <span class="keyword">group</span> <span class="keyword">by</span> bianhao,shop_name,caozuoxit</span><br><span class="line">) <span class="keyword">as</span> count_click <span class="keyword">on</span> count_click.count_clickbianhao=user_click1.bianhao </span><br><span class="line"><span class="keyword">left join</span> user_info <span class="keyword">on</span> count_click.count_clickbianhao=user_info.bianhao  </span><br><span class="line">) <span class="keyword">as</span> jj <span class="keyword">where</span> cishu = <span class="number">1</span> </span><br><span class="line"><span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line"><span class="keyword">select</span> count_clickbianhao,<span class="type">name</span>,caozuoxit,shop_name,row_number() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> (<span class="type">name</span>,caozuoxit,shop_name,cishu)) <span class="keyword">from</span> (</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> user_click1 <span class="keyword">left join</span> (</span><br><span class="line"><span class="keyword">select</span> bianhao <span class="keyword">as</span> count_clickbianhao,count(*) <span class="keyword">as</span> cishu <span class="keyword">from</span> user_click1 <span class="keyword">group</span> <span class="keyword">by</span> bianhao,shop_name,caozuoxit</span><br><span class="line">) <span class="keyword">as</span> count_click <span class="keyword">on</span> count_click.count_clickbianhao=user_click1.bianhao </span><br><span class="line"><span class="keyword">left join</span> user_info <span class="keyword">on</span> count_click.count_clickbianhao=user_info.bianhao  </span><br><span class="line">) <span class="keyword">as</span> j <span class="keyword">where</span> cishu != <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-
-<p>整个流程使用xxl进行调度</p>
-<p>最后结果导入到mysql</p>
-<p>数据导入mysql保证幂等性</p>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2725,7 +2695,7 @@ numChildren = 0 下面的子节点
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2795,7 +2765,7 @@ numChildren = 0 下面的子节点
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共118.6k字</span>
+  <span class="post-count">博客全站共120.6k字</span>
 </div>
 
 
