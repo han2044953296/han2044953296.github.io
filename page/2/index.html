@@ -2297,7 +2297,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-03 12:04:48" itemprop="dateModified" datetime="2022-12-03T12:04:48+08:00">2022-12-03</time>
+                <time title="修改时间：2022-12-24 09:42:27" itemprop="dateModified" datetime="2022-12-24T09:42:27+08:00">2022-12-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2405,16 +2405,15 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> name,location</span><br><span class="line"><span class="keyword">from</span> hive_array <span class="keyword">lateral</span> <span class="keyword">view</span> explode(locations) loc_table <span class="keyword">as</span> location;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>需求： 1.查询表中每个人的father的名字</p>
-<p>select id,name,age,relation[‘father’] as father from hive_map;</p>
+<p><code>select id,name,age,relation[&#39;father&#39;] as father from hive_map;</code></p>
 <p>2.查询表中 每个人的家庭成员   keys</p>
-<p>select id,name,age,map_keys(relation) as members from hive_map;</p>
+<p><code>select id,name,age,map_keys(relation) as members from hive_map;</code></p>
 <p>3.查询表中 每个人的家庭成员的名字 values</p>
-<p>select id,name,age,map_values(relation) as members from hive_map;</p>
+<p><code>select id,name,age,map_values(relation) as members from hive_map;</code></p>
 <p>4.查询表中 有brother的人以及brother的名字</p>
-<p>select<br> id,name,age,relation[‘brother’] as brother<br>from hive_map<br>where<br>relation[‘brother’] is not null;</p>
-<p>或者可以</p>
-<p>select<br> id,name,age,relation[‘brother’] as brother<br>from hive_map<br>where<br>array_contains(map_keys(relation), ‘brother’);</p>
-<p>&#x2F;&#x2F; map_key()函数的意思是可以把这个列的map的key当作array取出来</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line"> id,<span class="type">name</span>,age,relation[<span class="string">&#x27;brother&#x27;</span>] <span class="keyword">as</span> brother</span><br><span class="line"><span class="keyword">from</span> hive_map</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">relation[<span class="string">&#x27;brother&#x27;</span>] <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">null</span>;或者可以<span class="keyword">select</span></span><br><span class="line"> id,<span class="type">name</span>,age,relation[<span class="string">&#x27;brother&#x27;</span>] <span class="keyword">as</span> brother</span><br><span class="line"><span class="keyword">from</span> hive_map</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">array_contains(map_keys(relation), <span class="string">&#x27;brother&#x27;</span>);// map_key()函数的意思是可以把这个列的map的key当作<span class="keyword">array</span>取出来</span><br></pre></td></tr></table></figure>
+
+
 <h2 id="structs"><a href="#structs" class="headerlink" title="structs"></a>structs</h2><p>select ip,userinfo.name as name ,userinfo.age as age from hive_struct;</p>
 <h2 id="开窗函数-："><a href="#开窗函数-：" class="headerlink" title="开窗函数 ："></a>开窗函数 ：</h2><ul>
 <li>分析函数：对开窗函数的分析的函数<ul>
@@ -3069,7 +3068,7 @@ is null 作用一样 &lt;=&gt;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共129.6k字</span>
+  <span class="post-count">博客全站共133.1k字</span>
 </div>
 
 
