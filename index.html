@@ -324,7 +324,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-27 11:11:54" itemprop="dateModified" datetime="2022-12-27T11:11:54+08:00">2022-12-27</time>
+                <time title="修改时间：2022-12-27 14:15:48" itemprop="dateModified" datetime="2022-12-27T14:15:48+08:00">2022-12-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -342,7 +342,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>18k</span>
+              <span>19k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -809,6 +809,31 @@
 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> RichFile(<span class="keyword">file</span>:<span class="keyword">File</span>)&#123;</span><br><span class="line"></span><br><span class="line">  def read()=&#123;</span><br><span class="line">    Source.fromFile(<span class="keyword">file</span>.getPath).getLines().mkString(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">---------------------------------------------------main</span><br><span class="line"> <span class="keyword">implicit</span> def ADDREAD(<span class="keyword">file</span>:<span class="keyword">File</span>):RichFile=&#123;</span><br><span class="line">      new RichFile(<span class="keyword">file</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    var q = new <span class="keyword">File</span>(<span class="string">&quot;F:\\bigdatajava\\src\\main\\resources\\wc.data&quot;</span>)</span><br><span class="line">    println(q.read())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>🐂的</p>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>方法中的泛型：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">MsG</span>[<span class="type">T</span>](<span class="params">content:<span class="type">T</span></span>)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Wechat</span>(<span class="params">conte:<span class="type">String</span></span>) <span class="keyword">extends</span> <span class="title">MsG</span>(<span class="params">conte</span>)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QQChat</span>[<span class="type">Int</span>](<span class="params">cont:<span class="type">Int</span></span>) <span class="keyword">extends</span> <span class="title">MsG</span>(<span class="params">cont</span>)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZFBchat</span>(<span class="params">con:<span class="type">BigInt</span></span>) <span class="keyword">extends</span> <span class="title">MsG</span>[<span class="type">BigInt</span>](<span class="params">con</span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>例子 ：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">boy</span>[<span class="symbol">A,<span class="symbol">B</span>,<span class="symbol">C</span></span>](<span class="symbol">val</span> <span class="symbol">hashband:<span class="symbol">A</span>,<span class="symbol">val</span></span> <span class="symbol">heigtt:<span class="symbol">B</span>,<span class="symbol">val</span></span> <span class="symbol">chuanzhuio:<span class="symbol">C</span></span>)&#123;</span><br><span class="line">  <span class="keyword">override</span> def toString: String = hashband +<span class="string">&quot;\t&quot;</span>+ heigtt+<span class="string">&quot;\t&quot;</span>+chuanzhuio</span><br><span class="line">&#125;</span><br><span class="line">----------------------------------枚举</span><br><span class="line">  object Facevalue extends Enumeration&#123;</span><br><span class="line">    type Face = Value</span><br><span class="line">    val A,B,C,D = Value</span><br><span class="line">  &#125;</span><br><span class="line">---------------------------main</span><br><span class="line">new boy[example.test.te2.Facevalue,Int,Double](Facevalue.A,<span class="number">181</span>,<span class="number">9</span>)</span><br></pre></td></tr></table></figure>
+
+<p>上下界 ：</p>
+<ul>
+<li>上界：<code>&lt;T extends Test&gt;</code>:T是Test的子类 &#x2F; <code>&lt;? extends Test&gt;</code></li>
+<li>下界：<code>&lt;T extends Test&gt;</code>:T可以说Test的父类 &#x2F; <code>&lt;? extends Test&gt;</code></li>
+<li>逆变 vs 协变 &#x3D;》 + -</li>
+</ul>
+<h3 id="排序-："><a href="#排序-：" class="headerlink" title="排序 ："></a>排序 ：</h3><p>scala </p>
+<ul>
+<li>Ordering -&gt; comparator</li>
+<li>Ordered -&gt; comparable</li>
+</ul>
+<p>重点 ：</p>
+<ul>
+<li>高级api</li>
+<li>基本类型使用</li>
+<li>模式匹配</li>
+<li>隐式转换</li>
+<li>类的定义</li>
+</ul>
 
       
     </div>
@@ -3141,7 +3166,7 @@ numChildren = 0 下面的子节点
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共133.7k字</span>
+  <span class="post-count">博客全站共133.9k字</span>
 </div>
 
 
