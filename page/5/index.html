@@ -198,6 +198,153 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/10/27/10-27/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/27/10-27/" class="post-title-link" itemprop="url">Map</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-27 09:00:17" itemprop="dateCreated datePublished" datetime="2022-10-27T09:00:17+08:00">2022-10-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><ul>
+<li><p>Map和集合是无关系的</p>
+</li>
+<li><p>Map是个接口</p>
+</li>
+<li><p>旗下有hashMap和TreeMap</p>
+</li>
+<li><p>简单代码</p>
+</li>
+</ul>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Map&lt;String , String&gt; map1 = new HashMap&lt;&gt;();</span><br><span class="line">	map1.<span class="keyword">put</span>(<span class="string">&quot;1&quot;</span>, <span class="string">&quot;事假&quot;</span>);</span><br><span class="line">	map1.<span class="keyword">put</span>(<span class="string">&quot;2&quot;</span>, <span class="string">&quot;病假&quot;</span>);</span><br><span class="line">	map1.<span class="keyword">put</span>(<span class="string">&quot;3&quot;</span>, <span class="string">&quot;产假&quot;</span>);</span><br><span class="line">	map1.<span class="keyword">put</span>(<span class="string">&quot;2&quot;</span>, <span class="string">&quot;施加&quot;</span>);</span><br><span class="line">	Set&lt;String&gt; ks = map1.keySet();</span><br><span class="line">	Iterator&lt;String&gt; <span class="keyword">it</span> = ks.iterator();</span><br><span class="line">	<span class="keyword">while</span>(<span class="keyword">it</span>.hasNext()) &#123;</span><br><span class="line">		String <span class="built_in">item</span> = <span class="keyword">it</span>.next();</span><br><span class="line">		System.out.println(<span class="string">&quot;key&quot;</span> + <span class="built_in">item</span> + <span class="string">&quot;@value:&quot;</span> + map1.<span class="keyword">get</span>(<span class="built_in">item</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>entrySet</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="title class_">Set</span>&lt;<span class="title class_">Map</span>.<span class="property">Entry</span>&lt;<span class="title class_">String</span>, <span class="title class_">String</span>&gt;&gt; km = map1.<span class="title function_">entrySet</span>();</span><br><span class="line"><span class="title class_">Iterator</span>&lt;<span class="title class_">Map</span>.<span class="property">Entry</span>&lt;<span class="title class_">String</span>, <span class="title class_">String</span>&gt;&gt; il = km.<span class="title function_">iterator</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(il.<span class="title function_">hasNext</span>()) &#123;</span><br><span class="line"><span class="title class_">Entry</span>&lt;<span class="title class_">String</span> , <span class="title class_">String</span>&gt; entry = il.<span class="title function_">next</span>();</span><br><span class="line"><span class="title class_">System</span>.<span class="property">out</span>.<span class="title function_">println</span>(entry.<span class="title function_">getKey</span>() + entry.<span class="title function_">getValue</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="title class_">Entry</span>&lt;<span class="title class_">String</span>, <span class="title class_">String</span>&gt; entry : km) &#123;</span><br><span class="line">	<span class="title class_">System</span>.<span class="property">out</span>.<span class="title function_">println</span>(entry.<span class="title function_">getKey</span>() + entry.<span class="title function_">getValue</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">km.<span class="title function_">forEach</span>(<span class="keyword">new</span> <span class="title class_">Consumer</span>() &#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="built_in">void</span> <span class="title function_">accept</span>(<span class="params"><span class="built_in">Object</span> t</span>) &#123;</span><br><span class="line">	<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">	<span class="title class_">System</span>.<span class="property">out</span>.<span class="title function_">println</span>(t);</span><br><span class="line">&#125;&#125;); <span class="comment">// Consumer里面有个抽象方法 ，accept，我们要做的事情放进这个accept里，就代表对其每个元素进行accept里的操作 ，就是lambda的表达式</span></span><br><span class="line">		</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>上述是两种遍历方式，迭代器可边遍历便删除，是我们最古老的，可是也是唯一有这个功能的 ，iterator</li>
+<li>其他的都要遍历完了才能再删除</li>
+<li>而且entrySet比keySet是要更快点的（单纯遍历）</li>
+<li>迭代器的算法是要比后来的算法速度快的，遍历的时候</li>
+</ul>
+<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><ul>
+<li>lambda表达式是很便捷的一种方法</li>
+<li>要求：定义规则，定义几个变量</li>
+<li>首先，我们要定义一个接口</li>
+</ul>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="symbol">Yunsuan</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">int</span> yunsuan(<span class="built_in">int</span> i , <span class="built_in">int</span> j);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后在这个接口上增加@FunctionalInterface ，注意这个标志是让这个接口只有一个抽象方法，多个抽象方法会报错</li>
+<li>这一步是定义我们的，几个元素</li>
+<li>接下来我们定义一个函数 ，让这个接口当作参数 ，并且给这个接口传入两个参数</li>
+</ul>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="type">static</span> <span class="type">int</span> <span class="title">getresult</span><span class="params">(<span class="type">int</span> a , <span class="type">int</span> b, Yunsuan yunsuan)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span>	yunsuan.<span class="built_in">yunsuan</span>(a, b);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>这样 ，我们就算是把这个规则实体化了，接下来我们只要调用这个规则的实例化，就可以对这两个数进行任意操作了</li>
+<li>比如<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">System.out.println<span class="function"><span class="params">(getresult(<span class="number">3</span>,<span class="number">2</span>, (i,j)-&gt;i+j))</span>; // 前面两个是实参 ，后面的是规则就这样写就行 ，格式固定，但是语法不固定</span></span><br><span class="line"><span class="function"></span></span><br></pre></td></tr></table></figure></li>
+<li>上面的foreach里嵌套的就算lambda的表达式</li>
+</ul>
+<h1 id="Map特殊事项"><a href="#Map特殊事项" class="headerlink" title="Map特殊事项"></a>Map特殊事项</h1><ul>
+<li><p>如果在map里把key放入引用类型，则对比key的操作会变成对比hashcode和equals，可控性更强</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> 重新开始;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.<span class="property">util</span>.<span class="property">HashMap</span>;</span><br><span class="line"><span class="keyword">import</span> java.<span class="property">util</span>.<span class="property">Map</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TEstmain1</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span>(<span class="built_in">String</span>[] args) &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">		Map&lt;stu , <span class="built_in">Object</span>&gt; <span class="built_in">map</span> = <span class="keyword">new </span><span class="class title_">HashMap</span>&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">map</span>.<span class="property">put</span>(<span class="keyword">new </span><span class="class title_">stu</span>(<span class="string">&quot;小明&quot;</span>  , <span class="number">1</span>), <span class="number">1</span>);</span><br><span class="line">		<span class="built_in">map</span>.<span class="property">put</span>(<span class="literal">null</span> , <span class="literal">null</span>);</span><br><span class="line">		<span class="built_in">map</span>.<span class="property">put</span>(<span class="keyword">new </span><span class="class title_">stu</span>(<span class="string">&quot;狗蛋&quot;</span> , <span class="number">1</span>) , <span class="number">2</span>);</span><br><span class="line">		System.<span class="property">out</span>.<span class="property">println</span>(<span class="built_in">map</span>.<span class="property">size</span>());</span><br><span class="line">		<span class="built_in">map</span>.<span class="property">forEach</span>((k , v) -&gt; &#123;System.<span class="property">out</span>.<span class="property">println</span>(k + <span class="string">&quot;@&quot;</span> +v);&#125;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>stu类，通过自动生成hashcode和equals，（我这里只生成了num的）</p>
+</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">stu</span> <span class="keyword">implements</span> <span class="title class_">Comparable</span>&lt;stu&gt;&#123;</span><br><span class="line">	<span class="keyword">private</span> int num;</span><br><span class="line">	<span class="keyword">private</span> <span class="title class_">String</span> name;</span><br><span class="line">	<span class="keyword">private</span> double score;</span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">stu</span>(<span class="params"> <span class="built_in">String</span> name , int num</span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">num</span> = num;</span><br><span class="line">		<span class="comment">// TODO Auto-generated constructor stub</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">stu</span>(<span class="params"> <span class="built_in">String</span> name , int num , double m</span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">num</span> = num;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">score</span> = m;</span><br><span class="line">		<span class="comment">// TODO Auto-generated constructor stub</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">stu</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="variable language_">super</span>();</span><br><span class="line">		<span class="comment">// TODO Auto-generated constructor stub</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> int <span class="title function_">getNum</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> num;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">void</span> <span class="title function_">setNum</span>(<span class="params">int num</span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">num</span> = num;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="title class_">String</span> <span class="title function_">getName</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">void</span> <span class="title function_">setName</span>(<span class="params"><span class="built_in">String</span> name</span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="title class_">String</span> <span class="title function_">toString</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;stu [num=&quot;</span> + num + <span class="string">&quot;, name=&quot;</span> + name + <span class="string">&quot;, score=&quot;</span> + score + <span class="string">&quot;]&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> int <span class="title function_">hashCode</span>(<span class="params"></span>) &#123;</span><br><span class="line">		final int prime = <span class="number">31</span>;</span><br><span class="line">		int result = <span class="number">1</span>;</span><br><span class="line">		result = prime * result + num;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">boolean</span> <span class="title function_">equals</span>(<span class="params"><span class="built_in">Object</span> obj</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="variable language_">this</span> == obj)</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">if</span> (obj == <span class="literal">null</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span> (<span class="title function_">getClass</span>() != obj.<span class="title function_">getClass</span>())</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		stu other = (stu) obj;</span><br><span class="line">		<span class="keyword">if</span> (num != other.<span class="property">num</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 大于0是正数，小于0是负数 ，等于0是相等 ，</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> int <span class="title function_">compareTo</span>(<span class="params">stu o</span>) &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">num</span> == o.<span class="property">num</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">name</span>.<span class="title function_">length</span>() - o.<span class="property">name</span>.<span class="title function_">length</span>();</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> o.<span class="property">num</span> - <span class="variable language_">this</span>.<span class="property">num</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> double <span class="title function_">getScore</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> score;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">void</span> <span class="title function_">setScore</span>(<span class="params">double score</span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">score</span> = score;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="lambda加for循环-加上TreeMap"><a href="#lambda加for循环-加上TreeMap" class="headerlink" title="lambda加for循环 加上TreeMap"></a>lambda加for循环 加上TreeMap</h1><ul>
+<li><p>通过treeMap实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> 重新开始;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.TreeMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TEstmain1</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		TreeMap&lt;stu , Object&gt; map11 = <span class="keyword">new</span> <span class="title class_">TreeMap</span>();</span><br><span class="line">		map11.put(<span class="keyword">new</span> <span class="title class_">stu</span>(<span class="string">&quot;小明&quot;</span>,  <span class="number">1</span>), <span class="number">1</span>);</span><br><span class="line">		map11.put(<span class="keyword">new</span> <span class="title class_">stu</span>(<span class="string">&quot;狗蛋&quot;</span> ,  <span class="number">2</span>) ,<span class="number">2</span>);</span><br><span class="line">		map11.put(<span class="keyword">new</span> <span class="title class_">stu</span>(<span class="string">&quot;linux&quot;</span> , <span class="number">3</span>), <span class="number">3</span>);</span><br><span class="line">		map11.put(<span class="keyword">new</span> <span class="title class_">stu</span>(<span class="string">&quot;狗蛋&quot;</span> ,  <span class="number">2</span>) ,<span class="number">99</span>);</span><br><span class="line">		map11.forEach(TEstmain1::abc);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">abc</span><span class="params">(stu s , Object value)</span> &#123;</span><br><span class="line">		System.out.println(s + <span class="string">&quot;@&quot;</span> +value);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上述的是针对foreach有两个参数的情况，可以定义一个函数，让他去传递参数，和lambda一样</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/10/26/10-26/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1712,110 +1859,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/10/17/10-17/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/17/10-17/" class="post-title-link" itemprop="url">数字及big类</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-17 17:44:10" itemprop="dateCreated datePublished" datetime="2022-10-17T17:44:10+08:00">2022-10-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="关于数学包里常用的几个类"><a href="#关于数学包里常用的几个类" class="headerlink" title="关于数学包里常用的几个类"></a>关于数学包里常用的几个类</h1><h2 id="abs"><a href="#abs" class="headerlink" title="abs"></a>abs</h2><p>abs是取绝对值</p>
-<h2 id="cell"><a href="#cell" class="headerlink" title="cell"></a>cell</h2><p>向上（正方向）取整</p>
-<h2 id="floor"><a href="#floor" class="headerlink" title="floor"></a>floor</h2><p>向下（负方向）取整</p>
-<h2 id="round"><a href="#round" class="headerlink" title="round"></a>round</h2><p> 四舍五入</p>
-<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 简单的例子 ，5舍6入</span></span><br><span class="line">可以通过<span class="built_in">floor</span>进行</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="BigInteger"><a href="#BigInteger" class="headerlink" title="BigInteger"></a>BigInteger</h1><p>BigInteger类型的数字范围较Integer，Long类型的数字范围要大得多，它支持任意精度的整数，也就是说在运算中 BigInteger 类型可以准确地表示任何大小的整数值而不会丢失任何信息。</p>
-<h2 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="regexp">//</span><span class="number">1</span>.加</span><br><span class="line">BigInteger bigNum1 = a.add(b);			<span class="regexp">//</span><span class="number">17</span></span><br><span class="line"><span class="regexp">//</span><span class="number">2</span>.减</span><br><span class="line">BigInteger bigNum2 = a.subtract(b);		<span class="regexp">//</span><span class="number">9</span></span><br><span class="line"><span class="regexp">//</span><span class="number">3</span>.乘</span><br><span class="line">BigInteger bigNum3 = a.multiply(b);		<span class="regexp">//</span><span class="number">52</span></span><br><span class="line"><span class="regexp">//</span><span class="number">4</span>.除</span><br><span class="line">BigInteger bigNum4 = a.divide(b);		<span class="regexp">//</span><span class="number">3</span></span><br><span class="line"><span class="regexp">//</span><span class="number">5</span>.取模(需 b &gt; <span class="number">0</span>，否则出现异常：ArithmeticException(<span class="string">&quot;BigInteger: modulus not positive&quot;</span>))</span><br><span class="line">BigInteger bigNum5 = a.mod(b);			<span class="regexp">//</span><span class="number">1</span></span><br><span class="line"><span class="regexp">//</span><span class="number">6</span>.求余</span><br><span class="line">BigInteger bigNum6 = a.remainder(b);	<span class="regexp">//</span><span class="number">1</span></span><br><span class="line"><span class="regexp">//</span><span class="number">7</span>.平方(需 n &gt;= <span class="number">0</span>，否则出现异常：ArithmeticException(<span class="string">&quot;Negative exponent&quot;</span>))</span><br><span class="line">BigInteger bigNum7 = a.pow(n);			<span class="regexp">//</span><span class="number">2197</span></span><br><span class="line"><span class="regexp">//</span><span class="number">8</span>.取绝对值</span><br><span class="line">BigInteger bigNum8 = a.abs();			<span class="regexp">//</span><span class="number">13</span></span><br><span class="line"><span class="regexp">//</span><span class="number">9</span>.取相反数</span><br><span class="line">BigInteger bigNum9 = a.negate();		<span class="regexp">//</span>-<span class="number">13</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//读入方法：nextBigInteger()</span></span><br><span class="line">@Test</span><br><span class="line">public void test5<span class="literal">()</span> &#123;</span><br><span class="line">	Scanner scan = <span class="keyword">new</span> <span class="constructor">Scanner(System.<span class="params">in</span>)</span>;				<span class="comment">// 读入</span></span><br><span class="line">	<span class="built_in">int</span> n = scan.next<span class="constructor">Int()</span>; 							<span class="comment">// 读入一个int;</span></span><br><span class="line">	BigInteger m = scan.next<span class="constructor">BigInteger()</span>;				<span class="comment">// 读入一个BigInteger;</span></span><br><span class="line">	<span class="keyword">while</span>(scan.has<span class="constructor">Next()</span>)&#123;	</span><br><span class="line">		<span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.print(<span class="string">&quot;scan.hasNext()=&quot;</span> + scan.has<span class="constructor">Next()</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中除了这个还有big浮点型，用法和上面一样</p>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1887,7 +1930,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1957,7 +2000,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共133.9k字</span>
+  <span class="post-count">博客全站共141.3k字</span>
 </div>
 
 

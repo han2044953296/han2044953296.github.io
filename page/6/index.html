@@ -198,6 +198,110 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/10/17/10-17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/17/10-17/" class="post-title-link" itemprop="url">数字及big类</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-17 17:44:10" itemprop="dateCreated datePublished" datetime="2022-10-17T17:44:10+08:00">2022-10-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-03 13:38:31" itemprop="dateModified" datetime="2022-11-03T13:38:31+08:00">2022-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="关于数学包里常用的几个类"><a href="#关于数学包里常用的几个类" class="headerlink" title="关于数学包里常用的几个类"></a>关于数学包里常用的几个类</h1><h2 id="abs"><a href="#abs" class="headerlink" title="abs"></a>abs</h2><p>abs是取绝对值</p>
+<h2 id="cell"><a href="#cell" class="headerlink" title="cell"></a>cell</h2><p>向上（正方向）取整</p>
+<h2 id="floor"><a href="#floor" class="headerlink" title="floor"></a>floor</h2><p>向下（负方向）取整</p>
+<h2 id="round"><a href="#round" class="headerlink" title="round"></a>round</h2><p> 四舍五入</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 简单的例子 ，5舍6入</span></span><br><span class="line">可以通过<span class="built_in">floor</span>进行</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="BigInteger"><a href="#BigInteger" class="headerlink" title="BigInteger"></a>BigInteger</h1><p>BigInteger类型的数字范围较Integer，Long类型的数字范围要大得多，它支持任意精度的整数，也就是说在运算中 BigInteger 类型可以准确地表示任何大小的整数值而不会丢失任何信息。</p>
+<h2 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="regexp">//</span><span class="number">1</span>.加</span><br><span class="line">BigInteger bigNum1 = a.add(b);			<span class="regexp">//</span><span class="number">17</span></span><br><span class="line"><span class="regexp">//</span><span class="number">2</span>.减</span><br><span class="line">BigInteger bigNum2 = a.subtract(b);		<span class="regexp">//</span><span class="number">9</span></span><br><span class="line"><span class="regexp">//</span><span class="number">3</span>.乘</span><br><span class="line">BigInteger bigNum3 = a.multiply(b);		<span class="regexp">//</span><span class="number">52</span></span><br><span class="line"><span class="regexp">//</span><span class="number">4</span>.除</span><br><span class="line">BigInteger bigNum4 = a.divide(b);		<span class="regexp">//</span><span class="number">3</span></span><br><span class="line"><span class="regexp">//</span><span class="number">5</span>.取模(需 b &gt; <span class="number">0</span>，否则出现异常：ArithmeticException(<span class="string">&quot;BigInteger: modulus not positive&quot;</span>))</span><br><span class="line">BigInteger bigNum5 = a.mod(b);			<span class="regexp">//</span><span class="number">1</span></span><br><span class="line"><span class="regexp">//</span><span class="number">6</span>.求余</span><br><span class="line">BigInteger bigNum6 = a.remainder(b);	<span class="regexp">//</span><span class="number">1</span></span><br><span class="line"><span class="regexp">//</span><span class="number">7</span>.平方(需 n &gt;= <span class="number">0</span>，否则出现异常：ArithmeticException(<span class="string">&quot;Negative exponent&quot;</span>))</span><br><span class="line">BigInteger bigNum7 = a.pow(n);			<span class="regexp">//</span><span class="number">2197</span></span><br><span class="line"><span class="regexp">//</span><span class="number">8</span>.取绝对值</span><br><span class="line">BigInteger bigNum8 = a.abs();			<span class="regexp">//</span><span class="number">13</span></span><br><span class="line"><span class="regexp">//</span><span class="number">9</span>.取相反数</span><br><span class="line">BigInteger bigNum9 = a.negate();		<span class="regexp">//</span>-<span class="number">13</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//读入方法：nextBigInteger()</span></span><br><span class="line">@Test</span><br><span class="line">public void test5<span class="literal">()</span> &#123;</span><br><span class="line">	Scanner scan = <span class="keyword">new</span> <span class="constructor">Scanner(System.<span class="params">in</span>)</span>;				<span class="comment">// 读入</span></span><br><span class="line">	<span class="built_in">int</span> n = scan.next<span class="constructor">Int()</span>; 							<span class="comment">// 读入一个int;</span></span><br><span class="line">	BigInteger m = scan.next<span class="constructor">BigInteger()</span>;				<span class="comment">// 读入一个BigInteger;</span></span><br><span class="line">	<span class="keyword">while</span>(scan.has<span class="constructor">Next()</span>)&#123;	</span><br><span class="line">		<span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.print(<span class="string">&quot;scan.hasNext()=&quot;</span> + scan.has<span class="constructor">Next()</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中除了这个还有big浮点型，用法和上面一样</p>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/10/15/10-15/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -812,7 +916,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -882,7 +986,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共133.9k字</span>
+  <span class="post-count">博客全站共141.3k字</span>
 </div>
 
 

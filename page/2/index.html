@@ -198,6 +198,120 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/12/k8s%E7%9A%84%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7Sealos/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/12/k8s%E7%9A%84%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7Sealos/" class="post-title-link" itemprop="url">Sealos</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-12 12:35:07 / 修改时间：13:41:14" itemprop="dateCreated datePublished" datetime="2022-12-12T12:35:07+08:00">2022-12-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%EF%BC%88%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%EF%BC%89/" itemprop="url" rel="index"><span itemprop="name">云原生（哔哩哔哩）</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>630</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Sealos"><a href="#Sealos" class="headerlink" title="Sealos"></a>Sealos</h1><p>是部署工具 ， 用go语言开发的干净且清凉的k8s的部署工具</p>
+<h1 id="Sealos的优势"><a href="#Sealos的优势" class="headerlink" title="Sealos的优势"></a>Sealos的优势</h1><p>他的证书有效时间是100年</p>
+<p>不依赖ansible haproxy keepalived 是零依赖</p>
+<p>离线安装</p>
+<p>kubelet其默认通过ipvs实现localLB，占用资源少稳定可靠</p>
+<p>更容易在集群节点上增加&#x2F;删除管理</p>
+<p>上千用户使用，在阿里云oss上有，不用担心网速的问题</p>
+<p>dashboard ingress prometheus 等 APP 同样支持离线打包安装</p>
+<p>当不超过三个独立集群，都是免费的，超过则要订阅服务了</p>
+<h1 id="rancher是目前企业中认知度最好的-：-周六周日补上"><a href="#rancher是目前企业中认知度最好的-：-周六周日补上" class="headerlink" title="rancher是目前企业中认知度最好的 ： 周六周日补上"></a>rancher是目前企业中认知度最好的 ： 周六周日补上</h1><h1 id="Sealos常用的参数"><a href="#Sealos常用的参数" class="headerlink" title="Sealos常用的参数"></a>Sealos常用的参数</h1><p>–master master的节点服务器地址</p>
+<p>–node node节点服务器地址列表</p>
+<p>–user 服务器 SSH 用户名</p>
+<p>–password 服务器 SSH 用户的密码</p>
+<p>–pkg-url 离线包所在的位置，可以是本地，也可以是http</p>
+<p>–version 指定要部署的k8s的版本</p>
+<p> –pk 指定 SSH 私钥所在的位置 默认是在&#x2F;root&#x2F;.ssh&#x2F;id_rsa</p>
+<p>–podcidr 自定义 pod网段</p>
+<p>–svccidr 参数指定clusterip网段</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>需要纯净的linux ： centos7 对于centos8 需要调试很多的</p>
+<p>或者是ubantu</p>
+<p>尽量用新版本的Sealos</p>
+<p>注意 ： 服务器时间必须同步</p>
+<p>主机名字不可以重复</p>
+<p>master的cpu要2个以上</p>
+<p>cni组件选择cilium 时的内核版本不低于5.4</p>
+<p>k8s一般用回退两个版本</p>
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>47.25</p>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/12/12-12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2666,267 +2780,6 @@ is null 作用一样 &lt;=&gt;
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/11/29/11-29/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/29/11-29/" class="post-title-link" itemprop="url">hive</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-29 08:36:32" itemprop="dateCreated datePublished" datetime="2022-11-29T08:36:32+08:00">2022-11-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-30 22:00:51" itemprop="dateModified" datetime="2022-11-30T22:00:51+08:00">2022-11-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>简单来说就是用sql处理hadoop的数据的</p>
-<p>除了hive之外 ： sparksql ，presto ， impala</p>
-<h2 id="要求掌握"><a href="#要求掌握" class="headerlink" title="要求掌握"></a>要求掌握</h2><p>sql</p>
-<p>udf</p>
-<h2 id="hadoop包含"><a href="#hadoop包含" class="headerlink" title="hadoop包含"></a>hadoop包含</h2><p>hdfs ：命令行</p>
-<p>mapreduce ：目前工作中几乎不用，但是关于核心类和思想要掌握</p>
-<p>yarn：提交作业 xxx （mr&#x2F;spark&#x2F;flink）on yarn ： 必须会</p>
-<p>mapreduce的弊端 ：</p>
-<ul>
-<li>开发大量代码</li>
-<li>编程基础不错</li>
-<li>部署麻烦</li>
-<li>修改code蛮麻烦</li>
-<li>对于DBA和RDBMS的小伙伴是不友好的</li>
-</ul>
-<p>大数据处理来说最终落地最好是sql</p>
-<p>大数据开发角度 ：</p>
-<ul>
-<li>基础平台开发<ul>
-<li>涉及很多框架底层的面很广</li>
-</ul>
-</li>
-<li>应用层面开发<ul>
-<li>基于基础平台开发 ，写sql</li>
-</ul>
-</li>
-</ul>
-<p>根据你的兴趣点 + 公司的定位</p>
-<p>必然有新的东西诞生去解决一个场景的问题</p>
-<p>mr主要适用于我们的p计算（离线计算）：不要求时效性 ，但是mr开发太麻烦，就诞生了hive</p>
-<p>hive 介绍 ：</p>
-<p>hive.apache.org</p>
-<p>是由什么人提供出来的？</p>
-<p>facebook 开源 去解决结构化的数据统计问题</p>
-<p>是什么？</p>
-<p>构建在hadoop之上的数据仓库</p>
-<p>hdfs：hive 的数据是在hdfs之上的</p>
-<p>yarn：可以跑在yarn之上</p>
-<p>mmapreduce ： 可以用mr形式去运行</p>
-<p>如何使用：</p>
-<p>定义了一中类sql的语言，类似sql但是又有不同</p>
-<p>适用于离线&#x2F;p处理的</p>
-<p>开发就是写sql &#x3D;》 mr  &#x3D;》 运行在yarn上</p>
-<p>hive的底层引擎是：</p>
-<ul>
-<li>mr （默认）：sql&#x3D;》mr</li>
-<li>Tez：sql&#x3D;》Tez</li>
-<li>Spark：sql&#x3D;》Spark</li>
-</ul>
-<p>hive on spark &#x3D;》生厂上用的用的不多</p>
-<p>spark on hive &#x3D;》 用sparksql查看hive的数据</p>
-<p>hive的存储格式，压缩格式等</p>
-<p>官网：</p>
-<ul>
-<li>in distributed storage （分布式存储）：hdfs , cos,oss,aws</li>
-<li>A command line tool and JDBC driver are provided to connect users to Hive.</li>
-</ul>
-<p>版本介绍 ：</p>
-<p>x.y.z：x是大版本，y是小版本，z是小版本的修复版本</p>
-<p>为什么要学习hive</p>
-<ul>
-<li>简单易用 ： 可以用sql开发</li>
-<li>扩展性好：<ul>
-<li>用自定义函数udf</li>
-<li>数据存储 和 计算角度 ： 如果表中数据存不下，可以加几个节点就好了<ul>
-<li>注意hive不是分布式的，它仅仅是个客户端</li>
-</ul>
-</li>
-<li>Metastore ：hive的元数据管理<ul>
-<li>sparksql ,presto ,impala 只要可以访问hive的元数据就可以访问里面表的数据</li>
-<li>可以分享元数据</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>hive的架构 ：</p>
-<ul>
-<li>元数据 ： 描述数据的数据<ul>
-<li>表的名字，字段的名字，字段的类型，什么人创建的，数据存储在哪里等</li>
-<li>元数据的内部内置了一个Derby但是有弊端</li>
-<li>元数据都是用mysql进行存储的</li>
-<li>测试的时候一个mysql就可以了</li>
-<li>但是生产上则一个不够</li>
-<li>生产上要遵循 HA ：高可用</li>
-<li>就是要一台做备份</li>
-<li>两个mysql是主从架构</li>
-</ul>
-</li>
-</ul>
-<p>hive和RDBMS的区别</p>
-<ul>
-<li>共同点 sql</li>
-<li>延时性 ： hive 适用于离线计算 慢，千万不要拿hive和mysql的性能做对比，无可比性，mysql要必hive高（数据量小）数据量大的时候就反过来了</li>
-<li>事务 ： 都支持</li>
-<li>update ，delete<ul>
-<li>上面两个语句在hive里基本不用，因为性能太差了</li>
-</ul>
-</li>
-<li>都支持分布式</li>
-<li>部署成本 ：<ul>
-<li>hive ：廉价</li>
-<li>mysql ：成本很高</li>
-</ul>
-</li>
-<li>数据体量<ul>
-<li>hive ：Tb</li>
-<li>mysql：处理Pb都比较费劲</li>
-</ul>
-</li>
-</ul>
-<p>对hive进行部署</p>
-<p>分布式部署 ： cwiki.apache.org(官网)</p>
-<p>首先把用压缩包上传到linux机器上</p>
-<p>然后对linux进行解压</p>
-<p>解压完成之后，我们要对他的的配置进行修改在解压之后的</p>
-<p><code>vim hive-site.xml</code></p>
-<p>编辑完成之后我们把以下内容放进去</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;jdbc:mysql://bigdata2:3306/hive?createDatabaseIfNotExist=true&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;root&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">        &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;liuzihan010616&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
-
-<p>然后在环境变量中编辑我们的hive_home</p>
-<p><code>vim ~/.bashrc </code></p>
-<p>把下列加进去</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">HIVE_HOME</span></span><br><span class="line">export HIVE_HOME=/home/hadoop/app/hive</span><br><span class="line">export PATH=$&#123;PATH&#125;:$&#123;HIVE_HOME&#125;/bin</span><br></pre></td></tr></table></figure>
-
-<p>然后我们要把我们的mysql链接包放在lib文件夹下</p>
-<p>就是 <code>mysql-connector-java-5.1.28.jar</code></p>
-<p>要放在hive的lib文件夹下</p>
-<p>然后对我们的hive进行初始化</p>
-<p><code>schematool -dbType mysql -initSchema</code></p>
-<p>初始化成功之后，先启动hdfs ，然后命令行输入 hive 然后输入show databases;</p>
-<p>成功就ok了</p>
-<p>然后再mysql的数据库里会有hive这个数据库</p>
-<p>mysql里\G是格式化的意思</p>
-<h2 id="思考-：-表中的字段-存在哪里？"><a href="#思考-：-表中的字段-存在哪里？" class="headerlink" title="思考 ： 表中的字段 存在哪里？"></a>思考 ： 表中的字段 存在哪里？</h2><p>我们先进入hive ： <code>create table test(name String); </code></p>
-<p>一个 hive 表 会被拆分成n个表存储再mysql里</p>
-<p>比如　： TBl表存放的是我们的表名 <code>select * from tbls \G;</code></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">**<span class="emphasis">* 1. row *</span>**</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span></span><br><span class="line"><span class="code">            TBL_ID: 1</span></span><br><span class="line"><span class="code">       CREATE_TIME: 1669707861</span></span><br><span class="line"><span class="code">             DB_ID: 1</span></span><br><span class="line"><span class="code">  LAST_ACCESS_TIME: 0</span></span><br><span class="line"><span class="code">             OWNER: hadoop</span></span><br><span class="line"><span class="code">        OWNER_TYPE: USER</span></span><br><span class="line"><span class="code">         RETENTION: 0</span></span><br><span class="line"><span class="code">             SD_ID: 1</span></span><br><span class="line"><span class="code">          TBL_NAME: test</span></span><br><span class="line"><span class="code">          TBL_TYPE: MANAGED_TABLE</span></span><br><span class="line"><span class="code">VIEW_EXPANDED_TEXT: NULL</span></span><br><span class="line"><span class="code">VIEW_ORIGINAL_TEXT: NULL</span></span><br><span class="line"><span class="code">IS_REWRITE_ENABLED:  </span></span><br><span class="line"><span class="code">1 row in set (0.00 sec)</span></span><br><span class="line"><span class="code"></span></span><br></pre></td></tr></table></figure>
-
-<p>比如 ： columns_v2表存放的是我们的字段 <code>select * from columns_v2 \G;</code></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">**<span class="emphasis">* 1. row *</span>**</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span></span><br><span class="line"><span class="code">      CD_ID: 1</span></span><br><span class="line"><span class="code">    COMMENT: NULL</span></span><br><span class="line"><span class="code">COLUMN_NAME: name</span></span><br><span class="line"><span class="code">  TYPE_NAME: string</span></span><br><span class="line"><span class="code">INTEGER_IDX: 0</span></span><br><span class="line"><span class="code">1 row in set (0.00 sec)</span></span><br><span class="line"><span class="code"></span></span><br></pre></td></tr></table></figure>
-
-<p>比如 ： DBS是存放的我们的物理存储路径的 <code>select * from DBS \G;</code></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">**<span class="emphasis">* 1. row *</span>**</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span><span class="strong">****</span></span><br><span class="line"><span class="code">          DB_ID: 1</span></span><br><span class="line"><span class="code">           DESC: Default Hive database</span></span><br><span class="line"><span class="code">DB_LOCATION_URI: hdfs://bigdata3:9000/user/hive/warehouse</span></span><br><span class="line"><span class="code">           NAME: default</span></span><br><span class="line"><span class="code">     OWNER_NAME: public</span></span><br><span class="line"><span class="code">     OWNER_TYPE: ROLE</span></span><br><span class="line"><span class="code">      CTLG_NAME: hive</span></span><br><span class="line"><span class="code">1 row in set (0.00 sec)</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h2><p>hive有个默认数据库 是default 路径 ：&#x2F;user&#x2F;hive&#x2F;warehouse</p>
-<p>非默认数据库 ： &#x2F;user&#x2F;hive&#x2F;warehouse&#x2F;dbname.db</p>
-<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><p>CREATE [REMOTE] (DATABASE|SCHEMA) [IF NOT EXISTS] database_name<br>  [COMMENT database_comment]<br>  [LOCATION hdfs_path]<br>  [MANAGEDLOCATION hdfs_path]<br>  [WITH DBPROPERTIES (property_name&#x3D;property_value, …)];</p>
-<p>[] 可有可无<br>(|) 选择其中一个即可</p>
-<p>CREATE DATABASE 名称；</p>
-<p>CREATE DATABASE 名称 LOCATION ‘创建的地方’；</p>
-<p>例子 ：</p>
-<p>create database if not exists bigdata_hive;<br>create database  bigdata_hive2  LOCATION ‘&#x2F;data&#x2F;bigdata_hive2’;<br>create database  bigdata_hive3 WITH DBPROPERTIES (‘creator’&#x3D;’doublehappy’, ‘create_dt’&#x3D;”2099-11-29”);<br>create database if not exists bigdata_hive4 COMMENT “这是一个数据库4”;</p>
-<p>解决此处中文乱码的问题</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> hive.dbs MODIFY <span class="keyword">COLUMN</span> `<span class="keyword">DESC</span>` <span class="type">varchar</span>(<span class="number">4000</span>) <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="显示数据库"><a href="#显示数据库" class="headerlink" title="显示数据库"></a>显示数据库</h3><p>show databases;<br>show databases like “bigdata_hive*”<br>desc database  bigdata_hive3;<br>desc database EXTENDED bigdata_hive3;</p>
-<h2 id="思考-：-这个数据库在hdfs的哪一个地方"><a href="#思考-：-这个数据库在hdfs的哪一个地方" class="headerlink" title="思考 ： 这个数据库在hdfs的哪一个地方"></a>思考 ： 这个数据库在hdfs的哪一个地方</h2><p>可以通过查看DBS表</p>
-<h1 id="hive-的注释-comment-中文乱码的解决方法"><a href="#hive-的注释-comment-中文乱码的解决方法" class="headerlink" title="hive 的注释(comment) 中文乱码的解决方法"></a>hive 的注释(comment) 中文乱码的解决方法</h1><p>（1）修改表字段注解和表注解</p>
-<p>alter table COLUMNS_V2 modify column COMMENT varchar(256) character set utf8;<br>alter table TABLE_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8;</p>
-<p>（2）修改分区字段注解</p>
-<p>alter table PARTITION_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8 ;<br>alter table PARTITION_KEYS modify column PKEY_COMMENT varchar(4000) character set utf8;</p>
-<p>（3）修改索引注解</p>
-<p>alter table INDEX_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8;</p>
-<p>修改hive-site.xml配置文件</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionURL<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>jdbc:mysql://IP:3306/db_name?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=UTF-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>JDBC connect string for a JDBC metastore<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>上述的 <code>&amp; 是 &amp;amp; </code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2998,7 +2851,7 @@ is null 作用一样 &lt;=&gt;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -3068,7 +2921,7 @@ is null 作用一样 &lt;=&gt;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共133.9k字</span>
+  <span class="post-count">博客全站共141.3k字</span>
 </div>
 
 
