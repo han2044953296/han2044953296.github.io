@@ -331,7 +331,7 @@
 <h3 id="理论："><a href="#理论：" class="headerlink" title="理论："></a>理论：</h3><p>spark架构：</p>
 <ul>
 <li>Application &#x3D;》 spark作业 &#x3D;》 driver program 和 executor on the cluster两个进程<ul>
-<li>driver：</li>
+<li>driver：运行sparkContext</li>
 <li>exacutor：运行任务并保存数据在内存和磁盘中</li>
 </ul>
 </li>
@@ -354,6 +354,7 @@
 <li>一个stage可以包含1-n个task</li>
 <li>task和rdd里的分区数一一对应</li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">graph TB</span><br><span class="line">    c1--&gt;a2</span><br><span class="line"></span><br><span class="line">    subgraph one</span><br><span class="line">    a1--&gt;a2</span><br><span class="line">    end</span><br><span class="line">    subgraph two</span><br><span class="line">    b1--&gt;b2</span><br><span class="line">    end</span><br><span class="line">    subgraph three</span><br><span class="line">    c1--&gt;c2</span><br><span class="line">    end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>日志</category>
