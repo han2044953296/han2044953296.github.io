@@ -198,6 +198,188 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/15/%E6%8A%80%E6%9C%AF%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/15/%E6%8A%80%E6%9C%AF%E7%82%B9/" class="post-title-link" itemprop="url">自我认为的知识点</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-15 16:31:20" itemprop="dateCreated datePublished" datetime="2022-12-15T16:31:20+08:00">2022-12-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-16 14:42:28" itemprop="dateModified" datetime="2022-12-16T14:42:28+08:00">2022-12-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B4%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">整理</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h2><p>awk为什么会被称作linux三剑客之一，相比于cut如何？</p>
+<p>场景 ： 通过ssh bigdata2 “jps | xxx | awk ‘{print $1}’” :结果如何 ？前提条件 ：bigdata2的密钥已经添加在当前的机器上，且jps能查到xxx的进程号</p>
+<h2 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h2><p>场景 ： 当所有命令都提示找不到命令 ，是什么原因 ，如何解决 ？</p>
+<p>场景 ： 当有命令提示找不到命令 ，是什么原因 ，如何解决 ？</p>
+<h2 id="问题3"><a href="#问题3" class="headerlink" title="问题3"></a>问题3</h2><p>众所周知 ，root用户有最高的权限 ，那么当我们在hadoop用户启动程序通过jps能查看到信息的，切换到root用户我们可以看见信息吗</p>
+<h2 id="问题4"><a href="#问题4" class="headerlink" title="问题4"></a>问题4</h2><p>一台机器里有hadoop ,zihang ,root 三个用户 ，你所在的用户是root ，当你执行su - zihang 的时候什么也没出现并且你还在root用户，这个是什么原因，如何修复</p>
+<h2 id="问题5"><a href="#问题5" class="headerlink" title="问题5"></a>问题5</h2><p>linux里查看内存负载，以及所用内存，以及设置swap分区的命令及步骤，</p>
+<h1 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h1><h2 id="问题1-1"><a href="#问题1-1" class="headerlink" title="问题1"></a>问题1</h2><p>shell里如何控制从控制台输入的参数，传进函数里的个数</p>
+<h2 id="问题2-1"><a href="#问题2-1" class="headerlink" title="问题2"></a>问题2</h2><p>shell 里截取字符串以及替换字符串是如何实现的</p>
+<h2 id="问题3-1"><a href="#问题3-1" class="headerlink" title="问题3"></a>问题3</h2><p>shell里的$全家桶</p>
+<h2 id="问题4-1"><a href="#问题4-1" class="headerlink" title="问题4"></a>问题4</h2><p>shell里单引号，双引号，漂号的区别，以及两种括号的形式（）和{}的区别</p>
+<h2 id="问题5-1"><a href="#问题5-1" class="headerlink" title="问题5"></a>问题5</h2><p>shell脚本执行不了，但是代码毫无问题，只是单纯提示最后一行结尾不对，原因有几种，解决办法是什么</p>
+<h1 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h1><h2 id="问题1-2"><a href="#问题1-2" class="headerlink" title="问题1"></a>问题1</h2><p>mysql中where和having的区别</p>
+<h2 id="问题2-2"><a href="#问题2-2" class="headerlink" title="问题2"></a>问题2</h2><p>mysql中我如果想把竖着的一列变成横着的如何操作：</p>
+<table>
+<thead>
+<tr>
+<th>人数</th>
+<th>部门</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>11</td>
+<td>a</td>
+</tr>
+</tbody></table>
+<p>其中5人生病，6人未生病，如何变成下面的样子:说出大概思路即可</p>
+<table>
+<thead>
+<tr>
+<th>人数</th>
+<th>部门</th>
+<th>生病人数</th>
+<th>未生病人数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>11</td>
+<td>a</td>
+<td>0</td>
+<td>6</td>
+</tr>
+<tr>
+<td>11</td>
+<td>a</td>
+<td>5</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<h2 id="问题3-2"><a href="#问题3-2" class="headerlink" title="问题3"></a>问题3</h2><p>mysql中判断空值的方法有什么，以及多路选择的方法</p>
+<h2 id="问题4-2"><a href="#问题4-2" class="headerlink" title="问题4"></a>问题4</h2><p>在往mysql的表里插入数据的时候，发现带有中文的字符插入不进去，如何解决，什么原因造成的，mysql8及以后如何</p>
+<h2 id="问题5-2"><a href="#问题5-2" class="headerlink" title="问题5"></a>问题5</h2><p>你认为mysql为什么到目前为止都没有被淘汰？</p>
+<h1 id="hadoop"><a href="#hadoop" class="headerlink" title="hadoop"></a>hadoop</h1><h2 id="问题1-3"><a href="#问题1-3" class="headerlink" title="问题1"></a>问题1</h2><p>关于hadoop的基础架构，以及mr的流程</p>
+<h2 id="问题2-3"><a href="#问题2-3" class="headerlink" title="问题2"></a>问题2</h2><p>关于客户端向hdfs上传输数据的流程，而且它是如何被分块的</p>
+<h2 id="问题3-3"><a href="#问题3-3" class="headerlink" title="问题3"></a>问题3</h2><p>hadoop文件存储的放置策略，以及为什么这样放置</p>
+<h2 id="问题4-3"><a href="#问题4-3" class="headerlink" title="问题4"></a>问题4</h2><p>Hadoop上的yarn的申请资源的流程，以及为什么要使用多块物理磁盘？</p>
+<h2 id="问题5-3"><a href="#问题5-3" class="headerlink" title="问题5"></a>问题5</h2><p>hdfs上的压缩格式，以及优缺点，和我们常用的</p>
+<h2 id="问题6"><a href="#问题6" class="headerlink" title="问题6"></a>问题6</h2><p>hadoop序列化</p>
+<p>序列化就是把内存中的对象转换成字节序列(或其他数据传输协议)，以便存储于磁盘和网络传输。</p>
+<p>优点 ：</p>
+<p>紧凑：高效使用存储空间</p>
+<p>快速：读写数据额外开销小</p>
+<p>可扩展性：随着通讯协议的升级而升级</p>
+<p>互操性：支持多语言的交互</p>
+<h2 id="问题7"><a href="#问题7" class="headerlink" title="问题7"></a>问题7</h2><p>yarn调度器</p>
+<h2 id="问题8"><a href="#问题8" class="headerlink" title="问题8"></a>问题8</h2><p>分区vs分桶</p>
+<p>分区表：在逻辑上，将表中的数据按分区放在表目录的对应子目录中，在物理上，分区表和未分区表没有区别，分区表在表创建完成时，也可以通过alter table来添加或者删除，而且分区键一定不是原表中的列。<br>桶表：不同表对同一字段分桶，且当两张表桶数相同时，数据会分配到同一个节点上，join时会减少shuffle，和分区键不同，分桶键必须是原表中的列，分桶表中每个桶的文件作了排序，分桶数应为质数，每个桶文件大小应在100MB~200MB之间，事务表必须指定分桶，且分桶数是不可以被更新的。</p>
+<h2 id="问题9"><a href="#问题9" class="headerlink" title="问题9"></a>问题9</h2><p>yarn原理</p>
+<h1 id="hive"><a href="#hive" class="headerlink" title="hive"></a>hive</h1><h2 id="问题1-4"><a href="#问题1-4" class="headerlink" title="问题1"></a>问题1</h2><p>你所理解的hive是什么？</p>
+<h2 id="问题2-4"><a href="#问题2-4" class="headerlink" title="问题2"></a>问题2</h2><p>hive在mysql中的几个关键表都是什么</p>
+<h2 id="问题3-4"><a href="#问题3-4" class="headerlink" title="问题3"></a>问题3</h2><p>hive里空值如何处理，hive中mapjoin如何开启以及开启之后的原理</p>
+<h2 id="问题4-4"><a href="#问题4-4" class="headerlink" title="问题4"></a>问题4</h2><p>hive里内部表和外部表的区别，以及如何转化</p>
+<h2 id="问题5-4"><a href="#问题5-4" class="headerlink" title="问题5"></a>问题5</h2><p>hive里的开窗函数能用在什么函数上，开窗之后还可以分组吗</p>
+<h2 id="问题6-1"><a href="#问题6-1" class="headerlink" title="问题6"></a>问题6</h2><p>hive如何把一列数据转化为数组，并且hive的适用场景是什么</p>
+<h1 id="flume"><a href="#flume" class="headerlink" title="flume"></a>flume</h1><h2 id="问题1-5"><a href="#问题1-5" class="headerlink" title="问题1"></a>问题1</h2><p>flume如何设置传输到hdfs上的数据的压缩格式</p>
+<h2 id="问题2-5"><a href="#问题2-5" class="headerlink" title="问题2"></a>问题2</h2><p>flume如何控制小文件的数量，以及如何监控flume的采集情况</p>
+<h2 id="问题3-5"><a href="#问题3-5" class="headerlink" title="问题3"></a>问题3</h2><p>flume如何控制多个channel和Sink，以及控制形式都有什么</p>
+<h2 id="问题4-5"><a href="#问题4-5" class="headerlink" title="问题4"></a>问题4</h2><p>现阶段如何解决日志数据延迟性问题</p>
+<h2 id="问题5-5"><a href="#问题5-5" class="headerlink" title="问题5"></a>问题5</h2><p>flume采集的数据文件会丢失吗，为什么以及taildir所谓的断点续传是什么，由什么控制</p>
+<h1 id="sqoop"><a href="#sqoop" class="headerlink" title="sqoop"></a>sqoop</h1><h2 id="问题1-6"><a href="#问题1-6" class="headerlink" title="问题1"></a>问题1</h2><p>sqoop同步mysql到hive的时候如何设置分区表</p>
+<h2 id="问题2-6"><a href="#问题2-6" class="headerlink" title="问题2"></a>问题2</h2><p>sqoop是走mr程序吗？为什么sqoop运行如此的慢</p>
+<h2 id="问题3-6"><a href="#问题3-6" class="headerlink" title="问题3"></a>问题3</h2><p>sqoop同步hive到mysql的时候经常因为不明原因就中断了，如何解决</p>
+<h2 id="问题4-6"><a href="#问题4-6" class="headerlink" title="问题4"></a>问题4</h2><p>sqoop同步hive到mysql分区表的思路以及操作是什么</p>
+<h2 id="问题5-6"><a href="#问题5-6" class="headerlink" title="问题5"></a>问题5</h2><p>sqoop导入数据的时候如何保证数据的幂等性</p>
+<h1 id="zk"><a href="#zk" class="headerlink" title="zk"></a>zk</h1><h2 id="问题1-7"><a href="#问题1-7" class="headerlink" title="问题1"></a>问题1</h2><p>如何创建临时节点和永久节点</p>
+<h2 id="问题2-7"><a href="#问题2-7" class="headerlink" title="问题2"></a>问题2</h2><p>四字命令是干什么的</p>
+<h2 id="问题3-7"><a href="#问题3-7" class="headerlink" title="问题3"></a>问题3</h2><p>zk命令行监听和api监听的区别，通过上面命令进行监听</p>
+<h2 id="问题4-7"><a href="#问题4-7" class="headerlink" title="问题4"></a>问题4</h2><p>如何创建顺序节点</p>
+<h2 id="问题5-7"><a href="#问题5-7" class="headerlink" title="问题5"></a>问题5</h2><p>zk如何管理我们的namenode的上位，以及，如何监控的</p>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/15/12-15/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2657,192 +2839,6 @@ numChildren = 0 下面的子节点
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/01/12-01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/01/12-01/" class="post-title-link" itemprop="url">hive第三天</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-12-01 09:47:23" itemprop="dateCreated datePublished" datetime="2022-12-01T09:47:23+08:00">2022-12-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-24 09:42:27" itemprop="dateModified" datetime="2022-12-24T09:42:27+08:00">2022-12-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="内部和外部表和普通表和分区表"><a href="#内部和外部表和普通表和分区表" class="headerlink" title="内部和外部表和普通表和分区表"></a>内部和外部表和普通表和分区表</h1><p>分区表 ： 提升查询效率的表</p>
-<p>关于hive的查询 ： 对于普通表 则是要先读取所有的数据然后进行筛选的 ， 但是对于分区表，则是把数据进行分区，如果要查询的话，则是针对符合的数据进行查询</p>
-<p>往往用分区表进行查询，普通表数据量较少的时候可以用</p>
-<p>创建分区表 ：</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">order</span>(</span><br><span class="line"></span><br><span class="line">orderid <span class="type">int</span>,</span><br><span class="line"></span><br><span class="line">oredergg String</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">PARTITIONED <span class="keyword">BY</span> (dt String)</span><br><span class="line"></span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span> delimited fields terminated <span class="keyword">by</span> <span class="string">&#x27;\t&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>show partitions 表名 &#x2F;&#x2F;查看现在这个表的分区</p>
-<p>修改分区  ：</p>
-<p>删除分区  ：<code>alter table 表名 drop partition(分区列 = &#39;分区名&#39;)</code></p>
-<p>创建分区 ： 在建表的时候创建</p>
-<p>导入数据 ： load&#x2F;insert</p>
-<ul>
-<li>load : load data (local) inpath ‘’ (overwrite) into table 表名 partition (分区名称) ：数据列数如果对不上就会出现问题 : 加上overwrite则是把一个分区的数据给覆盖掉</li>
-<li>insert : insert into table partition(分区) …</li>
-<li>insert into 是追加的</li>
-<li>如果不要追加则要进行覆盖 insert 后面的 into 变成 overwrite</li>
-</ul>
-<h2 id="使用一个sql让所有数据落到对应的分区里"><a href="#使用一个sql让所有数据落到对应的分区里" class="headerlink" title="使用一个sql让所有数据落到对应的分区里"></a>使用一个sql让所有数据落到对应的分区里</h2><p>动态分区：相当于我们要进行分区的字段是我们的数据的字段，就可以直接用那个字段当我们的分区但是要打开一个开关</p>
-<p><code>set hive.exec.dynamic.partition.mode=nonstrict;</code></p>
-<p>静态分区：就是自己制定好分区的标题的</p>
-<p>离线任务 ： 业务周期性 T+1</p>
-<p>就是延迟一天处理</p>
-<p>默认底层创建的是内部表</p>
-<p>内部表 ： 受hive管控的 ： 如果有删表的操作，那么会清理干净，所有数据都会被删除</p>
-<p>外部表 ： 如果被删除的情况下，只是hdfs上指向metastore的索引被删除了，源数据不会被删除 ，而且我们还可通过建表的方式让他们的索引再次关联上</p>
-<p>创建外部表 ：</p>
-<p>相互转换 ：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">外部转内部</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 外部表名字 <span class="keyword">SET</span> TBLPROPERTIES (&quot;EXTERNAL&quot; <span class="operator">=</span> &quot;true&quot;);</span><br><span class="line"></span><br><span class="line">内部转外部</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 外部表名字 <span class="keyword">SET</span> TBLPROPERTIES (&quot;EXTERNAL&quot; <span class="operator">=</span> &quot;false&quot;);</span><br><span class="line">但是这上述的<span class="keyword">EXTERNAL</span> 是不能小写的会造成失效的问题</span><br></pre></td></tr></table></figure>
-
-<h1 id="复杂的数据类型"><a href="#复杂的数据类型" class="headerlink" title="复杂的数据类型"></a>复杂的数据类型</h1><p>中小企业用的不多，，大企业用的多</p>
-<p>会建表 ，会查询</p>
-<p>maps: <code>MAP&lt;primitive_type, data_type&gt; </code></p>
-<p>数据如下 ：</p>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>,zhangsan,father:xiaoming#mother:xiaohuang#brother:xiaoxu,<span class="number">28</span></span><br><span class="line"><span class="number">2</span>,lisi,father:mayun#mother:huangyi#brother:guanyu,<span class="number">22</span></span><br><span class="line"><span class="number">3</span>,wangwu,father:wangjianlin#mother:ruhua#sister:jingtian,<span class="number">29</span></span><br><span class="line"><span class="number">4</span>,mayun,father:mayongzhen#mother:angelababy,<span class="number">26</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> hive_map(</span><br><span class="line">id <span class="type">int</span>  <span class="keyword">comment</span> <span class="string">&#x27;用户id&#x27;</span>,</span><br><span class="line"><span class="type">name</span> string <span class="keyword">comment</span> <span class="string">&#x27;用户名字&#x27;</span>,</span><br><span class="line">relation map&lt;string,string&gt; <span class="keyword">comment</span> <span class="string">&#x27;家庭成员&#x27;</span>,</span><br><span class="line">age <span class="type">int</span> <span class="keyword">comment</span> <span class="string">&#x27;年龄&#x27;</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span>  delimited fields terminated <span class="keyword">by</span> <span class="string">&#x27;,&#x27;</span></span><br><span class="line">collection items terminated <span class="keyword">by</span> <span class="string">&#x27;#&#x27;</span></span><br><span class="line">map keys terminated <span class="keyword">by</span> <span class="string">&#x27;:&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<p>arrays:  <code>ARRAY&lt;data_type&gt;</code></p>
-<p>数据</p>
-<p><code>zihan   beijing,shanghai,chengdu,dalian</code></p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> hive_array(</span><br><span class="line"><span class="type">name</span> String,</span><br><span class="line">locations <span class="keyword">array</span>&lt;String&gt;</span><br><span class="line">)</span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span> delimited fields terminated <span class="keyword">by</span> <span class="string">&#x27;\t&#x27;</span></span><br><span class="line">collection items terminated <span class="keyword">by</span> <span class="string">&#x27;,&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<p>structs:<code>STRUCT&lt;col_name : data_type [COMMENT col_comment], ...&gt;</code></p>
-<p>数据</p>
-<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">192.168.1.1</span>#zhangsan:<span class="number">40</span></span><br><span class="line"><span class="number">192.168.1.2</span>#lisi:<span class="number">50</span></span><br><span class="line"><span class="number">192.168.1.3</span>#wangwu:<span class="number">60</span></span><br><span class="line"><span class="number">192.168.1.4</span>#zhaoliu:<span class="number">70</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> hive_struct(</span><br><span class="line">ip string,</span><br><span class="line">userinfo STRUCT&lt;<span class="type">name</span>:string,age:<span class="type">int</span>&gt;</span><br><span class="line">)</span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span>  delimited fields terminated <span class="keyword">by</span> <span class="string">&#x27;#&#x27;</span></span><br><span class="line">collection items terminated <span class="keyword">by</span> <span class="string">&#x27;:&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<h1 id="数据形式的不同使用方法"><a href="#数据形式的不同使用方法" class="headerlink" title="数据形式的不同使用方法"></a>数据形式的不同使用方法</h1><h2 id="array"><a href="#array" class="headerlink" title="array"></a>array</h2><p>案例分析：</p>
-<p>1.查询每个用户第一个工作地点？</p>
-<p>select  name ,locations[0] as first_loc_work from  hive_array;</p>
-<p>2.查询每个人 工作地点的数量</p>
-<p>select  name , size(locations) from  hive_array ;</p>
-<p>3.查询在shanghai 工作的有哪些人</p>
-<p>select  * from hive_array  where array_contains(locations,’shanghai’);</p>
-<h3 id="行转列"><a href="#行转列" class="headerlink" title="行转列"></a>行转列</h3><p>思路是先把一个array的元素炸开，然后通过显示出来</p>
-<p>显示手段 ： LATERAL VIEW（侧写视图）</p>
-<ul>
-<li><p>LATERAL VIEW udtf(expression) tableAlias AS columnAlias</p>
-</li>
-<li><p>udtf : 一进多出</p>
-</li>
-<li><p>FROM baseTable (lateralView)*</p>
-</li>
-<li><p>最终代码 ：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> name,location</span><br><span class="line"><span class="keyword">from</span> hive_array <span class="keyword">lateral</span> <span class="keyword">view</span> explode(locations) loc_table <span class="keyword">as</span> location;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>需求： 1.查询表中每个人的father的名字</p>
-<p><code>select id,name,age,relation[&#39;father&#39;] as father from hive_map;</code></p>
-<p>2.查询表中 每个人的家庭成员   keys</p>
-<p><code>select id,name,age,map_keys(relation) as members from hive_map;</code></p>
-<p>3.查询表中 每个人的家庭成员的名字 values</p>
-<p><code>select id,name,age,map_values(relation) as members from hive_map;</code></p>
-<p>4.查询表中 有brother的人以及brother的名字</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line"> id,<span class="type">name</span>,age,relation[<span class="string">&#x27;brother&#x27;</span>] <span class="keyword">as</span> brother</span><br><span class="line"><span class="keyword">from</span> hive_map</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">relation[<span class="string">&#x27;brother&#x27;</span>] <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">null</span>;或者可以<span class="keyword">select</span></span><br><span class="line"> id,<span class="type">name</span>,age,relation[<span class="string">&#x27;brother&#x27;</span>] <span class="keyword">as</span> brother</span><br><span class="line"><span class="keyword">from</span> hive_map</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">array_contains(map_keys(relation), <span class="string">&#x27;brother&#x27;</span>);// map_key()函数的意思是可以把这个列的map的key当作<span class="keyword">array</span>取出来</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="structs"><a href="#structs" class="headerlink" title="structs"></a>structs</h2><p>select ip,userinfo.name as name ,userinfo.age as age from hive_struct;</p>
-<h2 id="开窗函数-："><a href="#开窗函数-：" class="headerlink" title="开窗函数 ："></a>开窗函数 ：</h2><ul>
-<li>分析函数：对开窗函数的分析的函数<ul>
-<li>rank : 使用方法 rank()over(partition by xx order by yy) as rk  : 如果有重复的数据，会丢失排名</li>
-<li>dense_rank :使用方法同上 ： 如果有重复数据 ，则不会丢失排名 ：</li>
-<li>row_number:同上 ： 排名相同且不会重复 ， 就是会顺序往下 ：</li>
-</ul>
-</li>
-</ul>
-<p>上述的常用手段 ： 求topn的排名</p>
-<p>比如要求top3 的</p>
-<p>作业 ：</p>
-<p>统计每个店铺的uv</p>
-<p>统计top3的用户记录</p>
-<p>pv ： 页面的浏览量</p>
-<p>uv ： 访客的次数</p>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2914,7 +2910,7 @@ numChildren = 0 下面的子节点
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2984,7 +2980,7 @@ numChildren = 0 下面的子节点
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共153.8k字</span>
+  <span class="post-count">博客全站共166k字</span>
 </div>
 
 

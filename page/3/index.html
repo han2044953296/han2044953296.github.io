@@ -198,6 +198,192 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/01/12-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/01/12-01/" class="post-title-link" itemprop="url">hive第三天</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-01 09:47:23" itemprop="dateCreated datePublished" datetime="2022-12-01T09:47:23+08:00">2022-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-24 09:42:27" itemprop="dateModified" datetime="2022-12-24T09:42:27+08:00">2022-12-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="内部和外部表和普通表和分区表"><a href="#内部和外部表和普通表和分区表" class="headerlink" title="内部和外部表和普通表和分区表"></a>内部和外部表和普通表和分区表</h1><p>分区表 ： 提升查询效率的表</p>
+<p>关于hive的查询 ： 对于普通表 则是要先读取所有的数据然后进行筛选的 ， 但是对于分区表，则是把数据进行分区，如果要查询的话，则是针对符合的数据进行查询</p>
+<p>往往用分区表进行查询，普通表数据量较少的时候可以用</p>
+<p>创建分区表 ：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">order</span>(</span><br><span class="line"></span><br><span class="line">orderid <span class="type">int</span>,</span><br><span class="line"></span><br><span class="line">oredergg String</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">PARTITIONED <span class="keyword">BY</span> (dt String)</span><br><span class="line"></span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span> delimited fields terminated <span class="keyword">by</span> <span class="string">&#x27;\t&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>show partitions 表名 &#x2F;&#x2F;查看现在这个表的分区</p>
+<p>修改分区  ：</p>
+<p>删除分区  ：<code>alter table 表名 drop partition(分区列 = &#39;分区名&#39;)</code></p>
+<p>创建分区 ： 在建表的时候创建</p>
+<p>导入数据 ： load&#x2F;insert</p>
+<ul>
+<li>load : load data (local) inpath ‘’ (overwrite) into table 表名 partition (分区名称) ：数据列数如果对不上就会出现问题 : 加上overwrite则是把一个分区的数据给覆盖掉</li>
+<li>insert : insert into table partition(分区) …</li>
+<li>insert into 是追加的</li>
+<li>如果不要追加则要进行覆盖 insert 后面的 into 变成 overwrite</li>
+</ul>
+<h2 id="使用一个sql让所有数据落到对应的分区里"><a href="#使用一个sql让所有数据落到对应的分区里" class="headerlink" title="使用一个sql让所有数据落到对应的分区里"></a>使用一个sql让所有数据落到对应的分区里</h2><p>动态分区：相当于我们要进行分区的字段是我们的数据的字段，就可以直接用那个字段当我们的分区但是要打开一个开关</p>
+<p><code>set hive.exec.dynamic.partition.mode=nonstrict;</code></p>
+<p>静态分区：就是自己制定好分区的标题的</p>
+<p>离线任务 ： 业务周期性 T+1</p>
+<p>就是延迟一天处理</p>
+<p>默认底层创建的是内部表</p>
+<p>内部表 ： 受hive管控的 ： 如果有删表的操作，那么会清理干净，所有数据都会被删除</p>
+<p>外部表 ： 如果被删除的情况下，只是hdfs上指向metastore的索引被删除了，源数据不会被删除 ，而且我们还可通过建表的方式让他们的索引再次关联上</p>
+<p>创建外部表 ：</p>
+<p>相互转换 ：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">外部转内部</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 外部表名字 <span class="keyword">SET</span> TBLPROPERTIES (&quot;EXTERNAL&quot; <span class="operator">=</span> &quot;true&quot;);</span><br><span class="line"></span><br><span class="line">内部转外部</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 外部表名字 <span class="keyword">SET</span> TBLPROPERTIES (&quot;EXTERNAL&quot; <span class="operator">=</span> &quot;false&quot;);</span><br><span class="line">但是这上述的<span class="keyword">EXTERNAL</span> 是不能小写的会造成失效的问题</span><br></pre></td></tr></table></figure>
+
+<h1 id="复杂的数据类型"><a href="#复杂的数据类型" class="headerlink" title="复杂的数据类型"></a>复杂的数据类型</h1><p>中小企业用的不多，，大企业用的多</p>
+<p>会建表 ，会查询</p>
+<p>maps: <code>MAP&lt;primitive_type, data_type&gt; </code></p>
+<p>数据如下 ：</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>,zhangsan,father:xiaoming#mother:xiaohuang#brother:xiaoxu,<span class="number">28</span></span><br><span class="line"><span class="number">2</span>,lisi,father:mayun#mother:huangyi#brother:guanyu,<span class="number">22</span></span><br><span class="line"><span class="number">3</span>,wangwu,father:wangjianlin#mother:ruhua#sister:jingtian,<span class="number">29</span></span><br><span class="line"><span class="number">4</span>,mayun,father:mayongzhen#mother:angelababy,<span class="number">26</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> hive_map(</span><br><span class="line">id <span class="type">int</span>  <span class="keyword">comment</span> <span class="string">&#x27;用户id&#x27;</span>,</span><br><span class="line"><span class="type">name</span> string <span class="keyword">comment</span> <span class="string">&#x27;用户名字&#x27;</span>,</span><br><span class="line">relation map&lt;string,string&gt; <span class="keyword">comment</span> <span class="string">&#x27;家庭成员&#x27;</span>,</span><br><span class="line">age <span class="type">int</span> <span class="keyword">comment</span> <span class="string">&#x27;年龄&#x27;</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span>  delimited fields terminated <span class="keyword">by</span> <span class="string">&#x27;,&#x27;</span></span><br><span class="line">collection items terminated <span class="keyword">by</span> <span class="string">&#x27;#&#x27;</span></span><br><span class="line">map keys terminated <span class="keyword">by</span> <span class="string">&#x27;:&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>arrays:  <code>ARRAY&lt;data_type&gt;</code></p>
+<p>数据</p>
+<p><code>zihan   beijing,shanghai,chengdu,dalian</code></p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> hive_array(</span><br><span class="line"><span class="type">name</span> String,</span><br><span class="line">locations <span class="keyword">array</span>&lt;String&gt;</span><br><span class="line">)</span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span> delimited fields terminated <span class="keyword">by</span> <span class="string">&#x27;\t&#x27;</span></span><br><span class="line">collection items terminated <span class="keyword">by</span> <span class="string">&#x27;,&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>structs:<code>STRUCT&lt;col_name : data_type [COMMENT col_comment], ...&gt;</code></p>
+<p>数据</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">192.168.1.1</span>#zhangsan:<span class="number">40</span></span><br><span class="line"><span class="number">192.168.1.2</span>#lisi:<span class="number">50</span></span><br><span class="line"><span class="number">192.168.1.3</span>#wangwu:<span class="number">60</span></span><br><span class="line"><span class="number">192.168.1.4</span>#zhaoliu:<span class="number">70</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> hive_struct(</span><br><span class="line">ip string,</span><br><span class="line">userinfo STRUCT&lt;<span class="type">name</span>:string,age:<span class="type">int</span>&gt;</span><br><span class="line">)</span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span>  delimited fields terminated <span class="keyword">by</span> <span class="string">&#x27;#&#x27;</span></span><br><span class="line">collection items terminated <span class="keyword">by</span> <span class="string">&#x27;:&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="数据形式的不同使用方法"><a href="#数据形式的不同使用方法" class="headerlink" title="数据形式的不同使用方法"></a>数据形式的不同使用方法</h1><h2 id="array"><a href="#array" class="headerlink" title="array"></a>array</h2><p>案例分析：</p>
+<p>1.查询每个用户第一个工作地点？</p>
+<p>select  name ,locations[0] as first_loc_work from  hive_array;</p>
+<p>2.查询每个人 工作地点的数量</p>
+<p>select  name , size(locations) from  hive_array ;</p>
+<p>3.查询在shanghai 工作的有哪些人</p>
+<p>select  * from hive_array  where array_contains(locations,’shanghai’);</p>
+<h3 id="行转列"><a href="#行转列" class="headerlink" title="行转列"></a>行转列</h3><p>思路是先把一个array的元素炸开，然后通过显示出来</p>
+<p>显示手段 ： LATERAL VIEW（侧写视图）</p>
+<ul>
+<li><p>LATERAL VIEW udtf(expression) tableAlias AS columnAlias</p>
+</li>
+<li><p>udtf : 一进多出</p>
+</li>
+<li><p>FROM baseTable (lateralView)*</p>
+</li>
+<li><p>最终代码 ：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> name,location</span><br><span class="line"><span class="keyword">from</span> hive_array <span class="keyword">lateral</span> <span class="keyword">view</span> explode(locations) loc_table <span class="keyword">as</span> location;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>需求： 1.查询表中每个人的father的名字</p>
+<p><code>select id,name,age,relation[&#39;father&#39;] as father from hive_map;</code></p>
+<p>2.查询表中 每个人的家庭成员   keys</p>
+<p><code>select id,name,age,map_keys(relation) as members from hive_map;</code></p>
+<p>3.查询表中 每个人的家庭成员的名字 values</p>
+<p><code>select id,name,age,map_values(relation) as members from hive_map;</code></p>
+<p>4.查询表中 有brother的人以及brother的名字</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line"> id,<span class="type">name</span>,age,relation[<span class="string">&#x27;brother&#x27;</span>] <span class="keyword">as</span> brother</span><br><span class="line"><span class="keyword">from</span> hive_map</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">relation[<span class="string">&#x27;brother&#x27;</span>] <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">null</span>;或者可以<span class="keyword">select</span></span><br><span class="line"> id,<span class="type">name</span>,age,relation[<span class="string">&#x27;brother&#x27;</span>] <span class="keyword">as</span> brother</span><br><span class="line"><span class="keyword">from</span> hive_map</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">array_contains(map_keys(relation), <span class="string">&#x27;brother&#x27;</span>);// map_key()函数的意思是可以把这个列的map的key当作<span class="keyword">array</span>取出来</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="structs"><a href="#structs" class="headerlink" title="structs"></a>structs</h2><p>select ip,userinfo.name as name ,userinfo.age as age from hive_struct;</p>
+<h2 id="开窗函数-："><a href="#开窗函数-：" class="headerlink" title="开窗函数 ："></a>开窗函数 ：</h2><ul>
+<li>分析函数：对开窗函数的分析的函数<ul>
+<li>rank : 使用方法 rank()over(partition by xx order by yy) as rk  : 如果有重复的数据，会丢失排名</li>
+<li>dense_rank :使用方法同上 ： 如果有重复数据 ，则不会丢失排名 ：</li>
+<li>row_number:同上 ： 排名相同且不会重复 ， 就是会顺序往下 ：</li>
+</ul>
+</li>
+</ul>
+<p>上述的常用手段 ： 求topn的排名</p>
+<p>比如要求top3 的</p>
+<p>作业 ：</p>
+<p>统计每个店铺的uv</p>
+<p>统计top3的用户记录</p>
+<p>pv ： 页面的浏览量</p>
+<p>uv ： 访客的次数</p>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/11/30/11-30/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1870,194 +2056,6 @@ is null 作用一样 &lt;=&gt;
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/11/17/11-17/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/17/11-17/" class="post-title-link" itemprop="url">hadoop面试会问</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-17 19:47:10" itemprop="dateCreated datePublished" datetime="2022-11-17T19:47:10+08:00">2022-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-18 12:53:12" itemprop="dateModified" datetime="2022-11-18T12:53:12+08:00">2022-11-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="hdfs的写流程"><a href="#hdfs的写流程" class="headerlink" title="hdfs的写流程"></a>hdfs的写流程</h1><ul>
-<li>面试|必备</li>
-<li>通过客户端，写文件</li>
-<li>首先客户端会调用 FileSystem 的creat</li>
-<li>去和namenode进行通信 ， 是通过rpc通信</li>
-<li>然后namenode会去检查这个路径的文件是不是存在并且检查你的权限</li>
-<li>假如都ok ， 则执行你的操作</li>
-<li>但是这个时候还没有写数据</li>
-<li>是不关联任何block的</li>
-<li>而namenode根据上传文件的大小，和块的大小，以及副本数</li>
-<li>计算要上传多少块以及后续要在datanode上的什么位置</li>
-<li>最后把信息返回到客户端</li>
-<li>就是 ： fsdataoutputstream</li>
-<li>Client 调用 fdsdataoutputstream</li>
-<li>将第一个块的第一个副本数写第一个dn节点</li>
-<li>写完去写第二个</li>
-<li>然后是第三个</li>
-<li>当三个都写完了 ， 会返回一个ack package</li>
-<li>把确认包给dn2</li>
-<li>当dn2确认并加上自己的</li>
-<li>然后给dn3，同上</li>
-<li>最后将ack package 返回给 fdsdataoutputstream</li>
-<li>上面只是对于第一个块</li>
-<li>当所有的块全部写完的时候，我们会调用</li>
-<li>这个流对象的close方法</li>
-<li>告诉namenode ，文件写入成功</li>
-</ul>
-<h1 id="hdfs读操作"><a href="#hdfs读操作" class="headerlink" title="hdfs读操作"></a>hdfs读操作</h1><ul>
-<li>面试|必备</li>
-<li>Cilent调用FS.open(filepath)</li>
-<li>nn和pc进行通信，返回该文件的部分或者全部的block列表</li>
-<li>以fdsdatainputstream的形式</li>
-<li>Client的FSDDataInputstream的read方法</li>
-<li>会去和最近的dn进行匹配，读取完成</li>
-<li>会check，假如ok，就关闭通信</li>
-<li>假如读取失败</li>
-<li>会记录dn+block信息</li>
-<li>下次就也不会从这个节点读取，转而从其他的节点读取</li>
-<li>然后会去和第二块的最近的dn进行读取，以此类推</li>
-<li>当整个block全部读取完之后，文件还没读取完，就会继续调用fs的方法进行下一次block的读取</li>
-<li>以此类推</li>
-<li>最后用close方法关闭</li>
-</ul>
-<h1 id="hdfs的副本放置策略"><a href="#hdfs的副本放置策略" class="headerlink" title="hdfs的副本放置策略"></a>hdfs的副本放置策略</h1><ul>
-<li>机架</li>
-<li>生产上读写操作，选择dn节点进行读取</li>
-<li>第一副本 ： </li>
-<li>放置在client上传的dn节点</li>
-<li>client 不在dn节点 ，就随机选择一个dn</li>
-<li>第二副本 ： </li>
-<li>放置在第一个副本不同的机架上的一个dn节点</li>
-<li>第三副本 ： </li>
-<li>和第二副本相同机架但是不同节点</li>
-<li>补充 ；</li>
-<li>副本数是三</li>
-<li>上述都是以副本数为3的情况</li>
-<li>如果是4就多几个随机</li>
-</ul>
-<h1 id="hdfs的安全模式"><a href="#hdfs的安全模式" class="headerlink" title="hdfs的安全模式"></a>hdfs的安全模式</h1><ul>
-<li>什么时候会发生安全模式</li>
-<li>刚启动hadoop的时候</li>
-<li>hsdf发生故障的时候 ： 集群文件大量会丢失</li>
-<li>人为进入</li>
-<li>命令 ： <code>hdfs dfsadmin -safemode &lt;enter | leave | get | wait | forceExit&gt;</code></li>
-</ul>
-<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><ul>
-<li>kill 命令 不只有一个-9</li>
-<li>还有很多 ： 目前我所看见的至少有64个</li>
-</ul>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attribute">1</span>) SIGHUP     <span class="number">2</span>) SIGINT     <span class="number">3</span>) SIGQUIT     <span class="number">4</span>) SIGILL     <span class="number">5</span>) SIGTRAP</span><br><span class="line"><span class="attribute">6</span>) SIGABRT     <span class="number">7</span>) SIGBUS     <span class="number">8</span>) SIGFPE     <span class="number">9</span>) SIGKILL    <span class="number">10</span>) SIGUSR1</span><br><span class="line"><span class="attribute">11</span>) SIGSEGV    <span class="number">12</span>) SIGUSR2    <span class="number">13</span>) SIGPIPE    <span class="number">14</span>) SIGALRM    <span class="number">15</span>) SIGTERM</span><br><span class="line"><span class="attribute">16</span>) SIGSTKFLT    <span class="number">17</span>) SIGCHLD    <span class="number">18</span>) SIGCONT    <span class="number">19</span>) SIGSTOP    <span class="number">20</span>) SIGTSTP</span><br><span class="line"><span class="attribute">21</span>) SIGTTIN    <span class="number">22</span>) SIGTTOU    <span class="number">23</span>) SIGURG    <span class="number">24</span>) SIGXCPU    <span class="number">25</span>) SIGXFSZ</span><br><span class="line"><span class="attribute">26</span>) SIGVTALRM    <span class="number">27</span>) SIGPROF    <span class="number">28</span>) SIGWINCH    <span class="number">29</span>) SIGIO    <span class="number">30</span>) SIGPWR</span><br><span class="line"><span class="attribute">31</span>) SIGSYS    <span class="number">34</span>) SIGRTMIN    <span class="number">35</span>) SIGRTMIN+<span class="number">1</span>    <span class="number">36</span>) SIGRTMIN+<span class="number">2</span>    <span class="number">37</span>) SIGRTMIN+<span class="number">3</span></span><br><span class="line"><span class="attribute">38</span>) SIGRTMIN+<span class="number">4</span>    <span class="number">39</span>) SIGRTMIN+<span class="number">5</span>    <span class="number">40</span>) SIGRTMIN+<span class="number">6</span>    <span class="number">41</span>) SIGRTMIN+<span class="number">7</span>    <span class="number">42</span>) SIGRTMIN+<span class="number">8</span></span><br><span class="line"><span class="attribute">43</span>) SIGRTMIN+<span class="number">9</span>    <span class="number">44</span>) SIGRTMIN+<span class="number">10</span>    <span class="number">45</span>) SIGRTMIN+<span class="number">11</span>    <span class="number">46</span>) SIGRTMIN+<span class="number">12</span>    <span class="number">47</span>) SIGRTMIN+<span class="number">13</span></span><br><span class="line"><span class="attribute">48</span>) SIGRTMIN+<span class="number">14</span>    <span class="number">49</span>) SIGRTMIN+<span class="number">15</span>    <span class="number">50</span>) SIGRTMAX-<span class="number">14</span>    <span class="number">51</span>) SIGRTMAX-<span class="number">13</span>    <span class="number">52</span>) SIGRTMAX-<span class="number">12</span></span><br><span class="line"><span class="attribute">53</span>) SIGRTMAX-<span class="number">11</span>    <span class="number">54</span>) SIGRTMAX-<span class="number">10</span>    <span class="number">55</span>) SIGRTMAX-<span class="number">9</span>    <span class="number">56</span>) SIGRTMAX-<span class="number">8</span>    <span class="number">57</span>) SIGRTMAX-<span class="number">7</span></span><br><span class="line"><span class="attribute">58</span>) SIGRTMAX-<span class="number">6</span>    <span class="number">59</span>) SIGRTMAX-<span class="number">5</span>    <span class="number">60</span>) SIGRTMAX-<span class="number">4</span>    <span class="number">61</span>) SIGRTMAX-<span class="number">3</span>    <span class="number">62</span>) SIGRTMAX-<span class="number">2</span></span><br><span class="line"><span class="attribute">63</span>) SIGRTMAX-<span class="number">1</span>    <span class="number">64</span>) SIGRTMAX</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>这个简单介绍几个 ： </li>
-<li>1 ： 重新加载合格进程</li>
-<li>9 ： 杀死一个进程</li>
-<li>15 ： 正常停止一个进程</li>
-</ul>
-<h1 id="公司内部的逻辑"><a href="#公司内部的逻辑" class="headerlink" title="公司内部的逻辑"></a>公司内部的逻辑</h1><ul>
-<li>一般一个组件都会有一个用户进行管理</li>
-<li>比如 ： mysql ： 可以创建一个mysql用户</li>
-<li>等</li>
-<li>创建数据库的流程 ： </li>
-<li><code>create dataase dl2262;</code></li>
-<li><code>grant all priviledges on dl2262 identified by &quot;1234546;&quot;</code></li>
-<li><code>flush priviledges;</code></li>
-</ul>
-<h1 id="hdfs生产最佳实践"><a href="#hdfs生产最佳实践" class="headerlink" title="hdfs生产最佳实践"></a>hdfs生产最佳实践</h1><ul>
-<li>如何查看hdfs的文件块是不是丢失<br>-<code>hdfs fsck&lt;path&gt;</code></li>
-</ul>
-<h2 id="hdfs-的block块丢失了如何解决"><a href="#hdfs-的block块丢失了如何解决" class="headerlink" title="hdfs 的block块丢失了如何解决"></a>hdfs 的block块丢失了如何解决</h2><ul>
-<li>第一种 ： 不用解决 ，也因为hdfs会自动回复，一般是6h ， 就是dn上传的时候</li>
-<li>第二种 ： 手动进行回复</li>
-<li><code>hdfs debug recoverLease -path &lt;filename&gt; retries num</code> </li>
-<li>后面的是重试次数</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2129,7 +2127,7 @@ is null 作用一样 &lt;=&gt;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2199,7 +2197,7 @@ is null 作用一样 &lt;=&gt;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共153.8k字</span>
+  <span class="post-count">博客全站共166k字</span>
 </div>
 
 
