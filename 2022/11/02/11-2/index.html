@@ -22,16 +22,17 @@
     var CONFIG = {"hostname":"zihang.fun","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":15,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="shell 文件命名 ： 结尾一般以.sh结尾 不要编译  文件第一行 ，一般写一个编辑器 ，就比如：#！bin&#x2F;bash 编写脚本 添加权限 chmod添加权限  运行 sh .&#x2F;xxx.sh（脚本名字） 如果给予了执行权限就可以直接执行 debug 在 #！bin&#x2F;bash 后面加一个 -x 就可以看见程序运行的过程 还可以用 sh -x xxx脚本名字  在sh">
+  <meta name="description" content="shell 文件命名 ： 结尾一般以.sh结尾 不要编译 文件第一行 ，一般写一个编辑器 ，就比如：#！bin&#x2F;bash 编写脚本 添加权限 chmod添加权限  运行 sh .&#x2F;xxx.sh（脚本名字） 如果给予了执行权限就可以直接执行 debug 在 #！bin&#x2F;bash 后面加一个 -x 就可以看见程序运行的过程 还可以用 sh -x xxx脚本名字  在she">
 <meta property="og:type" content="article">
 <meta property="og:title" content="shell">
 <meta property="og:url" content="http://zihang.fun/2022/11/02/11-2/index.html">
 <meta property="og:site_name" content="枫叶冢">
-<meta property="og:description" content="shell 文件命名 ： 结尾一般以.sh结尾 不要编译  文件第一行 ，一般写一个编辑器 ，就比如：#！bin&#x2F;bash 编写脚本 添加权限 chmod添加权限  运行 sh .&#x2F;xxx.sh（脚本名字） 如果给予了执行权限就可以直接执行 debug 在 #！bin&#x2F;bash 后面加一个 -x 就可以看见程序运行的过程 还可以用 sh -x xxx脚本名字  在sh">
+<meta property="og:description" content="shell 文件命名 ： 结尾一般以.sh结尾 不要编译 文件第一行 ，一般写一个编辑器 ，就比如：#！bin&#x2F;bash 编写脚本 添加权限 chmod添加权限  运行 sh .&#x2F;xxx.sh（脚本名字） 如果给予了执行权限就可以直接执行 debug 在 #！bin&#x2F;bash 后面加一个 -x 就可以看见程序运行的过程 还可以用 sh -x xxx脚本名字  在she">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-02T04:08:22.000Z">
-<meta property="article:modified_time" content="2022-11-03T11:20:08.674Z">
+<meta property="article:modified_time" content="2023-01-11T01:07:52.278Z">
 <meta property="article:author" content="liu zihang">
+<meta property="article:tag" content="shell">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://zihang.fun/2022/11/02/11-2/">
@@ -232,7 +233,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-03 19:20:08" itemprop="dateModified" datetime="2022-11-03T19:20:08+08:00">2022-11-03</time>
+                <time title="修改时间：2023-01-11 09:07:52" itemprop="dateModified" datetime="2023-01-11T09:07:52+08:00">2023-01-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -281,7 +282,7 @@
       
         <h1 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h1><ul>
 <li>文件命名 ： 结尾一般以.sh结尾</li>
-<li>不要编译 </li>
+<li>不要编译</li>
 <li>文件第一行 ，一般写一个编辑器 ，就比如：#！bin&#x2F;bash</li>
 <li>编写脚本</li>
 <li>添加权限</li>
@@ -312,11 +313,11 @@
 <li>$? : 返回执行之后的状态 ： 0是正常执行 ， 非0是错误</li>
 <li>$*代表所有传入的内容</li>
 <li>$#代表传入的数量</li>
-<li>$$代表是当前进程的进程号</li>
+<li>$$<br>代表是当前进程的进程号<br>$$</li>
 <li>$@把传入的参数作为一个字符串输出，但是里面仍然认为由多个字符串而$*则是认为他只有一个字符串</li>
 <li>转义字符 ： 和c一样</li>
 <li>定义数组 ： arr&#x3D;（zs lis ww zl wrm）</li>
-<li>获取数组里的元素 ： ${arr[*]} :这个是获取所有的 。 </li>
+<li>获取数组里的元素 ： ${arr[*]} :这个是获取所有的 。</li>
 <li>但是这个里面不能由；</li>
 <li>如果要查看单个和java里一样，把【】中的换成从0开始的数字</li>
 <li>代表查看数组里的元素个数 ： <code>$&#123;井号arr[*]&#125;</code></li>
@@ -345,7 +346,7 @@
 <li><code>command</code></li>
 <li><code>else</code></li>
 <li><code>command</code></li>
-<li><code>fi</code> </li>
+<li><code>fi</code></li>
 <li><code>condition</code> ： [] 比如：[ 1 &#x3D;&#x3D; 2 ] 变量以及判断符号前后有空格</li>
 <li>值判断 ：</li>
 <li>常规的都可以用</li>
@@ -362,8 +363,8 @@
 <li><code>elif con; then</code></li>
 <li><code>com</code></li>
 <li><code>....</code></li>
-<li>后面<code>elif</code>可以无限加</li>
-<li>同时也有<code>break</code>和<code>countinue</code></li>
+<li>后面 <code>elif</code>可以无限加</li>
+<li>同时也有 <code>break</code>和 <code>countinue</code></li>
 </ul>
 <h2 id="与或非"><a href="#与或非" class="headerlink" title="与或非"></a>与或非</h2><ul>
 <li>与 <code>||</code></li>
@@ -390,9 +391,9 @@
 <li><code>do</code></li>
 <li><code>程序段</code></li>
 <li><code>done</code></li>
-<li>这个和<code>while</code>相反 ，条件为错，一直执行</li>
+<li>这个和 <code>while</code>相反 ，条件为错，一直执行</li>
 <li>上述的程序段中可以用let i++等</li>
-<li>这个<code>con</code>可以应用（（））或者中括号都行</li>
+<li>这个 <code>con</code>可以应用（（））或者中括号都行</li>
 </ul>
 <h2 id="case"><a href="#case" class="headerlink" title="case"></a>case</h2><ul>
 <li><code>case $变量名 in</code></li>
@@ -479,7 +480,7 @@
 <li>比如[0-9]* ：任意长度的数字</li>
 <li>[0,7] : 0或7</li>
 <li>还可以这样写 ： [a-c , b-f]</li>
-<li>[ab]* ：代表任意以ab组成的 比如 ：aab<br> abb 等</li>
+<li>[ab]* ：代表任意以ab组成的 比如 ：aab<br>abb 等</li>
 <li>转义字符 \</li>
 <li>当我们要搜索$等关键字的时候</li>
 <li>要’反斜杠$’ :表示转义 ，才可以用做搜索</li>
@@ -489,7 +490,7 @@
 <li><code>^1[345678][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$</code></li>
 <li><code>^1[345678][0-9]&#123;9&#125;$</code></li>
 <li>但是下面的花括号是扩展</li>
-<li>要用<code>grep -E ^1[345678][0-9]&#123;9&#125;$ </code>才可以</li>
+<li>要用 <code>grep -E ^1[345678][0-9]&#123;9&#125;$ </code>才可以</li>
 <li>但是上面的最开始的是都可以支持的</li>
 <li></li>
 </ul>
@@ -574,6 +575,9 @@
      
     
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/shell/" rel="tag"># shell</a>
+          </div>
 
         
 
@@ -667,7 +671,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -680,7 +684,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -743,7 +747,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共173.9k字</span>
+  <span class="post-count">博客全站共168.7k字</span>
 </div>
 
 
