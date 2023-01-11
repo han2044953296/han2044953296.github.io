@@ -198,6 +198,378 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/11/17/%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/17/%E5%9D%91/" class="post-title-link" itemprop="url">踩过的坑</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-17 19:47:34" itemprop="dateCreated datePublished" datetime="2022-11-17T19:47:34+08:00">2022-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-11 09:16:49" itemprop="dateModified" datetime="2023-01-11T09:16:49+08:00">2023-01-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="修改windows下的hosts文件不生效"><a href="#修改windows下的hosts文件不生效" class="headerlink" title="修改windows下的hosts文件不生效"></a>修改windows下的hosts文件不生效</h1><ul>
+<li>这个坑一直卡了我三四天</li>
+<li>配置完hadoop集群，进行web访问的时候出现了这个问题</li>
+<li>因为windows的主机映射不好使，所以我无法在网页端查看数据</li>
+</ul>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><ul>
+<li>我这里解决这个的办法是通过</li>
+<li>把中间空格放大的方法</li>
+<li>就是一个小空格加一个tab键</li>
+<li>然后进入 <code>edge://net-internals</code>或者 <code>chrome://net-internals</code></li>
+<li>这取决于你的浏览器</li>
+<li>然后 <code>win + x</code> 查看windows powershell（管理员）打开之后执行 <code> ipconfig /flushdns</code></li>
+<li>刷新之后就可以通过映射访问了</li>
+</ul>
+<h1 id="有关于idea关于Hadoop的api的copyToLocalfile不生效"><a href="#有关于idea关于Hadoop的api的copyToLocalfile不生效" class="headerlink" title="有关于idea关于Hadoop的api的copyToLocalfile不生效"></a>有关于idea关于Hadoop的api的copyToLocalfile不生效</h1><ul>
+<li>报错信息 <code>java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.dir are unset.</code></li>
+<li>这个是代表你windows里没有配置hadoop环境</li>
+<li>我们可以不用他提供的api</li>
+<li>通过</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">FSDataInputStream fis = fs.<span class="keyword">open</span>(<span class="keyword">new</span> <span class="constructor">Path(<span class="string">&quot;/date&quot;</span>)</span>); <span class="comment">// hdfs上的文件</span></span><br><span class="line">OutputStream outputStream = <span class="keyword">new</span> <span class="constructor">FileOutputStream( <span class="params">new</span> File(<span class="string">&quot;D:\\ bg1.txt&quot;</span>)</span> , <span class="literal">false</span>); <span class="comment">// 本地的存储地点</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">IOUtils</span>.</span></span>copy<span class="constructor">Bytes(<span class="params">fis</span>,<span class="params">outputStream</span>,4096 , <span class="params">true</span>)</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>就可以实现下载</li>
+</ul>
+<h1 id="关于linux里的mysql会自动识别大小写表名的事情"><a href="#关于linux里的mysql会自动识别大小写表名的事情" class="headerlink" title="关于linux里的mysql会自动识别大小写表名的事情"></a>关于linux里的mysql会自动识别大小写表名的事情</h1><p>linux里的mysql会自动对表名进行大小写区分，这可能导致一些boot项目启动的时候找不到表名</p>
+<p>如何更改如下</p>
+<p>首先查看自己的表名大小写权限是不是打开了</p>
+<p>先在mysql里执行</p>
+<p><code>show variables like &quot;%case%&quot;;</code></p>
+<p>查看一下我们的权限打没打开</p>
+<p>一般默认的时候会有个off的选项</p>
+<p>这个是默认的情况</p>
+<p>接下来我们对其进行修改</p>
+<p>我们首先退出mysql</p>
+<p>然后关闭mysql服务输入 ： <code>mysqladmin -uroot -p shutdown //以安全模式关闭数据库</code></p>
+<p>接下来输入密码就关闭了</p>
+<p>然后编辑mysql的配置文件</p>
+<p>输入 ： <code>vim /etc/my.cnf</code></p>
+<p>在mysqld下添加一行</p>
+<p><code>lower_case_table_names=1</code></p>
+<p>然后退出保存即可</p>
+<p>最后要重新启动mysql输入 ： <code>systemctl resatrt mysqld</code></p>
+<p>就可以了</p>
+<h1 id="mysql误删了配置文件-performance-schema的恢复"><a href="#mysql误删了配置文件-performance-schema的恢复" class="headerlink" title="mysql误删了配置文件 performance_schema的恢复"></a>mysql误删了配置文件 performance_schema的恢复</h1><p>首先我们退出mysql</p>
+<p>然后输入 <code>mysql_upgrade -u root -p </code></p>
+<p>输入我们的密码之后</p>
+<p>然后重新登录我们的mysql就会出现了</p>
+<h1 id="npm怎么清除缓存"><a href="#npm怎么清除缓存" class="headerlink" title="npm怎么清除缓存"></a>npm怎么清除缓存</h1><p>首先关于npm进行清除缓存</p>
+<p>先明确自己的npm的版本</p>
+<p>如果npm version &lt; 7.0.0</p>
+<p><code>$ npm cache clean -f</code></p>
+<p>npm version ≧ 7.0.0 会报以下错误</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ npm cache cleannpm ERR! As of npm@5, the npm cache self-heals from corruption issues</span><br><span class="line">npm ERR! by treating integrity mismatches as cache misses.  As a result,</span><br><span class="line">npm ERR! data extracted from the cache is guaranteed to be valid.  If you</span><br><span class="line">npm ERR! want to make sure everything is consistent, use npm cache verify</span><br><span class="line">npm ERR! instead.  Deleting the cache can only make npm go slower, and is</span><br><span class="line">npm ERR! not likely to correct any problems you may be encountering!</span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! On the other hand, <span class="keyword">if</span> you<span class="string">&#x27;re debugging an issue with the installer,</span></span><br><span class="line"><span class="string">npm ERR! or race conditions that depend on the timing of writing to an empty</span></span><br><span class="line"><span class="string">npm ERR! cache, you can use npm install --cache /tmp/empty-cache to use a</span></span><br><span class="line"><span class="string">npm ERR! temporary cache instead of nuking the actual one.</span></span><br><span class="line"><span class="string">npm ERR!</span></span><br><span class="line"><span class="string">npm ERR! If you&#x27;</span>re sure you want to delete the entire cache, rerun this <span class="built_in">command</span></span><br><span class="line">npm ERR! with --force.npm ERR! A complete <span class="built_in">log</span> of this run can be found <span class="keyword">in</span>:</span><br><span class="line">npm ERR!     /Users/xxxxxx/.npm/_logs/2021-02-04T06_35_38_043Z-debug.log</span><br></pre></td></tr></table></figure>
+
+<p>如果想强制清除缓存就要用–force</p>
+<h1 id="关于npm设置镜像源"><a href="#关于npm设置镜像源" class="headerlink" title="关于npm设置镜像源"></a>关于npm设置镜像源</h1><p><code>npm config set registry http://registry.npm.taobao.org</code></p>
+<p>然后就把淘宝镜像源加进入了</p>
+<h1 id="Git之本地分支和远程分支建立追踪关系的几种方式"><a href="#Git之本地分支和远程分支建立追踪关系的几种方式" class="headerlink" title="Git之本地分支和远程分支建立追踪关系的几种方式"></a>Git之本地分支和远程分支建立追踪关系的几种方式</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch --set-upstream-to=origin/remote_branch your_branch</span><br><span class="line">origin/remote_branch是你本地分支对应的远程分支；your_branch是你当前的本地分支。</span><br></pre></td></tr></table></figure>
+
+<p>或者之间checkout -b 根据远程建立本地分支</p>
+<h1 id="git-删除远程分支"><a href="#git-删除远程分支" class="headerlink" title="git 删除远程分支"></a>git 删除远程分支</h1><p><code> git push origin --delete [branch_name]</code></p>
+<h1 id="云服务器内存不够，设置swap交换分区"><a href="#云服务器内存不够，设置swap交换分区" class="headerlink" title="云服务器内存不够，设置swap交换分区"></a>云服务器内存不够，设置swap交换分区</h1><p>闲来无事自己用云主机搭建了一台gitlab，但是由于云主机是2G2核的在刚开始布置完成之后，访问的时候时常会502</p>
+<p>就是服务器的内存被占据太多了，无法响应导致的</p>
+<p>然后就想办法设置交换分区解决这个问题</p>
+<p>首先要在root 用户下</p>
+<p>然后是创建交换分区的文件 <code>/file/swap</code></p>
+<p>然后执行 <code>dd if=/dev/zero of=/file/swap bs=1024 count=4096000</code></p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/dev/</span>zero是输入，<span class="regexp">/file/</span>swap是交换文件位置，路径得存在，bs读/写的块大小，<span class="keyword">count</span>是swap大小</span><br></pre></td></tr></table></figure>
+
+<p>然后执行 <code>mkswap /file/swap</code></p>
+<p>把第一步的文件设置成swap交换区</p>
+<p>启用swap交换分区</p>
+<p><code>swapon /file/swap</code></p>
+<p>设置成开机挂载交换区</p>
+<p><code>echo &quot;/file/swap swap swap defaults 0 0&quot; &gt;&gt; /etc/fstab</code></p>
+<p>设置启动的条件</p>
+<p><code>vim /etc/sysctl.conf 将vm.swappiness = 0值改为50</code></p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这个值是如何使用<span class="keyword">swap</span>分区值越大越积极使用<span class="keyword">swap</span>分区，越小表示越积极使用物理内存，wappiness=<span class="number">50</span>，表示内存使用率超过<span class="number">100</span><span class="number">-50</span>=<span class="number">50</span>%时开始使用交换分区，swappiness=<span class="number">0</span>时不使用swapswappiness＝<span class="number">100</span>的时候表示积极使用<span class="keyword">swap</span>分区，并把内存上的数据及时搬运到<span class="keyword">swap</span>空间</span><br></pre></td></tr></table></figure>
+
+<p>加载参数</p>
+<p><code>sysctl -p</code></p>
+<h1 id="git出现fatal-the-remote-end-hung-up-unexpectedly"><a href="#git出现fatal-the-remote-end-hung-up-unexpectedly" class="headerlink" title="git出现fatal: the remote end hung up unexpectedly"></a>git出现<strong>fatal: the remote end hung up unexpectedly</strong></h1><p>上传项目报fatal: the remote end hung up unexpectedly的错误，</p>
+<p>应该是项目太大的原因， 要么是网络不行，要么墙的原因</p>
+<p>解决办法：<br>修改提交缓存大小为500M，或者更大的数字<br>git config –global http.postBuffer 524288000</p>
+<p>some comments below report having to double the value:</p>
+<p>git config –global http.postBuffer 1048576000</p>
+<p>或者是 在克隆&#x2F;创建版本库生成的 .git&#x2F;config 文件中加入:</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[http]</span></span><br><span class="line"><span class="attr">postBuffer</span> = <span class="number">524288000</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="ssh配置免密登录了，无法生效"><a href="#ssh配置免密登录了，无法生效" class="headerlink" title="ssh配置免密登录了，无法生效"></a>ssh配置免密登录了，无法生效</h1><p>原因：有可能是因为组权限加了W，，减掉就好了</p>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/11/17/11-17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/17/11-17/" class="post-title-link" itemprop="url">hadoop面试会问</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-17 19:47:10" itemprop="dateCreated datePublished" datetime="2022-11-17T19:47:10+08:00">2022-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-11 09:19:03" itemprop="dateModified" datetime="2023-01-11T09:19:03+08:00">2023-01-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="hdfs的写流程"><a href="#hdfs的写流程" class="headerlink" title="hdfs的写流程"></a>hdfs的写流程</h1><ul>
+<li>面试|必备</li>
+<li>通过客户端，写文件</li>
+<li>首先客户端会调用 FileSystem 的creat</li>
+<li>去和namenode进行通信 ， 是通过rpc通信</li>
+<li>然后namenode会去检查这个路径的文件是不是存在并且检查你的权限</li>
+<li>假如都ok ， 则执行你的操作</li>
+<li>但是这个时候还没有写数据</li>
+<li>是不关联任何block的</li>
+<li>而namenode根据上传文件的大小，和块的大小，以及副本数</li>
+<li>计算要上传多少块以及后续要在datanode上的什么位置</li>
+<li>最后把信息返回到客户端</li>
+<li>就是 ： fsdataoutputstream</li>
+<li>Client 调用 fdsdataoutputstream</li>
+<li>将第一个块的第一个副本数写第一个dn节点</li>
+<li>写完去写第二个</li>
+<li>然后是第三个</li>
+<li>当三个都写完了 ， 会返回一个ack package</li>
+<li>把确认包给dn2</li>
+<li>当dn2确认并加上自己的</li>
+<li>然后给dn3，同上</li>
+<li>最后将ack package 返回给 fdsdataoutputstream</li>
+<li>上面只是对于第一个块</li>
+<li>当所有的块全部写完的时候，我们会调用</li>
+<li>这个流对象的close方法</li>
+<li>告诉namenode ，文件写入成功</li>
+</ul>
+<h1 id="hdfs读操作"><a href="#hdfs读操作" class="headerlink" title="hdfs读操作"></a>hdfs读操作</h1><ul>
+<li>面试|必备</li>
+<li>Cilent调用FS.open(filepath)</li>
+<li>nn和pc进行通信，返回该文件的部分或者全部的block列表</li>
+<li>以fdsdatainputstream的形式</li>
+<li>Client的FSDDataInputstream的read方法</li>
+<li>会去和最近的dn进行匹配，读取完成</li>
+<li>会check，假如ok，就关闭通信</li>
+<li>假如读取失败</li>
+<li>会记录dn+block信息</li>
+<li>下次就也不会从这个节点读取，转而从其他的节点读取</li>
+<li>然后会去和第二块的最近的dn进行读取，以此类推</li>
+<li>当整个block全部读取完之后，文件还没读取完，就会继续调用fs的方法进行下一次block的读取</li>
+<li>以此类推</li>
+<li>最后用close方法关闭</li>
+</ul>
+<h1 id="hdfs的副本放置策略"><a href="#hdfs的副本放置策略" class="headerlink" title="hdfs的副本放置策略"></a>hdfs的副本放置策略</h1><ul>
+<li>机架</li>
+<li>生产上读写操作，选择dn节点进行读取</li>
+<li>第一副本 ：</li>
+<li>放置在client上传的dn节点</li>
+<li>client 不在dn节点 ，就随机选择一个dn</li>
+<li>第二副本 ：</li>
+<li>放置在第一个副本不同的机架上的一个dn节点</li>
+<li>第三副本 ：</li>
+<li>和第二副本相同机架但是不同节点</li>
+<li>补充 ；</li>
+<li>副本数是三</li>
+<li>上述都是以副本数为3的情况</li>
+<li>如果是4就多几个随机</li>
+</ul>
+<h1 id="hdfs的安全模式"><a href="#hdfs的安全模式" class="headerlink" title="hdfs的安全模式"></a>hdfs的安全模式</h1><ul>
+<li>什么时候会发生安全模式</li>
+<li>刚启动hadoop的时候</li>
+<li>hsdf发生故障的时候 ： 集群文件大量会丢失</li>
+<li>人为进入</li>
+<li>命令 ： <code>hdfs dfsadmin -safemode &lt;enter | leave | get | wait | forceExit&gt;</code></li>
+</ul>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><ul>
+<li>kill 命令 不只有一个-9</li>
+<li>还有很多 ： 目前我所看见的至少有64个</li>
+</ul>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attribute">1</span>) SIGHUP     <span class="number">2</span>) SIGINT     <span class="number">3</span>) SIGQUIT     <span class="number">4</span>) SIGILL     <span class="number">5</span>) SIGTRAP</span><br><span class="line"><span class="attribute">6</span>) SIGABRT     <span class="number">7</span>) SIGBUS     <span class="number">8</span>) SIGFPE     <span class="number">9</span>) SIGKILL    <span class="number">10</span>) SIGUSR1</span><br><span class="line"><span class="attribute">11</span>) SIGSEGV    <span class="number">12</span>) SIGUSR2    <span class="number">13</span>) SIGPIPE    <span class="number">14</span>) SIGALRM    <span class="number">15</span>) SIGTERM</span><br><span class="line"><span class="attribute">16</span>) SIGSTKFLT    <span class="number">17</span>) SIGCHLD    <span class="number">18</span>) SIGCONT    <span class="number">19</span>) SIGSTOP    <span class="number">20</span>) SIGTSTP</span><br><span class="line"><span class="attribute">21</span>) SIGTTIN    <span class="number">22</span>) SIGTTOU    <span class="number">23</span>) SIGURG    <span class="number">24</span>) SIGXCPU    <span class="number">25</span>) SIGXFSZ</span><br><span class="line"><span class="attribute">26</span>) SIGVTALRM    <span class="number">27</span>) SIGPROF    <span class="number">28</span>) SIGWINCH    <span class="number">29</span>) SIGIO    <span class="number">30</span>) SIGPWR</span><br><span class="line"><span class="attribute">31</span>) SIGSYS    <span class="number">34</span>) SIGRTMIN    <span class="number">35</span>) SIGRTMIN+<span class="number">1</span>    <span class="number">36</span>) SIGRTMIN+<span class="number">2</span>    <span class="number">37</span>) SIGRTMIN+<span class="number">3</span></span><br><span class="line"><span class="attribute">38</span>) SIGRTMIN+<span class="number">4</span>    <span class="number">39</span>) SIGRTMIN+<span class="number">5</span>    <span class="number">40</span>) SIGRTMIN+<span class="number">6</span>    <span class="number">41</span>) SIGRTMIN+<span class="number">7</span>    <span class="number">42</span>) SIGRTMIN+<span class="number">8</span></span><br><span class="line"><span class="attribute">43</span>) SIGRTMIN+<span class="number">9</span>    <span class="number">44</span>) SIGRTMIN+<span class="number">10</span>    <span class="number">45</span>) SIGRTMIN+<span class="number">11</span>    <span class="number">46</span>) SIGRTMIN+<span class="number">12</span>    <span class="number">47</span>) SIGRTMIN+<span class="number">13</span></span><br><span class="line"><span class="attribute">48</span>) SIGRTMIN+<span class="number">14</span>    <span class="number">49</span>) SIGRTMIN+<span class="number">15</span>    <span class="number">50</span>) SIGRTMAX-<span class="number">14</span>    <span class="number">51</span>) SIGRTMAX-<span class="number">13</span>    <span class="number">52</span>) SIGRTMAX-<span class="number">12</span></span><br><span class="line"><span class="attribute">53</span>) SIGRTMAX-<span class="number">11</span>    <span class="number">54</span>) SIGRTMAX-<span class="number">10</span>    <span class="number">55</span>) SIGRTMAX-<span class="number">9</span>    <span class="number">56</span>) SIGRTMAX-<span class="number">8</span>    <span class="number">57</span>) SIGRTMAX-<span class="number">7</span></span><br><span class="line"><span class="attribute">58</span>) SIGRTMAX-<span class="number">6</span>    <span class="number">59</span>) SIGRTMAX-<span class="number">5</span>    <span class="number">60</span>) SIGRTMAX-<span class="number">4</span>    <span class="number">61</span>) SIGRTMAX-<span class="number">3</span>    <span class="number">62</span>) SIGRTMAX-<span class="number">2</span></span><br><span class="line"><span class="attribute">63</span>) SIGRTMAX-<span class="number">1</span>    <span class="number">64</span>) SIGRTMAX</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这个简单介绍几个 ：</li>
+<li>1 ： 重新加载合格进程</li>
+<li>9 ： 杀死一个进程</li>
+<li>15 ： 正常停止一个进程</li>
+</ul>
+<h1 id="公司内部的逻辑"><a href="#公司内部的逻辑" class="headerlink" title="公司内部的逻辑"></a>公司内部的逻辑</h1><ul>
+<li>一般一个组件都会有一个用户进行管理</li>
+<li>比如 ： mysql ： 可以创建一个mysql用户</li>
+<li>等</li>
+<li>创建数据库的流程 ：</li>
+<li><code>create dataase dl2262;</code></li>
+<li><code>grant all priviledges on dl2262 identified by &quot;1234546;&quot;</code></li>
+<li><code>flush priviledges;</code></li>
+</ul>
+<h1 id="hdfs生产最佳实践"><a href="#hdfs生产最佳实践" class="headerlink" title="hdfs生产最佳实践"></a>hdfs生产最佳实践</h1><ul>
+<li>如何查看hdfs的文件块是不是丢失<br>-<code>hdfs fsck&lt;path&gt;</code></li>
+</ul>
+<h2 id="hdfs-的block块丢失了如何解决"><a href="#hdfs-的block块丢失了如何解决" class="headerlink" title="hdfs 的block块丢失了如何解决"></a>hdfs 的block块丢失了如何解决</h2><ul>
+<li>第一种 ： 不用解决 ，也因为hdfs会自动回复，一般是6h ， 就是dn上传的时候</li>
+<li>第二种 ： 手动进行回复</li>
+<li><code>hdfs debug recoverLease -path &lt;filename&gt; retries num</code></li>
+<li>后面的是重试次数</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/11/11/11-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2729,224 +3101,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/10/28/10-28/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/28/10-28/" class="post-title-link" itemprop="url">细节</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-28 09:26:29" itemprop="dateCreated datePublished" datetime="2022-10-28T09:26:29+08:00">2022-10-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-11 09:07:16" itemprop="dateModified" datetime="2023-01-11T09:07:16+08:00">2023-01-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>520</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="关于Map的遍历"><a href="#关于Map的遍历" class="headerlink" title="关于Map的遍历"></a>关于Map的遍历</h1><ul>
-<li>我们可以用Set来遍历</li>
-<li>代码如下:</li>
-</ul>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">map2.<span class="keyword">put</span>(<span class="string">&quot;Tom&quot;</span>, <span class="string">&quot;Corejava&quot;</span>);</span><br><span class="line">map2.<span class="keyword">put</span>(<span class="string">&quot;Jerry&quot;</span>, <span class="string">&quot;Jsp&quot;</span>);</span><br><span class="line">map2.<span class="keyword">put</span>(<span class="string">&quot;KJSHHKJ&quot;</span> , <span class="string">&quot;Oracle&quot;</span>);</span><br><span class="line"><span class="keyword">Set</span> m <span class="comment">= map2.entrySet()</span>;</span><br><span class="line">m.forEach(<span class="keyword">System</span>.out::println);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>我们还可以用，把map转换成流再进行</li>
-<li>代码如下：</li>
-</ul>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">map2.entrySet<span class="function"><span class="params">()</span>.<span class="title">stream</span><span class="params">()</span>.<span class="title">filter</span><span class="params">((item) -&gt; <span class="string">&quot;Oracle&quot;</span>.equals(item.getValue()))</span>.<span class="title">forEach</span><span class="params">((item) -&gt; System.out.println(item.getKey()))</span>;</span></span><br><span class="line"><span class="function"></span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>特别帅气，</li>
-<li>而且foreach的本质就是流</li>
-<li>先通过entryset转换成集合</li>
-<li>然后集合有Stream方法，可以转化成流</li>
-<li>然后对于流我们加上filter（过滤器）</li>
-<li>筛选我们想要的结构，这个过滤器里面只能放返回值是布尔的</li>
-<li>然后筛选完了，我们可以对他进行lambda的表达输出语句</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/10/27/%E6%9D%82%E9%A1%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/27/%E6%9D%82%E9%A1%B9/" class="post-title-link" itemprop="url">杂项</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-27 12:19:27" itemprop="dateCreated datePublished" datetime="2022-10-27T12:19:27+08:00">2022-10-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-11 09:17:18" itemprop="dateModified" datetime="2023-01-11T09:17:18+08:00">2023-01-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9D%82%E9%A1%B9/" itemprop="url" rel="index"><span itemprop="name">杂项</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>106</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="查看自己电脑可支持的最大内存"><a href="#查看自己电脑可支持的最大内存" class="headerlink" title="查看自己电脑可支持的最大内存"></a>查看自己电脑可支持的最大内存</h1><ul>
-<li>打开cmd</li>
-<li>输入wmic memphysical get maxcapacity</li>
-<li>就会获得字节数</li>
-<li>除以两个1024，就会是xxxG</li>
-</ul>
-<h1 id="查看电脑有几个卡槽"><a href="#查看电脑有几个卡槽" class="headerlink" title="查看电脑有几个卡槽"></a>查看电脑有几个卡槽</h1><ul>
-<li>打开任务管理器</li>
-<li>选择性能</li>
-<li>上面就有已经使用了几个卡槽</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3018,7 +3172,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -3031,7 +3185,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -3094,7 +3248,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共168.7k字</span>
+  <span class="post-count">博客全站共173.9k字</span>
 </div>
 
 

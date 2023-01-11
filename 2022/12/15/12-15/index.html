@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/%E6%A0%91%E5%8F%B6_sleaves%20(1).png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/%E6%A0%91%E5%8F%B6_sleaves.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zihang.fun","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":15,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="hive的抓取策略什么是hive的抓取策略呢，举个简单的例子,当我们用 select * from xxx的时候它不会走mr阶段，会直接出来，可是有时候会走mr这个是由什么控制的？就是由我们的hive的抓取策略决定的 我们还可以在配置文件中进行更改，把不要mr的代码变多 hive&#x2F;conf&#x2F;hive-default.xml.template -》 2637行，修改hive.fetch.task.c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zookeeper">
+<meta property="og:url" content="http://zihang.fun/2022/12/15/12-15/index.html">
+<meta property="og:site_name" content="枫叶冢">
+<meta property="og:description" content="hive的抓取策略什么是hive的抓取策略呢，举个简单的例子,当我们用 select * from xxx的时候它不会走mr阶段，会直接出来，可是有时候会走mr这个是由什么控制的？就是由我们的hive的抓取策略决定的 我们还可以在配置文件中进行更改，把不要mr的代码变多 hive&#x2F;conf&#x2F;hive-default.xml.template -》 2637行，修改hive.fetch.task.c">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-15T00:20:33.762Z">
+<meta property="article:modified_time" content="2023-01-11T01:18:45.108Z">
+<meta property="article:author" content="liu zihang">
+<meta property="article:tag" content="zookeeper,hive">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://zihang.fun/2022/12/15/12-15/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>zookeeper | 枫叶冢</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/rss2.xml" title="枫叶冢" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a target="_blank" rel="noopener" href="https://github.com/han2044953296" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#151513; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">枫叶冢</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/15/12-15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          zookeeper
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-15 08:20:33" itemprop="dateCreated datePublished" datetime="2022-12-15T08:20:33+08:00">2022-12-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-11 09:18:45" itemprop="dateModified" datetime="2023-01-11T09:18:45+08:00">2023-01-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="hive的抓取策略"><a href="#hive的抓取策略" class="headerlink" title="hive的抓取策略"></a>hive的抓取策略</h1><p>什么是hive的抓取策略呢，举个简单的例子,当我们用 <code>select * from xxx</code>的时候它不会走mr阶段，会直接出来，可是有时候会走mr这个是由什么控制的？就是由我们的hive的抓取策略决定的</p>
+<p>我们还可以在配置文件中进行更改，把不要mr的代码变多</p>
+<p><code>hive/conf/hive-default.xml.template -》 2637行，修改hive.fetch.task.conversion为more；</code></p>
+<p>就相当于把全局查找，字段查找，filter查找，limit查找等都不走MR，直接Fetch</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;<span class="type">name</span>&gt;hive.<span class="keyword">fetch</span>.task.<span class="keyword">conversion</span>&lt;/<span class="type">name</span>&gt;</span><br><span class="line">  &lt;<span class="keyword">value</span>&gt;more&lt;/<span class="keyword">value</span>&gt;</span><br><span class="line">  &lt;description&gt;</span><br><span class="line">    Expects one <span class="keyword">of</span> [<span class="keyword">none</span>, minimal, more].</span><br><span class="line">    <span class="keyword">Some</span> <span class="keyword">select</span> queries can be converted <span class="keyword">to</span> single <span class="keyword">FETCH</span> task minimizing latency.</span><br><span class="line">    Currently the query should be single sourced <span class="keyword">not</span> <span class="keyword">having</span> <span class="keyword">any</span> subquery <span class="keyword">and</span> should <span class="keyword">not</span> have</span><br><span class="line">    <span class="keyword">any</span> aggregations <span class="keyword">or</span> distincts (which incurs RS), <span class="keyword">lateral</span> views <span class="keyword">and</span> joins.</span><br><span class="line">    <span class="number">0.</span> <span class="keyword">none</span> : <span class="keyword">disable</span> hive.<span class="keyword">fetch</span>.task.<span class="keyword">conversion</span></span><br><span class="line">    <span class="number">1.</span> minimal : <span class="keyword">SELECT</span> STAR, <span class="keyword">FILTER</span> <span class="keyword">on</span> <span class="keyword">partition</span> <span class="keyword">columns</span>, <span class="keyword">LIMIT</span> <span class="keyword">only</span></span><br><span class="line">    <span class="number">2.</span> more    : <span class="keyword">SELECT</span>, <span class="keyword">FILTER</span>, <span class="keyword">LIMIT</span> <span class="keyword">only</span> (support <span class="keyword">TABLESAMPLE</span> <span class="keyword">and</span> virtual <span class="keyword">columns</span>)</span><br><span class="line">  &lt;/description&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后还可以设置 ：</p>
+<p> 用户可以通过设置hive.exec.mode.local.auto的值为true，来让Hive在适当的时候自动启动这个优化。</p>
+<p>set hive.exec.mode.local.auto&#x3D;true; &#x2F;&#x2F;开启本地mr</p>
+<p>设置local mr的最大输入数据量，当输入数据量小于这个值时采用local mr的方式，默认为134217728，即128M</p>
+<p>set hive.exec.mode.local.auto.inputbytes.max&#x3D;51234560;</p>
+<p>设置local mr的最大输入文件个数，当输入文件个数小于这个值时采用local mr的方式，默认为4</p>
+<p>set hive.exec.mode.local.auto.input.files.max&#x3D;10;</p>
+<p>调整hive里的切片大小 ：</p>
+<p>mapreduce.input.fileinputformat.split.maxsize</p>
+<p>mapreduce.input.fileinputformat.split.minsize</p>
+<p>maxsize（切片最大值）：参数如果调得比blockSize小，则会让切片变小，而且就等于配置的这个参数的值。<br>minsize（切片最小值）：参数调的比blockSize大，则可以让切片变得比blockSize还大。</p>
+<h1 id="sql调优（speed）"><a href="#sql调优（speed）" class="headerlink" title="sql调优（speed）"></a>sql调优（speed）</h1><h2 id="小表join大表"><a href="#小表join大表" class="headerlink" title="小表join大表"></a>小表join大表</h2><p>当小表Join大表时，如果不指定MapJoin，那么hive解析器会将join操作转换为Common Join操作，在Reduce端完成join，容易发生<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C&spm=1001.2101.3001.7020">数据倾斜</a>。开启MapJoin后可以将小表全部加载到内存中，在map端进行join，避免reducer处理。</p>
+<p>优点 ：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>）没有reducer处理，就不会产生数据倾斜；</span><br><span class="line"></span><br><span class="line">（<span class="number">2</span>）没有Map -&gt; Reduce中间的shuffle操作，避免了IO</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>. 开启MapJoin设置</span><br><span class="line">（<span class="number">1</span>）设置自动选择MapJoin，默认是<span class="literal">true</span></span><br><span class="line">set hive.auto.<span class="built_in">convert</span>.<span class="built_in">join</span> = <span class="literal">true</span>;</span><br><span class="line"> </span><br><span class="line">（<span class="number">2</span>）设置小表阈值，默认是25M</span><br><span class="line">set hive.mapjoin.smalltable.filesize=<span class="number">25000000</span>;</span><br><span class="line"> </span><br><span class="line"><span class="number">2</span>. 再大表<span class="built_in">join</span>小表，与小表<span class="built_in">join</span>大表，执行速率几乎相等</span><br><span class="line"></span><br><span class="line">Hive中mapjoin的原理：</span><br><span class="line"></span><br><span class="line"><span class="built_in">map</span>-side <span class="built_in">join</span>：</span><br><span class="line"></span><br><span class="line">小表数据映射成一张hashtable，再上传到分布式节点的内存中；</span><br><span class="line">大表进行分片，每个节点一部分数据，大表数据文件作为<span class="built_in">map</span>端输入，对<span class="built_in">map</span>()函数每一对输入的kv都与已加载到内存中的小表数据连接，</span><br><span class="line">把连接结果按<span class="built_in">key</span>输出，有多少个<span class="built_in">map</span> task，产生多少个结果文件；</span><br><span class="line">由于<span class="built_in">join</span>操作在<span class="built_in">map</span> task中完成，所以无需启动reduce task，没有shuffle操作和reduce端，避免io和数据倾斜</span><br><span class="line"></span><br><span class="line">reduce-side <span class="built_in">join</span>：</span><br><span class="line"></span><br><span class="line"><span class="built_in">map</span>端把结果按<span class="built_in">key</span>输出，并在value中标记出数据来源于table1还是table2</span><br><span class="line">因为在shuffle阶段已经按<span class="built_in">key</span>分组，reduce阶段会判断每个value来自哪张表，然后两表相同<span class="built_in">key</span>的记录连接</span><br><span class="line"><span class="built_in">join</span>操作在reduce task中完成</span><br><span class="line"></span><br><span class="line">缺点<span class="number">1</span>：在<span class="built_in">map</span>阶段没有对数据瘦身，shuffle的网络传输和排序性能很低</span><br><span class="line">缺点<span class="number">2</span>：reduce对<span class="number">2</span>个集合做城际计算，很耗内存，容易造成oom</span><br></pre></td></tr></table></figure>
+
+<h2 id="大表join大表"><a href="#大表join大表" class="headerlink" title="大表join大表"></a>大表join大表</h2><p>有时join超时是因为某些key对应的数据太多了。由于相同的key对应的数据都会发送到相同的reducer上，如果出现数据倾斜可能导致内存不足。</p>
+<p>常见对于key对应字段为空，可以采取的优化手段包括空值key过滤和空值key转换</p>
+<p>首先我们要进行配置，开启历史服务器</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 首先配置mapred-site.xml</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span><span class="language-xml"><span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="language-xml"><span class="tag">&lt;<span class="name">value</span>&gt;</span>hadoop100:10020<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    </span><span class="language-xml"><span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.webapp.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">    </span><span class="language-xml"><span class="tag">&lt;<span class="name">value</span>&gt;</span>hadoop100:19888<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="number">2</span>. 在shell端启动历史服务器</span><br><span class="line">sbin/mr-jobhistory-daemon.sh <span class="keyword">start</span> historyserver</span><br><span class="line"> </span><br><span class="line"><span class="number">3</span>. 查看jobhistory端口</span><br><span class="line">http://hadoop10<span class="number">0</span>:<span class="number">19888</span>/jobhistory</span><br></pre></td></tr></table></figure>
+
+<p>空key过滤</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">不过滤空id列</span><br><span class="line"><span class="keyword">insert</span> overwrite table A </span><br><span class="line"><span class="keyword">select</span> b.* <span class="keyword">from</span> B b <span class="keyword">left</span> <span class="keyword">join</span> C c <span class="keyword">on</span> b.id = c.id;</span><br><span class="line"> </span><br><span class="line">过滤掉空id列</span><br><span class="line"><span class="keyword">insert</span> overwrite table A </span><br><span class="line"><span class="keyword">select</span> b.* <span class="keyword">from</span> (<span class="keyword">select</span> * <span class="keyword">from</span> B <span class="keyword">where</span> id <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span>) b <span class="keyword">left</span> <span class="keyword">join</span> C c <span class="keyword">on</span> b.id = c.id;</span><br><span class="line">过滤掉空id列后，耗费时间会降低很多。</span><br></pre></td></tr></table></figure>
+
+<p><strong>或者把它变成其他的有值的</strong></p>
+<p>有时虽然某个key对应的null很多，但null并不是异常数据，不能过滤掉，必须包含在join的结果中，这样就可以考虑把表中key为null的字段赋一个随机值，使得数据随机均匀分到不同的reducer上。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">首先设置reduce个数</span><br><span class="line"><span class="keyword">set</span> mapreduce.job.reduces = <span class="number">5</span>;</span><br><span class="line"> </span><br><span class="line">然后<span class="keyword">join</span>两张表，随机设置<span class="keyword">null</span>值</span><br><span class="line"><span class="keyword">insert</span> overwrite <span class="keyword">table</span> A</span><br><span class="line"><span class="keyword">select</span> b.* <span class="keyword">from</span> B b <span class="keyword">full</span> <span class="keyword">join</span> C c <span class="keyword">on</span></span><br><span class="line"><span class="keyword">case</span> <span class="keyword">when</span> b.id <span class="keyword">is</span> <span class="keyword">null</span> <span class="keyword">then</span> concat (<span class="string">&#x27;hive&#x27;</span>,rand()) <span class="keyword">else</span> b.id end = c.id;</span><br></pre></td></tr></table></figure>
+
+<p>原理：当表b的字段id为null时，如果null过多所有null对应同一个key即id，都挤到一个reduce上，通过优化将表b的key&#x3D;id换成key&#x3D;hive随机数，这样null分配到不同的key上，避免数据倾斜。</p>
+<p>case when A then B else C end语法：</p>
+<p>当b表的字段id为null时，对id取值为拼接字符串（hive+随机数），否则依然取b.id；然后on条件为：hive随机数&#x3D;c.id或者b.id&#x3D;c.id。</p>
+<h2 id="group-by"><a href="#group-by" class="headerlink" title="group by"></a>group by</h2><p>对于group by聚合，默认情况下，Map阶段同一Key的数据发给一个reduce，若某个key的数据量太大，可能会造成数据倾斜。</p>
+<p>如果在Map端就直接完成部分聚合，最后在Reduce端得出最终结果，就可以避免数据倾斜。</p>
+<p>需要在Map端进行聚合参数设置：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 是否在<span class="built_in">Map</span>端进行聚合，默认是<span class="literal">true</span></span><br><span class="line"><span class="built_in">set</span> hive.<span class="built_in">map</span>.aggr = <span class="literal">true</span></span><br><span class="line"> </span><br><span class="line"><span class="number">2.</span> 在<span class="built_in">Map</span>端进行聚合操作的条目数，默认<span class="number">10</span>w条</span><br><span class="line"><span class="built_in">set</span> hive.groupby.mapaggr.checkinterval = <span class="number">100000</span></span><br><span class="line"> </span><br><span class="line"><span class="number">3.</span> 有数据倾斜时进行负载均衡，默认<span class="literal">false</span></span><br><span class="line"><span class="built_in">set</span> hive.groupby.skewindata = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>原理是当set hive.groupby.skewindata &#x3D; true后，会生成两个MR Job，启两个任务。</p>
+<p>job1将group by的key，相同的key可能随机分发到不同的Reduce中，然后Reduce依据key对数据进行聚合，此时每一个Reduce中每个数据的key不一定相同，但是经过这一步聚合后，大大减少了数据量。</p>
+<p>job2是真正意义上MR的底层实现，将相同的key分配到同一个reduce中，进行key的聚合操作。</p>
+<p>第一步job1实现负载均衡，第二步job2实现聚合需求。</p>
+<p>如果skewindata参数&#x3D;false，也就是默认情况下，只会进行job2操作，进行一次MapReduce。</p>
+<h2 id="count"><a href="#count" class="headerlink" title="count"></a>count</h2><p>用 count(distinct key)处理数据</p>
+<p>当数据量大的时候，由于count（distinct key）去重聚合是全聚合操作，即便是设定了reduce tasks的个数，例如set mapred.reduce.tasks&#x3D;100；hive也只会启动一个reducer（order by也是这个情况），这就造成一个reducer处理的数据量太大，导致整个Job完成的很慢。</p>
+<p>可以将count（distinct key）的方式，改为先group by 再count的方式，也就是将distinct换成group by。</p>
+<p>这种优化可以增加reducer的个数，虽然会用多个Job完成，但是适合处理数据量大的情况。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">原始：  <span class="keyword">select</span> count(<span class="keyword">distinct</span> id) <span class="keyword">from</span> <span class="keyword">table</span>;</span><br><span class="line"> </span><br><span class="line">优化后：<span class="keyword">select</span> count(id) <span class="keyword">from</span> (<span class="keyword">select</span> id <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">group</span> <span class="keyword">by</span> id) a;</span><br></pre></td></tr></table></figure>
+
+<h2 id="行列过滤（分区过滤，先where再join嵌套子查询）——谓词下推"><a href="#行列过滤（分区过滤，先where再join嵌套子查询）——谓词下推" class="headerlink" title="行列过滤（分区过滤，先where再join嵌套子查询）——谓词下推"></a>行列过滤（分区过滤，先where再join嵌套子查询）——谓词下推</h2><p>列处理：在select中，只拿需要的列，如果有分区，尽量使用分区字段查询（分区过滤），避免使用select *全表扫描select key from tablename where 分区字段 &#x3D; ‘~’</p>
+<p>行处理：两表连接时，对一个表的数据先where过滤，再join（如果先join再过滤，过滤的数据量会很大），即嵌套子查询</p>
+<p>在Hive中，可以通过将参数hive.optimize.ppd设置为true，启用谓词下推。与它对应的逻辑优化器是PredicatePushDown。该优化器就是将OperatorTree中的FilterOperator向上提</p>
+<p>Hive中与列裁剪和分区裁剪优化相关的配置参数分别为：hive.optimize.cp和hive.optimize.pruner，默认都是true。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">eg：join两张表，A表joinB表，要求是把B表中<span class="built_in">id</span>&lt;<span class="number">10</span>的过滤掉后，只查询联结表的<span class="built_in">id</span>列</span><br><span class="line">原始： select a.<span class="built_in">id</span> <span class="keyword">from</span> A a join B b <span class="keyword">on</span> a.<span class="built_in">id</span>=b.<span class="built_in">id</span> <span class="keyword">where</span> b.<span class="built_in">id</span>&lt;<span class="number">10</span></span><br><span class="line"> </span><br><span class="line">优化后：select a.<span class="built_in">id</span> <span class="keyword">from</span> A a join (select <span class="built_in">id</span> <span class="keyword">from</span> B <span class="keyword">where</span> <span class="built_in">id</span>&lt;<span class="number">10</span>) b <span class="keyword">on</span> a.<span class="built_in">id</span>=b.<span class="built_in">id</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="动态分区"><a href="#动态分区" class="headerlink" title="动态分区"></a>动态分区</h2><p>分区列是表的一个伪列，它对应HDFS的一个分区文件夹，并且分区列存在于表的最后。</p>
+<p>如果不设定动态分区，往分区表中导入数据的方式如下：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 创建分区表</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> stu_par(id <span class="type">int</span>,<span class="type">name</span> string)</span><br><span class="line">partitioned <span class="keyword">by</span> (month string)</span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span> delimited fields terminated <span class="keyword">by</span> <span class="string">&#x27;\t&#x27;</span>;</span><br><span class="line"> </span><br><span class="line"><span class="number">2.</span> 往分区中导入数据</span><br><span class="line"><span class="keyword">load</span> data <span class="keyword">local</span> inpath <span class="string">&#x27;/opt/module/datas/student.txt&#x27;</span> <span class="keyword">into</span> <span class="keyword">table</span> stu_par <span class="keyword">partition</span>(month=<span class="string">&#x27;10&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>如果设定动态分区，导入数据就不再需要指定分区字段了</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 设置为非严格模式（默认strict，表示必须指定至少一个分区为静态分区；nonstrict表示允许所有分区可使用动态分区）</span><br><span class="line"></span><br><span class="line">hive<span class="selector-class">.exec</span><span class="selector-class">.dynamic</span><span class="selector-class">.partition</span>.mode=nonstrict</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>. 默认配置</span><br><span class="line"></span><br><span class="line">（<span class="number">1</span>）开启动态分区功能（默认true，开启）</span><br><span class="line"></span><br><span class="line">hive<span class="selector-class">.exec</span><span class="selector-class">.dynamic</span>.partition=true</span><br><span class="line"></span><br><span class="line">（<span class="number">2</span>）在所有执行MR节点上，最大一共可以创建多少个动态分区，默认<span class="number">1000</span>个</span><br><span class="line"></span><br><span class="line">hive<span class="selector-class">.exec</span><span class="selector-class">.max</span><span class="selector-class">.dynamic</span>.partitions=<span class="number">1000</span></span><br><span class="line"></span><br><span class="line">（<span class="number">3</span>）在每个执行MR的节点上，最大可以创建多少个分区，默认值<span class="number">100</span></span><br><span class="line"></span><br><span class="line">eg：若源数据包含一年的数据，按照天数分区，day字段应该有<span class="number">365</span>个值，这里的默认值<span class="number">100</span>就应该修改为大于<span class="number">365</span>的数。</span><br><span class="line"></span><br><span class="line">hive<span class="selector-class">.exec</span><span class="selector-class">.max</span><span class="selector-class">.dynamic</span><span class="selector-class">.partitions</span>.pernode=<span class="number">100</span></span><br><span class="line"></span><br><span class="line">（<span class="number">4</span>）整个MR job中，最大可以创建多少个HDFS文件，默认<span class="number">100000</span></span><br><span class="line"></span><br><span class="line">hive<span class="selector-class">.exec</span><span class="selector-class">.max</span><span class="selector-class">.created</span>.files=<span class="number">100000</span></span><br></pre></td></tr></table></figure>
+
+<p>操作 ：</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">1. 创建分区表</span><br><span class="line">create table dept_par(id string,name string) partitioned by (location int)</span><br><span class="line">row format delimited fields terminated by &#x27;\t&#x27;;</span><br><span class="line"> </span><br><span class="line">2. 设置动态分区非严格模式</span><br><span class="line">set hive.exec.dynamic.partition.mode = nonstrict;</span><br><span class="line"> </span><br><span class="line">3. 查看dept表</span><br><span class="line">+--------------+-------------+-----------+--+</span><br><span class="line">|<span class="string"> dept.deptno  </span>|<span class="string"> dept.dname  </span>|<span class="string"> dept.loc  </span>|</span><br><span class="line">+--------------+-------------+-----------+--+</span><br><span class="line">|<span class="string"> 10           </span>|<span class="string"> ACCOUNTING  </span>|<span class="string"> 1700      </span>|</span><br><span class="line">|<span class="string"> 20           </span>|<span class="string"> RESEARCH    </span>|<span class="string"> 1800      </span>|</span><br><span class="line">|<span class="string"> 30           </span>|<span class="string"> SALES       </span>|<span class="string"> 1900      </span>|</span><br><span class="line">|<span class="string"> 40           </span>|<span class="string"> OPERATIONS  </span>|<span class="string"> 1700      </span>|</span><br><span class="line">+--------------+-------------+-----------+--+</span><br><span class="line"> </span><br><span class="line">4. 分区表动态导入数据（并未指定分区字段的值）</span><br><span class="line">insert into table dept_par partition(location) select deptno,dname,loc from dept;</span><br><span class="line">...</span><br><span class="line">	Loading partition &#123;location=1900&#125;</span><br><span class="line">	Loading partition &#123;location=1800&#125;</span><br><span class="line">	Loading partition &#123;location=1700&#125;</span><br><span class="line">...</span><br><span class="line"> </span><br><span class="line">5. 查看分区表的分区情况</span><br><span class="line">hive (hive_db1)&gt; show partitions dept_par;</span><br><span class="line">OK</span><br><span class="line">partition</span><br><span class="line">location=1700</span><br><span class="line">location=1800</span><br><span class="line">location=1900</span><br><span class="line"> </span><br><span class="line">6. 查询分区表</span><br><span class="line">select <span class="symbol">*</span> from dept_par where location=&#x27;1700&#x27;;</span><br><span class="line">+--------------+----------------+--------------------+--+</span><br><span class="line">|<span class="string"> dept_par.id  </span>|<span class="string"> dept_par.name  </span>|<span class="string"> dept_par.location  </span>|</span><br><span class="line">+--------------+----------------+--------------------+--+</span><br><span class="line">|<span class="string"> 10           </span>|<span class="string"> ACCOUNTING     </span>|<span class="string"> 1700               </span>|</span><br><span class="line">|<span class="string"> 40           </span>|<span class="string"> OPERATIONS     </span>|<span class="string"> 1700               </span>|</span><br><span class="line">+--------------+----------------+--------------------+--+</span><br><span class="line"> </span><br><span class="line">select <span class="symbol">*</span> from dept_par where location=&#x27;1800&#x27;;</span><br><span class="line">+--------------+----------------+--------------------+--+</span><br><span class="line">|<span class="string"> dept_par.id  </span>|<span class="string"> dept_par.name  </span>|<span class="string"> dept_par.location  </span>|</span><br><span class="line">+--------------+----------------+--------------------+--+</span><br><span class="line">|<span class="string"> 20           </span>|<span class="string"> RESEARCH       </span>|<span class="string"> 1800               </span>|</span><br><span class="line">+--------------+----------------+--------------------+--+</span><br><span class="line"> </span><br><span class="line">select <span class="symbol">*</span> from dept_par where location=&#x27;1900&#x27;;</span><br><span class="line">+--------------+----------------+--------------------+--+</span><br><span class="line">|<span class="string"> dept_par.id  </span>|<span class="string"> dept_par.name  </span>|<span class="string"> dept_par.location  </span>|</span><br><span class="line">+--------------+----------------+--------------------+--+</span><br><span class="line">|<span class="string"> 30           </span>|<span class="string"> SALES          </span>|<span class="string"> 1900               </span>|</span><br><span class="line">+--------------+----------------+--------------------+--+</span><br></pre></td></tr></table></figure>
+
+<p><strong>原理：</strong></p>
+<p>将select的最后一列，认为是分区列（因为分区列在表的最后），将最后一列字段值相同的行，导入同一个分区中；</p>
+<p>好处是避免了指定分区字段的值，直接动态的将值相同的行导入同一个分区中，加大效率。</p>
+<p>ps：如果把deptno放在select最后一列，那么会生成四个分区</p>
+<h2 id="分桶"><a href="#分桶" class="headerlink" title="分桶"></a>分桶</h2><p>适合对数据进行抽样查询的情况，clustered by 字段 into x buckets，将表数据以（字段hash值%分桶数）按照取模结果，对数据进行分桶，也就是随机分布成几块。</p>
+<p>ps：分区列是伪列，需要指明字段类型；分桶列是实际列，不需要指明字段类型。</p>
+<p>分桶前，需要设置属性set hive.enforce.bucketing &#x3D; true</p>
+<h2 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h2><p>主要目的是提高hive查询效率，避免全表查询 select * from tablename where 分区字段 &#x3D; ‘~’</p>
+<h1 id="zookeeper"><a href="#zookeeper" class="headerlink" title="zookeeper"></a>zookeeper</h1><p>生产上namenode是两个是没有snn的，同样yarn的老大也是两个，是忘了防止一个老大突然挂掉，然后让下一个上位</p>
+<p>控制整个老大的更换的就是zookeeper</p>
+<p>hadoop ： 请求服务是不用关注所有节点的ip的，我们只用关注namenode的，但是当是两个namenode的时候（生产上），这个时候就会把两个namenode放在一起，形成一个namespace-》zookeeper实现</p>
+<p>部署 ：</p>
+<ul>
+<li>单点</li>
+<li>分布式</li>
+<li>要求 ：部署的机器数量有要求 ，2n + 1 台机器</li>
+</ul>
+<p>主从架构 ：如果老大挂了，后面的老二就会上位</p>
+<p>zookeeper版本有很多：但是对于我们现在能用就行 ： 3.8.0</p>
+<p>部署 ：</p>
+<p>有前置要求：具体查看官网 ：对系统有要求 ： jdk 1.8orlater</p>
+<p>先把包解压 -》 软连接 -》 zookeeper -》 环境变量 -》 *cmd的是windows上运行的 -》 进入 conf目录 zoo.cfg（改名之后）</p>
+<ul>
+<li>单点：直接dataDir:改成自己的 - 》 启动</li>
+<li>分布 ：dataDir ,三台机器的id，以及机器id的端口号</li>
+</ul>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">bigdata3</span></span><br><span class="line"><span class="attribute">dataDir</span>=xxxxx</span><br><span class="line"><span class="attribute">server</span>.<span class="number">1</span>=bigdata3:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line"><span class="attribute">server</span>.<span class="number">2</span>=bigdata4:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line"><span class="attribute">server</span>.<span class="number">3</span>=bigdata5:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">myid</span> : 指定机器号 ： 在zookeeper的数据文件夹下创建一个myid，id号就是server点的数字</span><br></pre></td></tr></table></figure>
+
+<p>然后启动zk ： 通过zkServer.sh start</p>
+<p>分布式要每一台机器上都整</p>
+<p>分布式：查看status之后会出现 follower 和leader 就是副手和老大</p>
+<p>然后创建一个群起脚本</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> -lt <span class="number">1</span> ];then</span><br><span class="line">echo <span class="string">&quot;start|stop|status&quot;</span></span><br><span class="line"><span class="keyword">exit</span> <span class="number">1</span></span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> startzk()&#123;</span><br><span class="line"> nohup zkServer.sh start  &gt; ~<span class="regexp">/log/</span>zk.log <span class="number">1</span>&gt;&amp;<span class="number">2</span> &amp;</span><br><span class="line"> ssh bigdata4 <span class="string">&quot;zkServer.sh start&quot;</span></span><br><span class="line"> ssh bigdata5 <span class="string">&quot;zkServer.sh start&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> stopzk()&#123;</span><br><span class="line"> nohup zkServer.sh stop  &gt; ~<span class="regexp">/log/</span>zk.log <span class="number">1</span>&gt;&amp;<span class="number">2</span> &amp;</span><br><span class="line"> ssh bigdata4 <span class="string">&quot;zkServer.sh stop&quot;</span></span><br><span class="line"> ssh bigdata5 <span class="string">&quot;zkServer.sh stop&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> statuszk()&#123;</span><br><span class="line">echo <span class="string">&quot;-----------------bigdata3------------------&quot;</span></span><br><span class="line">jps | grep QuorumPeerMain</span><br><span class="line">echo <span class="string">&quot;-----------------bigdata4------------------&quot;</span></span><br><span class="line">ssh bigdata4 <span class="string">&quot;jps | grep QuorumPeerMain&quot;</span></span><br><span class="line">echo <span class="string">&quot;-----------------bigdata5------------------&quot;</span></span><br><span class="line">ssh bigdata5 <span class="string">&quot;jps | grep QuorumPeerMain&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">case <span class="variable">$1</span> <span class="keyword">in</span></span><br><span class="line">    <span class="string">&quot;start&quot;</span>)</span><br><span class="line">    startzk</span><br><span class="line">    ;;</span><br><span class="line">    <span class="string">&quot;stop&quot;</span>)</span><br><span class="line">    stopzk</span><br><span class="line">    ;;</span><br><span class="line">    <span class="string">&quot;status&quot;</span>)</span><br><span class="line">    statuszk</span><br><span class="line">    ;;</span><br><span class="line">    *)</span><br><span class="line">    echo <span class="string">&quot;error input&quot;</span></span><br><span class="line">    ;;</span><br><span class="line">esac</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="zk是干什么的？"><a href="#zk是干什么的？" class="headerlink" title="zk是干什么的？"></a>zk是干什么的？</h2><p>zk可以做监控，可以检查到机器是不是还活着，</p>
+<p>管理配置信息的</p>
+<h2 id="zk的数据模型"><a href="#zk的数据模型" class="headerlink" title="zk的数据模型"></a>zk的数据模型</h2><p>层级式的结构，一个树形的结构，和linux差不多</p>
+<p>节点&#x2F;目录</p>
+<ul>
+<li>节点就是目录</li>
+<li>节点保存数据的内容</li>
+<li>zk里的所有的目录都可以叫节点</li>
+</ul>
+<p>通过命令 ：zkCli.sh 访问zk</p>
+<p>然后我们可以对其数据进行操作 ：</p>
+<ul>
+<li><p>查看节点 ：ls name</p>
+</li>
+<li><p>查看节点内容 ： get name</p>
+</li>
+<li><p>节点</p>
+<ul>
+<li>临时节点 ：只在当前session有效 ，关闭当前会话，则就失效，不可以存放子节点</li>
+<li>永久节点 ：永久存在的，可以存放子节点</li>
+</ul>
+</li>
+<li><p>zk 每个节点都有自己的id，节点号，不会重复 ， 数据是存放在节点上的</p>
+</li>
+<li><p>数据不是很大的数据</p>
+</li>
+<li><p>仅仅是比较小的数据</p>
+</li>
+<li><p>如果存放的数据发生变更，数据版本号也会发生变更</p>
+</li>
+<li><p>创建节点 ： create : <code>create /dl2262 zihang</code></p>
+</li>
+<li><p>stat path :获取当前节点状态 ： <code>stat /dl2262</code></p>
+</li>
+<li><pre><code>cZxid = 0x300000002 id
+ctime = Thu Dec 15 14:52:29 CST 2022
+mZxid = 0x300000002
+mtime = Thu Dec 15 14:52:29 CST 2022
+pZxid = 0x300000002
+cversion = 0 
+dataVersion = 0 数据版本
+aclVersion = 0 权限的版本
+ephemeralOwner = 0x0 是不是临时节点 0x0 不是临时节点 其余就是临时节点
+dataLength = 6 数据的长度：zihang就是6个字节
+numChildren = 0 下面的子节点
+</code></pre>
+</li>
+<li><p>create -e ：创建临时节点 ：<code>create -e /dl2262 zuan</code> 临时节点也有自己的过期时间，时间一过就会自动删除（重新启动客户端的时候）</p>
+</li>
+<li><p>顺序节点 ： create -s  默认会给节点后面加一个自增的序列： <code>create -s /dl2262/ziyuan</code></p>
+</li>
+<li><p>不可以创建深层文件夹的方式命令，如果使用zk的api则可以，或者java代码的方式</p>
+</li>
+<li><p>修改数据内容的 ： set :   <code>set [-s] [-v version] path data-&gt;set /dl2262 xxxx  </code></p>
+<ul>
+<li>数据版本 ： 如果数据版本不对应，就会报错的</li>
+</ul>
+</li>
+<li><p>删除节点 ：delete ： <code>delete [-v version] path</code> 或者deleteall 删除其及以下所有数据</p>
+</li>
+<li><p>如果版本不对还是要出错的</p>
+</li>
+<li><p>zk自带的监控 ， 监听器</p>
+</li>
+<li><p>命令中有-w的就是可以监听的</p>
+</li>
+<li><p>针对每一个节点都可以执行的，每个节点都有一个监听器，当每个节点发生变化，就会触发watch事件</p>
+</li>
+<li><p>但是zk的shell命令每次只能监听一次 ， zk的原生的api不行，但是curator 的可以一直监听</p>
+</li>
+<li><p>命令 stat -w nodenpath 就可以监听，或者get -w nodepath等</p>
+</li>
+<li><p>但是命令行的方式只能触发一次</p>
+</li>
+</ul>
+<p>zk的四字命令</p>
+<ul>
+<li>zk要对外进行服务的</li>
+<li>通过器对外的端口对其进行监控这个是对zk进行监控的</li>
+<li>使用前提 ： 要编辑配置文件 ：在zoo.cng这个配置文件里添加 <code>4lw.commands.whitelist=*</code></li>
+<li>stat ：可以列出自己的服务端和客户端的一些详细信息</li>
+<li>使用方式 ： 直接在linux命令行操作 ， <code>echo stat | telnet localhost 2181</code></li>
+<li>ruok : are you ok ? 就是检测服务的功能启动了吗</li>
+<li>dump ：列出最近的会话和临时节点的详细信息</li>
+<li>conf ： 打印机器的配置</li>
+</ul>
+<p>或者可以使用Prometheus框架监控</p>
+
+    </div>
+
+    
+    
+    
+
+      
+   <div>
+     <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+   </div>
+     
+        <div class="reward-container">
+  <div>你们的鼓励是对我最大的支持</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="liu zihang 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>liu zihang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://zihang.fun/2022/12/15/12-15/" title="zookeeper">http://zihang.fun/2022/12/15/12-15/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+     
+    
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/zookeeper-hive/" rel="tag"># zookeeper,hive</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/12/12/k8s%E7%9A%84%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7Sealos/" rel="prev" title="Sealos">
+      <i class="fa fa-chevron-left"></i> Sealos
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/15/%E6%8A%80%E6%9C%AF%E7%82%B9/" rel="next" title="自我认为的知识点">
+      自我认为的知识点 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81NzQzNy8zMzkwMQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hive%E7%9A%84%E6%8A%93%E5%8F%96%E7%AD%96%E7%95%A5"><span class="nav-number">1.</span> <span class="nav-text">hive的抓取策略</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sql%E8%B0%83%E4%BC%98%EF%BC%88speed%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">sql调优（speed）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E8%A1%A8join%E5%A4%A7%E8%A1%A8"><span class="nav-number">2.1.</span> <span class="nav-text">小表join大表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E8%A1%A8join%E5%A4%A7%E8%A1%A8"><span class="nav-number">2.2.</span> <span class="nav-text">大表join大表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#group-by"><span class="nav-number">2.3.</span> <span class="nav-text">group by</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#count"><span class="nav-number">2.4.</span> <span class="nav-text">count</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%8C%E5%88%97%E8%BF%87%E6%BB%A4%EF%BC%88%E5%88%86%E5%8C%BA%E8%BF%87%E6%BB%A4%EF%BC%8C%E5%85%88where%E5%86%8Djoin%E5%B5%8C%E5%A5%97%E5%AD%90%E6%9F%A5%E8%AF%A2%EF%BC%89%E2%80%94%E2%80%94%E8%B0%93%E8%AF%8D%E4%B8%8B%E6%8E%A8"><span class="nav-number">2.5.</span> <span class="nav-text">行列过滤（分区过滤，先where再join嵌套子查询）——谓词下推</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%88%86%E5%8C%BA"><span class="nav-number">2.6.</span> <span class="nav-text">动态分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%A1%B6"><span class="nav-number">2.7.</span> <span class="nav-text">分桶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%8C%BA%E8%A1%A8"><span class="nav-number">2.8.</span> <span class="nav-text">分区表</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zookeeper"><span class="nav-number">3.</span> <span class="nav-text">zookeeper</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#zk%E6%98%AF%E5%B9%B2%E4%BB%80%E4%B9%88%E7%9A%84%EF%BC%9F"><span class="nav-number">3.1.</span> <span class="nav-text">zk是干什么的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zk%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.2.</span> <span class="nav-text">zk的数据模型</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liu zihang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">liu zihang</p>
+  <div class="site-description" itemprop="description">只有努力不会辜负你</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      链接网站
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://baidu.com/" title="https:&#x2F;&#x2F;baidu.com" rel="noopener" target="_blank">百度</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://fishc.com.cn/" title="https:&#x2F;&#x2F;fishc.com.cn" rel="noopener" target="_blank">鱼C论坛</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liu zihang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共173.9k字</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'http://zihang.fun/2022/12/15/12-15/',]
+      });
+      });
+  </script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
