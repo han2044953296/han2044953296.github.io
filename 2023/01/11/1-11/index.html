@@ -29,14 +29,16 @@
 <meta property="og:site_name" content="枫叶冢">
 <meta property="og:description" content="构建df rdd hive 外部数据源 json,csv,jdbc&#x2F;odbc    加载外部数据源api简介TEXT   Property Name Default Meaning Scope    wholetext false If true, read each file from input path(s) as a single row. read   lineSep \r,">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://zihang.fun/">
 <meta property="og:image" content="https://pic.imgdb.cn/item/63be1a9cbe43e0d30e184271.jpg">
 <meta property="og:image" content="https://pic.imgdb.cn/item/63be1ad7be43e0d30e18aa99.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/63be621fbe43e0d30e93423c.jpg">
 <meta property="article:published_time" content="2023-01-11T00:53:32.465Z">
-<meta property="article:modified_time" content="2023-01-11T04:01:45.412Z">
+<meta property="article:modified_time" content="2023-01-11T07:18:38.606Z">
 <meta property="article:author" content="liu zihang">
 <meta property="article:tag" content="spark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic.imgdb.cn/item/63be1a9cbe43e0d30e184271.jpg">
+<meta name="twitter:image" content="http://zihang.fun/">
 
 <link rel="canonical" href="http://zihang.fun/2023/01/11/1-11/">
 
@@ -230,7 +232,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-01-11 08:53:32 / 修改时间：12:01:45" itemprop="dateCreated datePublished" datetime="2023-01-11T08:53:32+08:00">2023-01-11</time>
+              <time title="创建时间：2023-01-11 08:53:32 / 修改时间：15:18:38" itemprop="dateCreated datePublished" datetime="2023-01-11T08:53:32+08:00">2023-01-11</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -255,14 +257,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>9.9k</span>
+              <span>23k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>21 分钟</span>
             </span>
 
         </div>
@@ -461,6 +463,202 @@
 <td>write</td>
 </tr>
 </tbody></table>
+<h3 id="csv"><a href="#csv" class="headerlink" title="csv"></a>csv</h3><table>
+<thead>
+<tr>
+<th><strong>Property Name</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Meaning</strong></th>
+<th><strong>Scope</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sep</code></td>
+<td>,</td>
+<td>Sets a separator for each field and value. This separator can be one or more characters.</td>
+<td>read&#x2F;write</td>
+</tr>
+<tr>
+<td><code>encoding</code></td>
+<td>UTF-8</td>
+<td>For reading, decodes the CSV files by the given encoding type. For writing, specifies encoding (charset) of saved CSV files. CSV built-in functions ignore this option.</td>
+<td>read&#x2F;write</td>
+</tr>
+<tr>
+<td><code>quote</code></td>
+<td>“</td>
+<td>Sets a single character used for escaping quoted values where the separator can be part of the value. For reading, if you would like to turn off quotations, you need to set not <code>null</code> but an empty string. For writing, if an empty string is set, it uses <code>u0000</code> (null character).</td>
+<td>read&#x2F;write</td>
+</tr>
+<tr>
+<td><code>quoteAll</code></td>
+<td>false</td>
+<td>A flag indicating whether all values should always be enclosed in quotes. Default is to only escape values containing a quote character.</td>
+<td>write</td>
+</tr>
+<tr>
+<td><code>escape</code></td>
+<td>\</td>
+<td>Sets a single character used for escaping quotes inside an already quoted value.</td>
+<td>read&#x2F;write</td>
+</tr>
+<tr>
+<td><code>escapeQuotes</code></td>
+<td>true</td>
+<td>A flag indicating whether values containing quotes should always be enclosed in quotes. Default is to escape all values containing a quote character.</td>
+<td>write</td>
+</tr>
+<tr>
+<td><code>comment</code></td>
+<td></td>
+<td>Sets a single character used for skipping lines beginning with this character. By default, it is disabled.</td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>header</code></td>
+<td>false</td>
+<td>For reading, uses the first line as names of columns. For writing, writes the names of columns as the first line. Note that if the given path is a RDD of Strings, this header option will remove all lines same with the header if exists. CSV built-in functions ignore this option.</td>
+<td>read&#x2F;write</td>
+</tr>
+<tr>
+<td><code>inferSchema</code></td>
+<td>false</td>
+<td>Infers the input schema automatically from data. It requires one extra pass over the data. CSV built-in functions ignore this option.</td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>enforceSchema</code></td>
+<td>true</td>
+<td>If it is set to <code>true</code>, the specified or inferred schema will be forcibly applied to datasource files, and headers in CSV files will be ignored. If the option is set to <code>false</code>, the schema will be validated against all headers in CSV files in the case when the <code>header</code> option is set to <code>true</code>. Field names in the schema and column names in CSV headers are checked by their positions taking into account <code>spark.sql.caseSensitive</code>. Though the default value is true, it is recommended to disable the <code>enforceSchema</code> option to avoid incorrect results. CSV built-in functions ignore this option.</td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>ignoreLeadingWhiteSpace</code></td>
+<td><code>false</code> (for reading), <code>true</code> (for writing)</td>
+<td>A flag indicating whether or not leading whitespaces from values being read&#x2F;written should be skipped.</td>
+<td>read&#x2F;write</td>
+</tr>
+<tr>
+<td><code>ignoreTrailingWhiteSpace</code></td>
+<td><code>false</code> (for reading), <code>true</code> (for writing)</td>
+<td>A flag indicating whether or not trailing whitespaces from values being read&#x2F;written should be skipped.</td>
+<td>read&#x2F;write</td>
+</tr>
+<tr>
+<td><code>nullValue</code></td>
+<td></td>
+<td>Sets the string representation of a null value. Since 2.0.1, this <code>nullValue</code> param applies to all supported types including the string type.</td>
+<td>read&#x2F;write</td>
+</tr>
+<tr>
+<td><code>nanValue</code></td>
+<td>NaN</td>
+<td>Sets the string representation of a non-number value.</td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>positiveInf</code></td>
+<td>Inf</td>
+<td>Sets the string representation of a positive infinity value.</td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>negativeInf</code></td>
+<td>-Inf</td>
+<td>Sets the string representation of a negative infinity value.</td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>dateFormat</code></td>
+<td>yyyy-MM-dd</td>
+<td>Sets the string that indicates a date format. Custom date formats follow the formats at<a target="_blank" rel="noopener" href="https://spark.apache.org/docs/latest/sql-ref-datetime-pattern.html">Datetime Patterns</a>. This applies to date type.</td>
+<td>read&#x2F;write</td>
+</tr>
+<tr>
+<td><code>timestampFormat</code></td>
+<td>yyyy-MM-dd’T’HH:mm:ss[.SSS][XXX]</td>
+<td>Sets the string that indicates a timestamp format. Custom date formats follow the formats at<a target="_blank" rel="noopener" href="https://spark.apache.org/docs/latest/sql-ref-datetime-pattern.html">Datetime Patterns</a>. This applies to timestamp type.</td>
+<td>read&#x2F;write</td>
+</tr>
+<tr>
+<td><code>timestampNTZFormat</code></td>
+<td>yyyy-MM-dd’T’HH:mm:ss[.SSS]</td>
+<td>Sets the string that indicates a timestamp without timezone format. Custom date formats follow the formats at<a target="_blank" rel="noopener" href="https://spark.apache.org/docs/latest/sql-ref-datetime-pattern.html">Datetime Patterns</a>. This applies to timestamp without timezone type, note that zone-offset and time-zone components are not supported when writing or reading this data type.</td>
+<td>read&#x2F;write</td>
+</tr>
+<tr>
+<td><code>maxColumns</code></td>
+<td>20480</td>
+<td>Defines a hard limit of how many columns a record can have.</td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>maxCharsPerColumn</code></td>
+<td>-1</td>
+<td>Defines the maximum number of characters allowed for any given value being read. By default, it is -1 meaning unlimited length</td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>PERMISSIVE</td>
+<td>Allows a mode for dealing with corrupt records during parsing. It supports the following case-insensitive modes. Note that Spark tries to parse only required columns in CSV under column pruning. Therefore, corrupt records can be different based on required set of fields. This behavior can be controlled by <code>spark.sql.csv.parser.columnPruning.enabled</code> (enabled by default).&#96;&#96;* <code>PERMISSIVE</code>: when it meets a corrupted record, puts the malformed string into a field configured by <code>columnNameOfCorruptRecord</code>, and sets malformed fields to <code>null</code>. To keep corrupt records, an user can set a string type field named <code>columnNameOfCorruptRecord</code> in an user-defined schema. If a schema does not have the field, it drops corrupt records during parsing. A record with less&#x2F;more tokens than schema is not a corrupted record to CSV. When it meets a record having fewer tokens than the length of the schema, sets <code>null</code> to extra fields. When the record has more tokens than the length of the schema, it drops extra tokens.* <code>DROPMALFORMED</code>: ignores the whole corrupted records. This mode is unsupported in the CSV built-in functions.* <code>FAILFAST</code>: throws an exception when it meets corrupted records.</td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>columnNameOfCorruptRecord</code></td>
+<td>(value of <code>spark.sql.columnNameOfCorruptRecord</code> configuration)</td>
+<td>Allows renaming the new field having malformed string created by <code>PERMISSIVE</code> mode. This overrides <code>spark.sql.columnNameOfCorruptRecord</code>.</td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>multiLine</code></td>
+<td>false</td>
+<td>Parse one record, which may span multiple lines, per file. CSV built-in functions ignore this option.</td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>charToEscapeQuoteEscaping</code></td>
+<td><code>escape</code> or <code>\0</code></td>
+<td>Sets a single character used for escaping the escape for the quote character. The default value is escape character when escape and quote characters are different,<code>\0</code> otherwise.</td>
+<td>read&#x2F;write</td>
+</tr>
+<tr>
+<td><code>samplingRatio</code></td>
+<td>1.0</td>
+<td>Defines fraction of rows used for schema inferring. CSV built-in functions ignore this option.</td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>emptyValue</code></td>
+<td>(for reading),<code>&quot;&quot;</code> (for writing)</td>
+<td>Sets the string representation of an empty value.</td>
+<td>read&#x2F;write</td>
+</tr>
+<tr>
+<td><code>locale</code></td>
+<td>en-US</td>
+<td>Sets a locale as language tag in IETF BCP 47 format. For instance, this is used while parsing dates and timestamps.</td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>lineSep</code></td>
+<td><code>\r</code>, <code>\r\n</code> and <code>\n</code> (for reading), <code>\n</code> (for writing)</td>
+<td>Defines the line separator that should be used for parsing&#x2F;writing. Maximum length is 1 character. CSV built-in functions ignore this option.</td>
+<td>read&#x2F;write</td>
+</tr>
+<tr>
+<td><code>unescapedQuoteHandling</code></td>
+<td>STOP_AT_DELIMITER</td>
+<td>Defines how the CsvParser will handle values with unescaped quotes.&#96;&#96;* <code>STOP_AT_CLOSING_QUOTE</code>: If unescaped quotes are found in the input, accumulate the quote character and proceed parsing the value as a quoted value, until a closing quote is found.* <code>BACK_TO_DELIMITER</code>: If unescaped quotes are found in the input, consider the value as an unquoted value. This will make the parser accumulate all characters of the current parsed value until the delimiter is found. If no delimiter is found in the value, the parser will continue accumulating characters from the input until a delimiter or line ending is found.* <code>STOP_AT_DELIMITER</code>: If unescaped quotes are found in the input, consider the value as an unquoted value. This will make the parser accumulate all characters until the delimiter or a line ending is found in the input.* <code>SKIP_VALUE</code>: If unescaped quotes are found in the input, the content parsed for the given value will be skipped and the value set in nullValue will be produced instead.* <code>RAISE_ERROR</code>: If unescaped quotes are found in the input, a TextParsingException will be thrown.</td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>compression</code></td>
+<td>(none)</td>
+<td>Compression codec to use when saving to file. This can be one of the known case-insensitive shorten names (<code>none</code>, <code>bzip2</code>, <code>gzip</code>, <code>lz4</code>, <code>snappy</code> and <code>deflate</code>). CSV built-in functions ignore this option.</td>
+<td>write</td>
+</tr>
+</tbody></table>
 <h2 id="读数据"><a href="#读数据" class="headerlink" title="读数据"></a>读数据</h2><h3 id="TEXT-1"><a href="#TEXT-1" class="headerlink" title="TEXT"></a>TEXT</h3><p>官方简介</p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Spark SQL provides spark.<span class="built_in">read</span>().<span class="keyword">text</span>(<span class="string">&quot;file_name&quot;</span>) <span class="built_in">to</span> <span class="built_in">read</span> <span class="keyword">a</span> <span class="built_in">file</span> <span class="keyword">or</span> <span class="built_in">directory</span> <span class="keyword">of</span> <span class="keyword">text</span> <span class="built_in">files</span> <span class="keyword">into</span> <span class="keyword">a</span> Spark DataFrame, <span class="keyword">and</span> dataframe.<span class="built_in">write</span>().<span class="keyword">text</span>(<span class="string">&quot;path&quot;</span>) <span class="built_in">to</span> <span class="built_in">write</span> <span class="built_in">to</span> <span class="keyword">a</span> <span class="keyword">text</span> <span class="built_in">file</span>. When reading <span class="keyword">a</span> <span class="keyword">text</span> <span class="built_in">file</span>, <span class="keyword">each</span> <span class="built_in">line</span> becomes <span class="keyword">each</span> row that has <span class="keyword">string</span> “<span class="built_in">value</span>” column <span class="keyword">by</span> default. The <span class="built_in">line</span> separator can be changed <span class="keyword">as</span> shown <span class="keyword">in</span> <span class="keyword">the</span> example below. The option() <span class="function"><span class="keyword">function</span> <span class="title">can</span> <span class="title">be</span> <span class="title">used</span> <span class="title">to</span> <span class="title">customize</span> <span class="title">the</span> <span class="title">behavior</span> <span class="title">of</span> <span class="title">reading</span> <span class="title">or</span> <span class="title">writing</span>, <span class="title">such</span> <span class="title">as</span> <span class="title">controlling</span> <span class="title">behavior</span> <span class="title">of</span> <span class="title">the</span> <span class="title">line</span> <span class="title">separator</span>, <span class="title">compression</span>, <span class="title">and</span> <span class="title">so</span> <span class="title">on</span>.</span></span><br></pre></td></tr></table></figure>
 
@@ -470,16 +668,22 @@
 <p>我们点进去源码发现text的底层是</p>
 <p><code>def text(paths: String*): DataFrame = format(&quot;text&quot;).load(paths : _*)</code></p>
 <p>所以我们使用的时候可以</p>
-<p><code>val df5 = spark.read.option(&quot;wholetext&quot;,true).format(&quot;text&quot;).load(&quot;file:///D:\\test.txt&quot;)</code></p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val df5=spark.<span class="keyword">read</span>.<span class="keyword">option</span>(&quot;wholetext&quot;,<span class="keyword">true</span>).format(&quot;text&quot;).<span class="keyword">load</span>(&quot;file:///D:\\test.txt&quot;)</span><br></pre></td></tr></table></figure>
+
 <h3 id="json-1"><a href="#json-1" class="headerlink" title="json"></a>json</h3><p>简介</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Spark <span class="keyword">SQL</span> can automatically infer the <span class="keyword">schema</span> <span class="keyword">of</span> a <span class="type">JSON</span> dataset <span class="keyword">and</span> <span class="keyword">load</span> it <span class="keyword">as</span> a Dataset[<span class="keyword">Row</span>]. This <span class="keyword">conversion</span> can be done <span class="keyword">using</span> SparkSession.<span class="keyword">read</span>.json() <span class="keyword">on</span> either a Dataset[String], <span class="keyword">or</span> a <span class="type">JSON</span> file.</span><br><span class="line"></span><br><span class="line">Note that the file that <span class="keyword">is</span> offered <span class="keyword">as</span> a <span class="type">json</span> file <span class="keyword">is</span> <span class="keyword">not</span> a typical <span class="type">JSON</span> file. <span class="keyword">Each</span> <span class="type">line</span> must contain a separate, self-contained <span class="keyword">valid</span> <span class="type">JSON</span> <span class="keyword">object</span>. <span class="keyword">For</span> more information, please see <span class="type">JSON</span> Lines <span class="type">text</span> <span class="keyword">format</span>, <span class="keyword">also</span> <span class="keyword">called</span> newline-delimited <span class="type">JSON</span>.</span><br><span class="line"></span><br><span class="line"><span class="keyword">For</span> a regular multi-<span class="type">line</span> <span class="type">JSON</span> file, <span class="keyword">set</span> the multiLine <span class="keyword">option</span> <span class="keyword">to</span> <span class="keyword">true</span>.</span><br></pre></td></tr></table></figure>
 
 <p>json分为简单json和嵌套json</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">val spark = SparkSession<span class="selector-class">.builder</span>()<span class="selector-class">.appName</span>(<span class="string">&quot;Sparksql01&quot;</span>)<span class="selector-class">.master</span>(<span class="string">&quot;local[4]&quot;</span>)<span class="selector-class">.getOrCreate</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//-------------------------普通json</span></span><br><span class="line">val df = spark<span class="selector-class">.read</span><span class="selector-class">.json</span>(<span class="string">&quot;file:///C:\\Users\\dell\\Desktop\\dept.json&quot;</span>)</span><br><span class="line">df<span class="selector-class">.show</span>()</span><br><span class="line">df<span class="selector-class">.printSchema</span>()</span><br><span class="line"><span class="comment">//--------------------------嵌套json如果嵌套的是STruct =&gt; 打点 / ARRAY 类型 先炸开 再打点</span></span><br><span class="line"><span class="selector-tag">var</span> df1 = spark<span class="selector-class">.read</span><span class="selector-class">.format</span>(<span class="string">&quot;json&quot;</span>)<span class="selector-class">.load</span>(<span class="string">&quot;file:///C:\\Users\\dell\\Desktop\\Skills.json&quot;</span>)</span><br><span class="line">df1<span class="selector-class">.printSchema</span>()</span><br><span class="line"><span class="comment">//--------------------------api</span></span><br><span class="line"><span class="comment">//-withColumn可以增加一个字段，或者把一个字段重命名 =》 提出字段</span></span><br><span class="line">df1=df1<span class="selector-class">.withColumn</span>(<span class="string">&quot;critical&quot;</span>,<span class="built_in">col</span>(<span class="string">&quot;damage.critical&quot;</span>))</span><br><span class="line">df1=df1<span class="selector-class">.withColumn</span>(<span class="string">&quot;elementId&quot;</span>,<span class="built_in">explode</span>(<span class="built_in">col</span>(<span class="string">&quot;damage.elementId&quot;</span>)))</span><br><span class="line">df1<span class="selector-class">.printSchema</span>()</span><br><span class="line"><span class="comment">//------------------------删除字段</span></span><br><span class="line">df1=df1<span class="selector-class">.drop</span>(<span class="string">&quot;damage.critical&quot;</span>,<span class="string">&quot;damage.elementId&quot;</span>)</span><br><span class="line"><span class="comment">//-------------------------sql</span></span><br><span class="line"><span class="comment">//------------------------对比hivesql</span></span><br><span class="line">df1<span class="selector-class">.createOrReplaceTempView</span>(<span class="string">&quot;test&quot;</span>)</span><br><span class="line">spark<span class="selector-class">.sql</span>(<span class="string">&quot;select json_tuple(test,&#x27;hitType&#x27;,&#x27;mpCost&#x27;) from test limit 10&quot;</span>)<span class="selector-class">.show</span>()</span><br><span class="line"><span class="comment">//spark.sql(&quot;SELECT get_json_object(&#x27;&#123;\&quot;a\&quot;:\&quot;b\&quot;&#125;&#x27;, &#x27;$.a&#x27;);&quot;).show()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">val spark = SparkSession.builder().appName(<span class="string">&quot;Sparksql01&quot;</span>).master(<span class="string">&quot;local[4]&quot;</span>).getOrCreate()</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span>-------------------------普通json</span><br><span class="line">val df = spark.read.json(<span class="string">&quot;file:///C:\\Users\\dell\\Desktop\\dept.json&quot;</span>)</span><br><span class="line">df.show()</span><br><span class="line">df.printSchema()</span><br><span class="line"><span class="regexp">//</span>--------------------------嵌套json如果嵌套的是STruct =&gt; 打点 / ARRAY 类型 先炸开 再打点</span><br><span class="line">var df1 = spark.read.format(<span class="string">&quot;json&quot;</span>).load(<span class="string">&quot;file:///C:\\Users\\dell\\Desktop\\Skills.json&quot;</span>)</span><br><span class="line">df1.printSchema()</span><br><span class="line"><span class="regexp">//</span>--------------------------api</span><br><span class="line"><span class="regexp">//</span>-withColumn可以增加一个字段，或者把一个字段重命名 =》 提出字段</span><br><span class="line">df1=df1.withColumn(<span class="string">&quot;critical&quot;</span>,col(<span class="string">&quot;damage.critical&quot;</span>))</span><br><span class="line">df1=df1.withColumn(<span class="string">&quot;elementId&quot;</span>,explode(col(<span class="string">&quot;damage.elementId&quot;</span>)))</span><br><span class="line">df1.printSchema()</span><br><span class="line"><span class="regexp">//</span>------------------------删除字段</span><br><span class="line">df1=df1.drop(<span class="string">&quot;damage.critical&quot;</span>,<span class="string">&quot;damage.elementId&quot;</span>)</span><br><span class="line"><span class="regexp">//</span>-------------------------sql</span><br><span class="line"><span class="regexp">//</span>------------------------对比hivesql</span><br><span class="line">df1.createOrReplaceTempView(<span class="string">&quot;test&quot;</span>)</span><br><span class="line"><span class="regexp">//</span>spark.sql(<span class="string">&quot;SELECT get_json_object(&#x27;&#123;\&quot;a\&quot;:\&quot;b\&quot;&#125;&#x27;, &#x27;$.a&#x27;);&quot;</span>).show()</span><br><span class="line"><span class="regexp">//</span> struct可以用下面打点的方法</span><br><span class="line">spark.sql(</span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    |select</span></span><br><span class="line"><span class="string">    |effects.ddd,</span></span><br><span class="line"><span class="string">    |damage.ddddds</span></span><br><span class="line"><span class="string">    |from</span></span><br><span class="line"><span class="string">    |test</span></span><br><span class="line"><span class="string">    |&quot;&quot;&quot;</span>.stripMargin).show()</span><br><span class="line"><span class="regexp">//</span>或者用爆炸加侧写进行 ：array元素,嵌套json</span><br><span class="line">spark.sql(</span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    |select</span></span><br><span class="line"><span class="string">    |effects.ddd,</span></span><br><span class="line"><span class="string">    |damage.ddddds</span></span><br><span class="line"><span class="string">    |from</span></span><br><span class="line"><span class="string">    |test</span></span><br><span class="line"><span class="string">    |lateral view explode(store.fruit) as fruit</span></span><br><span class="line"><span class="string">    |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="csv-1"><a href="#csv-1" class="headerlink" title="csv"></a>csv</h3><p>简介</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Spark SQL provides spark.<span class="built_in">read</span>().csv(<span class="string">&quot;file_name&quot;</span>) <span class="built_in">to</span> <span class="built_in">read</span> <span class="keyword">a</span> <span class="built_in">file</span> <span class="keyword">or</span> <span class="built_in">directory</span> <span class="keyword">of</span> <span class="built_in">files</span> <span class="keyword">in</span> CSV <span class="built_in">format</span> <span class="keyword">into</span> Spark DataFrame, <span class="keyword">and</span> dataframe.<span class="built_in">write</span>().csv(<span class="string">&quot;path&quot;</span>) <span class="built_in">to</span> <span class="built_in">write</span> <span class="built_in">to</span> <span class="keyword">a</span> CSV <span class="built_in">file</span>. Function option() can be used <span class="built_in">to</span> customize <span class="keyword">the</span> behavior <span class="keyword">of</span> reading <span class="keyword">or</span> writing, such <span class="keyword">as</span> controlling behavior <span class="keyword">of</span> <span class="keyword">the</span> header, delimiter <span class="keyword">character</span>, <span class="keyword">character</span> <span class="built_in">set</span>, <span class="keyword">and</span> so on.</span><br></pre></td></tr></table></figure>
+
+<p>csv文件默认的分隔符是，但是可以更改</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><span class="line">val spark = SparkSession.builder().appName(<span class="string">&quot;Sparksql01&quot;</span>).master(<span class="string">&quot;local[4]&quot;</span>).getOrCreate()</span><br><span class="line"></span><br><span class="line">val df = spark.read.format(<span class="string">&quot;csv&quot;</span>).load(<span class="string">&quot;file:///C:\\Users\\dell\\Desktop\\user_profile.csv&quot;</span>)</span><br><span class="line">df.show()</span><br><span class="line">var result=</span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">|+---+---------+------+----+----------+---+--------------------+------------+----------+</span></span><br><span class="line">    <span class="string">||_c0|      _c1|   _c2| _c3|       _c4|_c5|                 _c6|         _c7|       _c8|</span></span><br><span class="line">    <span class="string">|+---+---------+------+----+----------+---+--------------------+------------+----------+</span></span><br><span class="line">    <span class="string">|| id|device_id|gender| age|university|gpa|active_days_withi...|question_cnt|answer_cnt|</span></span><br><span class="line">    <span class="string">||  1|     2138|  male|  21|  北京大学|3.4|                   7|           2|        12|</span></span><br><span class="line">    <span class="string">||  2|     3214|  male|null|  复旦大学|  4|                  15|           5|        25|</span></span><br><span class="line">    <span class="string">||  3|     6543|female|  20|  北京大学|3.2|                  12|           3|        30|</span></span><br><span class="line">    <span class="string">||  4|     2315|female|  23|  浙江大学|3.6|                   5|           1|         2|</span></span><br><span class="line">    <span class="string">||  5|     5432|  male|  25|  山东大学|3.8|                  20|          15|        70|</span></span><br><span class="line">    <span class="string">||  6|     2131|  male|  28|  山东大学|3.3|                  15|           7|        13|</span></span><br><span class="line">    <span class="string">||  7|     4321|  male|  28|  复旦大学|3.6|                   9|           6|        52|</span></span><br><span class="line">    <span class="string">|+---+---------+------+----+----------+---+--------------------+------------+----------+</span></span><br><span class="line">    <span class="string">|&quot;&quot;&quot;</span>.stripMargin</span><br><span class="line"><span class="comment">// 这样默认是通过，进行分割的</span></span><br><span class="line"><span class="comment">//可以通过delimiter来设置分割参数，sep和他一样</span></span><br><span class="line">val df1 = spark.read.option(<span class="string">&quot;delimiter&quot;</span>,<span class="string">&quot;;&quot;</span>).csv(<span class="string">&quot;file:///C:\\Users\\dell\\Desktop\\user_profile.csv&quot;</span>)</span><br><span class="line">df1.show()</span><br><span class="line">result =</span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">|+------------------------+</span></span><br><span class="line">    <span class="string">||                     _c0|</span></span><br><span class="line">    <span class="string">|+------------------------+</span></span><br><span class="line">    <span class="string">||    &quot;</span>id<span class="string">&quot;,&quot;</span>device_id<span class="string">&quot;,...|</span></span><br><span class="line">    <span class="string">||  1,2138,male,21,北京...|</span></span><br><span class="line">    <span class="string">||2,3214,male,,复旦大学...|</span></span><br><span class="line">    <span class="string">||    3,6543,female,20,...|</span></span><br><span class="line">    <span class="string">||    4,2315,female,23,...|</span></span><br><span class="line">    <span class="string">||  5,5432,male,25,山东...|</span></span><br><span class="line">    <span class="string">||  6,2131,male,28,山东...|</span></span><br><span class="line">    <span class="string">||  7,4321,male,28,复旦...|</span></span><br><span class="line">    <span class="string">|+------------------------+</span></span><br><span class="line">    <span class="string">|&quot;&quot;&quot;</span>.stripMargin</span><br><span class="line">val df4 = spark.read.option(<span class="string">&quot;sep&quot;</span>,<span class="string">&quot;;&quot;</span>).csv(<span class="string">&quot;file:///C:\\Users\\dell\\Desktop\\user_profile.csv&quot;</span>)</span><br><span class="line">df4.show()</span><br><span class="line">result =</span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">|+------------------------+</span></span><br><span class="line">    <span class="string">||                     _c0|</span></span><br><span class="line">    <span class="string">|+------------------------+</span></span><br><span class="line">    <span class="string">||    &quot;</span>id<span class="string">&quot;,&quot;</span>device_id<span class="string">&quot;,...|</span></span><br><span class="line">    <span class="string">||  1,2138,male,21,北京...|</span></span><br><span class="line">    <span class="string">||2,3214,male,,复旦大学...|</span></span><br><span class="line">    <span class="string">||    3,6543,female,20,...|</span></span><br><span class="line">    <span class="string">||    4,2315,female,23,...|</span></span><br><span class="line">    <span class="string">||  5,5432,male,25,山东...|</span></span><br><span class="line">    <span class="string">||  6,2131,male,28,山东...|</span></span><br><span class="line">    <span class="string">||  7,4321,male,28,复旦...|</span></span><br><span class="line">    <span class="string">|+------------------------+</span></span><br><span class="line">    <span class="string">|&quot;&quot;&quot;</span>.stripMargin</span><br><span class="line"><span class="comment">//还可以从csv里加载表头</span></span><br><span class="line">val df2 = spark.read.option(<span class="string">&quot;delimiter&quot;</span>,<span class="string">&quot;,&quot;</span>).option(<span class="string">&quot;header&quot;</span>,<span class="string">&quot;true&quot;</span>).format(<span class="string">&quot;csv&quot;</span>).load(<span class="string">&quot;file:///C:\\Users\\dell\\Desktop\\user_profile.csv&quot;</span>)</span><br><span class="line">df2.show()</span><br><span class="line">result=</span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">|+---+---------+------+----+----------+---+---------------------+------------+----------+</span></span><br><span class="line">    <span class="string">|| id|device_id|gender| age|university|gpa|active_days_within_30|question_cnt|answer_cnt|</span></span><br><span class="line">    <span class="string">|+---+---------+------+----+----------+---+---------------------+------------+----------+</span></span><br><span class="line">    <span class="string">||  1|     2138|  male|  21|  北京大学|3.4|                    7|           2|        12|</span></span><br><span class="line">    <span class="string">||  2|     3214|  male|null|  复旦大学|  4|                   15|           5|        25|</span></span><br><span class="line">    <span class="string">||  3|     6543|female|  20|  北京大学|3.2|                   12|           3|        30|</span></span><br><span class="line">    <span class="string">||  4|     2315|female|  23|  浙江大学|3.6|                    5|           1|         2|</span></span><br><span class="line">    <span class="string">||  5|     5432|  male|  25|  山东大学|3.8|                   20|          15|        70|</span></span><br><span class="line">    <span class="string">||  6|     2131|  male|  28|  山东大学|3.3|                   15|           7|        13|</span></span><br><span class="line">    <span class="string">||  7|     4321|  male|  28|  复旦大学|3.6|                    9|           6|        52|</span></span><br><span class="line">    <span class="string">|+---+---------+------+----+----------+---+---------------------+------------+----------+</span></span><br><span class="line">    <span class="string">|&quot;&quot;&quot;</span>.stripMargin</span><br><span class="line"><span class="comment">//还可以把上面两个option合并</span></span><br><span class="line">val df3 = spark.read.options(Map(<span class="string">&quot;delimiter&quot;</span> -&gt; <span class="string">&quot;,&quot;</span> ,<span class="string">&quot;header&quot;</span> -&gt; <span class="string">&quot;true&quot;</span>)).csv(<span class="string">&quot;file:///C:\\Users\\dell\\Desktop\\user_profile.csv&quot;</span>)</span><br><span class="line">df3.show()</span><br><span class="line">result=</span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">|+---+---------+------+----+----------+---+---------------------+------------+----------+</span></span><br><span class="line">    <span class="string">|| id|device_id|gender| age|university|gpa|active_days_within_30|question_cnt|answer_cnt|</span></span><br><span class="line">    <span class="string">|+---+---------+------+----+----------+---+---------------------+------------+----------+</span></span><br><span class="line">    <span class="string">||  1|     2138|  male|  21|  北京大学|3.4|                    7|           2|        12|</span></span><br><span class="line">    <span class="string">||  2|     3214|  male|null|  复旦大学|  4|                   15|           5|        25|</span></span><br><span class="line">    <span class="string">||  3|     6543|female|  20|  北京大学|3.2|                   12|           3|        30|</span></span><br><span class="line">    <span class="string">||  4|     2315|female|  23|  浙江大学|3.6|                    5|           1|         2|</span></span><br><span class="line">    <span class="string">||  5|     5432|  male|  25|  山东大学|3.8|                   20|          15|        70|</span></span><br><span class="line">    <span class="string">||  6|     2131|  male|  28|  山东大学|3.3|                   15|           7|        13|</span></span><br><span class="line">    <span class="string">||  7|     4321|  male|  28|  复旦大学|3.6|                    9|           6|        52|</span></span><br><span class="line">    <span class="string">|+---+---------+------+----+----------+---+---------------------+------------+----------+</span></span><br><span class="line">    <span class="string">|&quot;&quot;&quot;</span>.stripMargin</span><br><span class="line"><span class="comment">//还可以加上自动推断类型，如果不加，它就会默认是字符串类型inferSchema</span></span><br><span class="line">val df5 = spark.read.options(Map(<span class="string">&quot;sep&quot;</span>-&gt;<span class="string">&quot;,&quot;</span>,<span class="string">&quot;header&quot;</span>-&gt;<span class="string">&quot;true&quot;</span>,<span class="string">&quot;inferSchema&quot;</span>-&gt;<span class="string">&quot;true&quot;</span>,<span class="string">&quot;encoding&quot;</span>-&gt;<span class="string">&quot;UTF8&quot;</span>)).csv(<span class="string">&quot;file:///C:\\Users\\dell\\Desktop\\user_profile.csv&quot;</span>)</span><br><span class="line">df5.show()</span><br><span class="line">result=</span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">|+---+---------+------+----+----------+---+---------------------+------------+----------+</span></span><br><span class="line">    <span class="string">|| id|device_id|gender| age|university|gpa|active_days_within_30|question_cnt|answer_cnt|</span></span><br><span class="line">    <span class="string">|+---+---------+------+----+----------+---+---------------------+------------+----------+</span></span><br><span class="line">    <span class="string">||  1|     2138|  male|  21|  北京大学|3.4|                    7|           2|        12|</span></span><br><span class="line">    <span class="string">||  2|     3214|  male|null|  复旦大学|4.0|                   15|           5|        25|</span></span><br><span class="line">    <span class="string">||  3|     6543|female|  20|  北京大学|3.2|                   12|           3|        30|</span></span><br><span class="line">    <span class="string">||  4|     2315|female|  23|  浙江大学|3.6|                    5|           1|         2|</span></span><br><span class="line">    <span class="string">||  5|     5432|  male|  25|  山东大学|3.8|                   20|          15|        70|</span></span><br><span class="line">    <span class="string">||  6|     2131|  male|  28|  山东大学|3.3|                   15|           7|        13|</span></span><br><span class="line">    <span class="string">||  7|     4321|  male|  28|  复旦大学|3.6|                    9|           6|        52|</span></span><br><span class="line">    <span class="string">|+---+---------+------+----+----------+---+---------------------+------------+----------+</span></span><br><span class="line">    <span class="string">|&quot;&quot;&quot;</span>.stripMargin</span><br><span class="line">df5.printSchema()</span><br><span class="line">result=</span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">|root</span></span><br><span class="line">    <span class="string">| |-- id: integer (nullable = true)</span></span><br><span class="line">    <span class="string">| |-- device_id: integer (nullable = true)</span></span><br><span class="line">    <span class="string">| |-- gender: string (nullable = true)</span></span><br><span class="line">    <span class="string">| |-- age: integer (nullable = true)</span></span><br><span class="line">    <span class="string">| |-- university: string (nullable = true)</span></span><br><span class="line">    <span class="string">| |-- gpa: double (nullable = true)</span></span><br><span class="line">    <span class="string">| |-- active_days_within_30: integer (nullable = true)</span></span><br><span class="line">    <span class="string">| |-- question_cnt: integer (nullable = true)</span></span><br><span class="line">    <span class="string">| |-- answer_cnt: integer (nullable = true)</span></span><br><span class="line">    <span class="string">|&quot;&quot;&quot;</span>.stripMargin</span><br><span class="line"><span class="comment">//等 剩下的请看api简介</span></span><br><span class="line"></span><br><span class="line">df5.createOrReplaceTempView(<span class="string">&quot;csv&quot;</span>)</span><br><span class="line">spark.sql(</span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">|select</span></span><br><span class="line">    <span class="string">|gender,</span></span><br><span class="line">    <span class="string">|device_id,</span></span><br><span class="line">    <span class="string">|active_days_within_30,</span></span><br><span class="line">    <span class="string">|university</span></span><br><span class="line">    <span class="string">|from</span></span><br><span class="line">    <span class="string">|csv</span></span><br><span class="line">    <span class="string">|where university = &#x27;北京大学&#x27;</span></span><br><span class="line">    <span class="string">|&quot;&quot;&quot;</span>.stripMargin).show()</span><br><span class="line"></span><br><span class="line">result=</span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">|+------+---------+---------------------+----------+</span></span><br><span class="line">    <span class="string">||gender|device_id|active_days_within_30|university|</span></span><br><span class="line">    <span class="string">|+------+---------+---------------------+----------+</span></span><br><span class="line">    <span class="string">||  male|     2138|                    7|  北京大学|</span></span><br><span class="line">    <span class="string">||female|     6543|                   12|  北京大学|</span></span><br><span class="line">    <span class="string">|+------+---------+---------------------+----------+</span></span><br><span class="line">    <span class="string">|&quot;&quot;&quot;</span>.stripMargin</span><br></pre></td></tr></table></figure>
 
 
-
-
+<p><img src="/"></p>
 <h2 id="写数据"><a href="#写数据" class="headerlink" title="写数据"></a>写数据</h2><h3 id="TEXT-2"><a href="#TEXT-2" class="headerlink" title="TEXT"></a>TEXT</h3><p>注意text仅仅支持一列的数据进行输出，不支持多列，因为我们的resource文件夹里有配置文件所以它走我们的配置文件压缩格式为bz2，不过可以自己指定格式，一般不指定且无配置文件是不压缩的</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">package sparkfirst</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.<span class="keyword">sql</span>.SparkSession</span><br><span class="line"></span><br><span class="line"><span class="keyword">object</span> sparksql2 &#123;</span><br><span class="line">  def main(args: <span class="keyword">Array</span>[String]): Unit = &#123;</span><br><span class="line">    val spark = SparkSession.builder().appName(&quot;Sparksql01&quot;).master(&quot;local[4]&quot;).getOrCreate()</span><br><span class="line">    val df2 = spark.<span class="keyword">read</span>.<span class="keyword">option</span>(&quot;lineSep&quot;,&quot;,&quot;).text(&quot;file:///D:\\test.txt&quot;)</span><br><span class="line">    df2.<span class="keyword">show</span>()</span><br><span class="line">    //<span class="comment">-----------------------------------------写数据</span></span><br><span class="line">    df2.<span class="keyword">write</span>.text(&quot;file:///D:\\test1.txt&quot;)</span><br><span class="line">    //<span class="comment">-------------------------------------------加压缩</span></span><br><span class="line">    df2.<span class="keyword">write</span>.<span class="keyword">option</span>(&quot;compression&quot;, &quot;gzip&quot;).text(&quot;file:///D:\\test2.txt&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -490,6 +694,11 @@
 <p>查看文件格式</p>
 <p><img src="https://pic.imgdb.cn/item/63be1ad7be43e0d30e18aa99.jpg"></p>
 <h3 id="json-2"><a href="#json-2" class="headerlink" title="json"></a>json</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span>常用的输出方式追加append，或者覆盖(overwrite),或者忽略（ignore），错误等（error）</span><br><span class="line"><span class="regexp">//</span>df.write.mode(saveMode = <span class="string">&quot;overwrite&quot;</span>).json(<span class="string">&quot;hdfs://bigdata3:9000/spark&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="csv-2"><a href="#csv-2" class="headerlink" title="csv"></a>csv</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//写出可以用sep进行设置导出的分隔符，mode设置是不是覆盖，compression设置压缩</span></span><br><span class="line">  df5<span class="selector-class">.write</span><span class="selector-class">.options</span>(<span class="built_in">Map</span>(<span class="string">&quot;sep&quot;</span>-&gt;<span class="string">&quot;;&quot;</span>,<span class="string">&quot;compression&quot;</span>-&gt;<span class="string">&quot;gzip&quot;</span>))<span class="selector-class">.mode</span>(<span class="string">&quot;overwrite&quot;</span>)<span class="selector-class">.format</span>(<span class="string">&quot;csv&quot;</span>)<span class="selector-class">.save</span>(<span class="string">&quot;file:///C:\\Users\\dell\\Desktop\\user_profile1.csv&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>结果如下</p>
+<p><img src="https://pic.imgdb.cn/item/63be621fbe43e0d30e93423c.jpg"></p>
 
     </div>
 
@@ -648,7 +857,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9E%84%E5%BB%BAdf"><span class="nav-number">1.</span> <span class="nav-text">构建df</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E5%A4%96%E9%83%A8%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="nav-number">2.</span> <span class="nav-text">加载外部数据源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#api%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.</span> <span class="nav-text">api简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TEXT"><span class="nav-number">2.1.1.</span> <span class="nav-text">TEXT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json"><span class="nav-number">2.1.2.</span> <span class="nav-text">json</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E6%95%B0%E6%8D%AE"><span class="nav-number">2.2.</span> <span class="nav-text">读数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TEXT-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">TEXT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">json</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E6%95%B0%E6%8D%AE"><span class="nav-number">2.3.</span> <span class="nav-text">写数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TEXT-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">TEXT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json-2"><span class="nav-number">2.3.2.</span> <span class="nav-text">json</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9E%84%E5%BB%BAdf"><span class="nav-number">1.</span> <span class="nav-text">构建df</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E5%A4%96%E9%83%A8%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="nav-number">2.</span> <span class="nav-text">加载外部数据源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#api%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.</span> <span class="nav-text">api简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TEXT"><span class="nav-number">2.1.1.</span> <span class="nav-text">TEXT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json"><span class="nav-number">2.1.2.</span> <span class="nav-text">json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#csv"><span class="nav-number">2.1.3.</span> <span class="nav-text">csv</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E6%95%B0%E6%8D%AE"><span class="nav-number">2.2.</span> <span class="nav-text">读数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TEXT-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">TEXT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#csv-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">csv</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E6%95%B0%E6%8D%AE"><span class="nav-number">2.3.</span> <span class="nav-text">写数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TEXT-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">TEXT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json-2"><span class="nav-number">2.3.2.</span> <span class="nav-text">json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#csv-2"><span class="nav-number">2.3.3.</span> <span class="nav-text">csv</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -740,7 +949,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共175.8k字</span>
+  <span class="post-count">博客全站共178.2k字</span>
 </div>
 
 
