@@ -1198,7 +1198,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffff18;
+  background: #5022ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2781,6 +2781,14 @@ pre {
   border-radius: 4px;
   border: 1px solid #d6d6d6;
   color: #ff7600;
+}
+pre .tags {
+  color: #fff f;
+}
+.tag-cloud-title,
+.tag-cloud-tags,
+.tag-body {
+  color: #fff f;
 }
 .content-wrap {
   opacity: 0.79;
