@@ -21,7 +21,15 @@
   <entry>
     <title>sparksql-2</title>
     <url>/2023/01/11/1-11/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="构建df"><a href="#构建df" class="headerlink" title="构建df"></a>构建df</h1><ul>
+<li>rdd</li>
+<li>hive</li>
+<li>外部数据源<ul>
+<li>json,csv,jdbc&#x2F;odbc</li>
+</ul>
+</li>
+</ul>
+]]></content>
       <categories>
         <category>日志</category>
       </categories>

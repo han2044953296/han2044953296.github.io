@@ -9,7 +9,7 @@
     <atom:link href="http://zihang.fun/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>只有努力不会辜负你</description>
-    <pubDate>Wed, 11 Jan 2023 00:58:58 GMT</pubDate>
+    <pubDate>Wed, 11 Jan 2023 01:20:16 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -18,7 +18,18 @@
       <guid>http://zihang.fun/2023/01/11/1-11/</guid>
       <pubDate>Wed, 11 Jan 2023 00:53:32 GMT</pubDate>
       
+        
+        
+      <description>&lt;h1 id=&quot;构建df&quot;&gt;&lt;a href=&quot;#构建df&quot; class=&quot;headerlink&quot; title=&quot;构建df&quot;&gt;&lt;/a&gt;构建df&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;rdd&lt;/li&gt;
+&lt;li&gt;hive&lt;/li&gt;
+&lt;li&gt;外部数据源&lt;ul&gt;
+&lt;li&gt;json,csv,jdbc&amp;#</description>
+        
       
+      
+      
+      <content:encoded><![CDATA[<h1 id="构建df"><a href="#构建df" class="headerlink" title="构建df"></a>构建df</h1><ul><li>rdd</li><li>hive</li><li>外部数据源<ul><li>json,csv,jdbc&#x2F;odbc</li></ul></li></ul>]]></content:encoded>
       
       
       <category domain="http://zihang.fun/categories/%E6%97%A5%E5%BF%97/">日志</category>
