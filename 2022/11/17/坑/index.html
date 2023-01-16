@@ -30,7 +30,7 @@
 <meta property="og:description" content="修改windows下的hosts文件不生效 这个坑一直卡了我三四天 配置完hadoop集群，进行web访问的时候出现了这个问题 因为windows的主机映射不好使，所以我无法在网页端查看数据  解决办法 我这里解决这个的办法是通过 把中间空格放大的方法 就是一个小空格加一个tab键 然后进入 edge:&#x2F;&#x2F;net-internals或者 chrome:&#x2F;&#x2F;net-internals 这取决于你的浏">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-17T11:47:34.000Z">
-<meta property="article:modified_time" content="2023-01-11T01:16:49.653Z">
+<meta property="article:modified_time" content="2023-01-13T09:03:15.065Z">
 <meta property="article:author" content="liu zihang">
 <meta property="article:tag" content="坑">
 <meta name="twitter:card" content="summary">
@@ -233,7 +233,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-11 09:16:49" itemprop="dateModified" datetime="2023-01-11T09:16:49+08:00">2023-01-11</time>
+                <time title="修改时间：2023-01-13 17:03:15" itemprop="dateModified" datetime="2023-01-13T17:03:15+08:00">2023-01-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -258,14 +258,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.3k</span>
+              <span>4.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -371,6 +371,18 @@
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[http]</span></span><br><span class="line"><span class="attr">postBuffer</span> = <span class="number">524288000</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="ssh配置免密登录了，无法生效"><a href="#ssh配置免密登录了，无法生效" class="headerlink" title="ssh配置免密登录了，无法生效"></a>ssh配置免密登录了，无法生效</h1><p>原因：有可能是因为组权限加了W，，减掉就好了</p>
+<h1 id="hive的元数据，在mysql里命名存在却显示表不存在，导致hive启动失败"><a href="#hive的元数据，在mysql里命名存在却显示表不存在，导致hive启动失败" class="headerlink" title="hive的元数据，在mysql里命名存在却显示表不存在，导致hive启动失败"></a>hive的元数据，在mysql里命名存在却显示表不存在，导致hive启动失败</h1><p>重新初始化hive的元数据库，或者从hdfs上获取数据并进行导入</p>
+<h1 id="再linux机器上简单的部署前端页面不用ngix"><a href="#再linux机器上简单的部署前端页面不用ngix" class="headerlink" title="再linux机器上简单的部署前端页面不用ngix"></a>再linux机器上简单的部署前端页面不用ngix</h1><p>把静态网页放到&#x2F;var&#x2F;www&#x2F;html上就好</p>
+<p>然后就可以通过ip&#x2F;文件名就可以访问了</p>
+<h1 id="在通过idea链接的hive上进行操作的时候报错"><a href="#在通过idea链接的hive上进行操作的时候报错" class="headerlink" title="在通过idea链接的hive上进行操作的时候报错"></a>在通过idea链接的hive上进行操作的时候报错</h1><p>: javax.jdo.JDODataStoreException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘OPTION SQL_SELECT_LIMIT&#x3D;DEFAULT’ at line 1</p>
+<p>原因：是mysql的版本和驱动的版本不匹配导致的，我的mysql版本是5.6的，刚开始使用的驱动是mysql-connector-java-5.0.5-bin.jar，但是mysql5.6已经抛弃了这个参数，所以会报上面错误，换成驱动mysql-connector-java-5.1.31-bin.jar后解决。</p>
+<h1 id="spark在yarn上部署选择集群部署的时候出现问题"><a href="#spark在yarn上部署选择集群部署的时候出现问题" class="headerlink" title="spark在yarn上部署选择集群部署的时候出现问题"></a>spark在yarn上部署选择集群部署的时候出现问题</h1><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java.io.EOFException: <span class="keyword">End</span> <span class="keyword">of</span> File <span class="keyword">Exception</span> <span class="keyword">between</span> <span class="keyword">local</span> host <span class="keyword">is</span>: &quot;bigdata3/192.168.41.132&quot;; destination host <span class="keyword">is</span>: &quot;bigdata3&quot;:<span class="number">9000</span>; : java.io.EOFException; <span class="keyword">For</span> more details see:  http://wiki.apache.org/hadoop/EOFException</span><br><span class="line">	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native <span class="keyword">Method</span>)</span><br></pre></td></tr></table></figure>
+
+<p>解决方法：</p>
+<p>先查看配置文件是不是出问题，启动客户端模式查看代码是不是出问题</p>
+<p>如果都不是</p>
+<p>则查看是不是三台机器上都有spark</p>
+<h1 id="spark-shell-在yarn上的时候不能用cluster模式"><a href="#spark-shell-在yarn上的时候不能用cluster模式" class="headerlink" title="spark-shell 在yarn上的时候不能用cluster模式"></a>spark-shell 在yarn上的时候不能用cluster模式</h1><p>因为spark-shell 就是在一台机器上课driver，而cluster是集群的driver，所以会出问题</p>
 
     </div>
 
@@ -532,7 +544,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9windows%E4%B8%8B%E7%9A%84hosts%E6%96%87%E4%BB%B6%E4%B8%8D%E7%94%9F%E6%95%88"><span class="nav-number">1.</span> <span class="nav-text">修改windows下的hosts文件不生效</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%89%E5%85%B3%E4%BA%8Eidea%E5%85%B3%E4%BA%8EHadoop%E7%9A%84api%E7%9A%84copyToLocalfile%E4%B8%8D%E7%94%9F%E6%95%88"><span class="nav-number">2.</span> <span class="nav-text">有关于idea关于Hadoop的api的copyToLocalfile不生效</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Elinux%E9%87%8C%E7%9A%84mysql%E4%BC%9A%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB%E5%A4%A7%E5%B0%8F%E5%86%99%E8%A1%A8%E5%90%8D%E7%9A%84%E4%BA%8B%E6%83%85"><span class="nav-number">3.</span> <span class="nav-text">关于linux里的mysql会自动识别大小写表名的事情</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql%E8%AF%AF%E5%88%A0%E4%BA%86%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-performance-schema%E7%9A%84%E6%81%A2%E5%A4%8D"><span class="nav-number">4.</span> <span class="nav-text">mysql误删了配置文件 performance_schema的恢复</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#npm%E6%80%8E%E4%B9%88%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"><span class="nav-number">5.</span> <span class="nav-text">npm怎么清除缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Enpm%E8%AE%BE%E7%BD%AE%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-number">6.</span> <span class="nav-text">关于npm设置镜像源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git%E4%B9%8B%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%BB%BA%E7%AB%8B%E8%BF%BD%E8%B8%AA%E5%85%B3%E7%B3%BB%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">7.</span> <span class="nav-text">Git之本地分支和远程分支建立追踪关系的几种方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="nav-number">8.</span> <span class="nav-text">git 删除远程分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%86%85%E5%AD%98%E4%B8%8D%E5%A4%9F%EF%BC%8C%E8%AE%BE%E7%BD%AEswap%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BA"><span class="nav-number">9.</span> <span class="nav-text">云服务器内存不够，设置swap交换分区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git%E5%87%BA%E7%8E%B0fatal-the-remote-end-hung-up-unexpectedly"><span class="nav-number">10.</span> <span class="nav-text">git出现fatal: the remote end hung up unexpectedly</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh%E9%85%8D%E7%BD%AE%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95%E4%BA%86%EF%BC%8C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88"><span class="nav-number">11.</span> <span class="nav-text">ssh配置免密登录了，无法生效</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9windows%E4%B8%8B%E7%9A%84hosts%E6%96%87%E4%BB%B6%E4%B8%8D%E7%94%9F%E6%95%88"><span class="nav-number">1.</span> <span class="nav-text">修改windows下的hosts文件不生效</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%89%E5%85%B3%E4%BA%8Eidea%E5%85%B3%E4%BA%8EHadoop%E7%9A%84api%E7%9A%84copyToLocalfile%E4%B8%8D%E7%94%9F%E6%95%88"><span class="nav-number">2.</span> <span class="nav-text">有关于idea关于Hadoop的api的copyToLocalfile不生效</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Elinux%E9%87%8C%E7%9A%84mysql%E4%BC%9A%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB%E5%A4%A7%E5%B0%8F%E5%86%99%E8%A1%A8%E5%90%8D%E7%9A%84%E4%BA%8B%E6%83%85"><span class="nav-number">3.</span> <span class="nav-text">关于linux里的mysql会自动识别大小写表名的事情</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql%E8%AF%AF%E5%88%A0%E4%BA%86%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-performance-schema%E7%9A%84%E6%81%A2%E5%A4%8D"><span class="nav-number">4.</span> <span class="nav-text">mysql误删了配置文件 performance_schema的恢复</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#npm%E6%80%8E%E4%B9%88%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"><span class="nav-number">5.</span> <span class="nav-text">npm怎么清除缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Enpm%E8%AE%BE%E7%BD%AE%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-number">6.</span> <span class="nav-text">关于npm设置镜像源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git%E4%B9%8B%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%BB%BA%E7%AB%8B%E8%BF%BD%E8%B8%AA%E5%85%B3%E7%B3%BB%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">7.</span> <span class="nav-text">Git之本地分支和远程分支建立追踪关系的几种方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="nav-number">8.</span> <span class="nav-text">git 删除远程分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%86%85%E5%AD%98%E4%B8%8D%E5%A4%9F%EF%BC%8C%E8%AE%BE%E7%BD%AEswap%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BA"><span class="nav-number">9.</span> <span class="nav-text">云服务器内存不够，设置swap交换分区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git%E5%87%BA%E7%8E%B0fatal-the-remote-end-hung-up-unexpectedly"><span class="nav-number">10.</span> <span class="nav-text">git出现fatal: the remote end hung up unexpectedly</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh%E9%85%8D%E7%BD%AE%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95%E4%BA%86%EF%BC%8C%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88"><span class="nav-number">11.</span> <span class="nav-text">ssh配置免密登录了，无法生效</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hive%E7%9A%84%E5%85%83%E6%95%B0%E6%8D%AE%EF%BC%8C%E5%9C%A8mysql%E9%87%8C%E5%91%BD%E5%90%8D%E5%AD%98%E5%9C%A8%E5%8D%B4%E6%98%BE%E7%A4%BA%E8%A1%A8%E4%B8%8D%E5%AD%98%E5%9C%A8%EF%BC%8C%E5%AF%BC%E8%87%B4hive%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5"><span class="nav-number">12.</span> <span class="nav-text">hive的元数据，在mysql里命名存在却显示表不存在，导致hive启动失败</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%8Dlinux%E6%9C%BA%E5%99%A8%E4%B8%8A%E7%AE%80%E5%8D%95%E7%9A%84%E9%83%A8%E7%BD%B2%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E4%B8%8D%E7%94%A8ngix"><span class="nav-number">13.</span> <span class="nav-text">再linux机器上简单的部署前端页面不用ngix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E9%80%9A%E8%BF%87idea%E9%93%BE%E6%8E%A5%E7%9A%84hive%E4%B8%8A%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C%E7%9A%84%E6%97%B6%E5%80%99%E6%8A%A5%E9%94%99"><span class="nav-number">14.</span> <span class="nav-text">在通过idea链接的hive上进行操作的时候报错</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#spark%E5%9C%A8yarn%E4%B8%8A%E9%83%A8%E7%BD%B2%E9%80%89%E6%8B%A9%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E7%9A%84%E6%97%B6%E5%80%99%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98"><span class="nav-number">15.</span> <span class="nav-text">spark在yarn上部署选择集群部署的时候出现问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#spark-shell-%E5%9C%A8yarn%E4%B8%8A%E7%9A%84%E6%97%B6%E5%80%99%E4%B8%8D%E8%83%BD%E7%94%A8cluster%E6%A8%A1%E5%BC%8F"><span class="nav-number">16.</span> <span class="nav-text">spark-shell 在yarn上的时候不能用cluster模式</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -548,7 +560,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -561,7 +573,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -624,7 +636,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共181.2k字</span>
+  <span class="post-count">博客全站共189.3k字</span>
 </div>
 
 

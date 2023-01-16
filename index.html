@@ -292,6 +292,485 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2023/01/16/1-16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/01/16/1-16/" class="post-title-link" itemprop="url">sparksql-4</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-01-16 08:39:10 / 修改时间：17:06:21" itemprop="dateCreated datePublished" datetime="2023-01-16T08:39:10+08:00">2023-01-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>13k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>12 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="sparkstreaming"><a href="#sparkstreaming" class="headerlink" title="sparkstreaming"></a>sparkstreaming</h1><p>用于实时计算的模块 &#x3D;》 sparkstreaming，structuredstreaming</p>
+<h2 id="流处理-：-实时"><a href="#流处理-：-实时" class="headerlink" title="流处理 ： 实时"></a>流处理 ： 实时</h2><ul>
+<li>实时 来一套数据处理一条 storm，flink 数据叫event</li>
+<li>近实时 来一批数据处理 mini-batch sparkstreaming</li>
+<li>数据会源源不断地来</li>
+</ul>
+<h2 id="批处理-：-离线"><a href="#批处理-：-离线" class="headerlink" title="批处理 ： 离线"></a>批处理 ： 离线</h2><ul>
+<li><p>代码或者程序处理一个批次的数据</p>
+<ul>
+<li>例子：数据放在hdfs上，我们对他进行处理 &#x3D;》 ok</li>
+</ul>
+</li>
+</ul>
+<h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><p>生产上：</p>
+<ul>
+<li>sparkstreaming，structuredstreaming 10%</li>
+<li>flink 90%</li>
+<li>storm 2%</li>
+</ul>
+<p>开发角度：</p>
+<ul>
+<li>code &#x3D;》 flink &gt; sparkstreaming</li>
+<li>sql &#x3D;&gt; flink &gt; spark streaming</li>
+</ul>
+<p>业务：</p>
+<ul>
+<li>实施指标 ：都差不多</li>
+<li>实时数仓：<ul>
+<li>代码 ： 差不多</li>
+<li>sql文件 ： flinksql维护实时数仓 &#x3D;》 ok</li>
+</ul>
+</li>
+</ul>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><p>容易使用 &#x3D;》 客观看</p>
+<p>批流一体的处理方法 &#x3D;》 sparksql &lt;&#x3D;&gt; 流处理</p>
+<p>低延迟高消费</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>sparkstreaming开发是spark-core的一个扩展</li>
+<li>接收数据的渠道多</li>
+<li>还可以对数据进行流处理的可以机器学习等</li>
+</ul>
+<p>一般来说流式处理会比批处理负载小，但不绝对</p>
+<h3 id="数据源-："><a href="#数据源-：" class="headerlink" title="数据源 ："></a>数据源 ：</h3><ul>
+<li>kafka ****** 流式引擎重要的数据源 -》 通过topic进行数据缓冲，它会根据sp的吞吐量来进行处理，两个引擎之间会有联系</li>
+<li>flume **** 可以使用但是一般不用 flume 没有数据缓冲 致命 -》 直接把数据弄到sp里，如果数据量特别多，会让sp程序挂掉，因为如果sa程序的吞吐量比较小，则会崩掉，和sp无联系</li>
+<li>hdfs</li>
+</ul>
+<h3 id="数据积压：kafka数据太大，导致sp程序一直处理不过来，一个出不来报表-x3D-gt-解决方法"><a href="#数据积压：kafka数据太大，导致sp程序一直处理不过来，一个出不来报表-x3D-gt-解决方法" class="headerlink" title="数据积压：kafka数据太大，导致sp程序一直处理不过来，一个出不来报表 &#x3D;&gt;解决方法"></a>数据积压：kafka数据太大，导致sp程序一直处理不过来，一个出不来报表 &#x3D;&gt;解决方法</h3><ul>
+<li>吞吐量提高</li>
+<li>数据量减少</li>
+</ul>
+<h3 id="sparkstreaming运行机制"><a href="#sparkstreaming运行机制" class="headerlink" title="sparkstreaming运行机制"></a>sparkstreaming运行机制</h3><ul>
+<li>接收数据</li>
+<li>拆分成batches</li>
+</ul>
+<h3 id="sparkstreaming-gt-kafka-："><a href="#sparkstreaming-gt-kafka-：" class="headerlink" title="sparkstreaming -&gt; kafka ："></a>sparkstreaming -&gt; kafka ：</h3><ul>
+<li>5s处理数据</li>
+<li>每5s会切分成一次batch</li>
+<li>交给sparkngine处理</li>
+<li>处理完的也是一个batch</li>
+</ul>
+<h3 id="sparkstreaming编程模型：Dstream"><a href="#sparkstreaming编程模型：Dstream" class="headerlink" title="sparkstreaming编程模型：Dstream"></a>sparkstreaming编程模型：Dstream</h3><ul>
+<li>外部数据源</li>
+<li>高级算子</li>
+<li>类似RDD</li>
+</ul>
+<h3 id="idea开发先配置pom文件"><a href="#idea开发先配置pom文件" class="headerlink" title="idea开发先配置pom文件"></a>idea开发先配置pom文件</h3><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;dependency&gt;</span></span><br><span class="line">  <span class="section">&lt;groupId&gt;</span><span class="attribute">org</span>.apache.spark&lt;/groupId&gt;</span><br><span class="line">  <span class="section">&lt;artifactId&gt;</span><span class="attribute">spark</span>-streaming_2.<span class="number">12</span>&lt;/artifactId&gt;</span><br><span class="line">  <span class="section">&lt;version&gt;</span><span class="attribute">3</span>.<span class="number">2</span>.<span class="number">1</span>&lt;/version&gt;</span><br><span class="line"><span class="section">&lt;/dependency&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="idea代码"><a href="#idea代码" class="headerlink" title="idea代码"></a>idea代码</h3><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">package sparkstreaming</span><br><span class="line">import org.apache.spark._</span><br><span class="line">import org.apache.spark.streaming._</span><br><span class="line">import org.apache.spark.streaming.<span class="module-access"><span class="module"><span class="identifier">StreamingContext</span>.</span><span class="module"><span class="identifier">_</span></span></span></span><br><span class="line"><span class="module"><span class="module-access">i</span></span>mport org.apache.spark.SparkConf</span><br><span class="line"></span><br><span class="line"><span class="keyword">object</span> sparkstreaming1 &#123;</span><br><span class="line">  def main(args: Array<span class="literal">[S<span class="identifier">tring</span>]</span>): Unit = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="constructor">SparkConf()</span>.set<span class="constructor">Master(<span class="string">&quot;local[4]&quot;</span>)</span>.set<span class="constructor">AppName(<span class="string">&quot;NetworkWordCount&quot;</span>)</span></span><br><span class="line">    <span class="keyword">val</span> ssc = <span class="keyword">new</span> <span class="constructor">StreamingContext(<span class="params">conf</span>, Seconds(5)</span>)</span><br><span class="line">    <span class="comment">// 或者通过sparkcontext进行创建</span></span><br><span class="line">    <span class="comment">//val ssc = new StreamingContext(sc, Seconds(1))</span></span><br><span class="line">    <span class="comment">// 数据源</span></span><br><span class="line">    <span class="keyword">val</span> lines = ssc.socket<span class="constructor">TextStream(<span class="string">&quot;bigdata5&quot;</span>, 9999)</span></span><br><span class="line">    <span class="comment">// 处理数据</span></span><br><span class="line">    <span class="keyword">val</span> words = lines.flat<span class="constructor">Map(<span class="params">_</span>.<span class="params">split</span>(<span class="string">&quot; &quot;</span>)</span>)</span><br><span class="line">    <span class="keyword">val</span> pairs = words.map(word =&gt; (word, <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">val</span> wordCounts = pairs.reduce<span class="constructor">ByKey(<span class="params">_</span> + <span class="params">_</span>)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打印数据当前批次</span></span><br><span class="line">    wordCounts.print<span class="literal">()</span></span><br><span class="line">    ssc.start<span class="literal">()</span>             <span class="comment">// Start</span></span><br><span class="line">    ssc.await<span class="constructor">Termination()</span>  <span class="comment">// Wait</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 配置数据源在目标机器上执行nc -lk 9999 然后输入数据就ok了</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>还可以在webui上查看</p>
+<p>如下：</p>
+<p><img src="https://pic.imgdb.cn/item/63c4b657be43e0d30e191256.jpg"></p>
+<p>他的打印数据是处理当前批次的数据，不是累积批次的数据</p>
+<h3 id="双流join"><a href="#双流join" class="headerlink" title="双流join"></a>双流join</h3><p>api :</p>
+<ul>
+<li>flink -》调用api</li>
+<li>sparkstreaming code 很多 -》 api join stste</li>
+</ul>
+<p> 延迟数据</p>
+<ul>
+<li>processtime + udf</li>
+<li>eventime + watermaker<ul>
+<li>数据和离线对不上（容易）</li>
+</ul>
+</li>
+</ul>
+<p>如何构建DStream</p>
+<ul>
+<li>从inputstream的方式 生产上</li>
+<li>receiver 测试用 为面试准备</li>
+</ul>
+<h2 id="构建Dstream"><a href="#构建Dstream" class="headerlink" title="构建Dstream"></a>构建Dstream</h2><h3 id="inputstrteam"><a href="#inputstrteam" class="headerlink" title="inputstrteam"></a>inputstrteam</h3><p>比如卡夫卡</p>
+<h3 id="receiver"><a href="#receiver" class="headerlink" title="receiver"></a>receiver</h3><p>用receiver接受的时候如果是本地则要大于1 -&gt; local[2+]</p>
+<p>因为sparkstreaming最少是有两部分切分以及处理，如果只给1则会没有资源进行处理</p>
+<p>所以针对于receiver一个要大于等于</p>
+<p>上面仅仅是针对receiver</p>
+<p>例子 ： </p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> lines = ssc.socket<span class="constructor">TextStream(<span class="string">&quot;bigdata5&quot;</span>, 9999)</span></span><br></pre></td></tr></table></figure>
+
+<p>因为他底层源码是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def <span class="title function_">socketTextStream</span>(</span><br><span class="line">    <span class="attr">hostname</span>: <span class="title class_">String</span>,</span><br><span class="line">    <span class="attr">port</span>: <span class="title class_">Int</span>,</span><br><span class="line">    <span class="attr">storageLevel</span>: <span class="title class_">StorageLevel</span> = <span class="title class_">StorageLevel</span>.<span class="property">MEMORY_AND_DISK_SER_2</span></span><br><span class="line">  ): <span class="title class_">ReceiverInputDStream</span>[<span class="title class_">String</span>] = <span class="title function_">withNamedScope</span>(<span class="params"><span class="string">&quot;socket text stream&quot;</span></span>) &#123;</span><br><span class="line">  socketStream[<span class="title class_">String</span>](hostname, port, <span class="title class_">SocketReceiver</span>.<span class="property">bytesToLines</span>, storageLevel)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Dstream算子"><a href="#Dstream算子" class="headerlink" title="Dstream算子"></a>Dstream算子</h2><p>转换操作： </p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Similar</span> <span class="keyword">to</span> that <span class="keyword">of</span> RDDs, transformations allow the data <span class="keyword">from</span> the <span class="keyword">input</span> DStream <span class="keyword">to</span> be modified. DStreams support many <span class="keyword">of</span> the transformations available <span class="keyword">on</span> normal Spark RDD’s. <span class="keyword">Some</span> <span class="keyword">of</span> the common ones are <span class="keyword">as</span> follows.</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Transformation</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>map</strong> ( <em>func</em> )</td>
+<td>Return a new DStream by passing each element of the source DStream through a function<em>func</em> .</td>
+</tr>
+<tr>
+<td><strong>flatMap</strong> ( <em>func</em> )</td>
+<td>Similar to map, but each input item can be mapped to 0 or more output items.</td>
+</tr>
+<tr>
+<td><strong>filter</strong> ( <em>func</em> )</td>
+<td>Return a new DStream by selecting only the records of the source DStream on which<em>func</em> returns true.</td>
+</tr>
+<tr>
+<td><strong>repartition</strong> ( <em>numPartitions</em> )</td>
+<td>Changes the level of parallelism in this DStream by creating more or fewer partitions.</td>
+</tr>
+<tr>
+<td><strong>union</strong> ( <em>otherStream</em> )</td>
+<td>Return a new DStream that contains the union of the elements in the source DStream and<em>otherDStream</em> .</td>
+</tr>
+<tr>
+<td><strong>count</strong> ()</td>
+<td>Return a new DStream of single-element RDDs by counting the number of elements in each RDD of the source DStream.</td>
+</tr>
+<tr>
+<td><strong>reduce</strong> ( <em>func</em> )</td>
+<td>Return a new DStream of single-element RDDs by aggregating the elements in each RDD of the source DStream using a function<em>func</em> (which takes two arguments and returns one). The function should be associative and commutative so that it can be computed in parallel.</td>
+</tr>
+<tr>
+<td><strong>countByValue</strong> ()</td>
+<td>When called on a DStream of elements of type K, return a new DStream of (K, Long) pairs where the value of each key is its frequency in each RDD of the source DStream.</td>
+</tr>
+<tr>
+<td><strong>reduceByKey</strong> ( <em>func</em> , [ <em>numTasks</em> ])</td>
+<td>When called on a DStream of (K, V) pairs, return a new DStream of (K, V) pairs where the values for each key are aggregated using the given reduce function.<strong>Note:</strong> By default, this uses Spark’s default number of parallel tasks (2 for local mode, and in cluster mode the number is determined by the config property <code>spark.default.parallelism</code>) to do the grouping. You can pass an optional <code>numTasks</code> argument to set a different number of tasks.</td>
+</tr>
+<tr>
+<td><strong>join</strong> ( <em>otherStream</em> , [ <em>numTasks</em> ])</td>
+<td>When called on two DStreams of (K, V) and (K, W) pairs, return a new DStream of (K, (V, W)) pairs with all pairs of elements for each key.</td>
+</tr>
+<tr>
+<td><strong>cogroup</strong> ( <em>otherStream</em> , [ <em>numTasks</em> ])</td>
+<td>When called on a DStream of (K, V) and (K, W) pairs, return a new DStream of (K, Seq[V], Seq[W]) tuples.</td>
+</tr>
+<tr>
+<td><strong>transform</strong> ( <em>func</em> )</td>
+<td>Return a new DStream by applying a RDD-to-RDD function to every RDD of the source DStream. This can be used to do arbitrary RDD operations on the DStream.</td>
+</tr>
+<tr>
+<td><strong>updateStateByKey</strong> ( <em>func</em> )</td>
+<td>Return a new “state” DStream where the state for each key is updated by applying the given function on the previous state of the key and the new values for the key. This can be used to maintain arbitrary state data for each key.</td>
+</tr>
+</tbody></table>
+<p>输出操作：</p>
+<table>
+<thead>
+<tr>
+<th>Output Operation</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>print</strong> ()</td>
+<td>Prints the first ten elements of every batch of data in a DStream on the driver node running the streaming application. This is useful for development and debugging.&#96;&#96;Python API This is called <strong>pprint()</strong> in the Python API.</td>
+</tr>
+<tr>
+<td><strong>saveAsTextFiles</strong> ( <em>prefix</em> , [ <em>suffix</em> ])</td>
+<td>Save this DStream’s contents as text files. The file name at each batch interval is generated based on<em>prefix</em> and  <em>suffix</em> :  <em>“prefix-TIME_IN_MS[.suffix]”</em> .</td>
+</tr>
+<tr>
+<td><strong>saveAsObjectFiles</strong> ( <em>prefix</em> , [ <em>suffix</em> ])</td>
+<td>Save this DStream’s contents as <code>SequenceFiles</code> of serialized Java objects. The file name at each batch interval is generated based on <em>prefix</em> and  <em>suffix</em> :  <em>“prefix-TIME_IN_MS[.suffix]”</em> .&#96;&#96;Python API This is not available in the Python API.</td>
+</tr>
+<tr>
+<td><strong>saveAsHadoopFiles</strong> ( <em>prefix</em> , [ <em>suffix</em> ])</td>
+<td>Save this DStream’s contents as Hadoop files. The file name at each batch interval is generated based on<em>prefix</em> and  <em>suffix</em> :  <em>“prefix-TIME_IN_MS[.suffix]”</em> .&#96;&#96;Python API This is not available in the Python API.</td>
+</tr>
+<tr>
+<td><strong>foreachRDD</strong> ( <em>func</em> )</td>
+<td>The most generic output operator that applies a function,<em>func</em> , to each RDD generated from the stream. This function should push the data in each RDD to an external system, such as saving the RDD to files, or writing it over the network to a database. Note that the function <em>func</em> is executed in the driver process running the streaming application, and will usually have RDD actions in it that will force the computation of the streaming RDDs.</td>
+</tr>
+</tbody></table>
+<p>我们之前的计算代码只是计算当前批次的数据，也是sparkstreaming默认的</p>
+<p>基于上面官方提出了状态</p>
+<h2 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h2><ul>
+<li>有状态 前后批次有联系</li>
+<li>无状态 前后批次无联系</li>
+</ul>
+<p>用于解决统计类问题</p>
+<p><strong>updateStateByKey</strong> ( <em>func</em> )：这个算子</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def updateFunction(<span class="keyword">new</span><span class="type">Values</span>: Seq[<span class="keyword">Int</span>], runningCount: <span class="type">Option</span>[<span class="keyword">Int</span>]): <span class="type">Option</span>[<span class="keyword">Int</span>] = &#123;</span><br><span class="line">    val <span class="keyword">new</span><span class="type">Count</span> = ...  <span class="comment">// add the new values with the previous running count to get the new count</span></span><br><span class="line">    Some(<span class="keyword">new</span><span class="type">Count</span>)</span><br><span class="line">&#125;</span><br><span class="line">val runningCounts = pairs.updateStateByKey[<span class="keyword">Int</span>](updateFunction <span class="literal">_</span>)</span><br></pre></td></tr></table></figure>
+
+<p>代码如下：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">package sparkstreaming</span><br><span class="line"><span class="keyword">import</span> org.apache.spark._</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.streaming._</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.streaming.StreamingContext._</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.SparkConf</span><br><span class="line"><span class="keyword">import</span> tool.streamingcontext</span><br><span class="line"><span class="keyword">object</span> sparkstreaming1 &#123;</span><br><span class="line">  private val streamingcontext = <span class="built_in">new</span> streamingcontext</span><br><span class="line">  def main(args: <span class="keyword">Array</span>[String]): Unit = &#123;</span><br><span class="line"></span><br><span class="line">    val ssc = streamingcontext.getstreamcotext()</span><br><span class="line">    // 或者通过sparkcontext进行创建</span><br><span class="line">    //val ssc = <span class="built_in">new</span> StreamingContext(sc, Seconds(<span class="number">1</span>))</span><br><span class="line">    // 数据源</span><br><span class="line">    val lines = ssc.socketTextStream(&quot;bigdata5&quot;, <span class="number">9999</span>)</span><br><span class="line">    // 处理数据</span><br><span class="line">    val words = lines.flatMap(_.split(&quot; &quot;))</span><br><span class="line">    val pairs = words.map(word =&gt; (word, <span class="number">1</span>))</span><br><span class="line">    val wordCounts = pairs.reduceByKey(_ + _)</span><br><span class="line">    // 要指定<span class="keyword">checkpoint</span>目录</span><br><span class="line">    ssc.<span class="keyword">checkpoint</span>(&quot;file:///D:\\checkpoint&quot;)</span><br><span class="line">    val totalwc = pairs.updateStateByKey(updateFunction _)</span><br><span class="line">    //wordCounts.updateStateByKey()</span><br><span class="line">    // 打印数据当前批次</span><br><span class="line">    wordCounts.print()</span><br><span class="line">    totalwc.print()</span><br><span class="line">    ssc.<span class="keyword">start</span>()             // <span class="keyword">Start</span></span><br><span class="line">    ssc.awaitTermination()  // Wait</span><br><span class="line"></span><br><span class="line">    // 配置数据源在目标机器上执行nc -lk <span class="number">9999</span> 然后输入数据就ok了</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  def updateFunction(newValues: Seq[<span class="type">Int</span>], runningCount: <span class="keyword">Option</span>[<span class="type">Int</span>]): <span class="keyword">Option</span>[<span class="type">Int</span>] = &#123;</span><br><span class="line">      // <span class="keyword">add</span> the <span class="built_in">new</span> <span class="keyword">values</span> <span class="keyword">with</span> the previous running count <span class="keyword">to</span> <span class="keyword">get</span> the <span class="built_in">new</span> count</span><br><span class="line">    val sum = newValues.sum</span><br><span class="line">    val i = runningCount.getOrElse(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">Some</span>(sum+i)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>但是这样也产生了个新问题</p>
+<p>我们观察checkpoint文件夹</p>
+<p><img src="https://pic.imgdb.cn/item/63c4fa26be43e0d30e9044af.jpg"></p>
+<p>生成很多个小文件</p>
+<p>我们该如何解决</p>
+<p>生产上我们不用</p>
+<p>但是必备的知识还是要的</p>
+<p>为了容错，恢复作业，和kafka里的一样</p>
+<h2 id="checkpoint的存储东西"><a href="#checkpoint的存储东西" class="headerlink" title="checkpoint的存储东西"></a>checkpoint的存储东西</h2><p>matestore 元数据</p>
+<ul>
+<li><p>conf 作业里的配置信息</p>
+</li>
+<li><p>算子操作</p>
+</li>
+<li><p>未完成的批次</p>
+</li>
+</ul>
+<p>Data</p>
+<ul>
+<li>就是批次的数据</li>
+</ul>
+<p>使用场景</p>
+<ul>
+<li>作业失败的时候回复的时候用</li>
+<li>转换算子的时候</li>
+</ul>
+<p>但是注意生产上用不了</p>
+<p>如何使用</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Checkpointing can be enabled <span class="keyword">by</span> setting a directory <span class="keyword">in</span> a fault-tolerant, reliable file <span class="keyword">system</span> (e.g., HDFS, S3, etc.) <span class="keyword">to</span> which the <span class="keyword">checkpoint</span> information will be saved. This <span class="keyword">is</span> done <span class="keyword">by</span> <span class="keyword">using</span> streamingContext.<span class="keyword">checkpoint</span>(checkpointDirectory). This will allow you <span class="keyword">to</span> use the aforementioned stateful transformations. Additionally, <span class="keyword">if</span> you want <span class="keyword">to</span> make the application recover <span class="keyword">from</span> driver failures, you should rewrite your streaming application <span class="keyword">to</span> have the <span class="keyword">following</span> behavior.</span><br><span class="line"></span><br><span class="line"><span class="keyword">When</span> the program <span class="keyword">is</span> being started <span class="keyword">for</span> the first <span class="type">time</span>, it will <span class="keyword">create</span> a <span class="built_in">new</span> StreamingContext, <span class="keyword">set</span> up <span class="keyword">all</span> the streams <span class="keyword">and</span> <span class="keyword">then</span> <span class="keyword">call</span> <span class="keyword">start</span>().</span><br><span class="line"><span class="keyword">When</span> the program <span class="keyword">is</span> being restarted <span class="keyword">after</span> failure, it will re-<span class="keyword">create</span> a StreamingContext <span class="keyword">from</span> the <span class="keyword">checkpoint</span> data <span class="keyword">in</span> the <span class="keyword">checkpoint</span> directory.</span><br></pre></td></tr></table></figure>
+
+<p>idea代码</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Function to create and setup a new StreamingContext</span></span><br><span class="line">def <span class="keyword">function</span><span class="constructor">ToCreateContext()</span>: StreamingContext = &#123;</span><br><span class="line">  <span class="keyword">val</span> ssc = <span class="keyword">new</span> <span class="constructor">StreamingContext(<span class="operator">...</span>)</span>   <span class="comment">// new context</span></span><br><span class="line">  <span class="keyword">val</span> lines = ssc.socket<span class="constructor">TextStream(<span class="operator">...</span>)</span> <span class="comment">// create DStreams</span><span class="operator"></span></span><br><span class="line"><span class="operator">  ...</span></span><br><span class="line"><span class="operator">  </span>ssc.checkpoint(checkpointDirectory)   <span class="comment">// set checkpoint directory</span></span><br><span class="line">  ssc</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Get StreamingContext from checkpoint data or create a new one</span></span><br><span class="line"><span class="keyword">val</span> context = <span class="module-access"><span class="module"><span class="identifier">StreamingContext</span>.</span></span>get<span class="constructor">OrCreate(<span class="params">checkpointDirectory</span>, <span class="params">functionToCreateContext</span> <span class="params">_</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Do additional setup on context that needs to be done,</span></span><br><span class="line"><span class="comment">// irrespective of whether it is being started or restarted</span></span><br><span class="line">context.<span class="operator"> ...</span></span><br><span class="line"><span class="operator"></span></span><br><span class="line"><span class="operator"></span><span class="comment">// Start the context</span></span><br><span class="line">context.start<span class="literal">()</span></span><br><span class="line">context.await<span class="constructor">Termination()</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>小文件</p>
+<p>修改代码就费了，就要重整</p>
+<p>checkpoint用不了-》累计批次指标问题 -》 出现问题</p>
+<h2 id="如何实现相同功能？"><a href="#如何实现相同功能？" class="headerlink" title="如何实现相同功能？"></a>如何实现相同功能？</h2><p>实现存储到外部，如何根据而外部文件进行累计</p>
+<h2 id="使用checkpoint"><a href="#使用checkpoint" class="headerlink" title="使用checkpoint"></a>使用checkpoint</h2><p>解决checkpoint修改代码报错和小文件问题</p>
+<p>所以简历上不可以出现我在生产上用过updateStateByKey，坚决不会用</p>
+<h2 id="如何把处理好的数据存储到外部"><a href="#如何把处理好的数据存储到外部" class="headerlink" title="如何把处理好的数据存储到外部"></a>如何把处理好的数据存储到外部</h2><p>如下：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dstream.foreachRDD &#123;<span class="function"> <span class="params">rdd</span> =&gt;</span></span><br><span class="line">  <span class="keyword">val</span> connection = create<span class="constructor">NewConnection()</span>  <span class="comment">// executed at the driver</span></span><br><span class="line">  rdd.foreach &#123;<span class="function"> <span class="params">record</span> =&gt;</span></span><br><span class="line">    connection.send(record) <span class="comment">// executed at the worker</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>idea</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> sparkstreaming</span><br><span class="line"><span class="keyword">import</span> org.apache.spark._</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.streaming._</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.streaming.StreamingContext._</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.SparkConf</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.SparkSession</span><br><span class="line"><span class="keyword">import</span> tool.&#123;mysqlutils, streamingcontext,savefile&#125;</span><br><span class="line">object sparkstreaming1 &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="type">val</span> <span class="variable">mysqlutils</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">mysqlutils</span></span><br><span class="line">  <span class="keyword">private</span> <span class="type">val</span> <span class="variable">streamingcontext</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">streamingcontext</span></span><br><span class="line">  <span class="keyword">private</span> <span class="type">val</span> <span class="variable">savefile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">savefile</span></span><br><span class="line">  def <span class="title function_">main</span><span class="params">(args: Array[String])</span>: Unit = &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="type">val</span> <span class="variable">ssc</span> <span class="operator">=</span> streamingcontext.getstreamcotext()</span><br><span class="line">    <span class="comment">// 或者通过sparkcontext进行创建</span></span><br><span class="line">    <span class="comment">//val ssc = new StreamingContext(sc, Seconds(1))</span></span><br><span class="line">    <span class="comment">// 数据源</span></span><br><span class="line">    <span class="type">val</span> <span class="variable">lines</span> <span class="operator">=</span> ssc.socketTextStream(<span class="string">&quot;bigdata5&quot;</span>, <span class="number">9999</span>)</span><br><span class="line">    <span class="comment">// 处理数据</span></span><br><span class="line">    <span class="type">val</span> <span class="variable">words</span> <span class="operator">=</span> lines.flatMap(_.split(<span class="string">&quot; &quot;</span>))</span><br><span class="line">    <span class="type">val</span> <span class="variable">pairs</span> <span class="operator">=</span> words.map(word =&gt; (word, <span class="number">1</span>))</span><br><span class="line">    <span class="type">val</span> <span class="variable">wordCounts</span> <span class="operator">=</span> pairs.reduceByKey(_ + _)</span><br><span class="line">    <span class="comment">//val totalwc = pairs.updateStateByKey(updateFunction _)</span></span><br><span class="line">    <span class="comment">//wordCounts.updateStateByKey()</span></span><br><span class="line">    <span class="comment">// 打印数据当前批次</span></span><br><span class="line">    wordCounts.print()</span><br><span class="line">    <span class="comment">//totalwc.print()</span></span><br><span class="line">    <span class="comment">// 把结果输入到mysql里 先在mysql里创建完表了</span></span><br><span class="line">    <span class="comment">// 下面会报错-&gt; mysql链接没有进行序列化 ，我们不能加除非更改底层源码</span></span><br><span class="line">    <span class="comment">// closure 闭包 -&gt; 方法内使用了方法外的变量 比如下述的connect</span></span><br><span class="line">    wordCounts.foreachRDD(rdd=&gt;&#123;</span><br><span class="line">      <span class="type">val</span> <span class="variable">connection</span> <span class="operator">=</span> mysqlutils.getconnect(<span class="string">&quot;jdbc:mysql://bigdata2:3306/bigdata&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;liuzihan010616&quot;</span>)</span><br><span class="line">      rdd.foreach &#123; record =&gt;</span><br><span class="line">        <span class="type">val</span> <span class="variable">sql</span> <span class="operator">=</span> s<span class="string">&quot;insert into wc values(&#x27;$&#123;record._1&#125;&#x27;,&#x27;$&#123;record._2&#125;&#x27;)&quot;</span></span><br><span class="line">        connection.createStatement.execute(sql)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="comment">// --------------------------------------------------------</span></span><br><span class="line">    <span class="comment">//对上述进行修改之后</span></span><br><span class="line">    <span class="comment">//这样是可以的但是性能不高</span></span><br><span class="line">    <span class="comment">//因为会一直拿链接，会造成性能下降</span></span><br><span class="line">        wordCounts.foreachRDD(rdd=&gt;&#123;</span><br><span class="line">          rdd.foreach &#123; record =&gt;</span><br><span class="line">            <span class="type">val</span> <span class="variable">sql</span> <span class="operator">=</span> s<span class="string">&quot;insert into wc values(&#x27;$&#123;record._1&#125;&#x27;,&#x27;$&#123;record._2&#125;&#x27;)&quot;</span></span><br><span class="line">            <span class="type">val</span> <span class="variable">connection</span> <span class="operator">=</span> mysqlutils.getconnect(<span class="string">&quot;jdbc:mysql://bigdata2:3306/bigdata&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;liuzihan010616&quot;</span>)</span><br><span class="line">            connection.createStatement.execute(sql)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="comment">//优化性能</span></span><br><span class="line">    wordCounts.foreachRDD(rdd=&gt;&#123;</span><br><span class="line">      rdd.foreachPartition(record=&gt;&#123;</span><br><span class="line">        <span class="type">val</span> <span class="variable">connection</span> <span class="operator">=</span> mysqlutils.getconnect(<span class="string">&quot;jdbc:mysql://bigdata2:3306/bigdata&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;liuzihan010616&quot;</span>)</span><br><span class="line">        record.foreach(pari =&gt; &#123;</span><br><span class="line">          <span class="type">val</span> <span class="variable">sql</span> <span class="operator">=</span> s<span class="string">&quot;insert into wc values(&#x27;$&#123;pari._1&#125;&#x27;,&#x27;$&#123;pari._2&#125;&#x27;)&quot;</span></span><br><span class="line">          connection.createStatement.execute(sql)</span><br><span class="line">        &#125;)</span><br><span class="line">        mysqlutils.closeconnect(connection)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">// 再次进行优化 原因 -》 partition的数量过高</span></span><br><span class="line">    <span class="comment">// 通过连接池来进行</span></span><br><span class="line">    <span class="comment">// 或者通过coalse来控制这个分区数量</span></span><br><span class="line">    dstream.foreachRDD &#123; rdd =&gt;</span><br><span class="line">      rdd.foreachPartition &#123; partitionOfRecords =&gt;</span><br><span class="line">        <span class="comment">// ConnectionPool is a static, lazily initialized pool of connections</span></span><br><span class="line">        <span class="type">val</span> <span class="variable">connection</span> <span class="operator">=</span> ConnectionPool.getConnection()</span><br><span class="line">        partitionOfRecords.foreach(record =&gt; connection.send(record))</span><br><span class="line">        ConnectionPool.returnConnection(connection)  <span class="comment">// return to the pool for future reuse</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 利用sparksql的方式写入 最推荐</span></span><br><span class="line">    <span class="comment">// 性能也很好因为用的是spark的</span></span><br><span class="line">    wordCounts.foreachRDD(rdd=&gt;&#123;</span><br><span class="line">      <span class="type">val</span> <span class="variable">spark</span> <span class="operator">=</span> SparkSession.builder.config(rdd.sparkContext.getConf).getOrCreate()</span><br><span class="line">      <span class="keyword">import</span> spark.implicits._</span><br><span class="line">      <span class="comment">// Convert RDD[String] to DataFrame</span></span><br><span class="line">      <span class="type">val</span> <span class="variable">wordsDataFrame</span> <span class="operator">=</span> rdd.toDF(<span class="string">&quot;word&quot;</span>,<span class="string">&quot;cnt&quot;</span>)</span><br><span class="line">      val srray:Array[String] = Array(<span class="string">&quot;append&quot;</span>,<span class="string">&quot;jdbc:mysql://bigdata2:3306/bigdata&quot;</span>,<span class="string">&quot;root&quot;</span>,<span class="string">&quot;liuzihan010616&quot;</span>,<span class="string">&quot;wc&quot;</span>,<span class="string">&quot;word&quot;</span>)</span><br><span class="line">      savefile.savetojdbc(spark,wordsDataFrame,srray)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ssc.start()             <span class="comment">// Start</span></span><br><span class="line">    ssc.awaitTermination()  <span class="comment">// Wait</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 配置数据源在目标机器上执行nc -lk 9999 然后输入数据就ok了</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  def <span class="title function_">updateFunction</span><span class="params">(newValues: Seq[Int], runningCount: Option[Int])</span>: Option[Int] = &#123;</span><br><span class="line">      <span class="comment">// add the new values with the previous running count to get the new count</span></span><br><span class="line">    <span class="type">val</span> <span class="variable">sum</span> <span class="operator">=</span> newValues.sum</span><br><span class="line">    <span class="type">val</span> <span class="variable">i</span> <span class="operator">=</span> runningCount.getOrElse(<span class="number">0</span>)</span><br><span class="line">    Some(sum+i)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2023/01/13/1-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/01/13/1-13/" class="post-title-link" itemprop="url">sparksql-3</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-01-13 08:09:52 / 修改时间：17:17:47" itemprop="dateCreated datePublished" datetime="2023-01-13T08:09:52+08:00">2023-01-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="案例：业务数据-日志数据"><a href="#案例：业务数据-日志数据" class="headerlink" title="案例：业务数据 + 日志数据"></a>案例：业务数据 + 日志数据</h1><p>业务数据 在mysql里 &#x3D;》</p>
+<ul>
+<li>city_info</li>
+<li>user_info</li>
+</ul>
+<p>日志数据 在hive里 &#x3D;》</p>
+<ul>
+<li>user_click</li>
+</ul>
+<p>思路 &#x3D;》 先用代码把数据统计到df中对df进行操作</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">package sparkfirst</span><br><span class="line"></span><br><span class="line">import org.apache.spark.sql.<span class="type">SparkSession</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">object</span> xiangmu1 &#123;</span><br><span class="line">  def main(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="meta">val</span> spark = <span class="type">SparkSession</span>.builder().appName(<span class="string">&quot;Sparksql01&quot;</span>).master(<span class="string">&quot;local[4]&quot;</span>).enableHiveSupport().getOrCreate()</span><br><span class="line">    import spark.implicits._</span><br><span class="line">    <span class="meta">val</span> city_info = spark.read.format(<span class="string">&quot;jdbc&quot;</span>)</span><br><span class="line">      .options(<span class="type">Map</span>(<span class="string">&quot;url&quot;</span>-&gt;args(<span class="number">0</span>),<span class="string">&quot;dbtable&quot;</span>-&gt;args(<span class="number">3</span>),<span class="string">&quot;user&quot;</span>-&gt;args(<span class="number">1</span>),<span class="string">&quot;password&quot;</span>-&gt;args(<span class="number">2</span>),<span class="string">&quot;driver&quot;</span>-&gt;<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>)).load()</span><br><span class="line"></span><br><span class="line">    <span class="meta">val</span> user_info = spark.sql(</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        |select * from bigdata.product_info</span></span><br><span class="line"><span class="string">        |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line"></span><br><span class="line"><span class="comment">//    city_info.show()</span></span><br><span class="line"><span class="comment">//    user_info.show()</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">val</span> product_info = spark.read.textFile(<span class="string">&quot;hdfs://bigdata3:9000/data/user_click.txt&quot;</span>)</span><br><span class="line"><span class="comment">//    product_info.show(false)</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">val</span> userlog = product_info.map(line =&gt; &#123;</span><br><span class="line">      <span class="meta">val</span> strings = line.split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">      <span class="meta">val</span> userid = strings(<span class="number">0</span>)</span><br><span class="line">      <span class="meta">val</span> sessionid = strings(<span class="number">1</span>)</span><br><span class="line">      <span class="meta">val</span> dt = strings(<span class="number">2</span>)</span><br><span class="line">      <span class="meta">val</span> cityid = strings(<span class="number">3</span>)</span><br><span class="line">      <span class="meta">val</span> shopid = strings(<span class="number">4</span>)</span><br><span class="line">      (userid, sessionid, dt, cityid, shopid)</span><br><span class="line">    &#125;).toDF(<span class="string">&quot;userid&quot;</span>, <span class="string">&quot;sessionid&quot;</span>, <span class="string">&quot;dt&quot;</span>, <span class="string">&quot;cityid&quot;</span>, <span class="string">&quot;shopid&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//    userlog.show(false)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//----------------------------------------------------------------</span></span><br><span class="line">    city_info.createOrReplaceTempView(<span class="string">&quot;city_info&quot;</span>)</span><br><span class="line">    userlog.createOrReplaceTempView(<span class="string">&quot;user_log&quot;</span>)</span><br><span class="line">    user_info.createOrReplaceTempView(<span class="string">&quot;product_info&quot;</span>)</span><br><span class="line">    <span class="comment">//--------------------------------------------------------------</span></span><br><span class="line">    spark.sql(</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        |drop table if exists bigdata.tmp</span></span><br><span class="line"><span class="string">        |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line">    spark.sql(</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        |</span></span><br><span class="line"><span class="string">        |</span></span><br><span class="line"><span class="string">        |create table bigdata.tmp as</span></span><br><span class="line"><span class="string">        |select</span></span><br><span class="line"><span class="string">        |*</span></span><br><span class="line"><span class="string">        |from (</span></span><br><span class="line"><span class="string">        |    select * from city_info left join user_log on city_info.city_id = user_log.cityid left join product_info  on user_log.shopid = product_info.product_id</span></span><br><span class="line"><span class="string">        |)</span></span><br><span class="line"><span class="string">        |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line">    spark.sql(</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        |drop table if exists bigdata.sparkfinish</span></span><br><span class="line"><span class="string">        |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line">    spark.sql(</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        |create table bigdata.sparkfinish as</span></span><br><span class="line"><span class="string">        |select</span></span><br><span class="line"><span class="string">        |*</span></span><br><span class="line"><span class="string">        |from(</span></span><br><span class="line"><span class="string">        |select</span></span><br><span class="line"><span class="string">        |area,</span></span><br><span class="line"><span class="string">        |product_name,</span></span><br><span class="line"><span class="string">        |rank() over(partition by area order by cnt) as rk</span></span><br><span class="line"><span class="string">        |from (</span></span><br><span class="line"><span class="string">        |select</span></span><br><span class="line"><span class="string">        |area,</span></span><br><span class="line"><span class="string">        |product_name,</span></span><br><span class="line"><span class="string">        |count(1) as cnt</span></span><br><span class="line"><span class="string">        |from bigdata.tmp</span></span><br><span class="line"><span class="string">        |group by area,product_name</span></span><br><span class="line"><span class="string">        |)</span></span><br><span class="line"><span class="string">        |)where rk &lt; 3;</span></span><br><span class="line"><span class="string">        |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="然后我们进行打包上传"><a href="#然后我们进行打包上传" class="headerlink" title="然后我们进行打包上传"></a>然后我们进行打包上传</h3><p>进行打包之前，我们要把我们的</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> spark = <span class="module-access"><span class="module"><span class="identifier">SparkSession</span>.</span></span>builder<span class="literal">()</span>.app<span class="constructor">Name(<span class="string">&quot;Sparksql01&quot;</span>)</span>.master(<span class="string">&quot;local[4]&quot;</span>).enable<span class="constructor">HiveSupport()</span>.get<span class="constructor">OrCreate()</span></span><br></pre></td></tr></table></figure>
+
+<p>给注释掉，因为我们用spark-submit的时候会通过命令的方式指定他</p>
+<p>打包上传之后我们可以进行调用脚本spark-submit脚本</p>
+<p>但是这里还是有分歧的，因为spark-submit部署的时候一般是部署在yarn的要分几种模式的简单介绍一下两种模式</p>
+<p>Cluster：</p>
+<ul>
+<li>提交作业  client作业提交  client就可以关闭了 对spark作业是没有影响的 而且运行的时候</li>
+<li>driver  是在集群机器里的</li>
+<li>上yarn上看日志</li>
+</ul>
+<p>client：</p>
+<ul>
+<li>提交作业  client作业提交 如果client关闭了 driver process 挂了  对spark作业有影响的</li>
+<li>是在 client机器里的</li>
+<li>可以直接看见日志的</li>
+</ul>
+<p>以下代码分别写一下</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">spark-submit <span class="string">\</span></span><br><span class="line">--master yarn <span class="string">\</span></span><br><span class="line">--deploy-mode client <span class="string">\</span></span><br><span class="line">--name userlog <span class="string">\</span></span><br><span class="line">--executor-memory <span class="number">1g</span> <span class="string">\</span></span><br><span class="line">--num-executors <span class="number">1</span> <span class="string">\</span></span><br><span class="line">--executor-cores <span class="number">1</span> <span class="string">\</span></span><br><span class="line">--<span class="keyword">class</span> <span class="title class_">sparkfirst</span>.xiangmu1 <span class="string">\</span></span><br><span class="line">/home/hadoop/project/jar/bigdatajava-<span class="number">1.0</span>-SNAPSHOT.jar <span class="string">\</span></span><br><span class="line"><span class="string">&quot;jdbc:mysql://bigdata2:3306/bigdata&quot;</span> root liuzihan010616 city_info</span><br><span class="line">--------------------------------------------------------cluster</span><br><span class="line">spark-submit <span class="string">\</span></span><br><span class="line">--master yarn <span class="string">\</span></span><br><span class="line">--deploy-mode cluster <span class="string">\</span></span><br><span class="line">--name userlog <span class="string">\</span></span><br><span class="line">--executor-memory <span class="number">1g</span> <span class="string">\</span></span><br><span class="line">--num-executors <span class="number">2</span> <span class="string">\</span></span><br><span class="line">--executor-cores <span class="number">1</span> <span class="string">\</span></span><br><span class="line">--<span class="keyword">class</span> <span class="title class_">sparkfirst</span>.xiangmu1 <span class="string">\</span></span><br><span class="line">/home/hadoop/project/jar/bigdatajava-<span class="number">1.0</span>-SNAPSHOT.jar <span class="string">\</span></span><br><span class="line"><span class="string">&quot;jdbc:mysql://bigdata2:3306/bigdata&quot;</span> root liuzihan010616 city_info</span><br><span class="line">-------------------------------------------------------------- 以下是正常的因为我把mysql的driver加入到spark的jars文件夹里了，所以上面不用指定jar</span><br><span class="line">spark-submit <span class="string">\</span></span><br><span class="line">--master yarn <span class="string">\</span></span><br><span class="line">--deploy-mode client  <span class="string">\</span></span><br><span class="line">--name userlog <span class="string">\</span></span><br><span class="line">--executor-memory <span class="number">1g</span> <span class="string">\</span></span><br><span class="line">--num-executors <span class="number">1</span> <span class="string">\</span></span><br><span class="line">--executor-cores <span class="number">1</span> <span class="string">\</span></span><br><span class="line">--jars /home/hadoop/software/mysql-connector-java-<span class="number">5.1</span>.<span class="number">28.jar</span> <span class="string">\</span></span><br><span class="line">--driver-<span class="keyword">class</span>-path /home/hadoop/software/mysql-connector-java-<span class="number">5.1</span>.<span class="number">28.jar</span> <span class="string">\</span></span><br><span class="line">--driver-library-path /home/hadoop/software/mysql-connector-java-<span class="number">5.1</span>.<span class="number">28.jar</span> <span class="string">\</span></span><br><span class="line">--<span class="keyword">class</span> <span class="title class_">sparkfirst</span>.xiangmu1 <span class="string">\</span></span><br><span class="line">/home/hadoop/project/jar/bigdatajava-<span class="number">1.0</span>-SNAPSHOT.jar <span class="string">\</span></span><br><span class="line"><span class="string">&quot;jdbc:mysql://bigdata2:3306/bigdata&quot;</span> root liuzihan010616 city_info user_info</span><br><span class="line">--------------------------------------------------------------------------------------------------</span><br><span class="line">spark-submit <span class="string">\</span></span><br><span class="line">--master yarn <span class="string">\</span></span><br><span class="line">--deploy-mode cluster <span class="string">\</span></span><br><span class="line">--name userlog <span class="string">\</span></span><br><span class="line">--executor-memory <span class="number">1g</span> <span class="string">\</span></span><br><span class="line">--num-executors <span class="number">1</span> <span class="string">\</span></span><br><span class="line">--executor-cores <span class="number">1</span> <span class="string">\</span></span><br><span class="line">--jars /home/hadoop/software/mysql-connector-java-<span class="number">5.1</span>.<span class="number">28.jar</span> <span class="string">\</span></span><br><span class="line">--driver-<span class="keyword">class</span>-path /home/hadoop/software/mysql-connector-java-<span class="number">5.1</span>.<span class="number">28.jar</span> <span class="string">\</span></span><br><span class="line">--driver-library-path /home/hadoop/software/mysql-connector-java-<span class="number">5.1</span>.<span class="number">28.jar</span> <span class="string">\</span></span><br><span class="line">--<span class="keyword">class</span> <span class="title class_">sparkfirst</span>.xiangmu1 <span class="string">\</span></span><br><span class="line">/home/hadoop/project/jar/bigdatajava-<span class="number">1.0</span>-SNAPSHOT.jar <span class="string">\</span></span><br><span class="line"><span class="string">&quot;jdbc:mysql://bigdata2:3306/bigdata&quot;</span> root liuzihan010616 city_info user_info</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="几种加入driver的方法是"><a href="#几种加入driver的方法是" class="headerlink" title="几种加入driver的方法是"></a>几种加入driver的方法是</h3><p>在执行命令的时候加入命令：如上</p>
+<p>直接加到jars里</p>
+<p>这里比较不推荐的就是第二种，因为怕和spark本身的包产生冲突</p>
+<h3 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h3><p>spark到yarn的执行流程和hadoop基本一样，除了spark的持久化操作要用到catche，其余都一样</p>
+<p>driver &#x3D;》manager</p>
+<p>excuter &#x3D;》 container</p>
+<h3 id="catlog"><a href="#catlog" class="headerlink" title="catlog"></a>catlog</h3><p>hive元数据 在mysql里</p>
+<p>spark 访问hive元数据 通过jdbc</p>
+<p>spark提供了个catlog</p>
+<p>直接调用catlog可以直接拿到hive的元数据的功能</p>
+<p>比如制作大数据分析平台</p>
+<p>获取catlog</p>
+<p><code>sparksesson.catlog</code></p>
+<p>然后里面有很多的方法可以在idea里通过ctrl + f12 查看方法</p>
+<p>冷数据可能放在cos 或者 oss上</p>
+<h3 id="udf"><a href="#udf" class="headerlink" title="udf"></a>udf</h3><ul>
+<li>代码的方式定义udf</li>
+<li>hive的udf可以在spark可以直接用</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">idea里定义udf</span><br><span class="line">---------------------------------------</span><br><span class="line">先导包</span><br><span class="line">import org<span class="selector-class">.apache</span><span class="selector-class">.spark</span><span class="selector-class">.sql</span><span class="selector-class">.functions</span><span class="selector-class">.udf</span></span><br><span class="line">然后</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">val spark = SparkSession</span><br><span class="line">  <span class="selector-class">.builder</span>()</span><br><span class="line">  <span class="selector-class">.appName</span>(<span class="string">&quot;Spark SQL UDF scalar example&quot;</span>)</span><br><span class="line">  <span class="selector-class">.getOrCreate</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// Define and register a zero-argument non-deterministic UDF</span></span><br><span class="line"><span class="comment">// UDF is deterministic by default, i.e. produces the same result for the same input.</span></span><br><span class="line">val random = <span class="built_in">udf</span>(() =&gt; Math<span class="selector-class">.random</span>())</span><br><span class="line">spark<span class="selector-class">.udf</span><span class="selector-class">.register</span>(<span class="string">&quot;random&quot;</span>, random<span class="selector-class">.asNondeterministic</span>())</span><br><span class="line">spark<span class="selector-class">.sql</span>(<span class="string">&quot;SELECT random()&quot;</span>)<span class="selector-class">.show</span>()</span><br><span class="line"><span class="comment">// +-------+</span></span><br><span class="line"><span class="comment">// |UDF()  |</span></span><br><span class="line"><span class="comment">// +-------+</span></span><br><span class="line"><span class="comment">// |xxxxxxx|</span></span><br><span class="line"><span class="comment">// +-------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Define and register a one-argument UDF</span></span><br><span class="line">val plusOne = <span class="built_in">udf</span>((x: Int) =&gt; x + <span class="number">1</span>)</span><br><span class="line">spark<span class="selector-class">.udf</span><span class="selector-class">.register</span>(<span class="string">&quot;plusOne&quot;</span>, plusOne)</span><br><span class="line">spark<span class="selector-class">.sql</span>(<span class="string">&quot;SELECT plusOne(5)&quot;</span>)<span class="selector-class">.show</span>()</span><br><span class="line"><span class="comment">// +------+</span></span><br><span class="line"><span class="comment">// |UDF(5)|</span></span><br><span class="line"><span class="comment">// +------+</span></span><br><span class="line"><span class="comment">// |     6|</span></span><br><span class="line"><span class="comment">// +------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Define a two-argument UDF and register it with Spark in one step</span></span><br><span class="line">spark<span class="selector-class">.udf</span><span class="selector-class">.register</span>(<span class="string">&quot;strLenScala&quot;</span>, (_: String)<span class="selector-class">.length</span> + (_: Int))</span><br><span class="line">spark<span class="selector-class">.sql</span>(<span class="string">&quot;SELECT strLenScala(&#x27;test&#x27;, 1)&quot;</span>)<span class="selector-class">.show</span>()</span><br><span class="line"><span class="comment">// +--------------------+</span></span><br><span class="line"><span class="comment">// |strLenScala(test, 1)|</span></span><br><span class="line"><span class="comment">// +--------------------+</span></span><br><span class="line"><span class="comment">// |                   5|</span></span><br><span class="line"><span class="comment">// +--------------------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// UDF in a WHERE clause</span></span><br><span class="line">spark<span class="selector-class">.udf</span><span class="selector-class">.register</span>(<span class="string">&quot;oneArgFilter&quot;</span>, (n: Int) =&gt; &#123; n &gt; <span class="number">5</span> &#125;)</span><br><span class="line">spark<span class="selector-class">.range</span>(<span class="number">1</span>, <span class="number">10</span>)<span class="selector-class">.createOrReplaceTempView</span>(<span class="string">&quot;test&quot;</span>)</span><br><span class="line">spark<span class="selector-class">.sql</span>(<span class="string">&quot;SELECT * FROM test WHERE oneArgFilter(id)&quot;</span>)<span class="selector-class">.show</span>()</span><br><span class="line"><span class="comment">// +---+</span></span><br><span class="line"><span class="comment">// | id|</span></span><br><span class="line"><span class="comment">// +---+</span></span><br><span class="line"><span class="comment">// |  6|</span></span><br><span class="line"><span class="comment">// |  7|</span></span><br><span class="line"><span class="comment">// |  8|</span></span><br><span class="line"><span class="comment">// |  9|</span></span><br><span class="line"><span class="comment">// +---+</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+      
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zihang.fun/2023/01/11/1-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -316,10 +795,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-01-11 08:53:32 / 修改时间：17:07:28" itemprop="dateCreated datePublished" datetime="2023-01-11T08:53:32+08:00">2023-01-11</time>
+              <time title="创建时间：2023-01-11 08:53:32" itemprop="dateCreated datePublished" datetime="2023-01-11T08:53:32+08:00">2023-01-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-13 19:34:18" itemprop="dateModified" datetime="2023-01-13T19:34:18+08:00">2023-01-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -336,14 +821,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>38k</span>
+              <span>49k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>35 分钟</span>
+              <span>45 分钟</span>
             </span>
 
         </div>
@@ -390,7 +875,7 @@
 <tr>
 <td>compression</td>
 <td>(none)</td>
-<td>Compression codec to use when saving to file. <br />This can be one of the known case-insensitive shorten names<br /> (none, bzip2, gzip, lz4, snappy and deflate).</td>
+<td>Compression codec to use when saving to file.<br />This can be one of the known case-insensitive shorten names<br /> (none, bzip2, gzip, lz4, snappy and deflate).</td>
 <td>write</td>
 </tr>
 </tbody></table>
@@ -418,7 +903,7 @@
 <tr>
 <td><code>prefersDecimal</code></td>
 <td><code>false</code></td>
-<td>Infers all floating-point values as a decimal type. <br />If the values do not fit in decimal, then it infers them as doubles.</td>
+<td>Infers all floating-point values as a decimal type.<br />If the values do not fit in decimal, then it infers them as doubles.</td>
 <td>read</td>
 </tr>
 <tr>
@@ -454,7 +939,7 @@
 <tr>
 <td><code>mode</code></td>
 <td><code>PERMISSIVE</code></td>
-<td>Allows a mode for dealing with corrupt records during parsing.&#96;&#96;* <code>PERMISSIVE</code>: when it meets a corrupted record, puts the malformed string into a field configured by <code>columnNameOfCorruptRecord</code>, and sets malformed fields to <code>null</code>. To keep corrupt records, an user can set a string type field named <code>columnNameOfCorruptRecord</code> in an user-defined schema. If a schema does not have the field, it drops corrupt records during parsing. When inferring a schema, it implicitly adds a <code>columnNameOfCorruptRecord</code> field in an output schema.* <code>DROPMALFORMED</code>: ignores the whole corrupted records. This mode is unsupported in the JSON built-in functions.* <code>FAILFAST</code>: throws an exception when it meets corrupted records.</td>
+<td>Allows a mode for dealing with corrupt records during parsing.&#96;&#96;<em><code>PERMISSIVE</code>: when it meets a corrupted record, puts the malformed string into a field configured by <code>columnNameOfCorruptRecord</code>, and sets malformed fields to <code>null</code>. To keep corrupt records, an user can set a string type field named <code>columnNameOfCorruptRecord</code> in an user-defined schema. If a schema does not have the field, it drops corrupt records during parsing. When inferring a schema, it implicitly adds a <code>columnNameOfCorruptRecord</code> field in an output schema.</em> <code>DROPMALFORMED</code>: ignores the whole corrupted records. This mode is unsupported in the JSON built-in functions.* <code>FAILFAST</code>: throws an exception when it meets corrupted records.</td>
 <td>read</td>
 </tr>
 <tr>
@@ -526,7 +1011,7 @@
 <tr>
 <td><code>allowNonNumericNumbers</code></td>
 <td><code>true</code></td>
-<td>Allows JSON parser to recognize set of “Not-a-Number” (NaN) tokens as legal floating number values.&#96;&#96;* <code>+INF</code>:<br /> for positive infinity, as well as alias of <code>+Infinity</code> and <code>Infinity</code>.* <code>-INF</code>: for negative infinity, alias <code>-Infinity</code>.* <code>NaN</code>: for other not-a-numbers, like result of division by zero.</td>
+<td>Allows JSON parser to recognize set of “Not-a-Number” (NaN) tokens as legal floating number values.&#96;&#96;<em><code>+INF</code>:<br /> for positive infinity, as well as alias of <code>+Infinity</code> and <code>Infinity</code>.</em> <code>-INF</code>: for negative infinity, alias <code>-Infinity</code>.* <code>NaN</code>: for other not-a-numbers, like result of division by zero.</td>
 <td>read</td>
 </tr>
 <tr>
@@ -728,7 +1213,7 @@
 <tr>
 <td><code>unescapedQuoteHandling</code></td>
 <td>STOP_AT_DELIMITER</td>
-<td>Defines how the CsvParser will handle values with unescaped quotes.&#96;&#96;* <code>STOP_AT_CLOSING_QUOTE</code>: If unescaped quotes are found in the input, accumulate the quote character and proceed parsing the value as a quoted value, until a closing quote is found.* <code>BACK_TO_DELIMITER</code>: If unescaped quotes are found in the input, consider the value as an unquoted value. This will make the parser accumulate all characters of the current parsed value until the delimiter is found. If no delimiter is found in the value, the parser will continue accumulating characters from the input until a delimiter or line ending is found.* <code>STOP_AT_DELIMITER</code>: If unescaped quotes are found in the input, consider the value as an unquoted value. This will make the parser accumulate all characters until the delimiter or a line ending is found in the input.* <code>SKIP_VALUE</code>: If unescaped quotes are found in the input, the content parsed for the given value will be skipped and the value set in nullValue will be produced instead.* <code>RAISE_ERROR</code>: If unescaped quotes are found in the input, a TextParsingException will be thrown.</td>
+<td>Defines how the CsvParser will handle values with unescaped quotes.&#96;&#96;<em><code>STOP_AT_CLOSING_QUOTE</code>: If unescaped quotes are found in the input, accumulate the quote character and proceed parsing the value as a quoted value, until a closing quote is found.</em> <code>BACK_TO_DELIMITER</code>: If unescaped quotes are found in the input, consider the value as an unquoted value. This will make the parser accumulate all characters of the current parsed value until the delimiter is found. If no delimiter is found in the value, the parser will continue accumulating characters from the input until a delimiter or line ending is found.* <code>STOP_AT_DELIMITER</code>: If unescaped quotes are found in the input, consider the value as an unquoted value. This will make the parser accumulate all characters until the delimiter or a line ending is found in the input.* <code>SKIP_VALUE</code>: If unescaped quotes are found in the input, the content parsed for the given value will be skipped and the value set in nullValue will be produced instead.* <code>RAISE_ERROR</code>: If unescaped quotes are found in the input, a TextParsingException will be thrown.</td>
 <td>read</td>
 </tr>
 <tr>
@@ -893,6 +1378,74 @@
 </tr>
 </tbody></table>
 <h3 id="excel"><a href="#excel" class="headerlink" title="excel"></a>excel</h3><p>暂时没找到，找到再补</p>
+<h3 id="hive"><a href="#hive" class="headerlink" title="hive"></a>hive</h3><p>对于hive我们要定义输入格式输出格式甚至是元素内部，以及每个元素之间的分隔符如下</p>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fileFormat</td>
+<td>A fileFormat is kind of a package of storage format specifications, including “serde”, “input format” and “output format”. Currently we support 6 fileFormats: ‘sequencefile’, ‘rcfile’, ‘orc’, ‘parquet’, ‘textfile’ and ‘avro’.</td>
+</tr>
+<tr>
+<td>inputFormat, outputFormat</td>
+<td>These 2 options specify the name of a corresponding <code>InputFormat</code> and <code>OutputFormat</code> class as a string literal, e.g. <code>org.apache.hadoop.hive.ql.io.orc.OrcInputFormat</code>. These 2 options must be appeared in a pair, and you can not specify them if you already specified the <code>fileFormat</code> option.</td>
+</tr>
+<tr>
+<td>serde</td>
+<td>This option specifies the name of a serde class. When the <code>fileFormat</code> option is specified, do not specify this option if the given <code>fileFormat</code> already include the information of serde. Currently “sequencefile”, “textfile” and “rcfile” don’t include the serde information and you can use this option with these 3 fileFormats.</td>
+</tr>
+<tr>
+<td>fieldDelim, escapeDelim, collectionDelim, mapkeyDelim, lineDelim</td>
+<td>These options can only be used with “textfile” fileFormat. They define how to read delimited files into rows.</td>
+</tr>
+</tbody></table>
+<p>关于不同版本的spark关联到hive的源数据库如下配置</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">One <span class="keyword">of</span> the most important pieces <span class="keyword">of</span> Spark <span class="keyword">SQL</span>’s Hive support <span class="keyword">is</span> interaction <span class="keyword">with</span> Hive metastore, which enables Spark <span class="keyword">SQL</span> <span class="keyword">to</span> <span class="keyword">access</span> metadata <span class="keyword">of</span> Hive <span class="keyword">tables</span>. Starting <span class="keyword">from</span> Spark <span class="number">1.4</span><span class="number">.0</span>, a single binary build <span class="keyword">of</span> Spark <span class="keyword">SQL</span> can be used <span class="keyword">to</span> query different versions <span class="keyword">of</span> Hive metastores, <span class="keyword">using</span> the <span class="keyword">configuration</span> described below. Note that independent <span class="keyword">of</span> the <span class="keyword">version</span> <span class="keyword">of</span> Hive that <span class="keyword">is</span> being used <span class="keyword">to</span> talk <span class="keyword">to</span> the metastore, internally Spark <span class="keyword">SQL</span> will compile against built-<span class="keyword">in</span> Hive <span class="keyword">and</span> use those classes <span class="keyword">for</span> <span class="type">internal</span> execution (serdes, UDFs, UDAFs, etc).</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>Meaning</th>
+<th>Since Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>spark.sql.hive.metastore.version</td>
+<td>2.3.9</td>
+<td>Version of the Hive metastore. Available options are <code>0.12.0</code> through <code>2.3.9</code> and <code>3.0.0</code> through <code>3.1.2</code>.</td>
+<td>1.40</td>
+</tr>
+<tr>
+<td>spark.sql.hive.metastore.jars</td>
+<td>builtin</td>
+<td>Location of the jars that should be used to instantiate the HiveMetastoreClient.<br />This property can be one of four options:<br />1.builtin<br />Use Hive 2.3.9, which is bundled with the Spark assembly when <code>-Phive</code> is enabled. When this option is chosen, <code>spark.sql.hive.metastore.version</code> must be either <code>2.3.9</code> or not defined.<br />maven<br />Use Hive jars of specified version downloaded from Maven repositories. This configuration is not generally recommended for production deployments.<br />path<br />Use Hive jars configured by <code>spark.sql.hive.metastore.jars.path</code> in comma separated format. Support both local or remote paths. The provided jars should be the same version as <code>spark.sql.hive.metastore.version</code>.<br />A classpath in the standard format for the JVM. This classpath must include all of Hive and its dependencies, including the correct version of Hadoop. The provided jars should be the same version as <code>spark.sql.hive.metastore.version</code>. These jars only need to be present on the driver, but if you are running in yarn cluster mode then you must ensure they are packaged with your application.</td>
+<td>1.40</td>
+</tr>
+<tr>
+<td>spark.sql.hive.metastore.jars.path</td>
+<td>(empty)</td>
+<td>Comma-separated paths of the jars that used to instantiate the HiveMetastoreClient. This configuration is useful only when <code>spark.sql.hive.metastore.jars</code> is set as <code>path</code>.&#96;&#96;The paths can be any of the following format:1. <code>file://path/to/jar/foo.jar</code>1. <code>hdfs://nameservice/path/to/jar/foo.jar</code>1. <code>/path/to/jar/</code>(path without URI scheme follow conf <code>fs.defaultFS</code>‘s URI schema)1. <code>[http/https/ftp]://path/to/jar/foo.jar</code>Note that 1, 2, and 3 support wildcard. For example:1. <code>file://path/to/jar/*,file://path2/to/jar/*/*.jar</code>1. <code>hdfs://nameservice/path/to/jar/*,hdfs://nameservice2/path/to/jar/*/*.jar</code></td>
+<td>3.10</td>
+</tr>
+<tr>
+<td>spark.sql.hive.metastore.sharedPrefixes</td>
+<td>com.mysql.jdbc,<br />org.postgresql,<br />com.microsoft.sqlserver,<br />oracle.jdbc</td>
+<td>A comma-separated list of class prefixes that should be loaded using the classloader that is shared between Spark SQL and a specific version of Hive. An example of classes that should be shared is JDBC drivers that are needed to talk to the metastore. Other classes that need to be shared are those that interact with classes that are already shared. For example, custom appenders that are used by log4j.</td>
+<td>1.40</td>
+</tr>
+<tr>
+<td>spark.sql.hive.metastore.barrierPrefixes</td>
+<td>(empty)</td>
+<td>A comma separated list of class prefixes that should explicitly be reloaded for each version of Hive that Spark SQL is communicating with. For example, Hive UDFs that are declared in a prefix that typically would be shared (i.e.<code>org.apache.spark.*</code>).</td>
+<td>1.40</td>
+</tr>
+</tbody></table>
 <h2 id="读数据"><a href="#读数据" class="headerlink" title="读数据"></a>读数据</h2><h3 id="TEXT-1"><a href="#TEXT-1" class="headerlink" title="TEXT"></a>TEXT</h3><p>官方简介</p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Spark SQL provides spark.<span class="built_in">read</span>().<span class="keyword">text</span>(<span class="string">&quot;file_name&quot;</span>) <span class="built_in">to</span> <span class="built_in">read</span> <span class="keyword">a</span> <span class="built_in">file</span> <span class="keyword">or</span> <span class="built_in">directory</span> <span class="keyword">of</span> <span class="keyword">text</span> <span class="built_in">files</span> <span class="keyword">into</span> <span class="keyword">a</span> Spark DataFrame, <span class="keyword">and</span> dataframe.<span class="built_in">write</span>().<span class="keyword">text</span>(<span class="string">&quot;path&quot;</span>) <span class="built_in">to</span> <span class="built_in">write</span> <span class="built_in">to</span> <span class="keyword">a</span> <span class="keyword">text</span> <span class="built_in">file</span>. When reading <span class="keyword">a</span> <span class="keyword">text</span> <span class="built_in">file</span>, <span class="keyword">each</span> <span class="built_in">line</span> becomes <span class="keyword">each</span> row that has <span class="keyword">string</span> “<span class="built_in">value</span>” column <span class="keyword">by</span> default. The <span class="built_in">line</span> separator can be changed <span class="keyword">as</span> shown <span class="keyword">in</span> <span class="keyword">the</span> example below. The option() <span class="function"><span class="keyword">function</span> <span class="title">can</span> <span class="title">be</span> <span class="title">used</span> <span class="title">to</span> <span class="title">customize</span> <span class="title">the</span> <span class="title">behavior</span> <span class="title">of</span> <span class="title">reading</span> <span class="title">or</span> <span class="title">writing</span>, <span class="title">such</span> <span class="title">as</span> <span class="title">controlling</span> <span class="title">behavior</span> <span class="title">of</span> <span class="title">the</span> <span class="title">line</span> <span class="title">separator</span>, <span class="title">compression</span>, <span class="title">and</span> <span class="title">so</span> <span class="title">on</span>.</span></span><br></pre></td></tr></table></figure>
 
@@ -922,10 +1475,35 @@
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;dependency&gt;</span></span><br><span class="line">   <span class="section">&lt;groupId&gt;</span><span class="attribute">com</span>.crealytics&lt;/groupId&gt;</span><br><span class="line">   <span class="section">&lt;artifactId&gt;</span><span class="attribute">spark</span>-excel_2.<span class="number">12</span>&lt;/artifactId&gt;</span><br><span class="line">   <span class="section">&lt;version&gt;</span><span class="attribute">0</span>.<span class="number">14</span>.<span class="number">0</span>&lt;/version&gt;</span><br><span class="line"> <span class="section">&lt;/dependency&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>然后代码</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">package sparkfirst</span><br><span class="line"></span><br><span class="line">import java.util.Properties</span><br><span class="line"></span><br><span class="line">import org.apache.spark.sql.SparkSession</span><br><span class="line">import org.apache.spark.sql.functions._</span><br><span class="line">import com.crealytics.spark.excel._</span><br><span class="line">object sparksql2 &#123;</span><br><span class="line">  def main(args: Array[String]): Unit = &#123;</span><br><span class="line">    val spark = SparkSession.builder().appName(<span class="string">&quot;Sparksql01&quot;</span>).master(<span class="string">&quot;local[4]&quot;</span>).getOrCreate()</span><br><span class="line">    val df = spark.read.excel(header = true,inferSchema = true).load(<span class="string">&quot;file:////C:\\Users\\dell\\Desktop\\2023届毕业设计题目-计算机-选题志愿表.xlsx&quot;</span>)</span><br><span class="line">    df.show()</span><br><span class="line">    val result =</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line">        <span class="string">|+--------------------------------------+--------+-------------------------------------+------+--------+--------+--------+</span></span><br><span class="line">        <span class="string">||2023届计算机科学与技术专业毕业设计选题|     _c1|                                  _c2|   _c3|     _c4|     _c5|     _c6|</span></span><br><span class="line">        <span class="string">|+--------------------------------------+--------+-------------------------------------+------+--------+--------+--------+</span></span><br><span class="line">        <span class="string">||                                  序号|指导老师|                                 题目|学生数|第一志愿|第二志愿|第三志愿|</span></span><br><span class="line">        <span class="string">||                                     1|  王海涛|          基于android的房产中介app...|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     2|  王海涛|        基于android的酒店预约入住a...|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     3|  王海涛|          基于android的有声书app的...|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     4|  王海涛|          基于android的掌上医院app...|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     5|  王海涛|    基于web的考试管理系统的设计与实现|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     6|    王琢|           电商平台产品评论爬虫的设计|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     7|    王琢|     基于Django的智能水务系统前端开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     8|    王琢|           个人账本管理微信小程序开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     9|    王琢|       智能水务系统远程监控模块的开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    10|  张文波|基于安卓系统的硕士研究生招生预报名...|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    11|  张文波|面向工业互联网的联网设备故障检测技...|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    12|  张文波|面向工业互联网的联网设备运行维护系...|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    13|    曹烨|     疫情防控管理信息系统的设计与开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    14|    曹烨|             多线程下载器的设计与开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    15|    曹烨|             坦克对战游戏的设计与开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    16|    曹烨|           五子棋游戏大厅的设计与开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    17|    杜焱|       疫情封闭人员及物资管理系统开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    18|    杜焱|                   志愿者服务系统开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    19|    杜焱|         高校教师工作绩效管理系统开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">|+--------------------------------------+--------+-------------------------------------+------+--------+--------+--------+</span></span><br><span class="line">        <span class="string">|only showing top 20 rows</span></span><br><span class="line">        <span class="string">|</span></span><br><span class="line">        <span class="string">|</span></span><br><span class="line">        <span class="string">|Process finished with exit code 0</span></span><br><span class="line">        <span class="string">|</span></span><br><span class="line">        <span class="string">|&quot;&quot;&quot;</span>.stripMargin</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">package sparkfirst</span><br><span class="line"></span><br><span class="line">import java.util.Properties</span><br><span class="line"></span><br><span class="line">import org.apache.spark.sql.SparkSession</span><br><span class="line">import org.apache.spark.sql.functions._</span><br><span class="line">import com.crealytics.spark.excel._</span><br><span class="line">object sparksql2 &#123;</span><br><span class="line">  def main(args: Array[String]): Unit = &#123;</span><br><span class="line">    val spark = SparkSession.builder().appName(<span class="string">&quot;Sparksql01&quot;</span>).master(<span class="string">&quot;local[4]&quot;</span>).getOrCreate()</span><br><span class="line">    val df = spark.read.excel(header = true,inferSchema = true).load(<span class="string">&quot;file:////C:\\Users\\dell\\Desktop\\2023届毕业设计题目-计算机-选题志愿表.xlsx&quot;</span>)</span><br><span class="line">    df.show()</span><br><span class="line">    val result =</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line">        <span class="string">|+--------------------------------------+--------+-------------------------------------+------+--------+--------+--------+</span></span><br><span class="line">        <span class="string">||2023届计算机科学与技术专业毕业设计选题|     _c1|                                  _c2|   _c3|     _c4|     _c5|     _c6|</span></span><br><span class="line">        <span class="string">|+--------------------------------------+--------+-------------------------------------+------+--------+--------+--------+</span></span><br><span class="line">        <span class="string">||                                  序号|指导老师|                                 题目|学生数|第一志愿|第二志愿|第三志愿|</span></span><br><span class="line">        <span class="string">||                                     1|  王海涛|          基于android的房产中介app...|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     2|  王海涛|        基于android的酒店预约入住a...|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     3|  王海涛|          基于android的有声书app的...|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     4|  王海涛|          基于android的掌上医院app...|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     5|  王海涛|    基于web的考试管理系统的设计与实现|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     6|    王琢|           电商平台产品评论爬虫的设计|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     7|    王琢|     基于Django的智能水务系统前端开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     8|    王琢|           个人账本管理微信小程序开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                     9|    王琢|       智能水务系统远程监控模块的开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    10|  张文波|基于安卓系统的硕士研究生招生预报名...|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    11|  张文波|面向工业互联网的联网设备故障检测技...|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    12|  张文波|面向工业互联网的联网设备运行维护系...|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    13|    曹烨|     疫情防控管理信息系统的设计与开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    14|    曹烨|             多线程下载器的设计与开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    15|    曹烨|             坦克对战游戏的设计与开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    16|    曹烨|           五子棋游戏大厅的设计与开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    17|    杜焱|       疫情封闭人员及物资管理系统开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    18|    杜焱|                   志愿者服务系统开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">||                                    19|    杜焱|         高校教师工作绩效管理系统开发|     1|    null|    null|    null|</span></span><br><span class="line">        <span class="string">|+--------------------------------------+--------+-------------------------------------+------+--------+--------+--------+</span></span><br><span class="line">        <span class="string">|only showing top 20 rows</span></span><br><span class="line">        <span class="string">|</span></span><br><span class="line">        <span class="string">|</span></span><br><span class="line">        <span class="string">|Process finished with exit code 0</span></span><br><span class="line">        <span class="string">|</span></span><br><span class="line">        <span class="string">|&quot;&quot;&quot;</span>.stripMargin</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<h3 id="hive-1"><a href="#hive-1" class="headerlink" title="hive"></a>hive</h3><p>在生产上我们要对配置文件进行修改</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Configuration</span> <span class="keyword">of</span> Hive <span class="keyword">is</span> done <span class="keyword">by</span> <span class="keyword">placing</span> your hive-site.xml, core-site.xml (<span class="keyword">for</span> <span class="keyword">security</span> <span class="keyword">configuration</span>), <span class="keyword">and</span> hdfs-site.xml (<span class="keyword">for</span> HDFS <span class="keyword">configuration</span>) file <span class="keyword">in</span> conf/.</span><br></pre></td></tr></table></figure>
 
+<p>直接cp hivehome 下的配置文件 hive-site.xml到spark的配置下或者做软连接到spark的配置文件下</p>
+<p>即使hive和spark不在同一台机器上也是可以的，只不过不能做软连接了</p>
+<p>如果缺少mysql驱动的化把mysql驱动添加到spark的jar文件夹里就好</p>
+<p>或者用 –jars 路径 来配置启动方式</p>
+<p>接下来我们直接执行如下语句</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">scala&gt; spark.sql(&quot;show databases&quot;).show</span></span><br><span class="line"><span class="section">+-------------+</span></span><br><span class="line"><span class="section">|    namespace|</span></span><br><span class="line"><span class="section">+-------------+</span></span><br><span class="line">|      bigdata|</span><br><span class="line">| bigdata<span class="emphasis">_hive|</span></span><br><span class="line"><span class="emphasis">|bigdata_hive2|</span></span><br><span class="line"><span class="emphasis">|bigdata_hive3|</span></span><br><span class="line"><span class="emphasis">|bigdata_</span>hive4|</span><br><span class="line">|      default|</span><br><span class="line"><span class="section">|         test|</span></span><br><span class="line"><span class="section">+-------------+</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<p>我们可以用spark-sql脚本来执行hive的语句</p>
+<p>如下：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata5 conf]$ spark-sql --master <span class="keyword">local</span>[<span class="number">4</span>]</span><br><span class="line">Setting <span class="keyword">default</span> <span class="built_in">log</span> level to <span class="string">&quot;WARN&quot;</span>.</span><br><span class="line">To adjust logging level <span class="keyword">use</span> sc.setLogLevel(newLevel). For SparkR, <span class="keyword">use</span> setLogLevel(newLevel).</span><br><span class="line"><span class="number">23</span>/<span class="number">01</span>/<span class="number">12</span> <span class="number">10</span>:<span class="number">10</span>:<span class="number">13</span> WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes <span class="keyword">where</span> applicable</span><br><span class="line"><span class="number">23</span>/<span class="number">01</span>/<span class="number">12</span> <span class="number">10</span>:<span class="number">10</span>:<span class="number">15</span> WARN HiveConf: HiveConf of <span class="keyword">name</span> hive.stats.jdbc.timeout does not <span class="keyword">exist</span></span><br><span class="line"><span class="number">23</span>/<span class="number">01</span>/<span class="number">12</span> <span class="number">10</span>:<span class="number">10</span>:<span class="number">15</span> WARN HiveConf: HiveConf of <span class="keyword">name</span> hive.stats.retries.<span class="keyword">wait</span> does not <span class="keyword">exist</span></span><br><span class="line">Spark master: <span class="keyword">local</span>[<span class="number">4</span>], Application Id: <span class="keyword">local</span>-<span class="number">1673489414801</span></span><br><span class="line">spark-sql (<span class="keyword">default</span>)&gt; show databases;</span><br><span class="line">namespace</span><br><span class="line">bigdata</span><br><span class="line">bigdata_hive</span><br><span class="line">bigdata_hive2</span><br><span class="line">bigdata_hive3</span><br><span class="line">bigdata_hive4</span><br><span class="line"><span class="keyword">default</span></span><br><span class="line">test</span><br><span class="line">Time taken: <span class="number">2.213</span> seconds, Fetched <span class="number">7</span> row(s)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我们一般都在spark-sql里进行测试sql语句，然后再通过代码部署&#x3D;》不要再sparksql里创建表会有点问题&#x3D;》尽可能再hive里键</p>
+<p>维护数仓 &#x3D;》 可以用spark-sql -e&#x2F;-f  sql文件 &#x3D;》 推荐的方式维护离线数仓 好维护 简单</p>
+<p>hive引擎如果改成spark &#x3D;》 不稳定 &#x3D;》 bug &#x3D;》 有的时候spark的function无法使用</p>
+<p>hive里有的function &#x3D;》 spark始终有</p>
+<p>但是spark里有的hive里没有</p>
+<p>idea里也是要把hive-site放到resource文件夹里</p>
+<p>东西很多想要什么上官网查看 <code>https://spark.apache.org/docs/latest/sql-ref-syntax.html#ddl-statements</code></p>
+<p>idea里要提前加上依赖</p>
+<p>如下</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;dependency&gt;</span></span><br><span class="line">  <span class="section">&lt;groupId&gt;</span><span class="attribute">org</span>.apache.spark&lt;/groupId&gt;</span><br><span class="line">  <span class="section">&lt;artifactId&gt;</span><span class="attribute">spark</span>-hive_2.<span class="number">12</span>&lt;/artifactId&gt;</span><br><span class="line">  <span class="section">&lt;version&gt;</span><span class="attribute">3</span>.<span class="number">2</span>.<span class="number">1</span>&lt;/version&gt;</span><br><span class="line"><span class="section">&lt;/dependency&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后执行以下代码就ok了</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">package sparkfirst</span><br><span class="line"></span><br><span class="line">import org.apache.spark.sql.SparkSession</span><br><span class="line"></span><br><span class="line">object sparksql3 &#123;</span><br><span class="line">  def main(args: Array[String]): Unit = &#123;</span><br><span class="line">    val spark = SparkSession.builder().appName(<span class="string">&quot;Sparksql01&quot;</span>).master(<span class="string">&quot;local[4]&quot;</span>).enableHiveSupport().getOrCreate()</span><br><span class="line">    val frame = spark.sql(</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line">        <span class="string">|select</span></span><br><span class="line">        <span class="string">|*</span></span><br><span class="line">        <span class="string">|from</span></span><br><span class="line">        <span class="string">|bigdata_hive3.emp</span></span><br><span class="line">        <span class="string">|&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line">    frame.show()</span><br><span class="line">    frame.printSchema()</span><br><span class="line">    val result =</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line">        <span class="string">|+-----+--------+---------+----+--------+----+----+------+</span></span><br><span class="line">        <span class="string">||empno|   ename|      job| mgr|hiredate| sal|comm|deptno|</span></span><br><span class="line">        <span class="string">|+-----+--------+---------+----+--------+----+----+------+</span></span><br><span class="line">        <span class="string">|| 7369|   SMITH|    CLERK|7902|    null| 800|null|    20|</span></span><br><span class="line">        <span class="string">|| 7499|   ALLEN| SALESMAN|7698|    null|1600| 300|    30|</span></span><br><span class="line">        <span class="string">|| 7521|    WARD| SALESMAN|7698|    null|1250| 500|    30|</span></span><br><span class="line">        <span class="string">|| 7566|   JONES|  MANAGER|7839|    null|2975|null|    20|</span></span><br><span class="line">        <span class="string">|| 7654|  MARTIN| SALESMAN|7698|    null|1250|1400|    30|</span></span><br><span class="line">        <span class="string">|| 7698|   BLAKE|  MANAGER|7839|    null|2850|null|    30|</span></span><br><span class="line">        <span class="string">|| 7782|   CLARK|  MANAGER|7839|    null|2450|null|    10|</span></span><br><span class="line">        <span class="string">|| 7788|   SCOTT|  ANALYST|7566|    null|3000|null|    20|</span></span><br><span class="line">        <span class="string">|| 7839|    KING|PRESIDENT|null|    null|5000|null|    10|</span></span><br><span class="line">        <span class="string">|| 7844|  TURNER| SALESMAN|7698|    null|1500|   0|    30|</span></span><br><span class="line">        <span class="string">|| 7876|   ADAMS|    CLERK|7788|    null|1100|null|    20|</span></span><br><span class="line">        <span class="string">|| 7900|lebulang|    CLERK|7698|    null| 950|null|    30|</span></span><br><span class="line">        <span class="string">|| 7902|    FORD|  ANALYST|7566|    null|3000|null|    20|</span></span><br><span class="line">        <span class="string">|| 7934|  MILLER|    CLERK|7782|    null|1300|null|    10|</span></span><br><span class="line">        <span class="string">|| 7839|    KING|PRESIDENT|null|    null|5000|null|    10|</span></span><br><span class="line">        <span class="string">|| 7654|  MARTIN| SALESMAN|7698|    null|3200|1400|    30|</span></span><br><span class="line">        <span class="string">|| 7788|   SCOTT|  ANALYST|7566|    null|3000|null|    20|</span></span><br><span class="line">        <span class="string">|| 7788|   SCOTT|  ANALYST|7566|    null|3000|null|    20|</span></span><br><span class="line">        <span class="string">|| 7788|   SCOTT|  ANALYST|7566|    null|3000|null|    20|</span></span><br><span class="line">        <span class="string">|| 7788|   SCOTT|  ANALYST|7566|    null|3000|null|    20|</span></span><br><span class="line">        <span class="string">|+-----+--------+---------+----+--------+----+----+------+</span></span><br><span class="line">        <span class="string">|only showing top 20 rows</span></span><br><span class="line">        <span class="string">|</span></span><br><span class="line">        <span class="string">|root</span></span><br><span class="line">        <span class="string">| |-- empno: string (nullable = true)</span></span><br><span class="line">        <span class="string">| |-- ename: string (nullable = true)</span></span><br><span class="line">        <span class="string">| |-- job: string (nullable = true)</span></span><br><span class="line">        <span class="string">| |-- mgr: long (nullable = true)</span></span><br><span class="line">        <span class="string">| |-- hiredate: date (nullable = true)</span></span><br><span class="line">        <span class="string">| |-- sal: decimal(10,0) (nullable = true)</span></span><br><span class="line">        <span class="string">| |-- comm: decimal(10,0) (nullable = true)</span></span><br><span class="line">        <span class="string">| |-- deptno: long (nullable = true)</span></span><br><span class="line">        <span class="string">|</span></span><br><span class="line">        <span class="string">|</span></span><br><span class="line">        <span class="string">|Process finished with exit code 0</span></span><br><span class="line">        <span class="string">|</span></span><br><span class="line">        <span class="string">|&quot;&quot;&quot;</span>.stripMargin</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h2 id="写数据"><a href="#写数据" class="headerlink" title="写数据"></a>写数据</h2><p>写数据的时候一般会伴随crc文件</p>
 <h3 id="TEXT-2"><a href="#TEXT-2" class="headerlink" title="TEXT"></a>TEXT</h3><p>注意text仅仅支持一列的数据进行输出，不支持多列，因为我们的resource文件夹里有配置文件所以它走我们的配置文件压缩格式为bz2，不过可以自己指定格式，一般不指定且无配置文件是不压缩的</p>
@@ -947,6 +1525,13 @@
 
 <h3 id="excel-2"><a href="#excel-2" class="headerlink" title="excel"></a>excel</h3><p>如下</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df<span class="selector-class">.write</span><span class="selector-class">.mode</span>(<span class="string">&quot;overwrite&quot;</span>)<span class="selector-class">.excel</span>(<span class="selector-tag">header</span> = true,<span class="string">&quot;A1&quot;</span>)<span class="selector-class">.save</span>(<span class="string">&quot;file:///C:\\Users\\dell\\Desktop\\2023届毕业设计题目-计算机-选题志愿表1.xlsx&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="hive-2"><a href="#hive-2" class="headerlink" title="hive"></a>hive</h3><p>一共有几种方法</p>
+<ul>
+<li>ctas</li>
+</ul>
+<figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">  <span class="meta">val</span> spark = <span class="type">SparkSession</span>.builder().appName(<span class="string">&quot;Sparksql01&quot;</span>).master(<span class="string">&quot;local[4]&quot;</span>).enableHiveSupport().getOrCreate()</span><br><span class="line">  def main(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line"></span><br><span class="line">    spark.sql(</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        |create table bigdata.sparkfinish as</span></span><br><span class="line"><span class="string">        |select</span></span><br><span class="line"><span class="string">        |*</span></span><br><span class="line"><span class="string">        |from(</span></span><br><span class="line"><span class="string">        |select</span></span><br><span class="line"><span class="string">        |area,</span></span><br><span class="line"><span class="string">        |product_name,</span></span><br><span class="line"><span class="string">        |rank() over(partition by area order by cnt) as rk</span></span><br><span class="line"><span class="string">        |from (</span></span><br><span class="line"><span class="string">        |select</span></span><br><span class="line"><span class="string">        |area,</span></span><br><span class="line"><span class="string">        |product_name,</span></span><br><span class="line"><span class="string">        |count(1) as cnt</span></span><br><span class="line"><span class="string">        |from bigdata.tmp</span></span><br><span class="line"><span class="string">        |group by area,product_name</span></span><br><span class="line"><span class="string">        |)</span></span><br><span class="line"><span class="string">        |)where rk &lt; 3;</span></span><br><span class="line"><span class="string">        |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// --------------------------------------insert into  数据追加</span></span><br><span class="line">    spark.sql(</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        |insert into table bigdata.sparkfinish</span></span><br><span class="line"><span class="string">        |select * from bigdata.sparkfinish</span></span><br><span class="line"><span class="string">        |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ----------------------------------------数据覆盖</span></span><br><span class="line">    spark.sql(</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        |insert overwrite table bigdata.sparkfinish</span></span><br><span class="line"><span class="string">        |select * from bigdata.sparkfinish</span></span><br><span class="line"><span class="string">        |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line">    <span class="comment">// ----------------------------------------分区表 emp_partition是元数据分区表 emp_partition1是后来键的分区表</span></span><br><span class="line">    <span class="comment">// ---------------------------------------执行动态分区的时候要配置参数 静态分区不用</span></span><br><span class="line">    spark.conf.set(<span class="string">&quot;hive.exec.dynamic.partition.mode&quot;</span>,<span class="string">&quot;nonstrict&quot;</span>)</span><br><span class="line">    spark.conf.set(<span class="string">&quot;hive.exec.dynamic.partition&quot;</span>,<span class="string">&quot;true&quot;</span>)</span><br><span class="line">    spark.sql(</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        |insert overwrite table bigdata_hive3.emp_partition1 partition(deptno)</span></span><br><span class="line"><span class="string">        |select * from bigdata_hive3.emp_partition</span></span><br><span class="line"><span class="string">        |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line"><span class="comment">//-----------------------------------------------------------------api</span></span><br><span class="line">	  <span class="meta">val</span> frame = checksql(hivesqlchoose(<span class="string">&quot;empno , ename , job , mgr , deptno &quot;</span>, <span class="string">&quot;bigdata_hive3.emp&quot;</span>, <span class="string">&quot;where sal &gt; 3000&quot;</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment">// -----------------------------这里如果用覆盖模式是会把整个表都弄美哦然后重新建表到数据的，所以一般不用，放置我们只对一个分区数据进行操作的时候别的数据不见</span></span><br><span class="line">    <span class="comment">// -------------------------------------普通表</span></span><br><span class="line">    frame.write.mode(saveMode = <span class="string">&quot;append&quot;</span>).format(<span class="string">&quot;hive&quot;</span>).saveAsTable(<span class="string">&quot;bigdata_hive3.emp89&quot;</span>)</span><br><span class="line">        spark.conf.set(<span class="string">&quot;hive.exec.dynamic.partition.mode&quot;</span>,<span class="string">&quot;nonstrict&quot;</span>)</span><br><span class="line">        spark.conf.set(<span class="string">&quot;hive.exec.dynamic.partition&quot;</span>,<span class="string">&quot;true&quot;</span>)</span><br><span class="line">    <span class="comment">// -------------------------------------分区表</span></span><br><span class="line">    frame.write.partitionBy(<span class="string">&quot;deptno&quot;</span>).mode(saveMode = <span class="string">&quot;append&quot;</span>).format(<span class="string">&quot;hive&quot;</span>).saveAsTable(<span class="string">&quot;bigdata_hive3.emp891&quot;</span>)</span><br><span class="line">    <span class="comment">// ---------------------------------------insertInto 插入数据 如果是用于分区表它会自动使用动态分区 对普通表可以</span></span><br><span class="line">    <span class="comment">// Exception in thread &quot;main&quot; org.apache.spark.sql.AnalysisException:  insertInto() can&#x27;t be used together with partitionBy(). Partition columns have already been defined for the table. It is not necessary to use partitionBy().</span></span><br><span class="line">    <span class="comment">//frame.write.partitionBy(&quot;deptno&quot;).mode(saveMode = &quot;overwrite&quot;).format(&quot;hive&quot;).insertInto(&quot;bigdata_hive3.emp891&quot;)</span></span><br><span class="line">    <span class="comment">// 可以把数据作为路径写入到hdfs上 ，写入他对应的table path下</span></span><br><span class="line"></span><br><span class="line">    frame.select(<span class="string">&quot;empno&quot;</span>,<span class="string">&quot;ename&quot;</span>,<span class="string">&quot;job&quot;</span>,<span class="string">&quot;mgr&quot;</span>).write.mode(<span class="string">&quot;overwrite&quot;</span>).parquet(<span class="string">&quot;hdfs://bigdata3:9000/user/hive/warehouse/bigdata_hive3.db/emp_partition1/deptno=20&quot;</span>)</span><br><span class="line">    <span class="comment">// 对于普通表这样写入是ok的，但是对于分区表 因为元数据的不同 所以可能会导致元数据关联不上</span></span><br><span class="line">    <span class="comment">// 修复元数据库就ok了</span></span><br><span class="line">    <span class="comment">// 注意这里要是parquet的存储格式的或者orc的，如果是text的会成乱码</span></span><br><span class="line">    <span class="comment">// 修复元数据</span></span><br><span class="line">    <span class="comment">// msck repair table table_name [ADD/DROP/SYNC partition]</span></span><br><span class="line">    <span class="comment">// 或者通过rdd的方法进行存储</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  def hivesqlchoose(string: <span class="type">String</span>*)=&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">val</span> str = <span class="string">&quot;select&quot;</span> + <span class="string">&quot; &quot;</span> + string(<span class="number">0</span>) + <span class="string">&quot; &quot;</span> + <span class="string">&quot;from&quot;</span> + <span class="string">&quot; &quot;</span> +  string(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> (string.length &gt; <span class="number">2</span>)&#123;</span><br><span class="line">      str +<span class="string">&quot; &quot;</span> + string(<span class="number">2</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      str</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  def descfunctionsql(string: <span class="type">String</span>)=&#123;</span><br><span class="line">    s<span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">      |desc function extended $string</span></span><br><span class="line"><span class="string">      |&quot;&quot;&quot;</span>.stripMargin</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  def checksql(string: <span class="type">String</span>)=&#123;</span><br><span class="line">    spark.sql(string).show(<span class="literal">false</span>)</span><br><span class="line">    spark.sql(string)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1198,7 +1783,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-11 09:04:53" itemprop="dateModified" datetime="2023-01-11T09:04:53+08:00">2023-01-11</time>
+                <time title="修改时间：2023-01-11 18:32:58" itemprop="dateModified" datetime="2023-01-11T18:32:58+08:00">2023-01-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1223,7 +1808,7 @@
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>44 分钟</span>
+              <span>45 分钟</span>
             </span>
 
         </div>
@@ -1637,7 +2222,7 @@
 <li>jar</li>
 <li>spark-submit</li>
 </ul>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">spark-submit <span class="string">\</span></span><br><span class="line">--<span class="keyword">class</span> 包名 <span class="string">\</span></span><br><span class="line">--master 模式 <span class="string">\</span></span><br><span class="line">--name 作业名字 <span class="string">\</span></span><br><span class="line">jar包在机器上的路径 <span class="string">\</span></span><br><span class="line">想传的参数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spark-submit <span class="string">\</span></span><br><span class="line">--<span class="keyword">class</span> 包名 <span class="string">\</span></span><br><span class="line">--master 模式 <span class="string">\</span></span><br><span class="line">--name 作业名字 <span class="string">\</span></span><br><span class="line">jar包在机器上的路径 <span class="string">\</span></span><br><span class="line">想传的参数</span><br><span class="line">-------------------------------------例子</span><br><span class="line">spark-submit <span class="string">\</span></span><br><span class="line">--<span class="keyword">class</span> <span class="title class_">tool</span>.jdbc.readjdbc <span class="string">\</span></span><br><span class="line">/home/hadoop/project/jar/bigdatajava-<span class="number">1.0</span>-SNAPSHOT.jar <span class="string">\</span></span><br><span class="line"><span class="string">&quot;jdbc:mysql://bigdata2:3306/try&quot;</span> <span class="string">&quot;root&quot;</span> <span class="string">&quot;liuzihan010616&quot;</span> <span class="string">&quot;emp&quot;</span></span><br><span class="line">-----------------------------------------我这里不加msater是因为我再代码里已经加了</span><br></pre></td></tr></table></figure>
 
 <p>还可以用其内封装的方法进行传值&#x3D;》不用 args</p>
 <p>就是在submit的时候用 <code>--conf</code>传入</p>
@@ -3138,574 +3723,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/18/12-18/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/18/12-18/" class="post-title-link" itemprop="url">datax</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-12-18 09:35:34" itemprop="dateCreated datePublished" datetime="2022-12-18T09:35:34+08:00">2022-12-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-11 09:14:01" itemprop="dateModified" datetime="2023-01-11T09:14:01+08:00">2023-01-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9D%82%E8%B4%A7%E6%8A%80%E6%9C%AF%E6%A0%88/" itemprop="url" rel="index"><span itemprop="name">杂货技术栈</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>10k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="datax"><a href="#datax" class="headerlink" title="datax"></a>datax</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=DataX&spm=1001.2101.3001.7020">DataX</a> 是阿里开源的一个异构数据源离线同步工具，致力于实现包括关系型数据库(MySQL、Oracle等)、HDFS、Hive、ODPS、HBase、FTP等各种异构数据源之间稳定高效的数据同步功能。</p>
-<h2 id="理念"><a href="#理念" class="headerlink" title="理念"></a>理念</h2><p>DataX本身作为数据同步框架，将不同数据源的同步抽象为从源头数据源读取数据的Reader插件，以及向目标端写入数据的Writer插件，理论上DataX框架可以支持任意数据源类型的数据同步工作。同时DataX插件体系作为一套生态系统, 每接入一套新数据源该新加入的数据源即可实现和现有的数据源互通</p>
-<h2 id="框架设计"><a href="#框架设计" class="headerlink" title="框架设计"></a>框架设计</h2><p>DataX本身作为离线数据同步框架，采用Framework + plugin架构构建。将数据源读取和写入抽象成为Reader&#x2F;Writer插件，纳入到整个同步框架中。</p>
-<p>Reader：Reader为数据采集模块，负责采集数据源的数据，将数据发送给Framework。</p>
-<p>Writer： Writer为数据写入模块，负责不断向Framework取数据，并将数据写入到目的端</p>
-<p>Framework：Framework用于连接reader和writer，作为两者的数据传输通道，并处理缓冲，流控，并发，数据转换等核心技术问题。</p>
-<p>DataX目前已经有了比较全面的插件体系，主流的RDBMS数据库、NOSQL、大数据计算系统都已经接入，目前支持数据如下，详情请点击：<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/wiki/DataX-all-data-channels">DataX数据源参考指南</a></p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>数据源</th>
-<th align="center">Reader(读)</th>
-<th align="center">Writer(写)</th>
-<th align="center">文档</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>RDBMS 关系型数据库</td>
-<td>MySQL</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/mysqlreader/doc/mysqlreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/mysqlwriter/doc/mysqlwriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>Oracle</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/oraclereader/doc/oraclereader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/oraclewriter/doc/oraclewriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>OceanBase</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://open.oceanbase.com/docs/community/oceanbase-database/V3.1.0/use-datax-to-full-migration-data-to-oceanbase">读</a> 、<a target="_blank" rel="noopener" href="https://open.oceanbase.com/docs/community/oceanbase-database/V3.1.0/use-datax-to-full-migration-data-to-oceanbase">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>SQLServer</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/sqlserverreader/doc/sqlserverreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/sqlserverwriter/doc/sqlserverwriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>PostgreSQL</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/postgresqlreader/doc/postgresqlreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/postgresqlwriter/doc/postgresqlwriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>DRDS</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/drdsreader/doc/drdsreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/drdswriter/doc/drdswriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>Kingbase</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/drdsreader/doc/drdsreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/drdswriter/doc/drdswriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>通用RDBMS(支持所有关系型数据库)</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/rdbmsreader/doc/rdbmsreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/rdbmswriter/doc/rdbmswriter.md">写</a></td>
-</tr>
-<tr>
-<td>阿里云数仓数据存储</td>
-<td>ODPS</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/odpsreader/doc/odpsreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/odpswriter/doc/odpswriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>ADS</td>
-<td align="center"></td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/adswriter/doc/adswriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>OSS</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/ossreader/doc/ossreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/osswriter/doc/osswriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>OCS</td>
-<td align="center"></td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/ocswriter/doc/ocswriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>Hologres</td>
-<td align="center"></td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hologresjdbcwriter/doc/hologresjdbcwriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>AnalyticDB For PostgreSQL</td>
-<td align="center"></td>
-<td align="center">√</td>
-<td align="center">写</td>
-</tr>
-<tr>
-<td>阿里云中间件</td>
-<td>datahub</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">读 、写</td>
-</tr>
-<tr>
-<td></td>
-<td>SLS</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">读 、写</td>
-</tr>
-<tr>
-<td>阿里云图数据库</td>
-<td>GDB</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/gdbreader/doc/gdbreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/gdbwriter/doc/gdbwriter.md">写</a></td>
-</tr>
-<tr>
-<td>NoSQL数据存储</td>
-<td>OTS</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/otsreader/doc/otsreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/otswriter/doc/otswriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>Hbase0.94</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase094xreader/doc/hbase094xreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase094xwriter/doc/hbase094xwriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>Hbase1.1</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase11xreader/doc/hbase11xreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase11xwriter/doc/hbase11xwriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>Phoenix4.x</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase11xsqlreader/doc/hbase11xsqlreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase11xsqlwriter/doc/hbase11xsqlwriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>Phoenix5.x</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase20xsqlreader/doc/hbase20xsqlreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hbase20xsqlwriter/doc/hbase20xsqlwriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>MongoDB</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/mongodbreader/doc/mongodbreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/mongodbwriter/doc/mongodbwriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>Cassandra</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/cassandrareader/doc/cassandrareader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/cassandrawriter/doc/cassandrawriter.md">写</a></td>
-</tr>
-<tr>
-<td>数仓数据存储</td>
-<td>StarRocks</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">读 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/starrockswriter/doc/starrockswriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>ApacheDoris</td>
-<td align="center"></td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/doriswriter/doc/doriswriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>ClickHouse</td>
-<td align="center"></td>
-<td align="center">√</td>
-<td align="center">写</td>
-</tr>
-<tr>
-<td></td>
-<td>Hive</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hdfsreader/doc/hdfsreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hdfswriter/doc/hdfswriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>kudu</td>
-<td align="center"></td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hdfswriter/doc/hdfswriter.md">写</a></td>
-</tr>
-<tr>
-<td>无结构化数据存储</td>
-<td>TxtFile</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/txtfilereader/doc/txtfilereader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/txtfilewriter/doc/txtfilewriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>FTP</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/ftpreader/doc/ftpreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/ftpwriter/doc/ftpwriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>HDFS</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hdfsreader/doc/hdfsreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/hdfswriter/doc/hdfswriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>Elasticsearch</td>
-<td align="center"></td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/elasticsearchwriter/doc/elasticsearchwriter.md">写</a></td>
-</tr>
-<tr>
-<td>时间序列数据库</td>
-<td>OpenTSDB</td>
-<td align="center">√</td>
-<td align="center"></td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/opentsdbreader/doc/opentsdbreader.md">读</a></td>
-</tr>
-<tr>
-<td></td>
-<td>TSDB</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/tsdbreader/doc/tsdbreader.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/tsdbwriter/doc/tsdbhttpwriter.md">写</a></td>
-</tr>
-<tr>
-<td></td>
-<td>TDengine</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/tdenginereader/doc/tdenginereader-CN.md">读</a> 、<a target="_blank" rel="noopener" href="https://github.com/alibaba/DataX/blob/master/tdenginewriter/doc/tdenginewriter-CN.md">写</a></td>
-</tr>
-</tbody></table>
-<h2 id="部署需求"><a href="#部署需求" class="headerlink" title="部署需求"></a>部署需求</h2><ul>
-<li>Linux</li>
-<li><a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/cn/java/javase/downloads/index.html">JDK(1.8以上，推荐1.8)</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.python.org/downloads/">Python(2或3都可以)</a></li>
-<li><a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi">Apache Maven 3.x</a> (Compile DataX)</li>
-</ul>
-<h2 id="部署步骤以及问题"><a href="#部署步骤以及问题" class="headerlink" title="部署步骤以及问题"></a>部署步骤以及问题</h2><p>解压datax的安装包 -》 制作软连接 -》 修改环境变量并source -》 执行自检脚本 <code>datax.py $&#123;DATAX_HOME&#125;/job/job.json</code></p>
-<p>如果出现</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DataX (DATAX-OPENSOURCE-3.0), <span class="keyword">From</span> Alibaba !</span><br><span class="line">Copyright (C) 2010-2017, Alibaba Group. All Rights Reserved.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2022-12-18 10:01:32.806 [main] <span class="built_in">INFO</span>  VMInfo - VMInfo# operatingSystem class =&gt; sun.management.OperatingSystemImpl</span><br><span class="line">2022-12-18 10:01:32.825 [main] <span class="built_in">INFO</span>  Engine - the machine <span class="built_in">info</span>  =&gt; </span><br><span class="line"></span><br><span class="line">	osInfo:	Oracle Corporation 1.8 25.45-b02</span><br><span class="line">	jvmInfo:	Linux amd64 3.10.0-1127.el7.x86_64</span><br><span class="line">	cpu num:	2</span><br><span class="line"></span><br><span class="line">	totalPhysicalMemory:	-0.00G</span><br><span class="line">	freePhysicalMemory:	-0.00G</span><br><span class="line">	maxFileDescriptorCount:	-1</span><br><span class="line">	currentOpenFileDescriptorCount:	-1</span><br><span class="line"></span><br><span class="line">	GC Names	[PS MarkSweep, PS Scavenge]</span><br><span class="line"></span><br><span class="line">	MEMORY_NAME                    | allocation_size                | init_size                </span><br><span class="line">	PS Eden Space                  | 256.00MB                       | 256.00MB                 </span><br><span class="line">	Code Cache                     | 240.00MB                       | 2.44MB                   </span><br><span class="line">	Compressed Class Space         | 1,024.00MB                     | 0.00MB                   </span><br><span class="line">	PS Survivor Space              | 42.50MB                        | 42.50MB                  </span><br><span class="line">	PS Old Gen                     | 683.00MB                       | 683.00MB                 </span><br><span class="line">	Metaspace                      | -0.00MB                        | 0.00MB                   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2022-12-18 10:01:32.848 [main] <span class="built_in">INFO</span>  Engine - </span><br><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;content&quot;</span>:[</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="string">&quot;reader&quot;</span>:&#123;</span><br><span class="line">				<span class="string">&quot;name&quot;</span>:<span class="string">&quot;streamreader&quot;</span>,</span><br><span class="line">				<span class="string">&quot;parameter&quot;</span>:&#123;</span><br><span class="line">					<span class="string">&quot;column&quot;</span>:[</span><br><span class="line">						&#123;</span><br><span class="line">							<span class="string">&quot;type&quot;</span>:<span class="string">&quot;string&quot;</span>,</span><br><span class="line">							<span class="string">&quot;value&quot;</span>:<span class="string">&quot;DataX&quot;</span></span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line">							<span class="string">&quot;type&quot;</span>:<span class="string">&quot;long&quot;</span>,</span><br><span class="line">							<span class="string">&quot;value&quot;</span>:19890604</span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line">							<span class="string">&quot;type&quot;</span>:<span class="string">&quot;date&quot;</span>,</span><br><span class="line">							<span class="string">&quot;value&quot;</span>:<span class="string">&quot;1989-06-04 00:00:00&quot;</span></span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line">							<span class="string">&quot;type&quot;</span>:<span class="string">&quot;bool&quot;</span>,</span><br><span class="line">							<span class="string">&quot;value&quot;</span>:true</span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line">							<span class="string">&quot;type&quot;</span>:<span class="string">&quot;bytes&quot;</span>,</span><br><span class="line">							<span class="string">&quot;value&quot;</span>:<span class="string">&quot;test&quot;</span></span><br><span class="line">						&#125;</span><br><span class="line">					],</span><br><span class="line">					<span class="string">&quot;sliceRecordCount&quot;</span>:100000</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;,</span><br><span class="line">			<span class="string">&quot;writer&quot;</span>:&#123;</span><br><span class="line">				<span class="string">&quot;name&quot;</span>:<span class="string">&quot;streamwriter&quot;</span>,</span><br><span class="line">				<span class="string">&quot;parameter&quot;</span>:&#123;</span><br><span class="line">					<span class="string">&quot;encoding&quot;</span>:<span class="string">&quot;UTF-8&quot;</span>,</span><br><span class="line">					<span class="string">&quot;print&quot;</span>:false</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	],</span><br><span class="line">	<span class="string">&quot;setting&quot;</span>:&#123;</span><br><span class="line">		<span class="string">&quot;errorLimit&quot;</span>:&#123;</span><br><span class="line">			<span class="string">&quot;percentage&quot;</span>:0.02,</span><br><span class="line">			<span class="string">&quot;record&quot;</span>:0</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="string">&quot;speed&quot;</span>:&#123;</span><br><span class="line">			<span class="string">&quot;byte&quot;</span>:10485760</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">2022-12-18 10:01:32.889 [main] WARN  Engine - prioriy <span class="built_in">set</span> <span class="keyword">to</span> 0, because NumberFormatException, the value is: <span class="literal">null</span></span><br><span class="line">2022-12-18 10:01:32.890 [main] <span class="built_in">INFO</span>  PerfTrace - PerfTrace <span class="attribute">traceId</span>=job_-1, <span class="attribute">isEnable</span>=<span class="literal">false</span>, <span class="attribute">priority</span>=0</span><br><span class="line">2022-12-18 10:01:32.890 [main] <span class="built_in">INFO</span>  JobContainer - DataX jobContainer starts job.</span><br><span class="line">2022-12-18 10:01:32.891 [main] <span class="built_in">INFO</span>  JobContainer - <span class="built_in">Set</span> jobId = 0</span><br><span class="line">2022-12-18 10:01:32.916 [job-0] <span class="built_in">INFO</span>  JobContainer - jobContainer starts <span class="keyword">to</span> <span class="keyword">do</span> prepare <span class="built_in">..</span>.</span><br><span class="line">2022-12-18 10:01:32.917 [job-0] <span class="built_in">INFO</span>  JobContainer - DataX Reader.Job [streamreader] <span class="keyword">do</span> prepare work .</span><br><span class="line">2022-12-18 10:01:32.917 [job-0] <span class="built_in">INFO</span>  JobContainer - DataX Writer.Job [streamwriter] <span class="keyword">do</span> prepare work .</span><br><span class="line">2022-12-18 10:01:32.917 [job-0] <span class="built_in">INFO</span>  JobContainer - jobContainer starts <span class="keyword">to</span> <span class="keyword">do</span> split <span class="built_in">..</span>.</span><br><span class="line">2022-12-18 10:01:32.918 [job-0] <span class="built_in">INFO</span>  JobContainer - Job <span class="built_in">set</span> Max-Byte-Speed <span class="keyword">to</span> 10485760 bytes.</span><br><span class="line">2022-12-18 10:01:32.919 [job-0] <span class="built_in">INFO</span>  JobContainer - DataX Reader.Job [streamreader] splits <span class="keyword">to</span> [1] tasks.</span><br><span class="line">2022-12-18 10:01:32.919 [job-0] <span class="built_in">INFO</span>  JobContainer - DataX Writer.Job [streamwriter] splits <span class="keyword">to</span> [1] tasks.</span><br><span class="line">2022-12-18 10:01:32.941 [job-0] <span class="built_in">INFO</span>  JobContainer - jobContainer starts <span class="keyword">to</span> <span class="keyword">do</span> schedule <span class="built_in">..</span>.</span><br><span class="line">2022-12-18 10:01:32.945 [job-0] <span class="built_in">INFO</span>  JobContainer -<span class="built_in"> Scheduler </span>starts [1] taskGroups.</span><br><span class="line">2022-12-18 10:01:32.947 [job-0] <span class="built_in">INFO</span>  JobContainer - Running by standalone Mode.</span><br><span class="line">2022-12-18 10:01:32.967 [taskGroup-0] <span class="built_in">INFO</span>  TaskGroupContainer - taskGroupId=[0] start [1] channels <span class="keyword">for</span> [1] tasks.</span><br><span class="line">2022-12-18 10:01:32.978 [taskGroup-0] <span class="built_in">INFO</span>  Channel - Channel <span class="built_in">set</span> byte_speed_limit <span class="keyword">to</span> -1, <span class="literal">No</span> bps activated.</span><br><span class="line">2022-12-18 10:01:32.978 [taskGroup-0] <span class="built_in">INFO</span>  Channel - Channel <span class="built_in">set</span> record_speed_limit <span class="keyword">to</span> -1, <span class="literal">No</span> tps activated.</span><br><span class="line">2022-12-18 10:01:32.999 [taskGroup-0] <span class="built_in">INFO</span>  TaskGroupContainer - taskGroup[0] taskId[0] attemptCount[1] is started</span><br><span class="line">2022-12-18 10:01:33.100 [taskGroup-0] <span class="built_in">INFO</span>  TaskGroupContainer - taskGroup[0] taskId[0] is successed, used[116]ms</span><br><span class="line">2022-12-18 10:01:33.101 [taskGroup-0] <span class="built_in">INFO</span>  TaskGroupContainer - taskGroup[0] completed it<span class="string">&#x27;s tasks.</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.004 [job-0] INFO  StandAloneJobContainerCommunicator - Total 100000 records, 2600000 bytes | Speed 253.91KB/s, 10000 records/s | Error 0 records, 0 bytes |  All Task WaitWriterTime 0.029s |  All Task WaitReaderTime 0.029s | Percentage 100.00%</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.005 [job-0] INFO  AbstractScheduler - Scheduler accomplished all tasks.</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.005 [job-0] INFO  JobContainer - DataX Writer.Job [streamwriter] do post work.</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.005 [job-0] INFO  JobContainer - DataX Reader.Job [streamreader] do post work.</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.005 [job-0] INFO  JobContainer - DataX jobId [0] completed successfully.</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.006 [job-0] INFO  HookInvoker - No hook invoked, because base dir not exists or is a file: /home/hadoop/app/datax/hook</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.007 [job-0] INFO  JobContainer - </span></span><br><span class="line"><span class="string">	 [total cpu info] =&gt; </span></span><br><span class="line"><span class="string">		averageCpu                     | maxDeltaCpu                    | minDeltaCpu              </span></span><br><span class="line"><span class="string">		-1.00%                         | -1.00%                         | -1.00%</span></span><br><span class="line"><span class="string">                  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	 [total gc info] =&gt; </span></span><br><span class="line"><span class="string">		 NAME                 | totalGCCount       | maxDeltaGCCount    | minDeltaGCCount    | totalGCTime        | maxDeltaGCTime     | minDeltaGCTime   </span></span><br><span class="line"><span class="string">		 PS MarkSweep         | 0                  | 0                  | 0                  | 0.000s             | 0.000s             | 0.000s       </span></span><br><span class="line"><span class="string">		 PS Scavenge          | 0                  | 0                  | 0                  | 0.000s             | 0.000s             | 0.000s       </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.007 [job-0] INFO  JobContainer - PerfTrace not enable!</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.007 [job-0] INFO  StandAloneJobContainerCommunicator - Total 100000 records, 2600000 bytes | Speed 253.91KB/s, 10000 records/s | Error 0 records, 0 bytes |  All Task WaitWriterTime 0.029s |  All Task WaitReaderTime 0.029s | Percentage 100.00%</span></span><br><span class="line"><span class="string">2022-12-18 10:01:43.011 [job-0] INFO  JobContainer - </span></span><br><span class="line"><span class="string">任务启动时刻                    : 2022-12-18 10:01:32</span></span><br><span class="line"><span class="string">任务结束时刻                    : 2022-12-18 10:01:43</span></span><br><span class="line"><span class="string">任务总计耗时                    :                 10s</span></span><br><span class="line"><span class="string">任务平均流量                    :          253.91KB/s</span></span><br><span class="line"><span class="string">记录写入速度                    :          10000rec/s</span></span><br><span class="line"><span class="string">读出记录总数                    :              100000</span></span><br><span class="line"><span class="string">读写失败总数                    :                   0</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
-
-<p>则部署成功</p>
-<h2 id="遇见的问题"><a href="#遇见的问题" class="headerlink" title="遇见的问题"></a>遇见的问题</h2><p>自建的时候出现</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Copyright (C) <span class="number">2010</span>-<span class="number">2017</span>, Alibaba Group. All Rights Reserved.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">2022</span>-<span class="number">12</span>-<span class="number">18</span> <span class="number">09</span>:<span class="number">56</span>:<span class="number">52.120</span> <span class="selector-attr">[main]</span> WARN  ConfigParser - 插件<span class="selector-attr">[streamreader,streamwriter]</span>加载失败，<span class="number">1s</span>后重试... Exception:Code:<span class="selector-attr">[Common-00]</span>, Describe:<span class="selector-attr">[您提供的配置文件存在错误信息，请检查您的作业配置 .]</span> - 配置信息错误，您提供的配置文件<span class="selector-attr">[/home/hadoop/app/datax/plugin/reader/._drdsreader/plugin.json]</span>不存在. 请检查您的配置文件. </span><br><span class="line"><span class="number">2022</span>-<span class="number">12</span>-<span class="number">18</span> <span class="number">09</span>:<span class="number">56</span>:<span class="number">53.124</span> <span class="selector-attr">[main]</span> ERROR Engine - </span><br><span class="line"></span><br><span class="line">经DataX智能分析,该任务最可能的错误原因是:</span><br><span class="line">com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.common</span><span class="selector-class">.exception</span><span class="selector-class">.DataXException</span>: Code:<span class="selector-attr">[Common-00]</span>, Describe:<span class="selector-attr">[您提供的配置文件存在错误信息，请检查您的作业配置 .]</span> - 配置信息错误，您提供的配置文件<span class="selector-attr">[/home/hadoop/app/datax/plugin/reader/._drdsreader/plugin.json]</span>不存在. 请检查您的配置文件.</span><br><span class="line">	at com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.common</span><span class="selector-class">.exception</span><span class="selector-class">.DataXException</span><span class="selector-class">.asDataXException</span>(DataXException<span class="selector-class">.java</span>:<span class="number">26</span>)</span><br><span class="line">	at com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.common</span><span class="selector-class">.util</span><span class="selector-class">.Configuration</span><span class="selector-class">.from</span>(Configuration<span class="selector-class">.java</span>:<span class="number">95</span>)</span><br><span class="line">	at com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.core</span><span class="selector-class">.util</span><span class="selector-class">.ConfigParser</span><span class="selector-class">.parseOnePluginConfig</span>(ConfigParser<span class="selector-class">.java</span>:<span class="number">153</span>)</span><br><span class="line">	at com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.core</span><span class="selector-class">.util</span><span class="selector-class">.ConfigParser</span><span class="selector-class">.parsePluginConfig</span>(ConfigParser<span class="selector-class">.java</span>:<span class="number">125</span>)</span><br><span class="line">	at com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.core</span><span class="selector-class">.util</span><span class="selector-class">.ConfigParser</span><span class="selector-class">.parse</span>(ConfigParser<span class="selector-class">.java</span>:<span class="number">63</span>)</span><br><span class="line">	at com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.core</span><span class="selector-class">.Engine</span><span class="selector-class">.entry</span>(Engine<span class="selector-class">.java</span>:<span class="number">137</span>)</span><br><span class="line">	at com<span class="selector-class">.alibaba</span><span class="selector-class">.datax</span><span class="selector-class">.core</span><span class="selector-class">.Engine</span><span class="selector-class">.main</span>(Engine<span class="selector-class">.java</span>:<span class="number">204</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>执行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find <span class="variable">$&#123;DATAX_HOME&#125;</span>/plugin/reader/ -<span class="built_in">type</span> f -name <span class="string">&quot;._*er&quot;</span> | xargs <span class="built_in">rm</span> -rf</span><br><span class="line">find <span class="variable">$&#123;DATAX_HOME&#125;</span>/plugin/writer/ -<span class="built_in">type</span> f -name <span class="string">&quot;._*er&quot;</span> | xargs <span class="built_in">rm</span> -rf</span><br></pre></td></tr></table></figure>
-
-<p>然后重新自检就成功了</p>
-<h1 id="安装datax-web工具"><a href="#安装datax-web工具" class="headerlink" title="安装datax-web工具"></a>安装datax-web工具</h1><p>简介 ： DataX Web是在DataX之上开发的分布式数据同步工具，提供简单易用的操作界面。</p>
-<p>相当于多了一个图形化界面</p>
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>解压压缩包-&gt; 制作软连接 -&gt; 编辑并导入环境变量</p>
-<ul>
-<li>-&gt; 修改modules下的datax-admin下的conf下的bootstrap.properties</li>
-<li>DB_HOST ： mysql所在的ip</li>
-<li>DB_PORT ： mysql的端口</li>
-<li>DB_USERNAME ： mysql的用户名</li>
-<li>DB_PASSWORD ： mysql的用户名的密码</li>
-<li>DB_DATABASE ： datax的配置文件所在的mysql的数据库</li>
-<li>-&gt; 修改datax-executor下的bin下的env.properties的PYTOHON_PATH的配置地址，需与我们安装的datax目录一致</li>
-<li>比如 ： <code>PYTHON_PATH=/home/hadoop/app/datax/bin/datax.py</code></li>
-<li>-&gt; 修改&#x2F;datax-executor&#x2F;conf下的application.yml，把其中的admin下的addresses: <a href="http://ip:${datax.admin.port}">http://ip:${datax.admin.port}</a> ：ip改成自己机器的</li>
-<li>然后进入到我们的最外层的bin目录下，执行 <code>start-all.sh</code>ps : 这里的start-all.sh和hadoop的启动脚本冲突，我们可以把它改名就好了</li>
-<li>执行 <code>mv ./start-all.sh ./startdatax_web-all.sh停止脚本同理</code></li>
-<li>然后启动脚本执行 ： <code> startdatax_web-all.sh</code></li>
-<li>然后我们访问 <code>http://服务器IP:9527/index.html</code></li>
-<li>初始账号密码 admin  123456</li>
-</ul>
-<p>使用方法和xxl非常类似</p>
-<h1 id="Prometheus"><a href="#Prometheus" class="headerlink" title="Prometheus"></a>Prometheus</h1><p>简介 ： Prometheus(由go语言(golang)开发)是一套开源的监控&amp;报警&amp;时间序列数据库的组合。适合监控容器平台。因为kubernetes(俗称k8s)的流行带动了prometheus的发展</p>
-<p>Prometheus的主要特征有:</p>
-<ol>
-<li>多维度数据模型</li>
-<li>灵活的查询语言</li>
-<li>不依赖分布式存储，单个服务器节点是自主的</li>
-<li>以HTTP方式，通过pull模型拉去时间序列数据</li>
-<li>也可以通过中间网关支持push模型</li>
-<li>通过服务发现或者静态配置, 来发现目标服务对象</li>
-<li>支持多种多样的图表和界面展示</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>主机名</th>
-<th>ip</th>
-<th>身份</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>bigdata4</td>
-<td>192.168.41.133</td>
-<td>prometheus服务器</td>
-</tr>
-<tr>
-<td>bigdata3</td>
-<td>192.168.41.132</td>
-<td>被监控服务器</td>
-</tr>
-<tr>
-<td>bigdata5</td>
-<td>192.168.41.134</td>
-<td>granfana服务器</td>
-</tr>
-</tbody></table>
-<p>时间同步</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">systemctl restart ntpd</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">systemctl <span class="built_in">enable</span> ntpd</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>关闭防火墙和seLInux</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">systemctl stop firewalld</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">systemctl <span class="built_in">enable</span> firewalld</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">setenforce 0</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">vim /etc/selinux/config</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">iptables -F</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="部署安装"><a href="#部署安装" class="headerlink" title="部署安装"></a>部署安装</h2><p>去官网下载二进制的安装包这里要下载两个东西 ，一个是prometheus-2.41.0-rc.0.linux-amd64.tar 一个是 node_exporter-1.5.0.linux-amd64.tar.gz</p>
-<p>简单来说 prometheus-2.41.0-rc.0.linux-amd64.ta是服务器 而 node_exporter-1.5.0.linux-amd64.tar.gz是监控器</p>
-<p>监控器除了服务器以外的机器上都要有，服务器只要在你想部署的服务器上就好</p>
-<p>解压 -》 软连接 -》 配置环境变量</p>
-<ul>
-<li>-》 修改prometheus文件夹下的prometheus.yml文件</li>
-<li>job_name ： 代表监控器的名字</li>
-<li>targets: [“localhost:9090”] 代表监控器的IP地址以及端口号</li>
-<li>监控器的默认端口是9100</li>
-<li>我们对其修改，增加几个</li>
-</ul>
-<p>然后在服务器上执行 <code>prometheus --config.file=&quot;/home/hadoop/app/prometheus/prometheus.yml&quot; &amp;</code></p>
-<p>在另外两个机器上执行 <code> node_exporter</code></p>
-<p>然后访问IP:9090点击Status然后点击Target就可以看见我们的三台机器以及其名字</p>
-<h3 id="监控Zookeeper"><a href="#监控Zookeeper" class="headerlink" title="监控Zookeeper"></a>监控Zookeeper</h3><p>监控Zookeeper和上述监控机器一样，只不过因为github上有开源的<a target="_blank" rel="noopener" href="https://github.com/jiankunking/zookeeper_exporter">zookeeper_exporter</a>然后直接上传到linux上，给他赋权限（执行权限）</p>
-<p>然后执行 <code>zookeeper_exporter ip：ZK的端口：监控日志的对接端口</code>就启动了，然后我们在我们的prometheus服务器上修改配置文件，添加上即可</p>
-<h3 id="监控kafka"><a href="#监控kafka" class="headerlink" title="监控kafka"></a>监控kafka</h3><p>监控kafka同上</p>
-<h3 id="监控flume"><a href="#监控flume" class="headerlink" title="监控flume"></a>监控flume</h3><p>关于监控flume同上步骤，不过，flume的监控器是go语言进行编译的，所以要先安装go语言的环境</p>
-<h1 id="granfana"><a href="#granfana" class="headerlink" title="granfana"></a>granfana</h1><p>其是对普罗米修斯收集的数据进行处理以及显示的一个软件</p>
-<h2 id="部署-1"><a href="#部署-1" class="headerlink" title="部署"></a>部署</h2><p>下载rpm包 执行以下命令 <code> wget https://dl.grafana.com/enterprise/release/grafana-enterprise-9.1.5-1.x86_64.rpm</code></p>
-<p>在完成之后直接执行安装命令要root用户 <code> rpm -ivh grafana-enterprise-9.1.5-1.x86_64.rpm</code></p>
-<p>然后执行 <code> systemctl start grafana-server</code></p>
-<p>然后用 <code>lsof -i:3000</code> 查看一下3000端口出现如下</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">COMMAND    PID    <span class="keyword">USER</span>   <span class="title">FD</span>   <span class="keyword">TYPE</span> DEVICE SIZE/OFF <span class="keyword">NODE</span> <span class="title">NAME</span></span><br><span class="line">grafana-s <span class="number">6962</span> grafana    <span class="number">8</span>u  IPv6  <span class="number">90355</span>      <span class="number">0</span>t0  TCP *:hbci (LISTEN)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>然后浏览器访问ip:3000就可以了</p>
-<p>进去之后选择数据源，选择普罗米修斯的，然后添加上他的链接就ok了（服务器的链接以及端口）</p>
-
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2022/12/16/%E5%91%A8%E5%85%AD%E6%97%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="liu zihang">
-      <meta itemprop="description" content="只有努力不会辜负你">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="枫叶冢">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/16/%E5%91%A8%E5%85%AD%E6%97%A5/" class="post-title-link" itemprop="url">周六周日要补的</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-12-16 14:39:31" itemprop="dateCreated datePublished" datetime="2022-12-16T14:39:31+08:00">2022-12-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-11 09:16:36" itemprop="dateModified" datetime="2023-01-11T09:16:36+08:00">2023-01-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BB%BB%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">任务</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>164</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-
-   
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Prometheus框架监控zk"><a href="#Prometheus框架监控zk" class="headerlink" title="Prometheus框架监控zk"></a>Prometheus框架监控zk</h1><p>完成</p>
-<h1 id="datax"><a href="#datax" class="headerlink" title="datax"></a>datax</h1><p>完成</p>
-<h1 id="flume的fileSink"><a href="#flume的fileSink" class="headerlink" title="flume的fileSink"></a>flume的fileSink</h1><p>完成</p>
-<h2 id="kafka-custome-api"><a href="#kafka-custome-api" class="headerlink" title="kafka custome api"></a>kafka custome api</h2><p>完成</p>
-<h2 id="flume-gt-kafka-gt-消费"><a href="#flume-gt-kafka-gt-消费" class="headerlink" title="flume-&gt; kafka -&gt; 消费"></a>flume-&gt; kafka -&gt; 消费</h2><p>完成</p>
-<h2 id="kafka-gt-flume-gt-hdfs-gt-logger"><a href="#kafka-gt-flume-gt-hdfs-gt-logger" class="headerlink" title="kafka -&gt; flume -&gt; hdfs -&gt;logger"></a>kafka -&gt; flume -&gt; hdfs -&gt;logger</h2><p>完成</p>
-<h2 id="clickhouse-，-mongo-，-python-，-go-，-深入jvm，java-机器学习的算法"><a href="#clickhouse-，-mongo-，-python-，-go-，-深入jvm，java-机器学习的算法" class="headerlink" title="clickhouse ， mongo ， python ， go ， 深入jvm，java,机器学习的算法"></a>clickhouse ， mongo ， python ， go ， 深入jvm，java,机器学习的算法</h2>
-      
-    </div>
-
-    
-    
-    
-
-      
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3777,7 +3794,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -3790,7 +3807,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -3853,7 +3870,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共181.2k字</span>
+  <span class="post-count">博客全站共189.3k字</span>
 </div>
 
 

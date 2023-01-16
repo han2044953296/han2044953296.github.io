@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/%E6%A0%91%E5%8F%B6_sleaves%20(1).png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/%E6%A0%91%E5%8F%B6_sleaves.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zihang.fun","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":15,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="这里放的都是我自己写的各种简单的应用包 spark1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tool">
+<meta property="og:url" content="http://zihang.fun/2001/01/16/tool/index.html">
+<meta property="og:site_name" content="枫叶冢">
+<meta property="og:description" content="这里放的都是我自己写的各种简单的应用包 spark1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2001-01-16T09:00:00.000Z">
+<meta property="article:modified_time" content="2023-01-16T09:12:54.772Z">
+<meta property="article:author" content="liu zihang">
+<meta property="article:tag" content="tool">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://zihang.fun/2001/01/16/tool/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>tool | 枫叶冢</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/rss2.xml" title="枫叶冢" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a target="_blank" rel="noopener" href="https://github.com/han2044953296" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#151513; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">枫叶冢</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2001/01/16/tool/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          tool
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2001-01-16 17:00:00" itemprop="dateCreated datePublished" datetime="2001-01-16T17:00:00+08:00">2001-01-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-16 17:12:54" itemprop="dateModified" datetime="2023-01-16T17:12:54+08:00">2023-01-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这里放的都是我自己写的各种简单的应用包</p>
+<h1 id="spark"><a href="#spark" class="headerlink" title="spark"></a>spark</h1><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br></pre></td><td class="code"><pre><span class="line">package tool</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.<span class="keyword">sql</span>.SparkSession</span><br><span class="line"><span class="keyword">import</span> com.crealytics.spark.excel._</span><br><span class="line"><span class="keyword">class</span> readfile &#123;</span><br><span class="line"></span><br><span class="line">  def getmysqldataframe(sparkSession: SparkSession,string: String*) =&#123;</span><br><span class="line"></span><br><span class="line">    val <span class="keyword">sql</span> = string(<span class="number">3</span>)</span><br><span class="line">    val frame = sparkSession.<span class="keyword">read</span>.format(&quot;jdbc&quot;).<span class="keyword">options</span>(Map(&quot;url&quot; -&gt; string(<span class="number">0</span>), &quot;user&quot; -&gt; string(<span class="number">1</span>), &quot;password&quot; -&gt; string(<span class="number">2</span>), &quot;dbtable&quot; -&gt; s&quot;$sql&quot;,&quot;driver&quot;-&gt;&quot;com.mysql.jdbc.Driver&quot;)).<span class="keyword">load</span>()</span><br><span class="line">    frame</span><br><span class="line">    //    <span class="keyword">if</span> (string(<span class="number">3</span>).contains(&quot; &quot;)) &#123;</span><br><span class="line">    //      val <span class="keyword">sql</span> = string(<span class="number">3</span>)</span><br><span class="line">    //      val frame = sparkSession.<span class="keyword">read</span>.format(&quot;jdbc&quot;).<span class="keyword">options</span>(Map(&quot;url&quot; -&gt; string(<span class="number">0</span>), &quot;user&quot; -&gt; string(<span class="number">1</span>), &quot;password&quot; -&gt; string(<span class="number">2</span>), &quot;dbtable&quot; -&gt; s&quot;$sql&quot;)).<span class="keyword">load</span>()</span><br><span class="line">    //      frame</span><br><span class="line">    //    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    //      val frame = sparkSession.<span class="keyword">read</span>.format(&quot;jdbc&quot;).<span class="keyword">options</span>(Map(&quot;url&quot; -&gt; string(<span class="number">0</span>), &quot;user&quot; -&gt; string(<span class="number">1</span>), &quot;password&quot; -&gt; string(<span class="number">2</span>), &quot;dbtable&quot; -&gt; string(<span class="number">3</span>))).<span class="keyword">load</span>()</span><br><span class="line">    //      frame</span><br><span class="line">    //    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  def getmyqsldffromMap(sparkSession: SparkSession,map: Map[String,String])=&#123;</span><br><span class="line">    sparkSession.<span class="keyword">read</span>.format(&quot;jdbc&quot;).<span class="keyword">options</span>(map).<span class="keyword">option</span>(&quot;driver&quot;,&quot;com.mysql.jdbc.Driver&quot;).<span class="keyword">load</span>()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  def readexcel(sparkSession: SparkSession,string: String*)=&#123;</span><br><span class="line">    sparkSession.<span class="keyword">read</span>.excel(<span class="keyword">header</span> = string(<span class="number">0</span>).toBoolean,inferSchema = string(<span class="number">1</span>).toBoolean).<span class="keyword">load</span>(string(<span class="number">3</span>))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  def readxxxfile(sparkSession: SparkSession,string: String*) =&#123;</span><br><span class="line">    sparkSession.<span class="keyword">read</span>.format(string(<span class="number">0</span>)).<span class="keyword">load</span>(string(<span class="number">1</span>))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">------------------------------------------------------------------savefile</span></span><br><span class="line">package tool</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.<span class="keyword">sql</span>.&#123;DataFrame, SparkSession&#125;</span><br><span class="line"><span class="keyword">import</span> com.crealytics.spark.excel._</span><br><span class="line"><span class="keyword">import</span> tool.getmysqldf</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> savefile()&#123;</span><br><span class="line"></span><br><span class="line">  private val mysqldf = <span class="built_in">new</span> getmysqldf</span><br><span class="line">  def saveexcel(spark: DataFrame, string: <span class="keyword">Array</span>[String]) = &#123;</span><br><span class="line">    spark.<span class="keyword">write</span>.mode(string(<span class="number">2</span>)).excel(<span class="keyword">header</span> = string(<span class="number">4</span>).toBoolean,string(<span class="number">5</span>),string(<span class="number">6</span>),string(<span class="number">7</span>),string(<span class="number">8</span>)).save(string(<span class="number">3</span>))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  def savetojdbc(spark: SparkSession,df: DataFrame, string: <span class="keyword">Array</span>[String])=&#123;</span><br><span class="line"></span><br><span class="line">    val map = Map(&quot;url&quot; -&gt; string(<span class="number">1</span>),</span><br><span class="line">      &quot;user&quot; -&gt; string(<span class="number">2</span>),</span><br><span class="line">      &quot;password&quot; -&gt; string(<span class="number">3</span>),</span><br><span class="line">      &quot;dbtable&quot; -&gt; string(<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">//    df.<span class="keyword">write</span>.mode(string(<span class="number">2</span>)).format(string(<span class="number">1</span>)).<span class="keyword">options</span>(map).save()</span><br><span class="line">    // <span class="comment">-------------------------------------幂等性</span></span><br><span class="line">    val flag = mysqldf.getmyqsldffromMap(spark, map).<span class="keyword">select</span>(string(<span class="number">5</span>)).tail(<span class="number">1</span>)(<span class="number">0</span>)(<span class="number">0</span>)</span><br><span class="line">    val tmpresult = df.<span class="keyword">select</span>(string(<span class="number">5</span>)).<span class="keyword">filter</span>(<span class="type">line</span> =&gt; &#123;</span><br><span class="line">      <span class="type">line</span>.getString(<span class="number">0</span>) != flag</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (df.isEmpty)&#123;</span><br><span class="line">      println(&quot;数据集为空&quot;)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (tmpresult.isEmpty)&#123;</span><br><span class="line">        println(&quot;你的数据已经插入过&quot;)</span><br><span class="line">        df.<span class="keyword">show</span>(<span class="keyword">false</span>)</span><br><span class="line">      &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        val insertresult = tmpresult.<span class="keyword">join</span>(df, string(<span class="number">5</span>))</span><br><span class="line">        insertresult.<span class="keyword">write</span>.mode(string(<span class="number">0</span>)).format(&quot;jdbc&quot;).<span class="keyword">options</span>(map).save()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  def savetohive(<span class="type">boolean</span>: <span class="type">Boolean</span>,spark: DataFrame, string: <span class="keyword">Array</span>[String]) = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="type">boolean</span>)&#123;</span><br><span class="line">      <span class="keyword">if</span> (string.length &gt; <span class="number">2</span>)&#123;</span><br><span class="line">        spark.<span class="keyword">write</span>.partitionBy(string(<span class="number">2</span>)).mode(string(<span class="number">0</span>)).format(&quot;hive&quot;).saveAsTable(string(<span class="number">1</span>))</span><br><span class="line">      &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        spark.<span class="keyword">write</span>.mode(string(<span class="number">0</span>)).format(&quot;hive&quot;).saveAsTable(string(<span class="number">1</span>))</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      spark.<span class="keyword">write</span>.mode(string(<span class="number">0</span>)).format(&quot;hive&quot;).insertInto(string(<span class="number">1</span>))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  def saveastextOrcsvOrjson(spark: DataFrame, string: <span class="keyword">Array</span>[String])= &#123;</span><br><span class="line"></span><br><span class="line">      spark.<span class="keyword">write</span>.mode(string(<span class="number">2</span>)).format(string(<span class="number">1</span>)).save(string(<span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">------------------------------------------------------------------------------sqlutil</span></span><br><span class="line"></span><br><span class="line">package tool</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.<span class="keyword">sql</span>.SparkSession</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> sqlUtils &#123;</span><br><span class="line">  def hivesqlchoose(string: <span class="keyword">Array</span>[String])=&#123;</span><br><span class="line"></span><br><span class="line">    &quot;select&quot; + &quot; &quot; + string(<span class="number">0</span>) + &quot; &quot; + &quot;from&quot; + &quot; &quot; +  string(<span class="number">1</span>) + &quot; &quot; + string(<span class="number">2</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  def descfunctionsql(string: String)=&#123;</span><br><span class="line">    s&quot;&quot;&quot;</span><br><span class="line">       |desc function extended $string</span><br><span class="line">       |&quot;&quot;&quot;.stripMargin</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  def checksql(spark:SparkSession, string: String)=&#123;</span><br><span class="line">    spark.<span class="keyword">sql</span>(string).<span class="keyword">show</span>(<span class="keyword">false</span>)</span><br><span class="line">    spark.<span class="keyword">sql</span>(string)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">--------------------------------------------------------------------------streamingcontext </span></span><br><span class="line"></span><br><span class="line">package tool</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.SparkConf</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.streaming.&#123;Seconds, StreamingContext&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> streamingcontext &#123;</span><br><span class="line"></span><br><span class="line">  def getstreamcotext(mode: String=&quot;local[4]&quot;,<span class="type">name</span>:String=&quot;example&quot;,<span class="keyword">checkpoint</span>:String=&quot;file:///D:\\checkpoint&quot;)=&#123;</span><br><span class="line">    val conf = <span class="built_in">new</span> SparkConf().setMaster(mode).setAppName(<span class="type">name</span>)</span><br><span class="line">    val ssc = <span class="built_in">new</span> StreamingContext(conf, Seconds(<span class="number">5</span>))</span><br><span class="line">    ssc.<span class="keyword">checkpoint</span>(<span class="keyword">checkpoint</span>)</span><br><span class="line">    ssc</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">--------------------------------------------------------------------------------mysqltohive</span></span><br><span class="line">package project</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.<span class="keyword">sql</span>.catalog.Catalog</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.<span class="keyword">sql</span>.&#123;DataFrame, SparkSession&#125;</span><br><span class="line"><span class="keyword">import</span> tool.sqlUtils</span><br><span class="line"><span class="keyword">import</span> tool.getmysqldf</span><br><span class="line"><span class="keyword">import</span> tool.savefile</span><br><span class="line"><span class="keyword">import</span> tool.readfile</span><br><span class="line"><span class="keyword">object</span> mysqltohive &#123;</span><br><span class="line"></span><br><span class="line">  val spark = SparkSession.builder().appName(&quot;sqoop&quot;).master(&quot;local[4]&quot;).enableHiveSupport().getOrCreate()</span><br><span class="line">  val getmysqldf = <span class="built_in">new</span> readfile</span><br><span class="line">  val sqlUtils = <span class="built_in">new</span> sqlUtils</span><br><span class="line">  val saveFile = <span class="built_in">new</span> savefile</span><br><span class="line">  private val catalog: Catalog = spark.catalog</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  def main(args: <span class="keyword">Array</span>[String]): Unit = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (args.length==<span class="number">0</span>)&#123;</span><br><span class="line">      println(</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">          |欢迎使用本程序</span><br><span class="line">          |参数详情 mysql hive</span><br><span class="line">          |-------------------------mysql</span><br><span class="line">          |url 例子 ： jdbc:mysql://bigdata2:3306/try</span><br><span class="line">          |user 例子 ： root</span><br><span class="line">          |password 例子 ： liuzihan010616</span><br><span class="line">          |tablename =&gt; 支持谓词下压  例子 ： emp 或者 select * from emp 等</span><br><span class="line">          |---------------------------hive</span><br><span class="line">          |mode模式 overwrite append 等</span><br><span class="line">          |hive中的table 例子 bigdata.emp</span><br><span class="line">          |可选参数 分区字段 自动开启的是动态分区 例子 deptno</span><br><span class="line">          |&quot;&quot;&quot;.stripMargin)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    val url = args(<span class="number">0</span>)</span><br><span class="line">    val <span class="keyword">user</span> = args(<span class="number">1</span>)</span><br><span class="line">    val <span class="keyword">password</span> = args(<span class="number">2</span>)</span><br><span class="line">    val table = args(<span class="number">3</span>)</span><br><span class="line">    val mysqlconnect = getmysqldf.getmysqldataframe(spark, url, <span class="keyword">user</span>, <span class="keyword">password</span>, <span class="keyword">table</span>)</span><br><span class="line">    mysqlconnect.<span class="keyword">show</span>()</span><br><span class="line">    var hiveconf = <span class="built_in">new</span> <span class="keyword">Array</span>[String](args.length<span class="number">-4</span>)</span><br><span class="line">    //args.<span class="keyword">foreach</span>(println(_))</span><br><span class="line"></span><br><span class="line">    //println(args.length)</span><br><span class="line">    hiveconf = util.Arrays.copyOfRange(args, <span class="number">4</span>, args.length)</span><br><span class="line">    //hiveconf.<span class="keyword">foreach</span>(println(_))</span><br><span class="line">    mysqltohive(catalog,mysqlconnect,hiveconf)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  def mysqltohive(catalog: Catalog,mysqlconnect: DataFrame, hiveconf: <span class="keyword">Array</span>[String])=&#123;</span><br><span class="line"></span><br><span class="line">    val strings = hiveconf(<span class="number">1</span>).split(&quot;\\.&quot;)</span><br><span class="line">//</span><br><span class="line">//    println(hiveconf(<span class="number">2</span>))</span><br><span class="line">//    println(hiveconf.length)</span><br><span class="line"></span><br><span class="line">    catalog.listTables(strings(<span class="number">0</span>)).<span class="keyword">show</span>()</span><br><span class="line">    val empty = catalog.listTables(strings(<span class="number">0</span>)).<span class="keyword">filter</span>(x =&gt; &#123;</span><br><span class="line">      x.name == strings(<span class="number">1</span>)</span><br><span class="line">    &#125;).isEmpty</span><br><span class="line"></span><br><span class="line">    spark.conf.<span class="keyword">set</span>(&quot;hive.exec.dynamic.partition.mode&quot;,&quot;nonstrict&quot;)</span><br><span class="line">    spark.conf.<span class="keyword">set</span>(&quot;hive.exec.dynamic.partition&quot;,&quot;true&quot;)</span><br><span class="line">    //println(empty)</span><br><span class="line">    saveFile.savetohive(empty,mysqlconnect,hiveconf)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">-----------------------------------------------------hivetomysql</span></span><br><span class="line">package project</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.<span class="keyword">sql</span>.SparkSession</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.<span class="keyword">sql</span>.catalog.Catalog</span><br><span class="line"><span class="keyword">import</span> project.mysqltohive.spark</span><br><span class="line"><span class="keyword">import</span> tool.&#123;getmysqldf, savefile, sqlUtils,readfile&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">object</span> hivetomysql &#123;</span><br><span class="line">  val spark = SparkSession.builder().appName(&quot;sqoop&quot;).master(&quot;local[4]&quot;).enableHiveSupport().getOrCreate()</span><br><span class="line">  val getmysqldf = <span class="built_in">new</span> readfile</span><br><span class="line">  val sqlUtils = <span class="built_in">new</span> sqlUtils</span><br><span class="line">  val saveFile = <span class="built_in">new</span> savefile</span><br><span class="line">  private val catalog: Catalog = spark.catalog</span><br><span class="line"></span><br><span class="line">  def main(args: <span class="keyword">Array</span>[String]): Unit = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (args.length==<span class="number">0</span>)&#123;</span><br><span class="line">      println(</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">          |欢迎使用本程序</span><br><span class="line">          |参数说明</span><br><span class="line">          |总体参数种类 hive mysql</span><br><span class="line">          |---------------------------hive</span><br><span class="line">          |hive中要选择的字段 例子 ： &quot;sal,big&quot;</span><br><span class="line">          |hive的table的名字 例子 ： bigdata_hive3.emp</span><br><span class="line">          |hive中的 条件可以为空 例子 ： where sal &gt; &#x27;300&#x27;</span><br><span class="line">          |---------------------------mysql</span><br><span class="line">          |savemode overwrite append 等</span><br><span class="line">          |url 例子 ： jdbc:mysql://bigdata2:3306/try</span><br><span class="line">          |user 例子 ： root</span><br><span class="line">          |password 例子 ： liuzihan010616</span><br><span class="line">          |dbtable 例子 ： emp</span><br><span class="line">          |幂等性的列 ： 例子 ： sal</span><br><span class="line">          |&quot;&quot;&quot;.stripMargin)</span><br><span class="line">    &#125;</span><br><span class="line">    val frame = sqlUtils.checksql(spark, sqlUtils.hivesqlchoose(args))</span><br><span class="line"></span><br><span class="line">      var mysqlconf = <span class="built_in">new</span> <span class="keyword">Array</span>[String](args.length<span class="number">-4</span>)</span><br><span class="line">      mysqlconf = util.Arrays.copyOfRange(args, <span class="number">3</span>, args.length)</span><br><span class="line">      saveFile.savetojdbc(spark,frame,mysqlconf)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      
+   <div>
+     <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+   </div>
+     
+        <div class="reward-container">
+  <div>你们的鼓励是对我最大的支持</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="liu zihang 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>liu zihang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://zihang.fun/2001/01/16/tool/" title="tool">http://zihang.fun/2001/01/16/tool/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+     
+    
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/tool/" rel="tag"># tool</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/15/java%E4%B8%AD%E7%9A%84%E6%98%93%E9%94%99%E7%82%B9/" rel="next" title="java面试题">
+      java面试题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81NzQzNy8zMzkwMQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#spark"><span class="nav-number">1.</span> <span class="nav-text">spark</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liu zihang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">liu zihang</p>
+  <div class="site-description" itemprop="description">只有努力不会辜负你</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      链接网站
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://baidu.com/" title="https:&#x2F;&#x2F;baidu.com" rel="noopener" target="_blank">百度</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://fishc.com.cn/" title="https:&#x2F;&#x2F;fishc.com.cn" rel="noopener" target="_blank">鱼C论坛</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liu zihang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共189.3k字</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'http://zihang.fun/2001/01/16/tool/',]
+      });
+      });
+  </script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

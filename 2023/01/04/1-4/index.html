@@ -30,7 +30,7 @@
 <meta property="og:description" content="sparkspark产生背景？mr,hive批处理，离线处理存在一些局限性：  mr api 开发复杂 只能做离线计算，不能实时计算 性能不高  需求： sql &#x3D;》 mr 会产生多个job去完成一个需求 mr1&#x3D;&gt;mr2&#x3D;&gt;mr3 map &#x3D;&gt; reduce map处理完数据&#x3D;》dask数据落盘 &#x3D;》 reduce m">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-01-04T00:40:48.665Z">
-<meta property="article:modified_time" content="2023-01-11T01:04:53.833Z">
+<meta property="article:modified_time" content="2023-01-11T10:32:58.729Z">
 <meta property="article:author" content="liu zihang">
 <meta property="article:tag" content="spark">
 <meta name="twitter:card" content="summary">
@@ -233,7 +233,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-11 09:04:53" itemprop="dateModified" datetime="2023-01-11T09:04:53+08:00">2023-01-11</time>
+                <time title="修改时间：2023-01-11 18:32:58" itemprop="dateModified" datetime="2023-01-11T18:32:58+08:00">2023-01-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -265,7 +265,7 @@
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>44 分钟</span>
+              <span>45 分钟</span>
             </span>
 
         </div>
@@ -679,7 +679,7 @@
 <li>jar</li>
 <li>spark-submit</li>
 </ul>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">spark-submit <span class="string">\</span></span><br><span class="line">--<span class="keyword">class</span> 包名 <span class="string">\</span></span><br><span class="line">--master 模式 <span class="string">\</span></span><br><span class="line">--name 作业名字 <span class="string">\</span></span><br><span class="line">jar包在机器上的路径 <span class="string">\</span></span><br><span class="line">想传的参数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spark-submit <span class="string">\</span></span><br><span class="line">--<span class="keyword">class</span> 包名 <span class="string">\</span></span><br><span class="line">--master 模式 <span class="string">\</span></span><br><span class="line">--name 作业名字 <span class="string">\</span></span><br><span class="line">jar包在机器上的路径 <span class="string">\</span></span><br><span class="line">想传的参数</span><br><span class="line">-------------------------------------例子</span><br><span class="line">spark-submit <span class="string">\</span></span><br><span class="line">--<span class="keyword">class</span> <span class="title class_">tool</span>.jdbc.readjdbc <span class="string">\</span></span><br><span class="line">/home/hadoop/project/jar/bigdatajava-<span class="number">1.0</span>-SNAPSHOT.jar <span class="string">\</span></span><br><span class="line"><span class="string">&quot;jdbc:mysql://bigdata2:3306/try&quot;</span> <span class="string">&quot;root&quot;</span> <span class="string">&quot;liuzihan010616&quot;</span> <span class="string">&quot;emp&quot;</span></span><br><span class="line">-----------------------------------------我这里不加msater是因为我再代码里已经加了</span><br></pre></td></tr></table></figure>
 
 <p>还可以用其内封装的方法进行传值&#x3D;》不用 args</p>
 <p>就是在submit的时候用 <code>--conf</code>传入</p>
@@ -865,7 +865,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -878,7 +878,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -941,7 +941,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共181.2k字</span>
+  <span class="post-count">博客全站共189.3k字</span>
 </div>
 
 

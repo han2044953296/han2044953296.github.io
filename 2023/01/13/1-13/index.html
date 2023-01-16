@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/%E6%A0%91%E5%8F%B6_sleaves%20(1).png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/%E6%A0%91%E5%8F%B6_sleaves.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zihang.fun","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":15,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="案例：业务数据 + 日志数据业务数据 在mysql里 &#x3D;》  city_info user_info  日志数据 在hive里 &#x3D;》  user_click  思路 &#x3D;》 先用代码把数据统计到df中对df进行操作 代码如下：1234567891011121314151617181920212223242526272829303132333435363738394041">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sparksql-3">
+<meta property="og:url" content="http://zihang.fun/2023/01/13/1-13/index.html">
+<meta property="og:site_name" content="枫叶冢">
+<meta property="og:description" content="案例：业务数据 + 日志数据业务数据 在mysql里 &#x3D;》  city_info user_info  日志数据 在hive里 &#x3D;》  user_click  思路 &#x3D;》 先用代码把数据统计到df中对df进行操作 代码如下：1234567891011121314151617181920212223242526272829303132333435363738394041">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-01-13T00:09:52.768Z">
+<meta property="article:modified_time" content="2023-01-13T09:17:47.764Z">
+<meta property="article:author" content="liu zihang">
+<meta property="article:tag" content="spark">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://zihang.fun/2023/01/13/1-13/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>sparksql-3 | 枫叶冢</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/rss2.xml" title="枫叶冢" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a target="_blank" rel="noopener" href="https://github.com/han2044953296" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#151513; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">枫叶冢</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2023/01/13/1-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          sparksql-3
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-01-13 08:09:52 / 修改时间：17:17:47" itemprop="dateCreated datePublished" datetime="2023-01-13T08:09:52+08:00">2023-01-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="案例：业务数据-日志数据"><a href="#案例：业务数据-日志数据" class="headerlink" title="案例：业务数据 + 日志数据"></a>案例：业务数据 + 日志数据</h1><p>业务数据 在mysql里 &#x3D;》</p>
+<ul>
+<li>city_info</li>
+<li>user_info</li>
+</ul>
+<p>日志数据 在hive里 &#x3D;》</p>
+<ul>
+<li>user_click</li>
+</ul>
+<p>思路 &#x3D;》 先用代码把数据统计到df中对df进行操作</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">package sparkfirst</span><br><span class="line"></span><br><span class="line">import org.apache.spark.sql.<span class="type">SparkSession</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">object</span> xiangmu1 &#123;</span><br><span class="line">  def main(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="meta">val</span> spark = <span class="type">SparkSession</span>.builder().appName(<span class="string">&quot;Sparksql01&quot;</span>).master(<span class="string">&quot;local[4]&quot;</span>).enableHiveSupport().getOrCreate()</span><br><span class="line">    import spark.implicits._</span><br><span class="line">    <span class="meta">val</span> city_info = spark.read.format(<span class="string">&quot;jdbc&quot;</span>)</span><br><span class="line">      .options(<span class="type">Map</span>(<span class="string">&quot;url&quot;</span>-&gt;args(<span class="number">0</span>),<span class="string">&quot;dbtable&quot;</span>-&gt;args(<span class="number">3</span>),<span class="string">&quot;user&quot;</span>-&gt;args(<span class="number">1</span>),<span class="string">&quot;password&quot;</span>-&gt;args(<span class="number">2</span>),<span class="string">&quot;driver&quot;</span>-&gt;<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>)).load()</span><br><span class="line"></span><br><span class="line">    <span class="meta">val</span> user_info = spark.sql(</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        |select * from bigdata.product_info</span></span><br><span class="line"><span class="string">        |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line"></span><br><span class="line"><span class="comment">//    city_info.show()</span></span><br><span class="line"><span class="comment">//    user_info.show()</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">val</span> product_info = spark.read.textFile(<span class="string">&quot;hdfs://bigdata3:9000/data/user_click.txt&quot;</span>)</span><br><span class="line"><span class="comment">//    product_info.show(false)</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">val</span> userlog = product_info.map(line =&gt; &#123;</span><br><span class="line">      <span class="meta">val</span> strings = line.split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">      <span class="meta">val</span> userid = strings(<span class="number">0</span>)</span><br><span class="line">      <span class="meta">val</span> sessionid = strings(<span class="number">1</span>)</span><br><span class="line">      <span class="meta">val</span> dt = strings(<span class="number">2</span>)</span><br><span class="line">      <span class="meta">val</span> cityid = strings(<span class="number">3</span>)</span><br><span class="line">      <span class="meta">val</span> shopid = strings(<span class="number">4</span>)</span><br><span class="line">      (userid, sessionid, dt, cityid, shopid)</span><br><span class="line">    &#125;).toDF(<span class="string">&quot;userid&quot;</span>, <span class="string">&quot;sessionid&quot;</span>, <span class="string">&quot;dt&quot;</span>, <span class="string">&quot;cityid&quot;</span>, <span class="string">&quot;shopid&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//    userlog.show(false)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//----------------------------------------------------------------</span></span><br><span class="line">    city_info.createOrReplaceTempView(<span class="string">&quot;city_info&quot;</span>)</span><br><span class="line">    userlog.createOrReplaceTempView(<span class="string">&quot;user_log&quot;</span>)</span><br><span class="line">    user_info.createOrReplaceTempView(<span class="string">&quot;product_info&quot;</span>)</span><br><span class="line">    <span class="comment">//--------------------------------------------------------------</span></span><br><span class="line">    spark.sql(</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        |drop table if exists bigdata.tmp</span></span><br><span class="line"><span class="string">        |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line">    spark.sql(</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        |</span></span><br><span class="line"><span class="string">        |</span></span><br><span class="line"><span class="string">        |create table bigdata.tmp as</span></span><br><span class="line"><span class="string">        |select</span></span><br><span class="line"><span class="string">        |*</span></span><br><span class="line"><span class="string">        |from (</span></span><br><span class="line"><span class="string">        |    select * from city_info left join user_log on city_info.city_id = user_log.cityid left join product_info  on user_log.shopid = product_info.product_id</span></span><br><span class="line"><span class="string">        |)</span></span><br><span class="line"><span class="string">        |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line">    spark.sql(</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        |drop table if exists bigdata.sparkfinish</span></span><br><span class="line"><span class="string">        |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line">    spark.sql(</span><br><span class="line">      <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        |create table bigdata.sparkfinish as</span></span><br><span class="line"><span class="string">        |select</span></span><br><span class="line"><span class="string">        |*</span></span><br><span class="line"><span class="string">        |from(</span></span><br><span class="line"><span class="string">        |select</span></span><br><span class="line"><span class="string">        |area,</span></span><br><span class="line"><span class="string">        |product_name,</span></span><br><span class="line"><span class="string">        |rank() over(partition by area order by cnt) as rk</span></span><br><span class="line"><span class="string">        |from (</span></span><br><span class="line"><span class="string">        |select</span></span><br><span class="line"><span class="string">        |area,</span></span><br><span class="line"><span class="string">        |product_name,</span></span><br><span class="line"><span class="string">        |count(1) as cnt</span></span><br><span class="line"><span class="string">        |from bigdata.tmp</span></span><br><span class="line"><span class="string">        |group by area,product_name</span></span><br><span class="line"><span class="string">        |)</span></span><br><span class="line"><span class="string">        |)where rk &lt; 3;</span></span><br><span class="line"><span class="string">        |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="然后我们进行打包上传"><a href="#然后我们进行打包上传" class="headerlink" title="然后我们进行打包上传"></a>然后我们进行打包上传</h3><p>进行打包之前，我们要把我们的</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> spark = <span class="module-access"><span class="module"><span class="identifier">SparkSession</span>.</span></span>builder<span class="literal">()</span>.app<span class="constructor">Name(<span class="string">&quot;Sparksql01&quot;</span>)</span>.master(<span class="string">&quot;local[4]&quot;</span>).enable<span class="constructor">HiveSupport()</span>.get<span class="constructor">OrCreate()</span></span><br></pre></td></tr></table></figure>
+
+<p>给注释掉，因为我们用spark-submit的时候会通过命令的方式指定他</p>
+<p>打包上传之后我们可以进行调用脚本spark-submit脚本</p>
+<p>但是这里还是有分歧的，因为spark-submit部署的时候一般是部署在yarn的要分几种模式的简单介绍一下两种模式</p>
+<p>Cluster：</p>
+<ul>
+<li>提交作业  client作业提交  client就可以关闭了 对spark作业是没有影响的 而且运行的时候</li>
+<li>driver  是在集群机器里的</li>
+<li>上yarn上看日志</li>
+</ul>
+<p>client：</p>
+<ul>
+<li>提交作业  client作业提交 如果client关闭了 driver process 挂了  对spark作业有影响的</li>
+<li>是在 client机器里的</li>
+<li>可以直接看见日志的</li>
+</ul>
+<p>以下代码分别写一下</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">spark-submit <span class="string">\</span></span><br><span class="line">--master yarn <span class="string">\</span></span><br><span class="line">--deploy-mode client <span class="string">\</span></span><br><span class="line">--name userlog <span class="string">\</span></span><br><span class="line">--executor-memory <span class="number">1g</span> <span class="string">\</span></span><br><span class="line">--num-executors <span class="number">1</span> <span class="string">\</span></span><br><span class="line">--executor-cores <span class="number">1</span> <span class="string">\</span></span><br><span class="line">--<span class="keyword">class</span> <span class="title class_">sparkfirst</span>.xiangmu1 <span class="string">\</span></span><br><span class="line">/home/hadoop/project/jar/bigdatajava-<span class="number">1.0</span>-SNAPSHOT.jar <span class="string">\</span></span><br><span class="line"><span class="string">&quot;jdbc:mysql://bigdata2:3306/bigdata&quot;</span> root liuzihan010616 city_info</span><br><span class="line">--------------------------------------------------------cluster</span><br><span class="line">spark-submit <span class="string">\</span></span><br><span class="line">--master yarn <span class="string">\</span></span><br><span class="line">--deploy-mode cluster <span class="string">\</span></span><br><span class="line">--name userlog <span class="string">\</span></span><br><span class="line">--executor-memory <span class="number">1g</span> <span class="string">\</span></span><br><span class="line">--num-executors <span class="number">2</span> <span class="string">\</span></span><br><span class="line">--executor-cores <span class="number">1</span> <span class="string">\</span></span><br><span class="line">--<span class="keyword">class</span> <span class="title class_">sparkfirst</span>.xiangmu1 <span class="string">\</span></span><br><span class="line">/home/hadoop/project/jar/bigdatajava-<span class="number">1.0</span>-SNAPSHOT.jar <span class="string">\</span></span><br><span class="line"><span class="string">&quot;jdbc:mysql://bigdata2:3306/bigdata&quot;</span> root liuzihan010616 city_info</span><br><span class="line">-------------------------------------------------------------- 以下是正常的因为我把mysql的driver加入到spark的jars文件夹里了，所以上面不用指定jar</span><br><span class="line">spark-submit <span class="string">\</span></span><br><span class="line">--master yarn <span class="string">\</span></span><br><span class="line">--deploy-mode client  <span class="string">\</span></span><br><span class="line">--name userlog <span class="string">\</span></span><br><span class="line">--executor-memory <span class="number">1g</span> <span class="string">\</span></span><br><span class="line">--num-executors <span class="number">1</span> <span class="string">\</span></span><br><span class="line">--executor-cores <span class="number">1</span> <span class="string">\</span></span><br><span class="line">--jars /home/hadoop/software/mysql-connector-java-<span class="number">5.1</span>.<span class="number">28.jar</span> <span class="string">\</span></span><br><span class="line">--driver-<span class="keyword">class</span>-path /home/hadoop/software/mysql-connector-java-<span class="number">5.1</span>.<span class="number">28.jar</span> <span class="string">\</span></span><br><span class="line">--driver-library-path /home/hadoop/software/mysql-connector-java-<span class="number">5.1</span>.<span class="number">28.jar</span> <span class="string">\</span></span><br><span class="line">--<span class="keyword">class</span> <span class="title class_">sparkfirst</span>.xiangmu1 <span class="string">\</span></span><br><span class="line">/home/hadoop/project/jar/bigdatajava-<span class="number">1.0</span>-SNAPSHOT.jar <span class="string">\</span></span><br><span class="line"><span class="string">&quot;jdbc:mysql://bigdata2:3306/bigdata&quot;</span> root liuzihan010616 city_info user_info</span><br><span class="line">--------------------------------------------------------------------------------------------------</span><br><span class="line">spark-submit <span class="string">\</span></span><br><span class="line">--master yarn <span class="string">\</span></span><br><span class="line">--deploy-mode cluster <span class="string">\</span></span><br><span class="line">--name userlog <span class="string">\</span></span><br><span class="line">--executor-memory <span class="number">1g</span> <span class="string">\</span></span><br><span class="line">--num-executors <span class="number">1</span> <span class="string">\</span></span><br><span class="line">--executor-cores <span class="number">1</span> <span class="string">\</span></span><br><span class="line">--jars /home/hadoop/software/mysql-connector-java-<span class="number">5.1</span>.<span class="number">28.jar</span> <span class="string">\</span></span><br><span class="line">--driver-<span class="keyword">class</span>-path /home/hadoop/software/mysql-connector-java-<span class="number">5.1</span>.<span class="number">28.jar</span> <span class="string">\</span></span><br><span class="line">--driver-library-path /home/hadoop/software/mysql-connector-java-<span class="number">5.1</span>.<span class="number">28.jar</span> <span class="string">\</span></span><br><span class="line">--<span class="keyword">class</span> <span class="title class_">sparkfirst</span>.xiangmu1 <span class="string">\</span></span><br><span class="line">/home/hadoop/project/jar/bigdatajava-<span class="number">1.0</span>-SNAPSHOT.jar <span class="string">\</span></span><br><span class="line"><span class="string">&quot;jdbc:mysql://bigdata2:3306/bigdata&quot;</span> root liuzihan010616 city_info user_info</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="几种加入driver的方法是"><a href="#几种加入driver的方法是" class="headerlink" title="几种加入driver的方法是"></a>几种加入driver的方法是</h3><p>在执行命令的时候加入命令：如上</p>
+<p>直接加到jars里</p>
+<p>这里比较不推荐的就是第二种，因为怕和spark本身的包产生冲突</p>
+<h3 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h3><p>spark到yarn的执行流程和hadoop基本一样，除了spark的持久化操作要用到catche，其余都一样</p>
+<p>driver &#x3D;》manager</p>
+<p>excuter &#x3D;》 container</p>
+<h3 id="catlog"><a href="#catlog" class="headerlink" title="catlog"></a>catlog</h3><p>hive元数据 在mysql里</p>
+<p>spark 访问hive元数据 通过jdbc</p>
+<p>spark提供了个catlog</p>
+<p>直接调用catlog可以直接拿到hive的元数据的功能</p>
+<p>比如制作大数据分析平台</p>
+<p>获取catlog</p>
+<p><code>sparksesson.catlog</code></p>
+<p>然后里面有很多的方法可以在idea里通过ctrl + f12 查看方法</p>
+<p>冷数据可能放在cos 或者 oss上</p>
+<h3 id="udf"><a href="#udf" class="headerlink" title="udf"></a>udf</h3><ul>
+<li>代码的方式定义udf</li>
+<li>hive的udf可以在spark可以直接用</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">idea里定义udf</span><br><span class="line">---------------------------------------</span><br><span class="line">先导包</span><br><span class="line">import org<span class="selector-class">.apache</span><span class="selector-class">.spark</span><span class="selector-class">.sql</span><span class="selector-class">.functions</span><span class="selector-class">.udf</span></span><br><span class="line">然后</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">val spark = SparkSession</span><br><span class="line">  <span class="selector-class">.builder</span>()</span><br><span class="line">  <span class="selector-class">.appName</span>(<span class="string">&quot;Spark SQL UDF scalar example&quot;</span>)</span><br><span class="line">  <span class="selector-class">.getOrCreate</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// Define and register a zero-argument non-deterministic UDF</span></span><br><span class="line"><span class="comment">// UDF is deterministic by default, i.e. produces the same result for the same input.</span></span><br><span class="line">val random = <span class="built_in">udf</span>(() =&gt; Math<span class="selector-class">.random</span>())</span><br><span class="line">spark<span class="selector-class">.udf</span><span class="selector-class">.register</span>(<span class="string">&quot;random&quot;</span>, random<span class="selector-class">.asNondeterministic</span>())</span><br><span class="line">spark<span class="selector-class">.sql</span>(<span class="string">&quot;SELECT random()&quot;</span>)<span class="selector-class">.show</span>()</span><br><span class="line"><span class="comment">// +-------+</span></span><br><span class="line"><span class="comment">// |UDF()  |</span></span><br><span class="line"><span class="comment">// +-------+</span></span><br><span class="line"><span class="comment">// |xxxxxxx|</span></span><br><span class="line"><span class="comment">// +-------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Define and register a one-argument UDF</span></span><br><span class="line">val plusOne = <span class="built_in">udf</span>((x: Int) =&gt; x + <span class="number">1</span>)</span><br><span class="line">spark<span class="selector-class">.udf</span><span class="selector-class">.register</span>(<span class="string">&quot;plusOne&quot;</span>, plusOne)</span><br><span class="line">spark<span class="selector-class">.sql</span>(<span class="string">&quot;SELECT plusOne(5)&quot;</span>)<span class="selector-class">.show</span>()</span><br><span class="line"><span class="comment">// +------+</span></span><br><span class="line"><span class="comment">// |UDF(5)|</span></span><br><span class="line"><span class="comment">// +------+</span></span><br><span class="line"><span class="comment">// |     6|</span></span><br><span class="line"><span class="comment">// +------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Define a two-argument UDF and register it with Spark in one step</span></span><br><span class="line">spark<span class="selector-class">.udf</span><span class="selector-class">.register</span>(<span class="string">&quot;strLenScala&quot;</span>, (_: String)<span class="selector-class">.length</span> + (_: Int))</span><br><span class="line">spark<span class="selector-class">.sql</span>(<span class="string">&quot;SELECT strLenScala(&#x27;test&#x27;, 1)&quot;</span>)<span class="selector-class">.show</span>()</span><br><span class="line"><span class="comment">// +--------------------+</span></span><br><span class="line"><span class="comment">// |strLenScala(test, 1)|</span></span><br><span class="line"><span class="comment">// +--------------------+</span></span><br><span class="line"><span class="comment">// |                   5|</span></span><br><span class="line"><span class="comment">// +--------------------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// UDF in a WHERE clause</span></span><br><span class="line">spark<span class="selector-class">.udf</span><span class="selector-class">.register</span>(<span class="string">&quot;oneArgFilter&quot;</span>, (n: Int) =&gt; &#123; n &gt; <span class="number">5</span> &#125;)</span><br><span class="line">spark<span class="selector-class">.range</span>(<span class="number">1</span>, <span class="number">10</span>)<span class="selector-class">.createOrReplaceTempView</span>(<span class="string">&quot;test&quot;</span>)</span><br><span class="line">spark<span class="selector-class">.sql</span>(<span class="string">&quot;SELECT * FROM test WHERE oneArgFilter(id)&quot;</span>)<span class="selector-class">.show</span>()</span><br><span class="line"><span class="comment">// +---+</span></span><br><span class="line"><span class="comment">// | id|</span></span><br><span class="line"><span class="comment">// +---+</span></span><br><span class="line"><span class="comment">// |  6|</span></span><br><span class="line"><span class="comment">// |  7|</span></span><br><span class="line"><span class="comment">// |  8|</span></span><br><span class="line"><span class="comment">// |  9|</span></span><br><span class="line"><span class="comment">// +---+</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      
+   <div>
+     <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+   </div>
+     
+        <div class="reward-container">
+  <div>你们的鼓励是对我最大的支持</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="liu zihang 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>liu zihang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://zihang.fun/2023/01/13/1-13/" title="sparksql-3">http://zihang.fun/2023/01/13/1-13/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+     
+    
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/spark/" rel="tag"># spark</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/01/11/1-11/" rel="prev" title="sparksql-2">
+      <i class="fa fa-chevron-left"></i> sparksql-2
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/01/16/1-16/" rel="next" title="sparksql-4">
+      sparksql-4 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81NzQzNy8zMzkwMQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%EF%BC%9A%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE-%E6%97%A5%E5%BF%97%E6%95%B0%E6%8D%AE"><span class="nav-number">1.</span> <span class="nav-text">案例：业务数据 + 日志数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">1.0.1.</span> <span class="nav-text">代码如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%84%B6%E5%90%8E%E6%88%91%E4%BB%AC%E8%BF%9B%E8%A1%8C%E6%89%93%E5%8C%85%E4%B8%8A%E4%BC%A0"><span class="nav-number">1.0.2.</span> <span class="nav-text">然后我们进行打包上传</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%A0%E7%A7%8D%E5%8A%A0%E5%85%A5driver%E7%9A%84%E6%96%B9%E6%B3%95%E6%98%AF"><span class="nav-number">1.0.3.</span> <span class="nav-text">几种加入driver的方法是</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.0.4.</span> <span class="nav-text">执行流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#catlog"><span class="nav-number">1.0.5.</span> <span class="nav-text">catlog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#udf"><span class="nav-number">1.0.6.</span> <span class="nav-text">udf</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liu zihang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">liu zihang</p>
+  <div class="site-description" itemprop="description">只有努力不会辜负你</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      链接网站
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://baidu.com/" title="https:&#x2F;&#x2F;baidu.com" rel="noopener" target="_blank">百度</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://fishc.com.cn/" title="https:&#x2F;&#x2F;fishc.com.cn" rel="noopener" target="_blank">鱼C论坛</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liu zihang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共189.3k字</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'http://zihang.fun/2023/01/13/1-13/',]
+      });
+      });
+  </script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
