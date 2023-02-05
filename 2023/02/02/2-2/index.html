@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/%E6%A0%91%E5%8F%B6_sleaves%20(1).png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/%E6%A0%91%E5%8F%B6_sleaves.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zihang.fun","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":15,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="apijdbctohive1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798">
+<meta property="og:type" content="article">
+<meta property="og:title" content="同步工具">
+<meta property="og:url" content="http://zihang.fun/2023/02/02/2-2/index.html">
+<meta property="og:site_name" content="枫叶冢">
+<meta property="og:description" content="apijdbctohive1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-02T14:12:45.740Z">
+<meta property="article:modified_time" content="2023-02-02T16:04:52.656Z">
+<meta property="article:author" content="liu zihang">
+<meta property="article:tag" content="同步工具">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://zihang.fun/2023/02/02/2-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>同步工具 | 枫叶冢</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/rss2.xml" title="枫叶冢" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a target="_blank" rel="noopener" href="https://github.com/han2044953296" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#151513; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">枫叶冢</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zihang.fun/2023/02/02/2-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="liu zihang">
+      <meta itemprop="description" content="只有努力不会辜负你">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫叶冢">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          同步工具
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-02 22:12:45" itemprop="dateCreated datePublished" datetime="2023-02-02T22:12:45+08:00">2023-02-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-03 00:04:52" itemprop="dateModified" datetime="2023-02-03T00:04:52+08:00">2023-02-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>21k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>19 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+   
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="api"><a href="#api" class="headerlink" title="api"></a>api</h1><h2 id="jdbctohive"><a href="#jdbctohive" class="headerlink" title="jdbctohive"></a>jdbctohive</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br></pre></td><td class="code"><pre><span class="line">package project</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.<span class="keyword">sql</span>.catalog.Catalog</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.<span class="keyword">sql</span>.&#123;DataFrame, Dataset, <span class="keyword">Row</span>, SparkSession&#125;</span><br><span class="line"><span class="keyword">import</span> tool.sqlUtils</span><br><span class="line"><span class="keyword">import</span> tool.getmysqldf</span><br><span class="line"><span class="keyword">import</span> tool.savefile</span><br><span class="line"><span class="keyword">import</span> tool.readfile</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.java.utils.ParameterTool</span><br><span class="line"><span class="keyword">object</span> jdbctohive&#123;</span><br><span class="line">  def apply(parameterTool: ParameterTool): jdbctohive = <span class="built_in">new</span> jdbctohive(parameterTool)</span><br><span class="line"></span><br><span class="line">  def main(args: <span class="keyword">Array</span>[String]): Unit = &#123;</span><br><span class="line">    <span class="keyword">if</span> (args.length==<span class="number">0</span>)&#123;</span><br><span class="line">      println(</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">          |欢迎使用本程序</span><br><span class="line">          |参数详情 mysql hive</span><br><span class="line">          |-------------------------mysql</span><br><span class="line">          |url 例子 ： jdbc:mysql://bigdata2:3306/try</span><br><span class="line">          |user 例子 ： root</span><br><span class="line">          |password 例子 ： liuzihan010616</span><br><span class="line">          |tablename =&gt; 支持谓词下压  例子 ： emp 或者 select * from emp 等</span><br><span class="line">          |driver =&gt; com.mysql.jdbc.Driver</span><br><span class="line">          |---------------------------hive</span><br><span class="line">          |mode模式 overwrite append 等</span><br><span class="line">          |hive中的table 例子 bigdata.emp</span><br><span class="line">          |可选参数 分区字段 自动开启的是动态分区 例子 deptno</span><br><span class="line">          |分区字段 [字段值] [标志位]：代表是不是只更新这一个分区的数据</span><br><span class="line">          |jdbc:mysql://bigdata2:3306/try root liuzihan010616 &quot;<span class="keyword">select</span> * <span class="keyword">from</span> emp &quot; com.mysql.jdbc.Driver append default.tmp deptno,sal,test,re 999,888</span><br><span class="line">          |&quot;&quot;&quot;.stripMargin)</span><br><span class="line">    &#125;</span><br><span class="line">    val tool = ParameterTool.fromArgs(args)</span><br><span class="line">    jdbctohive(tool).excute(args)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> jdbctohive(parameterTool: ParameterTool) &#123;</span><br><span class="line">  <span class="keyword">System</span>.setProperty(&quot;HADOOP_USER_NAME&quot;,&quot;hadoop&quot;)</span><br><span class="line">  val spark = SparkSession.builder().appName(&quot;sqoop&quot;).master(&quot;local[4]&quot;).enableHiveSupport().getOrCreate()</span><br><span class="line">  spark.sparkContext.setCheckpointDir(&quot;/tmp/checkpoint&quot;)</span><br><span class="line"></span><br><span class="line">  val getmysqldf = <span class="built_in">new</span> readfile</span><br><span class="line">  val sqlUtils = <span class="built_in">new</span> sqlUtils</span><br><span class="line">  val saveFile = <span class="built_in">new</span> savefile</span><br><span class="line">  private val catalog: Catalog = spark.catalog</span><br><span class="line">  var changecolunm = <span class="keyword">false</span></span><br><span class="line">  <span class="keyword">import</span> spark.implicits._</span><br><span class="line">  <span class="keyword">import</span> org.apache.spark.<span class="keyword">sql</span>.<span class="keyword">functions</span>._</span><br><span class="line"></span><br><span class="line">  val url = parameterTool.getRequired(&quot;url&quot;)</span><br><span class="line">  val <span class="keyword">user</span> = parameterTool.getRequired(&quot;user&quot;)</span><br><span class="line">  val <span class="keyword">password</span> = parameterTool.getRequired(&quot;password&quot;)</span><br><span class="line">  val table = parameterTool.getRequired(&quot;table&quot;)</span><br><span class="line">  val driver = parameterTool.getRequired(&quot;driver&quot;)</span><br><span class="line">  val mode = parameterTool.getRequired(&quot;mode&quot;)</span><br><span class="line">  val hivetable = parameterTool.getRequired(&quot;hivetable&quot;)</span><br><span class="line">  val hivepartition = parameterTool.<span class="keyword">get</span>(&quot;hivepartition&quot;,<span class="keyword">null</span>)</span><br><span class="line">  val partitionValues = parameterTool.<span class="keyword">get</span>(&quot;partitionValues&quot;)</span><br><span class="line">  val insertpartition = parameterTool.<span class="keyword">get</span>(&quot;insertpartition&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  def excute(args: <span class="keyword">Array</span>[String]): Unit = &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 获取jdbc的df</span><br><span class="line">    val mysqlconnect = getmysqldf.getmysqldataframe(spark, url, <span class="keyword">user</span>, <span class="keyword">password</span>, <span class="keyword">table</span> , driver)</span><br><span class="line">    // 验证指示</span><br><span class="line">    mysqlconnect.<span class="keyword">show</span>()</span><br><span class="line">    // 生成hive参数数组</span><br><span class="line">//    var hiveconf = <span class="built_in">new</span> <span class="keyword">Array</span>[String](args.length<span class="number">-5</span>)</span><br><span class="line">//    hiveconf = util.Arrays.copyOfRange(args, <span class="number">5</span>, args.length)</span><br><span class="line">    //hiveconf.<span class="keyword">foreach</span>(println(_))</span><br><span class="line">    jdbctohive(args.length,catalog,mysqlconnect)</span><br><span class="line">    spark.stop()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  def changecolnums(<span class="type">int</span>: <span class="type">Int</span>,resourcesql:DataFrame) =&#123;</span><br><span class="line">    var finallyresult:Dataset[<span class="keyword">Row</span>] = <span class="keyword">null</span> // 最终结果集</span><br><span class="line">    var frame:DataFrame = <span class="keyword">null</span> // 中间变量</span><br><span class="line">    val strings2 = hivepartition.split(&quot;,&quot;)</span><br><span class="line">    var hiveconclumns = spark.<span class="keyword">table</span>(hivetable).<span class="keyword">columns</span> // hive的列数</span><br><span class="line">    //hiveconclumns.<span class="keyword">foreach</span>(println((_))) // 验证hive的列数</span><br><span class="line">    var mysqlconnect:DataFrame = resourcesql // 设置数据源的resource</span><br><span class="line"></span><br><span class="line">    // 判断分区字段在不在jdbc的数据里，如果不在，则在jdbc的数据源中先添加上分区字段</span><br><span class="line">    var strings1:<span class="keyword">Array</span>[String] =<span class="keyword">null</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="type">int</span> &gt; <span class="number">8</span> &amp;&amp; partitionValues != <span class="keyword">null</span>)&#123;</span><br><span class="line">      strings1 = partitionValues.split(&quot;,&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    var flagtmp:<span class="type">Int</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (elem &lt;- strings2)&#123;</span><br><span class="line">      <span class="keyword">if</span> (!mysqlconnect.<span class="keyword">columns</span>.contains(elem))&#123;</span><br><span class="line">        println(elem)</span><br><span class="line">        println(strings1(flagtmp))</span><br><span class="line">        mysqlconnect = mysqlconnect.withColumn(elem,lit(strings1(flagtmp)))</span><br><span class="line">        flagtmp = flagtmp + <span class="number">1</span></span><br><span class="line">        mysqlconnect.<span class="keyword">show</span>()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    val jdbcconclumns = mysqlconnect.<span class="keyword">columns</span> // jdbc的列数</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    var jdbcoldsource:Dataset[<span class="keyword">Row</span>] = <span class="keyword">null</span> // 源数据库的数据 <span class="keyword">checkpoint</span>是为了破坏数据均衡，以后能编写变读取</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="type">int</span> == <span class="number">10</span>)&#123;</span><br><span class="line">      hivepartition.split(&quot;,&quot;)(<span class="number">0</span>) match &#123;</span><br><span class="line">        <span class="keyword">case</span> &quot;&quot; =&gt; &#123;</span><br><span class="line">          println(&quot;-------------------------无操作&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">case</span> _ =&gt; &#123;</span><br><span class="line">          hivepartition.split(&quot;,&quot;).length match &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span> =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">              jdbcoldsource = spark.<span class="keyword">sql</span>(</span><br><span class="line">                s&quot;&quot;&quot;</span><br><span class="line">                   |select * from $&#123;hivetable&#125; where $&#123;hivepartition&#125; != $&#123;partitionValues&#125;</span><br><span class="line">                   |&quot;&quot;&quot;.stripMargin).<span class="keyword">checkpoint</span>()</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">case</span> _ =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">              var tmpstring:String  = <span class="keyword">null</span></span><br><span class="line">              var flag:<span class="type">Int</span> = <span class="number">0</span></span><br><span class="line">                 val flagvalue = partitionValues.split(&quot;,&quot;)</span><br><span class="line">                  <span class="keyword">for</span> (elem &lt;- hivepartition.split(&quot;,&quot;))&#123;</span><br><span class="line">                 <span class="keyword">if</span> (elem == hivepartition.split(&quot;,&quot;)(hivepartition.split(&quot;,&quot;).length<span class="number">-1</span>))&#123;</span><br><span class="line">                   tmpstring = tmpstring + elem + &quot;!=&quot; + flagvalue(flag)</span><br><span class="line">                 &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                   tmpstring = tmpstring + elem + &quot;!=&quot; + flagvalue(flag) + &quot;and&quot;</span><br><span class="line">                 &#125;</span><br><span class="line">                    flag = flag + <span class="number">1</span></span><br><span class="line">              &#125;</span><br><span class="line">              jdbcoldsource = spark.<span class="keyword">sql</span>(</span><br><span class="line">                s&quot;&quot;&quot;</span><br><span class="line">                   |select * from $&#123;hivetable&#125; where $&#123;tmpstring&#125;</span><br><span class="line">                   |&quot;&quot;&quot;.stripMargin).<span class="keyword">checkpoint</span>()</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      jdbcoldsource =  spark.<span class="keyword">sql</span>(</span><br><span class="line">        s&quot;&quot;&quot;</span><br><span class="line">           |select * from $&#123;hivetable&#125;</span><br><span class="line">           |&quot;&quot;&quot;.stripMargin).<span class="keyword">checkpoint</span>()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var existcolunms: <span class="keyword">Array</span>[String] = <span class="keyword">null</span>  // 设置hive或者mysql的额外列</span><br><span class="line">    var resultdf: DataFrame = jdbcoldsource // 获取hive的数据原始数据</span><br><span class="line"></span><br><span class="line">    // 判断是hive的列多，还是数据源的列数多</span><br><span class="line">    <span class="keyword">if</span> (hiveconclumns.length &gt;= jdbcconclumns.length)&#123;</span><br><span class="line">      // 判断额外列的存在</span><br><span class="line">      existcolunms= hiveconclumns.<span class="keyword">filter</span>(hivecol =&gt; &#123;</span><br><span class="line">        val <span class="type">bool</span> = jdbcconclumns.map(jdbccol =&gt; &#123;</span><br><span class="line">          jdbccol == hivecol</span><br><span class="line">        &#125;).contains(<span class="keyword">true</span>)</span><br><span class="line">        !<span class="type">bool</span></span><br><span class="line">      &#125;)</span><br><span class="line">      // 判断两个列数是不是相等</span><br><span class="line">        <span class="keyword">if</span> (existcolunms.isEmpty) &#123;</span><br><span class="line">          frame = mysqlconnect.selectExpr(hiveconclumns: _*)</span><br><span class="line">          frame</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        // 列数不相等的时候让列数少的加列</span><br><span class="line">        resultdf = mysqlconnect</span><br><span class="line">        <span class="keyword">for</span> (elem &lt;- existcolunms)&#123;</span><br><span class="line">          resultdf = resultdf.withColumn(elem, lit(<span class="keyword">null</span>))</span><br><span class="line">        &#125;</span><br><span class="line">        // 对字段进行排序 ， 让分区数据的分区字段在最后一列</span><br><span class="line">        frame = resultdf.selectExpr(hiveconclumns: _*)</span><br><span class="line">        // 验证数据</span><br><span class="line">        frame.<span class="keyword">show</span>()</span><br><span class="line">        // 整合历史数据</span><br><span class="line">        finallyresult = jdbcoldsource.<span class="keyword">union</span>(frame)</span><br><span class="line">        // 验证数据</span><br><span class="line">        finallyresult.<span class="keyword">show</span>()</span><br><span class="line">        changecolunm = <span class="keyword">true</span></span><br><span class="line">        finallyresult</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      // 数据的列多</span><br><span class="line">      existcolunms= jdbcconclumns.<span class="keyword">filter</span>(jdbccol =&gt; &#123;</span><br><span class="line">        val <span class="type">bool</span> = hiveconclumns.map(hivecol =&gt; &#123;</span><br><span class="line">          jdbccol == hivecol</span><br><span class="line">        &#125;).contains(<span class="keyword">true</span>)</span><br><span class="line">        !<span class="type">bool</span></span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (existcolunms.isEmpty) &#123;</span><br><span class="line">        frame = mysqlconnect.selectExpr(hiveconclumns: _*)</span><br><span class="line">        frame</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (elem &lt;- existcolunms)&#123;</span><br><span class="line">          resultdf = resultdf.withColumn(elem, lit(<span class="keyword">null</span>))</span><br><span class="line">        &#125;</span><br><span class="line">        frame = resultdf.selectExpr(jdbcconclumns: _*)</span><br><span class="line">        finallyresult = frame.<span class="keyword">union</span>(mysqlconnect)</span><br><span class="line">        changecolunm = <span class="keyword">true</span></span><br><span class="line">        finallyresult</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  def jdbctohive(<span class="type">int</span>: <span class="type">Int</span>,catalog: Catalog,mysqlconnect: DataFrame)=&#123;</span><br><span class="line">    // 分割字符串获取hive的 表和数据库</span><br><span class="line">    val hivedbandtables = hivetable.split(&quot;\\.&quot;)</span><br><span class="line">    val hivepart = hivepartition.split(&quot;,&quot;)</span><br><span class="line">    hivepart.<span class="keyword">foreach</span>(println(_))</span><br><span class="line">// catalog的方法 获取表存不存在的方法</span><br><span class="line">//    catalog.listTables(strings(<span class="number">0</span>)).<span class="keyword">show</span>()</span><br><span class="line">//    val empty = catalog.listTables(strings(<span class="number">0</span>)).<span class="keyword">filter</span>(x =&gt; &#123;</span><br><span class="line">//      x.name == strings(<span class="number">1</span>)</span><br><span class="line">//    &#125;).isEmpty</span><br><span class="line">    val empty = catalog.tableExists(hivedbandtables(<span class="number">0</span>),hivedbandtables(<span class="number">1</span>))</span><br><span class="line">//<span class="comment">-----------------------------------------------------------------------------</span></span><br><span class="line">//    <span class="keyword">sql</span>的方法</span><br><span class="line">//    val empty1 = spark.<span class="keyword">sql</span>(</span><br><span class="line">//      &quot;&quot;&quot;</span><br><span class="line">//        |show tables in hivedb</span><br><span class="line">//        |&quot;&quot;&quot;.stripMargin).<span class="keyword">filter</span>(&quot;tableName = &#x27;hivetablename&#x27;&quot;).isEmpty</span><br><span class="line">// <span class="comment">--------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 判断列数是不是相等</span><br><span class="line">    var frameresult:DataFrame = mysqlconnect</span><br><span class="line">    // 先判断表存不存在 ，因为判断列数的方法要求表存在</span><br><span class="line">      empty match &#123;</span><br><span class="line">          // 表不存在</span><br><span class="line">      <span class="keyword">case</span> <span class="keyword">false</span> =&gt; &#123;</span><br><span class="line">        // 判断输入的变量个数执行 判断分区表还是普通表</span><br><span class="line">        <span class="keyword">if</span> (<span class="type">int</span> &gt; <span class="number">7</span>) &#123;</span><br><span class="line">          println(&quot;-----------------分区表&quot;)</span><br><span class="line">          // 判断分区的参数在不在列中 如果不在 ，则加上 ，在的话就自动往下走</span><br><span class="line">          var hivepartval:<span class="keyword">Array</span>[String] =<span class="keyword">null</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="type">int</span> &gt; <span class="number">8</span> &amp;&amp; partitionValues != <span class="keyword">null</span>)&#123;</span><br><span class="line">            hivepartval = partitionValues.split(&quot;,&quot;)</span><br><span class="line">          &#125;</span><br><span class="line">          var flagtmp:<span class="type">Int</span> = <span class="number">0</span>;</span><br><span class="line">          <span class="keyword">for</span> (elem &lt;- hivepart)&#123;</span><br><span class="line">            <span class="keyword">if</span> (!mysqlconnect.<span class="keyword">columns</span>.contains(elem))&#123;</span><br><span class="line">              println(elem)</span><br><span class="line">              println(hivepartval(flagtmp))</span><br><span class="line">              frameresult = frameresult.withColumn(elem,lit(hivepartval(flagtmp)))</span><br><span class="line">              flagtmp = flagtmp + <span class="number">1</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">          println(&quot;-----------普通表&quot;)</span><br><span class="line">          frameresult = mysqlconnect</span><br><span class="line">          mysqlconnect.<span class="keyword">show</span>()</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> <span class="keyword">true</span> =&gt; &#123;</span><br><span class="line">        // 表存在</span><br><span class="line">        // 判断是不是分区表</span><br><span class="line">        frameresult = changecolnums(<span class="type">int</span>, mysqlconnect)</span><br><span class="line">//        <span class="keyword">if</span> (args.length &gt; <span class="number">7</span>) &#123;</span><br><span class="line">//          println(&quot;-----------------分区表&quot;)</span><br><span class="line">//          <span class="keyword">if</span> (!mysqlconnect.<span class="keyword">columns</span>.contains(args(<span class="number">7</span>)))&#123;</span><br><span class="line">//            frameresult = changecolnums(args, hiveconf, mysqlconnect)</span><br><span class="line">//          &#125;</span><br><span class="line">//        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">//          println(&quot;-----------普通表&quot;)</span><br><span class="line">//          frameresult = mysqlconnect</span><br><span class="line">//        &#125;</span><br><span class="line">        frameresult.<span class="keyword">show</span>()&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    spark.conf.<span class="keyword">set</span>(&quot;hive.exec.dynamic.partition.mode&quot;,&quot;nonstrict&quot;)</span><br><span class="line">    spark.conf.<span class="keyword">set</span>(&quot;hive.exec.dynamic.partition&quot;,&quot;true&quot;)</span><br><span class="line">    spark.conf.<span class="keyword">set</span>(&quot;spark.sql.parquet.writeLegacyFormat&quot;, &quot;true&quot;)</span><br><span class="line">    println(empty)</span><br><span class="line">    saveFile.savetohiveapi(spark,empty,frameresult,hivetable,mode,hivepartition,changecolunm)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="hivetojdbc"><a href="#hivetojdbc" class="headerlink" title="hivetojdbc"></a>hivetojdbc</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> project</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.SparkSession</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.catalog.Catalog</span><br><span class="line"><span class="keyword">import</span> tool.&#123;getmysqldf, savefile, sqlUtils,readfile&#125;</span><br><span class="line"><span class="keyword">import</span> org.apache.flink.api.java.utils.ParameterTool</span><br><span class="line">object hivetojdbc&#123;</span><br><span class="line">  def <span class="title function_">apply</span><span class="params">(parameterTool: ParameterTool)</span>: hivetojdbc = <span class="keyword">new</span> <span class="title class_">hivetojdbc</span>(parameterTool)</span><br><span class="line"></span><br><span class="line">  def <span class="title function_">main</span><span class="params">(args: Array[String])</span>: Unit = &#123;</span><br><span class="line">    <span class="keyword">if</span> (args.length==<span class="number">0</span>)&#123;</span><br><span class="line">      println(</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">          |欢迎使用本程序</span></span><br><span class="line"><span class="string">          |参数说明</span></span><br><span class="line"><span class="string">          |总体参数种类 hive mysql</span></span><br><span class="line"><span class="string">          |---------------------------hive</span></span><br><span class="line"><span class="string">          |hive中要选择的字段 例子 ： &quot;sal,big  / *  &quot;</span></span><br><span class="line"><span class="string">          |hive的table的名字 例子 ： bigdata_hive3.emp</span></span><br><span class="line"><span class="string">          |hive中的 条件可以为空 例子 ： where sal &gt; &#x27;300&#x27;</span></span><br><span class="line"><span class="string">          |---------------------------mysql</span></span><br><span class="line"><span class="string">          |savemode overwrite append 等</span></span><br><span class="line"><span class="string">          |url 例子 ： jdbc:mysql://bigdata2:3306/try</span></span><br><span class="line"><span class="string">          |user 例子 ： root</span></span><br><span class="line"><span class="string">          |password 例子 ： liuzihan010616</span></span><br><span class="line"><span class="string">          |dbtable 例子 ： emp</span></span><br><span class="line"><span class="string">          |幂等性的列 ： 例子 ： sal</span></span><br><span class="line"><span class="string">          |驱动名称 ： 例子 com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="string">          |&quot;&quot;&quot;</span>.stripMargin)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">val</span> <span class="variable">tool</span> <span class="operator">=</span> ParameterTool.fromArgs(args)</span><br><span class="line">    hivetojdbc(tool).excute()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">hivetojdbc</span>(parameterTool: ParameterTool) &#123;</span><br><span class="line">  <span class="type">val</span> <span class="variable">spark</span> <span class="operator">=</span> SparkSession.builder().enableHiveSupport().getOrCreate()</span><br><span class="line">  <span class="type">val</span> <span class="variable">getmysqldf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">readfile</span></span><br><span class="line">  <span class="type">val</span> <span class="variable">sqlUtils</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">sqlUtils</span></span><br><span class="line">  <span class="type">val</span> <span class="variable">saveFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">savefile</span></span><br><span class="line">  <span class="keyword">private</span> val catalog: Catalog = spark.catalog</span><br><span class="line">  <span class="type">val</span> <span class="variable">hiveconclunms</span> <span class="operator">=</span> parameterTool.getRequired(<span class="string">&quot;hiveconclumns&quot;</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">hivetable</span> <span class="operator">=</span> parameterTool.getRequired(<span class="string">&quot;hivetable&quot;</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">hiveoption</span> <span class="operator">=</span> parameterTool.get(<span class="string">&quot;hiveoption&quot;</span>,<span class="literal">null</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">url</span> <span class="operator">=</span> parameterTool.get(<span class="string">&quot;url&quot;</span>,<span class="string">&quot;jdbc:mysql://bigdata2:3306/bigdata&quot;</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">user</span> <span class="operator">=</span> parameterTool.get(<span class="string">&quot;user&quot;</span>,<span class="string">&quot;root&quot;</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">pasword</span> <span class="operator">=</span> parameterTool.get(<span class="string">&quot;password&quot;</span>,<span class="string">&quot;liuzihan010616&quot;</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">dbtable</span> <span class="operator">=</span> parameterTool.getRequired(<span class="string">&quot;dbtable&quot;</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">driver</span> <span class="operator">=</span> parameterTool.getRequired(<span class="string">&quot;driver&quot;</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">midengconclumns</span> <span class="operator">=</span> parameterTool.getRequired(<span class="string">&quot;col&quot;</span>)</span><br><span class="line">  <span class="type">val</span> <span class="variable">mode</span> <span class="operator">=</span> parameterTool.getRequired(<span class="string">&quot;mode&quot;</span>)</span><br><span class="line"></span><br><span class="line">  def <span class="title function_">excute</span><span class="params">()</span>: Unit = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">val</span> <span class="variable">frame</span> <span class="operator">=</span> sqlUtils.checksql(spark, sqlUtils.hivesqlchoose(hiveconclunms,hivetable,hiveoption))</span><br><span class="line">    saveFile.savetojdbc(spark,frame,url,user,pasword,dbtable,driver,midengconclumns,mode)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="sql方式"><a href="#sql方式" class="headerlink" title="sql方式"></a>sql方式</h1><h2 id="jdbctohive-1"><a href="#jdbctohive-1" class="headerlink" title="jdbctohive"></a>jdbctohive</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">package sparkfirst</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.<span class="keyword">sql</span>.SparkSession</span><br><span class="line"><span class="keyword">import</span> tool.savefile</span><br><span class="line"><span class="keyword">import</span> tool.sqlUtils</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.<span class="keyword">sql</span>.<span class="keyword">functions</span>._</span><br><span class="line"><span class="keyword">object</span> test &#123;</span><br><span class="line">  val spark = SparkSession.builder().appName(&quot;Sparksql01&quot;).master(&quot;local[4]&quot;).enableHiveSupport().getOrCreate()</span><br><span class="line">  private val savefile = <span class="built_in">new</span> savefile</span><br><span class="line">  private val utils = <span class="built_in">new</span> sqlUtils</span><br><span class="line">  def main(args: <span class="keyword">Array</span>[String]): Unit = &#123;</span><br><span class="line">    val df = spark.<span class="keyword">read</span>.format(&quot;JDBC&quot;)</span><br><span class="line">      .<span class="keyword">option</span>(&quot;url&quot;,&quot;jdbc:mysql://bigdata2:3306/try&quot;)</span><br><span class="line">      .<span class="keyword">option</span>(&quot;dbtable&quot;, &quot;emp&quot;)</span><br><span class="line">      .<span class="keyword">option</span>(&quot;user&quot;, &quot;root&quot;)</span><br><span class="line">      .<span class="keyword">option</span>(&quot;password&quot;, &quot;liuzihan010616&quot;)</span><br><span class="line">      .<span class="keyword">load</span>()</span><br><span class="line">    df.<span class="keyword">select</span>(&quot;sal&quot;).tail(<span class="number">1</span>).<span class="keyword">foreach</span>(println(_))</span><br><span class="line">    println(df.<span class="keyword">select</span>(&quot;sal&quot;).tail(<span class="number">1</span>)(<span class="number">0</span>)(<span class="number">0</span>))</span><br><span class="line">    df.<span class="keyword">show</span>()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    var str:String = <span class="keyword">null</span></span><br><span class="line">    val <span class="type">bool</span> = spark.catalog.tableExists(&quot;default.tmp&quot;)</span><br><span class="line">    <span class="keyword">if</span> (<span class="type">bool</span>)&#123;</span><br><span class="line">      spark.<span class="keyword">sql</span>(</span><br><span class="line">        s&quot;&quot;&quot;</span><br><span class="line">          |drop table default.tmp</span><br><span class="line">          |&quot;&quot;&quot;.stripMargin)</span><br><span class="line">      str = utils.mkcreatesql(df, &quot;default.tmp&quot;, &quot;text&quot;, &quot;&#x27;,&#x27;&quot;,&quot;deptno,hiredate&quot;)</span><br><span class="line">      utils.checksql(spark,str)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      str = utils.mkcreatesql(df, &quot;default.tmp&quot;, &quot;text&quot;, &quot;&#x27;,&#x27;&quot;,&quot;deptno,hiredate&quot;)</span><br><span class="line">      utils.checksql(spark,str)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    spark.conf.<span class="keyword">set</span>(&quot;hive.exec.dynamic.partition.mode&quot;,&quot;nonstrict&quot;)</span><br><span class="line">    spark.conf.<span class="keyword">set</span>(&quot;hive.exec.dynamic.partition&quot;,&quot;true&quot;)</span><br><span class="line">    val frame = df.withColumn(&quot;ee&quot;, lit(&quot;aaa&quot;))</span><br><span class="line">    utils.insertmake(spark,df,&quot;default.tmp&quot;,&quot;&#x27;,&#x27;&quot;,&quot;deptno,hiredate&quot;)</span><br><span class="line">    utils.changecolunms(spark,frame,&quot;default.tmp&quot;)</span><br><span class="line">    utils.insertmake(spark,frame,&quot;default.tmp&quot;,&quot;&#x27;,&#x27;&quot;,&quot;deptno,hiredate&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="hivetojdbc-1"><a href="#hivetojdbc-1" class="headerlink" title="hivetojdbc"></a>hivetojdbc</h2><p>用sqlUtils里自己定义的api来进行</p>
+<h1 id="思路及实现功能"><a href="#思路及实现功能" class="headerlink" title="思路及实现功能"></a>思路及实现功能</h1><h2 id="source"><a href="#source" class="headerlink" title="source"></a>source</h2><p>通过api进行对jdbc数据接收</p>
+<p>通过</p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">getmysqldf.getmysqldataframe(spark, url, user, password, table , driver)</span><br><span class="line">----------------------------------------------------------------------------------------------</span><br><span class="line">  def getmysqldataframe(sparkSession: <span class="type">SparkSession</span>,<span class="built_in">string</span>: <span class="type">String</span>*) =&#123;</span><br><span class="line">    <span class="keyword">val</span> sql = <span class="built_in">string</span>(<span class="number">3</span>)</span><br><span class="line">    <span class="keyword">val</span> frame: <span class="type">DataFrame</span> = sparkSession.read.format(<span class="string">&quot;jdbc&quot;</span>).options(<span class="type">Map</span>(<span class="string">&quot;url&quot;</span> -&gt; <span class="built_in">string</span>(<span class="number">0</span>), <span class="string">&quot;user&quot;</span> -&gt; <span class="built_in">string</span>(<span class="number">1</span>), <span class="string">&quot;password&quot;</span> -&gt; <span class="built_in">string</span>(<span class="number">2</span>), <span class="string">&quot;dbtable&quot;</span> -&gt; s<span class="string">&quot;($sql) as tmp&quot;</span>,<span class="string">&quot;driver&quot;</span>-&gt;<span class="built_in">string</span>(<span class="number">4</span>))).load<span class="literal">()</span></span><br><span class="line">    frame</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>来获取jdbc数据</p>
+<p>其他的方法 ： 其中options 可以换成多个option来进行，option里是KV类型的</p>
+<p>通过</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"> val frame = sqlUtils.checksql(spark, sqlUtils.hivesqlchoose(hiveconclunms,hivetable,hiveoption))</span></span><br><span class="line"><span class="section">-----------------------------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="code">  def checksql(spark:SparkSession, string: String)=&#123;</span></span><br><span class="line"><span class="code">    spark.sql(string)</span></span><br><span class="line"><span class="section">&#125;</span></span><br><span class="line"><span class="section">---------------------------------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="code"> def hivesqlchoose(hiveconclumns:String,hivetable:String,hiveoptions:String)=&#123;</span></span><br><span class="line"></span><br><span class="line"><span class="code">    &quot;select&quot; + &quot; &quot; + hiveconclumns + &quot; &quot; + &quot;from&quot; + &quot; &quot; +  hiveconclumns + &quot; &quot; + hiveoptions</span></span><br><span class="line"><span class="code">  &#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>前提在saprksession处打开enablesupporthive参数</p>
+<h2 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h2><p>通过api对数据进行整合以及处理</p>
+<p>功能 ：</p>
+<ul>
+<li>jdbctohive<ul>
+<li>基本功能<ul>
+<li>同步普通表</li>
+<li>同步分区表<ul>
+<li>单分区</li>
+<li>多分区</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>追加功能api<ul>
+<li>用户自定义分区字段及其值</li>
+<li>用户在jdbc数据中增加列，hive中自动增加列</li>
+<li>分区字段更改且不丢失源数据</li>
+<li>可以实现表中自带的字段以及用户定义的字段一起分区的操作</li>
+<li>实现单独对一个分区的数据追加或者重新写入</li>
+<li>设置hive表的存储以及压缩格式</li>
+<li>实现对所有分区的追加或者重新写入</li>
+<li>通过flink的参数工具部署</li>
+</ul>
+</li>
+<li>追加功能sql<ul>
+<li>实现用户自定义分区字段以及值</li>
+<li>用户在jdbc数据中增加列，hive中自动增加列</li>
+<li>可以实现表中自带的字段以及用户定义的字段一起分区的操作</li>
+<li>实现单独对一个分区的数据追加或者重新写入</li>
+<li>实现对所有分区的追加或者重新写入</li>
+<li>设置hive表的存储格式</li>
+<li>实现设置存储格式text等</li>
+<li>通过flink的参数工具部署</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>hivetojdbc<ul>
+<li>基本功能<ul>
+<li>同步数据</li>
+</ul>
+</li>
+<li>追加功能<ul>
+<li>幂等性操作</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>基本功能没有上面要注意的点，但是多分区的时候我是采用获取字符串然后split之后map加上数据类型然后mkstring制作的</p>
+<p>sql：</p>
+<p>但是分区一般分为数据里的分区字段，以及用户自定义的分区字段，针对于用户自定义的分区，我直接把他们定义为string，但是对于数据里的分区字段，我选择保留他原始的类型，通过筛选出他包含的分区字段的schema信息，然后通过他的datatype，来进行数据的备份，最后和上述用户自定义的分区字段拼接到一起，就可以了，最后前面加上partitioned by 就好了，注意点是要提取变量，以及判断最后一次的时机，以及如何判断分区列在不在字段里。</p>
+<p>api：</p>
+<p>对于api则更为简单，直接调用partitionbyapi然后把字符串通过split然后：_*的方式传入，就ok了，但是api的分区字段必须是在df里的，也就是说，我们要提前把分区字段加上，先判断有没有分区字段，然后进而加上分区字段</p>
+<p>追加功能：</p>
+<h2 id="sink"><a href="#sink" class="headerlink" title="sink"></a>sink</h2><p>通过api对数据进行输出到表</p>
+<h3 id="sink到hive"><a href="#sink到hive" class="headerlink" title="sink到hive"></a>sink到hive</h3><p>api</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">    saveFile.savetohiveapi(spark,empty,frameresult,hivetable,mode,hivepartition,changecolunm,fileformated,codec)</span><br><span class="line"><span class="comment">------------------------------------------------------------------------------------------------------------------</span></span><br><span class="line">def savetohiveapi(sparkSession: SparkSession,<span class="type">boolean</span>: <span class="type">Boolean</span>,spark: DataFrame,hivetable:String,mode:String,hivepartition:String,changecolnums:<span class="type">Boolean</span>,fileformat:String,codec:String) = &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="type">boolean</span>)&#123;</span><br><span class="line">      <span class="keyword">if</span> (hivepartition != <span class="keyword">null</span>)&#123;</span><br><span class="line">        spark.<span class="keyword">write</span>.partitionBy(hivepartition.split(&quot;,&quot;):_*).<span class="keyword">option</span>(&quot;fileFormat&quot;,fileformat).<span class="keyword">option</span>(&quot;compression&quot;,codec).mode(mode).format(&quot;hive&quot;).saveAsTable(hivetable)</span><br><span class="line">      &#125;<span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">        println(hivetable)</span><br><span class="line">        println(hivepartition)</span><br><span class="line">        spark.<span class="keyword">write</span>.<span class="keyword">option</span>(&quot;fileFormat&quot;,fileformat).<span class="keyword">option</span>(&quot;compression&quot;,codec).mode(mode).format(&quot;hive&quot;).saveAsTable(hivetable)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      changecolnums match &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">true</span> =&gt;  &#123;</span><br><span class="line">          <span class="keyword">if</span> (hivepartition != <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(sparkSession.<span class="keyword">table</span>(hivetable).<span class="keyword">columns</span>.length != spark.<span class="keyword">columns</span>.length)&#123;</span><br><span class="line">             sparkSession.<span class="keyword">sql</span>(</span><br><span class="line">               s&quot;&quot;&quot;</span><br><span class="line">                 |drop table $&#123;hivetable&#125;</span><br><span class="line">                 |&quot;&quot;&quot;.stripMargin)</span><br><span class="line">            &#125;</span><br><span class="line">            spark.<span class="keyword">write</span>.partitionBy(hivepartition.split(&quot;,&quot;):_*).<span class="keyword">option</span>(&quot;fileFormat&quot;,fileformat).<span class="keyword">option</span>(&quot;compression&quot;,codec).mode(mode).format(&quot;hive&quot;).saveAsTable(hivetable)</span><br><span class="line">          &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            spark.<span class="keyword">write</span>.<span class="keyword">option</span>(&quot;fileFormat&quot;,fileformat).<span class="keyword">option</span>(&quot;compression&quot;,codec).mode(mode).format(&quot;hive&quot;).saveAsTable(hivetable)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">false</span> =&gt; spark.<span class="keyword">write</span>.<span class="keyword">option</span>(&quot;fileFormat&quot;,fileformat).<span class="keyword">option</span>(&quot;compression&quot;,codec).mode(mode).format(&quot;hive&quot;).insertInto(hivetable)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      spark.<span class="keyword">show</span>()</span><br><span class="line">      println(spark.count())</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>sql</p>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">def insertmake(sparkSession: SparkSession,dataFrame: DataFrame,tablename:String,otheroptions:String*) =&#123;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">var strings</span>:Array[String] = null</span><br><span class="line"></span><br><span class="line">      dataFrame<span class="variable">.selectExpr</span>(sparkSession<span class="variable">.table</span>(tablename)<span class="variable">.columns</span>:_*)<span class="variable">.createOrReplaceTempView</span>(&quot;tmp&quot;)</span><br><span class="line"></span><br><span class="line">   // val partitionstring = sparkSession<span class="variable">.table</span>(tablename)<span class="variable">.columns</span><span class="variable">.tail</span>(sparkSession<span class="variable">.table</span>(tablename)<span class="variable">.columns</span><span class="variable">.length</span> - 2)</span><br><span class="line">    otheroptions<span class="variable">.length</span> match &#123;</span><br><span class="line">      case 0 =&gt; &#123;</span><br><span class="line">        sparkSession<span class="variable">.sql</span>(</span><br><span class="line">          s&quot;&quot;&quot;</span><br><span class="line">             |insert overwrite $&#123;tablename&#125;</span><br><span class="line">             |select * from tmp</span><br><span class="line">             |&quot;&quot;&quot;<span class="variable">.stripMargin</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      case _ =&gt; &#123;</span><br><span class="line"></span><br><span class="line">        if (otheroptions<span class="variable">.length</span> &gt; 1)&#123;</span><br><span class="line">          strings = otheroptions(1)<span class="variable">.split</span>(&quot;,&quot;)<span class="variable">.filter</span>(conclunms =&gt; &#123;</span><br><span class="line">            !dataFrame<span class="variable">.columns</span><span class="variable">.contains</span>(conclunms)</span><br><span class="line">          &#125;)</span><br><span class="line">          val fuzhiarray:Array[String] = util<span class="variable">.Arrays</span><span class="variable">.copyOfRange</span>(otheroptions<span class="variable">.toArray</span>, 2, otheroptions<span class="variable">.length</span>)</span><br><span class="line">          fuzhiarray<span class="variable">.foreach</span>(println(_))</span><br><span class="line">          strings<span class="variable">.isEmpty</span> match &#123;</span><br><span class="line">            case true =&gt; &#123;</span><br><span class="line"></span><br><span class="line">          sparkSession<span class="variable">.sql</span>(</span><br><span class="line">          s&quot;&quot;&quot;</span><br><span class="line">            |insert overwrite $&#123;tablename&#125; partition($&#123;otheroptions(1)<span class="variable">.split</span>(&quot;,&quot;)<span class="variable">.map</span>(conclunms =&gt; &#123;s&quot;$&#123;conclunms&#125;&quot;&#125;)<span class="variable">.mkString</span>(&quot;,&quot;)&#125;)</span><br><span class="line">            |select * from tmp</span><br><span class="line">            |&quot;&quot;&quot;<span class="variable">.stripMargin</span>)</span><br><span class="line">          &#125;</span><br><span class="line">            case false =&gt; &#123;</span><br><span class="line">              var tmpdf:DataFrame = dataFrame</span><br><span class="line">              for (i &lt;- 0 to strings<span class="variable">.length-</span>1)&#123;</span><br><span class="line">                tmpdf = tmpdf<span class="variable">.withColumn</span>(strings(i),lit(fuzhiarray(i)))</span><br><span class="line">              &#125;</span><br><span class="line">              tmpdf<span class="variable">.show</span>()</span><br><span class="line">              tmpdf<span class="variable">.printSchema</span>()</span><br><span class="line">              tmpdf = tmpdf<span class="variable">.selectExpr</span>(sparkSession<span class="variable">.table</span>(tablename)<span class="variable">.columns</span>: _*)</span><br><span class="line">              tmpdf<span class="variable">.show</span>()</span><br><span class="line">              tmpdf<span class="variable">.printSchema</span>()</span><br><span class="line">              val str = tmpdf<span class="variable">.columns</span><span class="variable">.mkString</span>(&quot;,\n&quot;)</span><br><span class="line">              tmpdf<span class="variable">.createOrReplaceTempView</span>(&quot;smp&quot;)</span><br><span class="line">              sparkSession<span class="variable">.sql</span>(</span><br><span class="line">                s&quot;&quot;&quot;</span><br><span class="line">                   |insert overwrite $&#123;tablename&#125; partition($&#123;otheroptions(1)<span class="variable">.split</span>(&quot;,&quot;)<span class="variable">.map</span>(conclunms =&gt; &#123;s&quot;$&#123;conclunms&#125;&quot;&#125;)<span class="variable">.mkString</span>(&quot;,&quot;)&#125;)</span><br><span class="line">                   |select $&#123;str&#125; from smp</span><br><span class="line">                   |&quot;&quot;&quot;<span class="variable">.stripMargin</span>)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;else&#123;</span><br><span class="line">          strings = otheroptions(0)<span class="variable">.split</span>(&quot;,&quot;)<span class="variable">.filter</span>(conclunms =&gt; &#123;</span><br><span class="line">            !dataFrame<span class="variable">.columns</span><span class="variable">.contains</span>(conclunms)</span><br><span class="line">          &#125;)</span><br><span class="line">          val fuzhiarray:Array[String] = util<span class="variable">.Arrays</span><span class="variable">.copyOfRange</span>(otheroptions<span class="variable">.toArray</span>, 1, otheroptions<span class="variable">.length</span>)</span><br><span class="line"></span><br><span class="line">          strings<span class="variable">.isEmpty</span> match &#123;</span><br><span class="line">            case true =&gt; &#123;</span><br><span class="line">              sparkSession<span class="variable">.sql</span>(</span><br><span class="line">                s&quot;&quot;&quot;</span><br><span class="line">                   |insert overwrite $&#123;tablename&#125; partition($&#123;otheroptions(0)<span class="variable">.split</span>(&quot;,&quot;)<span class="variable">.map</span>(conclunms =&gt; &#123;s&quot;$&#123;conclunms&#125;&quot;&#125;)<span class="variable">.mkString</span>(&quot;,&quot;)&#125;)</span><br><span class="line">                   |select * from tmp</span><br><span class="line">                   |&quot;&quot;&quot;<span class="variable">.stripMargin</span>)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            case false =&gt; &#123;</span><br><span class="line">              var tmpdf:DataFrame = dataFrame</span><br><span class="line"></span><br><span class="line">              for (i &lt;- 0 to strings<span class="variable">.length-</span>1)&#123;</span><br><span class="line">                tmpdf = tmpdf<span class="variable">.withColumn</span>(strings(i),lit(fuzhiarray(i)))</span><br><span class="line">              &#125;</span><br><span class="line">              tmpdf<span class="variable">.show</span>()</span><br><span class="line">              tmpdf<span class="variable">.printSchema</span>()</span><br><span class="line">              tmpdf = tmpdf<span class="variable">.selectExpr</span>(sparkSession<span class="variable">.table</span>(tablename)<span class="variable">.columns</span>: _*)</span><br><span class="line">              val str = tmpdf<span class="variable">.columns</span><span class="variable">.mkString</span>(&quot;,\n&quot;)</span><br><span class="line">              tmpdf<span class="variable">.createOrReplaceTempView</span>(&quot;smp&quot;)</span><br><span class="line">              sparkSession<span class="variable">.sql</span>(</span><br><span class="line">                s&quot;&quot;&quot;</span><br><span class="line">                   |insert overwrite $&#123;tablename&#125; partition($&#123;otheroptions(0)<span class="variable">.split</span>(&quot;,&quot;)<span class="variable">.map</span>(conclunms =&gt; &#123;s&quot;$&#123;conclunms&#125;&quot;&#125;)<span class="variable">.mkString</span>(&quot;,&quot;)&#125;)</span><br><span class="line">                   |select $&#123;str&#125; from smp</span><br><span class="line">                   |&quot;&quot;&quot;<span class="variable">.stripMargin</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="sink到jdbc"><a href="#sink到jdbc" class="headerlink" title="sink到jdbc"></a>sink到jdbc</h3><p>api</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">def savetojdbc(spark: SparkSession,df: DataFrame, url:String,<span class="keyword">user</span>:String,<span class="keyword">password</span>:String,dbtable:String,driver:String,mideng:String,mode:String)=&#123;</span><br><span class="line">    val map = Map(&quot;url&quot; -&gt; url,</span><br><span class="line">      &quot;user&quot; -&gt; <span class="keyword">user</span>,</span><br><span class="line">      &quot;password&quot; -&gt; <span class="keyword">password</span>,</span><br><span class="line">      &quot;dbtable&quot; -&gt; dbtable,</span><br><span class="line">      &quot;driver&quot;-&gt; driver)</span><br><span class="line"></span><br><span class="line">//    df.<span class="keyword">write</span>.mode(string(<span class="number">2</span>)).format(string(<span class="number">1</span>)).<span class="keyword">options</span>(map).save()</span><br><span class="line">    // <span class="comment">-------------------------------------幂等性</span></span><br><span class="line">    val <span class="keyword">connection</span> = jdbcconnect.getconncet(driver,url,<span class="keyword">user</span>,<span class="keyword">password</span>)</span><br><span class="line">    try&#123;</span><br><span class="line">      val <span class="type">bool</span> = <span class="keyword">connection</span>.createStatement().executeQuery(s&quot;show tables like &#x27;$&#123;dbtable&#125;&#x27;&quot;).next()</span><br><span class="line">      <span class="keyword">if</span> (!<span class="type">bool</span>)&#123;</span><br><span class="line">        throw <span class="built_in">new</span> NullPointerException(s&quot;写入的结果表$&#123;dbtable&#125; 尚未创建！！！&quot;)</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        var flag:<span class="keyword">Any</span> = <span class="keyword">null</span></span><br><span class="line">        val flagbool = mysqldf.getmyqsldffromMap(spark, map).<span class="keyword">select</span>(mideng).isEmpty</span><br><span class="line">        <span class="keyword">if</span> (!flagbool)&#123;</span><br><span class="line">         flag = mysqldf.getmyqsldffromMap(spark, map).<span class="keyword">select</span>(mideng).tail(<span class="number">1</span>)(<span class="number">0</span>)(<span class="number">0</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        val tmpresult = df.<span class="keyword">select</span>(mideng).<span class="keyword">filter</span>(<span class="type">line</span> =&gt; &#123;</span><br><span class="line">          <span class="type">line</span>.getString(<span class="number">0</span>) != flag</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (df.isEmpty)&#123;</span><br><span class="line">          println(&quot;数据集为空&quot;)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (tmpresult.isEmpty)&#123;</span><br><span class="line">            println(&quot;你的数据已经插入过&quot;)</span><br><span class="line">            df.<span class="keyword">show</span>(<span class="keyword">false</span>)</span><br><span class="line">          &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">//            df.<span class="keyword">show</span>()</span><br><span class="line">//            println(df.count())</span><br><span class="line">            //val insertresult = tmpresult.<span class="keyword">join</span>(df, string(<span class="number">5</span>))</span><br><span class="line">            tmpresult.<span class="keyword">show</span>()</span><br><span class="line">            println(tmpresult.count())</span><br><span class="line">//            insertresult.<span class="keyword">show</span>()</span><br><span class="line">//            println(insertresult.count())</span><br><span class="line">            tmpresult.<span class="keyword">write</span>.mode(mode).format(&quot;jdbc&quot;).<span class="keyword">options</span>(map).save()</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;finally &#123;</span><br><span class="line">      <span class="keyword">connection</span>.<span class="keyword">close</span>()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      
+   <div>
+     <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+   </div>
+     
+        <div class="reward-container">
+  <div>你们的鼓励是对我最大的支持</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="liu zihang 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>liu zihang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://zihang.fun/2023/02/02/2-2/" title="同步工具">http://zihang.fun/2023/02/02/2-2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+     
+    
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%90%8C%E6%AD%A5%E5%B7%A5%E5%85%B7/" rel="tag"># 同步工具</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/02/01/project/" rel="prev" title="project">
+      <i class="fa fa-chevron-left"></i> project
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/02/03/2-3-1/" rel="next" title="监控yarn">
+      监控yarn <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81NzQzNy8zMzkwMQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#api"><span class="nav-number">1.</span> <span class="nav-text">api</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jdbctohive"><span class="nav-number">1.1.</span> <span class="nav-text">jdbctohive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hivetojdbc"><span class="nav-number">1.2.</span> <span class="nav-text">hivetojdbc</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sql%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">sql方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jdbctohive-1"><span class="nav-number">2.1.</span> <span class="nav-text">jdbctohive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hivetojdbc-1"><span class="nav-number">2.2.</span> <span class="nav-text">hivetojdbc</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E5%8F%8A%E5%AE%9E%E7%8E%B0%E5%8A%9F%E8%83%BD"><span class="nav-number">3.</span> <span class="nav-text">思路及实现功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#source"><span class="nav-number">3.1.</span> <span class="nav-text">source</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#todo"><span class="nav-number">3.2.</span> <span class="nav-text">todo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sink"><span class="nav-number">3.3.</span> <span class="nav-text">sink</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sink%E5%88%B0hive"><span class="nav-number">3.3.1.</span> <span class="nav-text">sink到hive</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sink%E5%88%B0jdbc"><span class="nav-number">3.3.2.</span> <span class="nav-text">sink到jdbc</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liu zihang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">liu zihang</p>
+  <div class="site-description" itemprop="description">只有努力不会辜负你</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      链接网站
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://baidu.com/" title="https:&#x2F;&#x2F;baidu.com" rel="noopener" target="_blank">百度</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://fishc.com.cn/" title="https:&#x2F;&#x2F;fishc.com.cn" rel="noopener" target="_blank">鱼C论坛</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liu zihang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共216.1k字</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'http://zihang.fun/2023/02/02/2-2/',]
+      });
+      });
+  </script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
