@@ -1353,7 +1353,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-11 09:12:11" itemprop="dateModified" datetime="2023-01-11T09:12:11+08:00">2023-01-11</time>
+                <time title="修改时间：2023-02-08 08:59:33" itemprop="dateModified" datetime="2023-02-08T08:59:33+08:00">2023-02-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1393,7 +1393,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="superset"><a href="#superset" class="headerlink" title="superset"></a>superset</h1><p>官网 ： superset ： <a target="_blank" rel="noopener" href="https://superset.apache.org/">https://superset.apache.org/</a></p>
+          <h1 id="superset"><a href="#superset" class="headerlink" title="superset"></a>superset</h1><p>docker run -d –name clickhouse-test-server –ulimit nofile&#x3D;262144:262144 –volume&#x3D;&#x2F;root&#x2F;clickhouse&#x2F;data:&#x2F;var&#x2F;lib&#x2F;clickhouse yandex&#x2F;clickhouse-server</p>
+<p>官网 ： superset ： <a target="_blank" rel="noopener" href="https://superset.apache.org/">https://superset.apache.org/</a></p>
 <p>类似于otb ： 开箱即用</p>
 <p>把图弄到一个dashboard中 ，显示出来</p>
 <p>底层源码  ： python编译的 ： 建议先安装python 然后再安装它 ，不要把superset和mysql在一起</p>
@@ -1961,7 +1962,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-11 09:11:10" itemprop="dateModified" datetime="2023-01-11T09:11:10+08:00">2023-01-11</time>
+                <time title="修改时间：2023-02-15 09:16:52" itemprop="dateModified" datetime="2023-02-15T09:16:52+08:00">2023-02-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2014,8 +2015,8 @@
 <p>代码如下  ：</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> empid,custid,</span><br><span class="line">       sum(qty) <span class="keyword">as</span> sumqty</span><br><span class="line"><span class="keyword">FROM</span> Orders</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">    <span class="keyword">GROUPING SETS</span></span><br><span class="line">    (</span><br><span class="line">        (empid,custid),</span><br><span class="line">        (empid),(custid),</span><br><span class="line">        ()</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
 
-<p>上面代码的意思就是 ：我要按照ｇｒｏｕｐ　ｂｙ　的方法　把empid,custid和empid和custid这几个维度都选出来，然后是上下在一起的　相当于用ｕｎｉｏｎ在一起</p>
-<p>如果是这次选择的维度中未选择的维度，比如说　，我只选择了　维度empid　，那么custid列就会是空，但是这个比多次重复性写ｓｑｌ语句要好的多</p>
+<p>上面代码的意思就是 ：我要按照group by的方法　把empid,custid和empid和custid这几个维度都选出来，然后是上下在一起的　相当于用union在一起</p>
+<p>如果是这次选择的维度中未选择的维度，比如说　，我只选择了　维度empid　，那么custid列就会是空，但是这个比多次重复性写sql语句要好的多</p>
 <h1 id="数据转换"><a href="#数据转换" class="headerlink" title="数据转换"></a>数据转换</h1><p>针对以下数据</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">+--------------+--------------------+</span><br><span class="line">|<span class="string"> hanglie.ame  </span>|<span class="string"> hanglie.teresting  </span>|</span><br><span class="line">+--------------+--------------------+</span><br><span class="line">|<span class="string"> zuan         </span>|<span class="string"> 王者荣耀               </span>|</span><br><span class="line">|<span class="string"> zuan         </span>|<span class="string"> 吃饭                 </span>|</span><br><span class="line">|<span class="string"> zuan         </span>|<span class="string"> rap                </span>|</span><br><span class="line">|<span class="string"> zuan         </span>|<span class="string"> 唱歌                 </span>|</span><br><span class="line">|<span class="string"> chaofeng     </span>|<span class="string"> 王者荣耀               </span>|</span><br><span class="line">|<span class="string"> chaofeng     </span>|<span class="string"> 睡觉                 </span>|</span><br><span class="line">|<span class="string"> chaofeng     </span>|<span class="string"> 方亚                 </span>|</span><br><span class="line">+--------------+--------------------+</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -2996,7 +2997,7 @@ is null 作用一样 &lt;=&gt;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -3009,7 +3010,7 @@ is null 作用一样 &lt;=&gt;
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -3072,7 +3073,7 @@ is null 作用一样 &lt;=&gt;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共216.1k字</span>
+  <span class="post-count">博客全站共232.4k字</span>
 </div>
 
 
